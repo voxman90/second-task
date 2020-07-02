@@ -1,0 +1,31 @@
+$colors: (
+    dark-shade-100: #1F204164,
+    dark-shade-75: #1F20415B,
+    dark-shade-50: #1F204180,
+    dark-shade-25: #1F204129,
+    dark-shade-5: #1F204105,
+    dark-shade: #1F2041,
+    'purple': #BC9CFF,
+    'green': #6FCF97
+);
+
+* {
+    box-sizing: border-box;
+}
+
+@mixin block-for-sample {
+    width: 70px;
+    height: 70px;
+    border-radius: 6px;
+}
+
+@each $class-name, $color-hex in $colors {
+    .#{$class-name}-sample {
+        background-color: $color-hex;
+        @include block-for-sample();
+    }
+}
+
+.box-for-sample {
+    padding: 0;
+}
