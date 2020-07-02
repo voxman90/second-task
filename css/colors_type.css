@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box; }
+
+.dark-shade-5-sample {
+  background-color: rgba(31, 32, 65, 0.05);
+  width: 70px;
+  height: 70px;
+  border-radius: 6px; }
+
+.dark-shade-25-sample {
+  background-color: rgba(31, 32, 65, 0.25);
+  width: 70px;
+  height: 70px;
+  border-radius: 6px; }
+
+.dark-shade-50-sample {
+  background-color: rgba(31, 32, 65, 0.5);
+  width: 70px;
+  height: 70px;
+  border-radius: 6px; }
+
+.dark-shade-75-sample {
+  background-color: rgba(31, 32, 65, 0.75);
+  width: 70px;
+  height: 70px;
+  border-radius: 6px; }
+
+.dark-shade-100-sample {
+  background-color: #1F2041;
+  width: 70px;
+  height: 70px;
+  border-radius: 6px; }
+
+.purple-sample {
+  background-color: #BC9CFF;
+  width: 70px;
+  height: 70px;
+  border-radius: 6px; }
+
+.green-sample {
+  background-color: #6FCF97;
+  width: 70px;
+  height: 70px;
+  border-radius: 6px; }
+
+.box-for-sample {
+  padding: 0;
+  font-family: Quicksand, sans-serif;
+  font-size: 19px;
+  font-weight: normal;
+  line-height: 29px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  width: 270px; }
+
+.sample-text {
+  margin-left: 40px;
+  min-width: 160px; }
+
+/*# sourceMappingURL=colors_type.css.map */
