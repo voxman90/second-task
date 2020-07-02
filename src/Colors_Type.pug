@@ -2,11 +2,10 @@ doctype html
 html
     head
         meta(charset='UTF-8')
-        link(rel="stylesheet" type="text/css" href="css/colors_type.css")
         title Colors & Type
 -   const colorArr = [{className: 'dark-shade-100', textIn: 'Dark Shade 100%', codeIn: '#1F2041'}, {className: 'dark-shade-75', textIn: 'Dark Shade 75%', codeIn: '#1F2041'}, {className: 'dark-shade-50', textIn: 'Dark Shade 50%', codeIn: '#1F2041'}, {className: 'dark-shade-25', textIn: 'Dark Shade 25%', codeIn: '#1F2041'}, {className: 'dark-shade-5',textIn: 'Dark Shade 5%', codeIn: '#1F2041'}, {className: 'purple', textIn: 'Purple', codeIn: '#BC9CFF'}, {className: 'green', textIn: 'Green', codeIn: '#6FCF97'}]
     body
-        div.box-for-sample
+        div(class="box-for-sample"+"  font-family-quicksand")
             each val in colorArr
                 div(class=val.className+"-sample")
                 p.sample-text <b>#{val.textIn}</b><br>#{val.codeIn}

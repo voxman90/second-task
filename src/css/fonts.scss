@@ -1,0 +1,13 @@
+@font-face {
+	font-family: 'Quicksand';
+	src: url('../assets/fonts/Quicksand-VariableFont_wght.eot');
+    src: local('☺'), 
+         url('../assets/fonts/Quicksand-VariableFont_wght.otf') format('otf'),
+         url('../assets/fonts/Quicksand-VariableFont_wght.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.font-family-quicksand {
+    font-style: 'Quicksand', sans-serif;
+}

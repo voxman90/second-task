@@ -1,3 +1,14 @@
+@charset "UTF-8";
+@font-face {
+  font-family: 'Quicksand';
+  src: url(26bc459dffbd93f63d7ac6b31a59ca58.eot);
+  src: local("☺"), url(31d6cfe0d16ae931b73c59d7e0c089c0.otf) format("otf"), url(7dd2a729c26ea6122bbc43c877ed84e2.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+
+.font-family-quicksand {
+  font-style: 'Quicksand', sans-serif; }
+
 * {
   box-sizing: border-box; }
 
@@ -60,4 +71,3 @@
   margin-left: 40px;
   min-width: 160px; }
 
-/*# sourceMappingURL=colors_type.css.map */
