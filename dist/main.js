@@ -94,7 +94,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_fonts_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./css/fonts.scss */ \"./css/fonts.scss\");\n/* harmony import */ var _css_fonts_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_fonts_scss__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _css_colors_type_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./css/colors_type.scss */ \"./css/colors_type.scss\");\n/* harmony import */ var _css_colors_type_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_css_colors_type_scss__WEBPACK_IMPORTED_MODULE_1__);\n\r\n\n\n//# sourceURL=webpack:///./component.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_fonts_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./css/fonts.scss */ \"./css/fonts.scss\");\n/* harmony import */ var _css_fonts_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_fonts_scss__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _css_colors_type_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./css/colors_type.scss */ \"./css/colors_type.scss\");\n/* harmony import */ var _css_colors_type_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_css_colors_type_scss__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _project_common_block_logo_logo_color_green_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./project/common.block/logo/logo_color-green.scss */ \"./project/common.block/logo/logo_color-green.scss\");\n/* harmony import */ var _project_common_block_logo_logo_color_green_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_project_common_block_logo_logo_color_green_scss__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _project_common_block_logo_logo_color_purple_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./project/common.block/logo/logo_color-purple.scss */ \"./project/common.block/logo/logo_color-purple.scss\");\n/* harmony import */ var _project_common_block_logo_logo_color_purple_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_project_common_block_logo_logo_color_purple_scss__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _project_common_block_logo_logo_right_branch_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./project/common.block/logo/logo__right-branch.scss */ \"./project/common.block/logo/logo__right-branch.scss\");\n/* harmony import */ var _project_common_block_logo_logo_right_branch_scss__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_project_common_block_logo_logo_right_branch_scss__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _project_common_block_logo_logo_left_branch_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./project/common.block/logo/logo__left-branch.scss */ \"./project/common.block/logo/logo__left-branch.scss\");\n/* harmony import */ var _project_common_block_logo_logo_left_branch_scss__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_project_common_block_logo_logo_left_branch_scss__WEBPACK_IMPORTED_MODULE_5__);\n/* harmony import */ var _project_common_block_logo_logo_circle_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./project/common.block/logo/logo__circle.scss */ \"./project/common.block/logo/logo__circle.scss\");\n/* harmony import */ var _project_common_block_logo_logo_circle_scss__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_project_common_block_logo_logo_circle_scss__WEBPACK_IMPORTED_MODULE_6__);\n/* harmony import */ var _project_common_block_logo_logo_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./project/common.block/logo/logo.scss */ \"./project/common.block/logo/logo.scss\");\n/* harmony import */ var _project_common_block_logo_logo_scss__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_project_common_block_logo_logo_scss__WEBPACK_IMPORTED_MODULE_7__);\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\n\n//# sourceURL=webpack:///./component.js?");
 
 /***/ }),
 
@@ -117,6 +117,72 @@ eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./css/
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./css/fonts.scss?");
+
+/***/ }),
+
+/***/ "./project/common.block/logo/logo.scss":
+/*!*********************************************!*\
+  !*** ./project/common.block/logo/logo.scss ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./project/common.block/logo/logo.scss?");
+
+/***/ }),
+
+/***/ "./project/common.block/logo/logo__circle.scss":
+/*!*****************************************************!*\
+  !*** ./project/common.block/logo/logo__circle.scss ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./project/common.block/logo/logo__circle.scss?");
+
+/***/ }),
+
+/***/ "./project/common.block/logo/logo__left-branch.scss":
+/*!**********************************************************!*\
+  !*** ./project/common.block/logo/logo__left-branch.scss ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./project/common.block/logo/logo__left-branch.scss?");
+
+/***/ }),
+
+/***/ "./project/common.block/logo/logo__right-branch.scss":
+/*!***********************************************************!*\
+  !*** ./project/common.block/logo/logo__right-branch.scss ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./project/common.block/logo/logo__right-branch.scss?");
+
+/***/ }),
+
+/***/ "./project/common.block/logo/logo_color-green.scss":
+/*!*********************************************************!*\
+  !*** ./project/common.block/logo/logo_color-green.scss ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./project/common.block/logo/logo_color-green.scss?");
+
+/***/ }),
+
+/***/ "./project/common.block/logo/logo_color-purple.scss":
+/*!**********************************************************!*\
+  !*** ./project/common.block/logo/logo_color-purple.scss ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./project/common.block/logo/logo_color-purple.scss?");
 
 /***/ })
 

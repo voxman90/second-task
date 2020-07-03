@@ -1,0 +1,13 @@
+include logo__circle.pug
+include logo__left-branch.pug
+include logo__right-branch.pug
+include logo__text.pug
+
+-   const modificators = {circle: '',  left: '', right: ''}
+-   const textVisible = false
+
+.logo
+    +logo__circle(modificators.circle) 
+    +logo__left-branch(modificators.left)
+    +logo__right-branch(modificators.right)
+    +logo__text(textVisible)

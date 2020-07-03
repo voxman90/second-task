@@ -1,2 +1,8 @@
 import './css/fonts.scss'
 import './css/colors_type.scss'
+import './project/common.block/logo/logo_color-green.scss'
+import './project/common.block/logo/logo_color-purple.scss'
+import './project/common.block/logo/logo__right-branch.scss'
+import './project/common.block/logo/logo__left-branch.scss'
+import './project/common.block/logo/logo__circle.scss'
+import './project/common.block/logo/logo.scss'
