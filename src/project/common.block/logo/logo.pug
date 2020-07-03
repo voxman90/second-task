@@ -1,13 +1,8 @@
 include logo__circle.pug
 include logo__left-branch.pug
 include logo__right-branch.pug
-include logo__text.pug
-
--   const modificators = {circle: '',  left: '', right: ''}
--   const textVisible = false
-
-.logo
-    +logo__circle(modificators.circle) 
-    +logo__left-branch(modificators.left)
-    +logo__right-branch(modificators.right)
-    +logo__text(textVisible)
+- const modificator = " logo_small-size" + " logo_color-change"
+div(class="logo"+modificator)
+    +logo__circle
+    +logo__left-branch
+    +logo__right-branch

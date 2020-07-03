@@ -71,13 +71,29 @@
   margin-left: 40px;
   min-width: 160px; }
 
-.color-green {
-  background-color: linear-gradient(#6FCF97, #66D2EA); }
+.logo {
+  position: relative; }
 
-.color-purple {
-  background-color: linear-gradient(#BC9CFF, #8BA4F9); }
+.logo__right-branch {
+  position: absolute;
+  top: 37.5%;
+  right: 22.917%; }
 
+.logo__left-branch {
+  position: absolute;
+  top: 37.5%;
+  left: 22.917%; }
 
+.logo__circle {
+  position: absolute;
+  top: 0px;
+  left: 0px; }
 
+.logo_normal-size {
+  width: 48px;
+  height: 48px; }
 
+.logo_small-size {
+  width: 40px;
+  height: 40px; }
 
