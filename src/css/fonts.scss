@@ -1,13 +1,31 @@
 @font-face {
 	font-family: 'Quicksand';
-	src: url('../assets/fonts/Quicksand-VariableFont_wght.eot');
-    src: local('☺'), 
-         url('../assets/fonts/Quicksand-VariableFont_wght.otf') format('otf'),
-         url('../assets/fonts/Quicksand-VariableFont_wght.ttf') format('truetype');
+	src: url('../assets/fonts/Quicksand-Regular.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
 
-.font-family-quicksand {
-    font-style: 'Quicksand', sans-serif;
+@font-face {
+	font-family: 'Quicksand';
+	src: url('../assets/fonts/Quicksand-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('../assets/fonts/Montserrat-Regular.eot');
+	src: url('../assets/fonts/Montserrat-Regular.otf') format('otf'),
+		 url('../assets/fonts/Montserrat-Regular.ttf') format('truetype'); 
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('../assets/fonts/Montserrat-Bold.eot');
+	src: url('../assets/fonts/Montserrat-Bold.otf') format('otf'),
+		 url('../assets/fonts/Montserrat-Bold.ttf') format('truetype'); 
+	font-weight: bold;
+	font-style: normal;
 }

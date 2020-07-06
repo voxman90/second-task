@@ -1,0 +1,10 @@
+.input-text__label-right {
+    float: right;
+    font: { family: Montserrat, sans-serif;
+            style: normal;
+            weight: normal;
+            size: 12px;
+    }
+    line-height: 15px;
+    color: map-get($colors, 'dark-shade-50');
+}

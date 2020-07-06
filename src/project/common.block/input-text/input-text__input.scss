@@ -1,0 +1,50 @@
+.input-text__input {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 13px 15px; 
+    border: 1px solid map-get($colors, dark-shade-25);
+    border-radius: 4px;
+    width: 100%;
+    color: map-get($colors, dark-shade-75);
+        font: { family: Montserrat;
+            style: normal;
+            weight: normal;
+            size: 14px;
+        } 
+    line-height: 18px;
+
+    &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: map-get($colors, dark-shade-25);
+        font: { family: Montserrat;
+            style: normal;
+            weight: normal;
+            size: 14px;
+        } 
+        line-height: 18px;
+    }
+
+    &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: map-get($colors, dark-shade-25);
+        font: { family: Montserrat;
+            style: normal;
+            weight: normal;
+            size: 14px;
+        } 
+        line-height: 18px;
+    }
+
+    &::-ms-input-placeholder { /* Microsoft Edge */
+        color: map-get($colors, dark-shade-25);
+        font: { family: Montserrat;
+            style: normal;
+            weight: normal;
+            size: 14px;
+        } 
+        line-height: 18px;
+    }
+
+    &:hover, &:focus, &:active {
+        border: 1px solid map-get($colors, dark-shade-50);
+        outline: none;
+    } 
+}

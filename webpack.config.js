@@ -12,11 +12,11 @@ module.exports = {
     },
     plugins: [
         new HTMLWebpackPlugin({
-            template: './Colors_Type.pug'
+            template: './Form_Elements.pug'
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: '[name].css'
+            filename: 'style.css'
         })
     ],
     module: {
