@@ -1,0 +1,22 @@
+mixin option(name)
+  div.dropdown__option
+    div.dropdown__option-name #{name}
+    div.dropdown__option-batton -
+    div.dropdown__option-value 0
+    div.dropdown__option-batton +
+
+mixin dropdown-guest()
+  div.dropdown 
+    label.dropdown__label
+      span.dropdown__label-text-left DROPDOWN
+      div.dropdown__text-field
+        div.dropdown__text-field-text текст
+        div.dropdown__text-field-expand >
+      div.dropdown__menu
+        div.dropdown__table
+          +option("Взрослые")
+          +option("Дети")
+          +option("Младенцы")
+        div.dropdown__battons
+          div.dropdown__batton-clear очистить
+          div.dropdown__batton-apply применить
