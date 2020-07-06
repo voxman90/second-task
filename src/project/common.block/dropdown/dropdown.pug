@@ -6,13 +6,13 @@ mixin option(name)
     div.dropdown__option-batton +
 
 mixin dropdown-guest()
-  div.dropdown 
+  div.dropdown
     label.dropdown__label
       span.dropdown__label-text-left DROPDOWN
       div.dropdown__text-field
         div.dropdown__text-field-text текст
         div.dropdown__text-field-expand >
-      div.dropdown__menu
+      div(class="dropdown__menu"+ " dropdown__menu_display")
         div.dropdown__table
           +option("Взрослые")
           +option("Дети")
@@ -20,3 +20,5 @@ mixin dropdown-guest()
         div.dropdown__battons
           div.dropdown__batton-clear очистить
           div.dropdown__batton-apply применить
+                 
++dropdown-guest
