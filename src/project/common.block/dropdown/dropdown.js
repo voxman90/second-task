@@ -18,18 +18,20 @@ document.addEventListener("DOMContentLoaded", function () {
   for (let i = 0; i < dropdownInputs.length; i++) {
     let dropdownItem = dropdownInputs[i];
     let dropdownMenu = dropdownItem.nextElementSibling;
-    let parentItem = dropdownItem.parentNode.parentNode;             
+    let parentItem = dropdownItem.parentNode.parentNode;  
+
     dropdownItem.addEventListener("mousedown", function () {
       this.nextElementSibling.classList.toggle("dropdown__menu_display");
       this.classList.toggle("dropdown__text-field_drop");
     });
     
     document.addEventListener("mousedown", function (event) {
-      if ( !containsIn(parentItem, event.target) && !(dropdownMenu.classList.contains("dropdown__menu_display")) ) {
+      if ( !containsIn(parentItem, event.target) && !dropdownMenu.classList.contains("dropdown__menu_display") ) {
         dropdownMenu.classList.add("dropdown__menu_display");
         dropdownItem.classList.remove("dropdown__text-field_drop");
       }
     });
+
   };
   
   for (let j = 0; j < dropdownTables.length; j++) {

@@ -1,17 +1,87 @@
-// временное решение
-$colors: (
-    dark-shade-5: rgba(31, 32, 65, 0.05),
-    dark-shade-25: rgba(31, 32, 65, 0.25),
-    dark-shade-50: rgba(31, 32, 65, 0.50),
-    dark-shade-75: rgba(31, 32, 65, 0.75),
-    dark-shade-100: #1F2041,
-    'purple': #BC9CFF,
-    'green': #6FCF97
-);
+@use "sass:map";
+@use "../colors" as colors;
+@use "../text-setting" as text;
+@import "../fonts.scss";
 
-@import 'input-text__label.scss';
-@import 'input-text__input.scss';
 
 .input-text {
-    width: 320px;
+  width: 320px;
+}
+
+.input-text__input {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 44px;
+  padding: 13px 15px; 
+  border: 1px solid map.get(colors.$map, dark-shade-25);
+  border-radius: 4px;
+  width: 100%;
+  color: map.get(colors.$map, dark-shade-75);
+      font: { family: Montserrat;
+          style: normal;
+          weight: normal;
+          size: 14px;
+      } 
+  line-height: 18px;
+
+  &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: map.get(colors.$map, dark-shade-25);
+      font: { family: Montserrat;
+          style: normal;
+          weight: normal;
+          size: 14px;
+      } 
+      line-height: 18px;
+  }
+
+  &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+      color: map.get(colors.$map, dark-shade-25);
+      font: { family: Montserrat;
+          style: normal;
+          weight: normal;
+          size: 14px;
+      } 
+      line-height: 18px;
+  }
+
+  &::-ms-input-placeholder { /* Microsoft Edge */
+      color: map.get(colors.$map, dark-shade-25);
+      font: { family: Montserrat;
+          style: normal;
+          weight: normal;
+          size: 14px;
+      } 
+      line-height: 18px;
+  }
+
+  &:hover, &:focus, &:active {
+      border: 1px solid map.get(colors.$map, dark-shade-50);
+      outline: none;
+  } 
+}
+
+.input-text__label {
+  padding: 0px;
+  margin: 0px 0px 5px 0px;
+  &::after {
+    content: "";
+    display: table;
+    width: 100%;
+    clear: both;
+    }
+}
+
+.input-text__label-left {
+float: left;
+}
+
+.input-text__label-right {
+float: right;
+font: { family: Montserrat, sans-serif;
+    style: normal;
+    weight: normal;
+    size: 12px;
+}
+line-height: 15px;
+color: map.get(colors.$map, 'dark-shade-50');
 }

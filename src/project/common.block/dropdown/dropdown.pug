@@ -7,10 +7,11 @@ mixin option(name)
 
 mixin dropdown-guest()
   div.dropdown
-    label.dropdown__label
-      span.dropdown__label-text-left DROPDOWN
+    label
+      div.dropdown__label
+        span.dropdown__label-text DROPDOWN
       div.dropdown__text-field
-        div.dropdown__text-field-text текст
+        div.dropdown__text-field-text Сколько гостей
         div.dropdown__text-field-expand >
       div(class="dropdown__menu"+ " dropdown__menu_display")
         div.dropdown__table
