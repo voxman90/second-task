@@ -1,6 +1,6 @@
 @use "sass:map";
 @use "../colors" as colors;
-@use "../text-setting" as text;
+@use "../text-setting" as fonts;
 @import "../fonts.scss";
 
 .dropdown {
@@ -9,62 +9,61 @@
 }
 
 .dropdown__label {
-  margin: 0px 0px 5px 0px;
+  margin-bottom: 5px;
   &::after {
     content: '';
+    clear: both;
     display: table;
     width: 100%;
-    clear: both;
   }
 }
 
 .dropdown__label-text {
-  $height: 15px;
   float: left;
-  height: $height;
-  @include text.text-label-h3();
+  height: 15px; 
+  @include fonts.text-label-h3();
 }
 
 .dropdown__text-field {
-  box-sizing: border-box;
-  height: 44px;
-  margin-top: 5px;
   position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  box-sizing: border-box;
+  height: 44px;
+  margin-top: 5px;  
   border: 1px solid map.get(colors.$map, 'dark-shade-25');
   border-radius: 4px;
 }
 
 .dropdown__text-field-text {
   box-sizing: border-box;
+  width: 86.25%; 
   padding-left: 15px;
-  @include text.text-body-p;
   text-align: left;
-  width: 86.25%;
+  @include fonts.text-body-p;
 }
 
 .dropdown__text-field-expand {
   box-sizing: border-box;
-  text-align: center;
   width: 13.75%;
+  text-align: center;
 }
 
 .dropdown__text-field_drop {
   border-bottom: 0px;
-  border-color: map.get(colors.$map, 'dark-shade-50');
   border-radius: 4px 4px 0 0;
+  border-color: map.get(colors.$map, 'dark-shade-50');
 }
 
 .dropdown__menu {
-   box-sizing: border-box;
-   width: 320px;
-   z-index: 1;
-   position: absolute;
-   background-color: white;
-   border: 1px solid map.get(colors.$map, 'dark-shade-50');
-   border-radius: 0 0 4px 4px;
+  position: absolute;
+  z-index: 1;
+  box-sizing: border-box;
+  width: 320px;
+  background-color: white;
+  border: 1px solid map.get(colors.$map, 'dark-shade-50');
+  border-radius: 0 0 4px 4px;
 }
 
 .dropdown__menu_display {
@@ -86,24 +85,24 @@
   display: table-cell;
   width: 70%;
   height: 15px;  
-  @include text.text-label-h3();
-  text-align: left;
-  vertical-align: middle;
   padding: 6px 8px;
+  vertical-align: middle;
+  text-align: left;
+  @include fonts.text-label-h3();
 }
 
 .dropdown__option-batton {
   display: table-cell;
   width: 30px;
   height: 30px;
-  @include text.font-Montserrat-normal;
-  font-size: 18px;
-  line-height: 22px;
-  color: map.get(colors.$map, 'dark-shade-50');
-  text-align: center;
   vertical-align: middle;
+  text-align: center;
   border: 1px solid map.get(colors.$map, 'dark-shade-25');
   border-radius: 50%;
+  color: map.get(colors.$map, 'dark-shade-50');
+  @include fonts.font-Montserrat-normal;
+  font-size: 18px;
+  line-height: 22px;
   &::selection {
     background: transparent;
   }
@@ -115,14 +114,14 @@
 .dropdown__option-value {
   display: table-cell;
   height: 15px;
-  @include text.text-label-h3();
   vertical-align: middle;
   text-align: center;
+  @include fonts.text-label-h3();
 }
 
 .dropdown__option-batton_blacked {
-  color: rgba(map.get(colors.$map, dark-shade-100), calc(0.50*0.38));
   border-color: rgba(map.get(colors.$map, dark-shade-100),  calc(0.25*0.38));
+  color: rgba(map.get(colors.$map, dark-shade-100), calc(0.50*0.38));
 }
 
 .dropdown__battons {
@@ -131,17 +130,15 @@
 }
 
 .dropdown__batton-clear {
-  $height: 15px;
-  height: $height;
-  @include text.text-label-h3($height);
-  color: map.get(colors.$map, dark-shade-50);
+  height: 15px;
   margin: 12px 0px 13px 14px;
+  @include fonts.text-label-h3();
+  color: map.get(colors.$map, dark-shade-50); //- переопределяем цвет из миксина
 }
 
 .dropdown__batton-apply {
-  $height: 15px;
-  height: $height;
-  @include text.text-label-h3($height);
-  color: map.get(colors.$map, 'purple');
+  height: 15px;
   margin: 12px 7px 13px 0px;
+  @include fonts.text-label-h3();
+  color: map.get(colors.$map, 'purple'); //- переопределяем цвет из миксина
 }
