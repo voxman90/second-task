@@ -1,7 +1,7 @@
 mixin option(name)
   div.dropdown__option
     div.dropdown__option-name #{name}
-    div.dropdown__option-batton -
+    div(class="dropdown__option-batton" + " dropdown__option-batton_blacked") -
     div.dropdown__option-value 0
     div.dropdown__option-batton +
 
@@ -20,5 +20,3 @@ mixin dropdown-guest()
         div.dropdown__battons
           div.dropdown__batton-clear очистить
           div.dropdown__batton-apply применить
-                 
-+dropdown-guest

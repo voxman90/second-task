@@ -83,12 +83,23 @@
   height: 30px;
   display: table-cell;
   vertical-align: middle;
+  &::selection {
+    background: transparent;
+  }
+  &::-moz-selection {
+    background: transparent;
+  }
 }
 
 .dropdown__option-value {
   display: table-cell;
   vertical-align: baseline;
   text-align: center;
+}
+
+.dropdown__option-batton_blacked {
+  color: lightgray;
+  border-color: lightgray;
 }
 
 .dropdown__battons {
