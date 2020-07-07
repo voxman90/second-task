@@ -3,15 +3,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const dropdownTables = document.querySelectorAll(".dropdown__table");
   
   function containsIn(supposedParent, checkedNode) {
-    let ancestor = checkedNode;
-    let sameNodes = false;
-    while ( !ancestor.isSameNode(document.body) && !sameNodes ) {    
-      if (ancestor.isSameNode(supposedParent)) {
-        sameNodes = true;
-      } else {
-        ancestor = ancestor.parentNode;
+      let sameNodes = false;
+      let ancestor = checkedNode;
+      while ( (ancestor !== null) && !sameNodes ) {    
+        if (ancestor.isSameNode(supposedParent)) {
+          sameNodes = true;
+        } else {
+          ancestor = ancestor.parentNode;
+        }
       }
-    }
     return sameNodes;
   }; 
   
