@@ -17,18 +17,20 @@
   border: 1px solid map.get(colors.$map, dark-shade-25);
   border-radius: 4px;
   color: map.get(colors.$map, dark-shade-75);
-  @include fonts.font-Montserrat-normal;
+  @include fonts.Montserrat-normal;
   font-size: 14px;
   line-height: 18px;
 
   &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: map.get(colors.$map, dark-shade-25);
-    @include fonts.font-Montserrat-normal;
+    @include fonts.Montserrat-normal;
     font-size: 14px;
     line-height: 18px;
   }
 
-  &:hover, &:focus, &:active {
+  &:hover,
+  &:focus,
+  &:active {
     border: 1px solid map.get(colors.$map, dark-shade-50);
     outline: none;
   } 
@@ -37,6 +39,7 @@
 .input-text__label {
   margin-bottom: 5px;
   padding: 0px;
+  
   &::after {
     display: table;
     clear: both;
@@ -47,11 +50,10 @@
 
 .input-text__label-left {
   float: left;
-  @include fonts.text-label-h3();
+  @include fonts.label-h3();
 }
 
 .input-text__label-right {
   float: right;
-  @include fonts.text-label-h3();
-  color: map.get(colors.$map, 'dark-shade-50'); //- переопределяем цвет из миксина
+  @include fonts.label-right();
 }

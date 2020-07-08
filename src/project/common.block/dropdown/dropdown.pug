@@ -5,13 +5,14 @@ mixin option(name)
     div.dropdown__option-value 0
     div.dropdown__option-batton +
 
-mixin dropdown-guest()
+mixin dropdown-guest(inputName="dropdownFirst", inputValue="Сколько гостей", labelLeft="dropdown", labelRight="default")
   div.dropdown
     label
       div.dropdown__label
-        span.dropdown__label-text DROPDOWN
+        span.dropdown__label-left #{labelLeft}
+        span.dropdown__label-right #{labelRight}
       div.dropdown__text-field
-        div.dropdown__text-field-text Сколько гостей
+        input.dropdown__text-field-input(type="text" name=inputName readonly value=inputValue)
         div.dropdown__text-field-expand >
       div(class="dropdown__menu"+ " dropdown__menu_display")
         div.dropdown__table

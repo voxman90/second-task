@@ -10,7 +10,7 @@
 
 .dropdown__label {
   margin-bottom: 5px; 
-  
+
   &::after {
     content: '';
     clear: both;
@@ -19,10 +19,17 @@
   }
 }
 
-.dropdown__label-text {
+.dropdown__label-left {
   float: left;
   height: 15px; 
-  @include fonts.text-label-h3();
+  @include fonts.label-h3();
+}
+
+.dropdown__label-right {
+  float: right;
+  height: 15px; 
+  color: map.get(colors.$map, 'dark-shade-50');
+  @include fonts.label-right();
 }
 
 .dropdown__text-field {
@@ -37,22 +44,41 @@
   border-radius: 4px;
 }
 
-.dropdown__text-field-text {
-  box-sizing: border-box;
-  width: 86.25%; 
-  padding-left: 15px;
+.dropdown__text-field-input {
+  align-self: flex-start;
+  box-sizing: content-box;
+  width: 261px; 
+  padding: 8px 0px 0px 15px;
   text-align: left;
-  @include fonts.text-body-p;
+  @include fonts.body-p;
+  border: none;
+  border-radius: 4px;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border: none;
+    outline: none;
+  } 
+
+  &::-moz-selection {
+    background: transparent;
+  }
+
+  &::selection { 
+    background: transparent; 
+  }
 }
 
 .dropdown__text-field-expand {
+  display: table-cell;
   box-sizing: border-box;
-  width: 13.75%;
+  width: 44px;
+  vertical-align: middle;
   text-align: center;
 }
 
 .dropdown__text-field_drop {
-  border-bottom: 0px;
   border-radius: 4px 4px 0 0;
   border-color: map.get(colors.$map, 'dark-shade-50');
 }
@@ -65,6 +91,7 @@
   background-color: white;
   border: 1px solid map.get(colors.$map, 'dark-shade-50');
   border-radius: 0 0 4px 4px;
+  border-top: none;
 }
 
 .dropdown__menu_display {
@@ -89,7 +116,7 @@
   padding: 6px 8px;
   vertical-align: middle;
   text-align: left;
-  @include fonts.text-label-h3();
+  @include fonts.label-h3();
 }
 
 .dropdown__option-batton {
@@ -101,7 +128,7 @@
   border: 1px solid map.get(colors.$map, 'dark-shade-25');
   border-radius: 50%;
   color: map.get(colors.$map, 'dark-shade-50');
-  @include fonts.font-Montserrat-normal;
+  @include fonts.Montserrat-normal;
   font-size: 18px;
   line-height: 22px;
 
@@ -119,7 +146,7 @@
   height: 15px;
   vertical-align: middle;
   text-align: center;
-  @include fonts.text-label-h3();
+  @include fonts.label-h3();
 }
 
 .dropdown__option-batton_blacked {
@@ -135,13 +162,13 @@
 .dropdown__batton-clear {
   height: 15px;
   margin: 12px 0px 13px 14px;
-  @include fonts.text-label-h3();
+  @include fonts.label-h3();
   color: map.get(colors.$map, dark-shade-50); //- переопределяем цвет из миксина
 }
 
 .dropdown__batton-apply {
   height: 15px;
   margin: 12px 7px 13px 0px;
-  @include fonts.text-label-h3();
+  @include fonts.label-h3();
   color: map.get(colors.$map, 'purple'); //- переопределяем цвет из миксина
 }
