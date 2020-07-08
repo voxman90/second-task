@@ -9,7 +9,8 @@
 }
 
 .dropdown__label {
-  margin-bottom: 5px;
+  margin-bottom: 5px; 
+  
   &::after {
     content: '';
     clear: both;
@@ -103,9 +104,11 @@
   @include fonts.font-Montserrat-normal;
   font-size: 18px;
   line-height: 22px;
+
   &::selection {
     background: transparent;
   }
+
   &::-moz-selection {
     background: transparent;
   }

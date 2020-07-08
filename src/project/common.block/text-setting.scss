@@ -5,48 +5,51 @@
 @mixin font-Quicksand-normal {
   font: {
     family: Quicksand, sans-serif;
-    style: normal;
     weight: normal;
-  };
-};
+    style: normal;
+  }
+}
 
 @mixin font-Quicksand-bold {
   font: { 
     family: Quicksand, sans-serif;
-    style: normal;
     weight: bold;
-  };
-};
+    style: normal;
+  }
+}
 
 @mixin font-Montserrat-normal {
   font: {
     family: Montserrat, sans-serif;
-    style: normal;
     weight: normal;
-  };
-};
+    style: normal;
+  }
+}
 
 @mixin font-Montserrat-bold {
   font: {
     family: Montserrat, sans-serif;
-    style: normal;
     weight: bold;
-  };
-};
+    style: normal;
+  }
+}
+
 //- This one is the sub-section or widget title
 @mixin text-widget-h1 {
   color: map.get(colors.$map, 'dark-shade-100');
   @include font-Quicksand-bold;
   font-size: 24px;
   line-height: 30px;
-};
+}
+
 //- Next one is the item title inside widgets 
 @mixin text-title-h2 {
   color: map.get(colors.$map, 'dark-shade-100');
   @include font-Quicksand-bold;
   font-size: 19px;
   line-height: 24px;
-};
+}
+
 //- This is a label or CTA text
 @mixin text-label-h3($height: 15px) {
   text-transform: uppercase;
@@ -54,7 +57,8 @@
   @include font-Montserrat-bold;
   font-size: 12px;
   line-height: $height;
-};
+}
+
 //- This is the body text which is used for most of the design, like paragraphs, lists, etc.
 @mixin text-body-p {
   color: map.get(colors.$map, 'dark-shade-75');

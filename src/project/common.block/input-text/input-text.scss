@@ -1,6 +1,6 @@
 @use "sass:map";
 @use "../colors" as colors;
-@use "../text-setting" as text;
+@use "../text-setting" as fonts;
 @import "../fonts.scss";
 
 
@@ -9,79 +9,49 @@
 }
 
 .input-text__input {
-  box-sizing: border-box;
   display: inline-block;
+  box-sizing: border-box;
+  width: 100%;
   height: 44px;
   padding: 13px 15px; 
   border: 1px solid map.get(colors.$map, dark-shade-25);
   border-radius: 4px;
-  width: 100%;
   color: map.get(colors.$map, dark-shade-75);
-      font: { family: Montserrat;
-          style: normal;
-          weight: normal;
-          size: 14px;
-      } 
+  @include fonts.font-Montserrat-normal;
+  font-size: 14px;
   line-height: 18px;
 
   &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-      color: map.get(colors.$map, dark-shade-25);
-      font: { family: Montserrat;
-          style: normal;
-          weight: normal;
-          size: 14px;
-      } 
-      line-height: 18px;
-  }
-
-  &:-ms-input-placeholder { /* Internet Explorer 10-11 */
-      color: map.get(colors.$map, dark-shade-25);
-      font: { family: Montserrat;
-          style: normal;
-          weight: normal;
-          size: 14px;
-      } 
-      line-height: 18px;
-  }
-
-  &::-ms-input-placeholder { /* Microsoft Edge */
-      color: map.get(colors.$map, dark-shade-25);
-      font: { family: Montserrat;
-          style: normal;
-          weight: normal;
-          size: 14px;
-      } 
-      line-height: 18px;
+    color: map.get(colors.$map, dark-shade-25);
+    @include fonts.font-Montserrat-normal;
+    font-size: 14px;
+    line-height: 18px;
   }
 
   &:hover, &:focus, &:active {
-      border: 1px solid map.get(colors.$map, dark-shade-50);
-      outline: none;
+    border: 1px solid map.get(colors.$map, dark-shade-50);
+    outline: none;
   } 
 }
 
 .input-text__label {
+  margin-bottom: 5px;
   padding: 0px;
-  margin: 0px 0px 5px 0px;
   &::after {
-    content: "";
     display: table;
-    width: 100%;
     clear: both;
-    }
+    width: 100%;
+    content: "";
+  }
 }
 
 .input-text__label-left {
-float: left;
+  float: left;
+  @include fonts.text-label-h3();
 }
 
 .input-text__label-right {
-float: right;
-font: { family: Montserrat, sans-serif;
-    style: normal;
-    weight: normal;
-    size: 12px;
-}
-line-height: 15px;
-color: map.get(colors.$map, 'dark-shade-50');
+  float: right;
+  @include fonts.text-label-h3();
+  color: map.get(colors.$map, 'dark-shade-50'); //- переопределяем цвет из миксина
 }

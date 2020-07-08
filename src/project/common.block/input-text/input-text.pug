@@ -1,7 +1,7 @@
-mixin input-text(inputTextName, inputTextPlaceholder)
+mixin input-text(inputTextName, inputTextPlaceholder, leftLabel = "text field", rightLabel = "default")
   div.input-text
     label 
       div.input-text__label
-        span(class="input-text__label-left") TEXT FIELD
-        span(class="input-text__label-right") DEFAULT
+        span(class="input-text__label-left") #{leftLabel}
+        span(class="input-text__label-right") #{rightLabel}
       input.input-text__input(type="text" name=inputTextName placeholder=inputTextPlaceholder)
