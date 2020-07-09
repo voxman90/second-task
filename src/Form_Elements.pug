@@ -9,3 +9,10 @@ html
         br
         include project/common.block/dropdown/dropdown.pug
         +dropdown-guest()
+        include project/common.block/checkbox/checkbox-custom.pug
+        br
+        +checkbox-custom("smoke", "smoke", "Можно курить")
+        br
+        +checkbox-custom("animal", "animal", "Можно с питомцами")
+        br
+        +checkbox-custom("paty", "paty", "Можно пригласить гостей (до 10 человек)")

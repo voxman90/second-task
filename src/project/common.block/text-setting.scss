@@ -76,3 +76,12 @@
   font-size: $custom-font-size + 0px; 
   line-height: $custom-line-height + 0px;
 }
+
+@mixin Montserrat-custom {
+  color: map.get(colors.$map, 'dark-shade-50');
+  @include Montserrat-normal;
+  $custom-font-size: 14; 
+  $custom-line-height: math.round($custom-font-size*1.29);
+  font-size: $custom-font-size + 0px; 
+  line-height: $custom-line-height + 0px;
+}
