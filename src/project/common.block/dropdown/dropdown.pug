@@ -1,9 +1,9 @@
 mixin option(name)
   div.dropdown__option
     div.dropdown__option-name #{name}
-    div(class="dropdown__option-batton" + " dropdown__option-batton_blacked") -
-    div.dropdown__option-value 0
-    div.dropdown__option-batton +
+    div(class="dropdown__option-batton"+" dropdown__option-batton_blacked")="-"
+    div.dropdown__option-value="0"
+    div.dropdown__option-batton="+"
 
 mixin dropdown-guest(inputName="dropdownFirst", inputValue="Сколько гостей", labelLeft="dropdown", labelRight="default")
   div.dropdown
@@ -14,11 +14,11 @@ mixin dropdown-guest(inputName="dropdownFirst", inputValue="Сколько го�
       div.dropdown__text-field
         input.dropdown__text-field-input(type="text" name=inputName readonly value=inputValue)
         div.dropdown__text-field-expand >
-      div(class="dropdown__menu"+ " dropdown__menu_display")
+      div(class="dropdown__menu"+" dropdown__menu_display")
         div.dropdown__table
-          +option("Взрослые")
+          +option("Взрослые") 
           +option("Дети")
           +option("Младенцы")
         div.dropdown__battons
-          div.dropdown__batton-clear очистить
+          div(class="dropdown__batton-clear"+" dropdown__batton-clear_hidden") очистить
           div.dropdown__batton-apply применить

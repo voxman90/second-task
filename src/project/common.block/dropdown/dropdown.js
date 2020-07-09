@@ -1,58 +1,118 @@
+function containsIn(supposedParent, checkedNode) {
+  let isSameNodes = false;
+  let ancestor = checkedNode;
+  while ((ancestor !== null) && !isSameNodes) {    
+    if (ancestor.isSameNode(supposedParent)) {
+      isSameNodes = true;
+    } else {
+      ancestor = ancestor.parentNode;
+    }
+  }
+  return isSameNodes;
+}
+
+function numberVaultSumm(numberVault) {
+  let Summ = 0;
+  for (let key in numberVault) {
+    Summ += numberVault[key];
+  }
+  return Summ;
+}
+
+function guestAmount(numberVault) {
+  let Summ = numberVaultSumm(numberVault);
+  let Word = "гост";
+  switch (Summ % 10) {
+    case 1: 
+      Word += 'ь';    
+    break;
+    case 2: 
+      Word += 'я';
+    break;
+    case 3: 
+      Word += 'я';
+    break;
+    case 4: 
+      Word += 'я';
+    break;
+    default: 
+      Word += 'ей';
+    break;
+  } 
+  return Summ + " " + Word;
+}
+
 document.addEventListener("DOMContentLoaded", function () {
-  const dropdownInputs = document.querySelectorAll(".dropdown__text-field");
-  const dropdownTables = document.querySelectorAll(".dropdown__table");
-  
-  function containsIn(supposedParent, checkedNode) {
-      let sameNodes = false;
-      let ancestor = checkedNode;
-      while ( (ancestor !== null) && !sameNodes ) {    
-        if (ancestor.isSameNode(supposedParent)) {
-          sameNodes = true;
-        } else {
-          ancestor = ancestor.parentNode;
-        }
-      }
-    return sameNodes;
-  }; 
-  
-  for (let i = 0; i < dropdownInputs.length; i++) {
-    let dropdownItem = dropdownInputs[i];
-    let dropdownMenu = dropdownItem.nextElementSibling;
-    let parentItem = dropdownItem.parentNode.parentNode;  
-
-    dropdownItem.addEventListener("mousedown", function () {
-      this.nextElementSibling.classList.toggle("dropdown__menu_display");
-      this.classList.toggle("dropdown__text-field_drop");
-    });
-    
+  const dropdownForms = document.body.querySelectorAll(".dropdown");
+  for (let i = 0; i < dropdownForms.length; i++) {
+    const dropdownForm = dropdownForms[i];
+    const dropdownTextField = dropdownForm.firstElementChild.childNodes[1];
+    const dropdownInput = dropdownTextField.firstElementChild;
+    let numberVault = {"Взрослые": 0, "Дети": 0, "Младенцы": 0};
+    const dropdownMenu = dropdownTextField.nextElementSibling;
+    const dropdownTable = dropdownMenu.firstElementChild;
+    const dropdownBattonClear = dropdownMenu.lastElementChild.firstElementChild;
+    dropdownTextField.addEventListener("mousedown", function () {
+      dropdownMenu.classList.toggle("dropdown__menu_display");
+      dropdownMenu.classList.toggle("dropdown__menu_shadow");
+      this.classList.toggle("dropdown__text-field_drop-border");
+    });   
     document.addEventListener("mousedown", function (event) {
-      if ( !containsIn(parentItem, event.target) && !dropdownMenu.classList.contains("dropdown__menu_display") ) {
+      if (!containsIn(dropdownForm, event.target) && !dropdownMenu.classList.contains("dropdown__menu_display")) {
         dropdownMenu.classList.add("dropdown__menu_display");
-        dropdownItem.classList.remove("dropdown__text-field_drop");
+        dropdownMenu.classList.remove("dropdown__menu_shadow");
+        dropdownTextField.classList.remove("dropdown__text-field_drop-border");
       }
     });
-
-  };
-  
-  for (let j = 0; j < dropdownTables.length; j++) {
-    let dropdownTable = dropdownTables[j];
-    dropdownTable.addEventListener("mouseup", function (event) {
-      let tableElement = event.target;
-      if ( tableElement.classList.contains("dropdown__option-batton") ) {
-        if ( (tableElement.innerHTML.trim() === "-") ) {
-          if (!tableElement.classList.contains("dropdown__option-batton_blacked")) {
-          tableElement.nextElementSibling.innerHTML = tableElement.nextElementSibling.innerHTML*1 - 1;
-          if (tableElement.nextElementSibling.innerHTML*1 === 0) {
-            tableElement.classList.add("dropdown__option-batton_blacked");
-          } }
-        } else { if (tableElement.previousElementSibling.innerHTML*1 === 0) {
-            tableElement.previousElementSibling.previousElementSibling.classList.remove("dropdown__option-batton_blacked");
-          }
-          tableElement.previousElementSibling.innerHTML = tableElement.previousElementSibling.innerHTML*1 + 1;
+    dropdownMenu.addEventListener("mouseup", function (event) {
+      const Target = event.target;
+      const TargetClass = Target.classList;
+      if (TargetClass.contains("dropdown__option-batton")) {
+        const ButtonKey = Target.parentNode.firstElementChild.innerHTML;
+        if (Target.innerHTML === "-") {
+          switch (numberVault[ButtonKey]) {
+            case 0: break;
+            case 1: 
+              numberVault[ButtonKey] -= 1;
+              Target.nextElementSibling.innerHTML = numberVault[ButtonKey]; 
+              TargetClass.add("dropdown__option-batton_blacked");
+            break;
+            default: 
+              numberVault[ButtonKey] -= 1;
+              Target.nextElementSibling.innerHTML = numberVault[ButtonKey]; 
+            break;
+          } 
+        } else { 
+          switch (numberVault[ButtonKey]) {
+            case 0: 
+              numberVault[ButtonKey] += 1;
+              Target.previousElementSibling.innerHTML = numberVault[ButtonKey];
+              Target.parentNode.childNodes[1].classList.toggle("dropdown__option-batton_blacked");
+            break;
+            default: 
+              numberVault[ButtonKey] += 1;
+              Target.previousElementSibling.innerHTML = numberVault[ButtonKey];
+            break;
+          } 
+        }   
+        if (numberVaultSumm(numberVault) > 0) {
+          dropdownBattonClear.classList.remove("dropdown__batton-clear_hidden");
         }
-      };
+      }
+      if (TargetClass.contains("dropdown__batton-clear")) {
+        for (let key in numberVault) {
+          numberVault[key] = 0;
+        }
+        dropdownInput.value = "Сколько гостей";
+        for (let j = 0; j < 3; j++) {
+          dropdownTable.childNodes[j].childNodes[2].innerHTML = 0;
+          dropdownTable.childNodes[j].childNodes[1].classList.add("dropdown__option-batton_blacked"); 
+        }
+        TargetClass.toggle("dropdown__batton-clear_hidden");
+      }
+      if (TargetClass.contains("dropdown__batton-apply")) {
+        dropdownInput.value = guestAmount(numberVault);
+      }
     });
-  };
-
+  }
 });
-  

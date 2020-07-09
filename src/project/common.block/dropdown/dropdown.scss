@@ -9,7 +9,7 @@
 }
 
 .dropdown__label {
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
 
   &::after {
     content: '';
@@ -78,7 +78,7 @@
   text-align: center;
 }
 
-.dropdown__text-field_drop {
+.dropdown__text-field_drop-border {
   border-radius: 4px 4px 0 0;
   border-color: map.get(colors.$map, 'dark-shade-50');
 }
@@ -96,6 +96,10 @@
 
 .dropdown__menu_display {
   display: none;
+}
+
+.dropdown__menu_shadow {
+  box-shadow: 0px 10px 20px map.get(colors.$map, dark-shade-05);
 }
 
 .dropdown__table {
@@ -127,6 +131,7 @@
   text-align: center;
   border: 1px solid map.get(colors.$map, 'dark-shade-25');
   border-radius: 50%;
+  cursor: pointer;
   color: map.get(colors.$map, 'dark-shade-50');
   @include fonts.Montserrat-normal;
   font-size: 18px;
@@ -162,13 +167,35 @@
 .dropdown__batton-clear {
   height: 15px;
   margin: 12px 0px 13px 14px;
+  cursor: pointer;
   @include fonts.label-h3();
   color: map.get(colors.$map, dark-shade-50); //- переопределяем цвет из миксина
+
+  &::selection {
+    background: transparent;
+  }
+
+  &::-moz-selection {
+    background: transparent;
+  }
+}
+
+.dropdown__batton-clear_hidden {
+  visibility: hidden;
 }
 
 .dropdown__batton-apply {
   height: 15px;
   margin: 12px 7px 13px 0px;
+  cursor: pointer;
   @include fonts.label-h3();
   color: map.get(colors.$map, 'purple'); //- переопределяем цвет из миксина
+
+  &::selection {
+    background: transparent;
+  }
+
+  &::-moz-selection {
+    background: transparent;
+  }
 }
