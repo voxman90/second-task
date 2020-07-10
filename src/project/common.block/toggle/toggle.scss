@@ -1,0 +1,67 @@
+@use 'sass:map';
+@use '../colors' as colors;
+@use '../text-setting' as fonts;
+
+.toggle-custom {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  box-sizing: border-box;
+  height: 24px;  
+  min-width: min-content;
+}
+
+.toggle-custom__label {
+  position: relative;
+  height: 24px;
+  margin-left: 29.2px;
+  color: map.get(colors.$map, dark-shade-75);
+  @include fonts.Montserrat-normal;
+  font-size: 14px;
+}
+
+.toggle-custom__label::before {
+  position: absolute;
+  z-index: 1;
+  left: -50px;
+  content: "";
+  width: 38px;
+  height: 18px;
+  background-color: #FFFFFF;
+  border: 1px solid map.get(colors.$map, dark-shade-25);
+  border-radius: 10px;
+  -webkit-transition: border-color 0.6s linear;
+     -moz-transition: border-color 0.6s linear;
+      -ms-transition: border-color 0.6s linear;
+          transition: border-color 0.6s linear;
+}
+
+.toggle-custom__label::after {
+  position: absolute;
+  z-index: 2;
+  left: -46px;
+  top: 4px;
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 10px;
+  background: map.get(colors.$map, dark-shade-25);
+  -webkit-transition: transform 0.6s linear;
+     -moz-transition: transform 0.6s linear;
+      -ms-transition: transform 0.6s linear;
+          transition: transform 0.6s linear,
+}
+
+.toggle-custom__input:checked + .toggle-custom__label {
+
+  &::before {
+    border: 1px solid map.get(colors.$map, "purple");
+  }
+
+  &::after {
+    background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "purple-2"));
+    -webkit-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+    transform: translateX(20px);
+  }
+}

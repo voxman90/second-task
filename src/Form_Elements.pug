@@ -23,3 +23,6 @@ html
             +radio-button-custom("gender", "male", "Мужчина")
           div(style="margin-left: 20px;")
             +radio-button-custom("gender", "female", "Женщина")
+        include project/common.block/toggle/toggle.pug
+        +toggle-custom("sale", "sale", "Получать спецпредложения")
+        +toggle-custom("saleTwo", "saleTwo", "Получать спецпредложения")
