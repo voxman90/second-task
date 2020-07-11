@@ -1,0 +1,53 @@
+@use "sass:map";
+@use "../colors" as colors;
+@use "../text-setting" as fonts;
+
+.checkbox-list {
+  position: relative;
+  width: 266px;
+  height: 44px;
+  @include fonts.label-h3(44px);
+}
+
+.checkbox-list__exp_up::before {
+  content: "expand_more";
+  position: absolute;
+  z-index: 0;
+  top: 10px;
+  right: 0px;
+  box-sizing: content-box;
+  width: 44px;
+  height: 24px;
+  @include fonts.material-icons;
+  color: map.get(colors.$map, 'dark-shade-50');
+  text-align: center;
+}
+
+.checkbox-list__exp_down::before {
+  content: "expand_more";
+  position: absolute;
+  z-index: 0;
+  top: 10px;
+  right: 0px;
+  box-sizing: content-box;
+  width: 44px;
+  height: 24px;
+  @include fonts.material-icons;
+  color: map.get(colors.$map, 'dark-shade-50');
+  text-align: center;
+  transform: rotate(180deg);
+}
+
+.checkbox-list__dropdown {
+  position: absolute;
+  z-index: 15;
+  display: flex;
+  flex-direction: row;
+  width: 266px;
+  height: fit-content;
+  background-color: #FFF;
+}
+
+.checkbox-list__dropdown_display {
+  display: none;
+}

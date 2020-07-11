@@ -10,13 +10,9 @@ html
         include project/common.block/dropdown/dropdown.pug
         +dropdown-guest()
         include project/common.block/checkbox/checkbox-custom.pug
-        br
         +checkbox-custom("smoke", "smoke", "Можно курить")
-        br
         +checkbox-custom("animal", "animal", "Можно с питомцами")
-        br
         +checkbox-custom("paty", "paty", "Можно пригласить гостей (до 10 человек)")
-        br
         include project/common.block/radio-button/radio-button.pug
         div(style="display: flex; justify-content: flex-start;")
           div
@@ -27,12 +23,17 @@ html
         +toggle-custom("sale", "sale", "Получать спецпредложения")
         +toggle-custom("saleTwo", "saleTwo", "Получать спецпредложения")
         include project/common.block/button/button-custom.pug
-        br
         +button-custom("buttonTest")
         br
         +button-custom("buttonTest", "Button", "Click me", true, false)
         br
         +button-custom("buttonTest", "Button", "Click me", false, false)
-        br
         include project/common.block/date-dropdown/date-dropdown.pug
         +date-dropdown
+        include project/common.block/checkbox-list/checkbox-list.pug
+        hr
+        br
+        +checkbox-list("expandable checkbox list")
+          +checkbox-custom("smoke", "smoke", "Можно курить")
+          +checkbox-custom("animal", "animal", "Можно с питомцами")
+          +checkbox-custom("paty", "paty", "Можно пригласить гостей (до 10 человек)")
