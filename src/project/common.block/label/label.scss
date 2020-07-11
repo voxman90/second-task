@@ -1,0 +1,28 @@
+@use 'sass:map';
+@use '../colors.scss' as colors;
+@use '../text-setting.scss' as fonts;
+
+.label {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 5px;
+
+  &::after {
+    content: "";
+    clear: both;
+    display: table;
+    width: 100%;
+  }
+}
+
+.label__left {
+  float: left;
+  height: 15px;
+  @include fonts.label-right(15px);
+}
+
+.label__right {
+  float: right;
+  height: 15px;
+  @include fonts.label-right(15px);
+}

@@ -1,0 +1,10 @@
+doctype html
+html
+  include ./project/common.block/label/label.pug
+  head
+    meta(charset="UTF-8")
+    title Testing ground
+  body
+    +label("text field", "default")
+      input(type="text" name="textField")
+      p Проверка

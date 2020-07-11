@@ -12,7 +12,7 @@ module.exports = {
     },
     plugins: [
         new HTMLWebpackPlugin({
-            template: './Form_Elements.pug'
+            template: './Testing_ground.pug'
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
