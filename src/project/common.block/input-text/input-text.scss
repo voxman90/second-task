@@ -35,6 +35,23 @@
   } 
 }
 
+.input-text__input_masked {
+  font-size: 0px;
+
+  &::placeholder {
+    font-size: 0px;
+  }
+  
+  &:hover,
+  &:focus,
+  &:active {
+    font-size: 14px;
+    &::placeholder {
+      font-size: 14px;
+    }
+  } 
+}
+
 .input-text__label {
   margin-bottom: 5px;
   padding: 0px;
@@ -56,3 +73,4 @@
   float: right;
   @include fonts.label-right();
 }
+
