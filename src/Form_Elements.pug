@@ -26,3 +26,10 @@ html
         include project/common.block/toggle/toggle.pug
         +toggle-custom("sale", "sale", "Получать спецпредложения")
         +toggle-custom("saleTwo", "saleTwo", "Получать спецпредложения")
+        include project/common.block/button/button-custom.pug
+        br
+        +button-custom("buttonTest")
+        br
+        +button-custom("buttonTest", "Button", "Click me", true, false)
+        br
+        +button-custom("buttonTest", "Button", "Click me", false, false)

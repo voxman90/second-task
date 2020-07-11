@@ -13,7 +13,7 @@ mixin dropdown-guest(inputName="dropdownFirst", inputValue="Сколько го�
         span.dropdown__label-right #{labelRight}
       div.dropdown__text-field
         input.dropdown__text-field-input(type="text" name=inputName readonly value=inputValue)
-        div.dropdown__text-field-expand >
+        div.dropdown__text-field-expand expand_more
       div(class="dropdown__menu"+" dropdown__menu_display")
         div.dropdown__table
           +option("Взрослые") 

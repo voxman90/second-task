@@ -1,0 +1,7 @@
+mixin button-custom(buttonName, buttonType = "Submit", buttonText = "click me", buttonFill = true, buttonBorder = true)
+  -var modifications = "button-custom";
+  if buttonFill
+    #{modifications = "button-custom button-custom_fill"}
+  if buttonBorder
+    #{modifications = "button-custom button-custom_border"}
+  button(name=buttonName type=buttonType class=modifications)=buttonText 

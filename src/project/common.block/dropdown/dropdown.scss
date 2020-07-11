@@ -75,6 +75,8 @@
   width: 44px;
   vertical-align: middle;
   text-align: center;
+  @include fonts.material-icons;
+  color: map.get(colors.$map, 'dark-shade-50');
 }
 
 .dropdown__text-field_drop-border {

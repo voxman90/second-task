@@ -1,0 +1,65 @@
+@use "sass:map";
+@use "../colors" as colors;
+@use "../text-setting" as fonts;
+
+.button-custom {
+  width: 61px;
+  height: 15px;
+  text-align: center;
+  padding: 0px;
+  border: none;
+  background-color: #FFF;
+  color: map.get(colors.$map, "purple");
+  @include fonts.Montserrat-bold;
+  font-size: 12px;
+  line-height: 15px;
+  text-transform: uppercase;
+
+  &:hover {
+    color: map.get(colors.$map, dark-shade-50); 
+  }
+}
+
+.button-custom_fill {
+  width: 99px;
+  height: 44px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "purple-2"));
+  color: #FFF;
+  content: "";
+
+  &:hover {
+    color: #FFF;
+    opacity: 0.5; 
+  }
+}
+
+.button-custom_border {
+  position: relative;
+  box-sizing: border-box;
+  width: 95px;
+  height: 40px;
+  border-radius: 22px;
+  margin: 2px;
+
+  &:hover {
+    color: map.get(colors.$map, "purple");
+  }
+
+  &::before {
+    position: absolute;
+    z-index: -1; 
+    left: -2px;
+    top: -2px;
+    width: 99px;
+    height: 44px;
+    content: ""; 
+    border-radius: 22px;
+    background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "purple-2"));
+  }
+
+  &:hover:before {
+    opacity: 0.5;
+  }
+}
+  
