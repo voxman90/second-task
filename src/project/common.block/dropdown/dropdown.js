@@ -21,22 +21,29 @@ function numberVaultSumm(numberVault) {
 
 function guestAmount(numberVault) {
   let Summ = numberVaultSumm(numberVault);
-  let Word = "гост";
+  let Word = "гостей";
   switch (Summ % 10) {
     case 1: 
-      Word += 'ь';    
+      if (Summ % 100 !== 11) {
+        Word = 'гость'; 
+      }   
     break;
     case 2: 
-      Word += 'я';
+      if (Summ % 100 !== 12) {
+        Word = 'гостя'; 
+      }
     break;
     case 3: 
-      Word += 'я';
+      if (Summ % 100 !== 13) {
+        Word = 'гостя'; 
+      }
     break;
     case 4: 
-      Word += 'я';
+      if (Summ % 100 !== 14) {
+        Word = 'гостя'; 
+      }
     break;
     default: 
-      Word += 'ей';
     break;
   } 
   return Summ + " " + Word;

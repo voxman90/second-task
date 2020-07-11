@@ -30,10 +30,10 @@
   background-color: #FFFFFF;
   border: 1px solid map.get(colors.$map, dark-shade-25);
   border-radius: 10px;
-  -webkit-transition: border-color 0.6s linear;
-     -moz-transition: border-color 0.6s linear;
-      -ms-transition: border-color 0.6s linear;
-          transition: border-color 0.6s linear;
+  -webkit-transition: border-color 0.3s linear;
+     -moz-transition: border-color 0.3s linear;
+      -ms-transition: border-color 0.3s linear;
+          transition: border-color 0.3s linear;
 }
 
 .toggle-custom__label::after {
@@ -46,10 +46,10 @@
   height: 12px;
   border-radius: 10px;
   background: map.get(colors.$map, dark-shade-25);
-  -webkit-transition: transform 0.6s linear;
-     -moz-transition: transform 0.6s linear;
-      -ms-transition: transform 0.6s linear;
-          transition: transform 0.6s linear,
+  -webkit-transition: transform 0.3s linear;
+     -moz-transition: transform 0.3s linear;
+      -ms-transition: transform 0.3s linear;
+          transition: transform 0.3s linear,
 }
 
 .toggle-custom__input:checked + .toggle-custom__label {
