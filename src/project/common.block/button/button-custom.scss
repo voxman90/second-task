@@ -62,4 +62,20 @@
     opacity: 0.5;
   }
 }
+
+.button-custom_long {
+  position: relative;
+  width: 320px;
+  
+  &::after {
+    position: absolute;
+    right: 0px;
+    top: 10px;
+    width: 44px;
+    height: 24px;
+    content: "arrow_forward"; 
+    @include fonts.material-icons;
+    border-radius: 22px;
+  }
+}
   
