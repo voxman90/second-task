@@ -1,24 +1,36 @@
+include ../text-field/text-field.pug 
+include ../label/label.pug 
+include ../icon/icon.pug 
+include ../button/button-custom.pug
+
 mixin option(name)
   div.dropdown__option
     div.dropdown__option-name #{name}
-    div(class="dropdown__option-batton"+" dropdown__option-batton_blacked")="-"
+    div.dropdown__option-button="+"
     div.dropdown__option-value="0"
-    div.dropdown__option-batton="+"
+    div(class="dropdown__option-button" + " dropdown__option-button_blacked")="-"
 
-mixin dropdown-guest(inputName="dropdownFirst", inputValue="Сколько гостей", labelLeft="dropdown", labelRight="default")
-  div.dropdown
-    label
-      div.dropdown__label
-        span.dropdown__label-left #{labelLeft}
-        span.dropdown__label-right #{labelRight}
-      div.dropdown__text-field
-        input.dropdown__text-field-input(type="text" name=inputName readonly value=inputValue)
-        div.dropdown__text-field-expand expand_more
-      div(class="dropdown__menu"+" dropdown__menu_display")
-        div.dropdown__table
-          +option("Взрослые") 
-          +option("Дети")
-          +option("Младенцы")
-        div.dropdown__battons
-          div(class="dropdown__batton-clear"+" dropdown__batton-clear_hidden") очистить
-          div.dropdown__batton-apply применить
+mixin input-dropdown(isButtons = true)
+  if isButtons
+    div(class="dropdown input_320px")
+      +label("Гости", "")
+        +text-field("guests", " ")(readonly, value="Сколько гостей", class="dropdown__text-field")
+        +icon("expand_more")(class=" dropdown__icon-expand")
+        div(class="dropdown__bar" + " dropdown__bar_hidden" + " dropdown__bar_shadow")
+          div.dropdown__options
+            +option("Взрослые") 
+            +option("Дети")
+            +option("Младенцы")
+          div.dropdown__buttons
+            +button-custom("buttonClear", "очистить")(class=" dropdown__button-clear dropdown__button-clear_hidden")
+            +button-custom("buttonApply", "применить")(class=" dropdown__button-apply")
+  else
+    div(class="dropdown input_266px")
+      +label("Удобства номера", "")
+        +text-field("ease", " ")(readonly, value="Какие удобства", class="dropdown__text-field dropdown__text-field_angular")
+        +icon("expand_more")(class=" dropdown__icon-expand")
+        div(class="dropdown__bar" + " dropdown__bar_hidden" + " dropdown__bar_shadow" + " dropdown__bar_instant-count")
+          div.dropdown__options
+            +option("Спальни") 
+            +option("Кровати")
+            +option("Ванные комнаты")

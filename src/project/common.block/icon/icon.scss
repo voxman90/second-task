@@ -1,0 +1,8 @@
+@use "sass:map";
+@use "../colors" as colors;
+@use "../text-setting" as fonts;
+@use "../block" as block;
+
+.material-icons {
+  @include fonts.material-icons;
+} 

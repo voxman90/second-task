@@ -1,11 +1,12 @@
 include ../label/label.pug 
 include ../text-field/text-field.pug
 
-mixin input(inputSize = 320, labelLeft, labelRight, inputName, inputPlaceholder, isMasked, isLabel = true)
+mixin input-text(inputSize = 320, labelLeft, labelRight, inputName, inputPlaceholder, isLabel = true)
   - var size = (inputSize === 320) ? "input_320px": "input_160px";
   div(class=size)
     if isLabel
       +label(labelLeft, labelRight)
-        +text-field(inputName, inputPlaceholder, isMasked)
+        +text-field(inputName, inputPlaceholder)
     else
-      +text-field(inputName, inputPlaceholder, isMasked)
+      +text-field(inputName, inputPlaceholder)
+    

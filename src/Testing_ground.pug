@@ -1,10 +1,12 @@
 doctype html
 html
   include ./project/common.block/input/input.pug
+  include ./project/common.block/dropdown/dropdown.pug
   head
     meta(charset="UTF-8")
     title Testing ground
   body
-    +input(320, "text field", "default", "textField", "Email", isMasked)
-    +input(320, "text field", "hover / focus", "textFieldHover", "Text", isMasked)
-    +input(160, "", "", "Masked", "Masked", true, false)
+    +input-text(320, "text field", "default", "textField", "Email")
+    +input-text(320, "text field", "hover / focus", "textFieldHover", "Text")
+    +input-dropdown(true)
+    +input-dropdown(false)

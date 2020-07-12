@@ -4,12 +4,21 @@
 @use '../block.scss' as block;
 
 .input_320px {
+  box-sizing: border-box;
   @include block.size(320px, auto, 0px, 10px 0);
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
+.input_266px {
+  box-sizing: border-box;
+  @include block.size(266px, auto, 0px, 10px 0);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .input_160px {
+  box-sizing: border-box;
   @include block.size(160px, auto, 0px, 10px 0);
   margin-top: 10px;
   margin-bottom: 10px;

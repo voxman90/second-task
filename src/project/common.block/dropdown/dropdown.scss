@@ -1,142 +1,125 @@
 @use "sass:map";
 @use "../colors" as colors;
 @use "../text-setting" as fonts;
+@use "../block" as block;
 
 .dropdown {
-  box-sizing: border-box; 
-  width: 320px;
-}
-
-.dropdown__label {
-  margin-bottom: 5px;
-
-  &::after {
-    content: '';
-    clear: both;
-    display: table;
-    width: 100%;
-  }
-}
-
-.dropdown__label-left {
-  float: left;
-  height: 15px; 
-  @include fonts.label-h3();
-}
-
-.dropdown__label-right {
-  float: right;
-  height: 15px; 
-  color: map.get(colors.$map, 'dark-shade-50');
-  @include fonts.label-right();
+  position: relative;
 }
 
 .dropdown__text-field {
-  position: relative;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  box-sizing: border-box;
-  height: 44px;
-  margin-top: 5px;  
-  border: 1px solid map.get(colors.$map, 'dark-shade-25');
-  border-radius: 4px;
-}
-
-.dropdown__text-field-input {
-  align-self: flex-start;
-  box-sizing: content-box;
-  width: 261px; 
-  padding: 8px 0px 0px 15px;
-  text-align: left;
-  @include fonts.body-p;
-  border: none;
-  border-radius: 4px;
-
-  &:hover,
-  &:focus,
-  &:active {
-    border: none;
-    outline: none;
-  } 
+  
+  &::selection {
+    background: transparent;
+  }
 
   &::-moz-selection {
     background: transparent;
   }
 
-  &::selection { 
-    background: transparent; 
+  &:hover {
+    cursor: pointer;
   }
 }
 
-.dropdown__text-field-expand {
-  display: table-cell;
-  box-sizing: border-box;
-  width: 44px;
-  vertical-align: middle;
-  text-align: center;
-  @include fonts.material-icons;
-  color: map.get(colors.$map, 'dark-shade-50');
+.dropdown__text-field_angular {
+  padding-right: 44px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 4px 4px 0 0;
 }
 
-.dropdown__text-field_drop-border {
+.dropdown__text-field_expanded {
   border-radius: 4px 4px 0 0;
   border-color: map.get(colors.$map, 'dark-shade-50');
 }
 
-.dropdown__menu {
+.dropdown__icon-expand {
+  position: absolute;
+  right: 0px;
+  top: 31px;
+  box-sizing: border-box;
+  width: 44px;
+  height: 24px;
+  text-align: center;
+  color: map.get(colors.$map, 'dark-shade-75');
+
+  &::selection {
+    background: transparent;
+  }
+
+  &::-moz-selection {
+    background: transparent;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.dropdown__bar {
   position: absolute;
   z-index: 15;
   box-sizing: border-box;
-  width: 320px;
+  width: 100%;
+  padding-top: 7px;
   background-color: white;
   border: 1px solid map.get(colors.$map, 'dark-shade-50');
   border-radius: 0 0 4px 4px;
   border-top: none;
 }
 
-.dropdown__menu_display {
+.dropdown__bar_hidden {
   display: none;
 }
 
-.dropdown__menu_shadow {
+.dropdown__bar_shadow {
   box-shadow: 0px 10px 20px map.get(colors.$map, dark-shade-05);
 }
 
-.dropdown__table {
-  display: table;
+.dropdown__options {
+  box-sizing: border-box;
   width: 100%;
-  border-spacing: 7px;
 }
 
 .dropdown__option {
-  display: table-row;
-  width: 100%;
+  box-sizing: border-box;
+  height: 30px;
+  padding-left: 14px;
+  padding-right: 6px;
+  margin-bottom: 7px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    clear: both;
+    width: 100%;
+  }
 }
 
 .dropdown__option-name {
-  display: table-cell;
-  width: 70%;
-  height: 15px;  
-  padding: 6px 8px;
-  vertical-align: middle;
+  float: left;
+  box-sizing: border-box;
+  width: auto;
+  height: 30px;
   text-align: left;
-  @include fonts.label-h3();
+  @include fonts.label-h3(30px);
 }
 
-.dropdown__option-batton {
-  display: table-cell;
+.dropdown__option-button {
+  float: right;
+  box-sizing: border-box;
   width: 30px;
   height: 30px;
-  vertical-align: middle;
   text-align: center;
   border: 1px solid map.get(colors.$map, 'dark-shade-25');
-  border-radius: 50%;
+  border-radius: 22px;
   cursor: pointer;
   color: map.get(colors.$map, 'dark-shade-50');
   @include fonts.Montserrat-normal;
   font-size: 18px;
-  line-height: 22px;
+  line-height: 30px;
 
   &::selection {
     background: transparent;
@@ -148,29 +131,45 @@
 }
 
 .dropdown__option-value {
-  display: table-cell;
-  height: 15px;
-  vertical-align: middle;
+  float: right;
+  box-sizing: border-box;
+  height: 30px;
+  width: 32px;
   text-align: center;
-  @include fonts.label-h3();
+  @include fonts.label-h3(30px);
 }
 
-.dropdown__option-batton_blacked {
+.dropdown__option-button_blacked {
   border-color: rgba(map.get(colors.$map, dark-shade-100),  calc(0.25*0.38));
   color: rgba(map.get(colors.$map, dark-shade-100), calc(0.50*0.38));
 }
 
-.dropdown__battons {
-  display: flex;
-  justify-content: space-between;
+.dropdown__buttons {
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  padding-top: 12px;
+  padding-left: 13px;
+  padding-right: 6px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    clear: both;
+    width: 100%;
+  }
 }
 
-.dropdown__batton-clear {
-  height: 15px;
-  margin: 12px 0px 13px 14px;
+.dropdown__button-clear {
+  float: left;
   cursor: pointer;
-  @include fonts.label-h3();
-  color: map.get(colors.$map, dark-shade-50); //- переопределяем цвет из миксина
+  color: map.get(colors.$map, dark-shade-50);
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: map.get(colors.$map, dark-shade-75);
+  }
 
   &::selection {
     background: transparent;
@@ -181,16 +180,13 @@
   }
 }
 
-.dropdown__batton-clear_hidden {
+.dropdown__button-clear_hidden {
   visibility: hidden;
 }
 
-.dropdown__batton-apply {
-  height: 15px;
-  margin: 12px 7px 13px 0px;
+.dropdown__button-apply {
+  float: right;
   cursor: pointer;
-  @include fonts.label-h3();
-  color: map.get(colors.$map, 'purple'); //- переопределяем цвет из миксина
 
   &::selection {
     background: transparent;

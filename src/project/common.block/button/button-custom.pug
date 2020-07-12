@@ -1,4 +1,4 @@
-mixin button-custom(buttonName, buttonType = "Submit", buttonText = "click me", buttonFill = true, buttonBorder = false, longButton = false)
+mixin button-custom(buttonName, buttonText = "click on", buttonType = "button", buttonFill = false, buttonBorder = false, longButton = false)
   -var modifications = "button-custom";
   if buttonFill
     #{modifications = "button-custom button-custom_fill"}
@@ -6,4 +6,4 @@ mixin button-custom(buttonName, buttonType = "Submit", buttonText = "click me", 
     #{modifications = "button-custom button-custom_border"}
   if longButton
     #{modifications = "button-custom button-custom_fill button-custom_long"}
-  button(name=buttonName type=buttonType class=modifications)=buttonText 
+  button(name=buttonName type=buttonType class=modifications)&attributes(attributes)=buttonText 

@@ -3,13 +3,13 @@
 @use "../text-setting" as fonts;
 
 .button-custom {
-  width: 61px;
+  width: min-content;
   height: 15px;
   text-align: center;
   padding: 0px;
   border: none;
-  background-color: #FFF;
   color: map.get(colors.$map, "purple");
+  background-color: transparent;
   @include fonts.Montserrat-bold;
   font-size: 12px;
   line-height: 15px;
@@ -17,6 +17,12 @@
 
   &:hover {
     color: map.get(colors.$map, dark-shade-50); 
+    outline: none;
+  }
+
+  &:active,
+  &:focus {
+    outline: none;
   }
 }
 
