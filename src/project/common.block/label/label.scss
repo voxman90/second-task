@@ -18,11 +18,13 @@
 .label__left {
   float: left;
   height: 15px;
-  @include fonts.label-right(15px);
+  text-align: left;
+  @include fonts.label-h3(15px);
 }
 
 .label__right {
   float: right;
   height: 15px;
+  text-align: right;
   @include fonts.label-right(15px);
 }

@@ -1,0 +1,3 @@
+mixin text-field(inputTextName = "userName", inputTextPlaceholder = "Name", isMasked = false)
+  -var masked = (isMasked == true) ? " text-field_masked" : "";
+  input(class="text-field" + masked type="text" name=inputTextName placeholder=inputTextPlaceholder)

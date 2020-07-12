@@ -68,22 +68,18 @@
 }
 
 //- This is the body text which is used for most of the design, like paragraphs, lists, etc.
-@mixin body-p {
+@mixin body-p($height: 23.94px) {
   color: map.get(colors.$map, 'dark-shade-75');
   @include Montserrat-normal;
-  $custom-font-size: 14; 
-  $custom-line-height: math.round($custom-font-size*1.71);
-  font-size: $custom-font-size + 0px; 
-  line-height: $custom-line-height + 0px;
+  font-size: 14px;  
+  line-height: $height;
 }
 
-@mixin Montserrat-custom {
+@mixin Montserrat-custom($height: 18.06px) {
   color: map.get(colors.$map, 'dark-shade-50');
   @include Montserrat-normal;
-  $custom-font-size: 14; 
-  $custom-line-height: math.round($custom-font-size*1.29);
-  font-size: $custom-font-size + 0px; 
-  line-height: $custom-line-height + 0px;
+  font-size: 14px; 
+  line-height: $height;
 }
 
 @mixin material-icons {

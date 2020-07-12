@@ -1,0 +1,6 @@
+@mixin size($blockWidth: 320px, $blockHeight: auto, $blockPadding: 0px, $blockMargin: 10px 0) {
+  width: $blockWidth;
+  height: $blockHeight;
+  padding: $blockPadding;
+  margin: $blockMargin;
+}

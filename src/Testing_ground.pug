@@ -1,10 +1,10 @@
 doctype html
 html
-  include ./project/common.block/label/label.pug
+  include ./project/common.block/input/input.pug
   head
     meta(charset="UTF-8")
     title Testing ground
   body
-    +label("text field", "default")
-      input(type="text" name="textField")
-      p Проверка
+    +input(320, "text field", "default", "textField", "Email", isMasked)
+    +input(320, "text field", "hover / focus", "textFieldHover", "Text", isMasked)
+    +input(160, "", "", "Masked", "Masked", true, false)

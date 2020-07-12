@@ -1,0 +1,87 @@
+@use "sass:map";
+@use "../colors" as colors;
+@use "../text-setting" as fonts;
+
+.text-field {
+  box-sizing: border-box;
+  width: 100%;
+  height: 44px;
+  padding: 0px 0px 0px 14px;
+  border: 1px solid map.get(colors.$map, dark-shade-25);
+  border-radius: 4px;
+  @include fonts.body-p(24px);
+
+  &:hover,
+  &:focus,
+  &:active { 
+    outline: none;
+    border-color: map.get(colors.$map, dark-shade-50);
+  }
+
+  &::placeholder {
+    color: map.get(colors.$map, dark-shade-25);
+    line-height: 18px;
+  }
+
+  &::-webkit-input-placeholder {
+    color: map.get(colors.$map, dark-shade-25);
+    line-height: 18px;
+  }
+
+  &::-moz-placeholder {
+    opacity: 1; 
+    color: map.get(colors.$map, dark-shade-25);
+    line-height: 43px;
+  }
+
+  /* - IE 10-11 - */
+  &:-ms-input-placeholder {
+    color: map.get(colors.$map, dark-shade-25);
+    line-height: 18px;
+  }
+
+}
+
+.text-field_masked {
+  font-size: 0px;
+
+  &::placeholder {
+    font-size: 0px;
+  }
+
+  &::-webkit-input-placeholder {
+    font-size: 0px;
+  }
+
+  &::-moz-placeholder {
+    font-size: 0px;
+  }
+
+  /* - IE 10-11 - */
+  &:-ms-input-placeholder {
+    font-size: 0px;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    font-size: 14px;
+
+    &::placeholder {
+      font-size: 14px;
+    }
+  
+    &::-webkit-input-placeholder {
+      font-size: 14px;
+    }
+  
+    &::-moz-placeholder {
+      font-size: 14px;
+    }
+  
+    /* - IE 10-11 - */
+    &:-ms-input-placeholder {
+      font-size: 14px;
+    }
+  }
+}
