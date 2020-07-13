@@ -63,25 +63,30 @@ function guestAmount(numberVault) {
 
 function easeAmount(numberVault) {
   let phrases = [];
+  let sentence = "";
   const bedroomCount = numberVault["Спальни"];
   const bedCount = numberVault["Кровати"];
   const bathCount = numberVault["Ванные комнаты"];
-  if (bedroomCount > 0) {
-    phrases.push(`${bedroomCount} ${wordEnding(bedroomCount, "спальня", "спальни", "спален")}`);
+  if (bedroomCount + bedCount + bathCount === 0) {
+    sentence = "Какие удобства";
+  } else {
+    if (bedroomCount > 0) {
+      phrases.push(`${bedroomCount} ${wordEnding(bedroomCount, "спальня", "спальни", "спален")}`);
+    }
+    if (bedCount > 0) {
+      phrases.push(`${bedCount} ${wordEnding(bedCount, "кровать", "кровати", "кроватей")}`);
+    }
+    if (bathCount > 0) {
+      phrases.push(`${bathCount} ${wordEnding(bathCount, "ванная комната", "ванных комнаты", "ванных комнат")}`);
+    }
+    let i = 1;
+    sentence = phrases[0];
+    while (i < phrases.length) {
+      sentence = sentence + ", " + phrases[i];
+      i = i + 1;
+    }
+    if (i < 3) {sentence = sentence + `…`}
   }
-  if (bedCount > 0) {
-    phrases.push(`${bedCount} ${wordEnding(bedCount, "кровать", "кровати", "кроватей")}`);
-  }
-  if (bathCount > 0) {
-    phrases.push(`${bathCount} ${wordEnding(bathCount, "ванная комната", "ванных комнаты", "ванных комнат")}`);
-  }
-  let i = 1;
-  let sentence = phrases[0];
-  while (i < phrases.length) {
-    sentence = sentence + ", " + phrases[i];
-    i = i + 1;
-  }
-  if (i < 3) {sentence = sentence + `…`}
   return sentence;
 }
 
@@ -148,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
             dropdownBattonClear.classList.add("dropdown__button-clear_hidden");
           }
         } else {
-          dropdownTextField.value = easeAmount(numberVault);
+            dropdownTextField.value = easeAmount(numberVault);
         }
       }
       if (TargetClass.contains("dropdown__button-clear")) {

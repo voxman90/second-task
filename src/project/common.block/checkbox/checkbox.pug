@@ -1,0 +1,8 @@
+mixin checkbox(inputName = "DEFAULT", inputValue = "DEFAULT", inputLabel = "DEFAULT", boxSize = "input_222px")
+  div.boxSize
+    label.checkbox
+      input.checkbox__input(type="checkbox" name=inputName value=inputValue)
+      div(class="checkbox__label")&attributes(attributes)=inputLabel
+      if block
+        block
+

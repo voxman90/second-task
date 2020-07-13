@@ -2,6 +2,7 @@ doctype html
 html
   include ./project/common.block/input/input.pug
   include ./project/common.block/dropdown/dropdown.pug
+  include ./project/common.block/checkbox/checkbox.pug
   head
     meta(charset="UTF-8")
     title Testing ground
@@ -10,3 +11,6 @@ html
     +input-text(320, "text field", "hover / focus", "textFieldHover", "Text")
     +input-dropdown(true)
     +input-dropdown(false)
+    +checkbox
+    +checkbox
+    +checkbox

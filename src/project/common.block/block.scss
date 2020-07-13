@@ -4,3 +4,23 @@
   padding: $blockPadding;
   margin: $blockMargin;
 }
+
+.input_320px {
+  box-sizing: border-box;
+  @include size(320px, auto, 0px, 10px 0);
+}
+
+.input_266px {
+  box-sizing: border-box;
+  @include size(266px, auto, 0px, 10px 0);
+}
+
+.input_222px {
+  box-sizing: border-box;
+  @include size(222px, auto, 0px, 10px 0);
+}
+
+.input_160px {
+  box-sizing: border-box;
+  @include size(160px, auto, 0px, 10px 0);
+}
