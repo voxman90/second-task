@@ -4,50 +4,35 @@
 
 .checkbox-list {
   position: relative;
-  width: 266px;
+  width: 100%;
   height: 44px;
   @include fonts.label-h3(44px);
+  margin-top: 20px;
 }
 
-.checkbox-list__exp_up::before {
-  content: "expand_more";
+.checkbox-list__icon {
   position: absolute;
-  z-index: 0;
   top: 10px;
   right: 0px;
   box-sizing: content-box;
   width: 44px;
   height: 24px;
-  @include fonts.material-icons;
   color: map.get(colors.$map, 'dark-shade-50');
   text-align: center;
 }
 
-.checkbox-list__exp_down::before {
-  content: "expand_more";
-  position: absolute;
-  z-index: 0;
-  top: 10px;
-  right: 0px;
-  box-sizing: content-box;
-  width: 44px;
-  height: 24px;
-  @include fonts.material-icons;
-  color: map.get(colors.$map, 'dark-shade-50');
-  text-align: center;
+.checkbox-list__icon_turn {
   transform: rotate(180deg);
 }
 
 .checkbox-list__dropdown {
-  position: absolute;
-  z-index: 15;
   display: flex;
   flex-direction: row;
-  width: 266px;
+  width: 100%;
   height: fit-content;
   background-color: #FFF;
 }
 
-.checkbox-list__dropdown_display {
+.checkbox-list__dropdown_hidden {
   display: none;
 }

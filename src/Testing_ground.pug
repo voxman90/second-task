@@ -3,6 +3,7 @@ html
   include ./project/common.block/input/input.pug
   include ./project/common.block/dropdown/dropdown.pug
   include ./project/common.block/checkbox/checkbox.pug
+  include ./project/common.block/checkbox-list/checkbox-list.pug
   head
     meta(charset="UTF-8")
     title Testing ground
@@ -11,6 +12,14 @@ html
     +input-text(320, "text field", "hover / focus", "textFieldHover", "Text")
     +input-dropdown(true)
     +input-dropdown(false)
-    +checkbox("first", "smoke", inputLabel="Можно курить")
-    +checkbox("second", "animal", inputLabel="Можно с животными")
-    +checkbox("third", "guest", inputLabel="Можно пригласить гостей (до 10 человек)")
+    +checkbox("first", "smoke", "Можно курить")
+    +checkbox("second", "animal", "Можно с животными")
+    +checkbox("third", "guest", "Можно пригласить гостей")
+    +checkbox-list("expandable checkbox list")
+      +checkbox("che_001", "che", "Завтрак", "input_266px_bottom")
+      +checkbox("che_002", "che", "Письменный стол")
+      +checkbox("che_003", "che", "Стул для кормления")
+      +checkbox("che_004", "che", "Кроватка")
+      +checkbox("che_005", "che", "Телевизор")
+      +checkbox("che_006", "che", "Шампунь")
+      +input-text(160, "test field", "default", "textField", "Test")

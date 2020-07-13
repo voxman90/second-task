@@ -15,19 +15,21 @@ document.addEventListener("DOMContentLoaded", function () {
   const checkboxForms = document.querySelectorAll(".checkbox-list");
   for (let i = 0; i < checkboxForms.length; i++) {
     const checkboxForm = checkboxForms[i];
+    const checkboxIcon = checkboxForm.firstElementChild;
     const checkboxDropdown = checkboxForm.nextElementSibling;
+    
 
     checkboxForm.addEventListener("mousedown", function () {
-      checkboxDropdown.classList.toggle("checkbox-list__dropdown_display");
-      checkboxForm.classList.toggle("checkbox-list__exp_down");
-      checkboxForm.classList.toggle("checkbox-list__exp_up");
+      checkboxDropdown.classList.toggle("checkbox-list__dropdown_hidden");
+      checkboxIcon.classList.toggle("checkbox-list__icon_turn");
     });   
 
     document.addEventListener("mousedown", function (event) {
-      if (!containsIn(checkboxDropdown, event.target) && !containsIn(checkboxForm, event.target) && !checkboxDropdown.classList.contains("checkbox-list__dropdown_display")) {
-        checkboxDropdown.classList.add("checkbox-list__dropdown_display");
-        checkboxForm.classList.toggle("checkbox-list__exp_down");
-        checkboxForm.classList.toggle("checkbox-list__exp_up");
+      if (!containsIn(checkboxDropdown, event.target) 
+      && !containsIn(checkboxForm, event.target) 
+      && !checkboxDropdown.classList.contains("checkbox-list__dropdown_hidden")) {
+        checkboxDropdown.classList.add("checkbox-list__dropdown_hidden");
+        checkboxIcon.classList.toggle("checkbox-list__icon_turn");
       }
     });
   }

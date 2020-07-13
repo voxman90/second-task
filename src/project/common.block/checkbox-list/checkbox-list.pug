@@ -1,5 +1,7 @@
-mixin checkbox-list(checkboxName)
-  div(class="checkbox-list" + " checkbox-list__exp_up") #{checkboxName}
-  div(class="chekbox-list__dropdown" + " checkbox-list__dropdown_display")
-    if block
-      block
+mixin checkbox-list(checkboxName, boxSize="input_266px")
+  div(class=boxSize)
+    div(class="checkbox-list") #{checkboxName}
+      +icon("expand_more")(class="checkbox-list__icon")
+    div(class="chekbox-list__dropdown" + " checkbox-list__dropdown_hidden")
+      if block
+        block
