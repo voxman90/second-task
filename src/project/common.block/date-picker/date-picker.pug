@@ -4,7 +4,7 @@ include ../icon/icon.pug
 include ../button/button-custom.pug
 
 mixin calendar   
-  div.calendar
+  div(class="calendar calendar_hidden")
     div.calendar__title
       +icon("arrow_back")(class="calendar__icon-backward")
       +icon("arrow_back")(class="calendar__icon-forward")
