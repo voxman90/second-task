@@ -1,0 +1,5 @@
+include ../checkbox/checkbox.pug
+
+mixin checkbox-rich(inputName="default", inputValue="", inputLabel="default", inputSubtext="default", boxSize="input_266px")
+  +checkbox(inputName, inputValue, inputLabel, boxSize)(class="checkbox-rich")
+    div.checkbox-rich__subtext=inputSubtext

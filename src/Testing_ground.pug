@@ -4,6 +4,7 @@ html
   include ./project/common.block/dropdown/dropdown.pug
   include ./project/common.block/checkbox/checkbox.pug
   include ./project/common.block/checkbox-list/checkbox-list.pug
+  include ./project/common.block/checkbox-rich/checkbox-rich.pug
   head
     meta(charset="UTF-8")
     title Testing ground
@@ -23,3 +24,5 @@ html
       +checkbox("che_005", "che", "Телевизор")
       +checkbox("che_006", "che", "Шампунь")
       +input-text(160, "test field", "default", "textField", "Test")
+    +checkbox-rich("che_001", "che", "Широкий коридор", "Ширина коридоров в номере не менее 91 см.")
+    +checkbox-rich("che_002", "che", "Помошник для инвалидов", "На 1 этаже вас встретит специалист и проводит до номера.")
