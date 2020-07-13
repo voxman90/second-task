@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "sass:color";
 @use "../colors" as colors;
 @use "../text-setting" as fonts;
 @use "../block" as block;
@@ -67,34 +68,100 @@
 .calendar__month {
   height: 24px;
   text-align: center;
-  @include fonts.title-h2;
+  font-family: 'Quicksand', 'Open Sans', sans-serif;
+  font-weight: bold;
+  font-style: normal;
+  color: map.get(colors.$map, dark-shade-100);
+  font-size: 19px;
+  line-height: 24px;
 }
 
 .calendar__icon-backward {
   float: left;
   height: 24px;
+  cursor: pointer;
   color: map.get(colors.$map, "purple");
 }
 
 .calendar__icon-forward {
   float: right;
   height: 24px;
+  cursor: pointer;
   color: map.get(colors.$map, "purple");
   transform: rotate(180deg);
 }
 
-.calendar__days {
-
+.calendar__table  {
+  border-collapse: collapse;
+  text-align: center;
+  vertical-align: middle;
 }
 
+.calendar__table-th  {
+  width: 40px;
+  max-height: 40px;
+  padding: 0px;
+  cursor: default;
+  @include fonts.label-h3(15px);
+  text-transform: none;
+  color: map.get(colors.$map, "purple");
+}
 
-.dropdown__buttons {
+.calendar__table-tr  {
+  height: 40px;
+  padding: 0px;
+}
+
+.calendar__table-tr_hidden {
+  height: 0px;
+  padding: 0px;
+}
+
+.calendar__table-td  {
+  width: 40px;
+  max-height: 40px;
+  padding: 0px;
+  cursor: pointer;
+  color: map.get(colors.$map, dark-shade-25);
+  @include fonts.Montserrat-normal;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.calendar__table-td_recent-month {
+  color: map.get(colors.$map, dark-shade-50);
+}
+
+.calendar__table-td_recent-day {
+  border-radius: 22px;
+  background: linear-gradient(180deg, map.get(colors.$map, "green"), map.get(colors.$map, "green-blue"));
+  color: white;
+  @include fonts.Montserrat-bold;
+}
+
+.calendar__table-td_departure {
+  border-radius: 22px;
+  background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "purple-2"));
+  color: white;
+  @include fonts.Montserrat-bold;
+}
+
+.calendar__table-td_arrival {
+  border-radius: 22px;
+  background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "purple-2"));
+  color: white;
+  @include fonts.Montserrat-bold;
+}
+
+.calendar__table_fill {
+  background: linear-gradient(180deg, color.change(map.get(colors.$map, "purple"), $alpha: 0.25), color.change(map.get(colors.$map, "purple-2"), $alpha: 0.25))
+}
+
+.calendar__buttons {
   box-sizing: border-box;
   width: 100%;
-  height: 40px;
-  padding-top: 12px;
-  padding-left: 13px;
-  padding-right: 6px;
+  height: fit-content;
+  margin-top: 20px;
 
   &::after {
     content: "";
@@ -104,7 +171,7 @@
   }
 }
 
-.dropdown__button-clear {
+.calendar__button-clear {
   float: left;
   cursor: pointer;
   color: map.get(colors.$map, dark-shade-50);
@@ -124,11 +191,11 @@
   }
 }
 
-.dropdown__button-clear_hidden {
+.calendar__button-clear_hidden {
   visibility: hidden;
 }
 
-.dropdown__button-apply {
+.calendar__button-apply {
   float: right;
   cursor: pointer;
 

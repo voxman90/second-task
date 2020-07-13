@@ -9,9 +9,20 @@ mixin calendar
       +icon("arrow_back")(class="calendar__icon-backward")
       +icon("arrow_back")(class="calendar__icon-forward")
       div.calendar__month Август 2019
-    div.calendar__days
+    table.calendar__table
+      tr.calendar__table-tr
+        each val in ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
+          th.calendar__table-th= val
+      tdoby
+        each i in [1, 2, 3, 4, 5]
+          tr.calendar__table-tr
+            each j in [1, 2, 3, 4, 5, 6, 7]
+              td.calendar__table-td= i + j
+        tr(class="calendar__table-tr calendar__table-tr_hidden")
+          each k in [1, 2, 3, 4, 5, 6 , 7] 
+            td.calendar__table-td
     div.calendar__buttons
-      +button-custom("buttonClear", "очистить")(class=" calendar__button-clear dropdown__button-clear_hidden")
+      +button-custom("buttonClear", "очистить")(class=" calendar__button-clear calendar__button-clear_hidden")
       +button-custom("buttonApply", "применить")(class=" calendar__button-apply")
 
 mixin date-picker
