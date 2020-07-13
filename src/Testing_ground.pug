@@ -5,11 +5,13 @@ html
   include ./project/common.block/checkbox/checkbox.pug
   include ./project/common.block/checkbox-list/checkbox-list.pug
   include ./project/common.block/checkbox-rich/checkbox-rich.pug
+  include ./project/common.block/datepicker/date-picker.pug
   head
     meta(charset="UTF-8")
     title Testing ground
   body
-    +input-text(320, "text field", "default", "textField", "Email")
+    +date-picker
+//    +input-text(320, "text field", "default", "textField", "Email")
     +input-text(320, "text field", "hover / focus", "textFieldHover", "Text")
     +input-dropdown(true)
     +input-dropdown(false)
