@@ -1,23 +1,40 @@
 @font-face {
-  font-family: 'Quicksand';
+  font-family: 'Open Sans';
+  src: url('./assets/fonts/opensans-bold-webfont.woff2') format('woff2'),
+       url('./assets/fonts/opensans-bold-webfont.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('./assets/fonts/opensans-regular-webfont.woff2') format('woff2'),
+       url('./assets/fonts/opensans-regular-webfont.woff') format('woff');
   font-weight: normal;
-	font-style: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Quicksand';
 	src: url('./assets/fonts/Quicksand-Regular.eot');
-  src: local('Quicksand-bold'), 
+  src: local('Quicksand-regular'), 
        url('./assets/fonts/Quicksand-Regular.woff') format('woff'), 
        url('./assets/fonts/Quicksand-Regular.ttf') format('truetype'), 
        url('./assets/fonts/Quicksand-Regular.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'Quicksand';
-  font-weight: bold;
-	font-style: normal;
 	src: url('./assets/fonts/Quicksand-Bold.eot'); /* For IE6-8 */
-  src: local('Quicksand-bold'), 
+  src: local('Quicksand-Bold'), 
        url('./assets/fonts/Quicksand-Bold.woff') format('woff'), 
        url('./assets/fonts/Quicksand-Bold.ttf') format('truetype'), 
        url('./assets/fonts/Quicksand-Bold.svg') format('svg');
+  font-weight: bold;
+  font-style: normal;
 }
 
 @font-face {

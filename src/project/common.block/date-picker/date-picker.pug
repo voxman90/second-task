@@ -1,19 +1,28 @@
+include ../label/label.pug 
+include ../text-field/text-field.pug 
+include ../icon/icon.pug 
+include ../button/button-custom.pug
+
 mixin calendar   
-  div
-    div
-      +icon
-      h2
-      +icon
-    div
-    div
+  div.calendar
+    div.calendar__title
+      +icon("arrow_back")(class="calendar__icon-backward")
+      +icon("arrow_back")(class="calendar__icon-forward")
+      div.calendar__month Август 2019
+    div.calendar__days
+    div.calendar__buttons
+      +button-custom("buttonClear", "очистить")(class=" calendar__button-clear dropdown__button-clear_hidden")
+      +button-custom("buttonApply", "применить")(class=" calendar__button-apply")
 
 mixin date-picker
-  div
-    div
-      +label
-        +text-field
-        +icon
-      +label
-        +text-field
-        +icon
-    +calendar
+  div.date-picker
+    div.date-picker__departure
+      +label("выезд", "")
+        +text-field("departure", " ")(readonly, value="ДД.ММ.ГГГГ")
+        +icon("expand_more")(class=" date-picker__icon-expand")
+    div.date-picker__stub
+    div.date-picker__arrival
+      +label("прибытие", "")(class="input_150px")
+        +text-field("arrival", " ")(readonly, value="ДД.ММ.ГГГГ", class="date-picker__arrival")
+        +icon("expand_more")(class=" date-picker__icon-expand")
+  +calendar

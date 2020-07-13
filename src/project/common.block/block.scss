@@ -17,7 +17,7 @@
 
 .input_266px_bottom {
   box-sizing: border-box;
-  @include size(320px, auto, 0px, 0 0 10px 0);
+  @include size(266px, auto, 0px, 0 0 10px 0);
 }
 
 .input_222px {
@@ -25,7 +25,7 @@
   @include size(222px, auto, 0px, 10px 0);
 }
 
-.input_160px {
+.input_150px {
   box-sizing: border-box;
-  @include size(160px, auto, 0px, 10px 0);
+  @include size(150px, auto, 0px, 10px 0);
 }

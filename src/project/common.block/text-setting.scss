@@ -4,7 +4,7 @@
 
 @mixin Quicksand-normal {
   font: {
-    family: Quicksand, sans-serif;
+    family: 'Quicksand', 'Open Sans', sans-serif;
     weight: normal;
     style: normal;
   }
@@ -12,7 +12,7 @@
 
 @mixin Quicksand-bold {
   font: { 
-    family: Quicksand, sans-serif;
+    family: 'Quicksand', 'Open Sans', sans-serif;
     weight: bold;
     style: normal;
   }
@@ -20,7 +20,7 @@
 
 @mixin Montserrat-normal {
   font: {
-    family: Montserrat, sans-serif;
+    family: 'Montserrat', sans-serif;
     weight: normal;
     style: normal;
   }
@@ -28,7 +28,7 @@
 
 @mixin Montserrat-bold {
   font: {
-    family: Montserrat, sans-serif;
+    family: 'Montserrat', sans-serif;
     weight: bold;
     style: normal;
   }
