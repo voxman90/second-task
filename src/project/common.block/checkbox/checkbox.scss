@@ -1,19 +1,21 @@
 @use 'sass:map';
 @use '../colors' as colors;
 @use '../text-setting' as fonts;
+@use '../block' as block;
 
 .checkbox {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   box-sizing: border-box;
-  margin-bottom: 10px;
 }
 
 .checkbox__label {
   position: relative;
-  width: 192px;
+  box-sizing: border-box;
+  width: auto;
   height: 18px;
-  @include fonts.Montserrat-custom;
+  margin-left: 15px;
+  @include fonts.Montserrat-custom(18px);
 }
 
 .checkbox__label::before {
@@ -22,14 +24,19 @@
   left: -30px;
   top: -1px;
   content: "";
-  width: 18px;
-  height: 18px;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
   background-color: #FFFFFF;
   border: 1px solid map.get(colors.$map, dark-shade-25);
   border-radius: 4px;
 }
 
-.checkbox__input:checked + .checkbox-custom__label::before {
+.checkbox__input {
+  margin: 2.6px 1.1px; 
+}
+
+.checkbox__input:checked + .checkbox__label::before {
   border: 1px solid map.get(colors.$map, "purple");
   background: url(./Check.svg);
   background: {
