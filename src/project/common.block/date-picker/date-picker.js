@@ -18,9 +18,15 @@ let dateBank = {
   showDate: new Date
 }
 
+dateBank.dateToDDMMYYYY = function (date) {
+  let DDMMYYYY = date.getDate() + "." + (date.getMonth()+1) + "." + date.getFullYear();
+  return DDMMYYYY;
+}
+
 dateBank.initBank = function() {
   this.currentDate.setTime(Date.now());
   this.showDate = new Date(this.currentDate);
+  this.showDate.setDate(1);
 }
 
 dateBank.monthToDate = function(date) {
@@ -49,6 +55,16 @@ dateBank.monthToDay = function(date) {
   monthCopy.setDate(1);
   daysName = monthCopy.getDay();
   return (daysName + 6) % 7;
+}
+
+dateBank.dateToRow = function(date) {
+  let firstDay = this.monthToDay(date);
+  return Math.floor((date.getDate() + firstDay - 0.1)/7);
+}
+
+dateBank.dateToMonth = function(date) {
+  let monthAmount = date.getYear()*12 + date.getMonth() + 1;
+  return monthAmount;
 }
 
 dateBank.monthToRow = function(date) {
@@ -102,13 +118,24 @@ dateBank.getCalendarList = function(date) {
   return calendar;
 } 
 
-dateBank.dateIntervalRough = function(dateStart, dateEnd) {
-  return Math.round(Math.abs(dateEnd.getTime() - dateStart.getTime()) / (24*60*60*1000)); 
+dateBank.getTargetDate = function (targetTableCell, showDate) {
+  let targetDate = new Date(showDate);
+  targetDate.setDate(targetTableCell.innerHTML);
+  return targetDate;
 }
 
 dateBank.initBank();
 
-// - View
+function clearCalendarTable (calendarTable) {
+  let currentCell;
+  for (let i = 0; i < 6; i++) {
+    for (let j = 0; j < 7; j++) {
+      k = i*7 + j;
+      currentCell = calendarTable.children[i].children[j];
+      currentCell.classList.remove("calendar__table-td_departure", "calendar__table-td_arrival", "calendar__table_fill");
+    }
+  }
+}
 
 function setCalendarTable (calendarTable, calendarList, classIn) {
   const listLenght = calendarList.length;
@@ -140,51 +167,139 @@ function setCalendarTitle(calendarTitle, date) {
   calendarTitle.innerHTML = dateBank.monthToName[date.getMonth()] + " " + date.getFullYear();
 }
 
-function setCurrentDay(calendarTable, date) {
-  //
+function setRecentDate(calendarTable, currentDate, showDate) {
+  if ((showDate.getMonth() === currentDate.getMonth()) && (showDate.getYear() === currentDate.getYear())) {
+    calendarTable.children[dateBank.dateToRow(currentDate)].children[(currentDate.getDay()+6)%7].classList.add("calendar__table-td_recent-day");
+  } else {
+    calendarTable.children[dateBank.dateToRow(currentDate)].children[(currentDate.getDay()+6)%7].classList.remove("calendar__table-td_recent-day");
+  }
+}
+
+/* function removeCalendarDate(calendarTable, targerDate, currentDate, removeClass) {
+   if ((targerDate.getMonth() === currentDate.getMonth()) && (targerDate.getYear() === currentDate.getYear())) {
+    calendarTable.children[dateBank.dateToRow(targerDate)].children[(targerDate.getDay()+6)%7].classList.remove(removeClass);
+  }
+} */
+
+function drawTrace(calendarTable, showDate, arrivalDate, departureDate) {
+  if (arrivalDate.getTime() !== 0) {
+    if ((showDate.getMonth() === arrivalDate.getMonth()) && (showDate.getYear() === arrivalDate.getYear())) {
+      calendarTable.children[dateBank.dateToRow(arrivalDate)].children[(arrivalDate.getDay()+6)%7].classList.add("calendar__table-td_arrival");
+    } else {
+      calendarTable.children[dateBank.dateToRow(arrivalDate)].children[(arrivalDate.getDay()+6)%7].classList.remove("calendar__table-td_arrival");
+    }
+  }
+  if (departureDate.getTime() !== 0) {
+    if ((showDate.getMonth() === departureDate.getMonth()) && (showDate.getYear() === departureDate.getYear())) {
+      calendarTable.children[dateBank.dateToRow(departureDate)].children[(departureDate.getDay()+6)%7].classList.add("calendar__table-td_departure");
+    } else {
+      calendarTable.children[dateBank.dateToRow(departureDate)].children[(departureDate.getDay()+6)%7].classList.remove("calendar__table-td_departure");
+    }
+  } 
+  if (departureDate.getTime() - arrivalDate.getTime() > 0 
+    && (dateBank.dateToMonth(arrivalDate) <= dateBank.dateToMonth(showDate)) 
+    && (dateBank.dateToMonth(departureDate) >= dateBank.dateToMonth(showDate))) {
+    let i = dateBank.monthToDay(showDate); // [0..6]
+    let end = i + dateBank.monthToDate(showDate); // [28..37]
+    if ((showDate.getMonth() === departureDate.getMonth()) && (showDate.getYear() === departureDate.getYear())) {
+      end = i + departureDate.getDate(); // [0..37]
+    }
+    if ((showDate.getMonth() === arrivalDate.getMonth()) && (showDate.getYear() === arrivalDate.getYear())) {
+      i = i + arrivalDate.getDate() - 1; // [0..37]
+    }
+    for (; i < end; i++) {
+      calendarTable.children[Math.floor((i+0.9)/7)].children[(i)%7].classList.add("calendar__table_fill");
+    }
+  }
+}
+
+function setTargetDate(targetTableCell, buttonClear, currentDate, showDate, arrivalDate, departureDate) {
+  let targetDate = new Date(dateBank.getTargetDate(targetTableCell, showDate));
+  if (targetDate.getTime() >= currentDate.getTime()) {
+    if (arrivalDate.getTime() === 0) {
+      arrivalDate.setTime(targetDate.getTime());
+    } else if (departureDate.getTime() === 0 && targetDate.getTime() >= arrivalDate.getTime())  {
+      departureDate.setTime(targetDate.getTime());
+    }
+    if (buttonClear.classList.contains("calendar__button-clear_hidden")) {
+      buttonClear.classList.remove("calendar__button-clear_hidden");
+    }
+  }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
   const dateForms = document.body.querySelectorAll(".date-picker");
   for (let i = 0; i < dateForms.length; i++) {
     const dateForm = dateForms[i];
-    const dateTextFieldDeparture = dateForm.children[0].firstChild.children[1];
-    const dateTextFieldDepartureIcon = dateTextFieldDeparture.nextElementSibling;
-    const dateTextFieldArrival = dateForm.children[2].firstChild.children[1];
+    const dateTextFieldArrival = dateForm.children[0].firstChild.children[1];
     const dateTextFieldArrivalIcon = dateTextFieldArrival.nextElementSibling;
+    const dateTextFieldDeparture = dateForm.children[2].firstChild.children[1];
+    const dateTextFieldDepartureIcon = dateTextFieldDeparture.nextElementSibling;
     const dateCalendar = dateForm.nextElementSibling;
     const calendarTitle = dateCalendar.children[0];
     const calendarBackward = calendarTitle.children[0];
     const calendarForward = calendarBackward.nextElementSibling;
     const calendarMonth = calendarForward.nextElementSibling;
     const calendarTable = dateCalendar.children[1].children[1];
+    const buttonClear = dateCalendar.children[2].children[0];
+    const buttonApply = dateCalendar.children[2].children[1];
+    
     let initial =  true; 
 
     dateForm.addEventListener("mousedown", function (event) {
-      if (dateTextFieldDeparture.isSameNode(event.target) || dateTextFieldDepartureIcon.isSameNode(event.target) 
-      || dateTextFieldArrival.isSameNode(event.target) || dateTextFieldArrivalIcon.isSameNode(event.target)) {
+      if (dateTextFieldArrival.isSameNode(event.target) || dateTextFieldArrivalIcon.isSameNode(event.target) || 
+      dateTextFieldDeparture.isSameNode(event.target) || dateTextFieldDepartureIcon.isSameNode(event.target)) {
         if (initial === true) {
           setCalendarTitle(calendarMonth, dateBank.currentDate);
           setCalendarTable(calendarTable, dateBank.getCalendarList(dateBank.currentDate), "calendar__table-td_recent-month");
+          setRecentDate(calendarTable, dateBank.currentDate, dateBank.currentDate);
           initial = false;
         }
         dateCalendar.classList.toggle("calendar_hidden");
       }
     });   
 
+    let arrivalDate = new Date;
+    arrivalDate.setTime(0);
+    let departureDate = new Date;
+    departureDate.setTime(0);
+
     dateCalendar.addEventListener("mouseup", function (event) {
       const target = event.target;
       if (calendarForward.isSameNode(target)) {
         dateBank.showDate.setMonth(dateBank.showDate.getMonth()+1);
         calendarList = dateBank.getCalendarList(dateBank.showDate);
+        clearCalendarTable(calendarTable);
         setCalendarTitle(calendarMonth, dateBank.showDate);
         setCalendarTable(calendarTable, calendarList, "calendar__table-td_recent-month");
+        setRecentDate(calendarTable, dateBank.currentDate, dateBank.showDate);
+        drawTrace(calendarTable, dateBank.showDate, arrivalDate, departureDate);
       }
       if (calendarBackward.isSameNode(target)) {
         dateBank.showDate.setMonth(dateBank.showDate.getMonth()-1);
         calendarList = dateBank.getCalendarList(dateBank.showDate);
+        clearCalendarTable(calendarTable);
         setCalendarTitle(calendarMonth, dateBank.showDate);
         setCalendarTable(calendarTable, calendarList, "calendar__table-td_recent-month");
+        setRecentDate(calendarTable, dateBank.currentDate, dateBank.showDate);
+        drawTrace(calendarTable, dateBank.showDate, arrivalDate, departureDate);
+      }
+      if (target.classList.contains("calendar__table-td_recent-month")) {
+        setTargetDate(target, buttonClear, dateBank.currentDate, dateBank.showDate, arrivalDate, departureDate);
+        drawTrace(calendarTable, dateBank.showDate, arrivalDate, departureDate);
+      }
+      if (buttonClear.isSameNode(target)) {
+        arrivalDate.setTime(0);
+        departureDate.setTime(0);
+        clearCalendarTable(calendarTable);
+        dateTextFieldArrival.value = "ДД.ММ.ГГГГ";
+        dateTextFieldDeparture.value = "ДД.ММ.ГГГГ";
+      }
+      if (buttonApply.isSameNode(target)) {
+        if ((arrivalDate.getTime() !== 0) && (departureDate.getTime() !== 0)) {
+          dateTextFieldArrival.value = dateBank.dateToDDMMYYYY(arrivalDate);
+          dateTextFieldDeparture.value = dateBank.dateToDDMMYYYY(departureDate);
+        }
       }
     }); 
   }

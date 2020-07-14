@@ -49,7 +49,7 @@
   z-index: 15;
   box-sizing: border-box;
   width: 320px;
-  height: 369px;
+//  height: 369px;
   padding: 19px;
   margin-top: 5px;
   box-shadow: 0px 10px 20px map.get(colors.$map, dark-shade-05);
@@ -81,6 +81,14 @@
   height: 24px;
   cursor: pointer;
   color: map.get(colors.$map, "purple");
+
+  &::selection {
+    background: transparent;
+  }
+
+  &::-moz-selection {
+    background: transparent;
+  }
 }
 
 .calendar__icon-forward {
@@ -89,11 +97,20 @@
   cursor: pointer;
   color: map.get(colors.$map, "purple");
   transform: rotate(180deg);
+
+  
+  &::selection {
+    background: transparent;
+  }
+
+  &::-moz-selection {
+    background: transparent;
+  }
 }
 
 .calendar__table  {
   width: 280px;
-  height: 240px;
+//  height: 240px;
   border-collapse: collapse;
   text-align: center;
   vertical-align: middle;
@@ -109,7 +126,8 @@
 }
 
 .calendar__table-tr  {
-  height: 34px;
+//  height: 34px;
+  height: 40px;
   padding: 0px;
 }
 
@@ -138,14 +156,14 @@
   @include fonts.Montserrat-bold;
 }
 
-.calendar__table-td_departure {
+.calendar__table-td_arrival {
   border-radius: 22px;
   background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "purple-2"));
   color: white;
   @include fonts.Montserrat-bold;
 }
 
-.calendar__table-td_arrival {
+.calendar__table-td_departure {
   border-radius: 22px;
   background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "purple-2"));
   color: white;
