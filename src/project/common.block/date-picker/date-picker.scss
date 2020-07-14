@@ -157,17 +157,43 @@
 }
 
 .calendar__table-td_arrival {
-  border-radius: 22px;
-  background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "purple-2"));
+  position: relative;
+  border-radius: 22px 0 0 22px;
+  background: transparent;
   color: white;
   @include fonts.Montserrat-bold;
+
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    left: 0px;
+    width: 40px;
+    height: 40px;
+    border-radius: 22px;
+    background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "purple-2"));
+  }
 }
 
 .calendar__table-td_departure {
-  border-radius: 22px;
-  background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "purple-2"));
+  position: relative;
+  border-radius: 0 22px 22px 0;
+  background: transparent;
   color: white;
   @include fonts.Montserrat-bold;
+
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    left: 0px;
+    width: 40px;
+    height: 40px;
+    border-radius: 22px;
+    background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "purple-2"));
+  }
 }
 
 .calendar__table_fill {
