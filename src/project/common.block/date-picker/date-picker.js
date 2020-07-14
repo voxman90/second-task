@@ -12,25 +12,16 @@ function containsIn(supposedParent, checkedNode) {
 }
 
 let dateBank = {
-  // создаёт массив на текущий месяц
   // создаёт массив на любой последующий месяц
   // показывает расстояние между датами
-  currentDate: new Date,
-  currentYear: 0,
-  currentMonth: 0,
-  currentDate: 0,
-  currentDay: 0,
+  currentDate: new Date
 }
 
 dateBank.initBank = function() {
   this.currentDate.setTime(Date.now());
-  this.currentYear = this.currentDate.getFullYear();
-  this.currentMonth = this.currentDate.getMonth();
-  this.currentDate = this.currentDate.getDate();
-  this.currentDate = this.currentDate.getDay();
 }
 
-dateBank.monthToDay = function(date) {
+dateBank.monthToDate = function(date) {
   let monthCopy = new Date(date);
   let daysNumber = 28;
   monthCopy.setDate(31);
@@ -50,11 +41,50 @@ dateBank.monthToDay = function(date) {
   return daysNumber;
 }
 
-dateBank.constructMonthArray = function(date) {
-  let monthArray = []
-    date.
-  return monthArray;
+dateBank.monthToDay = function(date) {
+  let monthCopy = new Date(date);
+  let daysName = 0;
+  monthCopy.setDate(1);
+  daysName = monthCopy.getDay();
+  return (daysName + 6) % 7;
 }
+
+dateBank.monthToRow = function(date) {
+  const monthDate = this.monthToDate(date);
+  const monthDay = this.monthToDay(date);
+  let rowAmount = 5;
+  const summ = monthDate + monthDay;
+  if (summ > 35) {
+    rowAmount = 6;
+  }
+  return rowAmount;
+}
+
+dateBank.constructCalendarList = function(date) {
+  let dateCopy = new Date(date);
+  dateCopy.setMonth(date.getMonth() -1);
+  let monthPrev = dateBank.monthToDate(dateCopy);
+  let monthCurrent = dateBank.monthToDate(date);
+  let weekAmount = dateBank.monthToRow(date);
+  let startFrom = dateBank.monthToDay(date);
+  let i = 0;
+  let calendar = [];
+  for (; i < startFrom; i++) {
+     calendar[i] = monthPrev - startFrom + (i + 1);
+  }
+  console.log(i);
+  // i = sratrFrom - день недели (0-6)
+  for (; i < monthCurrent + startFrom; i++) {
+     calendar[i] = i - startFrom + 1;
+  }
+  console.log(i);
+  // i = monthCurrent + startFrom
+  for (; i < weekAmount*7; i++) {
+     calendar[i] = i - (monthCurrent + startFrom) + 1;
+  }
+  console.log(i);
+  return calendar;
+} 
 
 dateBank.initBank();
 
