@@ -10,10 +10,11 @@ mixin calendar
       +icon("arrow_back")(class="calendar__icon-forward")
       div.calendar__month Август 2019
     table.calendar__table
-      tr.calendar__table-tr
-        each val in ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
-          th.calendar__table-th= val
-      tdoby
+      thead
+        tr.calendar__table-tr
+          each val in ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
+            th.calendar__table-th= val
+      tbody
         each i in [1, 2, 3, 4, 5]
           tr.calendar__table-tr
             each j in [1, 2, 3, 4, 5, 6, 7]

@@ -92,6 +92,8 @@
 }
 
 .calendar__table  {
+  width: 280px;
+  height: 240px;
   border-collapse: collapse;
   text-align: center;
   vertical-align: middle;
@@ -99,7 +101,6 @@
 
 .calendar__table-th  {
   width: 40px;
-  max-height: 40px;
   padding: 0px;
   cursor: default;
   @include fonts.label-h3(15px);
@@ -108,18 +109,16 @@
 }
 
 .calendar__table-tr  {
-  height: 40px;
+  height: 34px;
   padding: 0px;
 }
 
 .calendar__table-tr_hidden {
-  height: 0px;
-  padding: 0px;
+  display: none;
 }
 
 .calendar__table-td  {
   width: 40px;
-  max-height: 40px;
   padding: 0px;
   cursor: pointer;
   color: map.get(colors.$map, dark-shade-25);

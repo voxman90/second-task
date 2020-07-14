@@ -14,11 +14,13 @@ function containsIn(supposedParent, checkedNode) {
 let dateBank = {
   // создаёт массив на любой последующий месяц
   // показывает расстояние между датами
-  currentDate: new Date
+  currentDate: new Date,
+  showDate: new Date
 }
 
 dateBank.initBank = function() {
   this.currentDate.setTime(Date.now());
+  this.showDate = new Date(this.currentDate);
 }
 
 dateBank.monthToDate = function(date) {
@@ -60,7 +62,22 @@ dateBank.monthToRow = function(date) {
   return rowAmount;
 }
 
-dateBank.constructCalendarList = function(date) {
+dateBank.monthToName = {
+  0: "Январь",
+  1: "Февраль",
+  2: "Март",
+  3: "Апрель",
+  4: "Май",
+  5: "Июнь",
+  6: "Июль",
+  7: "Август",
+  8: "Сентябрь",
+  9: "Октябрь",
+  10: "Ноябрь",
+  11: "Декабрь"
+}
+
+dateBank.getCalendarList = function(date) {
   let dateCopy = new Date(date);
   dateCopy.setMonth(date.getMonth() -1);
   let monthPrev = dateBank.monthToDate(dateCopy);
@@ -72,21 +89,60 @@ dateBank.constructCalendarList = function(date) {
   for (; i < startFrom; i++) {
      calendar[i] = monthPrev - startFrom + (i + 1);
   }
-  console.log(i);
   // i = sratrFrom - день недели (0-6)
   for (; i < monthCurrent + startFrom; i++) {
      calendar[i] = i - startFrom + 1;
   }
-  console.log(i);
   // i = monthCurrent + startFrom
   for (; i < weekAmount*7; i++) {
      calendar[i] = i - (monthCurrent + startFrom) + 1;
   }
-  console.log(i);
+  calendar[i] = startFrom;
+  calendar[i + 1] = monthCurrent + startFrom;
   return calendar;
 } 
 
+dateBank.dateIntervalRough = function(dateStart, dateEnd) {
+  return Math.round(Math.abs(dateEnd.getTime() - dateStart.getTime()) / (24*60*60*1000)); 
+}
+
 dateBank.initBank();
+
+// - View
+
+function setCalendarTable (calendarTable, calendarList, classIn) {
+  const listLenght = calendarList.length;
+  const firstDay = calendarList[listLenght - 2];
+  const lastDay = calendarList[listLenght - 1];
+  const weeks = (listLenght - 2)/7;
+  if (weeks === 6) {
+    calendarTable.children[5].classList.remove("calendar__table-tr_hidden");
+  } else {
+    calendarTable.children[5].classList.add("calendar__table-tr_hidden");
+  }
+  let k;
+  let currentCell;
+  for (let i = 0; i < weeks; i++) {
+    for (let j = 0; j < 7; j++) {
+      k = i*7 + j;
+      currentCell = calendarTable.children[i].children[j];
+      currentCell.innerHTML = calendarList[k];
+      if (k < firstDay || lastDay < k + 1)  {
+        currentCell.classList.remove(classIn);
+      } else {
+        currentCell.classList.add(classIn);
+      }
+    }
+  } 
+}
+
+function setCalendarTitle(calendarTitle, date) {
+  calendarTitle.innerHTML = dateBank.monthToName[date.getMonth()] + " " + date.getFullYear();
+}
+
+function setCurrentDay(calendarTable, date) {
+  //
+}
 
 document.addEventListener("DOMContentLoaded", function () {
   const dateForms = document.body.querySelectorAll(".date-picker");
@@ -97,13 +153,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const dateTextFieldArrival = dateForm.children[2].firstChild.children[1];
     const dateTextFieldArrivalIcon = dateTextFieldArrival.nextElementSibling;
     const dateCalendar = dateForm.nextElementSibling;
-    let initial =  true;
+    const calendarTitle = dateCalendar.children[0];
+    const calendarBackward = calendarTitle.children[0];
+    const calendarForward = calendarBackward.nextElementSibling;
+    const calendarMonth = calendarForward.nextElementSibling;
+    const calendarTable = dateCalendar.children[1].children[1];
+    let initial =  true; 
 
     dateForm.addEventListener("mousedown", function (event) {
       if (dateTextFieldDeparture.isSameNode(event.target) || dateTextFieldDepartureIcon.isSameNode(event.target) 
       || dateTextFieldArrival.isSameNode(event.target) || dateTextFieldArrivalIcon.isSameNode(event.target)) {
         if (initial === true) {
-          dateCalendar.fillCalendar(currentDate);
+          setCalendarTitle(calendarMonth, dateBank.currentDate);
+          setCalendarTable(calendarTable, dateBank.getCalendarList(dateBank.currentDate), "calendar__table-td_recent-month");
           initial = false;
         }
         dateCalendar.classList.toggle("calendar_hidden");
@@ -111,8 +173,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });   
 
     dateCalendar.addEventListener("mouseup", function (event) {
-    
-       
+      const target = event.target;
+      if (calendarForward.isSameNode(target)) {
+        dateBank.showDate.setMonth(dateBank.showDate.getMonth()+1);
+        calendarList = dateBank.getCalendarList(dateBank.showDate);
+        setCalendarTitle(calendarMonth, dateBank.showDate);
+        setCalendarTable(calendarTable, calendarList, "calendar__table-td_recent-month");
+      }
+      if (calendarBackward.isSameNode(target)) {
+        dateBank.showDate.setMonth(dateBank.showDate.getMonth()-1);
+        calendarList = dateBank.getCalendarList(dateBank.showDate);
+        setCalendarTitle(calendarMonth, dateBank.showDate);
+        setCalendarTable(calendarTable, calendarList, "calendar__table-td_recent-month");
+      }
     }); 
   }
 });
