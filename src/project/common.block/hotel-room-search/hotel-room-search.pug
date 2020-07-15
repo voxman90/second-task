@@ -1,0 +1,12 @@
+include ../input/input.pug
+include ../radio-button/radio-button.pug
+include ../button/button-custom.pug
+include ../date-picker/date-picker.pug
+include ../dropdown/dropdown.pug
+
+mixin hotel-room-search
+  div.hotel-room-search
+    h1.hotel-room-search__h1 Найдём номера под ваши пожелания
+    +date-picker
+    +input-dropdown(true)
+    +button-custom("Submit", "Подобрать номер", "submit", false, false, true)(class="hotel-room-search__indent")
