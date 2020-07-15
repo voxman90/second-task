@@ -8,6 +8,7 @@ html
   include ./project/common.block/date-picker/date-picker.pug
   include ./project/common.block/range-slider/range-slider.pug
   include ./project/common.block/rate-button/rate-button.pug
+  include ./project/common.block/account-registration/account-registration.pug
   head
     meta(charset="UTF-8")
     title Testing ground
@@ -32,3 +33,5 @@ html
     +checkbox-rich("che_001", "che", "Широкий коридор", "Ширина коридоров в номере не менее 91 см.")
     +checkbox-rich("che_002", "che", "Помошник для инвалидов", "На 1 этаже вас встретит специалист и проводит до номера.")
     +rate-button
+    +account-registration
+    div(style="height: 500px; width: 500px")

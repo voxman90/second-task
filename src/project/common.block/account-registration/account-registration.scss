@@ -3,31 +3,47 @@
 @use "../text-setting" as fonts;
 
 .account-registration {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start;
   box-sizing: border-box;
   width: 380px;
-  height: 646px;
   padding: 30px;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-  margin: 100px; // временно
+}
+
+.account-registration__content {
+  display: flex;
+  width: 320px;
+}
+
+.account-registration__indent {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.account-registration__indent-big {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.account-registration__radio-button {
+  float: left;
+  margin-right: 20px;
 }
 
 .account-registration__h1 {
   @include fonts.widget-h1;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .account-registration__login {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 20px;
+  align-items: center;
+  margin-top: 10px;
 }
 
 .account-registration__text {
   @include fonts.body-p;
+  margin: 0 35px 0 0;
   color: black;
 }

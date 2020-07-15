@@ -1,23 +1,23 @@
-include ../input-text/input-text.pug
+include ../input/input.pug
 include ../radio-button/radio-button.pug
 include ../button/button-custom.pug
 include ../toggle/toggle.pug
 
 mixin account-registration
   div.account-registration
+    div.account-registration__content
     h1.account-registration__h1 Регистрация аккаунта
-    +input-text("firstName", "Имя", "", "")
-    +input-text("lastName", "Фамилия", "", "") 
-    div(style="display: flex; justify-content: flex-start;")
-          div
-            +radio-button-custom("gender", "male", "Мужчина")
-          div(style="margin-left: 20px;")
-            +radio-button-custom("gender", "female", "Женщина")
-    +input-text("birtdDate", "ДД.ММ.ГГГГ", "Дата рождения", "", false, "(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2]).(?:(?:1[0-2]|0[1-9]).(?:19|20)[0-9]{2})")
-    +input-text("userEmail", "Email", "Данные для входа в сервер", "")
-    +input-text("userPassword", "Пароль", "", "", true)
+    +text-field("firstName", "Имя")
+    +text-field("lastName", "Фамилия")(class="account-registration__indent")
+    +radio-button("gender", "male", "Мужчина")(class = "account-registration__radio-button")
+    +radio-button("gender", "female", "Женщина")
+    +label("Дата рождения", "")
+      +text-field("birtdDate", "ДД.ММ.ГГГГ")
+    +label("Данные для входа в сервис", "")
+      +text-field("userEmail", "Email")
+      +text-field("userPassword", "Пароль")(class="text-field_masked account-registration__indent")
     +toggle-custom("mailing", "mailing", "Получать спецпредложения")
-    +button-custom("Submit", "submitButton", "Перейти к оплате", false, false, true)
+    +button-custom("Submit", "Зарегистрироваться", "submit", false, false, true)(class="account-registration__indent-big")
     div.account-registration__login
-      p.account-registration__text Уже есть аккаунт на Toxin? 
-      +button-custom("signIn", "signIn", "Войти", false, true)
+      p.account-registration__text Уже есть аккаунт на Toxin 
+      +button-custom("signIn", "Войти", "button", false, true, false)
