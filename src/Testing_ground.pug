@@ -6,12 +6,15 @@ html
   include ./project/common.block/checkbox-list/checkbox-list.pug
   include ./project/common.block/checkbox-rich/checkbox-rich.pug
   include ./project/common.block/date-picker/date-picker.pug
+  include ./project/common.block/range-slider/range-slider.pug
+  include ./project/common.block/rate-button/rate-button.pug
   head
     meta(charset="UTF-8")
     title Testing ground
   body
+    +range-slider
     +date-picker
-//    +input-text(320, "text field", "default", "textField", "Email")
+    +input-text(320, "text field", "default", "textField", "Email")
     +input-text(320, "text field", "hover / focus", "textFieldHover", "Text")
     +input-dropdown(true)
     +input-dropdown(false)
@@ -28,3 +31,4 @@ html
       +input-text(160, "test field", "default", "textField", "Test")
     +checkbox-rich("che_001", "che", "Широкий коридор", "Ширина коридоров в номере не менее 91 см.")
     +checkbox-rich("che_002", "che", "Помошник для инвалидов", "На 1 этаже вас встретит специалист и проводит до номера.")
+    +rate-button

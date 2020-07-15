@@ -1,0 +1,47 @@
+@use "sass:map";
+@use "../colors" as colors;
+@use "../text-setting" as fonts;
+@use "../block" as blocks;
+
+.range-slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 266px;
+  height: 16px;
+  margin-top: 20px;
+}
+
+.range-slider__track {
+  position: absolute;
+  width: 100%;
+  z-index: -2;
+  height: 6px;
+  border: 1px solid map.get(colors.$map, dark-shade-25);
+  border-radius: 3px; 
+}
+
+.range-slider__left-slider {
+    box-sizing: content-box;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(180deg, map.get(colors.$map, "green") 0%, map.get(colors.$map, "green-blue") 100%);
+  border: 2px solid #FFF;
+  border-radius: 10px;
+}
+.range-slider__plug {
+  z-index: -1;
+  height: 7px;
+  width: auto;
+  background: linear-gradient(180deg, map.get(colors.$map, "green") 0%, map.get(colors.$map, "green-blue") 100%);
+}
+
+.range-slider__right-slider{
+  box-sizing: content-box;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(180deg, map.get(colors.$map, "green") 0%, map.get(colors.$map, "green-blue") 100%);
+  border: 2px solid #FFF;
+  border-radius: 10px;
+}
