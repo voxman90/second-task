@@ -26,7 +26,7 @@
     box-sizing: content-box;
   width: 12px;
   height: 12px;
-  background: linear-gradient(180deg, map.get(colors.$map, "green") 0%, map.get(colors.$map, "green-blue") 100%);
+  background: linear-gradient(180deg, map.get(colors.$map, "green") 0%, map.get(colors.$map, "turquoise-blue") 100%);
   border: 2px solid #FFF;
   border-radius: 10px;
 }
@@ -34,14 +34,14 @@
   z-index: -1;
   height: 7px;
   width: auto;
-  background: linear-gradient(180deg, map.get(colors.$map, "green") 0%, map.get(colors.$map, "green-blue") 100%);
+  background: linear-gradient(180deg, map.get(colors.$map, "green") 0%, map.get(colors.$map, "turquoise-blue") 100%);
 }
 
 .range-slider__right-slider{
   box-sizing: content-box;
   width: 12px;
   height: 12px;
-  background: linear-gradient(180deg, map.get(colors.$map, "green") 0%, map.get(colors.$map, "green-blue") 100%);
+  background: linear-gradient(180deg, map.get(colors.$map, "green") 0%, map.get(colors.$map, "turquoise-blue") 100%);
   border: 2px solid #FFF;
   border-radius: 10px;
 }

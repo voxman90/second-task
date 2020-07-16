@@ -4,34 +4,34 @@ html
         meta(charset="UTF-8")
         title Form Elements
     body
-        include project/common.block/input-text/input-text.pug
+        include project/input-text/input-text.pug
         +input-text("textFirst", "Email")
         br
-        include project/common.block/dropdown/dropdown.pug
+        include project/dropdown/dropdown.pug
         +dropdown-guest()
         br
-        include project/common.block/checkbox/checkbox-custom.pug
+        include project/checkbox/checkbox-custom.pug
         +checkbox-custom("smoke", "smoke", "Можно курить")
         +checkbox-custom("animal", "animal", "Можно с питомцами")
         +checkbox-custom("paty", "paty", "Можно пригласить гостей (до 10 человек)")
-        include project/common.block/radio-button/radio-button.pug
+        include project/radio-button/radio-button.pug
         div(style="display: flex; justify-content: flex-start;")
           div
             +radio-button-custom("gender", "male", "Мужчина")
           div(style="margin-left: 20px;")
             +radio-button-custom("gender", "female", "Женщина")
-        include project/common.block/toggle/toggle.pug
+        include project/toggle/toggle.pug
         +toggle-custom("sale", "sale", "Получать спецпредложения")
         +toggle-custom("saleTwo", "saleTwo", "Получать спецпредложения")
-        include project/common.block/button/button-custom.pug
+        include project/button/button-custom.pug
         +button-custom("buttonTest")
         br
         +button-custom("buttonTest", "Button", "Click me", true, false)
         br
         +button-custom("buttonTest", "Button", "Click me", false, false)
-        include project/common.block/date-dropdown/date-dropdown.pug
+        include project/date-dropdown/date-dropdown.pug
         +date-dropdown
-        include project/common.block/checkbox-list/checkbox-list.pug
+        include project/checkbox-list/checkbox-list.pug
         hr
         br
         +checkbox-list("expandable checkbox list")
@@ -46,5 +46,5 @@ html
         br
         hr
         br
-        include project/common.block/account-registration/account-registration.pug
+        include project/account-registration/account-registration.pug
         +account-registration

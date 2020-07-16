@@ -30,7 +30,7 @@
   width: 99px;
   height: 44px;
   border-radius: 22px;
-  background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "purple-2"));
+  background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
   color: #FFF;
   content: "";
 
@@ -63,7 +63,7 @@
     height: 44px;
     content: ""; 
     border-radius: 22px;
-    background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "purple-2"));
+    background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
   }
 
   &:hover:before {

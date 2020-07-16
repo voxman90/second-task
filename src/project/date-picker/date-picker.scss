@@ -152,7 +152,7 @@
 
 .calendar__table-td_recent-day {
   border-radius: 22px;
-  background: linear-gradient(180deg, map.get(colors.$map, "green"), map.get(colors.$map, "green-blue"));
+  background: linear-gradient(180deg, map.get(colors.$map, "green"), map.get(colors.$map, "turquoise-blue"));
   color: white;
   @include fonts.Montserrat-bold;
 }
@@ -173,7 +173,7 @@
     width: 40px;
     height: 40px;
     border-radius: 22px;
-    background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "purple-2"));
+    background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
   }
 }
 
@@ -193,12 +193,12 @@
     width: 40px;
     height: 40px;
     border-radius: 22px;
-    background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "purple-2"));
+    background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
   }
 }
 
 .calendar__table_fill {
-  background: linear-gradient(180deg, color.change(map.get(colors.$map, "purple"), $alpha: 0.25), color.change(map.get(colors.$map, "purple-2"), $alpha: 0.25))
+  background: linear-gradient(180deg, color.change(map.get(colors.$map, "purple"), $alpha: 0.25), color.change(map.get(colors.$map, "malibu"), $alpha: 0.25))
 }
 
 .calendar__buttons {
