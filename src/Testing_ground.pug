@@ -10,6 +10,7 @@ html
   include ./project/rate-button/rate-button.pug
   include ./project/account-registration/account-registration.pug
   include ./project/hotel-room-search/hotel-room-search.pug
+  include ./project/header/header.pug
   head
     meta(charset="UTF-8")
     title Testing ground
@@ -37,3 +38,9 @@ html
     +account-registration
     div(style="height: 100px; width: 10px")
     +hotel-room-search
+    +button-custom("", "Click on", "button-01")
+    br
+    +button-custom("fill", "Click on", "button-02")
+    br
+    +button-custom("border", "Click on", "button-03")
+    +header

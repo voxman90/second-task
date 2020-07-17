@@ -22,8 +22,8 @@ mixin input-dropdown(isButtons = true)
             +option("Дети")
             +option("Младенцы")
           div.dropdown__buttons
-            +button-custom("buttonClear", "очистить")(class=" dropdown__button-clear dropdown__button-clear_hidden")
-            +button-custom("buttonApply", "применить")(class=" dropdown__button-apply")
+            +button-custom("", "очистить", "button-clear")(class="dropdown__button-clear dropdown__button-clear_hidden")
+            +button-custom("", "применить", "button-apply")(class="dropdown__button-apply")
   else
     div(class="dropdown input_266px")
       +label("Удобства номера", "")

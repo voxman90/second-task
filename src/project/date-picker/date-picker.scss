@@ -121,7 +121,7 @@
   width: 40px;
   padding: 0px;
   cursor: default;
-  @include fonts.label-h3(15px);
+  @include fonts.label-h3(1.25em);
   text-transform: none;
   color: map.get(colors.$map, "purple");
 }
@@ -142,8 +142,8 @@
   cursor: pointer;
   color: map.get(colors.$map, dark-shade-25);
   @include fonts.Montserrat-normal;
-  font-size: 12px;
-  line-height: 15px;
+  font-size: 0.75rem;
+  line-height: 1.25em;
 }
 
 .calendar__table-td_recent-month {

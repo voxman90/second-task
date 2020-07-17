@@ -12,11 +12,15 @@
 
 .checkbox__label {
   position: relative;
+
   box-sizing: border-box;
-  width: auto;
-  height: 18px;
+  height: 1.125em;
   margin-left: 15px;
-  @include fonts.Montserrat-custom(18px);
+
+  color: map.get(colors.$map, dark-shade-50);
+  @include fonts.Montserrat-normal;
+  font-size: 0.875rem; 
+  line-height: 1.125em;
 }
 
 .checkbox__label::before {

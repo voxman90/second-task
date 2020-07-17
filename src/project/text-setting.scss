@@ -36,60 +36,54 @@
 
 //- This one is the sub-section or widget title
 @mixin widget-h1 {
-  color: map.get(colors.$map, 'dark-shade-100');
+  color: map.get(colors.$map, dark-shade-100);
   @include Quicksand-bold;
-  font-size: 24px;
-  line-height: 30px;
+  font-size: 1.5rem;
+  line-height: 1.250em;
 }
 
 //- Next one is the item title inside widgets 
 @mixin title-h2 {
-  color: map.get(colors.$map, 'dark-shade-100');
+  color: map.get(colors.$map, dark-shade-100);
   @include Quicksand-bold;
-  font-size: 19px;
-  line-height: 24px;
+  font-size: 1.188rem;
+  line-height: 1.263em;
 }
 
 //- This is a label or CTA text
-@mixin label-h3($height: 15px) {
+@mixin label-h3($height: 1.25em) {
   text-transform: uppercase;
-  color: map.get(colors.$map, 'dark-shade-100');
+  color: map.get(colors.$map, dark-shade-100);
   @include Montserrat-bold;
-  font-size: 12px;
+  font-size: 0.75rem;
   line-height: $height;
 }
 
-@mixin label-right($height: 15px) {
+@mixin label-right($height: 1.25em) {
   text-transform: uppercase;
-  color: map.get(colors.$map, 'dark-shade-50');
+  color: map.get(colors.$map, dark-shade-50);
   @include Montserrat-normal;
-  font-size: 12px;
+  font-size: 0.75rem;
   line-height: $height;
 }
 
 //- This is the body text which is used for most of the design, like paragraphs, lists, etc.
-@mixin body-p($height: 23.94px) {
-  color: map.get(colors.$map, 'dark-shade-75');
+@mixin body-p($height: 1.714em) {
+  color: map.get(colors.$map, dark-shade-75);
   @include Montserrat-normal;
-  font-size: 14px;  
-  line-height: $height;
-}
-
-@mixin Montserrat-custom($height: 18.06px) {
-  color: map.get(colors.$map, 'dark-shade-50');
-  @include Montserrat-normal;
-  font-size: 14px; 
+  font-size: 0.875rem;  
   line-height: $height;
 }
 
 @mixin material-icons {
+  display: inline-block;
+
+  text-transform: none;
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
+  font-size: 1.5rem;  /* Preferred icon size */
+  line-height: 1em;
   letter-spacing: normal;
   word-wrap: normal;
   white-space: nowrap;
@@ -97,6 +91,7 @@
 
   /* Support for all WebKit browsers. */
   -webkit-font-smoothing: antialiased;
+
   /* Support for Safari and Chrome. */
   text-rendering: optimizeLegibility;
 

@@ -17,14 +17,14 @@
 
 .label__left {
   float: left;
-  height: 15px;
+  height: 1.25em;
   text-align: left;
-  @include fonts.label-h3(15px);
+  @include fonts.label-h3(1.25em);
 }
 
 .label__right {
   float: right;
-  height: 15px;
+  height: 1.25em;
   text-align: right;
-  @include fonts.label-right(15px);
+  @include fonts.label-right(1.25em);
 }
