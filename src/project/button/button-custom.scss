@@ -26,7 +26,7 @@
 }
 
 .button-custom_fill {
-  min-width: 6.1875rem;
+  width: 6.1875rem;
   height: 2.75rem;
 
   background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
@@ -41,7 +41,7 @@
 }
 
 .button-custom_border {
-  min-width: 6.1875rem;
+  width: 6.1875rem;
   height: 2.75rem;
 
   background-image: linear-gradient(#FFF, #FFF),
@@ -76,7 +76,7 @@
     border-radius: 1.375rem;
 
     content: "arrow_forward"; 
-    
+
     @include fonts.material-icons;
   }
 }

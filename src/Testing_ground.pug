@@ -1,5 +1,6 @@
 doctype html
 html
+  include ./project/logo/logo.pug
   include ./project/input/input.pug
   include ./project/dropdown/dropdown.pug
   include ./project/checkbox/checkbox.pug
@@ -14,7 +15,7 @@ html
   head
     meta(charset="UTF-8")
     title Testing ground
-  body
+  body(style="background-color: lightgrey; padding: 0; margin: 0;")
     +range-slider
     +date-picker
     +input-text(320, "text field", "default", "textField", "Email")
@@ -43,4 +44,5 @@ html
     +button-custom("fill", "Click on", "button-02")
     br
     +button-custom("border", "Click on", "button-03")
-    +header
+    include ./project/header/header.pug
+    div(style="height: 250px;")
