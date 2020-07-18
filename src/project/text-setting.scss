@@ -83,7 +83,7 @@
   font-weight: normal;
   font-style: normal;
   font-size: 1.5rem;  /* Preferred icon size */
-  line-height: 1em;
+  line-height: 1;
   letter-spacing: normal;
   word-wrap: normal;
   white-space: nowrap;
@@ -103,7 +103,18 @@
 }
 
 @mixin font-awesome-icons {
-  font-family: "Font Awesome 5 Brands Regular", fantasy;
-  font-weight: normal;
+  font-family: 'Font Awesome 5 Brands', fantasy;
   font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  font-size: 1.5rem;
+  line-height: 1;
+  
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  text-rendering: auto;
 }

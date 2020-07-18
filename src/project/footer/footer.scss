@@ -77,9 +77,6 @@
 }
 
 .copyright-bar {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
   height: 4.375rem;
   padding: 0 9.722%;
   margin-top: 1px;
@@ -90,10 +87,33 @@
 
 .copyright-bar__copyright {
   float: left;
+  height: 4.375rem;
 
-  @include fonts.body-p(1.214em);
+  @include fonts.body-p();
+  line-height: 4.375rem;
 }
 
 .copyright-bar__widgets {
   float: right;
+
+  display: flex;
+  align-items: center;
+  width: min-content;
+  height: 4.375rem;
+  
+  & a {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: 1.250rem;
+
+    text-align: center;
+
+    background: linear-gradient(180deg, map.get(colors.$map, "purple") 0%, map.get(colors.$map, "malibu") 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+
+    @include fonts.font-awesome-icons;
+  }
 }
