@@ -74,3 +74,13 @@
        url('./assets/fonts/MaterialIcons-Regular.ttf') format('truetype'),
        url('./assets/fonts/MaterialIcons-Regular.svg') format('svg');
 }
+
+@font-face {
+  font-family: "Font Awesome 5 Brands Regular";
+  font-weight: normal;
+  font-style: normal;
+  src: url("fa-brands-400.eot?") format("eot"),
+       url("fa-brands-400.woff") format("woff"),
+       url("fa-brands-400.ttf") format("truetype"),
+       url("fa-brands-400.svg#FontAwesome5BrandsRegular") format("svg");
+}
