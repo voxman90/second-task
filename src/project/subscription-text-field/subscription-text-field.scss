@@ -1,0 +1,39 @@
+@use "sass:map";
+@use "../colors" as colors;
+@use "../text-setting" as fonts;
+
+.subscription-text-field {
+  display: flex;
+  height: 2.75rem;
+}
+
+.subscription-text-field__input {
+  width: 13.9375rem;
+  border-right: 0;
+  border-radius: 0.25rem 0 0 0.25rem;
+
+  &:hover + .subscription-text-field__submit,
+  &:focus + .subscription-text-field__submit,
+  &:active + .subscription-text-field__submit { 
+    outline: none;
+    border-color: map.get(colors.$map, dark-shade-50);
+  }
+}
+
+.subscription-text-field__submit {
+  box-sizing: border-box;
+  width: 2.75rem;
+  height: 2.75rem;
+  
+  border-width: 1px 1px 1px 0;
+  border-style: solid;
+  border-color: map.get(colors.$map, dark-shade-25);
+  border-radius: 0 0.25rem 0.25rem 0;
+
+  background: linear-gradient(180deg, map.get(colors.$map, "purple") 0%, map.get(colors.$map, "malibu") 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
+
+  background-color: #FFF;
+}

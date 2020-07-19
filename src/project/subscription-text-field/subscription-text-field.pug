@@ -1,0 +1,4 @@
+mixin subscription-text-field(inputName = "subscriptionInput", inputPlaceholder = "Email")
+  div.subscription-text-field
+    +text-field(inputName, inputPlaceholder)(class = "subscription-text-field__input" type = "email")
+    +icon("arrow_forward", "material", "button")(class = "subscription-text-field__submit" type= "submit")

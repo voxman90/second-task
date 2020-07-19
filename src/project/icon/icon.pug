@@ -1,2 +1,2 @@
-mixin icon(iconName = "")
-  div(class="material-icons")&attributes(attributes)=iconName
+mixin icon(iconName = "", iconFont = "material", iconTag = "div")
+  #{iconTag}(class=iconFont)&attributes(attributes)!=iconName

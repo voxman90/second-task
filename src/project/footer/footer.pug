@@ -35,10 +35,10 @@
     dl
       dt Подписка
       dd Получайте специальные предложения и новости сервиса
-    //поле еmail
+    +subscription-text-field()
 .copyright-bar
   span.copyright-bar__copyright Copyright © 2018 Toxin отель. Все права защищены.
   .copyright-bar__widgets
-    a!= '&#xf099;'
-    a!= '&#xf082;'
-    a!= '&#xf16d;'
+    +icon("&#xf099;", "awesome", "a")
+    +icon("&#xf082;", "awesome", "a")
+    +icon("&#xf16d;", "awesome", "a")
