@@ -13,6 +13,7 @@ html
   include ./project/hotel-room-search/hotel-room-search.pug
   include ./project/header/header.pug
   include ./project/subscription-text-field/subscription-text-field.pug
+  include ./project/like-button/like-button.pug
   head
     meta(charset="UTF-8")
     title Testing ground
@@ -37,6 +38,12 @@ html
     +checkbox-rich("che_001", "che", "Широкий коридор", "Ширина коридоров в номере не менее 91 см.")
     +checkbox-rich("che_002", "che", "Помошник для инвалидов", "На 1 этаже вас встретит специалист и проводит до номера.")
     +rate-button
+    +rate-button(0)
+    +rate-button(1)
+    +rate-button(2)
+    +rate-button(3)
+    +rate-button(4)
+    +rate-button(5)
     +account-registration
     div(style="height: 100px; width: 10px")
     +hotel-room-search
@@ -46,6 +53,8 @@ html
     br
     +button-custom("border", "Click on", "button-03")
     include ./project/header/header.pug
-    div(style="height: 250px;")
+    div(style="height: 50px;")
     include ./project/footer/footer.pug
     div(style="height: 250px;")
+    +like-button
+    div(style="height: 150px;")

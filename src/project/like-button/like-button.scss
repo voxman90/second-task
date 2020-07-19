@@ -1,0 +1,72 @@
+@use 'sass:map';
+@use 'sass:color';
+@use '../colors' as colors;
+@use '../text-setting' as fonts;
+
+.like-button {
+  position: relative;
+
+  width: 2.5rem;
+  height: 1.25rem;
+}
+
+.like-button__label {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  box-sizing: border-box;  
+  width: 2.5rem;
+  height: 1.25rem;
+  padding-left: 1.25rem;
+
+  background-color: #FFFFFF;
+  border-radius: 0.625rem;
+  border: 1px solid map.get(colors.$map, dark-shade-25);
+
+  color: map.get(colors.$map, dark-shade-25);
+  @include fonts.Montserrat-normal;
+  font-size: 0.625rem;
+  line-height: 1.125rem;
+
+  &::after {
+    content: "favorite_border";
+
+    position: absolute;
+    top: 0.5px;
+    left: 1px;
+
+    box-sizing: border-box;
+    width: 1.0625rem;
+    height: 1.0625rem;
+
+    background-color: #FFF;
+    border-radius: 0.53rem;
+
+    text-align: center;
+
+    color: map.get(colors.$map, dark-shade-25);
+    @include fonts.material-icons;
+    font-size: 0.625rem;
+    line-height: 1.125rem;
+  }
+}
+
+.like-button__input:checked + .like-button__label {
+  border: 1px solid transparent;
+  background-image: linear-gradient(#FFFFFF, #FFFFFF),
+                    linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
+  background-clip: padding-box,
+                   border-box;
+  background-origin: border-box;
+}
+
+.like-button__input:checked + .like-button__label::after {
+  content: "favorite";
+
+  color: map.get(colors.$map, 'purple');
+}
+
+.like-button__input:checked + .like-button__label {
+  color: map.get(colors.$map, 'purple');
+}

@@ -1,10 +1,13 @@
 include ../icon/icon.pug
 
-mixin rate-button
+mixin rate-button(starAmount = 5)
   div.rate-button
-    +icon("star")(class="rate-button__icon")
-    +icon("star")(class="rate-button__icon")
-    +icon("star")(class="rate-button__icon")
-    +icon("star")(class="rate-button__icon")
-    +icon("star")(class="rate-button__icon")
+    - let i = 0
+    while i < starAmount
+      +icon("star")(class="rate-button__icon")
+      - i = i + 1
+    while starAmount < 5
+      +icon("star_border")(class="rate-button__icon")
+      - starAmount = starAmount + 1
+    
     

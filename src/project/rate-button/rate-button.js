@@ -17,7 +17,9 @@ document.addEventListener("DOMContentLoaded", function() {
           while (target.previousElementSibling !== null)
           {
             target = target.previousElementSibling;
-            if (target.innerText === "star") {break;}
+            if (target.innerText === "star") {
+              break;
+            }
             target.innerText = "star";
           }
         }
