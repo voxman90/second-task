@@ -58,6 +58,8 @@
     
     position: relative;
     z-index: 10;
+
+    opacity: 1;
     
     box-sizing: border-box;
     height: 0.875rem;
@@ -78,7 +80,7 @@
     
     position: relative;
     z-index: 10;
-    
+
     box-sizing: border-box;
     height: 14px;
     width: 14px;
@@ -90,7 +92,14 @@
 
     cursor: pointer;
     pointer-events: all;
+
+    transform: rotate(360deg);
   }
+
+  &::-moz-range-track {
+    -moz-appearance: none;
+  }
+  
 }
 
 .range-slider__filler {

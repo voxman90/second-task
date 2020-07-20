@@ -4,7 +4,7 @@ function setLabelValue(labelRight, lowerValue, upperValue) {
 
 function setRangeFiller(rangeFiller, lowerValue, upperValue, upperMax) {
   const Step = 100 / upperMax;
-  rangeFiller.style.marginLeft = lowerValue * Step + '%';
+  rangeFiller.style.marginLeft = lowerValue * Step + 2 + '%';
   rangeFiller.style.width = (upperValue - lowerValue) * Step - 4 + '%';
 }
 
