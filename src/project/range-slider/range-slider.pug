@@ -1,10 +1,7 @@
-include ../label/label.pug
-
-mixin range-slider
-  div.input_266px
-    +label("range slider", "5000Р - 10000Р")
-      div.range-slider
-        div.range-slider__track 
-        div.range-slider__left-slider
-        div.range-slider__plug
-        div.range-slider__right-slider
+mixin range-slider(minRange=0, maxRange=15, inputStep=0.5, lowerValue=5, upperValue=10, labelLeft="range slider", labelRight="5000Р - 10000Р")
+  div.range-slider
+    +label(labelLeft, labelRight)(class="range-slider__label")
+      div.range-slider__case
+        input.range-slider__lower(type="range" min=minRange max=(maxRange - 2*inputStep) value=lowerValue step=inputStep)
+        .range-slider__filler
+        input.range-slider__upper(type="range" min=(minRange + 2*inputStep) max=maxRange value=upperValue step=inputStep)
