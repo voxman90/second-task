@@ -4,6 +4,7 @@
 @use '../text-setting' as fonts;
 
 .pagination {
+  position: relative;
   width: 15rem;
   caption-side: bottom;
   border-collapse: collapse;
@@ -29,8 +30,10 @@
   }
 
   & caption {
+    position: absolute;
+    left: -5%;
     box-sizing: border-box;
-    width: 100%;
+    width: 110%;
     height: 1.5rem;
     padding-top: 0.625rem;
 

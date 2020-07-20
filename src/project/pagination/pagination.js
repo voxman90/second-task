@@ -1,8 +1,12 @@
-function setTableCaption(currentPage) {};
+function setTableCaption(currentPage, tableCaption) {
+  const page = parseInt(currentPage.innerText);
+  tableCaption.innerText = (12 * (page - 1)) + 1 + " - " + (12 * page) + " из 100+ вариантов аренды";
+}
 
 document.addEventListener("DOMContentLoaded", function () {
   const paginationForm = document.body.querySelector(".pagination");
   const forwardButton = paginationForm.querySelector(".pagination__button-forward"); 
+  const tableCaption = paginationForm.children[1];
   const items = [paginationForm.children[0].children[0].children[0], 
   paginationForm.children[0].children[0].children[1],
   paginationForm.children[0].children[0].children[2],
@@ -53,6 +57,8 @@ document.addEventListener("DOMContentLoaded", function () {
       items[1].classList.add("pagination__current");
       currentPage = items[1];
     }
+
+    setTableCaption(currentPage, tableCaption);
   }); 
 
   items[0].addEventListener("mouseup", function () {
@@ -91,6 +97,8 @@ document.addEventListener("DOMContentLoaded", function () {
           break;
       }
     }
+
+    setTableCaption(currentPage, tableCaption);
   });
 
   items[1].addEventListener("mouseup", function () {
@@ -99,6 +107,8 @@ document.addEventListener("DOMContentLoaded", function () {
       this.classList.add("pagination__current");
       currentPage = this;
     }
+
+    setTableCaption(currentPage, tableCaption);
   });
 
   items[2].addEventListener("mouseup", function () {
@@ -128,6 +138,8 @@ document.addEventListener("DOMContentLoaded", function () {
         break;
       }
     }
+
+    setTableCaption(currentPage, tableCaption);
   });
 
   items[3].addEventListener("mouseup", function () {
@@ -138,6 +150,8 @@ document.addEventListener("DOMContentLoaded", function () {
         currentPage = items[3];
       }
     }
+
+    setTableCaption(currentPage, tableCaption);
   });
 
   items[4].addEventListener("mouseup", function () {
@@ -151,6 +165,8 @@ document.addEventListener("DOMContentLoaded", function () {
       currentPage = items[4];
       forwardButton.classList.add("pagination__button_fade");
     }
+
+    setTableCaption(currentPage, tableCaption);
   });
 
 });
