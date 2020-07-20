@@ -1,0 +1,82 @@
+@use 'sass:map';
+@use 'sass:color';
+@use '../colors' as colors;
+@use '../text-setting' as fonts;
+
+.pagination {
+  width: 17.5rem;
+  caption-side: bottom;
+  border-collapse: collapse;
+
+  & tr {
+    width: 100%;
+  }
+
+  & td {
+    box-sizing: border-box;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    @include fonts.Montserrat-normal;
+    font-size: 0.750rem;
+    line-height: 0.9375rem;
+    text-align: center;
+    vertical-align: middle;
+    color: map.get(colors.$map, dark-shade-50);
+  }
+
+  & caption {
+    box-sizing: border-box;
+    width: 100%;
+    height: 1.5rem;
+    padding-top: 0.625rem;
+    padding-left: 2.5rem;
+
+    text-align: center;
+
+    @include fonts.Montserrat-normal;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    color: map.get(colors.$map, dark-shade-75);
+  }
+}
+
+.pagination__button-forward,
+.pagination__button-backward { 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+
+  background: linear-gradient(180deg, map.get(colors.$map, "green"), map.get(colors.$map, "turquoise-blue"));
+  border-radius: 1.25rem;
+  font-size: 1.5rem;
+  line-height: 1.25rem;
+  color: white;
+
+  cursor: pointer;
+}
+
+.pagination__button_hidden {
+  visibility: hidden;
+}
+
+.pagination__button_fade {
+  $faded-green: color.scale(map.get(colors.$map, "green"), $alpha: -50%);
+  $faded-turquoise-blue: color.scale(map.get(colors.$map, "turquoise-blue"), $alpha: -50%);
+  background: linear-gradient(180deg, $faded-green, $faded-turquoise-blue);
+}
+
+.pagination__current {
+  width: 2.5rem;
+  height: 2.5rem;
+
+  background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
+  border-radius: 1.25rem;
+  font-style: bold;
+  color: white;
+}

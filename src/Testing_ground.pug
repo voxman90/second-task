@@ -16,6 +16,7 @@ html
   include ./project/header/header.pug
   include ./project/subscription-text-field/subscription-text-field.pug
   include ./project/like-button/like-button.pug
+  include ./project/pagination/pagination.pug
   head
     meta(charset="UTF-8")
     title Testing ground
@@ -65,5 +66,6 @@ html
     +bullet-list(["Нельзя с питомцами", "Без вечеринок и мероприятий", "Время прибытия — после 13:00, а&nbsp;выезд до 12:00"])
     +icon-list-item("insert_emoticon", "Комфорт", "Шумопоглощающие стены")
     +icon-list-item("location_city", "Удобство", "Окно в каждой из спален")
+    +pagination
 
 
