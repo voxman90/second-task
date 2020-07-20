@@ -4,6 +4,7 @@ html
   include ./project/input/input.pug
   include ./project/dropdown/dropdown.pug
   include ./project/checkbox/checkbox.pug
+  include ./project/icon-list-item/icon-list-item.pug
   include ./project/bullet-list/bullet-list.pug
   include ./project/checkbox-list/checkbox-list.pug
   include ./project/checkbox-rich/checkbox-rich.pug
@@ -62,4 +63,7 @@ html
     +range-slider
     div(style="height: 150px;")
     +bullet-list(["Нельзя с питомцами", "Без вечеринок и мероприятий", "Время прибытия — после 13:00, а&nbsp;выезд до 12:00"])
+    +icon-list-item("insert_emoticon", "Комфорт", "Шумопоглощающие стены")
+    +icon-list-item("location_city", "Удобство", "Окно в каждой из спален")
+
 

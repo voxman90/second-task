@@ -32,5 +32,5 @@
   @include fonts.Montserrat-normal;
   font-size: 0.875rem;
   line-height: 1.5rem;
-  color: map.get(colors.$map, dark-shade-50);
+  color: map.get(colors.$map, dark-shade-75);
 }
