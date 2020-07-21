@@ -17,6 +17,7 @@ html
   include ./project/subscription-text-field/subscription-text-field.pug
   include ./project/like-button/like-button.pug
   include ./project/pagination/pagination.pug
+  include ./project/comment/comment.pug
   head
     meta(charset="UTF-8")
     title Testing ground
@@ -67,5 +68,7 @@ html
     +icon-list-item("insert_emoticon", "Комфорт", "Шумопоглощающие стены")
     +icon-list-item("location_city", "Удобство", "Окно в каждой из спален")
     +pagination
+    div(style="height: 150px;")
+    +comment("../src/project/assets/img/image.png", "Мурад Сарафанов", "5 дней назад", "Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.")
 
 

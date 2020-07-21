@@ -1,0 +1,9 @@
+mixin comment(commentURL= "", commentHeader = "", commentDate = "", commentBody = "")
+  .comment
+    div.comment__header
+      img.comment__avatar(src=commentURL alt="No available")
+      .comment__text #[b #{commentHeader}]<br>#{commentDate}
+    div.comment__body
+      .comment__like-button
+        +like-button
+      .comment__text #{commentBody}

@@ -34,7 +34,7 @@ mixin date-picker
         +icon("expand_more")(class=" date-picker__icon-expand")        
     div.date-picker__stub
     div.date-picker__departure
-      +label("выезд", "")
+      +label("выезд", "")(class="input_150px")
           +text-field("departure", " ")(readonly, value="ДД.ММ.ГГГГ")
           +icon("expand_more")(class=" date-picker__icon-expand")
   +calendar
