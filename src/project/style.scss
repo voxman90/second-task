@@ -1,1 +1,41 @@
+@use "sass:map";
+@use "./text-setting.scss" as fonts;
+@use "./colors.scss" as colors;
 @import "./fonts.scss";
+
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.landing__container {
+  position: relative;
+  width: 100%;
+  height: 56.25rem;
+
+  background: url('./assets/img/img_02.png');
+  background-repeat: no-repeat;
+  background-size: 106.528% 113.556%;
+  background-position: top -6.778% left -3.264%;
+}
+
+.landing__container-form {
+  position: absolute;
+  top: 15.556%;
+  left: 9.722%;
+}
+
+.landing__container-image-sign {
+  position: absolute;
+  bottom: 2%;
+  right: 8.611%;
+
+  width: 18.5625rem;
+  text-align: right;
+
+  color: map.get(colors.$map, dark-shade-75);
+  @include fonts.Montserrat-normal;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+}

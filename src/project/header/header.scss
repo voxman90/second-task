@@ -12,6 +12,7 @@
 
 .header__logo {
   float: left;
+  
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -22,6 +23,7 @@
 
 .header__nav {
   float: right;
+
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -30,7 +32,12 @@
 }
 
 .header__nav-item {
-  margin-left: 1.25rem;
+  box-sizing: border-box;
+  width: auto;
+  padding: 0.625rem;
+
+  text-align: center;
+  white-space: nowrap;;
 
   color: map.get(colors.$map,  dark-shade-50);
   @include fonts.Montserrat-normal;
@@ -38,38 +45,33 @@
   line-height: 1.286em;
 
   &:hover {
+    @include fonts.Montserrat-bold;
     color: map.get(colors.$map,  dark-shade-75);
-  }
-}
-
-.header__nav-item_about {
-  color: map.get(colors.$map,  dark-shade-75);
-  @include fonts.Montserrat-bold;
-
-  &:hover {
-    color: map.get(colors.$map,  dark-shade-100);
   }
 }
 
 .header__nav-item_exp {
   position: relative;
-  padding-right: 1.5rem;
+  padding-right: 2.125rem;
 
   &::after {
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 0.625rem;
 
     content: "expand_more";
     @include fonts.material-icons;
-    line-height: 0.85em;
+    line-height: 1.25rem;
+  }
+
+  &:hover::after {
+    color: map.get(colors.$map,  dark-shade-75);
   }
 }
 
 .header__button-sign-in {
   width: 5.4375rem;
   height: 2.125rem;
-  margin-left: 1.25rem;
+  margin-left: 0.625rem;
 
   border-radius: 1.0625rem;
 }
