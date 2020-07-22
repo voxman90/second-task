@@ -13,11 +13,12 @@ body {
   position: relative;
   width: 100%;
   height: 56.25rem;
+  overflow: hidden;
 
   background: url('./assets/img/img_02.png');
   background-repeat: no-repeat;
-  background-size: 106.528% 113.556%;
-  background-position: top -6.778% left -3.264%;
+  background-size: 113.556% 106.528%;
+  background-position: left -47px top -61px;  
 }
 
 .landing__container-form {
@@ -28,10 +29,11 @@ body {
 
 .landing__container-image-sign {
   position: absolute;
-  bottom: 2%;
+  bottom: 2.667%;
   right: 8.611%;
 
   width: 18.5625rem;
+  height: 3rem;
   text-align: right;
 
   color: map.get(colors.$map, dark-shade-75);

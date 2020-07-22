@@ -7,10 +7,10 @@ mixin option(name)
 
 mixin input-dropdown(isButtons = true)
   if isButtons
-    div(class="dropdown input_320px")
+    div(class="dropdown")&attributes(attributes)
       +label("Гости", "")
         +text-field("guests", " ")(readonly, value="Сколько гостей", class="dropdown__text-field")
-        +icon("expand_more")(class=" dropdown__icon-expand")
+        +icon("expand_more")(class="dropdown__icon-expand")
         div(class="dropdown__bar" + " dropdown__bar_hidden" + " dropdown__bar_shadow")
           div.dropdown__options
             +option("Взрослые") 
@@ -20,10 +20,10 @@ mixin input-dropdown(isButtons = true)
             +button-custom("", "очистить", "button-clear")(class="dropdown__button-clear dropdown__button-clear_hidden")
             +button-custom("", "применить", "button-apply")(class="dropdown__button-apply")
   else
-    div(class="dropdown input_266px")
+    div(class="dropdown")&attributes(attributes)
       +label("Удобства номера", "")
         +text-field("ease", " ")(readonly, value="Какие удобства", class="dropdown__text-field dropdown__text-field_angular")
-        +icon("expand_more")(class=" dropdown__icon-expand")
+        +icon("expand_more")(class="dropdown__icon-expand")
         div(class="dropdown__bar" + " dropdown__bar_hidden" + " dropdown__bar_shadow" + " dropdown__bar_instant-count")
           div.dropdown__options
             +option("Спальни") 

@@ -2,22 +2,32 @@
 @use "../colors" as colors;
 @use "../text-setting" as fonts;
 
-.hotel-room-search {
+.room-search {
+  display: flex;
+  flex-wrap: wrap;
   box-sizing: border-box;
-  width: 380px;
-  padding: 30px;
+  width: 23.75rem;
+  height: 23.375rem;
+  padding: 1.875rem;
 
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
   background-color: #FFF;
-  border-radius: 4px;
+  border-radius: 0.25rem;
 }
 
-.hotel-room-search__indent {
-  margin-top: 20px;
+.room-search__indent {
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: 0.625rem;
+  width: 100%;
 }
 
-.hotel-room-search__h1 {
+.room-search__h1 {
   @include fonts.widget-h1;
-  margin-top: 10px;
-  margin-bottom: 5px;
+  margin-top: 0.625rem;
+  margin-bottom: 1.25rem;
+}
+
+.room-search__button {
+  align-self: flex-end;
 }

@@ -6,28 +6,33 @@
 
 .date-picker {
   display: flex;
-  width: 320px;
+  width: 20rem;
+}
+
+.date-picker__label-box {
+  box-sizing: border-box;
+  width: 9.375rem;
 }
 
 .date-picker__stub {
-  width: 20px;
-  height: 20px;
+  width: 1.25rem;
+  height: 1.25rem;
   align-self: flex-end;
 }
 
 .date-picker__departure,
 .date-picker__arrival {
   position: relative;
-  width: 150px;
+  width: 9.375rem;
 }
 
 .date-picker__icon-expand {
   position: absolute;
-  right: 0px;
-  bottom: 10px;
+  right: 0;
+  bottom: 0.625rem;
   box-sizing: border-box;
-  width: 44px;
-  height: 24px;
+  width: 2.75rem;
+  height: 1.5rem;
   text-align: center;
   color: map.get(colors.$map, 'dark-shade-75');
 
@@ -48,14 +53,14 @@
   position: absolute;
   z-index: 15;
   box-sizing: border-box;
-  width: 320px;
+  width: 20rem;
 //  height: 369px;
   padding: 19px;
   margin-top: 5px;
   background-color: #FFF;
   box-shadow: 0px 10px 20px map.get(colors.$map, dark-shade-05);
   border: 1px solid map.get(colors.$map, dark-shade-25);
-  border-radius: 4px;
+  border-radius: 0.25rem;
 }
 
 .calendar_hidden {

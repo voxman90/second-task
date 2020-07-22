@@ -22,14 +22,15 @@ mixin calendar
       +button-custom("", "применить", "button-apply")(class="calendar__button-apply")
 
 mixin date-picker
-  div.date-picker
-    div.date-picker__arrival
-      +label("прибытие", "")(class="input_150px")
-        +text-field("arrival", " ")(readonly, value="ДД.ММ.ГГГГ", class="date-picker__arrival")
-        +icon("expand_more")(class=" date-picker__icon-expand")        
-    div.date-picker__stub
-    div.date-picker__departure
-      +label("выезд", "")(class="input_150px")
-          +text-field("departure", " ")(readonly, value="ДД.ММ.ГГГГ")
-          +icon("expand_more")(class=" date-picker__icon-expand")
-  +calendar
+  div
+    div.date-picker
+      div.date-picker__arrival
+        +label("прибытие", "")(class="date-picker__label-box")
+          +text-field("arrival", " ")(readonly, value="ДД.ММ.ГГГГ", class="date-picker__arrival")
+          +icon("expand_more")(class=" date-picker__icon-expand")        
+      div.date-picker__stub
+      div.date-picker__departure
+        +label("выезд", "")(class="date-picker__label-box")
+            +text-field("departure", " ")(readonly, value="ДД.ММ.ГГГГ")
+            +icon("expand_more")(class=" date-picker__icon-expand")
+    +calendar
