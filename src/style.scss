@@ -1,12 +1,14 @@
 @use "sass:map";
-@use "./text-setting.scss" as fonts;
-@use "./colors.scss" as colors;
-@import "./fonts.scss";
+@use "./project/text-setting.scss" as fonts;
+@use "./project/colors.scss" as colors;
+@import "./project/fonts.scss";
 
 body {
   width: 100%;
   margin: 0;
-  padding: 0;
+  padding: 50px;
+
+  background-color: #E5E5E5;
 }
 
 .landing__container {
@@ -15,7 +17,7 @@ body {
   height: 56.25rem;
   overflow: hidden;
 
-  background: url('./assets/img/img_02.png');
+  background: url('./project/assets/img/img_02.png');
   background-repeat: no-repeat;
   background-size: 113.556% 106.528%;
   background-position: left -47px top -61px;  

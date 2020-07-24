@@ -11,7 +11,7 @@
 .subscription-text-field__input {
   width: 13.9375rem;
   border-right: 0;
-  border-radius: 0.25rem 0 0 0.25rem;
+  border-radius: 4px 0 0 0.25rem;
 
   &:hover + .subscription-text-field__submit,
   &:focus + .subscription-text-field__submit,
@@ -36,5 +36,5 @@
   -webkit-text-fill-color: transparent;
   cursor: pointer;
 
-  background-color: #FFF;
+  background-color: #FFFFFF;
 }

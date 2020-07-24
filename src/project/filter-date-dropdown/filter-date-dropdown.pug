@@ -1,0 +1,6 @@
+div
+  div.filter-date-dropdown
+    +label("дата пребывания в отеле", "")(class="filter-date-dropdown__label-box")
+      +text-field("range", " ")(readonly, value="Дата не определена", class="filter-date-dropdown__range")
+      +icon("expand_more")(class=" filter-date-dropdown__icon-expand")        
+  +calendar

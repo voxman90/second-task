@@ -1,0 +1,23 @@
+doctype html
+html
+  include ./project/logo/logo.pug
+  include ./project/label/label.pug
+  include ./project/text-field/text-field.pug
+  include ./project/icon/icon.pug
+  include ./project/subscription-text-field/subscription-text-field.pug
+  include ./project/button/button-custom.pug
+  include ./project/dropdown/dropdown.pug
+  include ./project/date-picker/date-picker.pug
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Landing page
+  body
+    div.landing__container
+      include ./project/header/header.pug
+      div.landing__container-form
+        include ./project/card-room-selection/card-room-selection.pug
+      div.landing__container-image-sign Лучшие номера для вашей работы, отдыха и просто вдохновения
+    include ./project/footer/footer.pug
+
+

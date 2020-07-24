@@ -1,0 +1,41 @@
+.cards__body {
+  box-sizing: border-box;
+  width: 100%;
+  height: 84.375rem;
+  padding: 9.375rem 9.722% 8.750rem 9.722%
+}
+
+.cards__grid {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 32.758% 32.758% 27.586%;
+  grid-gap: 3.45%;
+  width: 100%;
+  height: 100%;
+}
+
+.cards__first {
+  grid-column-start: 1;
+  grid-row: auto;
+  grid-column-end: 1;
+}
+
+.cards__second {
+  grid-column-start: 1;
+  grid-row: auto;
+}
+
+.cards__third {
+  grid-column-start: 2;
+  grid-row: 1;
+}
+
+.cards__forth {
+  grid-column-start: 3;
+  grid-row: 1;
+}
+
+.cards__fifth {
+  grid-column-start: 3;
+  grid-row: 2;
+}

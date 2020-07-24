@@ -24,9 +24,9 @@ dateBank.dateToDDMMYYYY = function (date) {
 }
 
 dateBank.dateToDDMMDDMM = function (arrivalDate, departureDate) {
-  const arrival = arrivalDate.getDate() + " " + (dateBank.monthToName(arrivalDate.getMonth())).substring(0, 3).toLowerCase() ;
-  const departure = departureDate.getDate() + " " + (dateBank.monthToName(departureDate.getMonth())).substring(0, 3).toLowerCase();
-  let DDMMDDMM = arrival + "-" + departure;
+  const arrival = arrivalDate.getDate() + " " + dateBank.monthToName[arrivalDate.getMonth()].substring(0, 3).toLowerCase();
+  const departure = departureDate.getDate() + " " + dateBank.monthToName[departureDate.getMonth()].substring(0, 3).toLowerCase();
+  let DDMMDDMM = arrival + " - " + departure;
   return DDMMDDMM;
 }
 
@@ -235,13 +235,11 @@ function setTargetDate(targetTableCell, buttonClear, currentDate, showDate, arri
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const dateForms = document.body.querySelectorAll(".date-picker");
+  const dateForms = document.body.querySelectorAll(".filter-date-dropdown");
   for (let i = 0; i < dateForms.length; i++) {
     const dateForm = dateForms[i];
-    const dateTextFieldArrival = dateForm.children[0].firstChild.children[1];
-    const dateTextFieldArrivalIcon = dateTextFieldArrival.nextElementSibling;
-    const dateTextFieldDeparture = dateForm.children[2].firstChild.children[1];
-    const dateTextFieldDepartureIcon = dateTextFieldDeparture.nextElementSibling;
+    const dateTextFieldRange = dateForm.firstChild.children[1];
+    const dateTextFieldRangeIcon = dateTextFieldRange.nextElementSibling;
     const dateCalendar = dateForm.nextElementSibling;
     const calendarTitle = dateCalendar.children[0];
     const calendarBackward = calendarTitle.children[0];
@@ -254,8 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let initial =  true; 
 
     dateForm.addEventListener("mousedown", function (event) {
-      if (dateTextFieldArrival.isSameNode(event.target) || dateTextFieldArrivalIcon.isSameNode(event.target) || 
-      dateTextFieldDeparture.isSameNode(event.target) || dateTextFieldDepartureIcon.isSameNode(event.target)) {
+      if (dateTextFieldRange.isSameNode(event.target) || dateTextFieldRangeIcon.isSameNode(event.target)) {
         if (initial === true) {
           setCalendarTitle(calendarMonth, dateBank.currentDate);
           setCalendarTable(calendarTable, dateBank.getCalendarList(dateBank.currentDate), "calendar__table-td_recent-month");
@@ -299,13 +296,11 @@ document.addEventListener("DOMContentLoaded", function () {
         arrivalDate.setTime(0);
         departureDate.setTime(0);
         clearCalendarTable(calendarTable);
-        dateTextFieldArrival.value = "ДД.ММ.ГГГГ";
-        dateTextFieldDeparture.value = "ДД.ММ.ГГГГ";
+        dateTextFieldRange.value = "Дата не определена";
       }
       if (buttonApply.isSameNode(target)) {
         if ((arrivalDate.getTime() !== 0) && (departureDate.getTime() !== 0)) {
-          dateTextFieldArrival.value = dateBank.dateToDDMMYYYY(arrivalDate);
-          dateTextFieldDeparture.value = dateBank.dateToDDMMYYYY(departureDate);
+          dateTextFieldRange.value = dateBank.dateToDDMMDDMM(arrivalDate, departureDate);
         }
       }
     }); 

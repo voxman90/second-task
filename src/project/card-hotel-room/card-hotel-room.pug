@@ -1,0 +1,19 @@
+mixin image-slider()
+  div(style="width: 270px; height: 151px; background-color: purple; border-radius: 4px 0.25rem 0 0;")
+
+mixin card-hotel-room(roomNumber=864, roomCoast=1260, reviewNumber=84, isLux=true)
+  .card-hotel-room
+    +image-slider
+    .card-hotel-room__info-box
+      .card-hotel-room__first-line
+        div.card-hotel-room__number № #[strong #{roomNumber}]
+          if isLux
+            span.card-hotel-room__lux  ЛЮКС
+        .card-hotel-room__coast #[b #{roomCoast}₽] #[span.card-hotel-room__small в сутки]
+      .card-hotel-room__hr
+      .card-hotel-room__second-line
+        +rate-button
+        .card-hotel-room__reviews #[b #{reviewNumber}] Отзывов
+      
+
+      

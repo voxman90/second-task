@@ -8,7 +8,7 @@
   height: 2.75rem;
   padding: 0 0 0 1em;
   border: 1px solid map.get(colors.$map, dark-shade-25);
-  border-radius: 0.25rem;
+  border-radius: 4px;
   @include fonts.body-p(1.714em);
 
   &:hover,

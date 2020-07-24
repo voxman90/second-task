@@ -32,11 +32,11 @@
   background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
   border-radius: 1.375rem;
   
-  color: #FFF;
+  color: #FFFFFF;
 
   &:hover {
     opacity: 0.5;
-    color: #FFF;
+    color: #FFFFFF;
   }
 }
 

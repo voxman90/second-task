@@ -1,0 +1,9 @@
+.card-sign-in
+  h1.card-sign-in__widget-h1 Войти
+  +text-field("userEmail", "Email")
+  +text-field("userParol", "Пароль")(class="card-sign-in__indent")
+  +button-custom("long", "Войти", "button-sign-in")
+  .card-sign-in__sign-out
+    p.card-sign-in__text Нет аккаунта на Toxin?
+    div(style="flex-grow: 1;")
+    +button-custom("border", "Создать", "button-sign-on")

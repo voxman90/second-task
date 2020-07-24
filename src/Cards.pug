@@ -1,0 +1,31 @@
+doctype html
+html
+  include ./project/logo/logo.pug
+  include ./project/label/label.pug
+  include ./project/text-field/text-field.pug
+  include ./project/icon/icon.pug
+  include ./project/toggle/toggle.pug
+  include ./project/rate-button/rate-button.pug
+  include ./project/radio-button/radio-button.pug
+  include ./project/subscription-text-field/subscription-text-field.pug
+  include ./project/button/button-custom.pug
+  include ./project/dropdown/dropdown.pug
+  include ./project/date-picker/date-picker.pug
+  include ./project/card-hotel-room/card-hotel-room.pug
+  
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Cards
+  body.cards__body
+    .cards__grid
+      .cards__first
+        include ./project/card-room-selection/card-room-selection.pug
+      .cards__second
+        include ./project/card-sign-out/card-sign-out.pug
+      .cards__third
+        include ./project/card-sign-in/card-sign-in.pug
+      .cards__forth
+        +card-hotel-room
+      .cards__fifth
+        +card-hotel-room(123, 123, 123, false)
