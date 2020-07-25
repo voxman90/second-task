@@ -24,17 +24,18 @@
 .date-picker__arrival {
   position: relative;
   width: 9.375rem;
+  padding-bottom: 0.1875rem;
 }
 
 .date-picker__icon-expand {
   position: absolute;
   right: 0;
-  bottom: 0.625rem;
+  bottom: 0.75rem;
   box-sizing: border-box;
   width: 2.75rem;
   height: 1.5rem;
   text-align: center;
-  color: map.get(colors.$map, 'dark-shade-75');
+  color: map.get(colors.$map, 'dark-shade-50');
 
   &::selection {
     background: transparent;
@@ -47,6 +48,10 @@
   &:hover {
     cursor: pointer;
   }
+}
+
+.date-picker__icon-expand_shaded {
+  color: map.get(colors.$map, 'dark-shade-75');
 }
 
 .calendar {

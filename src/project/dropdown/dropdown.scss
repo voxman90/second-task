@@ -28,23 +28,23 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  border-radius: 4px 0.25rem 0 0;
+  border-radius: 4px 4px 0 0;
 }
 
 .dropdown__text-field_expanded {
-  border-radius: 4px 0.25rem 0 0;
+  border-radius: 4px 4px 0 0;
   border-color: map.get(colors.$map, 'dark-shade-50');
 }
 
 .dropdown__icon-expand {
   position: absolute;
-  right: 0;
-  top: 31px;
+  right: 0.031rem;
+  top: 1.844rem;
   box-sizing: border-box;
   width: 2.75rem;
   height: 1.5rem;
   text-align: center;
-  color: map.get(colors.$map, 'dark-shade-75');
+  color: map.get(colors.$map, 'dark-shade-50');
 
   &::selection {
     background: transparent;
@@ -67,7 +67,7 @@
   padding-top: 7px;
   background-color: white;
   border: 1px solid map.get(colors.$map, 'dark-shade-50');
-  border-radius: 0 0 0.25rem 0.25rem;
+  border-radius: 0 0 4px 4px;
   border-top: none;
 }
 

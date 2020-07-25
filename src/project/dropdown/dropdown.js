@@ -105,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (dropdownTextField.isSameNode(event.target) || dropdownIcon.isSameNode(event.target)) {
         dropdownBar.classList.toggle("dropdown__bar_hidden");
         dropdownTextField.classList.toggle("dropdown__text-field_expanded");
+        dropdownIcon.classList.toggle("date-picker__icon-expand_shaded");
       }
     });   
 
@@ -112,6 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!containsIn(dropdownForm, event.target) && !dropdownBar.classList.contains("dropdown__bar_hidden")) {
         dropdownBar.classList.add("dropdown__bar_hidden");
         dropdownTextField.classList.remove("dropdown__text-field_expanded");
+        dropdownIcon.classList.toggle("date-picker__icon-expand_shaded");
       }
     });
 

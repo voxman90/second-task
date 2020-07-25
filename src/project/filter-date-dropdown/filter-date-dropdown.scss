@@ -27,7 +27,7 @@
   width: 2.75rem;
   height: 1.5rem;
   text-align: center;
-  color: map.get(colors.$map, 'dark-shade-75');
+  color: map.get(colors.$map, 'dark-shade-50');
 
   &::selection {
     background: transparent;
