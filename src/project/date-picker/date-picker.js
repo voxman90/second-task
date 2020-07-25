@@ -266,6 +266,12 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });   
 
+    document.addEventListener("mousedown", function (event) {
+      if (!containsIn(dateForm.parentNode, event.target) && !dateCalendar.classList.contains("calendar_hidden")) {
+        dateCalendar.classList.add("calendar_hidden");
+      }
+    });
+
     let arrivalDate = new Date;
     arrivalDate.setTime(0);
     let departureDate = new Date;
