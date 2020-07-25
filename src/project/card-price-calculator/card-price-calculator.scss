@@ -1,0 +1,62 @@
+@use "sass:map";
+@use "sass:color";
+@use "../colors" as colors;
+@use "../text-setting" as fonts;
+
+.card-price-calculator {
+  box-sizing: border-box;
+  width: 23.75rem;
+  padding: 1.875rem;
+  
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+}
+
+.card-price-calculator__header {
+  display: flex;
+  align-items: baseline;
+  height: 1.875rem;
+  padding: 0.875rem 0;
+}
+
+.card-price-calculator__number {
+  color: map.get(colors.$map, dark-shade-100);
+  @include fonts.Quicksand-bold;
+  font-size: 0.875rem;
+
+  & strong {
+    font-size: 1.5rem;
+    line-height: 1.875rem;
+  }
+}
+    
+.card-price-calculator__lux {
+  text-transform: uppercase;
+
+  color: map.get(colors.$map, 'purple');
+  @include fonts.Montserrat-bold;
+  font-size: 0.75rem;
+  line-height: 1em;
+}
+
+.card-price-calculator__coast {
+  flex-grow: 1;
+  height: 1.25rem;
+  padding-top: 0.25rem;
+
+  text-align: right;
+
+  color: map.get(colors.$map, dark-shade-50);
+  @include fonts.Montserrat-normal;
+  font-size: 0.750rem;
+  line-height: 1.125rem;
+
+  & b {
+    font-size: 0.875rem;
+  }
+} 
+
+.card-price-calculator__indent-big {
+  margin: 1.25rem 0 1.875rem;
+}

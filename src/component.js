@@ -40,7 +40,8 @@ import './project/logo/logo_color-change.js' // модификатор окра�
   import './project/card-room-selection/card-room-selection.scss'
   import './project/card-sign-out/card-sign-out.scss'
   import './project/card-sign-in/card-sign-in.scss'
-  // <-- калькулятор
+  import './project/card-price-calculator/card-price-calculator.scss'
+  import './project/card-price-calculator/card-price-calculator.js'
   import './project/card-hotel-room/card-hotel-room.scss'
   import './project/card-hotel-room/card-hotel-room.js'
   // <-- Календарь

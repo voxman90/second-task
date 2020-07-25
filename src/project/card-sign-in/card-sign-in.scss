@@ -29,6 +29,7 @@
 }
 
 .card-sign-in__text {
+  flex-grow: 1;
   margin: 0;
 
   @include fonts.body-p;

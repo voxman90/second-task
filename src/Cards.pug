@@ -12,6 +12,7 @@ html
   include ./project/dropdown/dropdown.pug
   include ./project/date-picker/date-picker.pug
   include ./project/card-hotel-room/card-hotel-room.pug
+  include ./project/card-price-calculator/card-price-calculator.pug
   
   head
     meta(charset="UTF-8")
@@ -26,6 +27,8 @@ html
       .cards__third
         include ./project/card-sign-in/card-sign-in.pug
       .cards__forth
-        +card-hotel-room
+        +card-hotel-room()
       .cards__fifth
-        +card-hotel-room(123, 123, 123, false)
+        +card-hotel-room(487, 9230, 87, false)
+      .cards__sixth
+        +card-price-calculator

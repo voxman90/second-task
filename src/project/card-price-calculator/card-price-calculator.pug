@@ -1,0 +1,10 @@
+mixin card-price-calculator(roomNumber= 999, roomCoast= 9999, isLux= true)
+  .card-price-calculator
+    .card-price-calculator__header
+      .card-price-calculator__number №&#32;#[strong #{roomNumber}]
+        if isLux
+          span.card-price-calculator__lux &#32;ЛЮКС
+      .card-price-calculator__coast(data-coast=roomCoast) #[b #{roomCoast}₽] в сутки
+    +date-picker
+    +input-dropdown(true)(class="card-price-calculator__indent-big")
+    +button-custom("long", "Забронировать", "button-submit")

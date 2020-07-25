@@ -1,6 +1,7 @@
 .cards__body {
   box-sizing: border-box;
-  width: 100%;
+  width: 1440px;
+  height: 900px;
   height: 84.375rem;
   padding: 9.375rem 9.722% 8.750rem 9.722%
 }
@@ -27,15 +28,20 @@
 
 .cards__third {
   grid-column-start: 2;
-  grid-row: 1;
+  grid-row: 2;
 }
 
 .cards__forth {
   grid-column-start: 3;
-  grid-row: 1;
+  grid-row: 2;
 }
 
 .cards__fifth {
   grid-column-start: 3;
-  grid-row: 2;
+  grid-row: 3;
+}
+
+.cards__sixth {
+  grid-column-start: 2;
+  grid-row: 1;
 }

@@ -6,10 +6,10 @@ mixin card-hotel-room(roomNumber=864, roomCoast=1260, reviewNumber=84, isLux=tru
     +image-slider
     .card-hotel-room__info-box
       .card-hotel-room__first-line
-        div.card-hotel-room__number № #[strong #{roomNumber}]
+        .card-hotel-room__number № #[strong #{roomNumber}]
           if isLux
-            span.card-hotel-room__lux  ЛЮКС
-        .card-hotel-room__coast #[b #{roomCoast}₽] #[span.card-hotel-room__small в сутки]
+            span.card-hotel-room__lux &#32;ЛЮКС
+        .card-hotel-room__coast #[b #{roomCoast}₽] в сутки
       .card-hotel-room__hr
       .card-hotel-room__second-line
         +rate-button
