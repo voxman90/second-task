@@ -109,7 +109,8 @@
 }
 
 .header__button-sign-in {
-  width: 5.4375rem;
+  min-width: 5.438rem;
+  width: 5.438rem;
   height: 2.125rem;
   margin-left: 0.625rem;
 
@@ -123,4 +124,10 @@
   padding: 0 1.25rem;
 
   border-radius: 1.0625rem;
+}
+
+@media only screen and (max-width: 1140px) {
+  .header {
+    padding: 0 1.5rem;
+  }
 }
