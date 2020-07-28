@@ -21,16 +21,16 @@ mixin calendar
       +button-custom("", "очистить", "button-clear")(class="calendar__button-clear calendar__button-clear_hidden")
       +button-custom("", "применить", "button-apply")(class="calendar__button-apply")
 
-mixin date-picker
+mixin date-picker(arrivalDate="ДД.ММ.ГГГГ", departureDate="ДД.ММ.ГГГГ")
   div
     div.date-picker
       div.date-picker__arrival
         +label("прибытие", "")(class="date-picker__label-box")
-          +text-field("arrival", " ")(readonly, value="ДД.ММ.ГГГГ", class="date-picker__arrival")
+          +text-field("arrival", " ")(readonly, value=arrivalDate, class="date-picker__arrival")
           +icon("expand_more")(class=" date-picker__icon-expand")        
       div.date-picker__stub
       div.date-picker__departure
         +label("выезд", "")(class="date-picker__label-box")
-            +text-field("departure", " ")(readonly, value="ДД.ММ.ГГГГ")
+            +text-field("departure", " ")(readonly, value=departureDate, class="date-picker__departure")
             +icon("expand_more")(class=" date-picker__icon-expand")
     +calendar

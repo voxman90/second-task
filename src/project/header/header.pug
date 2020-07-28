@@ -2,10 +2,26 @@
   .header__logo
     +logo("small", true, true)
   .header__nav
-    a(class="header__nav-item") О нас
-    a(class="header__nav-item header__nav-item_exp") Услуги 
-    a.header__nav-item Вакансии
-    a.header__nav-item Новости
-    a(class="header__nav-item header__nav-item_exp") Соглашения
+    ul
+      li
+        a(href="#about")='О нас'
+      li.header__nav_exp
+        a(href="#services")='Услуги'
+        ul
+          li
+            a='Услуги_001'
+          li
+            a='Услуги_002'
+      li
+        a(href="#vacancies")='Вакансии'
+      li
+        a(href="#news")='Новости'
+      li.header__nav_exp
+        a(href="#agreements")='Соглашения'
+        ul
+          li
+            a='Соглашения_001'
+          li
+            a='Соглашения_002'
     +button-custom("border", "войти", "button-sign-in")(class="header__button-sign-in")
     +button-custom("fill", "зарегистрироваться", "button-sign-up")(class="header__button-sign-up")

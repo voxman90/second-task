@@ -48,6 +48,5 @@ import './project/logo/logo_color-change.js' // модификатор окра�
 
 // Хедер и футер
   import './project/header/header.scss'
-  import './project/header-nav/header-nav.scss'
   import './project/footer/footer.scss'
   // import './project/footer-creative/footer-creative.scss'
