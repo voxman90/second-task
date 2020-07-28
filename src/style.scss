@@ -43,3 +43,21 @@ body {
   font-size: 0.875rem;
   line-height: 1.5rem;
 }
+
+.registration__container {
+  position: relative;
+  width: 100%;
+  height: 47.0625rem;
+  overflow: hidden;
+
+  background: url('./project/assets/img/registration.png');
+  background-repeat: no-repeat;
+  background-position: center;  
+}
+
+.registration__container-form {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%); 
+  margin-top: 19px;
+}

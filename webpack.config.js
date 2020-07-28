@@ -28,6 +28,10 @@ module.exports = {
           filename: 'Colors and Type.html'
         }),
         new HTMLWebpackPlugin({
+          template: './Registration.pug',
+          filename: 'Registration.html'
+        }),
+        new HTMLWebpackPlugin({
           template: './Testing ground.pug',
           filename: 'Testing ground.html'
         }),

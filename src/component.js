@@ -38,7 +38,7 @@ import './project/logo/logo_color-change.js' // модификатор окра�
 
 // Карточки
   import './project/card-room-selection/card-room-selection.scss'
-  import './project/card-sign-out/card-sign-out.scss'
+  import './project/card-sign-on/card-sign-on.scss'
   import './project/card-sign-in/card-sign-in.scss'
   import './project/card-price-calculator/card-price-calculator.scss'
   import './project/card-price-calculator/card-price-calculator.js'

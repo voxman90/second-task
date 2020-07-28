@@ -1,0 +1,22 @@
+doctype html
+html
+  include ./project/logo/logo.pug
+  include ./project/label/label.pug
+  include ./project/text-field/text-field.pug
+  include ./project/icon/icon.pug
+  include ./project/subscription-text-field/subscription-text-field.pug
+  include ./project/button/button-custom.pug
+  include ./project/radio-button/radio-button.pug
+  include ./project/toggle/toggle.pug
+  include ./project/dropdown/dropdown.pug
+  include ./project/date-picker/date-picker.pug
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Registration
+  body
+    div.registration__container
+      include ./project/header/header.pug
+      div.registration__container-form
+        include ./project/card-sign-on/card-sign-on.pug
+    include ./project/footer/footer.pug
