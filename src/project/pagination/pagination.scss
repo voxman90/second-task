@@ -27,6 +27,8 @@
     text-align: center;
     vertical-align: middle;
     color: map.get(colors.$map, dark-shade-50);
+
+    cursor: pointer;
   }
 
   & caption {
@@ -68,12 +70,10 @@
   background: linear-gradient(180deg, $faded-green, $faded-turquoise-blue);
 }
 
-.pagination__current {
-  width: 2.5rem;
-  height: 2.5rem;
-
+.pagination .pagination__current {
   background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
   border-radius: 1.25rem;
-  font-style: bold;
+
+  font-weight: bold;
   color: white;
 }

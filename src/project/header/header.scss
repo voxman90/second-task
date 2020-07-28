@@ -4,6 +4,9 @@
 @use "../text-setting" as fonts;
 
 .header {
+  box-sizing: border-box;
+  min-width: 320px;
+  max-width: 1920px;
   height: 4.375rem;
   padding: 0 9.722%;
 
@@ -72,6 +75,7 @@
     top: 2.5rem;
     visibility: hidden;
 
+    width: 9rem;
     margin: 0;
     padding: 0;
 
@@ -83,9 +87,17 @@
       width: 100%;
 
       & > a { 
+        padding: 0.625rem 0 0.625rem 0.625rem;
+
+        border-bottom: 1px solid map.get(colors.$map, dark-shade-05);
+
         text-align: left;
       }
     }
+
+    & > li:last-child > a {
+      border-bottom: 0;
+    } 
 
     &:hover {
       visibility: visible;
@@ -174,8 +186,6 @@
     border: solid transparent;
     border-width: 1.5px;
 
-    box-shadow: 0 0 1.25rem map.get(colors.$map, dark-shade-05);
-
     text-align: center;
 
     color: map.get(colors.$map, "purple");
@@ -234,7 +244,7 @@
 
       & > li:last-child > a {
         border-bottom: 0;
-      }
+      } 
     }
 
     &:hover > ul {

@@ -8,6 +8,8 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  min-width: 320px;
+  max-width: 1920px;
   height: 23.25rem;
   padding: 0 9.722%;
 
@@ -43,18 +45,30 @@
   margin-top: 6.5rem;
   padding-left: 1.25rem;
 
-  & dt {
+  & > dt {
     height: 1.250em;
-    margin-bottom: 1.750em;
+    padding-bottom: 0.625rem;
     @include fonts.label-h3(1.250em);
   }
 
-  & dd {
-    margin-left: 0;
-    margin-top: 1.25rem;
+  & > dd {
+    margin: 0;
 
-    @include fonts.body-p(1.214em);
-    color: map.get(colors.$map, dark-shade-50);
+    & > a { 
+      display: block;
+
+      padding: 0.625rem 0;
+
+      text-align: left;
+      text-decoration: none;
+
+      @include fonts.body-p(1.214em);
+      color: map.get(colors.$map, dark-shade-50);
+
+      &:hover {
+        color: map.get(colors.$map, dark-shade-75);
+      }
+    }
   }
 }
 
@@ -64,22 +78,22 @@
   margin: 6.5rem 0 0 0;
   padding-left: 1.25rem;
 
-  & dl {
+  & > dl {
     margin: 0;
-  }
 
-  & dt {
-    height: 1.250em;
-    margin-bottom: 1.750em;
+    & > dt {
+      height: 1.250em;
+      margin-bottom: 1.750em;
 
-    @include fonts.label-h3(1.250em);
-  }
+      @include fonts.label-h3(1.250em);
+    }
 
-  & dd {
-    margin-left: 0;
-    margin: 1.25rem 0;
+    & > dd {
+      margin-left: 0;
+      margin: 1.25rem 0;
 
-    @include fonts.body-p(1.714em);
+      @include fonts.body-p(1.714em);
+    }
   }
 }
 
@@ -176,8 +190,12 @@
   
   .copyright-bar__copyright {
     float: none;
-    height: 1.125rem;
+
+    display: inline-block;
     margin-top: 1.25rem;
+    height: auto;
+
+    text-align: center;
   
     line-height: 1.125rem;
   }

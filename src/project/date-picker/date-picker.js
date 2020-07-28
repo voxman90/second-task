@@ -312,6 +312,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if ((arrivalDate.getTime() !== 0) && (departureDate.getTime() !== 0)) {
           dateTextFieldArrival.value = dateBank.dateToDDMMYYYY(arrivalDate);
           dateTextFieldDeparture.value = dateBank.dateToDDMMYYYY(departureDate);
+          dateCalendar.classList.add("calendar_hidden");
         }
       }
     }); 

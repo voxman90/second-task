@@ -172,6 +172,9 @@ document.addEventListener("DOMContentLoaded", function () {
       if (TargetClass.contains("dropdown__button-apply")) {
         if (numberVaultSumm(numberVault) > 0) {
           dropdownTextField.value = guestAmount(numberVault);
+          dropdownBar.classList.add("dropdown__bar_hidden");
+          dropdownTextField.classList.remove("dropdown__text-field_expanded");
+          dropdownIcon.classList.toggle("date-picker__icon-expand_shaded");
         }
       }
     }); 
