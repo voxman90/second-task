@@ -126,11 +126,15 @@
 
 @media only screen and (max-width: 1140px) {
   .footer {
-    padding: 0 4.5%;
+    padding: 0 6%;
+  }
+
+  .footer dl:nth-child(2) {
+    display: none;
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
   .footer {
     justify-content: center;
     height: 10rem;

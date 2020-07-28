@@ -3,25 +3,41 @@
     +logo("small", true, true)
   .header__nav
     ul
-      li
+      li.header__nav-item
         a(href="#about")='О нас'
-      li.header__nav_exp
+      li.header__nav-item.header__nav-exp
         a(href="#services")='Услуги'
         ul
-          li
+          li.header__nav-item
             a='Услуги_001'
-          li
+          li.header__nav-item
             a='Услуги_002'
-      li
+      li.header__nav-item
         a(href="#vacancies")='Вакансии'
-      li
+      li.header__nav-item
         a(href="#news")='Новости'
-      li.header__nav_exp
+      li.header__nav-item.header__nav-exp
         a(href="#agreements")='Соглашения'
         ul
-          li
+          li.header__nav-item
             a='Соглашения_001'
-          li
+          li.header__nav-item
             a='Соглашения_002'
+      li.header__nav-hamburger='menu'
+        ul
+          li
+            a(href="#about")='О нас'
+          li
+            a(href="#services")='Услуги'
+          li
+            a(href="#vacancies")='Вакансии'
+          li
+            a(href="#news")='Новости'
+          li
+            a(href="#agreements")='Соглашения'
+          li 
+            a(href="#sign-in")='Войти'
+          li
+            a(href="#sign-on")='Зарегистрироваться'
     +button-custom("border", "войти", "button-sign-in")(class="header__button-sign-in")
     +button-custom("fill", "зарегистрироваться", "button-sign-up")(class="header__button-sign-up")
