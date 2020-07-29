@@ -13,21 +13,22 @@ body {
 
 .landing {
   position: relative;
-  width: 100%;
+  max-width: 1920px;
   min-width: 320px;
-  overflow: hidden;
 }
 
 .landing__container {
   position: relative;
   overflow: hidden;
-  width: 100%;
-  
+
   height: calc(100vh - 4.375rem);
   min-height: 410px;
   // height: 56.25rem;
   background: url('./project/assets/img/img_02.jpg');
   background-repeat: no-repeat;
+  background-size: 106.528vw 113.556vh;
+  background-clip: border-box;
+  background-position: left -3.264vw top calc(-6.777vh - 4.375rem);
 }
 
 .landing__container-form {
@@ -39,7 +40,7 @@ body {
 
 .landing__container-image-sign {
   position: absolute;
-  bottom: 2.667%;
+  bottom: 2.168%;
   right: 8.611%;
 
   width: 18.5625rem;
