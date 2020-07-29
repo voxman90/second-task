@@ -11,19 +11,29 @@ body {
   background-color: #E5E5E5;
 }
 
-.landing__container {
+.landing {
   position: relative;
   width: 100%;
-  height: 56.25rem;
+  min-width: 320px;
+  overflow: hidden;
+}
 
+.landing__container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  
+  height: calc(100vh - 4.375rem);
+  min-height: 410px;
+  // height: 56.25rem;
   background: url('./project/assets/img/img_02.jpg');
   background-repeat: no-repeat;
-  overflow: hidden;
 }
 
 .landing__container-form {
   position: absolute;
-  top: 15.556%;
+  z-index: 1;
+  top: 10.424%;
   left: 9.722%;
 }
 
@@ -64,11 +74,17 @@ body {
   /* --- */
 }
 
-@media only screen and (max-width: 768px)  {
+@media only screen and (max-width: 768px) {
   .landing__container-form {
     position: absolute;
-    top: 15.556%;
+    top: 10.424%;
     left: 50%;
     transform: translateX(-50%);
+  }
+}
+
+@media only screen and (max-height: 540px) {
+  .landing__container-image-sign {
+    display: none;
   }
 }

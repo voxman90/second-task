@@ -13,11 +13,12 @@ html
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title Landing page
   body
-    div.landing__container
+    .landing
       include ./project/header/header.pug
-      div.landing__container-form
+      .landing__container-form
         include ./project/card-room-selection/card-room-selection.pug
-      div.landing__container-image-sign Лучшие номера для вашей работы, отдыха и просто вдохновения
-    include ./project/footer/footer.pug
+      .landing__container
+        .landing__container-image-sign Лучшие номера для вашей работы, отдыха и просто вдохновения
+      include ./project/footer/footer.pug
 
 

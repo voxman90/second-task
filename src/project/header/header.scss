@@ -6,6 +6,7 @@
 .header {
   box-sizing: border-box;
   min-width: 320px;
+  width: 100%;
   max-width: 1920px;
   height: 4.375rem;
   padding: 0 9.722%;
@@ -31,6 +32,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  flex-wrap: nowrap;
   height: 4.375rem;
 
   & > ul {
@@ -71,13 +73,15 @@
     list-style: none;
 
     position: absolute;
-    z-index: 1;
+    z-index: 10;
     top: 2.5rem;
     visibility: hidden;
 
     width: 9rem;
     margin: 0;
     padding: 0;
+
+    background-color: white;
 
     box-shadow: 0 0 1.25rem map.get(colors.$map, dark-shade-05);
 
@@ -206,13 +210,15 @@
       list-style: none;
 
       position: absolute;
-      z-index: 1;
+      z-index: 10;
       top: 2.5rem;
       left: -10rem;
 
-      width: 12rem;
+      width: 12rem; 
       margin: 0;
       padding: 0;
+
+      background-color: white;
 
       box-shadow: 0px 10px 20px map.get(colors.$map, dark-shade-05);
 
