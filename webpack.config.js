@@ -11,26 +11,26 @@ module.exports = {
         path: path.resolve(__dirname, 'dist')
     },
     plugins: [
-        new HTMLWebpackPlugin({
-          template: './Cards.pug',
-          filename: 'Cards.html'
-        }),
-        new HTMLWebpackPlugin({
-          template: './Landing page.pug',
-          filename: 'Landing page.html'
-        }),
-        new HTMLWebpackPlugin({
-          template: './Form Elements.pug',
-          filename: 'Form Elements.html'
-        }),
-        new HTMLWebpackPlugin({
-          template: './Colors and Type.pug',
-          filename: 'Colors and Type.html'
-        }),
-        new HTMLWebpackPlugin({
-          template: './Registration.pug',
-          filename: 'Registration.html'
-        }),
+        // new HTMLWebpackPlugin({
+        //   template: './Cards.pug',
+        //   filename: 'Cards.html'
+        // }),
+        // new HTMLWebpackPlugin({
+        //   template: './Landing page.pug',
+        //   filename: 'Landing page.html'
+        // }),
+        // new HTMLWebpackPlugin({
+        //   template: './Form Elements.pug',
+        //   filename: 'Form Elements.html'
+        // }),
+        // new HTMLWebpackPlugin({
+        //   template: './Colors and Type.pug',
+        //   filename: 'Colors and Type.html'
+        // }),
+        // new HTMLWebpackPlugin({
+        //   template: './Registration.pug',
+        //   filename: 'Registration.html'
+        // }),
         new HTMLWebpackPlugin({
           template: './Testing ground.pug',
           filename: 'Testing ground.html'

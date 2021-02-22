@@ -1,51 +1,57 @@
 import './style.scss'
+
+/* import './cards.scss'
+import './common.blocks/text-field/text-field.scss'
+import './common.blocks/text-field-masked/text-field-masked.scss'
+
+ import './style.scss'
 import './cards.scss'
-import './project/logo/logo.scss' // логотип и подпись
-import './project/logo/logo_color-change.js' // модификатор окрашивания логотипа
+import './logo/logo.scss' // логотип и подпись
+import './logo/logo_color-change.js' // модификатор окрашивания логотипа
 
 // Элементы стиля
-  import './project/label/label.scss' // метка с подписью
-  import './project/text-field/text-field.scss' // текстовое поле - инпут
-  import './project/icon/icon.scss' // иконка material icon
-  import './project/checkbox/checkbox.scss' 
-  import './project/radio-button/radio-button.scss'
-  import './project/toggle/toggle.scss'
-  import './project/subscription-text-field/subscription-text-field.scss'
-  import './project/button/button-custom.scss'
-  import './project/rate-button/rate-button.scss'
-  import './project/rate-button/rate-button.js'
-  import './project/bullet-list/bullet-list.scss'
-  import './project/icon-list-item/icon-list-item.scss'
-  import './project/like-button/like-button.scss'
-  import './project/like-button/like-button.js'
-  import './project/date-dropdown/date-dropdown.scss'
-  import './project/checkbox-list/checkbox-list.scss'
-  import './project/checkbox-list/checkbox-list.js'
-  import './project/checkbox-rich/checkbox-rich.scss'
-  import './project/dropdown/dropdown.scss'
-  import './project/dropdown/dropdown.js' 
-  import './project/rate-button/rate-button.scss'
-  import './project/rate-button/rate-button.js'
-  import './project/date-picker/date-picker.scss'
-  import './project/date-picker/date-picker.js'
-  import './project/filter-date-dropdown/filter-date-dropdown.scss'
-  import './project/filter-date-dropdown/filter-date-dropdown.js'
-  import './project/pagination/pagination.scss'
-  import './project/pagination/pagination.js'
-  import './project/range-slider/range-slider.scss'
-  import './project/range-slider/range-slider.js'
-  import './project/comment/comment.scss'
+  import './label/label.scss' // метка с подписью
+  import './text-field/text-field.scss' // текстовое поле - инпут
+  import './icon/icon.scss' // иконка material icon
+  import './checkbox/checkbox.scss' 
+  import './radio-button/radio-button.scss'
+  import './toggle/toggle.scss'
+  import './subscription-text-field/subscription-text-field.scss'
+  import './button/button-custom.scss'
+  import './rate-button/rate-button.scss'
+  import './rate-button/rate-button.js'
+  import './bullet-list/bullet-list.scss'
+  import './icon-list-item/icon-list-item.scss'
+  import './like-button/like-button.scss'
+  import './like-button/like-button.js'
+  import './date-dropdown/date-dropdown.scss'
+  import './checkbox-list/checkbox-list.scss'
+  import './checkbox-list/checkbox-list.js'
+  import './checkbox-rich/checkbox-rich.scss'
+  import './dropdown/dropdown.scss'
+  import './dropdown/dropdown.js' 
+  import './rate-button/rate-button.scss'
+  import './rate-button/rate-button.js'
+  import './date-picker/date-picker.scss'
+  import './date-picker/date-picker.js'
+  import './filter-date-dropdown/filter-date-dropdown.scss'
+  import './filter-date-dropdown/filter-date-dropdown.js'
+  import './pagination/pagination.scss'
+  import './pagination/pagination.js'
+  import './range-slider/range-slider.scss'
+  import './range-slider/range-slider.js'
+  import './comment/comment.scss'
 
 // Карточки
-  import './project/card-room-selection/card-room-selection.scss'
-  import './project/card-sign-on/card-sign-on.scss'
-  import './project/card-sign-in/card-sign-in.scss'
-  import './project/card-price-calculator/card-price-calculator.scss'
-  import './project/card-price-calculator/card-price-calculator.js'
-  import './project/card-hotel-room/card-hotel-room.scss'
-  import './project/card-hotel-room/card-hotel-room.js'
+  import './card-room-selection/card-room-selection.scss'
+  import './card-sign-on/card-sign-on.scss'
+  import './card-sign-in/card-sign-in.scss'
+  import './card-price-calculator/card-price-calculator.scss'
+  import './card-price-calculator/card-price-calculator.js'
+  import './card-hotel-room/card-hotel-room.scss'
+  import './card-hotel-room/card-hotel-room.js'
   // <-- Календарь
 
 // Хедер и футер
-  import './project/header/header.scss'
-  import './project/footer/footer.scss'
+  import './header/header.scss'
+  import './footer/footer.scss' */

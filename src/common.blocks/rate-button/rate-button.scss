@@ -1,0 +1,17 @@
+@use "sass:map";
+@use "../colors" as colors;
+@use "../text-setting" as fonts;
+
+.rate-button {
+    display: flex;
+    width: min-content;
+    height: 24px;
+}
+
+.rate-button__icon {
+    background: linear-gradient(180deg, map.get(colors.$map, "purple") 0%, map.get(colors.$map, "malibu") 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+    width: 24px;
+}

@@ -1,0 +1,11 @@
+@use "sass:map";
+@use "../colors" as colors;
+@use "../text-setting" as fonts;
+
+.icon_font_material {
+    @include fonts.material-icons;
+} 
+
+.icon_font_awesome {
+    @include fonts.font-awesome-icons;
+}

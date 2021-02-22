@@ -1,0 +1,83 @@
+@use "sass:map";
+@use "sass:color";
+@use "../colors" as colors;
+@use "../text-setting" as fonts;
+
+.button-custom {
+    box-sizing: border-box;
+    min-width: min-content;
+    height: 1.25em;
+    margin: 0;
+    padding: 0;
+
+    background-color: transparent;
+    border: none;
+
+    text-align: center;
+    text-transform: uppercase;
+    color: map.get(colors.$map, "purple");
+    @include fonts.Montserrat-bold;
+    font-size: 0.75rem;
+    line-height: 1.25em;
+
+    &:hover {
+        color: map.get(colors.$map, dark-shade-50); 
+    }
+}
+
+.button-custom_fill {
+    width: 6.1875rem;
+    height: 2.75rem;
+
+    background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
+    border-radius: 1.375rem;
+    
+    color: #FFFFFF;
+
+    &:hover {
+        opacity: 0.5;
+        color: #FFFFFF;
+    }
+}
+
+.button-custom_border {
+    width: 6.1875rem;
+    height: 2.75rem;
+
+    background-image: linear-gradient(#FFF, #FFF),
+                      linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
+    background-clip: content-box,
+                    border-box;
+    background-origin: border-box;
+    border-radius: 1.375rem;
+    border: solid transparent;
+    border-width: 0.128rem;
+    color: map.get(colors.$map, "purple");
+  
+    &:hover {
+        $purple-50: color.scale(map.get(colors.$map, "purple"), $alpha: -50%);
+        $malibu-50: color.scale(map.get(colors.$map, "malibu"), $alpha: -50%);
+        background-image: linear-gradient(#FFF, #FFF),
+                          linear-gradient(180deg, $purple-50, $malibu-50);
+        color: map.get(colors.$map, "purple");
+    }
+}
+
+.button-custom_long {
+    position: relative;
+    min-width: 20rem;
+  
+    &::after {
+        position: absolute;
+        right: 0.4166em;
+        top: 0.4166em;
+        width: 1em;
+        height: 1em;
+        border-radius: 1.375rem;
+
+        content: "arrow_forward"; 
+
+        @include fonts.material-icons;
+    }
+}
+  

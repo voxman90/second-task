@@ -1,0 +1,4 @@
+mixin icon-list-item(listIcon, listHeader, listText)
+    div.icon-list-item 
+        +icon(listIcon)(class="icon-list__icon")
+        .icon-list__text #[b #{listHeader}]<br>#{listText}

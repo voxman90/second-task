@@ -1,0 +1,10 @@
+mixin button-custom(buttonStyle="", buttonText="submit", buttonName="")
+    case buttonStyle
+        when "fill"
+            button(name=buttonName class="button-custom button-custom_fill")&attributes(attributes)=buttonText 
+        when "border"
+            button(name=buttonName class="button-custom button-custom_border")&attributes(attributes)=buttonText 
+        when "long"
+            button(name=buttonName class="button-custom button-custom_fill button-custom_long")&attributes(attributes)=buttonText 
+        default
+            button(name=buttonName class="button-custom")&attributes(attributes)=buttonText 

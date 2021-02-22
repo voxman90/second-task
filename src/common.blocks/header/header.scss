@@ -1,0 +1,260 @@
+@use "sass:map";
+@use "sass:color";
+@use "../colors" as colors;
+@use "../text-setting" as fonts;
+
+.header {
+    box-sizing: border-box;
+    min-width: 320px;
+    width: 100%;
+    max-width: 1920px;
+    height: 4.375rem;
+    padding: 0 9.722%;
+
+    background-color: #FFFFFF;
+    box-shadow: 0 0.625rem 1.25rem map.get(colors.$map, dark-shade-05);
+}
+
+.header__logo {
+    float: left;
+    
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: max-content;
+    height: 4.375rem;
+}
+
+.header__nav {
+    float: right;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    height: 4.375rem;
+
+    & > ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.header__nav-item {
+    display: inline-block;
+    
+    & > a {
+        display: block;
+        padding: 0.625rem;
+
+        background-color: #FFFFFF;
+
+        text-align: center;
+        white-space: nowrap;
+
+        text-decoration: none;
+        color: map.get(colors.$map,  dark-shade-50);
+        @include fonts.Montserrat-normal;
+        font-size: 0.875rem;
+
+        &:hover {
+        @include fonts.Montserrat-bold;
+        color: map.get(colors.$map,  dark-shade-75);
+        }
+    }
+}
+
+.header__nav-exp {
+    position: relative;
+
+    & > ul {
+        list-style: none;
+
+        position: absolute;
+        z-index: 10;
+        top: 2.5rem;
+        visibility: hidden;
+
+        width: 9rem;
+        margin: 0;
+        padding: 0;
+
+        background-color: white;
+
+        box-shadow: 0 0 1.25rem map.get(colors.$map, dark-shade-05);
+
+        transition: visibility 300ms;
+
+        & > li {
+        width: 100%;
+
+        & > a { 
+            padding: 0.625rem 0 0.625rem 0.625rem;
+
+            border-bottom: 1px solid map.get(colors.$map, dark-shade-05);
+
+            text-align: left;
+        }
+        }
+
+        & > li:last-child > a {
+        border-bottom: 0;
+        } 
+
+        &:hover {
+        visibility: visible;
+        }
+    }
+
+    & > a {
+        padding-right: 2.125rem;
+        
+        &::after {
+        position: absolute;
+        right: 0.625rem;
+
+        content: "expand_more";
+        @include fonts.material-icons;
+        line-height: 1.25rem;
+        }
+        
+        &:hover ~ ul {
+        visibility: visible;
+        }
+
+        &:hover::after {
+        color: map.get(colors.$map,  dark-shade-75);
+        }
+    }
+}
+
+.header__nav > ul > li:last-child {
+    display: none;
+}
+
+.header__button-sign-in {
+    min-width: 5.438rem;
+    width: 5.438rem;
+    height: 2.125rem;
+    margin-left: 0.625rem;
+
+    border-radius: 1.0625rem;
+}
+
+.header__button-sign-up {
+    width: 12.25rem;
+    height: 2.125rem;
+    margin-left: 1.25rem;
+    padding: 0 1.25rem;
+
+    border-radius: 1.0625rem;
+}
+
+@media only screen and (max-width: 1140px) {
+    .header {
+        padding: 0 6%;
+    }
+
+    .header__nav-exp {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px)  {
+    .header__nav > ul > li:not(:last-child) {
+        display: none;
+    }
+
+    .header__nav > ul > li:last-child {
+        display: inline-block;
+    }
+
+    .header__button-sign-in,
+    .header__button-sign-up {
+        display: none;
+    }
+
+    .header__nav-hamburger {
+        position: relative;
+
+        box-sizing: border-box;
+
+        background-image: linear-gradient(#FFF, #FFF),
+        linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
+        background-clip: content-box,
+                        border-box;
+        background-origin: border-box;
+        border-radius: 0.25rem;
+        border: solid transparent;
+        border-width: 1.5px;
+
+        text-align: center;
+
+        color: map.get(colors.$map, "purple");
+        @include fonts.material-icons;
+        font-size: 2rem;
+        line-height: 1;
+
+        cursor: pointer;
+
+        &:hover {
+        $purple-50: color.scale(map.get(colors.$map, "purple"), $alpha: -50%);
+        $malibu-50: color.scale(map.get(colors.$map, "malibu"), $alpha: -50%);
+        background-image: linear-gradient(#FFF, #FFF),
+                            linear-gradient(180deg, $purple-50, $malibu-50);
+        }
+
+        & > ul {
+        list-style: none;
+
+        position: absolute;
+        z-index: 10;
+        top: 2.5rem;
+        left: -10rem;
+
+        width: 12rem; 
+        margin: 0;
+        padding: 0;
+
+        background-color: white;
+
+        box-shadow: 0px 10px 20px map.get(colors.$map, dark-shade-05);
+
+        visibility: hidden;
+
+        transition: visibility 600ms;
+
+        & > li > a {
+            display: block;
+            padding: 0.625rem 0 0.625rem 0.625rem;
+        
+            background-color: #FFFFFF;
+            border-bottom: 1px solid map.get(colors.$map, dark-shade-05);
+        
+            text-align: left;
+            white-space: nowrap;
+
+            text-decoration: none;
+
+            color: map.get(colors.$map, dark-shade-50);
+            @include fonts.Montserrat-normal;
+            font-size: 0.875rem;
+
+            &:hover {
+                @include fonts.Montserrat-bold;
+                color: map.get(colors.$map,  dark-shade-75);
+            }
+        }
+
+        & > li:last-child > a {
+            border-bottom: 0;
+        } 
+        }
+
+        &:hover > ul {
+            visibility: visible;
+        }
+    }
+}

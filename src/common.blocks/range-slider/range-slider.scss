@@ -1,0 +1,112 @@
+@use "sass:map";
+@use "../colors" as colors;
+@use "../text-setting" as fonts;
+@use "../block" as blocks;
+
+.range-slider {
+    width: 16.625rem;
+}
+
+.range-slider__label {
+    margin-bottom: 1.25rem;
+}
+
+.range-slider__case {
+    position: relative;
+
+    width: 100%;
+    height: 1rem;
+}
+
+.range-slider__upper {
+    padding-left: 10px;
+    width: 90%;
+}
+
+.range-slider__lower {
+    padding-right: 10px;
+    width: 90%;
+}
+
+.range-slider__lower,
+.range-slider__upper {
+    position: absolute;
+
+    box-sizing: border-box;
+    width: 100%;
+    height: 6px;
+    margin: 0;
+
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    border: 1px solid map.get(colors.$map, dark-shade-25);
+    outline: none;
+    pointer-events: none;
+
+    &:active,
+    &:focus {
+        outline: none;
+    }
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+                appearance: none;
+        
+        position: relative;
+        z-index: 10;
+
+        opacity: 1;
+        
+        box-sizing: border-box;
+        height: 0.875rem;
+        width: 0.875rem;
+        
+        border-radius: 0.5rem;
+        border: 2px solid #FFFFFF;
+        
+        background-image: linear-gradient(180deg, map.get(colors.$map, "green"), map.get(colors.$map, "turquoise-blue"));
+
+        cursor: pointer;
+        pointer-events: all;
+    }
+
+    &::-moz-range-thumb {
+        -moz-appearance: none;
+             appearance: none;
+        
+        position: relative;
+        z-index: 10;
+
+        box-sizing: border-box;
+        height: 14px;
+        width: 14px;
+        
+        border-radius: 7px;
+        border: 2px solid #FFFFFF;
+        
+        background-image: linear-gradient(180deg, map.get(colors.$map, "green"), map.get(colors.$map, "turquoise-blue"));
+
+        cursor: pointer;
+        pointer-events: all;
+
+        transform: rotate(360deg);
+    }
+
+    &::-moz-range-track {
+        -moz-appearance: none;
+    }
+}
+
+.range-slider__filler {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 6px;
+
+    background-image: linear-gradient(180deg, map.get(colors.$map, "green"), map.get(colors.$map, "turquoise-blue"));
+    border-radius: 3px;
+}

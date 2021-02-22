@@ -1,0 +1,8 @@
+{
+    "block": "subscription-text-field",
+    "tech": ["scss"],
+    "deps": [
+        "text-field",
+        "icon"
+    ]
+}

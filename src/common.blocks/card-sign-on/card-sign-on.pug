@@ -1,0 +1,16 @@
+.card-sign-on
+    h1.card-sign-on__widget-h1 Регистрация аккаунта
+    +text-field("firstName", "Имя")
+    +text-field("lastName", "Фамилия")(class="card-sign-on__indent")
+    +radio-button("gender", "male", "Мужчина")(class = "card-sign-on__radio-button")
+    +radio-button("gender", "female", "Женщина")
+    +label("Дата рождения", "")(class="card-sign-on__indent-big")
+        +text-field("birtdDate", "ДД.ММ.ГГГГ")
+    +label("Данные для входа в сервис", "")(class="card-sign-on__indent-big")
+        +text-field("userEmail", "Email")
+        +text-field("userPassword", "Пароль")(class="text-field_masked card-sign-on__indent")
+    +toggle-custom("mailing", "mailing", "Получать спецпредложения")
+    +button-custom("long", "Зарегистрироваться", "button-sign-on")(class="card-sign-on__indent-big" type="submit")
+    .card-sign-on__sign-in
+        p.card-sign-on__text Уже есть аккаунт на Toxin
+        +button-custom("border", "Войти", "button-sign-in")

@@ -1,0 +1,9 @@
+mixin input-text(inputSize = 320, inputName, inputPlaceholder, labelLeft="", labelRight="", isLabel = false)
+    - var size = (inputSize === 320) ? "input_320px": "input_160px";
+    div(class=size)
+        if isLabel
+            +label(labelLeft, labelRight)
+                +text-field(inputName, inputPlaceholder)
+        else
+            +text-field(inputName, inputPlaceholder)
+    

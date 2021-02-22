@@ -1,0 +1,220 @@
+@use "sass:map";
+@use "sass:color";
+@use "../colors" as colors;
+@use "../text-setting" as fonts;
+
+.footer {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    min-width: 320px;
+    width: 100%;
+    max-width: 1920px;
+    height: 23.25rem;
+    padding: 0 9.722%;
+
+    background-color: #FFFFFF;
+    box-shadow: 0 1px 0 color.scale(map.get(colors.$map, dark-shade-100), $alpha: -90%);
+}
+
+.footer__logo {
+    flex-basis: 16.25rem;
+    flex-grow: 1;
+    margin-top: 6.25rem;
+    padding-right: 1.25rem;
+
+    & > div {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: nowrap;
+        width: max-content;
+        height: 2.5rem;
+        margin-bottom: 1.25rem;
+    }
+
+    & span {
+        @include fonts.body-p(1.714em);
+    }
+}
+
+.footer__list {
+    flex-basis: 12.5rem;
+    flex-grow: 1;
+    box-sizing: border-box;
+    margin-top: 6.5rem;
+    padding-left: 1.25rem;
+
+    & > dt {
+        height: 1.250em;
+        padding-bottom: 0.625rem;
+        @include fonts.label-h3(1.250em);
+    }
+
+    & > dd {
+        margin: 0;
+
+        & > a { 
+        display: block;
+
+        padding: 0.625rem 0;
+
+        text-align: left;
+        text-decoration: none;
+
+        @include fonts.body-p(1.214em);
+        color: map.get(colors.$map, dark-shade-50);
+
+        &:hover {
+            color: map.get(colors.$map, dark-shade-75);
+        }
+        }
+    }
+}
+
+.footer__subscribe {
+    flex-basis: 16.25rem;
+    flex-grow: 1;
+    margin: 6.5rem 0 0 0;
+    padding-left: 1.25rem;
+
+    & > dl {
+        margin: 0;
+
+        & > dt {
+        height: 1.250em;
+        margin-bottom: 1.750em;
+
+        @include fonts.label-h3(1.250em);
+        }
+
+        & > dd {
+        margin-left: 0;
+        margin: 1.25rem 0;
+
+        @include fonts.body-p(1.714em);
+        }
+    }
+}
+
+.copyright-bar {
+    box-sizing: border-box;
+    min-width: 320px;
+    width: 100%;
+    max-width: 1920px;
+    height: 4.375rem;
+    padding: 0 9.722%;
+    margin-top: 1px;
+
+    background-color: #FFFFFF;
+    box-shadow: 0 0.625rem 1.25rem map.get(colors.$map, dark-shade-05);
+}
+
+.copyright-bar__copyright {
+    float: left;
+    height: 4.375rem;
+
+    @include fonts.body-p();
+    line-height: 4.375rem;
+}
+
+.copyright-bar__widgets {
+    float: right;
+
+    display: flex;
+    align-items: center;
+    width: min-content;
+    height: 4.375rem;
+  
+    & a {
+        display: block;
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-left: 1.250rem;
+
+        text-align: center;
+
+        background: linear-gradient(180deg, map.get(colors.$map, "purple") 0%, map.get(colors.$map, "malibu") 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        cursor: pointer;
+    }
+}
+
+@media only screen and (max-width: 1140px) {
+    .footer {
+        padding: 0 6%;
+    }
+
+    .footer dl:nth-child(2) {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .footer {
+        justify-content: center;
+        height: 10rem;
+        padding: 0 9.722%;
+        box-shadow: none;
+    }
+    
+    .footer__logo {
+        flex-basis: auto;
+        flex-grow: 0;
+        margin-top: 7.5rem;
+        padding: 0;
+    
+        & > div {
+            margin-bottom: 0;
+        }
+    
+        & span {
+            display: none;
+        }
+    }
+    
+    .footer__list {
+        display: none;
+    }
+    
+    .footer__subscribe {
+        display: none;
+    }
+    
+    .copyright-bar {
+        height: 14.188rem;
+        margin-top: 0;
+    
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .copyright-bar__copyright {
+        float: none;
+
+        display: inline-block;
+        margin-top: 1.25rem;
+        height: auto;
+
+        text-align: center;
+    
+        line-height: 1.125rem;
+    }
+    
+    .copyright-bar__widgets {
+        float: none;
+    
+        justify-content: space-evenly;
+    
+        width: 10.75rem;
+        height: 1.5rem;
+        margin-top: 1.25rem;
+        
+        & a {
+            margin-left: 0;
+        }
+    }
+}

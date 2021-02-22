@@ -1,77 +1,11 @@
+include ./common.blocks/text-field/text-field.pug
 doctype html
 html
-  include ./project/icon/icon.pug
-  include ./project/logo/logo.pug
-  include ./project/label/label.pug
-  include ./project/text-field/text-field.pug
-  include ./project/input/input.pug
-  include ./project/button/button-custom.pug
-  include ./project/toggle/toggle.pug
-  include ./project/dropdown/dropdown.pug
-  include ./project/checkbox/checkbox.pug
-  include ./project/icon-list-item/icon-list-item.pug
-  include ./project/bullet-list/bullet-list.pug
-  include ./project/checkbox-list/checkbox-list.pug
-  include ./project/checkbox-rich/checkbox-rich.pug
-  include ./project/date-picker/date-picker.pug
-  include ./project/range-slider/range-slider.pug
-  include ./project/rate-button/rate-button.pug
-  include ./project/radio-button/radio-button.pug
-  include ./project/header/header.pug
-  include ./project/subscription-text-field/subscription-text-field.pug
-  include ./project/like-button/like-button.pug
-  include ./project/pagination/pagination.pug
-  include ./project/comment/comment.pug
-  head
+head
     meta(charset="UTF-8")
     title Testing ground
-  body(style="background-color: #E5E5E5; padding: 0; margin: 0;")
-    +range-slider
-    +date-picker
-    +input-text(320, "text field", "default", "textField", "Email")
-    +input-text(320, "text field", "hover / focus", "textFieldHover", "Text")
-    +input-dropdown(true)
-    +input-dropdown(false)
-    +checkbox("first", "smoke", "Можно курить")
-    +checkbox("second", "animal", "Можно с животными")
-    +checkbox("third", "guest", "Можно пригласить гостей")
-    +checkbox-list("expandable checkbox list")
-      +checkbox("che_001", "che", "Завтрак", "input_266px_bottom")
-      +checkbox("che_002", "che", "Письменный стол")
-      +checkbox("che_003", "che", "Стул для кормления")
-      +checkbox("che_004", "che", "Кроватка")
-      +checkbox("che_005", "che", "Телевизор")
-      +checkbox("che_006", "che", "Шампунь")
-      +input-text(160, "test field", "default", "textField", "Test")
-    +checkbox-rich("che_001", "che", "Широкий коридор", "Ширина коридоров в номере не&nbsp;менее 91 см.")
-    +checkbox-rich("che_002", "che", "Помошник для инвалидов", "На 1 этаже вас встретит специалист и&nbsp;проводит до номера.")
-    +rate-button
-    +rate-button(0)
-    +rate-button(1)
-    +rate-button(2)
-    +rate-button(3)
-    +rate-button(4)
-    +rate-button(5)
-    div(style="height: 100px; width: 10px")
-    include ./project/card-room-selection/card-room-selection.pug
-    +button-custom("", "Click on", "button-01")
-    br
-    +button-custom("fill", "Click on", "button-02")
-    br
-    +button-custom("border", "Click on", "button-03")
-    include ./project/header/header.pug
-    div(style="height: 50px;")
-    include ./project/footer/footer.pug
-    div(style="height: 250px;")
-    +like-button
-    div(style="height: 150px;")
-    +range-slider
-    div(style="height: 150px;")
-    +bullet-list(["Нельзя с питомцами", "Без вечеринок и мероприятий", "Время прибытия — после 13:00, а&nbsp;выезд до 12:00"])
-    +icon-list-item("insert_emoticon", "Комфорт", "Шумопоглощающие стены")
-    +icon-list-item("location_city", "Удобство", "Окно в каждой из спален")
-    +pagination
-    div(style="height: 150px;")
-    +comment('./project/assets/img/image.png', "Мурад Сарафанов", "5 дней назад", "Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.")
-
-
+body(style="background-color: #E5E5E5; padding: 0; margin: 0;")
+    include ./common.blocks/text-fielqd/text-field.pug
+    include ./common.blocks/text-field/text-field.pug
+        include ./common.blocks/text-fiweld/text-field.pug
+    +text-field("textFieldName", "ДД.ММ.ГГГГ")
