@@ -11,15 +11,14 @@ for (let entryPoint of entryPoints) {
 function formEntry(args: {name: string, template: string}): void {
     const { name, template } = args,
           rawData = fs.readFileSync(path.resolve(__dirname, `${template}.pug`), 'utf8'),
-          comps = getComponents(rawData),
+          { inc, mix, comps } = getComponents(rawData),
           { depss, techs } = getDependencies(comps);
 
-    console.log("formEntry, comps ->\n", comps);
     console.log("formEntry, depss ->\n", depss);
-    console.log("formEntry, removeDifference(depss, comps) ->\n", removeDifference(depss, comps));
+    console.log("formEntry, removeDifference(depss, inc) ->\n", removeDifference(depss, inc));
 
     writeTechs(name, techs);
-    writeDependensies(template, removeDifference(depss, comps));
+    writeDependensies(template, removeDifference(depss, inc));
 }
 
 function writeTechs(name: string, techs: string[]): void {
@@ -54,30 +53,30 @@ function writeDependensies(template: string, depss: string[]): void {
     fs.closeSync(fd);
 }
 
-function getComponents(file: string): string[] {
+function getComponents(file: string): {inc: string[], mix: string[], comps: string[]} {
     const includes = new RegExp(/include.*/gm),
           mixins = new RegExp(/(?<=\+)[a-z\-]*?(?=\(|$)/gm);
-    let rawList = [],
-        acc = [];
+    let comps = [],
+        inc = [],
+        mix = [];
 
-    acc = file.match(includes);
-    if (acc) {
-        rawList.push(...acc);
-        console.log("getComponents, includes ->\n", rawList);
-
-        rawList.map((val, i, arr) => {
+    inc = file.match(includes) || [];
+    console.log("getComponents, includes ->\n", inc);
+    if (inc.length !== 0) {
+        inc.map((val, i, arr) => {
             arr[i] = val.match(/(?<=\w\/)(.*(?=\/))/)[0];
         });
+        comps.push(...inc);
     }
 
-    acc = file.match(mixins);
-    if (acc) {
-        console.log("getComponents, mixins ->\n", acc);
-        rawList.push(...acc);
+    mix = file.match(mixins) || [];
+    console.log("getComponents, mixins ->\n", mix);
+    if (mix.length !== 0) {
+        comps.push(...mix);
     }
-    rawList = removeDuplicates(rawList);
+    comps = removeDuplicates(comps);
 
-    return rawList;
+    return {inc, mix, comps};
 }
 
 function getDependencies(compsArg: string[]): {depss: string[], techs: string[]} {
