@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node src/prepare.ts && webpack --mode development",
     "build": "ts-node src/prepare.ts && webpack --mode prodaction",
-    "test": "ts-node src/prepare.ts",
+    "entry": "ts-node src/prepare.ts",
     "deps": "ts-node src/createDEPS.ts"
   },
   "repository": {

@@ -1,1 +1,1 @@
-{"name":"dropdown","tech":["js","scss"],"deps":["\""," \" dropdown__option-button_blacked\")=\"-\"","label","text-field","icon"," \" dropdown__bar_hidden\" + \" dropdown__bar_shadow\")","option","button-custom"," \" dropdown__bar_hidden\" + \" dropdown__bar_shadow\" + \" dropdown__bar_instant-count\")"]}
+{"name":"dropdown","tech":["js","scss"],"deps":["label","text-field","icon","option","button-custom"]}

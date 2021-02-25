@@ -1,0 +1,10 @@
+import "./common.blocks/logo/logo.scss";
+import "./common.blocks/button-custom/button-custom.scss";
+import "./common.blocks/text-field/text-field.scss";
+import "./common.blocks/radio-button/radio-button.scss";
+import "./common.blocks/label/label.scss";
+import "./common.blocks/subscription-text-field/subscription-text-field.scss";
+import "./common.blocks/icon/icon.scss";
+import "./common.blocks/header/header.scss";
+import "./common.blocks/card-sign-on/card-sign-on.scss";
+import "./common.blocks/footer/footer.scss";

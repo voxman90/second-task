@@ -1,22 +1,19 @@
+include ./common.blocks/logo/logo.pug
+include ./common.blocks/button-custom/button-custom.pug
+include ./common.blocks/text-field/text-field.pug
+include ./common.blocks/radio-button/radio-button.pug
+include ./common.blocks/label/label.pug
+include ./common.blocks/subscription-text-field/subscription-text-field.pug
+include ./common.blocks/icon/icon.pug
 doctype html
 html
-  include ./logo/logo.pug
-  include ./label/label.pug
-  include ./text-field/text-field.pug
-  include ./icon/icon.pug
-  include ./subscription-text-field/subscription-text-field.pug
-  include ./button/button-custom.pug
-  include ./radio-button/radio-button.pug
-  include ./toggle/toggle.pug
-  include ./dropdown/dropdown.pug
-  include ./date-picker/date-picker.pug
-  head
+head
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title Registration
-  body
+body
     div.registration__container
-      include ./header/header.pug
-      div.registration__container-form
-        include ./card-sign-on/card-sign-on.pug
-    include ./footer/footer.pug
+        include ./common.blocks/header/header.pug
+        div.registration__container-form
+            include ./common.blocks/card-sign-on/card-sign-on.pug
+    include ./common.blocks/footer/footer.pug
