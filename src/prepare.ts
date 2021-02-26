@@ -14,16 +14,16 @@ function formEntry(args: {name: string, template: string}): void {
           { inc, mix, comps } = getComponents(rawData),
           { depss, techs } = getDependencies(comps);
 
-    console.log("formEntry, depss ->\n", depss);
-    console.log("formEntry, removeDifference(depss, inc) ->\n", removeDifference(depss, inc));
+    // console.log("formEntry, depss ->\n", depss);
+    // console.log("formEntry, removeDifference(depss, inc) ->\n", removeDifference(depss, inc));
 
     writeTechs(name, techs);
     writeDependensies(template, removeDifference(depss, inc));
 }
 
 function writeTechs(name: string, techs: string[]): void {
-    const file = path.resolve(__dirname, `${name}.js`);
-    let acc = "";
+    const file = path.resolve(__dirname, `${name}.entry.js`);
+    let acc = `import "./style.scss";\n`;
     
     techs.forEach(
         (tech) => acc += `import "${tech}";\n`
@@ -48,7 +48,7 @@ function writeDependensies(template: string, depss: string[]): void {
           fd = fs.openSync(file, "w+");
 
     acc += data;
-    console.log("writeDependensies, acc ->\n", acc);
+    // console.log("writeDependensies, acc ->\n", acc);
     fs.writeSync(fd, acc, 0, 'utf8');
     fs.closeSync(fd);
 }
@@ -61,7 +61,7 @@ function getComponents(file: string): {inc: string[], mix: string[], comps: stri
         mix = [];
 
     inc = file.match(includes) || [];
-    console.log("getComponents, includes ->\n", inc);
+    // console.log("getComponents, includes ->\n", inc);
     if (inc.length !== 0) {
         inc.map((val, i, arr) => {
             arr[i] = val.match(/(?<=\w\/)(.*(?=\/))/)[0];
@@ -70,7 +70,7 @@ function getComponents(file: string): {inc: string[], mix: string[], comps: stri
     }
 
     mix = file.match(mixins) || [];
-    console.log("getComponents, mixins ->\n", mix);
+    // console.log("getComponents, mixins ->\n", mix);
     if (mix.length !== 0) {
         comps.push(...mix);
     }

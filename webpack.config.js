@@ -1,54 +1,53 @@
-const path = require('path')
-const HTMLWebpackPlugin = require('html-webpack-plugin')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const fs = require('fs');
+const path = require('path');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+function getEntry() {
+    const entry = {},
+          plugins = [],
+          data = fs.readFileSync(path.resolve(__dirname, './src/entry.json')),
+          { entryPoints } = JSON.parse(data);
+
+    entryPoints.forEach(
+        (val) => {
+            entry[val.name] = `./${val.name}.entry.js`;
+            plugins.push(
+                new HtmlWebpackPlugin({
+                    chunks: [val.name],
+                    template: `./${val.template}.pug`,
+                    filename: `${val.template}.html`
+                })
+            )
+        }
+    )
+    plugins.push(new CleanWebpackPlugin());
+    plugins.push(new MiniCssExtractPlugin({
+        filename: '[name].css'
+    }));
+
+    return {entry, plugins};
+}
+
+const {entry, plugins} = getEntry();
+
+console.log("entry, plugins", entry, plugins);
 
 module.exports = {
     context: path.resolve(__dirname, 'src/'),
-    entry: './component.js',
+    entry,
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, 'dist')
     },
-    plugins: [
-        // new HTMLWebpackPlugin({
-        //   template: './Cards.pug',
-        //   filename: 'Cards.html'
-        // }),
-        // new HTMLWebpackPlugin({
-        //   template: './Landing page.pug',
-        //   filename: 'Landing page.html'
-        // }),
-        // new HTMLWebpackPlugin({
-        //   template: './Form Elements.pug',
-        //   filename: 'Form Elements.html'
-        // }),
-        // new HTMLWebpackPlugin({
-        //   template: './Colors and Type.pug',
-        //   filename: 'Colors and Type.html'
-        // }),
-        // new HTMLWebpackPlugin({
-        //   template: './Registration.pug',
-        //   filename: 'Registration.html'
-        // }),
-        new HTMLWebpackPlugin({
-          template: './Testing ground.pug',
-          filename: 'Testing ground.html'
-        }),
-        new CleanWebpackPlugin(),
-        new MiniCssExtractPlugin({
-            filename: 'style.css'
-        })
-    ],
+    plugins,
     module: {
         rules: [
             {
                 test: /\.css$/,
                 use: [  
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {}   /* use: ['style-loader', 'css-loader'] */
-                    }, 
+                    MiniCssExtractPlugin.loader,
                     'css-loader'
                 ]
             },

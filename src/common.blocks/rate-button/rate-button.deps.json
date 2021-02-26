@@ -1,7 +1,5 @@
 {
     "block": "rate-button",
     "tech": ["scss", "js"],
-    "deps": [
-        "icon"
-    ]
+    "deps": ["icon"]
 }

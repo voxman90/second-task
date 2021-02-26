@@ -1,12 +1,8 @@
 {
     "entryPoints": [
         {
-            "name": "test.entry",
+            "name": "test",
             "template": "Testing ground"
-        },
-        {
-            "name": "registration.entry",
-            "template": "Registration"
         }
     ]
 }
