@@ -1,5 +1,5 @@
-include ./common.blocks/rate-button/rate-button.pug
-include ./common.blocks/icon/icon.pug
+include ./common.blocks/input-text/input-text.pug
+include ./common.blocks/label/label.pug
 include ./common.blocks/text-field/text-field.pug
 doctype html
 html
@@ -7,5 +7,4 @@ html
         meta(charset="UTF-8")
         title Testing ground
     body(style="background-color: #E5E5E5; padding: 0; margin: 0;")
-        +text-field("textFieldName", "ДД.ММ.ГГГГ")
-        +rate-button(10)
+        +input-text("exp_001", "exp_01", "ВЫЕЗД", "exp_01", 20)

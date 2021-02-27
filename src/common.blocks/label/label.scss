@@ -1,29 +1,30 @@
 @use 'sass:map';
-@use '../colors.scss' as colors;
-@use '../text-setting.scss' as fonts;
+@use '../../colors.scss' as colors;
+@use '../../text-setting.scss' as fonts;
 
 .label {
     width: 100%;
-    padding-bottom: 0.3125rem;
+    padding-bottom: 0.275rem;
+}
 
+.label__clearfix {
     &::after {
         content: "";
         clear: both;
         display: table;
-        width: 100%;
     }
 }
 
-.label__left {
+.label__left-mark {
     float: left;
-    height: 1.25em;
+    height: 0.9375rem;
     text-align: left;
-    @include fonts.label-h3(1.25em);
+    @include fonts.label-h3(0.75rem);
 }
 
-.label__right {
+.label__right-mark {
     float: right;
-    height: 1.25em;
+    height: 0.9375rem;
     text-align: right;
-    @include fonts.label-right(1.25em);
+    @include fonts.label-right(0.75rem);
 }

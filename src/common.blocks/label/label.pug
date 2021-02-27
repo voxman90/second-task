@@ -1,7 +1,7 @@
-mixin label(leftLabel, rightLabel)
+mixin label(left, right)
     label 
-        .label&attributes(attributes)
-        span(class="label__left") #{leftLabel}
-        span(class="label__right") #{rightLabel}
+        .label.label__clearfix&attributes(attributes)
+            span.label__left-mark= left
+            span.label__right-mark= right
         if block
             block

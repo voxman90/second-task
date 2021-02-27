@@ -1,0 +1,10 @@
+{
+    "name": "input",
+    "tech": [
+        "scss"
+    ],
+    "deps": [
+        "label",
+        "text-field"
+    ]
+}
