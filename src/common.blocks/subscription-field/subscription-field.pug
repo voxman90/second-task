@@ -1,0 +1,8 @@
+mixin subscription-field(name, placeholder)
+    div.subscription-field
+        +text-field(name, placeholder)(
+            class="subscription-field__text-field" type="email"
+        )
+        +icon("arrow_forward", "material", "button")(
+            class="subscription-field__submit-button" type="submit"
+        )

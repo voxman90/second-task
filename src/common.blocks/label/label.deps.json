@@ -1,1 +1,7 @@
-{"name":"label","tech":["scss"],"deps":null}
+{
+    "name": "label",
+    "tech": [
+        "scss"
+    ],
+    "deps":null
+}

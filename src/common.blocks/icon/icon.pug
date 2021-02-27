@@ -1,2 +1,2 @@
-mixin icon(text="", font="material", tag="div")
-    #{tag}(class="icon_font_" + font)&attributes(attributes)= text
+mixin icon(text, font, tag)
+    #{tag}(class=`icon icon_font_${font}`)&attributes(attributes)= text
