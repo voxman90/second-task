@@ -1,11 +1,10 @@
 mixin rate-button(amount, filled=0)
-    .rate-button.js-rate-button
+    div(data-value=filled).rate-button.js-rate-button
         - let i = 0
         while i < filled
-            +icon("star").rate-button__icon
+            +icon("star")(data-index=i).rate-button__icon.js-rate-button__icon
             - i += 1
         while filled < amount
-            +icon("star_border")(class="rate-button__icon")
+            +icon("star_border")(data-index=filled).rate-button__icon.js-rate-button__icon
             - filled += 1
-    
     

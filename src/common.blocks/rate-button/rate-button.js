@@ -1,43 +1,65 @@
-import { makeId } from "../../scripts.ts";
-
-document.addEventListener("DOMContentLoaded", function() {
-    const buttons = document.body.querySelectorAll(".js-rate-button");
-
-    for (const button of buttons) {
-        button.addEventListener("mouseup", (e) => {
-            let ct = e.currentTarget;
-            if (ct.classList.contains("rate-button__icon")) {
-                if (ct.innerText === "star") {
-                    ct.innerText = "star_border";
-                while (target.nextElementSibling !== null)
-                {
-                    target = target.nextElementSibling;
-                    target.innerText = "star_border";
-                }
-                } else {
-                target.innerText = "star"
-                while (target.previousElementSibling !== null)
-                {
-                    target = target.previousElementSibling;
-                    if (target.innerText === "star") {
-                    break;
-                    }
-                    target.innerText = "star";
-                }
-            }
-            }
-        });
-    }
-});
+import { bindEventWithId } from "../../scripts.ts";
 
 class RateButton {
-    bindEventListeners(button) {
-        const id = `rateButton${makeId(16)}`;
-        button.addEventListener()
+    constructor(elem) {
+        this.ICON_STATES = ["star_border", "star"];
+        this.compName = "rateButton";
+        this.head = elem;
+        this.icons = this.getIcons();
+        this.value = this.getValue();
+
+        this.bindEventListeners();
+    }
+
+    getValue() {
+        return this.head.getAttribute("data-value");
+    }
+
+    setValue(value) {
+        this.value = value;
+        this.head.setAttribute("data-value", value);
+    }
+
+    drawValue(value) {
+        const current = this.value;
+        let from = Math.min(current, value);
+        const to = Math.max(current, value);
+        const state = (value <= current) ? 0 : 1;
+        if (from === to) {
+            from = from - 1;
+            value = value - 1;
+        }
+
+        for (let i = from; i < to; i++) {
+            this.icons[i].innerHTML = this.ICON_STATES[state];
+        }
+
+        this.setValue(value);
+    }
+
+    getIcons() {
+        return this.head.querySelectorAll(".js-rate-button__icon");
+    }
+
+    bindEventListeners() {
+        bindEventWithId({
+            elem: this.head,
+            evt: "mouseup",
+            callback: this.handleButtonMouseup,
+            options: null,
+            compName: this.compName,
+            that: this
+        });
     }
     
-    handleButtonClick() {
+    handleButtonMouseup(event, that) {
+        const et = event.target;
 
+        if (et.classList.contains("js-rate-button__icon")) {
+            const value = Number.parseInt(et.getAttribute("data-index")) + 1;
+
+            that.drawValue(value);
+        }
     }
 }
 
@@ -45,8 +67,8 @@ function initRateButtons() {
     const buttons = document.querySelectorAll(".js-rate-button");
 
     for (const button of buttons) {
-        RateButton.bindEventListeners(button);
+        new RateButton(button);
     }
-}
+} 
 
-document.addEventListener("DOMContentLoaded", initRateButtons());
+document.addEventListener("DOMContentLoaded", initRateButtons);

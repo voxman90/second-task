@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node src/prepare.ts && webpack --mode development",
     "build": "ts-node src/prepare.ts && webpack --mode prodaction",
-    "entry": "ts-node src/prepare.ts",
+    "prep": "ts-node src/prepare.ts",
     "deps": "ts-node src/createDEPS.ts"
   },
   "repository": {
@@ -32,6 +32,10 @@
   },
   "homepage": "https://github.com/voxman90/second-task#readme",
   "devDependencies": {
+    "@babel/core": "^7.13.8",
+    "@babel/preset-env": "^7.13.8",
+    "@babel/preset-typescript": "^7.13.0",
+    "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.6.0",
     "dart-sass": "^1.25.0",
@@ -44,7 +48,7 @@
     "sass-loader": "^9.0.2",
     "style-loader": "^1.2.1",
     "ts-node": "^9.1.1",
-    "typescript": "^4.1.5",
+    "typescript": "^4.2.2",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"

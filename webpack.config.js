@@ -32,14 +32,15 @@ function getEntry() {
 
 const {entry, plugins} = getEntry();
 
-console.log("entry, plugins", entry, plugins);
-
 module.exports = {
     context: path.resolve(__dirname, 'src/'),
     entry,
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, 'dist')
+    },
+    resolve: {
+        extensions: ['.ts', '.js', '.json'],
     },
     plugins,
     module: {
@@ -67,20 +68,49 @@ module.exports = {
                 test: /\.(ttf|eot|otf|woff|woff2)$/i,
                 loader: 'file-loader',
                 options: {
-                  name: '[name].[ext]',
-                  outputPath: 'assets/fonts/'
+                    name: '[name].[ext]',
+                    outputPath: 'assets/fonts/'
                 }
             },
             {
-              test: /\.s[ac]ss$/i,
-              use: [
-                {
-                  loader: MiniCssExtractPlugin.loader,
-                  options: {}
-                },
-                'css-loader',
-                'sass-loader'
-              ],
+                test: /\.s[ac]ss$/i,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {}
+                    },
+                    'css-loader',
+                    'sass-loader'
+                ],
+            },
+            {   
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: [
+                                '@babel/preset-env'
+                            ]
+                        },
+                    }
+                ]
+            },
+            {   
+                test: /\.ts$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: [
+                                '@babel/preset-env',
+                                '@babel/preset-typescript'
+                            ]
+                        },
+                    }
+                ]
             },
         ]
     }
