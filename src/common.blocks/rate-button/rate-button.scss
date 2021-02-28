@@ -5,13 +5,15 @@
 .rate-button {
     display: flex;
     width: min-content;
-    height: 24px;
+    height: 1.5rem;
 }
 
-.rate-button__icon {
+.icon.rate-button__icon {
+    width: 1.5rem;
+
     background: linear-gradient(180deg, map.get(colors.$map, "purple") 0%, map.get(colors.$map, "malibu") 100%);
     -webkit-background-clip: text;
+            background-clip: text;
     -webkit-text-fill-color: transparent;
     cursor: pointer;
-    width: 24px;
 }

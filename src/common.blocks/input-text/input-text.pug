@@ -1,5 +1,5 @@
 mixin input-text(name, placeholder, left, right, size)
-    - var size = (size === 20) ? 20 : 10;
+    - const size = (size === 20) ? 20 : 10;
     div(class=`input-text input-text_width_${size}rem`)
         +label(left, right)
             +text-field(name, placeholder)

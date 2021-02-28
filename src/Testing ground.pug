@@ -1,3 +1,4 @@
+include ./common.blocks/rate-button/rate-button.pug
 include ./common.blocks/subscription-field/subscription-field.pug
 include ./common.blocks/icon/icon.pug
 include ./common.blocks/input-text/input-text.pug
@@ -11,3 +12,4 @@ html
     body(style="background-color: #E5E5E5; padding: 0; margin: 0;")
         +input-text("exp_001", "exp_01", "ВЫЕЗД", "exp_01", 20)
         +subscription-field("exp_002", "maxim.90svet@gmail.com")
+        +rate-button(10, 2)
