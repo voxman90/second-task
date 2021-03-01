@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use '../colors' as colors;
-@use '../text-setting' as fonts;
+@use '../../colors' as colors;
+@use '../../text-setting' as fonts;
 
 .bullet-list {
     width: 18.25rem

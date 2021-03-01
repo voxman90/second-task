@@ -1,5 +1,0 @@
-{
-    "block": "text-field-masked",
-    "tech": ["scss", "js"],
-    "deps": ["text-field"]
-}

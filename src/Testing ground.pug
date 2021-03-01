@@ -1,3 +1,4 @@
+include ./common.blocks/bullet-list/bullet-list.pug
 include ./common.blocks/input-text/input-text.pug
 include ./common.blocks/subscription-field/subscription-field.pug
 include ./common.blocks/rate-button/rate-button.pug
@@ -12,4 +13,13 @@ html
     body(style="background-color: #E5E5E5; padding: 0; margin: 0;")
         +input-text("exp_001", "exp_01", "ВЫЕЗД", "exp_01", 20)
         +subscription-field("exp_002", "maxim.90svet@gmail.com")
+        +rate-button(7, 0)
         +rate-button(10, 2)
+        +rate-button(5, 5)
+        - 
+            var items_001 = [
+                "Первая строка",
+                "Вторая строка",
+                "Третья строка"
+            ]
+        +bullet-list(items_001)
