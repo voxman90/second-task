@@ -1,4 +1,5 @@
 import "./style.scss";
+import "./common.blocks/button/button.scss";
 import "./common.blocks/bullet-list/bullet-list.scss";
 import "./common.blocks/input-text/input-text.scss";
 import "./common.blocks/subscription-field/subscription-field.scss";

@@ -1,3 +1,4 @@
+include ./common.blocks/button/button.pug
 include ./common.blocks/bullet-list/bullet-list.pug
 include ./common.blocks/input-text/input-text.pug
 include ./common.blocks/subscription-field/subscription-field.pug
@@ -23,3 +24,10 @@ html
                 "Третья строка"
             ]
         +bullet-list(items_001)
+        +button("Обычная", "button_001")
+        +button("Длинная", "button_002").button_style_border.button_size_long
+        +button("Длинная", "button_003").button_style_fill.button_size_long
+        +button("Рамкой", "button_004").button_style_border.button_size_short
+        +button("Заполненная", "button_005").button_style_fill.button_size_short
+        br
+        +button("Стрелка", "button_006").button_style_border.button_size_long.button_arrowed
