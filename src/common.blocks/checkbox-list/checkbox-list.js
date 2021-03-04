@@ -1,36 +1,38 @@
-function containsIn(supposedParent, checkedNode) {
-  let isSameNodes = false;
-  let ancestor = checkedNode;
-  while ((ancestor !== null) && !isSameNodes) {    
-    if (ancestor.isSameNode(supposedParent)) {
-      isSameNodes = true;
-    } else {
-      ancestor = ancestor.parentNode;
+import { bindEventWithId } from "../../scripts.ts";
+
+class CheckboxList {
+    constructor(elem) {
+        this.head = elem;
+        this.icon = elem.firstElementChild;
+        this.dropdown = elem.nextElementSibling;
+        this.compName = "CheckboxList";  
+
+        this.bindEventListeners();
     }
-  }
-  return isSameNodes;
+
+    toggleDropdown(event, that) {
+        that.dropdown.classList.toggle("checkbox-list__dropdown_hidden");
+        that.icon.classList.toggle("checkbox-list__icon_turn_180deg");
+    } 
+
+    bindEventListeners() {
+        bindEventWithId({
+            elem: this.head,
+            evt: "mousedown",
+            callback: this.toggleDropdown,
+            options: null,
+            compName: this.compName,
+            that: this
+        });
+    }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const checkboxForms = document.querySelectorAll(".checkbox-list");
-  for (let i = 0; i < checkboxForms.length; i++) {
-    const checkboxForm = checkboxForms[i];
-    const checkboxIcon = checkboxForm.firstElementChild;
-    const checkboxDropdown = checkboxForm.nextElementSibling;
-    
+function initCheckboxList() {
+    const checkboxList = document.querySelectorAll(".js-checkbox-list");
 
-    checkboxForm.addEventListener("mousedown", function () {
-      checkboxDropdown.classList.toggle("checkbox-list__dropdown_hidden");
-      checkboxIcon.classList.toggle("checkbox-list__icon_turn");
-    });   
+    for (const checkbox of checkboxList) {
+        new CheckboxList(checkbox);
+    }
+} 
 
-    document.addEventListener("mousedown", function (event) {
-      if (!containsIn(checkboxDropdown, event.target) 
-      && !containsIn(checkboxForm, event.target) 
-      && !checkboxDropdown.classList.contains("checkbox-list__dropdown_hidden")) {
-        checkboxDropdown.classList.add("checkbox-list__dropdown_hidden");
-        checkboxIcon.classList.toggle("checkbox-list__icon_turn");
-      }
-    });
-  }
-});
+document.addEventListener("DOMContentLoaded", initCheckboxList);

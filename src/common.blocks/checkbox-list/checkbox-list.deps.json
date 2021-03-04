@@ -1,1 +1,10 @@
-{"name":"checkbox-list","tech":["js","scss"],"deps":["icon"]}
+{
+    "name": "checkbox-list",
+    "tech": [
+        "js",
+        "scss"
+    ],
+    "deps": [
+        "icon"
+    ]
+}

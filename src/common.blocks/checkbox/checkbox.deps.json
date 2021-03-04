@@ -1,1 +1,7 @@
-{"name":"checkbox","tech":["scss"],"deps":null}
+{
+    "name": "checkbox",
+    "tech": [
+        "scss"
+    ],
+    "deps": null
+}

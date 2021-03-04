@@ -42,7 +42,7 @@ function attachCompName(elem: HTMLElement, compName: string): void {
 
 function bindEventWithId(arg: {that: any, elem: HTMLElement, callback: any, evt: string, compName: string, options: any}): void {
     const {that, elem, callback, evt, compName, options} = arg;
-    attachCompName(elem, compName);
+    if (compName !== null) {attachCompName(elem, compName);}
     const id = getDataId(elem);
     const evtName = `${evt}.${compName}${id}`;
     

@@ -1,3 +1,5 @@
+include ./common.blocks/checkbox-list/checkbox-list.pug
+include ./common.blocks/checkbox/checkbox.pug
 include ./common.blocks/button/button.pug
 include ./common.blocks/bullet-list/bullet-list.pug
 include ./common.blocks/input-text/input-text.pug
@@ -31,3 +33,12 @@ html
         +button("Заполненная", "button_005").button_style_fill.button_size_short
         br
         +button("Стрелка", "button_006").button_style_border.button_size_long.button_arrowed
+        +button("Стрелка", "button_007").button_style_fill.button_size_long.button_arrowed
+        br
+        +checkbox({name:"name", value:0, text:"text", size:"222px"})
+        div(style="width: 222px;")
+            +checkbox-list()
+                +checkbox({name:"name", value:0, text:"text", size:"222px"})
+                +checkbox({name:"name", value:0, text:"text", size:"222px"})
+                +checkbox({name:"name", value:0, text:"text", size:"222px"})
+                +checkbox({name:"name", value:0, text:"text", size:"222px"})

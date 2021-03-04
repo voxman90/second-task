@@ -1,8 +1,7 @@
-mixin checkbox(inputName="DEFAULT", inputValue="DEFAULT", inputLabel="DEFAULT", boxSize="input_222px")
-  div(class=boxSize)
+mixin checkbox(args={name:"", value: "", text:""})
+    - var {name, value, text, size} = args
     label.checkbox
-      input.checkbox__input(type="checkbox" name=inputName value=inputValue)
-      div(class="checkbox__label")&attributes(attributes)=inputLabel
-      if block
-        block
-
+        input.checkbox__input(type="checkbox" name=name value=value)
+        .checkbox__text&attributes(attributes)= text
+        if block
+            block
