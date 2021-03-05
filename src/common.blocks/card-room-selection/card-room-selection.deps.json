@@ -1,1 +1,12 @@
-{"name":"card-room-selection","tech":["scss"],"deps":["date-picker","input-dropdown","button-custom"]}
+{
+ "name": "card-room-selection",
+ "techs": [
+  "scss",
+  "pug"
+ ],
+ "deps": [
+  "date-picker",
+  "input-dropdown",
+  "button-custom"
+ ]
+}

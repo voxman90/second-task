@@ -1,1 +1,11 @@
-{"name":"header","tech":["scss"],"deps":["logo","button-custom"]}
+{
+ "name": "header",
+ "techs": [
+  "scss",
+  "pug"
+ ],
+ "deps": [
+  "logo",
+  "button-custom"
+ ]
+}

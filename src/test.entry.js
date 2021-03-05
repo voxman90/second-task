@@ -1,6 +1,7 @@
 import "./style.scss";
-import "./common.blocks/checkbox-list/checkbox-list.js";
-import "./common.blocks/checkbox-list/checkbox-list.scss";
+import "./common.blocks/checkbox-rich/checkbox-rich.scss";
+import "./common.blocks/expandable-list/expandable-list.js";
+import "./common.blocks/expandable-list/expandable-list.scss";
 import "./common.blocks/checkbox/checkbox.scss";
 import "./common.blocks/button/button.scss";
 import "./common.blocks/bullet-list/bullet-list.scss";

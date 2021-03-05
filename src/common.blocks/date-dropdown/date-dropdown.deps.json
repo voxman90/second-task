@@ -1,1 +1,8 @@
-{"name":"date-dropdown","tech":["scss"],"deps":null}
+{
+ "name": "date-dropdown",
+ "techs": [
+  "scss",
+  "pug"
+ ],
+ "deps": null
+}

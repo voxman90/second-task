@@ -1,12 +1,11 @@
 {
- "name": "footer",
+ "name": "expandable-list",
  "techs": [
+  "js",
   "scss",
   "pug"
  ],
  "deps": [
-  "logo",
-  "subscription-text-field",
   "icon"
  ]
 }

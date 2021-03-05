@@ -1,1 +1,15 @@
-{"name":"dropdown","tech":["js","scss"],"deps":["label","text-field","icon","option","button-custom"]}
+{
+ "name": "dropdown",
+ "techs": [
+  "js",
+  "scss",
+  "pug"
+ ],
+ "deps": [
+  "label",
+  "text-field",
+  "icon",
+  "option",
+  "button-custom"
+ ]
+}

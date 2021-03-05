@@ -1,10 +1,11 @@
 {
-    "name": "input",
-    "tech": [
-        "scss"
-    ],
-    "deps": [
-        "label",
-        "text-field"
-    ]
+ "name": "input-text",
+ "techs": [
+  "scss",
+  "pug"
+ ],
+ "deps": [
+  "label",
+  "text-field"
+ ]
 }

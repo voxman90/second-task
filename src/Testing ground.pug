@@ -1,13 +1,3 @@
-include ./common.blocks/checkbox-list/checkbox-list.pug
-include ./common.blocks/checkbox/checkbox.pug
-include ./common.blocks/button/button.pug
-include ./common.blocks/bullet-list/bullet-list.pug
-include ./common.blocks/input-text/input-text.pug
-include ./common.blocks/subscription-field/subscription-field.pug
-include ./common.blocks/rate-button/rate-button.pug
-include ./common.blocks/label/label.pug
-include ./common.blocks/text-field/text-field.pug
-include ./common.blocks/icon/icon.pug
 doctype html
 html
     head
@@ -35,10 +25,13 @@ html
         +button("Стрелка", "button_006").button_style_border.button_size_long.button_arrowed
         +button("Стрелка", "button_007").button_style_fill.button_size_long.button_arrowed
         br
-        +checkbox({name:"name", value:0, text:"text", size:"222px"})
+        +checkbox({name:"name", value:0, text:"text"})
         div(style="width: 222px;")
-            +checkbox-list()
-                +checkbox({name:"name", value:0, text:"text", size:"222px"})
-                +checkbox({name:"name", value:0, text:"text", size:"222px"})
-                +checkbox({name:"name", value:0, text:"text", size:"222px"})
-                +checkbox({name:"name", value:0, text:"text", size:"222px"})
+            +expandable-list()
+                +checkbox({name:"name", value:0, text:"text"})
+                +checkbox({name:"name", value:0, text:"text"})
+                +checkbox({name:"name", value:0, text:"text"})
+                +checkbox({name:"name", value:0, text:"text"})
+        +checkbox-rich({name:"", value: "", text: "Подпись 1", subtext:"Подпись 2"})
+        +comment({URL:"", header:"", date:"", body:""})
+        

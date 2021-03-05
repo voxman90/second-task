@@ -1,1 +1,10 @@
-{"name":"icon-list-item","tech":["scss"],"deps":["icon"]}
+{
+ "name": "icon-list-item",
+ "techs": [
+  "scss",
+  "pug"
+ ],
+ "deps": [
+  "icon"
+ ]
+}

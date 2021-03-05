@@ -4,25 +4,30 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-function getEntry() {
-    const entry = {},
-          plugins = [],
-          data = fs.readFileSync(path.resolve(__dirname, './src/entry.json')),
-          { entryPoints } = JSON.parse(data);
+function configureEntry(conf, entry, plugins) {
+    entry[conf.name] = `./${conf.name}.entry.js`;
 
-    entryPoints.forEach(
-        (val) => {
-            entry[val.name] = `./${val.name}.entry.js`;
-            plugins.push(
-                new HtmlWebpackPlugin({
-                    chunks: [val.name],
-                    template: `./${val.template}.pug`,
-                    filename: `${val.template}.html`
-                })
-            )
-        }
+    plugins.push(
+        new HtmlWebpackPlugin({
+            chunks: [conf.name],
+            template: `./${conf.template}.pug`,
+            filename: `${conf.template}.html`
+        })
     )
+}
+
+function getEntries() {
+    const entry = {};
+    const plugins = [];
+    const data = fs.readFileSync(path.resolve(__dirname, './src/entry.json'));
+    const {entries} = JSON.parse(data);
+
+    entries.forEach(
+        (conf) => configureEntry(conf, entry, plugins)
+    );
+
     plugins.push(new CleanWebpackPlugin());
+
     plugins.push(new MiniCssExtractPlugin({
         filename: '[name].css'
     }));
@@ -30,7 +35,7 @@ function getEntry() {
     return {entry, plugins};
 }
 
-const {entry, plugins} = getEntry();
+const {entry, plugins} = getEntries();
 
 module.exports = {
     context: path.resolve(__dirname, 'src/'),

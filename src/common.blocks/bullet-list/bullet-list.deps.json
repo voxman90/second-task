@@ -1,9 +1,10 @@
 {
-    "name": "bullet-list",
-    "tech": [
-        "scss"
-    ],
-    "deps": [
-        "label"
-    ]
+ "name": "bullet-list",
+ "techs": [
+  "scss",
+  "pug"
+ ],
+ "deps": [
+  "label"
+ ]
 }

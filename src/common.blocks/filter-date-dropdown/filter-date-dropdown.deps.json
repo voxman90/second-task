@@ -1,1 +1,14 @@
-{"name":"filter-date-dropdown","tech":["js","scss"],"deps":["label","text-field","icon","calendar"]}
+{
+ "name": "filter-date-dropdown",
+ "techs": [
+  "js",
+  "scss",
+  "pug"
+ ],
+ "deps": [
+  "label",
+  "text-field",
+  "icon",
+  "calendar"
+ ]
+}

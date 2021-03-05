@@ -1,7 +1,8 @@
 {
-    "name": "icon",
-    "tech": [
-        "scss"
-    ],
-    "deps": null
+ "name": "icon",
+ "techs": [
+  "scss",
+  "pug"
+ ],
+ "deps": null
 }

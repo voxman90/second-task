@@ -1,1 +1,13 @@
-{"name":"card-price-calculator","tech":["js","scss"],"deps":["date-picker","input-dropdown","button-custom"]}
+{
+ "name": "card-price-calculator",
+ "techs": [
+  "js",
+  "scss",
+  "pug"
+ ],
+ "deps": [
+  "date-picker",
+  "input-dropdown",
+  "button-custom"
+ ]
+}

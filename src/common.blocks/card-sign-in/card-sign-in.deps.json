@@ -1,1 +1,11 @@
-{"name":"card-sign-in","tech":["scss"],"deps":["text-field","button-custom"]}
+{
+ "name": "card-sign-in",
+ "techs": [
+  "scss",
+  "pug"
+ ],
+ "deps": [
+  "text-field",
+  "button-custom"
+ ]
+}

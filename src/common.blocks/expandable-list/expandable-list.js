@@ -1,18 +1,18 @@
 import { bindEventWithId } from "../../scripts.ts";
 
-class CheckboxList {
+class ExpandableList {
     constructor(elem) {
         this.head = elem;
         this.icon = elem.firstElementChild;
         this.dropdown = elem.nextElementSibling;
-        this.compName = "CheckboxList";  
+        this.compName = "ExpandableList";  
 
         this.bindEventListeners();
     }
 
     toggleDropdown(event, that) {
-        that.dropdown.classList.toggle("checkbox-list__dropdown_hidden");
-        that.icon.classList.toggle("checkbox-list__icon_turn_180deg");
+        that.dropdown.classList.toggle("expandable-list__dropdown_hidden");
+        that.icon.classList.toggle("expandable-list__icon_turn_180deg");
     } 
 
     bindEventListeners() {
@@ -27,12 +27,12 @@ class CheckboxList {
     }
 }
 
-function initCheckboxList() {
-    const checkboxList = document.querySelectorAll(".js-checkbox-list");
+function initExpandableList() {
+    const expandableLists = document.querySelectorAll(".js-expandable-list");
 
-    for (const checkbox of checkboxList) {
-        new CheckboxList(checkbox);
+    for (const expandable of expandableLists) {
+        new ExpandableList(expandable);
     }
 } 
 
-document.addEventListener("DOMContentLoaded", initCheckboxList);
+document.addEventListener("DOMContentLoaded", initExpandableList);

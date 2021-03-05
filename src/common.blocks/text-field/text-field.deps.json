@@ -1,5 +1,8 @@
 {
-    "block": "text-field",
-    "tech": ["scss"],
-    "deps": null
+ "name": "text-field",
+ "techs": [
+  "scss",
+  "pug"
+ ],
+ "deps": null
 }

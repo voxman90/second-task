@@ -1,0 +1,6 @@
+mixin expandable-list(name="")
+    .expandable-list.js-expandable-list= name
+        +icon("expand_more").expandable-list__icon
+    .expandable-list__dropdown.expandable-list__dropdown_hidden
+        if block
+            block

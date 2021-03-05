@@ -1,1 +1,15 @@
-{"name":"date-picker","tech":["js","scss"],"deps":["icon","button-custom","label","text-field","calendar"]}
+{
+ "name": "date-picker",
+ "techs": [
+  "js",
+  "scss",
+  "pug"
+ ],
+ "deps": [
+  "icon",
+  "button-custom",
+  "label",
+  "text-field",
+  "calendar"
+ ]
+}

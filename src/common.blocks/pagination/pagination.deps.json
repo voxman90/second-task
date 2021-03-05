@@ -1,1 +1,11 @@
-{"name":"pagination","tech":["js","scss"],"deps":["icon"," вариантов аренды"]}
+{
+ "name": "pagination",
+ "techs": [
+  "js",
+  "scss",
+  "pug"
+ ],
+ "deps": [
+  "icon"
+ ]
+}

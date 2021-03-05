@@ -1,5 +1,5 @@
 {
-    "entryPoints": [
+    "entries": [
         {
             "name": "test",
             "template": "Testing ground"

@@ -2,37 +2,36 @@
 @use "../../colors" as colors;
 @use "../../text-setting" as fonts;
 
-.checkbox-list {
+.expandable-list {
     position: relative;
     width: 100%;
     height: 44px;
     @include fonts.label-h3(44px);
-    margin-top: 20px;
 }
 
-.checkbox-list__icon {
+.expandable-list__icon {
     position: absolute;
     top: 10px;
     right: 0px;
     box-sizing: content-box;
     width: 44px;
     height: 24px;
-    color: map.get(colors.$map, 'dark-shade-50');
+
     text-align: center;
+    color: map.get(colors.$map, 'dark-shade-50');
 }
 
-.checkbox-list__icon_turn_180deg {
+.expandable-list__icon_turn_180deg {
     transform: rotate(180deg);
 }
 
-.checkbox-list__dropdown {
+.expandable-list__dropdown {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
     height: fit-content;
-    background-color: #FFFFFF;
 }
 
-.checkbox-list__dropdown_hidden {
+.expandable-list__dropdown_hidden {
     display: none;
 }
