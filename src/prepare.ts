@@ -1,3 +1,5 @@
+"use strict"
+
 class Vertex {
     value: number | string;
     links: Vertex[];
@@ -24,8 +26,36 @@ class Graph {
         this.verts = [];
     }
 
-    addVertex(vert: Vertex) {
+    addVertex(vert: Vertex): void {
         this.verts.push(vert);
+    }
+}
+
+class ComponentsGraph extends Graph {
+    getTechs(): {templs: string[], styles: string[], scripts: string[]} {
+        const templs = [];
+        const styles = [];
+        const scripts = [];
+
+        for (let vert of this.verts) {
+            if (vert.techs.includes("pug")) {
+                templs.unshift(vert.value);
+            }
+
+            if (vert.techs.includes("scss")) {
+                styles.unshift(vert.value);
+            }
+
+            if (vert.techs.includes("js")) {
+                scripts.unshift(vert.value);
+            }
+        }
+
+        return {
+            templs,
+            styles,
+            scripts
+        };
     }
 }
 
@@ -35,9 +65,13 @@ class TopologicalSort {
     stack: Vertex[];
 
     constructor(graph: Graph) {
-        this.graph = Object.assign({}, graph);
+        this.graph = graph;
         this.list = [];
         this.stack = [];
+
+        this.sort();
+        this.removeServiceProperties();
+        graph.verts = [].concat(this.stack);
     }
 
     sort() {
@@ -80,6 +114,12 @@ class TopologicalSort {
         root.color = "black";
         this.stack.unshift(root);
     }
+
+    removeServiceProperties() {
+        for (let vert of this.stack) {
+            delete vert.color;
+        }
+    }
 }
 
 (function() {
@@ -97,15 +137,18 @@ class TopologicalSort {
         const {name, template} = args;
 
         const data = fs.readFileSync(path.resolve(__dirname, `${template}.pug`), 'utf8');
-        const {inc, mix, comps} = extractComponentsFromTemplate(data);
+        let {inc, mix, comps} = extractComponentsFromTemplate(data);
 
         const compGraph = createComponentsGraph(comps);
+        new TopologicalSort(compGraph);
 
-        console.log(compGraph.verts);
+        const {templs, styles, scripts} = compGraph.getTechs();
+        writeIncludes(template, removeDifference(templs, inc));
+        writeImports(name, styles, scripts);
     }
 
-    function createComponentsGraph(comps: string[]): Graph {
-        let compGraph = new Graph();
+    function createComponentsGraph(comps: string[]): ComponentsGraph {
+        let compGraph = new ComponentsGraph();
 
         compGraph.verts = createComponentsVertexList(comps);
 
@@ -142,7 +185,7 @@ class TopologicalSort {
         const obj = JSON.parse(fd);
         let {name, deps, techs} = obj;
         if (deps === null) {
-            deps = []
+            deps = [];
         }
 
         const vert = new Vertex(name);
@@ -174,6 +217,38 @@ class TopologicalSort {
         };
     }
 
+    function writeIncludes(template: string, comps: string[]): void {
+        const root = "./common.blocks";
+        const reducer = (acc, comp) => acc += `include ${root}/${comp}/${comp}.pug\n`;
+        let inc = comps.reduce(reducer, "");
+
+        const file = path.resolve(__dirname, `${template}.pug`);
+        const data = fs.readFileSync(file, "utf8");
+        inc += data;
+
+        const fd = fs.openSync(file, "w+");
+        fs.writeSync(fd, inc, 0, "utf8");
+        fs.closeSync(fd);
+    }
+
+    function writeImports(name: string, styles: string[], scripts: string[]): void {
+        const root = "./common.blocks";
+        let imports = 'import "./fonts.scss";\n';
+        
+        styles.forEach(
+            (style) => imports += `import "${root}/${style}/${style}.scss";\n`
+        );
+
+        scripts.forEach(
+            (script) => imports += `import "${root}/${script}/${script}.js";\n`
+        );
+
+        const file = path.resolve(__dirname, `${name}.entry.js`);
+        const fd = fs.openSync(file, "w+");
+        fs.writeSync(fd, imports, 0, "utf8");
+        fs.closeSync(fd);
+    }
+
     function extractComponentsFromTemplate(data: string): {inc: string[], mix: string[], comps: string[]} {
         const includes = new RegExp(/include.*/gm);
         const mixins = new RegExp(/(?<=\+)[a-z\-]*?(?=\(|$)/gm);
@@ -197,6 +272,7 @@ class TopologicalSort {
         }
         
         comps = removeDuplicates([...inc, ...mix]);
+        mix = removeDifference(mix, inc);
 
         return {inc, mix, comps};
     }
@@ -218,35 +294,4 @@ class TopologicalSort {
         );
         return acc;
     }
-
-    // function writeTechs(name: string, techs: string[]): void {
-    //     const file = path.resolve(__dirname, `${name}.entry.js`);
-    //     let acc = `import "./style.scss";\n`;
-        
-    //     techs.forEach(
-    //         (tech) => acc += `import "${tech}";\n`
-    //     );
-
-    //     fs.open(file, "w+", (err, fd) => {
-    //         fs.write(fd, acc, 0, 'utf8', () => {});
-    //         fs.close(fd, () => {});
-    //     });
-    // }
-
-    // function writeDependensies(template: string, depss: string[]): void {
-    //     const root = "./common.blocks";
-    //     const file = path.resolve(__dirname, `${template}.pug`);
-    //     let acc = "";
-        
-    //     depss.forEach(
-    //         (deps) => acc += `include ${root}/${deps}/${deps}.pug\n`
-    //     );
-        
-    //     const data = fs.readFileSync(file, "utf8"), 
-    //         fd = fs.openSync(file, "w+");
-
-    //     acc += data;
-    //     fs.writeSync(fd, acc, 0, 'utf8');
-    //     fs.closeSync(fd);
-    // }
 }());
