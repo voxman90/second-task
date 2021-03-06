@@ -1,3 +1,5 @@
+include ./common.blocks/icon-item/icon-item.pug
+include ./common.blocks/radio-button/radio-button.pug
 include ./common.blocks/label/label.pug
 include ./common.blocks/text-field/text-field.pug
 include ./common.blocks/input-text/input-text.pug
@@ -46,5 +48,6 @@ html
                 +checkbox({name:"name", value:0, text:"text"})
                 +checkbox({name:"name", value:0, text:"text"})
         +checkbox-rich({name:"", value: "", text: "Подпись 1", subtext:"Подпись 2"})
-        +comment({URL:"", header:"", date:"", body:""})
-        
+        +like-button("first", "12", 123)
+        +radio-button({name:"", value: "", text: "Подпись 1"})
+        +icon-item()

@@ -1,8 +1,8 @@
 {
- "name": "radio-button",
- "techs": [
-  "scss",
-  "pug"
- ],
- "deps": null
+    "name": "radio-button",
+    "techs": [
+        "scss",
+        "pug"
+    ],
+    "deps": null
 }

@@ -1,4 +1,5 @@
-mixin radio-button(buttonName, buttonValue, buttonLabel)
+mixin radio-button(args={name:"", value:"", text:""})
+    - var {name, value, text} = args
     label.radio-button&attributes(attributes)
-        input.radio-button__input(type="radio" name=buttonName value=buttonValue)
-        div.radio-button__label= buttonLabel
+        input.radio-button__input(type="radio" name=name value=value)
+        .radio-button__text= text

@@ -2,7 +2,8 @@
     "entries": [
         {
             "name": "test",
-            "template": "Testing ground"
+            "template": "Testing ground",
+            "style": "style"
         }
     ]
 }

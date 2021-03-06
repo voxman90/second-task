@@ -133,8 +133,8 @@ class TopologicalSort {
         createEntry(entry);
     }
 
-    function createEntry(args: {name: string, template: string}): void {
-        const {name, template} = args;
+    function createEntry(args: {name: string, template: string, style: string}): void {
+        const {name, template, style} = args;
 
         const data = fs.readFileSync(path.resolve(__dirname, `${template}.pug`), 'utf8');
         let {inc, mix, comps} = extractComponentsFromTemplate(data);
@@ -144,7 +144,7 @@ class TopologicalSort {
 
         const {templs, styles, scripts} = compGraph.getTechs();
         writeIncludes(template, removeDifference(templs, inc));
-        writeImports(name, styles, scripts);
+        writeImports(name, style, styles, scripts);
     }
 
     function createComponentsGraph(comps: string[]): ComponentsGraph {
@@ -231,9 +231,9 @@ class TopologicalSort {
         fs.closeSync(fd);
     }
 
-    function writeImports(name: string, styles: string[], scripts: string[]): void {
+    function writeImports(name: string, style: string, styles: string[], scripts: string[]): void {
         const root = "./common.blocks";
-        let imports = 'import "./fonts.scss";\n';
+        let imports = `import "./${style}.scss";\n`;
         
         styles.forEach(
             (style) => imports += `import "${root}/${style}/${style}.scss";\n`

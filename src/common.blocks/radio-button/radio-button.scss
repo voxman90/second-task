@@ -11,7 +11,7 @@
     min-width: min-content;
 }
 
-.radio-button__label {
+.radio-button__text {
     position: relative;
     height: 24px;
     margin-left: 9.2px;
@@ -20,7 +20,7 @@
     color: map.get(colors.$map, dark-shade-50);
 }
 
-.radio-button__label::before {
+.radio-button__text::before {
     position: absolute;
     z-index: 1;
     left: -30px;
@@ -32,7 +32,7 @@
     border-radius: 10px;
 }
 
-.radio-button__label::after {
+.radio-button__text::after {
     position: absolute;
     z-index: 2;
     left: -26px;
@@ -44,7 +44,7 @@
     background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
 }
 
-.radio-button__input:checked + .radio-button__label {
+.radio-button__input:checked + .radio-button__text {
     color: map.get(colors.$map, dark-shade-75);
 
     &::before {

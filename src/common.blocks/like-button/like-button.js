@@ -1,15 +1,48 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const likeButtonsList = document.body.querySelectorAll(".like-button");
+import { bindEventWithId } from "../../scripts.ts";
 
-    for (let i = 0; i < likeButtonsList.length; i++) {
-        likeButtonsList[i].addEventListener("change", function () {
-        const target = this.children[0];
-        let input = target.nextElementSibling;
-        if (target.checked) {
-            input.innerText = parseInt(input.innerText, 10) + 1;
-        } else {
-            input.innerText = parseInt(input.innerText, 10) - 1;
-        }
+class LikeButton {
+    constructor(elem) {
+        this.head = elem;
+        this.input = elem.firstElementChild;
+        this.counter = elem.lastElementChild;
+        this.compName = "likeButton";
+
+        this.bindEventListeners();
+    }
+
+    bindEventListeners() {
+        bindEventWithId({
+            elem: this.head,
+            evt: "change",
+            callback: this.handleButtonClick,
+            options: null,
+            compName: this.compName,
+            that: this
         });
     }
-});
+
+    handleButtonClick(event, that) {
+        const input = that.input;
+        const counter = that.counter;
+        let count = parseInt(input.getAttribute("value"), 10);
+        if (input.checked) {
+            count = (count + 1).toString();
+            input.setAttribute("value", count);
+            counter.innerText = count;
+        } else {
+            count = (count - 1).toString();
+            input.setAttribute("value", count);
+            counter.innerText = count;
+        }
+    }
+}
+
+function initLikeButtons() {
+    const buttons = document.querySelectorAll(".js-like-button");
+
+    for (const button of buttons) {
+        new LikeButton(button);
+    }
+} 
+
+document.addEventListener("DOMContentLoaded", initLikeButtons);

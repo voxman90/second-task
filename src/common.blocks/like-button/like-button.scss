@@ -10,7 +10,7 @@
     height: 1.25rem;
 }
 
-.like-button__label {
+.like-button__counter {
     position: absolute;
     top: 0;
     left: 0;
@@ -28,6 +28,13 @@
     @include fonts.Montserrat-normal;
     font-size: 0.625rem;
     line-height: 1.125rem;
+
+    -webkit-touch-callout: none;
+      -webkit-user-select: none;
+       -khtml-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;  
 
     &::after {
         content: "favorite_border";
@@ -52,7 +59,7 @@
     }
 }
 
-.like-button__input:checked + .like-button__label {
+.like-button__input:checked + .like-button__counter {
     border: 1px solid transparent;
     background-image: linear-gradient(#FFFFFF, #FFFFFF),
                       linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
@@ -61,12 +68,12 @@
     background-origin: border-box;
 }
 
-.like-button__input:checked + .like-button__label::after {
+.like-button__input:checked + .like-button__counter::after {
     content: "favorite";
 
     color: map.get(colors.$map, 'purple');
 }
 
-.like-button__input:checked + .like-button__label {
+.like-button__input:checked + .like-button__counter {
     color: map.get(colors.$map, 'purple');
 }
