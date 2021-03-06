@@ -1,0 +1,5 @@
+mixin toggle(args={name:"", value:"", text:""})
+    - var {name, value, text} = args
+    label.toggle
+        input.toggle__input(type="checkbox" name=name value=value)
+        .toggle__text= text
