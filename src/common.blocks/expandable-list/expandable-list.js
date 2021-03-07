@@ -1,4 +1,4 @@
-import { bindEventWithId } from "../../scripts.ts";
+import { bindEventWithId } from "../../scripts/scripts.ts";
 
 class ExpandableList {
     constructor(elem) {

@@ -1,6 +1,6 @@
 @use "sass:map";
 @use "../colors" as colors;
-@use "../text-setting" as fonts;
+@use "../text-mixins" as fonts;
 @use "../block" as block;
 
 .dropdown {
@@ -105,7 +105,7 @@
   width: auto;
   height: 30px;
   text-align: left;
-  @include fonts.label-h3(30px);
+  @include fonts.label-text(30px);
 }
 
 .dropdown__option-button {
@@ -137,7 +137,7 @@
   height: 30px;
   width: 32px;
   text-align: center;
-  @include fonts.label-h3(30px);
+  @include fonts.label-text(30px);
 }
 
 .dropdown__option-button_blacked {

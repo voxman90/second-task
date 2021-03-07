@@ -1,6 +1,6 @@
 @use "sass:map";
 @use "../colors" as colors;
-@use "../text-setting" as fonts;
+@use "../text-mixins" as fonts;
 
 
 .date-dropdown {
@@ -22,7 +22,7 @@
 .date-dropdown__label-left {
   float: left;
   height: 15px; 
-  @include fonts.label-h3();
+  @include fonts.label-text();
 }
 
 .date-dropdown__input {
@@ -61,7 +61,7 @@
   border: none;
   text-align: left;
   text-transform: uppercase;
-  @include fonts.body-p;
+  @include fonts.body-text;
   line-height: 18px;
   
   &:hover,

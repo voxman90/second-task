@@ -1,6 +1,6 @@
 @use "sass:map";
 @use "../colors" as colors;
-@use "../text-setting" as fonts;
+@use "../text-mixins" as fonts;
 
 .card-room-selection {
     box-sizing: border-box;
@@ -19,5 +19,5 @@
 .card-room-selection__widget-h1 {
     margin: 0.625rem 0 1.25rem;
 
-    @include fonts.widget-h1;
+    @include fonts.widget-text;
 }

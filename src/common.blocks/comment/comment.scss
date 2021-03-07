@@ -1,7 +1,7 @@
 @use 'sass:map';
 @use 'sass:color';
-@use '../../colors' as colors;
-@use '../../text-setting' as fonts;
+@use '../../styles/colors' as colors;
+@use '../../styles/text-mixins' as fonts;
 
 .comment {
     width: 44.4375em;

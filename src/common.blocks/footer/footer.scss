@@ -1,7 +1,7 @@
 @use "sass:map";
 @use "sass:color";
 @use "../colors" as colors;
-@use "../text-setting" as fonts;
+@use "../text-mixins" as fonts;
 
 .footer {
     box-sizing: border-box;
@@ -35,7 +35,7 @@
     }
 
     & span {
-        @include fonts.body-p(1.714em);
+        @include fonts.body-text(1.714em);
     }
 }
 
@@ -49,7 +49,7 @@
     & > dt {
         height: 1.250em;
         padding-bottom: 0.625rem;
-        @include fonts.label-h3(1.250em);
+        @include fonts.label-text(1.250em);
     }
 
     & > dd {
@@ -63,7 +63,7 @@
         text-align: left;
         text-decoration: none;
 
-        @include fonts.body-p(1.214em);
+        @include fonts.body-text(1.214em);
         color: map.get(colors.$map, dark-shade-50);
 
         &:hover {
@@ -86,14 +86,14 @@
         height: 1.250em;
         margin-bottom: 1.750em;
 
-        @include fonts.label-h3(1.250em);
+        @include fonts.label-text(1.250em);
         }
 
         & > dd {
         margin-left: 0;
         margin: 1.25rem 0;
 
-        @include fonts.body-p(1.714em);
+        @include fonts.body-text(1.714em);
         }
     }
 }
@@ -115,7 +115,7 @@
     float: left;
     height: 4.375rem;
 
-    @include fonts.body-p();
+    @include fonts.body-text();
     line-height: 4.375rem;
 }
 

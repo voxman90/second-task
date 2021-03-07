@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../../colors" as colors;
-@use "../../text-setting" as fonts;
+@use "../../styles/colors" as colors;
+@use "../../styles/text-mixins" as fonts;
 
 .text-field {
     box-sizing: border-box;
@@ -9,7 +9,7 @@
     padding: 0 0 0.125rem 0.875rem;
     border: 1px solid map.get(colors.$map, dark-shade-25);
     border-radius: 4px;
-    @include fonts.body-p(1);
+    @include fonts.body-text(1);
 
     &:hover,
     &:focus,

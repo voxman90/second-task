@@ -1,5 +1,5 @@
 @use "sass:map";
-@use "../../text-setting" as fonts;
+@use "../../styles/text-mixins" as fonts;
 
 .icon_font_material {
     @include fonts.material-icons;

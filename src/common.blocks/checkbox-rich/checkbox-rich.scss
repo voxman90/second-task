@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../../colors" as colors;
-@use "../../text-setting" as fonts;
+@use "../../styles/colors" as colors;
+@use "../../styles/text-mixins" as fonts;
 
 .checkbox-rich {
     color: map.get(colors.$map, 'dark-shade-75');

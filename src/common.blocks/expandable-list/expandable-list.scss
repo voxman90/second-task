@@ -1,12 +1,12 @@
 @use "sass:map";
-@use "../../colors" as colors;
-@use "../../text-setting" as fonts;
+@use "../../styles/colors" as colors;
+@use "../../styles/text-mixins" as fonts;
 
 .expandable-list {
     position: relative;
     width: 100%;
     height: 44px;
-    @include fonts.label-h3(44px);
+    @include fonts.label-text(44px);
 }
 
 .expandable-list__icon {

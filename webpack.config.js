@@ -4,33 +4,39 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-function configureEntry(conf, entry, plugins) {
+function defineEntry(conf, entry, plugins) {
     entry[conf.name] = `./${conf.name}.entry.js`;
 
+    let data = {};
+    if (conf.data) {
+        const root = path.resolve(__dirname,`./src/templates/${conf.name}/${conf.data}.data.json`);
+        const rawData = fs.readFileSync(path.resolve(__dirname, root));
+        data = JSON.parse(rawData);
+    }
+
+    const template = `./templates/${conf.name}/${conf.template}.pug`;
     plugins.push(
         new HtmlWebpackPlugin({
             chunks: [conf.name],
-            template: `./${conf.template}.pug`,
+            template: template,
+            data: data,
             filename: `${conf.template}.html`
         })
     )
 }
 
 function getEntries() {
-    const entry = {};
-    const plugins = [];
     const data = fs.readFileSync(path.resolve(__dirname, './src/entry.json'));
     const {entries} = JSON.parse(data);
+    const entry = {};
+    const plugins = [];
 
     entries.forEach(
-        (conf) => configureEntry(conf, entry, plugins)
+        (conf) => defineEntry(conf, entry, plugins)
     );
 
     plugins.push(new CleanWebpackPlugin());
-
-    plugins.push(new MiniCssExtractPlugin({
-        filename: '[name].css'
-    }));
+    plugins.push(new MiniCssExtractPlugin({filename: '[name].css'}));
 
     return {entry, plugins};
 }
@@ -38,16 +44,16 @@ function getEntries() {
 const {entry, plugins} = getEntries();
 
 module.exports = {
-    context: path.resolve(__dirname, 'src/'),
-    entry,
+    context: path.resolve(__dirname, './src/'),
+    entry: entry,
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, './dist/')
     },
     resolve: {
-        extensions: ['.ts', '.js', '.json'],
+        extensions: ['.ts', '.js'],
     },
-    plugins,
+    plugins: plugins,
     module: {
         rules: [
             {

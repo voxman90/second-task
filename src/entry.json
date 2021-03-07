@@ -3,7 +3,15 @@
         {
             "name": "test",
             "template": "Testing ground",
-            "style": "style"
+            "styles": null,
+            "sripts": null
+        },
+        {
+            "name": "colors-and-type",
+            "template": "Colors and Type",
+            "data": "colors-and-type",
+            "styles": ["style", "colors-and-type"],
+            "sripts": []
         }
     ]
 }

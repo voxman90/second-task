@@ -1,0 +1,24 @@
+include ../../common.blocks/logo/logo.pug
+- const data = htmlWebpackPlugin.options.data
+- const title = data.title
+- const colors = data.colors
+- const fonts = data.fonts
+doctype html
+html
+    head
+        meta(charset='UTF-8')
+        title= title
+    body
+        .colors-and-type
+            .colors-and-type__logo
+                +logo()
+            .colors-and-type__samples
+                .colors-and-type__color-samples
+                    each color in colors
+                        .color-sample
+                            div(class=`color-sample_color_${color.name}`)
+                            p.color-sample__text #{color.descr}<br><span class="color-sample__code">#{color.code}</span>  
+                .colors-and-type__font-samples
+                    each font in fonts
+                        div(class=`font-sample-label font-sample-label_type_${font.class}`)!= font.label
+                        div(class=`font-sample-text font-sample-text_type_${font.class}`)!= font.text

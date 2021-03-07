@@ -1,6 +1,6 @@
 @use "sass:map";
 @use "../colors" as colors;
-@use "../text-setting" as fonts;
+@use "../text-mixins" as fonts;
 
 .card-sign-on {
     box-sizing: border-box;
@@ -15,7 +15,7 @@
 .card-sign-on__widget-h1 {
     margin: 0.625rem 0 1.25rem;
 
-    @include fonts.widget-h1;
+    @include fonts.widget-text;
 }
 
 .card-sign-on__indent {
@@ -41,6 +41,6 @@
     flex-grow: 1;
     margin: 0;
 
-    @include fonts.body-p;
+    @include fonts.body-text;
     color: black;
 }

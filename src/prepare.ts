@@ -1,5 +1,7 @@
 "use strict"
 
+import { ImportsNotUsedAsValues } from "typescript";
+
 class Vertex {
     value: number | string;
     links: Vertex[];
@@ -126,25 +128,29 @@ class TopologicalSort {
     const fs = require("fs");
     const path = require("path");
 
-    const rawData = fs.readFileSync(path.resolve(__dirname, "entry.json"));
+    const COMP_ROOT = "common.blocks";
+
+    const rawData = fs.readFileSync(path.resolve(__dirname, "./entry.json"));
     const {entries} = JSON.parse(rawData);
 
     for (let entry of entries) {
         createEntry(entry);
     }
 
-    function createEntry(args: {name: string, template: string, style: string}): void {
-        const {name, template, style} = args;
+    type entry = {name: string, template: string, styles: string[], scripts: string[]};
 
-        const data = fs.readFileSync(path.resolve(__dirname, `${template}.pug`), 'utf8');
+    function createEntry(args: entry): void {
+        const {name, template} = args;
+
+        const data = fs.readFileSync(path.resolve(__dirname, `./templates/${name}/${template}.pug`), 'utf8');
         let {inc, mix, comps} = extractComponentsFromTemplate(data);
 
         const compGraph = createComponentsGraph(comps);
         new TopologicalSort(compGraph);
 
         const {templs, styles, scripts} = compGraph.getTechs();
-        writeIncludes(template, removeDifference(templs, inc));
-        writeImports(name, style, styles, scripts);
+        writeIncludes(name, template, removeDifference(templs, inc));
+        writeImports(args, styles, scripts);
     }
 
     function createComponentsGraph(comps: string[]): ComponentsGraph {
@@ -161,7 +167,7 @@ class TopologicalSort {
 
         let i = 0;
         while (compList.length !== i) {
-            const root = `./common.blocks/${compList[i]}/${compList[i]}`;
+            const root = `./${COMP_ROOT}/${compList[i]}/${compList[i]}`;
             const file = `${root}.deps.json`;
 
             if (!fs.existsSync(path.resolve(__dirname, file))) {
@@ -217,12 +223,11 @@ class TopologicalSort {
         };
     }
 
-    function writeIncludes(template: string, comps: string[]): void {
-        const root = "./common.blocks";
-        const reducer = (acc, comp) => acc += `include ${root}/${comp}/${comp}.pug\n`;
+    function writeIncludes(name: string, template: string, comps: string[]): void {
+        const reducer = (acc, comp) => acc += `include ../../${COMP_ROOT}/${comp}/${comp}.pug\n`;
         let inc = comps.reduce(reducer, "");
 
-        const file = path.resolve(__dirname, `${template}.pug`);
+        const file = path.resolve(__dirname, `./templates/${name}/${template}.pug`);
         const data = fs.readFileSync(file, "utf8");
         inc += data;
 
@@ -231,22 +236,41 @@ class TopologicalSort {
         fs.closeSync(fd);
     }
 
-    function writeImports(name: string, style: string, styles: string[], scripts: string[]): void {
-        const root = "./common.blocks";
-        let imports = `import "./${style}.scss";\n`;
+    function writeImports(args: entry, styles: string[], scripts: string[]): void {
+        const {name} = args;
+        let imports = writePresetImports(args);
         
         styles.forEach(
-            (style) => imports += `import "${root}/${style}/${style}.scss";\n`
+            (style) => imports += `import "./${COMP_ROOT}/${style}/${style}.scss";\n`
         );
 
         scripts.forEach(
-            (script) => imports += `import "${root}/${script}/${script}.js";\n`
+            (script) => imports += `import "./${COMP_ROOT}/${script}/${script}.js";\n`
         );
 
-        const file = path.resolve(__dirname, `${name}.entry.js`);
+        const file = path.resolve(__dirname, `./${name}.entry.js`);
         const fd = fs.openSync(file, "w+");
         fs.writeSync(fd, imports, 0, "utf8");
         fs.closeSync(fd);
+    }
+
+    function writePresetImports(args: entry): string {
+        const {name, styles, scripts} = args;
+        let imports = "";
+
+        if (styles) {
+            styles.forEach(
+                (style) => imports += `import "./styles/${style}.scss";\n`
+            );
+        }
+
+        if (scripts) {
+            scripts.forEach(
+                (script) => imports += `import "./scripts/${script}.js";\n`
+            );
+        }
+
+        return imports;
     }
 
     function extractComponentsFromTemplate(data: string): {inc: string[], mix: string[], comps: string[]} {

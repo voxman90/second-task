@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use '../../colors.scss' as colors;
-@use '../../text-setting.scss' as fonts;
+@use '../../styles/colors.scss' as colors;
+@use '../../styles/text-mixins.scss' as fonts;
 
 .label {
     width: 100%;
@@ -19,12 +19,12 @@
     float: left;
     height: 0.9375rem;
     text-align: left;
-    @include fonts.label-h3(0.75rem);
+    @include fonts.label-text(0.75rem);
 }
 
 .label__right-mark {
     float: right;
     height: 0.9375rem;
     text-align: right;
-    @include fonts.label-right(0.75rem);
+    @include fonts.regular-label-text(0.75rem);
 }

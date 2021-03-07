@@ -1,0 +1,116 @@
+@use "sass:map";
+@use "./colors" as colors;
+@use "./text-mixins" as fonts;
+
+@mixin color-sample__block {
+    width: 70px;
+    height: 70px;
+    border-radius: 6px;
+}
+
+@each $class-name, $color-hex in colors.$map {
+    .color-sample_color_#{$class-name} {
+        background-color: $color-hex;
+        @include color-sample__block();
+    }
+}
+
+.colors-and-type {
+    position: relative;
+    width: auto;
+}
+
+.colors-and-type__logo {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+.colors-and-type__samples {
+    position: absolute;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    left: 10.4%;
+    right: 11%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.color-sample {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+
+    margin-bottom: 20px;
+}
+
+.color-sample__text {
+    margin-left: 40px;
+
+    line-height: 146.3%;
+
+    @include fonts.title-text;
+}
+
+.color-sample__code {
+    font-weight: normal;
+    font-style: normal;    
+}
+
+.colors-and-type__font-samples {
+    display: grid;
+    grid-template-columns: auto 30px auto;
+    grid-template-rows: auto 50px auto 50px auto 50px auto;
+}
+
+.font-sample-label {
+    text-align: right;
+}
+@mixin regular-label-text($size, $line-height: auto) {
+    @include fonts.regular-label-text($size, $line-height);
+    color: map.get(colors.$map, dark-shade-25);
+}
+.font-sample-label_type_widget-text {
+    grid-area: 1 / 1 / 2 / 2;
+    @include regular-label-text(1.5rem);
+}
+
+.font-sample-text_type_widget-text {
+    grid-area: 1 / 3 / 2 / 4;
+    @include fonts.widget-text;
+}
+
+.font-sample-label_type_title-text {
+    grid-area: 3 / 1 / 4 / 2;
+    @include regular-label-text(1.1875rem);
+}
+
+.font-sample-text_type_title-text {
+    grid-area: 3 / 3 / 4 / 4;
+    @include fonts.title-text;
+}
+
+.font-sample-label_type_label-text {
+    grid-area: 5 / 1 / 6 / 2;
+    @include regular-label-text(0.75rem);
+}
+
+.font-sample-text_type_label-text {
+    grid-area: 5 / 3 / 6 / 4;
+    @include fonts.label-text;
+}
+
+.font-sample-label_type_body-text {
+    grid-area: 7 / 1 / 8 / 2;
+    @include regular-label-text(0.875rem, 1.5rem);
+    text-transform: none;
+}
+
+.font-sample-text_type_body-text {
+    grid-area: 7 / 3 / 8 / 4;
+    @include fonts.body-text;
+}

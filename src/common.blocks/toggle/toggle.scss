@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use '../../colors' as colors;
-@use '../../text-setting' as fonts;
+@use '../../styles/colors' as colors;
+@use '../../styles/text-mixins' as fonts;
 
 .toggle {
     display: flex;
@@ -30,10 +30,10 @@
     background-color: #FFFFFF;
     border: 1px solid map.get(colors.$map, dark-shade-25);
     border-radius: 10px;
-    -webkit-transition: border-color 0.6s linear;
-        -moz-transition: border-color 0.6s linear;
-        -ms-transition: border-color 0.6s linear;
-            transition: border-color 0.6s linear;
+    -webkit-transition: border-color 0.3s linear;
+       -moz-transition: border-color 0.3s linear;
+        -ms-transition: border-color 0.3s linear;
+            transition: border-color 0.3s linear;
 }
 
 .toggle__text::after {
@@ -46,22 +46,21 @@
     height: 12px;
     border-radius: 10px;
     background: map.get(colors.$map, dark-shade-25);
-    -webkit-transition: transform 0.6s linear;
-        -moz-transition: transform 0.6s linear;
-        -ms-transition: transform 0.6s linear;
-            transition: transform 0.6s linear,
+    -webkit-transition: transform 0.3s linear;
+       -moz-transition: transform 0.3s linear;
+        -ms-transition: transform 0.3s linear;
+            transition: transform 0.3s linear;
 }
 
 .toggle__input:checked + .toggle__text {
-
     &::before {
         border: 1px solid map.get(colors.$map, "purple");
     }
 
     &::after {
-        background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "purple-2"));
+        background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
         -webkit-transform: translateX(20px);
-        -ms-transform: translateX(20px);
-        transform: translateX(20px);
+            -ms-transform: translateX(20px);
+                transform: translateX(20px);
     }
 }
