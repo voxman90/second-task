@@ -1,4 +1,10 @@
 .logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.logo__container {
     position: relative;
 }
 
@@ -11,27 +17,27 @@
 .logo__left-branch {
     position: absolute;
     top: 37.5%;
-    right: 45.83333%; 
+    right: 45.83%; 
 }
 
 .logo__right-branch {
     position: absolute;
     top: 37.5%;
-    left: 52.08333%;
+    left: 52.083%;
 }
 
 .logo__text {
-    margin-left: 0.781rem;
-    width: 3.325rem;
-    height: 0.809rem;
+    height: 14px;
+
+    margin-left: 12.5px;
 }
 
-.logo_small-size {
+.logo__container_size_2\.5rem {
     width: 2.5rem;
     height: 2.5rem;
 } 
 
-.logo_normal-size {
-    width: 2.75rem;
-    height: 2.75rem;
+.logo__container_size_3rem {
+    width: 3rem;
+    height: 3rem;
 }

@@ -49,4 +49,4 @@ function bindEventWithId(arg: {that: any, elem: HTMLElement, callback: any, evt:
     $(elem).on(evtName, options, (event) => callback(event, that));
 }
 
-export { bindEventWithId };
+export { bindEventWithId, makeId };

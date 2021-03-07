@@ -1,8 +1,9 @@
 {
- "name": "logo",
- "techs": [
-  "scss",
-  "pug"
- ],
- "deps": null
+    "name": "logo",
+    "techs": [
+        "scss",
+        "pug",
+        "js"
+    ],
+    "deps": null
 }
