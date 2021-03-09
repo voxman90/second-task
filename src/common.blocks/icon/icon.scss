@@ -1,6 +1,12 @@
 @use "sass:map";
 @use "../../styles/text-mixins" as fonts;
 
+.icon {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
 .icon_font_material {
     @include fonts.material-icons;
 } 

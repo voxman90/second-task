@@ -1,10 +1,11 @@
-import { bindEventWithId } from "../../scripts/scripts.ts";
+import { BEMComponent } from "../../scripts/scripts.ts";
 
-class RateButton {
+class RateButton extends BEMComponent {
     constructor(elem) {
+        super("rate-buton");
         this.ICON_STATES = ["star_border", "star"];
-        this.compName = "rateButton";
-        this.head = elem;
+        
+        this.root = elem;
         this.icons = this.getIcons();
         this.value = this.getValue();
 
@@ -12,12 +13,16 @@ class RateButton {
     }
 
     getValue() {
-        return this.head.getAttribute("data-value");
+        return this.root.getAttribute("data-value");
     }
 
     setValue(value) {
         this.value = value;
-        this.head.setAttribute("data-value", value);
+        this.root.setAttribute("data-value", value);
+    }
+
+    getIcons() {
+        return this.root.querySelectorAll(".js-rate-button__icon");
     }
 
     drawValue(value) {
@@ -37,22 +42,8 @@ class RateButton {
         this.setValue(value);
     }
 
-    getIcons() {
-        return this.head.querySelectorAll(".js-rate-button__icon");
-    }
-
-    bindEventListeners() {
-        bindEventWithId({
-            elem: this.head,
-            evt: "mouseup",
-            callback: this.handleButtonMouseup,
-            options: null,
-            compName: this.compName,
-            that: this
-        });
-    }
-    
-    handleButtonMouseup(event, that) {
+    handleRateButtonClick(event) {
+        const that = event.that;
         const et = event.target;
 
         if (et.classList.contains("js-rate-button__icon")) {
@@ -60,6 +51,18 @@ class RateButton {
 
             that.drawValue(value);
         }
+    }
+
+    bindEventListeners() {
+        this.bindEventListener({
+            elem: this.root,
+            event: "click",
+            callback: this.handleRateButtonClick,
+            options: null,
+            data: {
+                that: this
+            }
+        });
     }
 }
 

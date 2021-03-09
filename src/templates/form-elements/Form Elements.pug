@@ -1,0 +1,43 @@
+include ../../common.blocks/rate-button/rate-button.pug
+include ../../common.blocks/expandable-list/expandable-list.pug
+include ../../common.blocks/logo/logo.pug
+include ../../common.blocks/label/label.pug
+include ../../common.blocks/input-text/input-text.pug
+include ../../common.blocks/text-field/text-field.pug
+include ../../common.blocks/icon/icon.pug
+include ../../common.blocks/button/button.pug
+include ../../common.blocks/dropdown/dropdown.pug
+include ../../common.blocks/dropdown-guests/dropdown-guests.pug
+include ../../common.blocks/dropdown-facilities/dropdown-facilities.pug
+- const data = htmlWebpackPlugin.options.data
+- const title = data.title
+doctype html
+html
+    head
+        meta(charset="UTF-8")
+        title= title
+    body
+        .form-elements
+            .form-elements__logo
+                +logo("chonk", false, false)
+            .form-elements__content
+                .form-elements__grid
+                    .form-elements__block_1
+                        +text-field({name: "input-text-001", placeholder: "Email", left: "TEXT FIELD", right: "DEFAULT"})
+                        +text-field({name: "input-text-002", left: "TEXT FIELD", right: "HOVER / FOCUS"}, {value: "This is pretty awesome", class: "input-text_hover"})
+                        +dropdown-guests("dropdown-guests-001", "DROPDOWN")
+                    .form-elements__block_2
+                        +dropdown-facilities("dropdown-facilities-001", "DROPDOWN", "DEFAULT")
+                        +dropdown-facilities("dropdown-facilities-001", "DROPDOWN", "EXPANDED")
+                    .form-elements__block_3
+                        +expandable-list("sdfsdf")
+                            p sdfsdddddddddddddddd
+                            p sdffffffffffffffffff 
+                            p sssssssssssfsfsfsfsf
+                    .form-elements__block_4
+                        +rate-button({amount: 5, filled: 4})
+                        +rate-button({amount: 5, filled: 5})
+                    .form-elements__block_5
+                    .form-elements__block_6
+                    .form-elements__block_7
+                    .form-elements__block_8

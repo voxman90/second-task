@@ -1,28 +1,32 @@
-import { bindEventWithId } from "../../scripts/scripts.ts";
+import { BEMComponent } from "../../scripts/scripts.ts";
 
-class ExpandableList {
+class ExpandableList extends BEMComponent  {
     constructor(elem) {
-        this.head = elem;
-        this.icon = elem.firstElementChild;
-        this.dropdown = elem.nextElementSibling;
-        this.compName = "ExpandableList";  
+        super('expandable-list');
+
+        this.root = elem;
+        this.head = elem.firstElementChild;
+        this.icon = this.head.lastElementChild;
+        this.body = elem.lastElementChild;
 
         this.bindEventListeners();
     }
 
-    toggleDropdown(event, that) {
-        that.dropdown.classList.toggle("expandable-list__dropdown_hidden");
+    handleHeadClick(e) {
+        const that = e.that
         that.icon.classList.toggle("expandable-list__icon_turn_180deg");
-    } 
+        that.body.classList.toggle("expandable-list__body_hidden");
+    }
 
     bindEventListeners() {
-        bindEventWithId({
+        this.bindEventListener({
             elem: this.head,
-            evt: "mousedown",
-            callback: this.toggleDropdown,
+            event: "click",
+            callback: this.handleHeadClick,
             options: null,
-            compName: this.compName,
-            that: this
+            data: {
+                that: this
+            }
         });
     }
 }
@@ -30,8 +34,8 @@ class ExpandableList {
 function initExpandableList() {
     const expandableLists = document.querySelectorAll(".js-expandable-list");
 
-    for (const expandable of expandableLists) {
-        new ExpandableList(expandable);
+    for (const expandableList of expandableLists) {
+        new ExpandableList(expandableList);
     }
 } 
 

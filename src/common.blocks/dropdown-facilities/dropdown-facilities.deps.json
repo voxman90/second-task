@@ -1,0 +1,11 @@
+{
+    "name": "dropdown-facilities",
+    "techs": [
+        "scss",
+        "pug",
+        "js"
+    ],
+    "deps": [
+        "dropdown"
+    ]
+}

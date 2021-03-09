@@ -1,9 +1,9 @@
 {
     "entries": [
         {
-            "name": "test",
-            "template": "Testing ground",
-            "styles": null,
+            "name": "form-elements",
+            "template": "Form Elements",
+            "styles": ["style", "form-elements"],
             "sripts": null
         },
         {

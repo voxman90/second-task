@@ -1,0 +1,11 @@
+mixin dropdown-facilities(name, left, right) 
+    - var args = {
+    -    haveButtons: false,
+    -    left: left,
+    -    right: right,
+    -    name: name,
+    -    value: '',
+    -    options: ['спальни', 'кровати', 'ванные комнаты']
+    - }
+    .dropdown-facilities.js-dropdown-facilities
+        +dropdown(args)

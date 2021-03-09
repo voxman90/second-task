@@ -71,8 +71,10 @@ class TopologicalSort {
         this.list = [];
         this.stack = [];
 
-        this.sort();
-        this.removeServiceProperties();
+        if (this.graph.verts.length > 0) {
+            this.sort();
+            this.removeServiceProperties();
+        }
         graph.verts = [].concat(this.stack);
     }
 

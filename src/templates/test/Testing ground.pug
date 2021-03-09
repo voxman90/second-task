@@ -1,6 +1,6 @@
 include ../../common.blocks/label/label.pug
 include ../../common.blocks/text-field/text-field.pug
-include ../../common.blocks/input-text/input-text.pug
+include ../../common.blocks/text-field/text-field.pug
 include ../../common.blocks/icon/icon.pug
 include ../../common.blocks/subscription-field/subscription-field.pug
 include ../../common.blocks/rate-button/rate-button.pug
@@ -19,7 +19,7 @@ html
         meta(charset="UTF-8")
         title Testing ground
     body(style="background-color: #E5E5E5; padding: 0; margin: 0;")
-        +input-text("exp_001", "exp_01", "ВЫЕЗД", "exp_01", 20)
+        +text-field("exp_001", "exp_01", "ВЫЕЗД", "exp_01", 20)
         +subscription-field("exp_002", "maxim.90svet@gmail.com")
         +rate-button(7, 0)
         +rate-button(10, 2)

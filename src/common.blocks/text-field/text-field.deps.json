@@ -1,8 +1,11 @@
 {
- "name": "text-field",
- "techs": [
-  "scss",
-  "pug"
- ],
- "deps": null
+    "name": "text-field",
+    "techs": [
+        "scss",
+        "pug"
+    ],
+    "deps": [
+        "label",
+        "input-text"
+    ]
 }

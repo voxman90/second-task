@@ -1,7 +1,36 @@
-.input-text_width_10rem {
-    width: 10rem;
+@use "sass:map";
+@use "../../styles/colors" as colors;
+@use "../../styles/text-mixins" as fonts;
+
+.input-text {
+    box-sizing: border-box;
+    height: 2.75rem;
+    width: 100%;
+    padding-left: 0.875rem;
+    border: 1px solid map.get(colors.$map, dark-shade-25);
+    border-radius: 4px;
+    @include fonts.body-text;
+
+    &:hover,
+    &:focus,
+    &:active { 
+        outline: none;
+        border-color: map.get(colors.$map, dark-shade-50);
+    }
+
+    &:-ms-input-placeholder,
+    &::-webkit-input-placeholder,
+    &::-moz-placeholder,
+    &::placeholder {
+        color: map.get(colors.$map, dark-shade-25);
+    }
+
+    &::-moz-placeholder {
+        opacity: 1; 
+    }
 }
 
-.input-text_width_20rem {
-    width: 20rem;
+.input-text_hover {
+    outline: none;
+    border-color: map.get(colors.$map, dark-shade-50);
 }

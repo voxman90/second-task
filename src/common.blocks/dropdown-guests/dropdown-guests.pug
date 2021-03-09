@@ -1,0 +1,11 @@
+mixin dropdown-guests(name, left, right='')
+    - var args = {
+    -    haveButtons: true,
+    -    left: left,
+    -    right: right,
+    -    name: name,
+    -    value: 'Сколько гостей',
+    -    options: ['взрослые', 'дети', 'младенцы']
+    - }
+    .dropdown-guests.js-dropdown-guests
+        +dropdown(args)

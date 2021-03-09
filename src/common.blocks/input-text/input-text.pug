@@ -1,6 +1,4 @@
-mixin input-text(name="", placeholder="", left="", right="", size=20)
-    - var size = (size === 20) ? 20 : 10;
-    div(class=`input-text input-text_width_${size}rem`)
-        +label(left, right)
-            +text-field(name, placeholder)
-    
+mixin input-text(args)
+    - var args = args || 0
+    - var {name, placeholder, value} = args
+    input(class='input-text' type='text' name=name placeholder=placeholder value=value)&attributes(attributes)

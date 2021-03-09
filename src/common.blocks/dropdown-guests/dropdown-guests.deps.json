@@ -1,0 +1,11 @@
+{
+    "name": "dropdown-guests",
+    "techs": [
+        "pug",
+        "scss",
+        "js"
+    ],
+    "deps": [
+        "dropdown"
+    ]
+}

@@ -1,38 +1,7 @@
-@use "sass:map";
-@use "../../styles/colors" as colors;
-@use "../../styles/text-mixins" as fonts;
+.text-field_width_10rem {
+    width: 10rem;
+}
 
-.text-field {
-    box-sizing: border-box;
-    width: 100%;
-    height: 2.75rem;
-    padding: 0 0 0.125rem 0.875rem;
-    border: 1px solid map.get(colors.$map, dark-shade-25);
-    border-radius: 4px;
-    @include fonts.body-text(1);
-
-    &:hover,
-    &:focus,
-    &:active { 
-        outline: none;
-        border-color: map.get(colors.$map, dark-shade-50);
-    }
-
-    &::placeholder {
-        color: map.get(colors.$map, dark-shade-25);
-    }
-
-    &::-webkit-input-placeholder {
-        color: map.get(colors.$map, dark-shade-25);
-    }
-
-    &::-moz-placeholder {
-        opacity: 1; 
-        color: map.get(colors.$map, dark-shade-25);
-    }
-
-    /* - IE 10-11 - */
-    &:-ms-input-placeholder {
-        color: map.get(colors.$map, dark-shade-25);
-    }
+.text-field_width_20rem {
+    width: 20rem;
 }
