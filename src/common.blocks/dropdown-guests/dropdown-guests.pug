@@ -5,7 +5,6 @@ mixin dropdown-guests(name, left, right='')
     -    right: right,
     -    name: name,
     -    value: 'Сколько гостей',
-    -    options: ['взрослые', 'дети', 'младенцы']
+    -    options: {'взрослые' : 0, 'дети' : 0, 'младенцы' : 0}
     - }
-    .dropdown-guests.js-dropdown-guests
-        +dropdown(args)
+    +dropdown(args).dropdown-guests.js-dropdown-guests

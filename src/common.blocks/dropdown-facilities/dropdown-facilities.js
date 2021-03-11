@@ -1,22 +1,25 @@
-import { Dropdown } from "../dropdown/dropdown";
+import { Dropdown, DropdownModel } from "../dropdown/dropdown";
+
+class DropdownFacilitiesModel extends DropdownModel {
+    constructor() {
+        const glossary = [
+            {nominative: "спальня", nominativePlural: "спальни", genitive: "спальни", genitivePlural: "спален"},
+            {nominative: "кровать", nominativePlural: "кровати", genitive: "кровати", genitivePlural: "кроватей"},
+            {nominative: "ванная комната", nominativePlural: "ванные комнаты", genitive: "ванных комнаты", genitivePlural: "ванных комнат"}
+        ];
+        const dft = "Сколько удобств";
+
+        super(dft, glossary);
+    }
+}
 
 class DropdownFacilities extends Dropdown {
     constructor(elem) {
-        super(elem);
+        const model = new DropdownFacilitiesModel();
+        super(elem, model);
+        
         this.name = 'dropdown-facilities';
     }
-
-    // bindEventListeners() {
-    //     this.bindEventListener({
-    //         elem: this.root,
-    //         event: "click",
-    //         callback: () => {},
-    //         options: null,
-    //         data: {
-    //             that: this
-    //         }
-    //     });
-    // }
 }
 
 function initDropdownFacilities() {

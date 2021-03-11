@@ -22,8 +22,16 @@ class BEMComponent {
         return id;
     }
 
-    bindEventListener(arg: {elem: HTMLElement, event: string, callback: any, data: any, options: any}): void {
-        const {data, elem, callback, event, options} = arg;
+    bindEventListeners(els: {elem: HTMLElement, event: string, callback: Function, data?: Object, options?: any}[]): void {
+        els.forEach(
+            (el) => this.bindEventListener(el)
+        );
+    }
+
+    bindEventListener(arg: {elem: HTMLElement, event: string, callback: Function, data?: Object, options?: any}): void {
+        let {data, elem, callback, event, options} = arg;
+        data = data || {};
+        options = options || null;
 
         const uniqeEventName = event + "." + this.name + this.id;
 

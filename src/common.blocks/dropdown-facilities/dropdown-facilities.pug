@@ -5,7 +5,6 @@ mixin dropdown-facilities(name, left, right)
     -    right: right,
     -    name: name,
     -    value: '',
-    -    options: ['спальни', 'кровати', 'ванные комнаты']
+    -    options: {'спальни' : 0, 'кровати' : 0, 'ванные комнаты' : 0}
     - }
-    .dropdown-facilities.js-dropdown-facilities
-        +dropdown(args)
+    +dropdown(args).dropdown-facilities.js-dropdown-facilities

@@ -1,22 +1,41 @@
-import { Dropdown } from "../dropdown/dropdown";
+import { Dropdown, DropdownModel } from "../dropdown/dropdown";
+
+class DropdownGuestsModel extends DropdownModel {
+    constructor() {
+        const glossary = [
+            {nominative: "взрослый", nominativePlural: "взрослые", genitive: "взрослых", genitivePlural: "взсролых"},
+            {nominative: "ребёнок", nominativePlural: "дети", genitive: "ребёнка", genitivePlural: "детей"},
+            {nominative: "младенец", nominativePlural: "младенцы", genitive: "младенца", genitivePlural: "младенцев"},
+            {nominative: "гость", nominativePlural: "гости", genitive: "гостя", genitivePlural: "гостей"}
+        ];
+        const dft = "Сколько гостей";
+
+        super(dft, glossary);
+    }
+
+    getSentence(values) {
+        const guests = values[0] + values[1];
+        const babies = values[2];
+        const sentence = [];
+
+        if (guests > 0) {
+            sentence.push(guests + ' ' + this.convertToAppropriateForm(guests, this.glossary[3]));
+        }
+        if (babies > 0) {
+            sentence.push(babies + ' ' + this.convertToAppropriateForm(babies, this.glossary[2]));
+        }
+
+        return sentence.join(', ');
+    }
+}
 
 class DropdownGuests extends Dropdown {
     constructor(elem) {
-        super(elem);
+        const model = new DropdownGuestsModel();
+        super(elem, model);
+
         this.name = 'dropdown-guests';
     }
-
-    // bindEventListeners() {
-    //     this.bindEventListener({
-    //         elem: this.root,
-    //         event: "click",
-    //         callback: () => {},
-    //         options: null,
-    //         data: {
-    //             that: this
-    //         }
-    //     });
-    // }
 }
 
 function initDropdownGuests() {
@@ -28,50 +47,6 @@ function initDropdownGuests() {
 } 
 
 document.addEventListener("DOMContentLoaded", initDropdownGuests);
-
-// function containsIn(supposedParent, checkedNode) {
-//     let isSameNodes = false;
-//     let ancestor = checkedNode;
-//         while ((ancestor !== null) && !isSameNodes) {    
-//             if (ancestor.isSameNode(supposedParent)) {
-//                 isSameNodes = true;
-//             } else {
-//                 ancestor = ancestor.parentNode;
-//             }
-//         }
-//     return isSameNodes;
-// }
-
-// function fillVault(nodeVault) {
-//   const Options = nodeVault.querySelectorAll(".dropdown__option");
-//   let Vault = {};
-//   for (let i = 0; i < Options.length; i++) {
-//     Vault[Options[i].firstElementChild.innerText] = 0;
-//   }
-//   return Vault;
-// }
-
-// function numberVaultSumm(numberVault) {
-//   let Summ = 0;
-//   for (let key in numberVault) {
-//     Summ += numberVault[key];
-//   }
-//   return Summ;
-// }
-
-// function guestAmount(numberVault) {
-//   let sentence = "";
-//   const guestCount = numberVault["Взрослые"] + numberVault["Дети"];
-//   const infantCount = numberVault["Младенцы"];
-//   if (infantCount === 0) {
-//     sentence = `${guestCount} ${wordEnding(guestCount, "гость", "гостя", "гостей")}`;
-//   } else if (guestCount === 0) {
-//     sentence = `${infantCount} ${wordEnding(infantCount, "младенец", "младенца", "младенцев")}`;
-//   } else {
-//     sentence = `${guestCount} ${wordEnding(guestCount, "гость", "гостя", "гостей")}, ${infantCount} ${wordEnding(infantCount, "младенец", "младенца", "младенцев")}`;
-//   }
-//   return sentence;
-// }
 
 // function easeAmount(numberVault) {
 //   let phrases = [];
@@ -101,70 +76,3 @@ document.addEventListener("DOMContentLoaded", initDropdownGuests);
 //   }
 //   return sentence;
 // }
-
-//     let numberVault = fillVault(dropdownOptions);
-   
-
-//     dropdownBar.addEventListener("mouseup", function (event) {
-//       const Target = event.target;
-//       const TargetClass = Target.classList;
-//       if (TargetClass.contains("dropdown__option-button")) {
-//         const ButtonKey = Target.parentNode.firstElementChild.innerHTML;
-//         if (Target.innerHTML === "-") {
-//           switch (numberVault[ButtonKey]) {
-//             case 0: break;
-//             case 1: 
-//               numberVault[ButtonKey] -= 1;
-//               Target.previousElementSibling.innerHTML = numberVault[ButtonKey]; 
-//               TargetClass.add("dropdown__option-button_blacked");
-//             break;
-//             default: 
-//               numberVault[ButtonKey] -= 1;
-//               Target.previousElementSibling.innerHTML = numberVault[ButtonKey]; 
-//             break;
-//           } 
-//         } else { 
-//           switch (numberVault[ButtonKey]) {
-//             case 0: 
-//               numberVault[ButtonKey] += 1;
-//               Target.nextElementSibling.innerHTML = numberVault[ButtonKey];
-//               Target.parentNode.children[3].classList.toggle("dropdown__option-button_blacked");
-//             break;
-//             default: 
-//               numberVault[ButtonKey] += 1;
-//               Target.nextElementSibling.innerHTML = numberVault[ButtonKey];
-//             break;
-//           } 
-//         }   
-//         if (dropdownBattonClear) { 
-//           if (numberVaultSumm(numberVault) > 0) {
-//             dropdownBattonClear.classList.remove("dropdown__button-clear_hidden");
-//           } else {
-//             dropdownBattonClear.classList.add("dropdown__button-clear_hidden");
-//           }
-//         } else {
-//             dropdownTextField.value = easeAmount(numberVault);
-//         }
-//       }
-//       if (TargetClass.contains("dropdown__button-clear")) {
-//         for (let key in numberVault) {
-//           numberVault[key] = 0;
-//         }
-//         dropdownTextField.value = "Сколько гостей";
-//         for (let j = 0; j < 3; j++) {
-//           dropdownOptions.children[j].children[2].innerHTML = 0;
-//           dropdownOptions.children[j].children[3].classList.add("dropdown__option-button_blacked"); 
-//         }
-//         TargetClass.toggle("dropdown__button-clear_hidden");
-//       }
-//       if (TargetClass.contains("dropdown__button-apply")) {
-//         if (numberVaultSumm(numberVault) > 0) {
-//           dropdownTextField.value = guestAmount(numberVault);
-//           dropdownBar.classList.add("dropdown__bar_hidden");
-//           dropdownTextField.classList.remove("dropdown__text-field_expanded");
-//           dropdownIcon.classList.toggle("date-picker__icon-expand_shaded");
-//         }
-//       }
-//     }); 
-//   }
-// });
