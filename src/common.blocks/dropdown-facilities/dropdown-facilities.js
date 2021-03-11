@@ -19,6 +19,26 @@ class DropdownFacilities extends Dropdown {
         super(elem, model);
         
         this.name = 'dropdown-facilities';
+        
+        this.hangHooks();
+    }
+
+    hangHooks() {
+        this.hooks.valueIncreased = () => {
+            const values = this.extractValues();
+            this.drawInput(this.model.getSentence(values));
+        };
+
+        this.hooks.valueDecreased = () => {
+            const values = this.extractValues();
+            const summ = values.reduce((a, b) => a + b);
+
+            if (summ === 0) {
+                this.drawInput(this.model.getDefault());
+            } else {
+                this.drawInput(this.model.getSentence(values));
+            }    
+        };
     }
 }
 

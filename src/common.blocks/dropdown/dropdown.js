@@ -14,8 +14,8 @@ class DropdownModel {
         return values.map(
             (count, i) => (count !== 0) ? count + ' ' + this.convertToAppropriateForm(count, this.glossary[i]) : null
         )
-        .filter(a => a !== null)
-        .join(', ');
+            .filter(a => a !== null)
+            .join(', ');
     }
 
     convertToMap(glossary) {
@@ -62,7 +62,19 @@ class Dropdown extends BEMComponent {
 
         this.model = model;
         this.hooks = {};
+        this.listeners = [];
 
+        this.connectBasis(elem);
+
+        this.buttonsNode = this.barNode.querySelector('.js-dropdown__buttons');
+        if (this.buttonsNode) {
+            this.connectButtons();
+        }
+
+        this.bindEventListeners(this.listeners);
+    }
+
+    connectBasis(elem) {
         this.rootNode = elem;
         this.inputNode = this.rootNode.querySelector('.js-dropdown__input-text');
         this.iconNode = this.inputNode.nextElementSibling;
@@ -70,33 +82,24 @@ class Dropdown extends BEMComponent {
         this.optionsNode = this.barNode.firstElementChild;
         this.valueNodesList = this.optionsNode.querySelectorAll('.js-dropdown__option-value');
 
-        this.buttonsNode = this.barNode.querySelector('.js-dropdown__buttons');
-        if (this.buttonsNode) {
-            this.clearButtonNode = this.buttonsNode.firstElementChild;
-            this.applyButtonNode = this.buttonsNode.lastElementChild;
-            const values = this.extractValues();
-            const summ = values.reduce((acc, cur) => acc + cur);
-            this.toggleButtonClearVisibility(summ);
-        }
-
-        const els = this.getEventListenersList();
-        this.bindEventListeners(els);
-    }
-
-    getEventListenersList() {
-        const els = [
+        this.listeners.push(
             { elem: this.inputNode, event: "click", callback: this.handleInputTextClick, data: { that: this } },
             { elem: this.optionsNode, event: "click", callback: this.handleOptionsClick, data: { that: this } }
-        ];
+        );
+    }
 
-        if (this.buttonsNode) {
-            els.push(
-                { elem: this.clearButtonNode, event: "click", callback: this.handleButtonClearClick, data: { that: this } },
-                { elem: this.applyButtonNode, event: "click", callback: this.handleButtonApplyClick, data: { that: this } }
-            );
-        }
+    connectButtons() {
+        this.clearButtonNode = this.buttonsNode.firstElementChild;
+        this.applyButtonNode = this.buttonsNode.lastElementChild;
 
-        return els;
+        const values = this.extractValues();
+        const summ = values.reduce((acc, cur) => acc + cur);
+        this.toggleButtonClearVisibility(summ);
+
+        this.listeners.push(
+            { elem: this.clearButtonNode, event: "click", callback: this.handleButtonClearClick, data: { that: this } },
+            { elem: this.applyButtonNode, event: "click", callback: this.handleButtonApplyClick, data: { that: this } }
+        );
     }
 
     handleInputTextClick(e) {
@@ -123,14 +126,16 @@ class Dropdown extends BEMComponent {
         const that = e.that;
 
         that.cleanValues();
+        that.toggleButtonClearVisibility(0);
+        that.drawInput(that.model.getDefault());
     }
 
     handleButtonApplyClick(e) {
         const that = e.that;
         const values = that.extractValues();
-        console.log(values);
+
         const sentence = that.model.getSentence(values);
-        console.log(sentence);
+
         that.drawInput(sentence);
     }
 
@@ -143,8 +148,8 @@ class Dropdown extends BEMComponent {
             valueNode.nextElementSibling.classList.remove("dropdown__option-button_blacked");
         }
 
-        if (this.hooks["increaseValue"]) {
-            this.hooks["increaseValue"](value);
+        if (this.hooks["valueIncreased"]) {
+            this.hooks["valueIncreased"](value);
         }
     }
 
@@ -160,8 +165,8 @@ class Dropdown extends BEMComponent {
                 et.classList.add("dropdown__option-button_blacked");
             }
 
-            if (this.hooks["decreaseValue"]) {
-                this.hooks["decreaseValue"](value);
+            if (this.hooks["valueDecreased"]) {
+                this.hooks["valueDecreased"](value);
             }
         }
     }

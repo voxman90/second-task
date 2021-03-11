@@ -35,6 +35,23 @@ class DropdownGuests extends Dropdown {
         super(elem, model);
 
         this.name = 'dropdown-guests';
+        this.hangHooks();
+    }
+
+    hangHooks() {
+        this.hooks.valueIncreased = (val) => {
+            if (val === 1) {
+                this.toggleButtonClearVisibility(val);
+            }
+        };
+
+        this.hooks.valueDecreased = (val) => {
+            if (val === 0) {
+                const values = this.extractValues();
+                const summ = values.reduce((a, b) => a + b);
+                this.toggleButtonClearVisibility(summ);
+            }     
+        };
     }
 }
 
@@ -47,32 +64,3 @@ function initDropdownGuests() {
 } 
 
 document.addEventListener("DOMContentLoaded", initDropdownGuests);
-
-// function easeAmount(numberVault) {
-//   let phrases = [];
-//   let sentence = "";
-//   const bedroomCount = numberVault["Спальни"];
-//   const bedCount = numberVault["Кровати"];
-//   const bathCount = numberVault["Ванные комнаты"];
-//   if (bedroomCount + bedCount + bathCount === 0) {
-//     sentence = "Какие удобства";
-//   } else {
-//     if (bedroomCount > 0) {
-//       phrases.push(`${bedroomCount} ${wordEnding(bedroomCount, "спальня", "спальни", "спален")}`);
-//     }
-//     if (bedCount > 0) {
-//       phrases.push(`${bedCount} ${wordEnding(bedCount, "кровать", "кровати", "кроватей")}`);
-//     }
-//     if (bathCount > 0) {
-//       phrases.push(`${bathCount} ${wordEnding(bathCount, "ванная комната", "ванных комнаты", "ванных комнат")}`);
-//     }
-//     let i = 1;
-//     sentence = phrases[0];
-//     while (i < phrases.length) {
-//       sentence = sentence + ", " + phrases[i];
-//       i = i + 1;
-//     }
-//     if (i < 3) {sentence = sentence + `…`}
-//   }
-//   return sentence;
-// }
