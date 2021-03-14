@@ -1,8 +1,11 @@
 {
- "name": "date-dropdown",
- "techs": [
-  "scss",
-  "pug"
- ],
- "deps": null
+    "name": "date-dropdown",
+    "techs": [
+        "scss",
+        "pug"
+    ],
+    "deps": [
+        "input-text",
+        "label"
+    ]
 }

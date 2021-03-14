@@ -1,262 +1,53 @@
 @use "sass:map";
 @use "sass:color";
-@use "../colors" as colors;
-@use "../text-mixins" as fonts;
-@use "../block" as block;
+@use "../../styles/colors" as colors;
+@use "../../styles/text-mixins" as fonts;
 
 .date-picker {
-  display: flex;
-  width: 20rem;
+    display: flex;
+    width: 20rem;
 }
 
 .date-picker__label-box {
-  box-sizing: border-box;
-  width: 9.375rem;
+    box-sizing: border-box;
+    width: 9.375rem;
 }
 
 .date-picker__stub {
-  width: 1.25rem;
-  height: 1.25rem;
-  align-self: flex-end;
+    width: 1.25rem;
+    height: 1.25rem;
+    align-self: flex-end;
 }
 
 .date-picker__departure,
 .date-picker__arrival {
-  position: relative;
-  width: 9.375rem;
+    position: relative;
+    width: 9.375rem;
 }
 
 .date-picker__icon-expand {
-  position: absolute;
-  right: 0;
-  bottom: 0.5625rem;
-  box-sizing: border-box;
-  width: 2.75rem;
-  height: 1.5rem;
-  text-align: center;
-  color: map.get(colors.$map, 'dark-shade-50');
+    position: absolute;
+    right: 0;
+    bottom: 0.5625rem;
+    box-sizing: border-box;
+    width: 2.75rem;
+    height: 1.5rem;
+    text-align: center;
+    color: map.get(colors.$map, 'dark-shade-50');
 
-  &::selection {
-    background: transparent;
-  }
+    &::selection {
+        background: transparent;
+    }
 
-  &::-moz-selection {
-    background: transparent;
-  }
+    &::-moz-selection {
+        background: transparent;
+    }
 
-  &:hover {
-    cursor: pointer;
-  }
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .date-picker__icon-expand_shaded {
-  color: map.get(colors.$map, 'dark-shade-75');
-}
-
-.calendar {
-  position: absolute;
-  z-index: 15;
-  box-sizing: border-box;
-  width: 20rem;
-//  height: 369px;
-  padding: 19px;
-  margin-top: 5px;
-  background-color: #FFFFFF;
-  box-shadow: 0px 10px 20px map.get(colors.$map, dark-shade-05);
-  border: 1px solid map.get(colors.$map, dark-shade-25);
-  border-radius: 4px;
-}
-
-.calendar_hidden {
-  display: none;
-}
-
-.calendar__title {
-  margin-bottom: 30px;
-}
-
-.calendar__month {
-  height: 24px;
-  text-align: center;
-  font-family: 'Quicksand', 'Open Sans', sans-serif;
-  font-weight: bold;
-  font-style: normal;
-  color: map.get(colors.$map, dark-shade-100);
-  font-size: 19px;
-  line-height: 24px;
-}
-
-.calendar__icon-backward {
-  float: left;
-  height: 24px;
-  cursor: pointer;
-  color: map.get(colors.$map, "purple");
-
-  &::selection {
-    background: transparent;
-  }
-
-  &::-moz-selection {
-    background: transparent;
-  }
-}
-
-.calendar__icon-forward {
-  float: right;
-  height: 24px;
-  cursor: pointer;
-  color: map.get(colors.$map, "purple");
-  transform: rotate(180deg);
-
-  
-  &::selection {
-    background: transparent;
-  }
-
-  &::-moz-selection {
-    background: transparent;
-  }
-}
-
-.calendar__table  {
-  width: 280px;
-//  height: 240px;
-  border-collapse: collapse;
-  text-align: center;
-  vertical-align: middle;
-}
-
-.calendar__table-th  {
-  width: 40px;
-  padding: 0px;
-  cursor: default;
-  @include fonts.label-text(1.25em);
-  text-transform: none;
-  color: map.get(colors.$map, "purple");
-}
-
-.calendar__table-tr  {
-//  height: 34px;
-  height: 40px;
-  padding: 0px;
-}
-
-.calendar__table-tr_hidden {
-  display: none;
-}
-
-.calendar__table-td  {
-  width: 40px;
-  padding: 0px;
-  cursor: pointer;
-  color: map.get(colors.$map, dark-shade-25);
-  @include fonts.Montserrat-normal;
-  font-size: 0.75rem;
-  line-height: 1.25em;
-}
-
-.calendar__table-td_recent-month {
-  color: map.get(colors.$map, dark-shade-50);
-}
-
-.calendar__table-td_recent-day {
-  border-radius: 22px;
-  background: linear-gradient(180deg, map.get(colors.$map, "green"), map.get(colors.$map, "turquoise-blue"));
-  color: white;
-  @include fonts.Montserrat-bold;
-}
-
-.calendar__table-td_arrival {
-  position: relative;
-  border-radius: 22px 0 0 22px;
-  background: transparent;
-  color: white;
-  @include fonts.Montserrat-bold;
-
-  &::after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: 0px;
-    left: 0px;
-    width: 40px;
-    height: 40px;
-    border-radius: 22px;
-    background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
-  }
-}
-
-.calendar__table-td_departure {
-  position: relative;
-  border-radius: 0 22px 22px 0;
-  background: transparent;
-  color: white;
-  @include fonts.Montserrat-bold;
-
-  &::after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: 0px;
-    left: 0px;
-    width: 40px;
-    height: 40px;
-    border-radius: 22px;
-    background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
-  }
-}
-
-.calendar__table_fill {
-  background: linear-gradient(180deg, color.change(map.get(colors.$map, "purple"), $alpha: 0.25), color.change(map.get(colors.$map, "malibu"), $alpha: 0.25))
-}
-
-.calendar__buttons {
-  box-sizing: border-box;
-  width: 100%;
-  height: fit-content;
-  margin-top: 20px;
-
-  &::after {
-    content: "";
-    position: absolute;
-    clear: both;
-    width: 100%;
-  }
-}
-
-.calendar__button-clear {
-  float: left;
-  cursor: pointer;
-  color: map.get(colors.$map, dark-shade-50);
-
-  &:hover,
-  &:focus,
-  &:active {
-    color: map.get(colors.$map, dark-shade-75);
-  }
-
-  &::selection {
-    background: transparent;
-  }
-
-  &::-moz-selection {
-    background: transparent;
-  }
-}
-
-.calendar__button-clear_hidden {
-  visibility: hidden;
-}
-
-.calendar__button-apply {
-  float: right;
-  cursor: pointer;
-
-  &::selection {
-    background: transparent;
-  }
-
-  &::-moz-selection {
-    background: transparent;
-  }
+    color: map.get(colors.$map, 'dark-shade-75');
 }

@@ -33,6 +33,7 @@
   "homepage": "https://github.com/voxman90/second-task#readme",
   "devDependencies": {
     "@babel/core": "^7.13.8",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/preset-env": "^7.13.8",
     "@babel/preset-typescript": "^7.13.0",
     "babel-loader": "^8.2.2",

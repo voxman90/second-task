@@ -3,7 +3,6 @@ const path = require('path');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 function defineEntry(conf, entry, plugins) {
     entry[conf.name] = `./${conf.name}.entry.js`;
 
@@ -103,6 +102,9 @@ module.exports = {
                         options: {
                             presets: [
                                 '@babel/preset-env'
+                            ],
+                            plugins: [
+                              '@babel/plugin-proposal-class-properties'
                             ]
                         },
                     }
@@ -118,6 +120,9 @@ module.exports = {
                             presets: [
                                 '@babel/preset-env',
                                 '@babel/preset-typescript'
+                            ],
+                            plugins: [
+                              '@babel/plugin-proposal-class-properties'
                             ]
                         },
                     }

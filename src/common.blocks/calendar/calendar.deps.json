@@ -1,0 +1,12 @@
+{
+    "name": "calendar",
+    "techs": [
+        "scss",
+        "pug",
+        "js"
+    ],
+    "deps": [
+        "icon",
+        "button"
+    ]
+}

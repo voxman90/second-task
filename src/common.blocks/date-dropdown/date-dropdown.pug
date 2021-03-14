@@ -1,7 +1,5 @@
-mixin date-dropdown(inputName="dropdownDate", inputValue="", labelLeft="date dropdown")
-  div.date-dropdown
-    label
-      div.date-dropdown__label
-        span.date-dropdown__label-left #{labelLeft}
-      div.date-dropdown__input
-        input.date-dropdown__input-text(type="date" name=inputName)
+mixin date-dropdown(args={name: '', value: '', left: 'date dropdown'})
+    - let {name, value, left} = args
+    .date-dropdown
+        +label(left)
+            +input-text({name: name, value: value})(type='date' class='date-dropdown__input-text')

@@ -1,45 +1,46 @@
 import $ from "./jquery.js";
 
 class BEMComponent {
-    name: string;
-    id: string;
+  name: string;
+  id: string;
 
-    constructor(name: string) {
-        const ID_LENGTH = 16;
+  constructor(name: string) {
+    this.name = name;
+    this.id = this.createId(this.#ID_LENGTH);
+  }
 
-        this.name = name;
-        this.id = this.createId(ID_LENGTH);
-    }
+  #ID_LENGTH = 16;
 
-    createId(length: number): string {
-        const SET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_0123456789";
-        let id = '';
-    
-        for (let i = 0; i < length; i++) {
-            id += SET.charAt(Math.floor(Math.random() * SET.length));
-        };
-    
-        return id;
-    }
+  SET = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_0123456789';
 
-    bindEventListeners(els: {elem: HTMLElement, event: string, callback: Function, data?: Object, options?: any}[]): void {
-        els.forEach(
-            (el) => this.bindEventListener(el)
-        );
-    }
+  createId(length: number): string {
+    let id = '';
 
-    bindEventListener(arg: {elem: HTMLElement, event: string, callback: Function, data?: Object, options?: any}): void {
-        let {data, elem, callback, event, options} = arg;
-        data = data || {};
-        options = options || null;
+    for (let i = 0; i < length; i++) {
+      id += this.SET.charAt(Math.floor(Math.random() * this.SET.length));
+    };
 
-        const uniqeEventName = event + "." + this.name + this.id;
+    return id;
+  }
 
-        $(elem).on(uniqeEventName, options, (event) => {
-            Object.assign(event, data);
-            callback(event);
-        });
-    }
+  bindEventListeners(els: {elem: HTMLElement, event: string, callback: Function, data?: Object, options?: any}[]): void {
+    els.forEach(
+      (el) => this.bindEventListener(el)
+    );
+  }
+
+  bindEventListener(arg: {elem: HTMLElement, event: string, callback: Function, data?: Object, options?: any}): void {
+    let { data, elem, callback, event, options } = arg;
+    data = data || {};
+    options = options || null;
+
+    const uniqeEventName = `${event}.${this.name}${this.id}`;
+
+    $(elem).on(uniqeEventName, options, (event) => {
+      Object.assign(event, data);
+      callback(event);
+    });
+  }
 }
 
 export { BEMComponent };
