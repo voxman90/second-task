@@ -1,4 +1,4 @@
-import $ from "./jquery.js";
+import $ from 'jquery';
 
 class BEMComponent {
   name: string;

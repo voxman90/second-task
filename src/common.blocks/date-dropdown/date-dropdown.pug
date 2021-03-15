@@ -1,5 +1,0 @@
-mixin date-dropdown(args={name: '', value: '', left: 'date dropdown'})
-    - let {name, value, left} = args
-    .date-dropdown
-        +label(left)
-            +input-text({name: name, value: value})(type='date' class='date-dropdown__input-text')

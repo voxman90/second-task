@@ -1,0 +1,10 @@
+{
+  "name": "input-text-masked",
+  "techs": [
+    "js",
+    "pug"
+  ],
+  "deps": [
+    "input-text"
+  ]
+}

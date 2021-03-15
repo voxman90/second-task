@@ -9,6 +9,9 @@ include ../../common.blocks/dropdown-guests/dropdown-guests.pug
 include ../../common.blocks/dropdown-facilities/dropdown-facilities.pug
 include ../../common.blocks/expandable-list/expandable-list.pug
 include ../../common.blocks/calendar/calendar.pug
+include ../../common.blocks/input-text-masked/input-text-masked.pug
+include ../../common.blocks/input-date/input-date.pug
+include ../../common.blocks/dropdown-date/dropdown-date.pug
 - const data = htmlWebpackPlugin.options.data
 - const title = data.title
 doctype html
@@ -23,8 +26,8 @@ html
       .form-elements__content
         .form-elements__grid
           .form-elements__block_1
-            +text-field({name: "input-text-001", placeholder: "Email", left: "TEXT FIELD", right: "DEFAULT"})
-            +text-field({name: "input-text-002", left: "TEXT FIELD", right: "HOVER / FOCUS"}, {value: "This is pretty awesome", class: "input-text_hover"})
+            +text-field({ name: "input-text-001", placeholder: "Email", left: "TEXT FIELD", right: "DEFAULT" })
+            +text-field({ name: "input-text-002", left: "TEXT FIELD", right: "HOVER / FOCUS"}, {value: "This is pretty awesome", class: "input-text_hover" })
             +dropdown-guests("dropdown-guests-001", "DROPDOWN")
           .form-elements__block_2
             +dropdown-facilities("dropdown-facilities-001", "DROPDOWN", "DEFAULT")
@@ -34,5 +37,7 @@ html
               p= "текст"
             +calendar
           .form-elements__block_6
+            +input-date({ name: "input-text-masked-001", placeholder: "DD/MM/YYYY" })
+            // +dropdown-date({ left: 'DATE DROPDOWN', right: 'DATE DROPDOWN', name: 'dropdown-date'})
           .form-elements__block_7
           .form-elements__block_8

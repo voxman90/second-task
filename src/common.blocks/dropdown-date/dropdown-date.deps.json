@@ -1,0 +1,14 @@
+{
+  "name": "dropdown-date",
+  "techs": [
+    "js",
+    "scss",
+    "pug"
+  ],
+  "deps": [
+    "icon",
+    "label",
+    "input-date",
+    "calendar"
+  ]
+}

@@ -71,7 +71,7 @@
 @mixin body-text($size: 0.875rem, $height: 1.5rem) {
     color: map.get(colors.$map, dark-shade-75);
     @include Montserrat-normal;
-    font-size: $size;  
+    font-size: $size;
     line-height: $height;
 }
 

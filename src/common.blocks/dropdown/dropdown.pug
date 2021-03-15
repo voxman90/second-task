@@ -8,11 +8,8 @@ mixin dropdown__option(name, value)
         else
             .dropdown__option-button.dropdown__option-button_blacked= '-'
 
-
-mixin dropdown(args, attr)
-    - var args = args || {}
-    - var attr = attr || {}
-    - var {haveButtons, left, right, name, value} = args
+mixin dropdown(args = {}, attr = {})
+    - var { haveButtons, left, right, name, value } = args
     - var options = args.options || {}
     - var barMod = (haveButtons) ? 'dropdown__bar_instant-count' : ''
     .dropdown&attributes(attributes)

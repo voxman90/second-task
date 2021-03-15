@@ -1,0 +1,14 @@
+mixin dropdown-date(args = {})
+  - var { left, right, name } = args
+  .dropdown-date
+    .dropdown-date__head
+      .dropdown-date__arrival
+        +label(left, '')
+          +input-date({ name: `${name}-arrival` }).dropdown-date__input-arrival
+          +icon('expand_more').dropdown-date__icon-expand
+      .date-picker__departure
+        +label(right, '')
+          +input-date({ name: `${name}-departure` }).dropdown-date__input-departure
+          +icon('expand_more').dropdown-date__icon-expand
+    .dropdown-date__body 
+      +calendar({ name })

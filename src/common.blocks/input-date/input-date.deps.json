@@ -1,0 +1,10 @@
+{
+  "name": "input-date",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": [
+    "input-text-masked"
+  ]
+}

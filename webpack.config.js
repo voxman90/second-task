@@ -1,14 +1,21 @@
+'use strict';
+
 const fs = require('fs');
 const path = require('path');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+function _path(p) {
+  return path.join(__dirname, p);
+}
+
 function defineEntry(conf, entry, plugins) {
     entry[conf.name] = `./${conf.name}.entry.js`;
 
     let data = {};
     if (conf.data) {
-        const root = path.resolve(__dirname,`./src/templates/${conf.name}/${conf.data}.data.json`);
+        const root = _path(`./src/templates/${conf.name}/${conf.data}.data.json`);
         const rawData = fs.readFileSync(path.resolve(__dirname, root));
         data = JSON.parse(rawData);
     }
@@ -25,34 +32,42 @@ function defineEntry(conf, entry, plugins) {
 }
 
 function getEntries() {
-    const data = fs.readFileSync(path.resolve(__dirname, './src/entry.json'));
-    const {entries} = JSON.parse(data);
-    const entry = {};
-    const plugins = [];
+  const data = fs.readFileSync(_path('./src/entry.json'));
+  const { entries } = JSON.parse(data);
+  const entry = {};
+  const plugins = [];
 
-    entries.forEach(
-        (conf) => defineEntry(conf, entry, plugins)
-    );
+  entries.forEach(
+    (conf) => defineEntry(conf, entry, plugins)
+  );
 
-    plugins.push(new CleanWebpackPlugin());
-    plugins.push(new MiniCssExtractPlugin({filename: '[name].css'}));
-
-    return {entry, plugins};
+  return { entry, plugins };
 }
 
-const {entry, plugins} = getEntries();
+const { entry, plugins } = getEntries();
 
 module.exports = {
-    context: path.resolve(__dirname, './src/'),
-    entry: entry,
+    context: _path('./src/'),
+    entry: {
+      ...entry
+    },
     output: {
-        filename: '[name].js',
-        path: path.resolve(__dirname, './dist/')
+      filename: '[name].js',
+      path: _path('./dist/')
     },
     resolve: {
         extensions: ['.ts', '.js'],
+        alias: {
+          'jquery': _path('node_modules/jquery/dist/jquery'),
+          'inputmask' : _path('node_modules/jquery.inputmask/dist/inputmask/inputmask'),
+          'jquery.inputmask': _path('node_modules/inputmask/dist/jquery.inputmask'),
+        },
     },
-    plugins: plugins,
+    plugins: [
+      new CleanWebpackPlugin(),
+      new MiniCssExtractPlugin({ filename: '[name].css' }),
+      ...plugins
+    ],
     module: {
         rules: [
             {

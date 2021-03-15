@@ -1,7 +1,5 @@
 "use strict"
 
-import { ImportsNotUsedAsValues } from "typescript";
-
 class Vertex {
     value: number | string;
     links: Vertex[];
