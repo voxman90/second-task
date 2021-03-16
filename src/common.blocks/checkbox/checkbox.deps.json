@@ -1,8 +1,8 @@
 {
- "name": "checkbox",
- "techs": [
-  "scss",
-  "pug"
- ],
- "deps": null
+  "name": "checkbox",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": null
 }

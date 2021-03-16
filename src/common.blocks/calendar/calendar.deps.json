@@ -1,12 +1,12 @@
 {
-    "name": "calendar",
-    "techs": [
-        "scss",
-        "pug",
-        "js"
-    ],
-    "deps": [
-        "icon",
-        "button"
-    ]
+  "name": "calendar",
+  "techs": [
+    "scss",
+    "pug",
+    "js"
+  ],
+  "deps": [
+    "icon",
+    "button"
+  ]
 }

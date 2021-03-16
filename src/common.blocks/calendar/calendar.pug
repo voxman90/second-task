@@ -1,5 +1,5 @@
-mixin calendar(args= {})
-  - var { name } = args
+mixin calendar(args = {})
+  - const { name } = args
   .calendar.js-calendar&attributes(attributes)
     .calendar__head
       +icon({ text: 'arrow_back' }).calendar__button-backward

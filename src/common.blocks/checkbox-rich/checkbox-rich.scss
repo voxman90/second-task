@@ -3,17 +3,18 @@
 @use "../../styles/text-mixins" as fonts;
 
 .checkbox-rich {
-    color: map.get(colors.$map, 'dark-shade-75');
-    @include fonts.Montserrat-bold;
-    font-size: 14px;
-    line-height: 18px;
+  @include fonts.Montserrat-bold;
+  font-size: 14px;
+  line-height: 18px;
+  color: map.get(colors.$map, 'dark-shade-75');
 }
 
 .checkbox-rich__subtext {
-    margin-left: 30px;
-    margin-top: 5px;
-    color: map.get(colors.$map, 'dark-shade-50');
-    @include fonts.Montserrat-normal;
-    font-size: 12px; 
-    line-height: 14px;
+  margin-left: 30px;
+  margin-top: 5px;
+
+  @include fonts.Montserrat-normal;
+  font-size: 12px; 
+  line-height: 14px;
+  color: map.get(colors.$map, 'dark-shade-50');
 }

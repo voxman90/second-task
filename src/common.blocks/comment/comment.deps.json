@@ -1,10 +1,10 @@
 {
- "name": "comment",
- "techs": [
-  "scss",
-  "pug"
- ],
- "deps": [
-  "like-button"
- ]
+  "name": "comment",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": [
+    "like-button"
+  ]
 }

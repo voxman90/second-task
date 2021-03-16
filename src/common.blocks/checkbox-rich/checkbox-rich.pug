@@ -1,4 +1,4 @@
-mixin checkbox-rich(args={name:"", value:"", text:"", subtext:""})
-    - var {subtext} = args
-    +checkbox(args).checkbox-rich
-        .checkbox-rich__subtext!= subtext
+mixin checkbox-rich(args = {})
+  - const { subtext } = args
+  +checkbox(args).checkbox-rich
+    .checkbox-rich__subtext!= subtext

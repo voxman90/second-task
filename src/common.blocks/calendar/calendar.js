@@ -86,7 +86,7 @@ class CalendarModel {
     const diff = dateTime - bottomTime;
     if (diff > 0) {
       return true;
-    } 
+    }
 
     if (this.isSameYearAndMonth(date, bottom)) {
       return (
@@ -180,6 +180,7 @@ class CalendarModel {
     if (length === 12) {
       cache.shift();
     }
+
     cache.push({
       date,
       calendarSheet,
@@ -361,7 +362,7 @@ class Calendar extends BEMComponent {
     }
 
     this.tableCellNodes.forEach((cell, i) => {
-      if (i >= from && i < to) {
+      if (from <= i && i < to) {
         cell.classList.add('calendar__table-cell_recent');
       }
 
@@ -372,7 +373,7 @@ class Calendar extends BEMComponent {
   drawArrivalDate() {
     const arr = this.model.arrival;
     const arrIndex = this.model.findCellIndex(arr);
-    if (arrIndex !== null && 0 <= arrIndex && arrIndex <= 41) {
+    if (this.isCorrectIndex(arrIndex)) {
       this.tableCellNodes[arrIndex].classList.add('calendar__table-cell_arrival');
     }
 
@@ -382,11 +383,19 @@ class Calendar extends BEMComponent {
   drawDepartureDate() {
     const dep = this.model.departure;
     const depIndex = this.model.findCellIndex(dep);
-    if (depIndex !== null && 0 <= depIndex && depIndex <= 41) {
+    if (this.isCorrectIndex(depIndex)) {
       this.tableCellNodes[depIndex].classList.add('calendar__table-cell_departure');
     }
 
     return depIndex;
+  }
+
+  isCorrectIndex(index) {
+    return (
+      index !== null
+      && 0 <= index
+      && index < 42
+    );
   }
 
   drawTrace() {
@@ -394,8 +403,7 @@ class Calendar extends BEMComponent {
     const dep = this.model.departure;
     const arrIndex = this.drawArrivalDate();
     const depIndex = this.drawDepartureDate();
-    console.log('drawTrace -> ', arr, arrIndex, dep, depIndex);
-    if (arr && dep && arrIndex !== depIndex) {
+    if (this.isNotNullAndNotEqual(arr, dep, arrIndex, depIndex)) {
       let start = 0;
       let end = this.tableCellNodes.length;
 
@@ -408,11 +416,19 @@ class Calendar extends BEMComponent {
       }
 
       this.tableCellNodes.forEach((cell, i) => {
-        if (i >= start && i <= end) {
+        if (start <= i && i <= end) {
           cell.classList.add('calendar__table-cell_filled');
         }
       });
     }
+  }
+
+  isNotNullAndNotEqual(arr, dep, arrIndex, depIndex) {
+    return (
+      arr !== null
+      && dep !== null
+      && arrIndex !== depIndex
+    );
   }
 
   attachListeners() {
@@ -470,8 +486,8 @@ class Calendar extends BEMComponent {
     const that = e.that;
     const arrival = that.model.arrival;
     const departure = that.model.departure;
-    if (that.hooks["buttonApplyClick"]) {
-      that.hooks["buttonApplyClick"](arrival, departure);
+    if (that.hooks['buttonApplyClick']) {
+      that.hooks['buttonApplyClick'](arrival, departure);
     }
   }
 
@@ -479,8 +495,8 @@ class Calendar extends BEMComponent {
     const that = e.that;
     that.model.setDefault();
     that.drawCalendar();
-    if (that.hooks["buttonClearClick"]) {
-      that.hooks["buttonClearClick"]();
+    if (that.hooks['buttonClearClick']) {
+      that.hooks['buttonClearClick']();
     }
   }
 

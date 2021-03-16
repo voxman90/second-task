@@ -1,7 +1,7 @@
-mixin checkbox(args={name:"", value:"", text:""})
-    - var {name, value, text} = args
-    label.checkbox
-        input.checkbox__input(type="checkbox" name=name value=value)
-        .checkbox__text&attributes(attributes)= text
-        if block
-            block
+mixin checkbox(args = {})
+  - const { name, value, text } = args
+  label.checkbox
+    input.checkbox__input(type='checkbox' name=name value=value)
+    .checkbox__text&attributes(attributes)= text
+    if block
+      block

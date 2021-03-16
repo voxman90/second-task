@@ -1,10 +1,10 @@
 {
- "name": "checkbox-rich",
- "techs": [
-  "scss",
-  "pug"
- ],
- "deps": [
-  "checkbox"
- ]
+  "name": "checkbox-rich",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": [
+    "checkbox"
+  ]
 }

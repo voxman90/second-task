@@ -1,27 +1,26 @@
 mixin dropdown__option(name, value)
-    .dropdown__option
-        .dropdown__option-item= name
-        .dropdown__option-button.js-dropdown__option-button-plus= '+'
-        .dropdown__option-value.js-dropdown__option-value= value
-        if (value > 0)
-            .dropdown__option-button= '-'
-        else
-            .dropdown__option-button.dropdown__option-button_blacked= '-'
+  .dropdown__option
+    .dropdown__option-item= name
+    .dropdown__option-button.js-dropdown__option-button-plus= '+'
+    .dropdown__option-value.js-dropdown__option-value= value
+    if (value > 0)
+      .dropdown__option-button= '-'
+    else
+      .dropdown__option-button.dropdown__option-button_blacked= '-'
 
 mixin dropdown(args = {}, attr = {})
-    - var { haveButtons, left, right, name, value } = args
-    - var options = args.options || {}
-    - var barMod = (haveButtons) ? 'dropdown__bar_instant-count' : ''
-    .dropdown&attributes(attributes)
-        +label(left, right)
-            +input-text({name: name, value: value})(readonly class=`dropdown__input-text js-dropdown__input-text dropdown__input-text_angled`)
-            .dropdown__icon
-                +icon({text: 'expand_more'})
-        div(class=`dropdown__bar dropdown__bar_hidden dropdown__bar_shadow ${barMod}`)
-            .dropdown__options
-                each name, value in options
-                    +dropdown__option(value, name)
-            if haveButtons
-                .dropdown__buttons.js-dropdown__buttons
-                    +button('ОЧИСТИТЬ', `${name}-clear`)(class='dropdown__button-clear')
-                    +button('ПРИМЕНИТЬ', `${name}-apply`)(class='dropdown__button-apply')
+  - const { haveButtons, left, right, name, value, options } = args
+  - const barModif = (haveButtons) ? 'dropdown__bar_instant-count' : ''
+  .dropdown&attributes(attributes)
+    +label(left, right)
+      +input-text({ name: name, value: value })(readonly class=`dropdown__input-text js-dropdown__input-text dropdown__input-text_angled`)
+      .dropdown__icon
+        +icon({ text: 'expand_more' })
+    div(class=`dropdown__bar dropdown__bar_hidden dropdown__bar_shadow ${barModif}`)
+      .dropdown__options
+        each name, value in options
+          +dropdown__option(value, name)
+      if haveButtons
+        .dropdown__buttons.js-dropdown__buttons
+          +button('ОЧИСТИТЬ', `${name}-clear`)(class='dropdown__button-clear')
+          +button('ПРИМЕНИТЬ', `${name}-apply`)(class='dropdown__button-apply')

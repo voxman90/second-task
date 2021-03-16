@@ -1,8 +1,8 @@
 {
-    "name": "button",
-    "techs": [
-        "scss",
-        "pug"
-    ],
-    "deps": null
+  "name": "button",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": null
 }

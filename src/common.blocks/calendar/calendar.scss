@@ -6,14 +6,16 @@
 .calendar {
   position: absolute;
   z-index: 15;
+
   box-sizing: border-box;
   width: 20rem;
-  padding: 19px;
   margin-top: 5px;
-  background-color: #FFFFFF;
-  box-shadow: 0px 10px 20px map.get(colors.$map, dark-shade-05);
+  padding: 19px;
+
   border: 1px solid map.get(colors.$map, dark-shade-25);
   border-radius: 4px;
+  background-color: #FFFFFF;
+  box-shadow: 0px 10px 20px map.get(colors.$map, dark-shade-05);
 }
 
 .calendar_hidden {
@@ -26,19 +28,22 @@
 
 .calendar__title {
   height: 24px;
-  text-align: center;
+
   font-family: 'Quicksand', 'Open Sans', sans-serif;
   font-weight: bold;
   font-style: normal;
-  color: map.get(colors.$map, dark-shade-100);
   font-size: 19px;
   line-height: 24px;
+  text-align: center;
+  color: map.get(colors.$map, dark-shade-100);
 }
 
 .calendar__button-backward {
   float: left;
   height: 24px;
+
   cursor: pointer;
+
   color: map.get(colors.$map, "purple");
 
   &::selection {
@@ -53,11 +58,13 @@
 .calendar__button-forward {
   float: right;
   height: 24px;
+
   cursor: pointer;
+
   color: map.get(colors.$map, "purple");
+
   transform: rotate(180deg);
 
-  
   &::selection {
     background: transparent;
   }
@@ -69,15 +76,19 @@
 
 .calendar__table {
   width: 280px;
+
   border-collapse: collapse;
+
   text-align: center;
   vertical-align: middle;
 }
 
 .calendar__table-th {
   width: 40px;
-  padding: 0px;
+  padding: 0;
+
   cursor: default;
+
   @include fonts.label-text(0.75rem, 1.25rem);
   text-transform: none;
   color: map.get(colors.$map, "purple");
@@ -85,7 +96,7 @@
 
 .calendar__table-row {
   height: 40px;
-  padding: 0px;
+  padding: 0;
 }
 
 .calendar__table-row_hidden {
@@ -94,11 +105,12 @@
 
 .calendar__table-cell {
   width: 40px;
-  padding: 0px;
-  color: map.get(colors.$map, dark-shade-25);
+  padding: 0;
+
   @include fonts.Montserrat-normal;
   font-size: 0.75rem;
   line-height: 1.25em;
+  color: map.get(colors.$map, dark-shade-25);
 }
 
 .calendar__table-cell_recent {
@@ -109,17 +121,21 @@
 
 .calendar__table-cell_today {
   position: relative;
-  color: white;
+
   @include fonts.Montserrat-bold;
+  color: white;
 
   &::after {
     content: "";
+
     position: absolute;
     z-index: -1;
     top: 0px;
     left: 0px;
+
     width: 40px;
     height: 40px;
+
     border-radius: 22px;
     background: linear-gradient(180deg, map.get(colors.$map, "green"), map.get(colors.$map, "turquoise-blue"));
   }
@@ -127,19 +143,24 @@
 
 .calendar__table-cell_arrival {
   position: relative;
+
   border-radius: 22px 0 0 22px;
   background: transparent;
-  color: white;
+
   @include fonts.Montserrat-bold;
+  color: white;
 
   &::after {
     content: "";
+
     position: absolute;
     z-index: -1;
     top: 0px;
     left: 0px;
+
     width: 40px;
     height: 40px;
+
     border-radius: 22px;
     background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
   }
@@ -147,19 +168,24 @@
 
 .calendar__table-cell_departure {
   position: relative;
+
   border-radius: 0 22px 22px 0;
   background: transparent;
-  color: white;
+
   @include fonts.Montserrat-bold;
+  color: white;
 
   &::after {
     content: "";
+
     position: absolute;
     z-index: -1;
     top: 0px;
     left: 0px;
+
     width: 40px;
     height: 40px;
+
     border-radius: 22px;
     background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
   }
@@ -177,7 +203,9 @@
 
   &::after {
     content: "";
+
     position: absolute;
+
     clear: both;
     width: 100%;
   }
@@ -185,7 +213,9 @@
 
 .calendar__button-clear {
   float: left;
+
   cursor: pointer;
+
   color: map.get(colors.$map, dark-shade-50);
 
   &:hover,
@@ -209,6 +239,7 @@
 
 .calendar__button-apply {
   float: right;
+
   cursor: pointer;
 
   &::selection {

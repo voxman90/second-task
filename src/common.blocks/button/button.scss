@@ -4,78 +4,80 @@
 @use "../../styles/text-mixins" as fonts;
 
 .button {
-    position: relative;
-    box-sizing: border-box;
-    min-width: min-content;
-    height: 1.25rem;
-    margin: 0;
-    padding: 0;
+  position: relative;
 
-    background-color: transparent;
-    border: none;
+  min-width: min-content;
+  height: 1.25rem;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 
-    text-align: center;
-    text-transform: uppercase;
-    color: map.get(colors.$map, "purple");
-    @include fonts.Montserrat-bold;
-    font-size: 0.75rem;
-    line-height: 1.25rem;
+  background-color: transparent;
+  border: none;
 
-    &:hover {
-        color: map.get(colors.$map, dark-shade-50); 
-    }
+  @include fonts.Montserrat-bold;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  text-align: center;
+  text-transform: uppercase;
+  color: map.get(colors.$map, "purple");
+
+  &:hover {
+    color: map.get(colors.$map, dark-shade-50); 
+  }
 }
 
 .button_style_fill {
-    background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
-    border-radius: 1.375rem;
-    
-    color: #FFFFFF;
+  background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
+  border-radius: 1.375rem;
 
-    &:hover {
-        opacity: 0.5;
-        color: #FFFFFF;
-    }
+  color: #FFFFFF;
+
+  &:hover {
+    opacity: 0.5;
+    color: #FFFFFF;
+  }
 }
 
 .button_style_border {
+  background-image: linear-gradient(#FFF, #FFF),
+                    linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
+  background-clip: content-box,
+                   border-box;
+  background-origin: border-box;
+  border-radius: 1.375rem;
+  border: solid transparent;
+  border-width: 0.128rem;
+
+  color: map.get(colors.$map, "purple");
+
+  &:hover {
+    $purple-50: color.scale(map.get(colors.$map, "purple"), $alpha: -50%);
+    $malibu-50: color.scale(map.get(colors.$map, "malibu"), $alpha: -50%);
     background-image: linear-gradient(#FFF, #FFF),
-                      linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
-    background-clip: content-box,
-                     border-box;
-    background-origin: border-box;
-    border-radius: 1.375rem;
-    border: solid transparent;
-    border-width: 0.128rem;
+                      linear-gradient(180deg, $purple-50, $malibu-50);
     color: map.get(colors.$map, "purple");
-  
-    &:hover {
-        $purple-50: color.scale(map.get(colors.$map, "purple"), $alpha: -50%);
-        $malibu-50: color.scale(map.get(colors.$map, "malibu"), $alpha: -50%);
-        background-image: linear-gradient(#FFF, #FFF),
-                          linear-gradient(180deg, $purple-50, $malibu-50);
-        color: map.get(colors.$map, "purple");
-    }
+  }
 }
 
 .button_size_short {
-    width: 6.1875rem;
-    height: 2.75rem;
+  width: 6.1875rem;
+  height: 2.75rem;
 }
 
 .button_size_long {
-    min-width: 20rem;
-    height: 2.75rem;
+  min-width: 20rem;
+  height: 2.75rem;
 }
 
 .button_arrowed {
-    &::after {
-        position: absolute;
-        right: 0.4166rem;
-        top: 0.51rem;
+  &::after {
+    content: "arrow_forward"; 
 
-        content: "arrow_forward"; 
+    position: absolute;
+    right: 0.4166rem;
+    top: 0.51rem;
 
-        @include fonts.material-icons;
-    }
+    @include fonts.material-icons;
+  }
 }
