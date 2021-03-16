@@ -1,42 +1,47 @@
-import { BEMComponent } from "../../scripts/scripts.ts";
+import { BEMComponent } from '../../scripts/scripts.ts';
 
-class ExpandableList extends BEMComponent  {
-    constructor(elem) {
-        super('expandable-list');
+class ExpandableList extends BEMComponent {
+  constructor(elem) {
+    super('expandable-list');
 
-        this.root = elem;
-        this.head = elem.firstElementChild;
-        this.icon = this.head.lastElementChild;
-        this.body = elem.lastElementChild;
+    this.connectBasis(elem);
 
-        this.bindEventListeners();
-    }
+    this.bindEventListeners(this.listeners);
+  }
 
-    handleHeadClick(e) {
-        const that = e.that
-        that.icon.classList.toggle("expandable-list__icon_turn_180deg");
-        that.body.classList.toggle("expandable-list__body_hidden");
-    }
+  connectBasis(elem) {
+    this.root = elem;
+    this.head = elem.firstElementChild;
+    this.icon = this.head.lastElementChild;
+    this.body = elem.lastElementChild;
 
-    bindEventListeners() {
-        this.bindEventListener({
-            elem: this.head,
-            event: "click",
-            callback: this.handleHeadClick,
-            options: null,
-            data: {
-                that: this
-            }
-        });
-    }
+    this.listeners = [];
+    this.listeners.push(
+      {
+        elem: this.head,
+        event: 'click',
+        callback: this.handleHeadClick,
+        options: null,
+        data: {
+          that: this
+        },
+      },
+    );
+  }
+
+  handleHeadClick(e) {
+    const that = e.that;
+    that.icon.classList.toggle('expandable-list__icon_turn_180deg');
+    that.body.classList.toggle('expandable-list__body_hidden');
+  }
 }
 
 function initExpandableList() {
-    const expandableLists = document.querySelectorAll(".js-expandable-list");
+  const expandableLists = document.querySelectorAll('.js-expandable-list');
 
-    for (const expandableList of expandableLists) {
-        new ExpandableList(expandableList);
-    }
-} 
+  for (const expandableList of expandableLists) {
+      new ExpandableList(expandableList);
+  }
+}
 
-document.addEventListener("DOMContentLoaded", initExpandableList);
+document.addEventListener('DOMContentLoaded', initExpandableList);

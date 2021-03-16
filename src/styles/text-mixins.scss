@@ -1,120 +1,120 @@
-@use "sass:math";
-@use "sass:map";
-@use "./colors" as colors;
+@use 'sass:math';
+@use 'sass:map';
+@use './colors' as colors;
 
 @mixin Quicksand-normal {
-    font: {
-        family: 'Quicksand', 'Open Sans', sans-serif;
-        weight: normal;
-        style: normal;
-    }
+  font: {
+    family: 'Quicksand', 'Open Sans', sans-serif;
+    weight: normal;
+    style: normal;
+  }
 }
 
 @mixin Quicksand-bold {
-    font: { 
-        family: 'Quicksand', 'Open Sans', sans-serif;
-        weight: bold;
-        style: normal;
-    }
+  font: { 
+    family: 'Quicksand', 'Open Sans', sans-serif;
+    weight: bold;
+    style: normal;
+  }
 }
 
 @mixin Montserrat-normal {
-    font: {
-        family: 'Montserrat', sans-serif;
-        weight: normal;
-        style: normal;
-    }
+  font: {
+    family: 'Montserrat', sans-serif;
+    weight: normal;
+    style: normal;
+  }
 }
 
 @mixin Montserrat-bold {
-    font: {
-        family: 'Montserrat', sans-serif;
-        weight: bold;
-        style: normal;
-    }
+  font: {
+    family: 'Montserrat', sans-serif;
+    weight: bold;
+    style: normal;
+  }
 }
 
 //- This one is the sub-section or widget title
 @mixin widget-text($size: 1.5rem, $height: auto) {
-    color: map.get(colors.$map, dark-shade-100);
-    @include Montserrat-bold;
-    font-size: $size;
-    line-height: $height;
+  @include Montserrat-bold;
+  font-size: $size;
+  line-height: $height;
+  color: map.get(colors.$map, dark-shade-100);
 }
 
 //- Next one is the item title inside widgets 
 @mixin title-text($size: 1.1875rem, $height: auto) {
-    color: map.get(colors.$map, dark-shade-100);
-    @include Montserrat-bold;
-    font-size: $size;
-    line-height: $height;
+  @include Montserrat-bold;
+  font-size: $size;
+  line-height: $height;
+  color: map.get(colors.$map, dark-shade-100);
 }
 
 //- This is a label or CTA text
 @mixin label-text($size: 0.75rem, $height: auto) {
-    text-transform: uppercase;
-    color: map.get(colors.$map, dark-shade-100);
-    @include Montserrat-bold;
-    font-size: $size;
-    line-height: $height;
+  @include Montserrat-bold;
+  font-size: $size;
+  line-height: $height;
+  text-transform: uppercase;
+  color: map.get(colors.$map, dark-shade-100);
 }
 
 @mixin regular-label-text($size: 0.75rem, $height: auto) {
-    text-transform: uppercase;
-    color: map.get(colors.$map, dark-shade-50);
-    @include Montserrat-normal;
-    font-size: $size;
-    line-height: $height;
+  @include Montserrat-normal;
+  font-size: $size;
+  line-height: $height;
+  text-transform: uppercase;
+  color: map.get(colors.$map, dark-shade-50);
 }
 
 //- This is the body text which is used for most of the design, like paragraphs, lists, etc.
 @mixin body-text($size: 0.875rem, $height: 1.5rem) {
-    color: map.get(colors.$map, dark-shade-75);
-    @include Montserrat-normal;
-    font-size: $size;
-    line-height: $height;
+  @include Montserrat-normal;
+  font-size: $size;
+  line-height: $height;
+  color: map.get(colors.$map, dark-shade-75);
 }
 
 @mixin material-icons {
-    display: inline-block;
+  display: inline-block;
 
-    text-transform: none;
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 1.5rem;  /* Preferred icon size */
-    line-height: 1;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1.5rem;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
 
-    /* Support for all WebKit browsers. */
-    -webkit-font-smoothing: antialiased;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
 
-    /* Support for Safari and Chrome. */
-    text-rendering: optimizeLegibility;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
 
-    /* Support for Firefox. */
-    -moz-osx-font-smoothing: grayscale;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
 
-    /* Support for IE. */
-    font-feature-settings: 'liga';
+  /* Support for IE. */
+  font-feature-settings: 'liga';
 }
 
 @mixin font-awesome-icons {
-    font-family: 'Font Awesome 5 Brands', fantasy;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    font-size: 1.5rem;
-    line-height: 1;
-    
-    /* Support for all WebKit browsers. */
-    -webkit-font-smoothing: antialiased;
+  font-family: 'Font Awesome 5 Brands', fantasy;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  font-size: 1.5rem;
+  line-height: 1;
 
-    /* Support for Firefox. */
-    -moz-osx-font-smoothing: grayscale;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
 
-    text-rendering: auto;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  text-rendering: auto;
 }

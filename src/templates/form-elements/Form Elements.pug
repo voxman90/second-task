@@ -1,3 +1,4 @@
+include ../../common.blocks/radio-button/radio-button.pug
 include ../../common.blocks/logo/logo.pug
 include ../../common.blocks/label/label.pug
 include ../../common.blocks/input-text/input-text.pug
@@ -12,6 +13,8 @@ include ../../common.blocks/calendar/calendar.pug
 include ../../common.blocks/input-text-masked/input-text-masked.pug
 include ../../common.blocks/input-date/input-date.pug
 include ../../common.blocks/dropdown-date/dropdown-date.pug
+include ../../common.blocks/subscription-field/subscription-field.pug
+include ../../common.blocks/rate-button/rate-button.pug
 - const data = htmlWebpackPlugin.options.data
 - const title = data.title
 doctype html
@@ -40,4 +43,8 @@ html
             +input-date({ name: "input-text-masked-001", placeholder: "DD/MM/YYYY" })
             // +dropdown-date({ left: 'DATE DROPDOWN', right: 'DATE DROPDOWN', name: 'dropdown-date'})
           .form-elements__block_7
+            +subscription-field({ name: "input-text-001", placeholder: "Email" })
           .form-elements__block_8
+            +rate-button({ amount: 5, filled: 2 })
+            +rate-button({ amount: 5, filled: 4 })
+            +radio-button({ text: 'Радио кнопка' })

@@ -1,45 +1,46 @@
-@use "sass:map";
-@use "../../styles/colors" as colors;
-@use "../../styles/text-mixins" as fonts;
+@use 'sass:map';
+@use '../../styles/colors' as colors;
+@use '../../styles/text-mixins' as fonts;
 
 .expandable-list {
-    width: 100%;
+  width: 100%;
 }
 
 .expandable-list__head {
-    position: relative;
+  position: relative;
 
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .expandable-list__heading {
-    height: 2.75rem;
+  height: 2.75rem;
 
-    @include fonts.label-text(0.75rem, 2.75rem);
+  @include fonts.label-text(0.75rem, 2.75rem);
 }
 
 .expandable-list__icon {
-    position: absolute;
-    top: 0.625rem;
-    right: 0;
-    width: 2.75rem;
-    height: 1.5rem;
+  position: absolute;
+  top: 0.625rem;
+  right: 0;
 
-    text-align: center;
-    color: map.get(colors.$map, 'dark-shade-50');
+  width: 2.75rem;
+  height: 1.5rem;
+
+  text-align: center;
+  color: map.get(colors.$map, 'dark-shade-50');
 }
 
 .expandable-list__icon_turn_180deg {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .expandable-list__body {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: fit-content;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
 }
 
 .expandable-list__body_hidden {
-    display: none;
+  display: none;
 }

@@ -6,33 +6,45 @@ class BEMComponent {
 
   constructor(name: string) {
     this.name = name;
-    this.id = this.createId(this.#ID_LENGTH);
+    this.id = this.createId();
   }
 
   #ID_LENGTH = 16;
+  #SET = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_0123456789';
 
-  SET = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_0123456789';
-
-  createId(length: number): string {
+  createId(): string {
+    const length = this.#ID_LENGTH;
     let id = '';
-
     for (let i = 0; i < length; i++) {
-      id += this.SET.charAt(Math.floor(Math.random() * this.SET.length));
+      id += this.getCharFromSet();
     };
 
     return id;
   }
 
-  bindEventListeners(els: {elem: HTMLElement, event: string, callback: Function, data?: Object, options?: any}[]): void {
+  getCharFromSet(): string {
+    const SET = this.#SET;
+    return SET.charAt(Math.floor(Math.random() * SET.length));
+  }
+
+  bindEventListeners(els: { elem: HTMLElement, event: string, callback: Function, data?: Object, options?: any }[]): void {
     els.forEach(
       (el) => this.bindEventListener(el)
     );
   }
 
-  bindEventListener(arg: {elem: HTMLElement, event: string, callback: Function, data?: Object, options?: any}): void {
+  bindEventListener(arg: { elem: HTMLElement, event: string, callback: Function, data?: Object, options?: any }): void {
     let { data, elem, callback, event, options } = arg;
-    data = data || {};
-    options = options || null;
+
+    // checking that data is null or undefined
+    if (data == null) {
+      data = {};
+    }
+
+    // checking that options is null or undefined
+    if (options == null) {
+      options = null;
+    }
 
     const uniqeEventName = `${event}.${this.name}${this.id}`;
 

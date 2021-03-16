@@ -1,11 +1,11 @@
 {
- "name": "expandable-list",
- "techs": [
-  "js",
-  "scss",
-  "pug"
- ],
- "deps": [
-  "icon"
- ]
+  "name": "expandable-list",
+  "techs": [
+    "js",
+    "scss",
+    "pug"
+  ],
+  "deps": [
+    "icon"
+  ]
 }

@@ -1,42 +1,49 @@
-@use "sass:map";
-@use "../../styles/colors" as colors;
-@use "../../styles/text-mixins" as fonts;
+@use 'sass:map';
+@use '../../styles/colors' as colors;
+@use '../../styles/text-mixins' as fonts;
 
 .subscription-field {
-    display: flex;
-    width: min-content;
-    height: 2.75rem;
-    border-radius: 4px;
+  position: relative;
 
-    background-color: #FFFFFF;
+  display: flex;
+  width: 100%;
+  height: 2.75rem;
 }
 
-.subscription-field__text-field {
-    width: 13.9375rem;
-    border-right: 0;
-    border-radius: 4px 0 0 4px;
+.subscription-field__input-text {
+  padding-right: 2.625rem;
 
-    &:hover + .subscription-field__submit-button,
-    &:focus + .subscription-field__submit-button,
-    &:active + .subscription-field__submit-button { 
-        outline: none;
-        border-color: map.get(colors.$map, dark-shade-50);
-    }
+  &:hover + .subscription-field__submit-button,
+  &:focus + .subscription-field__submit-button,
+  &:active + .subscription-field__submit-button {
+    outline: none;
+    border-color: map.get(colors.$map, dark-shade-50);
+  }
 }
 
-.subscription-field__submit-button {
-    box-sizing: border-box;
-    width: 2.75rem;
-    height: 2.75rem;
-    
-    border-width: 1px 1px 1px 0;
-    border-style: solid;
-    border-color: map.get(colors.$map, dark-shade-25);
-    border-radius: 0 4px 4px 0;
+.subscription-field__icon {
+  position: absolute;
+  top: 0;
+  right: 1px;
 
-    background: linear-gradient(180deg, map.get(colors.$map, "purple") 0%, map.get(colors.$map, "malibu") 100%);
-    -webkit-background-clip: text;
-            background-clip: text;
-    -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+
+  border-radius: 0 4px 4px 0;
+  background: linear-gradient(180deg, map.get(colors.$map, 'purple') 0%, map.get(colors.$map, 'malibu') 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  &::selection,
+  &::-moz-selection {
+    background: transparent;
+  }
+
+  &:hover {
     cursor: pointer;
+  }
 }

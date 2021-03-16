@@ -1,7 +1,7 @@
-@use "sass:map";
-@use "sass:color";
-@use "../../styles/colors" as colors;
-@use "../../styles/text-mixins" as fonts;
+@use 'sass:map';
+@use 'sass:color';
+@use '../../styles/colors' as colors;
+@use '../../styles/text-mixins' as fonts;
 
 .date-picker {
     display: flex;

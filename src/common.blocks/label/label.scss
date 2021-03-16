@@ -3,28 +3,31 @@
 @use '../../styles/text-mixins.scss' as fonts;
 
 .label {
-    width: 100%;
-    padding-bottom: 0.275rem;
+  width: 100%;
+  padding-bottom: 0.275rem;
 }
 
 .label__clearfix {
-    &::after {
-        content: "";
-        clear: both;
-        display: table;
-    }
+  &::after {
+    content: '';
+    clear: both;
+
+    display: table;
+  }
 }
 
 .label__left-mark {
-    float: left;
-    height: 0.9375rem;
-    text-align: left;
-    @include fonts.label-text(0.75rem);
+  float: left;
+  height: 0.9375rem;
+
+  @include fonts.label-text(0.75rem);
+  text-align: left;
 }
 
 .label__right-mark {
-    float: right;
-    height: 0.9375rem;
-    text-align: right;
-    @include fonts.regular-label-text(0.75rem);
+  float: right;
+  height: 0.9375rem;
+
+  @include fonts.regular-label-text(0.75rem);
+  text-align: right;
 }

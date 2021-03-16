@@ -1,14 +1,16 @@
-@use "sass:map";
-@use "../../styles/colors" as colors;
-@use "../../styles/text-mixins" as fonts;
+@use 'sass:map';
+@use '../../styles/colors' as colors;
+@use '../../styles/text-mixins' as fonts;
 
 .input-text {
   box-sizing: border-box;
   height: 2.75rem;
   width: 100%;
   padding-left: 0.875rem;
+
   border: 1px solid map.get(colors.$map, dark-shade-25);
   border-radius: 4px;
+
   @include fonts.body-text;
 
   &:hover,

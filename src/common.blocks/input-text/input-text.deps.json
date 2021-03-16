@@ -1,8 +1,8 @@
 {
-    "name": "input-text",
-    "techs": [
-        "scss",
-        "pug"
-    ],
-    "deps": null        
+  "name": "input-text",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": null
 }

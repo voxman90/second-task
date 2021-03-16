@@ -1,11 +1,11 @@
 {
- "name": "subscription-field",
- "techs": [
-  "scss",
-  "pug"
- ],
- "deps": [
-  "text-field",
-  "icon"
- ]
+  "name": "subscription-field",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": [
+    "input-text",
+    "icon"
+  ]
 }

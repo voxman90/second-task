@@ -1,19 +1,19 @@
-@use "sass:map";
-@use "../../styles/colors" as colors;
-@use "../../styles/text-mixins" as fonts;
+@use 'sass:map';
+@use '../../styles/colors' as colors;
+@use '../../styles/text-mixins' as fonts;
 
 .rate-button {
-    display: flex;
-    width: min-content;
-    height: 1.5rem;
+  display: flex;
+  width: min-content;
+  height: 1.5rem;
 }
 
 .icon.rate-button__icon {
-    width: 1.5rem;
+  width: 1.5rem;
 
-    background: linear-gradient(180deg, map.get(colors.$map, "purple") 0%, map.get(colors.$map, "malibu") 100%);
-    -webkit-background-clip: text;
-            background-clip: text;
-    -webkit-text-fill-color: transparent;
-    cursor: pointer;
+  background: linear-gradient(180deg, map.get(colors.$map, 'purple') 0%, map.get(colors.$map, 'malibu') 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
 }

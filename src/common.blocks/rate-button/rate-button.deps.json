@@ -1,11 +1,11 @@
 {
- "name": "rate-button",
- "techs": [
-  "js",
-  "scss",
-  "pug"
- ],
- "deps": [
-  "icon"
- ]
+  "name": "rate-button",
+  "techs": [
+    "js",
+    "scss",
+    "pug"
+  ],
+  "deps": [
+    "icon"
+  ]
 }
