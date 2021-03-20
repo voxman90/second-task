@@ -1,0 +1,60 @@
+@use 'sass:map';
+@use 'sass:color';
+@use '../../styles/colors' as colors;
+@use '../../styles/text-mixins' as fonts;
+
+.dropdown-filter-date {
+  width: 16.625rem;
+}
+
+.dropdown-filter-date__head {
+  position: relative;
+}
+
+.dropdown-filter-date__pseudo-input {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  height: 2.75rem;
+  padding-left: 0.875rem;
+
+  border: 1px solid map.get(colors.$map, dark-shade-25);
+  border-radius: 4px;
+  background-color: white;
+
+  @include fonts.body-text;
+}
+
+.dropdown-filter-date__input-arrival {
+  display: none;
+}
+
+.dropdown-filter-date__input-departure {
+  display: none;
+}
+
+.dropdown-filter-date__icon {
+  position: absolute;
+  right: 0;
+  bottom: 1px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.625rem;
+  height: 2.625rem;
+  color: map.get(colors.$map, 'dark-shade-50');
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.dropdown-filter-date__icon_shaded {
+  color: map.get(colors.$map, 'dark-shade-75');
+}
+
+.dropdown-filter-date__body_hidden {
+  display: none;
+}

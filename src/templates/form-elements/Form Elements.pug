@@ -1,3 +1,4 @@
+include ../../common.blocks/dropdown-filter-date/dropdown-filter-date.pug
 include ../../common.blocks/logo/logo.pug
 include ../../common.blocks/label/label.pug
 include ../../common.blocks/input-text/input-text.pug
@@ -48,5 +49,6 @@ html
             +rate-button({ amount: 5, filled: 2 })
             +rate-button({ amount: 5, filled: 4 })
             +radio-button({ text: 'Радио кнопка' })
+            +dropdown-filter-date({ label: 'FILTER DATE', name: 'dropdown-filter-date-001' })
           .form-elements__block_9
 
