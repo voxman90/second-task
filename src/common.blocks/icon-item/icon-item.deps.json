@@ -1,10 +1,10 @@
 {
-    "name": "icon-item",
-    "techs": [
-        "scss",
-        "pug"
-    ],
-    "deps": [
-        "icon"
-    ]
+  "name": "icon-item",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": [
+    "icon"
+  ]
 }

@@ -3,51 +3,54 @@
 @use '../../styles/colors' as colors;
 @use '../../styles/text-mixins' as fonts;
 
-.date-picker {
-    display: flex;
-    width: 20rem;
+.dropdown-date {
+  width: 20rem;
 }
 
-.date-picker__label-box {
-    box-sizing: border-box;
-    width: 9.375rem;
+.dropdown-date__head {
+  &::after {
+    content: '';
+
+    display: table;
+    clear: both;
+  }
 }
 
-.date-picker__stub {
-    width: 1.25rem;
-    height: 1.25rem;
-    align-self: flex-end;
+.dropdown-date__arrival {
+  position: relative;
+
+  float: left;
+  width: 9.375rem;
 }
 
-.date-picker__departure,
-.date-picker__arrival {
-    position: relative;
-    width: 9.375rem;
+.dropdown-date__departure {
+  position: relative;
+
+  float: right;
+  width: 9.375rem;
 }
 
-.date-picker__icon-expand {
-    position: absolute;
-    right: 0;
-    bottom: 0.5625rem;
-    box-sizing: border-box;
-    width: 2.75rem;
-    height: 1.5rem;
-    text-align: center;
-    color: map.get(colors.$map, 'dark-shade-50');
+.dropdown-date__icon {
+  position: absolute;
+  right: 0;
+  bottom: 1px;
 
-    &::selection {
-        background: transparent;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.625rem;
+  height: 2.625rem;
+  color: map.get(colors.$map, 'dark-shade-50');
 
-    &::-moz-selection {
-        background: transparent;
-    }
-
-    &:hover {
-        cursor: pointer;
-    }
+  &:hover {
+    cursor: pointer;
+  }
 }
 
-.date-picker__icon-expand_shaded {
-    color: map.get(colors.$map, 'dark-shade-75');
+.dropdown-date__icon_shaded {
+  color: map.get(colors.$map, 'dark-shade-75');
+}
+
+.dropdown-date__body_hidden {
+  display: none;
 }

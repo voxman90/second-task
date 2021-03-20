@@ -72,7 +72,10 @@ class CalendarModel {
   }
 
   setArrival(date) {
-    if (this.isAfter(date, this.today)) {
+    if (
+      this.isAfter(date, this.today)
+      && this.isAfter(this.departure, date)
+    ) {
       this.arrival = date;
       return true;
     }
@@ -81,6 +84,13 @@ class CalendarModel {
   }
 
   isAfter(date, bottom) {
+    if (
+      bottom === null
+      || date === null
+    ) {
+      return true;
+    }
+
     const bottomTime = bottom.getTime();
     const dateTime = date.getTime();
     const diff = dateTime - bottomTime;
@@ -259,7 +269,7 @@ class CalendarModel {
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
-    return `${day}.${month}.${year}`;
+    return `${day}${month}${year}`;
   }
   
   convertDatesToDDMDDM(arrival, departure) {
@@ -514,7 +524,7 @@ class Calendar extends BEMComponent {
 }
 
 function initCalendar() {
-  const calendars = document.querySelectorAll('.js-calendar');
+  const calendars = document.querySelectorAll('.js-calendar.js-calendar-init');
   calendars.forEach(
     (calendar) => {
       new Calendar(calendar);

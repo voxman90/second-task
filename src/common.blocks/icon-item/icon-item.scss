@@ -4,38 +4,38 @@
 @use '../../styles/text-mixins' as fonts;
 
 .icon-item {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    box-sizing: border-box;
-    width: 17.5rem;
-    margin-bottom: 1.25rem;
-    padding-bottom: 1.0625rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  box-sizing: border-box;
+  width: 17.5rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.0625rem;
 
-    border-bottom: 1px solid color.scale(map.get(colors.$map, dark-shade-100), $alpha: -90%);
+  border-bottom: 1px solid color.scale(map.get(colors.$map, dark-shade-100), $alpha: -90%);
 }
 
 .icon-item__icon {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    width: 3rem;
-    height: 3rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 3rem;
+  height: 3rem;
 
-    font-size: 3rem;
-    line-height: 2.5625rem;
+  background: linear-gradient(180deg, map.get(colors.$map, "purple") 0%, map.get(colors.$map, "malibu") 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 
-    background: linear-gradient(180deg, map.get(colors.$map, "purple") 0%, map.get(colors.$map, "malibu") 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  font-size: 3rem;
+  line-height: 2.5625rem;
 }
 
 .icon-item__text {
-    width: auto;
-    margin-left: 0.652rem;
+  width: auto;
+  margin-left: 0.652rem;
 
-    @include fonts.Montserrat-normal;
-    font-size: 0.875rem;
-    line-height: 1.5rem;
-    color: map.get(colors.$map, dark-shade-75);
+  @include fonts.Montserrat-normal;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  color: map.get(colors.$map, dark-shade-75);
 }

@@ -1,6 +1,5 @@
 import "./styles/style.scss";
 import "./styles/form-elements.scss";
-import "./common.blocks/radio-button/radio-button.scss";
 import "./common.blocks/logo/logo.scss";
 import "./common.blocks/label/label.scss";
 import "./common.blocks/input-text/input-text.scss";
@@ -16,6 +15,7 @@ import "./common.blocks/input-date/input-date.scss";
 import "./common.blocks/dropdown-date/dropdown-date.scss";
 import "./common.blocks/subscription-field/subscription-field.scss";
 import "./common.blocks/rate-button/rate-button.scss";
+import "./common.blocks/radio-button/radio-button.scss";
 import "./common.blocks/logo/logo.js";
 import "./common.blocks/dropdown/dropdown.js";
 import "./common.blocks/dropdown-guests/dropdown-guests.js";

@@ -53,6 +53,15 @@ class BEMComponent {
       callback(event);
     });
   }
+
+  static makeInitializer(Constructor: any, selector: string) {
+    return () => {
+      const components = document.querySelectorAll(selector);
+      for (const component of components) {
+        new Constructor(component);
+      }
+    };
+  }
 }
 
 export { BEMComponent };

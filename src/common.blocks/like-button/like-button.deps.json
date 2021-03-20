@@ -1,9 +1,9 @@
 {
-    "name": "like-button",
-    "techs": [
-        "js",
-        "scss",
-        "pug"
-    ],
-    "deps": null
+  "name": "like-button",
+  "techs": [
+    "js",
+    "scss",
+    "pug"
+  ],
+  "deps": null
 }

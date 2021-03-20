@@ -1,4 +1,9 @@
-mixin like-button(name="", value="")
-    label.like-button.js-like-button
-        input.like-button__input(type="checkbox" name=name value=value)&attributes(attributes)
-        .like-button__counter= value
+mixin like-button(name = '', value = '')
+  label.like-button.js-like-button
+    input(
+      class = 'like-button__input'
+      type = 'checkbox'
+      name = name
+      value = value
+    )&attributes(attributes)
+    .like-button__counter= value

@@ -1,5 +1,5 @@
-mixin icon-item(args={icon:"location_city", headline:"", text:""})
-    - var {icon, headline, text} = args
-    .icon-item
-        +icon(icon).icon-item__icon
-        .icon-item__text #[b #{headline}]<br>#{text}
+mixin icon-item(args = {})
+  - var { icon, headline, text } = args
+  .icon-item
+    +icon(icon)(class='icon-item__icon')
+    .icon-item__text #[b #{headline}]<br>#{text}
