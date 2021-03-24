@@ -1,171 +1,302 @@
-function setTableCaption(currentPage, tableCaption) {
-    const page = parseInt(currentPage.innerText);
-    tableCaption.innerText = (12 * (page - 1)) + 1 + " - " + (12 * page) + " из 100+ вариантов аренды";
+import { BEMComponent } from '../../scripts/scripts';
+
+class Pagination extends BEMComponent {
+  constructor(elem) {
+    super('pagination');
+    this.setDefaultState();
+    this.appendTableRow(elem);
+    this.connectBasis(elem);
+    this.drawPaginatorState(this.state.current);
+    this.attachListeners();
+  }
+
+  setDefaultState() {
+    this.state = {
+      current: 1,
+      pages: 25,
+      positions: 5,
+      descriptor: () => {},
+      callback: () => {},
+    }
+  }
+
+  setState(args) {
+    this.state = args;
+  }
+
+  appendTableRow(elem) {
+    this.trNode = elem.querySelector('.js-pagination-tr');
+    const tbody = this.trNode.parentNode;
+    const tr = tbody.removeChild(this.trNode);
+
+    let i = 0;
+    while (i < this.state.positions + 2) {
+      this.appendTableData(tr, i);
+      i += 1;
+    }
+
+    this.appendButtons(tr);
+
+    tbody.appendChild(tr);
+  }
+
+  appendTableData(tr, i) {
+    const td = document.createElement('td');
+    td.classList.add('pagination__td', 'js-pagination__td');
+    td.setAttribute('data-index', i);
+    tr.appendChild(td);
+  }
+
+  appendButtons(tr) {
+    const buttonBackward = document.createElement('td');
+    buttonBackward.classList.add('pagination__td', 'pagination__button');
+    const iconBackward = document.createElement('p');
+    iconBackward.classList.add('pagination__icon_rotate_180deg');
+    iconBackward.textContent = 'arrow_forward';
+    buttonBackward.appendChild(iconBackward);
+    tr.prepend(buttonBackward);
+
+    const buttonForward = document.createElement('td');
+    buttonForward.classList.add('pagination__td', 'pagination__button');
+    const iconForward = document.createElement('p');
+    iconForward.textContent = 'arrow_forward';
+    buttonForward.appendChild(iconForward);
+    tr.appendChild(buttonForward);
+  }
+
+  connectBasis(elem) {
+    this.rootNode = elem;
+    this.captionNode = elem.querySelector('.js-pagination__caption');
+    this.tdNodes = this.trNode.querySelectorAll('.js-pagination__td:not(.js-pagination__button)');
+    this.buttonBackNode = this.trNode.firstElementChild;
+    this.buttonForwNode = this.trNode.lastElementChild;
+  }
+
+  drawPaginatorState() {
+    const { blank, currentIndex } = this.getState();
+    this.drawButtons();
+    this.clearPositions();
+    this.drawPositions(blank);
+    this.highlightCurrent(currentIndex);
+    this.drawCaption();
+    const { current, callback } = this.state;
+    callback(current);
+  }
+
+  clearPositions() {
+    this.tdNodes.forEach((td) => {
+      td.classList.remove(
+        'js-pagination__td_clickable',
+        'pagination__td_current',
+        'pagination__td_hide'
+      );
+    });
+  }
+
+  drawButtons() {
+    const { current, pages } = this.state;
+    if (current === 1) {
+      this.buttonBackNode.classList.add('pagination__button_hide');
+    } else {
+      this.buttonBackNode.classList.remove('pagination__button_hide');
+    }
+
+    if (current === pages) {
+      this.buttonForwNode.classList.add('pagination__button_hide');
+    } else {
+      this.buttonForwNode.classList.remove('pagination__button_hide');
+    }
+  }
+
+  drawPositions(state) {
+    this.tdNodes.forEach((td, i) => {
+      if (state[i] === 0) {
+        td.textContent = '\u2026';
+      } else if (state[i] !== null) {
+        td.classList.add('js-pagination__td_clickable');
+        td.textContent = state[i];
+      } else {
+        td.classList.add('pagination__td_hide');
+      }
+    });
+  }
+
+  highlightCurrent(currentIndex) {
+    const currentCell = this.tdNodes[currentIndex];
+    currentCell.classList.add('pagination__td_current');
+  }
+
+  drawCaption() {
+    const { current, descriptor } = this.state;
+    descriptor(this.captionNode, current);
+  }
+
+  getState() {
+    if (!this.isEnoughPages()) {
+      return this.placeCurrent();
+    }
+
+    const currentPos = this.findCurrentPosition();
+    if (currentPos === 'center') {
+      return this.placeCurrentInTheCenter();
+    }
+
+    if (currentPos === 'start') {
+      return this.placeCurrentOnTheStart();
+    }
+
+    return this.placeCurrentOnTheEnd();
+  }
+
+  placeCurrent() {
+    const { current, positions, pages } = this.state;
+    const blank = new Array(positions + 2);
+    blank.fill(null).forEach((val, i, arr) => {
+      if (i <= pages) {
+        arr[i] = i;
+      }
+    });
+
+    return {
+      blank,
+      currentIndex: current - 1
+    };
+  }
+
+  placeCurrentInTheCenter() {
+    const { current, positions, pages } = this.state;
+    const centerLength = positions - 2;
+    const centerIndent = (centerLength % 2 === 1) ? (
+      (centerLength - 1) / 2
+    ) : (
+      (centerLength / 2) - 1
+    );
+    const firstCenterPage = current - centerIndent;
+    const blank = new Array(centerLength);
+    blank.fill(null).forEach((val, i, arr) => {
+      arr[i] = firstCenterPage + i;
+    });
+
+    return {
+      blank: [1, 0, ...blank, 0, pages],
+      currentIndex: centerIndent + 2
+    }
+  }
+
+  placeCurrentOnTheStart() {
+    const { current, positions, pages } = this.state;
+    const startLength = (current < positions - 2) ? (
+      positions - 2
+    ) : (
+      positions - 1
+    );
+    const blank = new Array(startLength);
+    blank.fill(null).forEach((val, i, arr) => {
+      arr[i] = i + 1;
+    });
+
+    return {
+      blank: [...blank, 0, pages, null, null],
+      currentIndex: current - 1
+    }
+  }
+
+  placeCurrentOnTheEnd() {
+    const { current, positions, pages } = this.state;
+    const endLength = (pages - current + 1 < positions - 2) ? (
+      positions - 2
+    ) : (
+      positions - 1
+    );
+    const blank = new Array(positions);
+    blank.fill(null).forEach((val, i, arr) => {
+      if (i < endLength) {
+        arr[i] = (pages - endLength + 1) + i;
+      }
+    });
+
+    return {
+      blank: [1, 0, ...blank],
+      currentIndex: 1 + endLength + (current - pages)
+    }
+  }
+
+  findCurrentPosition() {
+    const { current, positions, pages } = this.state;
+    if (current < positions - 1) {
+      return 'start';
+    }
+
+    if (pages - current + 1 < positions - 1) {
+      return 'end';
+    }
+
+    return 'center';
+  }
+
+  isEnoughPages() {
+    const { positions, pages } = this.state;
+    if (  pages <= positions ) {
+      return false;
+    }
+
+    return true;
+  }
+
+  attachListeners() {
+    this.bindEventListeners([
+      {
+        elem: this.buttonBackNode,
+        event: "click",
+        callback: this.handleButtonBackwardClick,
+        data: { that: this },
+      },
+
+      {
+        elem: this.buttonForwNode,
+        event: "click",
+        callback: this.handleButtonForwardClick,
+        data: { that: this },
+      },
+
+      {
+        elem: this.trNode,
+        event: "click",
+        callback: this.handleTableRowClick,
+        data: { that: this },
+      },
+    ]);
+  }
+
+  handleButtonBackwardClick(e) {
+    const that = e.that;
+    that.state.current -= 1;
+    that.drawPaginatorState();
+  }
+
+  handleButtonForwardClick(e) {
+    const that = e.that;
+    that.state.current += 1;
+    that.drawPaginatorState();
+  }
+
+  handleTableRowClick(e) {
+    const that = e.that;
+    const tg = e.target;
+    if (that.isClickableAndNotCurrent(tg)) {
+      that.state.current = parseInt(tg.textContent, 10);
+      that.drawPaginatorState();
+    }
+  }
+
+  isClickableAndNotCurrent(target) {
+    return (
+      target.classList.contains('js-pagination__td_clickable')
+      && !target.classList.contains('js-pagination__td_current')
+    );
+  }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    const paginationForm = document.body.querySelector(".pagination");
-    const forwardButton = paginationForm.querySelector(".pagination__button-forward"); 
-    const tableCaption = paginationForm.children[1];
-    const items = [paginationForm.children[0].children[0].children[0], 
-    paginationForm.children[0].children[0].children[1],
-    paginationForm.children[0].children[0].children[2],
-    paginationForm.children[0].children[0].children[3],
-    paginationForm.children[0].children[0].children[4]];
-    let currentPage = paginationForm.querySelector(".pagination__current"); 
-    
-    forwardButton.addEventListener("mouseup", function () {
-        if (items[3].isSameNode(currentPage)) {
-        currentPage.classList.remove("pagination__current");
-        items[4].classList.add("pagination__current");
-        currentPage = items[4];
-        forwardButton.classList.add("pagination__button_fade");
-        }
+const initPaginationComps = BEMComponent.makeInitializer(Pagination, '.js-pagination');
 
-        if (items[2].isSameNode(currentPage)) {
-        const i = parseInt(items[2].innerText);
-        switch (true) {
-            case (i < 12): 
-            items[0].innerText = items[1].innerText;
-            items[1].innerText = items[2].innerText;
-            items[2].innerText = parseInt(items[2].innerText) + 1;
-            break;
-            case (i === 12):
-            items[0].innerText = items[1].innerText;
-            items[1].innerText = items[2].innerText;
-            items[2].innerText = parseInt(items[2].innerText) + 1;
-            items[3].innerText = parseInt(items[2].innerText) + 1;
-            break;
-            default:
-            currentPage.classList.remove("pagination__current");
-            items[3].classList.add("pagination__current");
-            currentPage = items[3];
-            break;
-        }
-        } 
-
-        if (items[1].isSameNode(currentPage)) {
-        console.log("nope 2");
-        currentPage.classList.remove("pagination__current");
-        items[2].classList.add("pagination__current");
-        currentPage = items[2];
-        }
-
-        if (items[0].isSameNode(currentPage)) {
-        console.log("nope 1");
-        currentPage.classList.remove("pagination__current");
-        items[1].classList.add("pagination__current");
-        currentPage = items[1];
-        }
-
-        setTableCaption(currentPage, tableCaption);
-    }); 
-
-    items[0].addEventListener("mouseup", function () {
-        if (!this.classList.contains("pagination__current")) {
-        switch (parseInt(this.innerText)) {
-            case 1:
-            currentPage.classList.remove("pagination__current");
-            this.classList.add("pagination__current");
-            currentPage = this;
-            break;
-            case 2:
-            items[0].innerText = 1;
-            items[1].innerText = 2;
-            items[2].innerText = 3;
-            currentPage.classList.remove("pagination__current");
-            items[1].classList.add("pagination__current");
-            currentPage = items[1];
-            break;
-            case 11:
-            items[0].innerText = 9;
-            items[1].innerText = 10;
-            items[2].innerText = 11;
-            items[3].innerText = "...";
-            currentPage.classList.remove("pagination__current");
-            items[2].classList.add("pagination__current");
-            currentPage = items[2];
-            forwardButton.classList.remove("pagination__button_fade");
-            break;
-            default: 
-            items[2].innerText = items[0].innerText;
-            items[1].innerText = parseInt(items[0].innerText)-1;
-            items[0].innerText = parseInt(items[1].innerText)-1;
-            currentPage.classList.remove("pagination__current");
-            items[2].classList.add("pagination__current");
-            currentPage = items[2];
-            break;
-        }
-        }
-
-        setTableCaption(currentPage, tableCaption);
-    });
-
-    items[1].addEventListener("mouseup", function () {
-        if (!this.classList.contains("pagination__current")) {
-        currentPage.classList.remove("pagination__current");
-        this.classList.add("pagination__current");
-        currentPage = this;
-        }
-
-        setTableCaption(currentPage, tableCaption);
-    });
-
-    items[2].addEventListener("mouseup", function () {
-        if (!this.classList.contains("pagination__current")) {
-        switch (parseInt(this.innerText)) {
-            case 13: 
-            currentPage.classList.remove("pagination__current");
-            items[2].classList.add("pagination__current");
-            currentPage = items[2];
-            break;
-            case 12:
-            items[0].innerText = items[1].innerText;
-            items[1].innerText = items[2].innerText;
-            items[2].innerText = parseInt(items[2].innerText) + 1;
-            items[3].innerText = parseInt(items[2].innerText) + 1;
-            currentPage.classList.remove("pagination__current");
-            items[1].classList.add("pagination__current");
-            currentPage = items[1];
-            break;
-            default:
-            items[0].innerText = items[1].innerText;
-            items[1].innerText = items[2].innerText;
-            items[2].innerText = parseInt(items[2].innerText) + 1;
-            currentPage.classList.remove("pagination__current");
-            items[1].classList.add("pagination__current");
-            currentPage = items[1];
-            break;
-        }
-        }
-
-        setTableCaption(currentPage, tableCaption);
-    });
-
-    items[3].addEventListener("mouseup", function () {
-        if (!this.classList.contains("pagination__current")) {
-        if (parseInt(this.innerText) === 14) {
-            currentPage.classList.remove("pagination__current");
-            items[3].classList.add("pagination__current");
-            currentPage = items[3];
-        }
-        }
-
-        setTableCaption(currentPage, tableCaption);
-    });
-
-    items[4].addEventListener("mouseup", function () {
-        if (!this.classList.contains("pagination__current")) {
-        items[0].innerText = 11;
-        items[1].innerText = 12;
-        items[2].innerText = 13;
-        items[3].innerText = 14;
-        currentPage.classList.remove("pagination__current");
-        items[4].classList.add("pagination__current");
-        currentPage = items[4];
-        forwardButton.classList.add("pagination__button_fade");
-        }
-
-        setTableCaption(currentPage, tableCaption);
-    });
-});
+document.addEventListener('DOMContentLoaded', initPaginationComps);

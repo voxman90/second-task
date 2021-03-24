@@ -1,11 +1,11 @@
 {
- "name": "pagination",
- "techs": [
-  "js",
-  "scss",
-  "pug"
- ],
- "deps": [
-  "icon"
- ]
+  "name": "pagination",
+  "techs": [
+    "js",
+    "scss",
+    "pug"
+  ],
+  "deps": [
+    "icon"
+  ]
 }
