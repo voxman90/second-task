@@ -82,15 +82,15 @@ module.exports = {
                 use: ['pug-loader']
             },
             {
-                test: /\.(png|jpg|svg|gif)$/i,
+                test: /\.(png|jpg|gif)$/i,
                 loader: 'file-loader',
                 options: {
-                  name: '[name].[ext]',
+                  name: '[name].[hash].[ext]',
                   outputPath: 'assets/images/'
                 }
             },
             {
-                test: /\.(ttf|eot|otf|woff|woff2)$/i,
+                test: /\.(ttf|eot|otf|woff|woff2|svg)$/i,
                 loader: 'file-loader',
                 options: {
                     name: '[name].[ext]',

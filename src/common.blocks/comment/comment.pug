@@ -1,12 +1,15 @@
 mixin comment(args = {})
-  - const { url, nickname, date, text } = args
+  - const { img, nickname, date, message, value } = args
   .comment
     .comment__header
-      img(class='comment__avatar' src=url alt='No available')
+      img(
+        class='comment__avatar',
+        src=require('../../../src/assets/img/' + img).default,
+        alt='No available'
+      )
       .comment__info
         .comment__nickname= nickname
-        br
         .comment__date= date
     .comment__body
-      +like-button()(class='comment__like-button')
-      .comment__text= text
+      +like-button()(class='comment__like-button' value=value)
+      .comment__message= message
