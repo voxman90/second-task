@@ -1,10 +1,12 @@
-mixin comment(args={URL:"", header:"", date:"", body:""})
-    - var {url, header, date, body} = args
-    .comment
-        .comment__header
-        img.comment__avatar(src=url alt="No available")
-        .comment__text #[b #{header}]<br>#{date}
-        .comment__body
-            .comment__like-button
-                +like-button
-                .comment__text #{body}
+mixin comment(args = {})
+  - const { url, nickname, date, text } = args
+  .comment
+    .comment__header
+      img(class='comment__avatar' src=url alt='No available')
+      .comment__info
+        .comment__nickname= nickname
+        br
+        .comment__date= date
+    .comment__body
+      +like-button()(class='comment__like-button')
+      .comment__text= text

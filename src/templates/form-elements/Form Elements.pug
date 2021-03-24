@@ -1,3 +1,5 @@
+include ../../common.blocks/like-button/like-button.pug
+include ../../common.blocks/comment/comment.pug
 include ../../common.blocks/logo/logo.pug
 include ../../common.blocks/label/label.pug
 include ../../common.blocks/input-text/input-text.pug
@@ -44,6 +46,7 @@ html
           .form-elements__block_4
             +pagination({ amount: 10 })
           .form-elements__block_5
+            +comment()
           .form-elements__block_6
             +input-date({ name: "input-text-masked-001", placeholder: "DD/MM/YYYY" })
             +dropdown-date({ left: 'ПРИБЫТИЕ', right: 'ВыЕЗД', name: 'dropdown-date-001' })

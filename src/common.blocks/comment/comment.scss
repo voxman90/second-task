@@ -4,46 +4,46 @@
 @use '../../styles/text-mixins' as fonts;
 
 .comment {
-    width: 44.4375em;
+  width: 44.4375em;
 }
 
 .comment__header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .comment__avatar {
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    width: 3rem;
-    height: 3rem;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 3rem;
+  height: 3rem;
 
-    box-shadow: 0 0.625rem 1.25rem color.scale(map.get(colors.$map, dark-shade-100), $alpha: -90%);
-    border-radius: 1.5rem;
-    border: 2px solid #FFFFFF;
+  box-shadow: 0 0.625rem 1.25rem color.scale(map.get(colors.$map, dark-shade-100), $alpha: -90%);
+  border-radius: 1.5rem;
+  border: 2px solid #FFFFFF;
 }
 
 .comment__text {
-    width: auto;
-    margin-left: 0.652rem;
+  width: auto;
+  margin-left: 0.652rem;
 
-    @include fonts.Montserrat-normal;
-    font-size: 0.875rem;
-    line-height: 1.5rem;
-    color: map.get(colors.$map, dark-shade-75);
+  @include fonts.Montserrat-normal;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  color: map.get(colors.$map, dark-shade-75);
 }
 
 .comment__body {
-    display: flex;
-    justify-content: flex-start;
-    align-items: baseline;
-    margin-top: 0.625rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  margin-top: 0.625rem;
 }
 
 .comment__like-button {
-    margin: 0 0.25rem;
-    width: 2.5rem;
-    flex-shrink: 0;
+  margin: 0 0.25rem;
+  width: 2.5rem;
+  flex-shrink: 0;
 }

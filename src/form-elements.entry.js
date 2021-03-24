@@ -1,5 +1,7 @@
 import "./styles/style.scss";
 import "./styles/form-elements.scss";
+import "./common.blocks/like-button/like-button.scss";
+import "./common.blocks/comment/comment.scss";
 import "./common.blocks/logo/logo.scss";
 import "./common.blocks/label/label.scss";
 import "./common.blocks/input-text/input-text.scss";
@@ -18,6 +20,7 @@ import "./common.blocks/rate-button/rate-button.scss";
 import "./common.blocks/radio-button/radio-button.scss";
 import "./common.blocks/dropdown-filter-date/dropdown-filter-date.scss";
 import "./common.blocks/pagination/pagination.scss";
+import "./common.blocks/like-button/like-button.js";
 import "./common.blocks/logo/logo.js";
 import "./common.blocks/dropdown/dropdown.js";
 import "./common.blocks/dropdown-guests/dropdown-guests.js";
