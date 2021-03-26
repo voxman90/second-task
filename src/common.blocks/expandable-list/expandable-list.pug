@@ -1,8 +1,8 @@
-mixin expandable-list(text = '')
-  .expandable-list.js-expandable-list
+mixin expandable-list(heading = '')
+  .expandable-list.js-expandable-list&attributes(attributes)
     .expandable-list__head
-      .expandable-list__heading= text
-      +icon({ text: 'expand_more' }).expandable-list__icon
-    .expandable-list__body.expandable-list__body_hidden&attributes(attributes)
+      .expandable-list__heading= heading
+      +icon({ name: 'expand_more' }).expandable-list__icon
+    .expandable-list__body.expandable-list__body_hidden
       if block
         block

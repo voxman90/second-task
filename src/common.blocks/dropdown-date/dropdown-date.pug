@@ -5,10 +5,10 @@ mixin dropdown-date(args = {})
       .dropdown-date__arrival
         +label(left, '')
           +input-date({ name: `${name}-arrival` })
-        +icon({ text: 'expand_more' })(class='dropdown-date__icon')
+        +icon({ name: 'expand_more' })(class='dropdown-date__icon')
       .dropdown-date__departure
         +label(right, '')
           +input-date({ name: `${name}-departure` })
-        +icon({ text: 'expand_more' })(class='dropdown-date__icon')
+        +icon({ name: 'expand_more' })(class='dropdown-date__icon')
     .dropdown-date__body.dropdown-date__body_hidden
       +calendar({ name })(class='js-dropdown-date__calendar')

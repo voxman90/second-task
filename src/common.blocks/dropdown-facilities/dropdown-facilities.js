@@ -61,16 +61,11 @@ class DropdownFacilities extends Dropdown {
   }
 }
 
-function initDropdownFacilities() {
-  const dropdowns = document.querySelectorAll('.js-dropdown-facilities');
-  for (const dropdown of dropdowns) {
-    new DropdownFacilities(dropdown);
-  }
-}
-
 const initDropdownFacilitiesComps = BEMComponent.makeInitializer(
   DropdownFacilities,
   '.js-dropdown-facilities.js-auto-init'
 );
 
 document.addEventListener("DOMContentLoaded", initDropdownFacilitiesComps);
+
+export { DropdownFacilities };

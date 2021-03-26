@@ -2,8 +2,8 @@ mixin calendar(args = {})
   - const { name } = args
   .calendar.js-calendar&attributes(attributes)
     .calendar__head
-      +icon({ text: 'arrow_back' })(class='calendar__button-backward')
-      +icon({ text: 'arrow_back' })(class='calendar__button-forward')
+      +icon({ name: 'arrow_back' })(class='calendar__button-backward')
+      +icon({ name: 'arrow_back' })(class='calendar__button-forward')
       .calendar__title= 'title'
     table.calendar__table
       thead

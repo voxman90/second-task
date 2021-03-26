@@ -4,6 +4,8 @@ import jQuery from 'jquery';
 
 import { DropdownDate } from '../../common.blocks/dropdown-date/dropdown-date';
 import { DropdownFilterDate } from '../../common.blocks/dropdown-filter-date/dropdown-filter-date';
+import { DropdownFacilities } from '../../common.blocks/dropdown-facilities/dropdown-facilities';
+import { ExpandableList } from '../../common.blocks/expandable-list/expandable-list';
 
 (function ($) {
   function initDropdownDate() {
@@ -18,11 +20,31 @@ import { DropdownFilterDate } from '../../common.blocks/dropdown-filter-date/dro
     dropdownFilterDateComp.setTimeInterval(new Date(2021, 7, 19), new Date(2021, 7, 23));
   }
 
+  function getComp(selector, Class) {
+    const elem = $(selector).get(0);
+    return new Class(elem);
+  }
+
+  function initDropdownFacilitiesComps() {
+    const firstComp = getComp('.js-dropdown-facilities-1st', DropdownFacilities);
+    firstComp.setValues([2, 2, 0]);
+
+    const secondComp = getComp('.js-dropdown-facilities-2nd', DropdownFacilities);
+    secondComp.setValues([2, 2, 0]).expand().fix();
+  }
+
+  function initExpandableList() {
+    const expandableListNode = $('.js-exp-list-2nd').get(0);
+    const expandableListComp = new ExpandableList(expandableListNode);
+    expandableListComp.expand().off();
+  }
+
   function init() {
     initDropdownDate();
     initDropdownFilterDate();
+    initDropdownFacilitiesComps();
+    initExpandableList();
   }
-
 
   $(init());
 

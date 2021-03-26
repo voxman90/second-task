@@ -22,22 +22,30 @@
   grid-template-rows: auto 7% auto 7% auto;
 }
 
-.form-elements__block_1 {
+.form-elements__1st-block {
   grid-area: 1 / 1 / 2 / 2;
-  background-color: gray;
-  height: 300px;
 }
 
-.form-elements__block_2 {
+.form-elements__2nd-block {
   grid-area: 3 / 1 / 4 / 2;
-  background-color: green;
-  height: 300px;
 }
 
-.form-elements__block_3 {
+.form-elements__3rd-block {
   grid-area: 5 / 1 / 6 / 2;
-  background-color: rgb(193, 193, 207);
-  height: 300px;
+}
+
+.form-elements__radio-buttons {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 13.75rem;
+}
+
+.form-elements__like-buttons {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 5.625rem;
 }
 
 .form-elements__block_4 {

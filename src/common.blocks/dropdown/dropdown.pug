@@ -15,7 +15,7 @@ mixin dropdown(args = {}, attr = {})
     +label(left, right)
       +input-text({ name: name, value: value })(readonly class=`dropdown__input-text js-dropdown__input-text dropdown__input-text_angled`)
       .dropdown__icon
-        +icon({ text: 'expand_more' })
+        +icon({ name: 'expand_more' })
     div(class=`dropdown__bar dropdown__bar_hidden dropdown__bar_shadow ${barModif}`)
       .dropdown__options
         each name, value in options

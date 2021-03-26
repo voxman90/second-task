@@ -1,9 +1,11 @@
-mixin like-button(name = '', value = '')
-  label.like-button.js-like-button
+mixin like-button(args = {})
+  - const { name, value, checked } = args
+  label.like-button.js-like-button&attributes(attributes)
     input(
-      class = 'like-button__input'
-      type = 'checkbox'
-      name = name
-      value = value
-    )&attributes(attributes)
+      class = 'like-button__input',
+      type = 'checkbox',
+      name = name,
+      value = value,
+      checked = (checked === true) ? 'checked': undefined,
+    )
     .like-button__counter= value

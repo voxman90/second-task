@@ -3,6 +3,7 @@
     {
       "name": "form-elements",
       "template": "Form Elements",
+      "data": "form-elements",
       "styles": [
         "./styles/style.scss",
         "./styles/boxes.scss",

@@ -7,13 +7,13 @@ mixin rate-button(args = {})
   )
     - let i = 0
     while i < filled
-      +icon({ text: 'star' })(
+      +icon({ name: 'star' })(
         data-index = i
         class = 'rate-button__icon js-rate-button__icon'
       )
       - i += 1
     while filled < amount
-      +icon({ text: 'star_border' })(
+      +icon({ name: 'star_border' })(
         data-index = filled
         class = 'rate-button__icon js-rate-button__icon'
       )

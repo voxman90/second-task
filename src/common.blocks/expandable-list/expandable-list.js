@@ -34,6 +34,28 @@ class ExpandableList extends BEMComponent {
     that.icon.classList.toggle('expandable-list__icon_turn_180deg');
     that.body.classList.toggle('expandable-list__body_hidden');
   }
+
+  expand() {
+    this.icon.classList.add('expandable-list__icon_turn_180deg');
+    this.body.classList.remove('expandable-list__body_hidden');
+    return this;
+  }
+
+  close() {
+    this.icon.classList.remove('expandable-list__icon_turn_180deg');
+    this.body.classList.add('expandable-list__body_hidden');
+    return this;
+  }
+
+  off() {
+    this.removeEventListeners(this.listeners);
+    return this;
+  }
+
+  on() {
+    this.bindEventListeners(this.listeners);
+    return this;
+  }
 }
 
 const initExpandableListComps = BEMComponent.makeInitializer(
@@ -42,3 +64,5 @@ const initExpandableListComps = BEMComponent.makeInitializer(
 );
 
 document.addEventListener('DOMContentLoaded', initExpandableListComps);
+
+export { ExpandableList };

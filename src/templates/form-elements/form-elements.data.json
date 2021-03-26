@@ -1,3 +1,18 @@
 {
-  "title": "Form Elements"
+  "title": "Form Elements",
+  "checkboxList": [
+    { "name": "checkbox-1st", "value": false, "text": "Завтрак" },
+    { "name": "checkbox-2nd", "value": true, "text": "Письменный стол" },
+    { "name": "checkbox-3rd", "value": true, "text": "Стул для кормления" },
+    { "name": "checkbox-4th", "value": true, "text": "Кроватка" },
+    { "name": "checkbox-5th", "value": false, "text": "Телевизор" },
+    { "name": "checkbox-6th", "value": false, "text": "Шампунь" },
+    { "name": "checkbox-7th", "value": false, "text": "Телевизор" },
+    { "name": "checkbox-8th", "value": false, "text": "Шампунь" }
+  ],
+  "checkboxButtons": [
+    { "name": "checkbox-butt-1st", "value": false, "text": "Можно курить" },
+    { "name": "checkbox-butt-2nd", "value": true, "text": "Можно с питомцами" },
+    { "name": "checkbox-butt-3rd", "value": true, "text": "Можно пригласить гостей\n(до 10 человек)" }
+  ]
 }

@@ -24,7 +24,8 @@
   text-overflow: ellipsis;
 }
 
-.dropdown__input-text_expanded {
+.dropdown__input-text_expanded,
+.dropdown__input-text_fixed {
   border-radius: 4px 4px 0 0;
   border-color: map.get(colors.$map, 'dark-shade-50');
 }
@@ -68,6 +69,10 @@
 
 .dropdown__bar_hidden {
   display: none;
+}
+
+.dropdown__bar_fixed {
+  display: block;
 }
 
 .dropdown__bar_shadow {

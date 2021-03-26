@@ -5,23 +5,23 @@
 .checkbox {
   display: flex;
   justify-content: flex-start;
-  flex-wrap: wrap;
+  width: fit-content;
 }
 
 .checkbox__text {
   position: relative;
 
   box-sizing: border-box;
-  height: 1.125rem;
   margin-left: 15px;
 
   @include fonts.Montserrat-normal;
   font-size: 0.875rem;
   line-height: 1.125rem;
+  white-space: pre-wrap;
   color: map.get(colors.$map, dark-shade-50);
 
   &::before {
-    content: "";
+    content: '';
 
     position: absolute;
     z-index: 1;

@@ -54,6 +54,18 @@ class BEMComponent {
     });
   }
 
+  removeEventListeners(els: { elem: HTMLElement, event: string, callback: Function, data?: Object, options?: any }[]): void {
+    els.forEach(
+      (el) => this.removeEventListener(el)
+    );
+  }
+
+  removeEventListener(el: { elem: HTMLElement, event: string, callback: Function, data?: Object, options?: any }): void {
+    const { elem, event } = el;
+    $(elem).off(`${event}.${this.name}${this.id}`);
+  }
+
+
   static makeInitializer(Constructor: any, selector: string) {
     return () => {
       const components = document.querySelectorAll(selector);

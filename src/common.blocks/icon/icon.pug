@@ -1,5 +1,5 @@
 mixin icon(args)
-  - let { tag, text, font } = args
+  - let { tag, name, font } = args
   - font = (font === 'awesome') ? 'awesome' : 'material'
   - tag = (tag) ? tag : 'div'
-  #{tag}(class=`icon icon_font_${font}`)&attributes(attributes)= text
+  #{tag}(class=`icon icon_font_${font}`)&attributes(attributes)= name

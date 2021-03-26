@@ -1,10 +1,11 @@
 mixin toggle(args = {})
-  - const { name, value, text } = args
-  label.toggle
+  - const { name, value, checked, text } = args
+  label.toggle&attributes(attributes)
     input(
-      class = 'toggle__input'
-      type = 'checkbox'
-      name = name
-      value = value
+      class='toggle__input',
+      type='checkbox',
+      name=name,
+      value=value,
+      checked=(checked === true) ? "checked" : undefined,
     )
     .toggle__text= text

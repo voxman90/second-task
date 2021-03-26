@@ -9,8 +9,7 @@
   align-items: flex-start;
   box-sizing: border-box;
   width: 17.5rem;
-  margin-bottom: 1.25rem;
-  padding-bottom: 1.0625rem;
+  padding: 1.25rem 0;
 
   border-bottom: 1px solid color.scale(map.get(colors.$map, dark-shade-100), $alpha: -90%);
 }
@@ -30,12 +29,17 @@
   line-height: 2.5625rem;
 }
 
-.icon-item__text {
-  width: auto;
+.icon-item__info {
   margin-left: 0.652rem;
+}
 
-  @include fonts.Montserrat-normal;
+.icon-item__headline {
+  @include fonts.Montserrat-bold;
   font-size: 0.875rem;
   line-height: 1.5rem;
   color: map.get(colors.$map, dark-shade-75);
+}
+
+.icon-item__description {
+  @include fonts.body-text(0.875rem, 1.5rem);
 }

@@ -1,18 +1,18 @@
 {
-    "title": "Colors&Type",
-    "colors": [
-        {"name": "dark-shade-100", "descr": "Dark Shade 100%", "code": "#1F2041"},
-        {"name": "dark-shade-75", "descr": "Dark Shade 75%", "code": "#1F2041"},
-        {"name": "dark-shade-50", "descr": "Dark Shade 50%", "code": "#1F2041"},
-        {"name": "dark-shade-25", "descr": "Dark Shade 25%", "code": "#1F2041"},
-        {"name": "dark-shade-05", "descr": "Dark Shade 5%", "code": "#1F2041"},
-        {"name": "purple", "descr": "Purple", "code": "#BC9CFF"},
-        {"name": "green", "descr": "Green", "code": "#6FCF97"}
-    ],
-    "fonts": [
-        {"class": "widget-text", "label": "H1", "text": "This one is the sub-section or<br> widget title"},
-        {"class": "title-text", "label": "H2", "text": "Next one is the item title inside<br> widgets"},
-        {"class": "label-text", "label": "H3", "text": "This is a label or CTA text"},
-        {"class": "body-text", "label": "Body", "text": "This is the body text which is used for most<br> of the design, like paragraphs, lists, etc."}
-    ]
+  "title": "Colors&Type",
+  "colors": [
+    { "name": "dark-shade-100", "descr": "Dark Shade 100%", "code": "#1F2041" },
+    { "name": "dark-shade-75", "descr": "Dark Shade 75%", "code": "#1F2041" },
+    { "name": "dark-shade-50", "descr": "Dark Shade 50%", "code": "#1F2041" },
+    { "name": "dark-shade-25", "descr": "Dark Shade 25%", "code": "#1F2041" },
+    { "name": "dark-shade-05", "descr": "Dark Shade 5%", "code": "#1F2041" },
+    { "name": "purple", "descr": "Purple", "code": "#BC9CFF" },
+    { "name": "green", "descr": "Green", "code": "#6FCF97" }
+  ],
+  "fonts": [
+    { "class": "widget-text", "label": "H1", "text": "This one is the sub-section or<br> widget title" },
+    { "class": "title-text", "label": "H2", "text": "Next one is the item title inside<br> widgets" },
+    { "class": "label-text", "label": "H3", "text": "This is a label or CTA text" },
+    { "class": "body-text", "label": "Body", "text": "This is the body text which is used for most<br> of the design, like paragraphs, lists, etc." }
+  ]
 }

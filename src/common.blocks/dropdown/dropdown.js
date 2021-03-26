@@ -169,6 +169,31 @@ class Dropdown extends BEMComponent {
     that.drawInput(sentence);
   }
 
+  close() {
+    this.barNode.classList.remove('dropdown__bar_hidden');
+    this.inputNode.classList.remove('dropdown__input-text_expanded');
+    return this;
+  }
+
+  expand() {
+    this.barNode.classList.add('dropdown__bar_hidden');
+    this.inputNode.classList.add('dropdown__input-text_expanded');
+    return this;
+  }
+
+  fix() {
+    this.barNode.classList.toggle('dropdown__bar_fixed');
+    this.inputNode.classList.toggle('dropdown__input-text_fixed');
+    return this;
+  }
+
+  setValues(values) {
+    this.drawValues(values);
+    const sentence = this.model.getSentence(values);
+    this.drawInput(sentence);
+    return this;
+  }
+
   increaseValue(et) {
     const valueNode = et.nextElementSibling;
     const value = parseInt(valueNode.textContent) + 1;
@@ -212,9 +237,20 @@ class Dropdown extends BEMComponent {
   drawValues(values) {
     this.valueNodesList.forEach(
       (valueNode, i) => {
-        valueNode.textContent = values[i];
+        const value = values[i];
+        valueNode.textContent = value;
+        this.toggleMinusButton(valueNode, value);
       }
     );
+  }
+
+  toggleMinusButton(valueNode, value) {
+    const minusButtonNode = valueNode.nextElementSibling;
+    if (value === 0) {
+      minusButtonNode.classList.add('dropdown__option-button_blacked');
+    } else {
+      minusButtonNode.classList.remove('dropdown__option-button_blacked');
+    }
   }
 
   drawInput(sentence) {

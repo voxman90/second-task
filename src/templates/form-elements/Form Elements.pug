@@ -1,26 +1,30 @@
+include ../../common.blocks/toggle/toggle.pug
 include ../../common.blocks/logo/logo.pug
 include ../../common.blocks/label/label.pug
 include ../../common.blocks/input-text/input-text.pug
 include ../../common.blocks/text-field/text-field.pug
-include ../../common.blocks/input-text-masked/input-text-masked.pug
-include ../../common.blocks/input-date/input-date.pug
 include ../../common.blocks/icon/icon.pug
 include ../../common.blocks/button/button.pug
 include ../../common.blocks/dropdown/dropdown.pug
 include ../../common.blocks/dropdown-guests/dropdown-guests.pug
-include ../../common.blocks/dropdown-facilities/dropdown-facilities.pug
-include ../../common.blocks/subscription-field/subscription-field.pug
-include ../../common.blocks/expandable-list/expandable-list.pug
+include ../../common.blocks/input-text-masked/input-text-masked.pug
+include ../../common.blocks/input-date/input-date.pug
 include ../../common.blocks/calendar/calendar.pug
+include ../../common.blocks/dropdown-date/dropdown-date.pug
+include ../../common.blocks/dropdown-filter-date/dropdown-filter-date.pug
+include ../../common.blocks/subscription-field/subscription-field.pug
+include ../../common.blocks/dropdown-facilities/dropdown-facilities.pug
+include ../../common.blocks/expandable-list/expandable-list.pug
+include ../../common.blocks/checkbox/checkbox.pug
+include ../../common.blocks/icon-item/icon-item.pug
 include ../../common.blocks/pagination/pagination.pug
 include ../../common.blocks/like-button/like-button.pug
 include ../../common.blocks/comment/comment.pug
-include ../../common.blocks/dropdown-date/dropdown-date.pug
 include ../../common.blocks/rate-button/rate-button.pug
 include ../../common.blocks/radio-button/radio-button.pug
-include ../../common.blocks/dropdown-filter-date/dropdown-filter-date.pug
 - const data = htmlWebpackPlugin.options.data
-- const title = data.title
+- const { title, checkboxList, checkboxButtons } = data
+- const lastCheckboxArgs = checkboxList.pop();
 doctype html
 html
   head
@@ -52,15 +56,48 @@ html
             div(class='box_width_16\.625rem box_margin-bottom_2\.5rem')
               +label('SUBSCRIPTION TEXT FIELD')
                 +subscription-field({ name: 'subscr-field-1st', placeholder: 'Email' })
-            +dropdown-facilities('dropdown-facilities-001', 'DROPDOWN', 'DEFAULT')
-            +dropdown-facilities('dropdown-facilities-001', 'DROPDOWN', 'EXPANDED')
-          .form-elements__block_3
-            +expandable-list('EXPANDABLE LIST')
-              p= 'текст'
-            +calendar()(class = 'js-calendar-init')
-          .form-elements__block_4
-            +pagination({ amount: 10 })
+          div(class='form-elements__2nd-block box_width_16\.625rem')
+            div(class='box_margin-bottom_1\.25rem')
+              +dropdown-facilities('dropdown-facilities-1st', 'DROPDOWN', 'DEFAULT')(class='js-dropdown-facilities-1st')
+            div(class='box_margin-bottom_1\.25rem')
+              +dropdown-facilities('dropdown-facilities-2nd', 'DROPDOWN', 'EXPANDED')(class='js-dropdown-facilities-2nd')
+          div(class='form-elements__3rd-block')
+            div(class='box_width_16\.625rem box_margin-bottom_1\.25rem')
+              +expandable-list('EXPANDABLE CHECKBOX LIST')(class='js-auto-init')
+                each args in checkboxList
+                  +checkbox(args)(class='box_margin-bottom_0\.75rem')
+                +checkbox(lastCheckboxArgs)
+            div(class='box_width_16\.625rem box_margin-bottom_1\.25rem')
+              +expandable-list('EXPANDABLE CHECKBOX LIST')(class='js-exp-list-2nd')
+                each args in checkboxList
+                  +checkbox(args)(class='box_margin-bottom_0\.75rem')
+                +checkbox(lastCheckboxArgs)
+            div(class='box_width_17\.5rem')
+              +icon-item({ name: 'insert_emoticon', headline: 'Комфорт', descr: 'Шумопоглощающие стены' })
+              +icon-item({ name: 'location_city', headline: 'Удобство', descr: 'Окно в каждой из спален' })
+          div(class='form-elements__4th_block')
+            div(class='box_width_17\.5rem box_margin-bottom_2\.5rem')
+              +label('CHECKBOX BUTTONS')(class='box_margin-bottom_0\.725rem')
+              each args in checkboxButtons
+                +checkbox(args)(class='box_margin-bottom_0\.75rem')
+            div(class='box_width_17\.5rem box_margin-bottom_2\.5rem')
+              +label('RADIO BUTTONS')(class='box_margin-bottom_0\.725rem')
+              .form-elements__radio-buttons
+                +radio-button({ name: 'sex', value: 'man', checked: true, text: 'Мужчина' })
+                +radio-button({ name: 'sex', value: 'women', text: 'Женщина' })
+            div(class='box_width_17\.5rem box_margin-bottom_2\.5rem')
+              +label('TOGGLE')(class='box_margin-bottom_0\.725rem')
+              +toggle({ name: 'spec', value: 'first', checked: true, text: 'Получать спецпредложения' })(class='box_margin-bottom_0\.725rem')
+              +toggle({ name: 'spec', value: 'second', text: 'Получать спецпредложения' })
+            div(class='box_width_17\.5rem box_margin-bottom_2\.5rem')
+              +label('LIKE BUTTON')(class='box_margin-bottom_0\.725rem')
+              .form-elements__like-buttons
+                +like-button({ name: 'like-btn-1st', value: '' })(class='js-auto-init')
+                +like-button({ name: 'like-btn-2nd', value: '', checked: true })(class='js-auto-init')
+            div(class='box_width_17\.5rem box_margin-bottom_2\.5rem')
+              +label('RATE BUTTON')(class='box_margin-bottom_0\.725rem')
           .form-elements__block_5
+           +pagination({ amount: 10 })
             +comment({ img: 'image.jpg', date: '5 дней назад', nickname: 'Мурад Сарафанов', value: '11', message: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.' })
           .form-elements__block_6
             +input-date({ name: 'input-text-masked-001', placeholder: 'DD/MM/YYYY' })
@@ -68,5 +105,4 @@ html
           .form-elements__block_8
             +rate-button({ amount: 5, filled: 2 })
             +rate-button({ amount: 5, filled: 4 })
-            +radio-button({ text: 'Радио кнопка' })
           .form-elements__block_9

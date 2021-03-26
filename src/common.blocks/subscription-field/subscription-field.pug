@@ -1,8 +1,8 @@
 mixin subscription-field(args = {})
   .subscription-field
     +input-text(args)(
-      class = 'subscription-field__input-text'
-      type = 'email'
+      class = 'subscription-field__input-text',
+      type = 'email',
     )
     .subscription-field__icon
-      +icon({ text: 'arrow_forward' })(type = 'submit')
+      +icon({ name: 'arrow_forward' })(type = 'submit')

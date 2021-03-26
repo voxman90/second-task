@@ -13,8 +13,8 @@
 
 .radio-button__input {
   height: 1.5rem;
-  margin-left: 4.3px;
-  margin-right: 12.9px;
+  margin-left: 0.27rem;
+  margin-right: 0.805rem;
 }
 
 .radio-button__text {
@@ -23,6 +23,7 @@
   height: 1.5rem;
 
   @include fonts.body-text;
+  line-height: 1.25;
   color: map.get(colors.$map, dark-shade-50);
 
   &::before {
@@ -30,7 +31,7 @@
   
     position: absolute;
     z-index: 1;
-    top: 2px;
+    top: 0;
     left: -30px;
 
     box-sizing: border-box;
@@ -47,13 +48,10 @@
 
     position: absolute;
     z-index: 2;
-    top: 6px;
+    top: 4px;
     left: -26px;
 
-    width: 0;
-    height: 0;
-
-    border-radius: 10px;
+    border-radius: 12px;
     background: linear-gradient(
       180deg, map.get(colors.$map, 'purple'), map.get(colors.$map, 'malibu')
     );
