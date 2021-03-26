@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const fs = require('fs');
 const path = require('path');
@@ -11,24 +11,24 @@ function _path(p) {
 }
 
 function defineEntry(conf, entry, plugins) {
-    entry[conf.name] = `./${conf.name}.entry.js`;
+  entry[conf.name] = `./${conf.name}.entry.js`;
 
-    let data = {};
-    if (conf.data) {
-        const root = _path(`./src/templates/${conf.name}/${conf.data}.data.json`);
-        const rawData = fs.readFileSync(path.resolve(__dirname, root));
-        data = JSON.parse(rawData);
-    }
+  let data = {};
+  if (conf.data) {
+    const root = _path(`./src/templates/${conf.name}/${conf.data}.data.json`);
+    const rawData = fs.readFileSync(path.resolve(__dirname, root));
+    data = JSON.parse(rawData);
+  }
 
-    const template = `./templates/${conf.name}/${conf.template}.pug`;
-    plugins.push(
-        new HtmlWebpackPlugin({
-            chunks: [conf.name],
-            template: template,
-            data: data,
-            filename: `${conf.template}.html`
-        })
-    )
+  const template = `./templates/${conf.name}/${conf.template}.pug`;
+  plugins.push(
+    new HtmlWebpackPlugin({
+      chunks: [conf.name],
+      template: template,
+      data: data,
+      filename: `${conf.template}.html`
+    })
+  )
 }
 
 function getEntries() {

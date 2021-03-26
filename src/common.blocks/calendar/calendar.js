@@ -327,6 +327,18 @@ class Calendar extends BEMComponent {
     this.drawTrace();
   }
 
+  getClosestDate() {
+    if (this.model.arrival !== null) {
+      return this.model.arrival;
+    }
+
+    if (this.model.departure !== null) {
+      return this.model.departure;
+    }
+
+    return this.model.current;
+  }
+
   clearCalendarSheet() {
     this.tableCellNodes.forEach((cell) => {
       cell.classList.remove(
@@ -523,15 +535,11 @@ class Calendar extends BEMComponent {
   }
 }
 
-function initCalendar() {
-  const calendars = document.querySelectorAll('.js-calendar.js-calendar-init');
-  calendars.forEach(
-    (calendar) => {
-      new Calendar(calendar);
-    }
-  );
-}
+const initCalendarComps = BEMComponent.makeInitializer(
+  Calendar,
+  '.js-calendar.js-auto-init'
+);
 
-document.addEventListener('DOMContentLoaded', initCalendar);
+document.addEventListener('DOMContentLoaded', initCalendarComps);
 
 export { Calendar }

@@ -1,3 +1,4 @@
+import { BEMComponent } from '../../scripts/scripts.ts';
 import { Dropdown, DropdownModel } from '../dropdown/dropdown';
 
 class DropdownFacilitiesModel extends DropdownModel {
@@ -67,4 +68,9 @@ function initDropdownFacilities() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", initDropdownFacilities);
+const initDropdownFacilitiesComps = BEMComponent.makeInitializer(
+  DropdownFacilities,
+  '.js-dropdown-facilities.js-auto-init'
+);
+
+document.addEventListener("DOMContentLoaded", initDropdownFacilitiesComps);

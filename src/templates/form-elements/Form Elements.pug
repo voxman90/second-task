@@ -1,60 +1,72 @@
-include ../../common.blocks/like-button/like-button.pug
-include ../../common.blocks/comment/comment.pug
 include ../../common.blocks/logo/logo.pug
 include ../../common.blocks/label/label.pug
 include ../../common.blocks/input-text/input-text.pug
 include ../../common.blocks/text-field/text-field.pug
+include ../../common.blocks/input-text-masked/input-text-masked.pug
+include ../../common.blocks/input-date/input-date.pug
 include ../../common.blocks/icon/icon.pug
 include ../../common.blocks/button/button.pug
 include ../../common.blocks/dropdown/dropdown.pug
 include ../../common.blocks/dropdown-guests/dropdown-guests.pug
 include ../../common.blocks/dropdown-facilities/dropdown-facilities.pug
+include ../../common.blocks/subscription-field/subscription-field.pug
 include ../../common.blocks/expandable-list/expandable-list.pug
 include ../../common.blocks/calendar/calendar.pug
-include ../../common.blocks/input-text-masked/input-text-masked.pug
-include ../../common.blocks/input-date/input-date.pug
+include ../../common.blocks/pagination/pagination.pug
+include ../../common.blocks/like-button/like-button.pug
+include ../../common.blocks/comment/comment.pug
 include ../../common.blocks/dropdown-date/dropdown-date.pug
-include ../../common.blocks/subscription-field/subscription-field.pug
 include ../../common.blocks/rate-button/rate-button.pug
 include ../../common.blocks/radio-button/radio-button.pug
 include ../../common.blocks/dropdown-filter-date/dropdown-filter-date.pug
-include ../../common.blocks/pagination/pagination.pug
 - const data = htmlWebpackPlugin.options.data
 - const title = data.title
 doctype html
 html
   head
-    meta(charset="UTF-8")
+    meta(charset='UTF-8')
     title= title
   body
     .form-elements
       .form-elements__logo
-        +logo("chonk", false, false)
+        +logo('small', false, false)
       .form-elements__content
         .form-elements__grid
-          .form-elements__block_1
-            +text-field({ name: "input-text-001", placeholder: "Email", left: "TEXT FIELD", right: "DEFAULT" })
-            +text-field({ name: "input-text-002", left: "TEXT FIELD", right: "HOVER / FOCUS"}, { value: "This is pretty awesome", class: "input-text_hover" })
-            +dropdown-guests("dropdown-guests-001", "DROPDOWN")
-          .form-elements__block_2
-            +dropdown-facilities("dropdown-facilities-001", "DROPDOWN", "DEFAULT")
-            +dropdown-facilities("dropdown-facilities-001", "DROPDOWN", "EXPANDED")
+          div(class='form-elements__1st-block box_width_20rem')
+            div(class='box_margin-bottom_1\.25rem')
+              +text-field({ name: 'input-text-1st', placeholder: 'Email', left: 'TEXT FIELD', right: 'DEFAULT' })
+            div(class='box_margin-bottom_1\.25rem')
+              +text-field(
+                { name: 'input-text-2nd', left: 'TEXT FIELD', right: 'HOVER / FOCUS' },
+                { value: 'This is pretty awesome', class: 'input-text_hover' }
+              )
+            div(class='box_margin-bottom_1\.25rem')
+              +dropdown-guests('dropdown-guests-1st', 'DROPDOWN')(class='js-auto-init')
+            div(class='box_margin-bottom_2\.5rem')
+              +label('MASKED TEXT FIELD')
+                +input-date({ name: 'input-date-1st' })
+            div(class='box_margin-bottom_2\.5rem')
+              +dropdown-date({ name: 'dropdown-date-1st', left: 'DATE DROPDOWN', right: 'DATE DROPDOWN' })(class='js-dropdown-date-1st')
+            div(class='box_margin-bottom_2\.5rem')
+              +dropdown-filter-date({ name: 'dropdown-filter-date-1st', label: 'FILTER DATE' })(class='js-dropdown-filter-date-1st')
+            div(class='box_width_16\.625rem box_margin-bottom_2\.5rem')
+              +label('SUBSCRIPTION TEXT FIELD')
+                +subscription-field({ name: 'subscr-field-1st', placeholder: 'Email' })
+            +dropdown-facilities('dropdown-facilities-001', 'DROPDOWN', 'DEFAULT')
+            +dropdown-facilities('dropdown-facilities-001', 'DROPDOWN', 'EXPANDED')
           .form-elements__block_3
-            +expandable-list("EXPANDABLE LIST")
-              p= "текст"
+            +expandable-list('EXPANDABLE LIST')
+              p= 'текст'
             +calendar()(class = 'js-calendar-init')
           .form-elements__block_4
             +pagination({ amount: 10 })
           .form-elements__block_5
             +comment({ img: 'image.jpg', date: '5 дней назад', nickname: 'Мурад Сарафанов', value: '11', message: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.' })
           .form-elements__block_6
-            +input-date({ name: "input-text-masked-001", placeholder: "DD/MM/YYYY" })
+            +input-date({ name: 'input-text-masked-001', placeholder: 'DD/MM/YYYY' })
             +dropdown-date({ left: 'ПРИБЫТИЕ', right: 'ВыЕЗД', name: 'dropdown-date-001' })
-          .form-elements__block_7
-            +subscription-field({ name: "input-text-001", placeholder: "Email" })
           .form-elements__block_8
             +rate-button({ amount: 5, filled: 2 })
             +rate-button({ amount: 5, filled: 4 })
             +radio-button({ text: 'Радио кнопка' })
-            +dropdown-filter-date({ label: 'FILTER DATE', name: 'dropdown-filter-date-001' })
           .form-elements__block_9

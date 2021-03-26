@@ -36,12 +36,9 @@ class ExpandableList extends BEMComponent {
   }
 }
 
-function initExpandableList() {
-  const expandableLists = document.querySelectorAll('.js-expandable-list');
+const initExpandableListComps = BEMComponent.makeInitializer(
+  ExpandableList,
+  '.js-expandable-list.js-auto-init'
+);
 
-  for (const expandableList of expandableLists) {
-      new ExpandableList(expandableList);
-  }
-}
-
-document.addEventListener('DOMContentLoaded', initExpandableList);
+document.addEventListener('DOMContentLoaded', initExpandableListComps);

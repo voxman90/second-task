@@ -1,6 +1,6 @@
 mixin dropdown-filter-date(args = {})
   - const { label, name } = args
-  .dropdown-filter-date.js-dropdown-filter-date
+  .dropdown-filter-date.js-dropdown-filter-date&attributes(attributes)
     .dropdown-filter-date__head
       +label(label, '')
         .dropdown-filter-date__pseudo-input.js-dropdown-filter-date__pseudo-input

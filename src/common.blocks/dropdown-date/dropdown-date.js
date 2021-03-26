@@ -15,6 +15,14 @@ class DropdownDate extends BEMComponent {
     this.attachListeners();
   }
 
+  setArrival(date) {
+    this.inputArrivalNode.value = date;
+  }
+
+  setDeparture(date) {
+    this.inputDepartureNode.value = date;
+  }
+
   connectBasis(elem) {
     this.rootNode = elem;
 
@@ -111,8 +119,9 @@ class DropdownDate extends BEMComponent {
     const departureDate = this.convertInputValueToDate(this.inputDepartureNode.value);
     this.calendar.model.setDeparture(departureDate);
 
-    this.calendar.clearTrace();
-    this.calendar.drawTrace();
+    this.calendar.model.current = this.calendar.getClosestDate();
+
+    this.calendar.drawCalendar();
   }
 
   convertInputValueToDate(value) {
@@ -159,6 +168,11 @@ class DropdownDate extends BEMComponent {
   }
 }
 
-const initDropdownDateComps = BEMComponent.makeInitializer(DropdownDate, '.js-dropdown-date');
+const initDropdownDateComps = BEMComponent.makeInitializer(
+  DropdownDate,
+  '.js-dropdown-date.js-auto-init'
+);
 
 document.addEventListener('DOMContentLoaded', initDropdownDateComps);
+
+export { DropdownDate };

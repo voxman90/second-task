@@ -11,6 +11,17 @@ class DropdownFilterDate extends BEMComponent {
     this.attachListeners();
   }
 
+  setTimeInterval(arrival, departure) {
+    this.inputArrivalNode.value = arrival;
+    this.inputDepartureNode.value = departure;
+    this.drawPseudoInput(arrival, departure);
+
+    this.calendar.model.arrival = arrival;
+    this.calendar.model.departure = departure;
+    this.calendar.model.current = this.calendar.getClosestDate();
+    this.calendar.drawCalendar();
+  }
+
   connectBasis(elem) {
     this.rootNode = elem;
     this.pseudoInputNode = this.rootNode.querySelector('.js-dropdown-filter-date__pseudo-input');
@@ -47,6 +58,12 @@ class DropdownFilterDate extends BEMComponent {
     this.inputArrivalNode.value = arrival;
     this.inputDepartureNode.value = departure;
 
+    this.drawPseudoInput(arrival, departure);
+
+    this.bodyNode.classList.add('dropdown-filter-date__body_hidden');
+  }
+
+  drawPseudoInput(arrival, departure) {
     let dates = '';
     if (
       arrival !== null
@@ -56,7 +73,6 @@ class DropdownFilterDate extends BEMComponent {
     }
 
     this.pseudoInputNode.textContent = dates;
-    this.bodyNode.classList.add('dropdown-filter-date__body_hidden');
   }
 
   handleIconClick(e) {
@@ -77,6 +93,11 @@ class DropdownFilterDate extends BEMComponent {
   }
 }
 
-const initDropdownFilterDateComps = BEMComponent.makeInitializer(DropdownFilterDate, '.js-dropdown-filter-date');
+const initDropdownFilterDateComps = BEMComponent.makeInitializer(
+  DropdownFilterDate,
+  '.js-dropdown-filter-date.js-auto-init'
+);
 
 document.addEventListener('DOMContentLoaded', initDropdownFilterDateComps);
+
+export { DropdownFilterDate };

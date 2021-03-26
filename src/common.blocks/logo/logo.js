@@ -64,11 +64,9 @@ class Logo extends BEMComponent {
   }
 }
 
-function initLogo() {
-  const logos = document.querySelectorAll('.js-logo_colored');
-  for (let logo of logos) {
-    new Logo(logo);
-  };
-}
+const initLogoComps = BEMComponent.makeInitializer(
+  Logo,
+  '.js-logo_colored'
+);
 
-document.addEventListener('DOMContentLoaded', initLogo);
+document.addEventListener('DOMContentLoaded', initLogoComps);

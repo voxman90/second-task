@@ -1,6 +1,6 @@
 mixin dropdown-date(args = {})
   - const { left, right, name } = args
-  .dropdown-date.js-dropdown-date
+  .dropdown-date.js-dropdown-date&attributes(attributes)
     .dropdown-date__head
       .dropdown-date__arrival
         +label(left, '')

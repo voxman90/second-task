@@ -254,68 +254,71 @@ class TopologicalSort {
         fs.closeSync(fd);
     }
 
-    function writePresetImports(args: entry): string {
-        const {name, styles, scripts} = args;
-        let imports = "";
-
-        if (styles) {
-            styles.forEach(
-                (style) => imports += `import "./styles/${style}.scss";\n`
-            );
+  function writePresetImports(args: entry): string {
+    const { name, styles, scripts } = args;
+    let imports = '';
+    if (styles) {
+      styles.forEach(
+        (style) => {
+          imports += `import "${style}";\n`;
         }
-
-        if (scripts) {
-            scripts.forEach(
-                (script) => imports += `import "./scripts/${script}.js";\n`
-            );
-        }
-
-        return imports;
+      );
     }
 
-    function extractComponentsFromTemplate(data: string): {inc: string[], mix: string[], comps: string[]} {
-        const includes = new RegExp(/include.*/gm);
-        const mixins = new RegExp(/(?<=\+)[a-z\-]*?(?=\(|$)/gm);
-        let comps = [];
-        let inc: string[];
-        let mix: string[];
-
-        inc = data.match(includes) || [];
-        if (inc.length !== 0) {
-            inc.map(
-                (val, i, arr) => {
-                    arr[i] = val.match(/(?<=\w\/)(.*(?=\/))/)[0];
-                }
-            );
-            inc = removeDuplicates(inc);
+    if (scripts) {
+      scripts.forEach(
+        (script) => {
+          imports += `import "${script}";\n`
         }
-        
-        mix = data.match(mixins) || [];
-        if (mix.length !== 0) {
-            mix = removeDuplicates(mix);
-        }
-        
-        comps = removeDuplicates([...inc, ...mix]);
-        mix = removeDifference(mix, inc);
-
-        return {inc, mix, comps};
+      );
     }
 
-    function removeDuplicates(arr: string[]): string[] {
-        if (arr && arr.length !== 0) {
-            return arr.filter(
-                (value, index, array) => array.indexOf(value) === index
-            );
-        } else {
-            return [];
+    return imports;
+  }
+
+  function extractComponentsFromTemplate(data: string): {inc: string[], mix: string[], comps: string[]} {
+    const includes = new RegExp(/include.*/gm);
+    const mixins = new RegExp(/(?<=\+)[a-z\-]*?(?=\(|$)/gm);
+    let comps = [];
+    let inc: string[];
+    let mix: string[];
+
+    inc = data.match(includes) || [];
+    if (inc.length !== 0) {
+      inc.map(
+        (val, i, arr) => {
+          arr[i] = val.match(/(?<=\w\/)(.*(?=\/))/)[0];
         }
+      );
+      inc = removeDuplicates(inc);
+    }
+    
+    mix = data.match(mixins) || [];
+    if (mix.length !== 0) {
+      mix = removeDuplicates(mix);
+    }
+    
+    comps = removeDuplicates([...inc, ...mix]);
+    mix = removeDifference(mix, inc);
+
+    return { inc, mix, comps };
+  }
+
+  function removeDuplicates(arr: string[]): string[] {
+    if (arr && arr.length !== 0) {
+      return arr.filter(
+        (value, index, array) => array.indexOf(value) === index
+      );
     }
 
-    function removeDifference(arr: string[], toRemove: string[]): string[] {
-        let acc = [].concat(arr);
-        acc = acc.filter(
-            (val) => !toRemove.includes(val)
-        );
-        return acc;
-    }
+    return [];
+  }
+
+  function removeDifference(arr: string[], toRemove: string[]): string[] {
+    let acc = [...arr];
+    acc = acc.filter(
+      (val) => !toRemove.includes(val)
+    );
+    return acc;
+  }
 }());

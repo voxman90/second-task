@@ -73,11 +73,9 @@ class RateButton extends BEMComponent {
   }
 }
 
-function initRateButtons() {
-  const buttons = document.querySelectorAll('.js-rate-button');
-  for (const button of buttons) {
-    new RateButton(button);
-  }
-}
+const initRateButtonComps = BEMComponent.makeInitializer(
+  RateButton,
+  '.js-rate-button.js-auto-init'
+);
 
-document.addEventListener('DOMContentLoaded', initRateButtons);
+document.addEventListener('DOMContentLoaded', initRateButtonComps);

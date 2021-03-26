@@ -41,6 +41,9 @@ class LikeButton extends BEMComponent {
   }
 }
 
-const initLikeButtonComps = BEMComponent.makeInitializer(LikeButton, '.js-like-button');
+const initLikeButtonComps = BEMComponent.makeInitializer(
+  LikeButton,
+  '.js-like-button.js-auto-init'
+);
 
 document.addEventListener('DOMContentLoaded', initLikeButtonComps);

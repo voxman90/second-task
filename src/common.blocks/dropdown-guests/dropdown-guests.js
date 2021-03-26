@@ -1,3 +1,4 @@
+import { BEMComponent } from '../../scripts/scripts.ts';
 import { Dropdown, DropdownModel } from '../dropdown/dropdown';
 
 class DropdownGuestsModel extends DropdownModel {
@@ -50,6 +51,10 @@ class DropdownGuestsModel extends DropdownModel {
       sentence.push(`${babiesCount} ${words}`);
     }
 
+    if (sentence.length === 0) {
+      sentence.push(this.default);
+    }
+
     return sentence.join(', ');
   }
 }
@@ -60,6 +65,7 @@ class DropdownGuests extends Dropdown {
     super(elem, model);
 
     this.name = 'dropdown-guests';
+    this.inputNode.classList.remove('dropdown__input-text_angled');
     this.hangHooks();
   }
 
@@ -80,12 +86,9 @@ class DropdownGuests extends Dropdown {
   }
 }
 
-function initDropdownGuests() {
-  const dropdowns = document.querySelectorAll('.js-dropdown-guests');
+const initDropdownGuestsComps = BEMComponent.makeInitializer(
+  DropdownGuests,
+  '.js-dropdown-guests.js-auto-init'
+);
 
-  for (const dropdown of dropdowns) {
-    new DropdownGuests(dropdown);
-  }
-}
-
-document.addEventListener('DOMContentLoaded', initDropdownGuests);
+document.addEventListener('DOMContentLoaded', initDropdownGuestsComps);

@@ -297,6 +297,9 @@ class Pagination extends BEMComponent {
   }
 }
 
-const initPaginationComps = BEMComponent.makeInitializer(Pagination, '.js-pagination');
+const initPaginationComps = BEMComponent.makeInitializer(
+  Pagination,
+  '.js-pagination.js-auto-init'
+);
 
 document.addEventListener('DOMContentLoaded', initPaginationComps);
