@@ -9,16 +9,17 @@
   box-sizing: border-box;
   min-width: min-content;
   height: 1.5rem;
-  padding-left: 0.625rem;
+  padding-left: 0.5rem;
 }
 
 .toggle__text {
   position: relative;
   height: 1.5rem;
-  margin-left: 1.825rem;
+  margin-left: 1.85rem;
 
   @include fonts.Montserrat-normal;
   font-size: 0.875rem;
+  line-height: 1.32;
   color: map.get(colors.$map, dark-shade-75);
 }
 

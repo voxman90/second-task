@@ -1,12 +1,12 @@
 mixin checkbox(args = {})
-  - const { name, value, text } = args
+  - const { name, checked, text } = args
   label.checkbox&attributes(attributes)
     input(
-      class='checkbox__input',
+      class=`checkbox__input`,
       type='checkbox',
       name=name,
-      checked=(value === true) ? "checked" : undefined,
+      checked=(checked === true) ? "checked" : undefined,
     )
-    .checkbox__text= text
-    if block
-      block
+    .checkbox__container
+      if block
+        block

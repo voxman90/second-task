@@ -1,6 +1,6 @@
-mixin logo(size = 'small', isColored = true, isSigned = false)
-  - var color = (isColored) ? 'js-logo_colored' : ''
-  - var size = (size === 'small') ? 'logo__container_size_2\.5rem' : 'logo__container_size_3rem'
+mixin logo(sizeParam = 'small', isColored = true, isSigned = false)
+  - let color = (isColored) ? 'js-logo_colored' : ''
+  - let size = (sizeParam === 'small') ? 'logo__container_size_2\.5rem' : 'logo__container_size_3rem'
   .logo
     div(class=`logo__container ${size} ${color}`)
       svg(class="logo__circle" width="100%" height="100%" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg")

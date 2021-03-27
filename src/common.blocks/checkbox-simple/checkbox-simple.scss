@@ -1,0 +1,11 @@
+@use 'sass:map';
+@use '../../styles/colors' as colors;
+@use '../../styles/text-mixins' as fonts;
+
+.checkbox-simple__text {
+  @include fonts.Montserrat-normal;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  white-space: pre-wrap;
+  color: map.get(colors.$map, dark-shade-50);
+}

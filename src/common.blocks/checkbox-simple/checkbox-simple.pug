@@ -1,0 +1,4 @@
+mixin checkbox-simple(args = {})
+  - const { text } = args
+  +checkbox(args).checkbox-simple&attributes(attributes)
+    .checkbox-simple__text= text

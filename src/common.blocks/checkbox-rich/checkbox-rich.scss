@@ -2,19 +2,19 @@
 @use "../../styles/colors" as colors;
 @use "../../styles/text-mixins" as fonts;
 
-.checkbox-rich {
+.checkbox-rich__text {
   @include fonts.Montserrat-bold;
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
   color: map.get(colors.$map, 'dark-shade-75');
 }
 
 .checkbox-rich__subtext {
-  margin-left: 30px;
-  margin-top: 5px;
+  padding-top: 0.37rem;
 
   @include fonts.Montserrat-normal;
-  font-size: 12px; 
-  line-height: 14px;
+  font-size: 0.75rem; 
+  line-height: 0.875rem;
+  white-space: pre-wrap;
   color: map.get(colors.$map, 'dark-shade-50');
 }

@@ -1,4 +1,3 @@
-include ../../common.blocks/toggle/toggle.pug
 include ../../common.blocks/logo/logo.pug
 include ../../common.blocks/label/label.pug
 include ../../common.blocks/input-text/input-text.pug
@@ -16,12 +15,15 @@ include ../../common.blocks/subscription-field/subscription-field.pug
 include ../../common.blocks/dropdown-facilities/dropdown-facilities.pug
 include ../../common.blocks/expandable-list/expandable-list.pug
 include ../../common.blocks/checkbox/checkbox.pug
+include ../../common.blocks/checkbox-simple/checkbox-simple.pug
 include ../../common.blocks/icon-item/icon-item.pug
-include ../../common.blocks/pagination/pagination.pug
-include ../../common.blocks/like-button/like-button.pug
-include ../../common.blocks/comment/comment.pug
-include ../../common.blocks/rate-button/rate-button.pug
 include ../../common.blocks/radio-button/radio-button.pug
+include ../../common.blocks/toggle/toggle.pug
+include ../../common.blocks/like-button/like-button.pug
+include ../../common.blocks/rate-button/rate-button.pug
+include ../../common.blocks/checkbox-rich/checkbox-rich.pug
+include ../../common.blocks/pagination/pagination.pug
+include ../../common.blocks/comment/comment.pug
 - const data = htmlWebpackPlugin.options.data
 - const { title, checkboxList, checkboxButtons } = data
 - const lastCheckboxArgs = checkboxList.pop();
@@ -33,76 +35,83 @@ html
   body
     .form-elements
       .form-elements__logo
-        +logo('small', false, false)
+        +logo('chonk', false, false)
       .form-elements__content
         .form-elements__grid
-          div(class='form-elements__1st-block box_width_20rem')
-            div(class='box_margin-bottom_1\.25rem')
+          .form-elements__1st-block.box_width_20rem
+            .box_margin-bottom_20px
               +text-field({ name: 'input-text-1st', placeholder: 'Email', left: 'TEXT FIELD', right: 'DEFAULT' })
-            div(class='box_margin-bottom_1\.25rem')
+            .box_margin-bottom_20px
               +text-field(
                 { name: 'input-text-2nd', left: 'TEXT FIELD', right: 'HOVER / FOCUS' },
                 { value: 'This is pretty awesome', class: 'input-text_hover' }
               )
-            div(class='box_margin-bottom_1\.25rem')
+            .box_margin-bottom_20px
               +dropdown-guests('dropdown-guests-1st', 'DROPDOWN')(class='js-auto-init')
-            div(class='box_margin-bottom_2\.5rem')
+            .box_margin-bottom_40px
               +label('MASKED TEXT FIELD')
                 +input-date({ name: 'input-date-1st' })
-            div(class='box_margin-bottom_2\.5rem')
+            .box_margin-bottom_40px
               +dropdown-date({ name: 'dropdown-date-1st', left: 'DATE DROPDOWN', right: 'DATE DROPDOWN' })(class='js-dropdown-date-1st')
-            div(class='box_margin-bottom_2\.5rem')
-              +dropdown-filter-date({ name: 'dropdown-filter-date-1st', label: 'FILTER DATE' })(class='js-dropdown-filter-date-1st')
-            div(class='box_width_16\.625rem box_margin-bottom_2\.5rem')
+            .box_margin-bottom_40px
+              +dropdown-filter-date({ name: 'dropdown-filter-date-1st', label: 'FILTER DATE DROPDOWN' })(class='js-dropdown-filter-date-1st')
+            .box_margin-bottom_40px
               +label('SUBSCRIPTION TEXT FIELD')
                 +subscription-field({ name: 'subscr-field-1st', placeholder: 'Email' })
           div(class='form-elements__2nd-block box_width_16\.625rem')
-            div(class='box_margin-bottom_1\.25rem')
+            .box_margin-bottom_20px
               +dropdown-facilities('dropdown-facilities-1st', 'DROPDOWN', 'DEFAULT')(class='js-dropdown-facilities-1st')
-            div(class='box_margin-bottom_1\.25rem')
+            .box_margin-bottom_20px
               +dropdown-facilities('dropdown-facilities-2nd', 'DROPDOWN', 'EXPANDED')(class='js-dropdown-facilities-2nd')
-          div(class='form-elements__3rd-block')
-            div(class='box_width_16\.625rem box_margin-bottom_1\.25rem')
+          .form-elements__3rd-block
+            .box_width_266px.box_margin-bottom_20px
               +expandable-list('EXPANDABLE CHECKBOX LIST')(class='js-auto-init')
                 each args in checkboxList
-                  +checkbox(args)(class='box_margin-bottom_0\.75rem')
-                +checkbox(lastCheckboxArgs)
-            div(class='box_width_16\.625rem box_margin-bottom_1\.25rem')
+                  +checkbox-simple(args).box_margin-bottom_10px
+                +checkbox-simple(lastCheckboxArgs)
+            .box_width_266px.box_margin-bottom_20px
               +expandable-list('EXPANDABLE CHECKBOX LIST')(class='js-exp-list-2nd')
                 each args in checkboxList
-                  +checkbox(args)(class='box_margin-bottom_0\.75rem')
-                +checkbox(lastCheckboxArgs)
+                  +checkbox-simple(args).box_margin-bottom_10px
+                +checkbox-simple(lastCheckboxArgs)
             div(class='box_width_17\.5rem')
               +icon-item({ name: 'insert_emoticon', headline: 'Комфорт', descr: 'Шумопоглощающие стены' })
               +icon-item({ name: 'location_city', headline: 'Удобство', descr: 'Окно в каждой из спален' })
-          div(class='form-elements__4th_block')
-            div(class='box_width_17\.5rem box_margin-bottom_2\.5rem')
-              +label('CHECKBOX BUTTONS')(class='box_margin-bottom_0\.725rem')
+          .form-elements__4th-block
+            .box_width_222px.box_margin-bottom_40px
+              +label('CHECKBOX BUTTONS').box_margin-bottom_11px
               each args in checkboxButtons
-                +checkbox(args)(class='box_margin-bottom_0\.75rem')
-            div(class='box_width_17\.5rem box_margin-bottom_2\.5rem')
-              +label('RADIO BUTTONS')(class='box_margin-bottom_0\.725rem')
+                +checkbox-simple(args).box_margin-bottom_10px
+            .box_width_222px.box_margin-bottom_40px
+              +label('RADIO BUTTONS').box_margin-bottom_11px
               .form-elements__radio-buttons
                 +radio-button({ name: 'sex', value: 'man', checked: true, text: 'Мужчина' })
                 +radio-button({ name: 'sex', value: 'women', text: 'Женщина' })
-            div(class='box_width_17\.5rem box_margin-bottom_2\.5rem')
-              +label('TOGGLE')(class='box_margin-bottom_0\.725rem')
-              +toggle({ name: 'spec', value: 'first', checked: true, text: 'Получать спецпредложения' })(class='box_margin-bottom_0\.725rem')
+            .box_width_266px.box_margin-bottom_40px
+              +label('TOGGLE').box_margin-bottom_11px
+              +toggle({ name: 'spec', value: 'first', checked: true, text: 'Получать спецпредложения' }).box_margin-bottom_10px
               +toggle({ name: 'spec', value: 'second', text: 'Получать спецпредложения' })
-            div(class='box_width_17\.5rem box_margin-bottom_2\.5rem')
-              +label('LIKE BUTTON')(class='box_margin-bottom_0\.725rem')
+            .box_margin-bottom_40px
+              +label('LIKE BUTTON').box_margin-bottom_11px
               .form-elements__like-buttons
-                +like-button({ name: 'like-btn-1st', value: '' })(class='js-auto-init')
-                +like-button({ name: 'like-btn-2nd', value: '', checked: true })(class='js-auto-init')
-            div(class='box_width_17\.5rem box_margin-bottom_2\.5rem')
-              +label('RATE BUTTON')(class='box_margin-bottom_0\.725rem')
-          .form-elements__block_5
+                +like-button({ name: 'like-btn-1st', count: 2 })(class='js-auto-init')
+                +like-button({ name: 'like-btn-2nd', count: 12, checked: true })(class='js-auto-init')
+            div(class='box_width_17\.5rem')
+              +label('RATE BUTTON').box_margin-bottom_11px
+              .form-elements__rate-buttons
+                +rate-button({ amount: 5, filled: 4 })(class='js-auto-init')
+                +rate-button({ amount: 5, filled: 5 })(class='js-auto-init')
+          .form-elements__5th-block
+            +dropdown-guests('dropdown-guests-1st', 'DROPDOWN')(class = 'js-dropdown-guests-1st')
+          .form-elements__6th-block
+            +label('RICH CHECKBOX BUTTONS').box_margin-bottom_11px
+              +checkbox-rich({ name: 'checkbox-rich-1st', value: false, text: 'Широкий коридор', subtext: 'Ширина коридоров в номере\nне менее 91 см.' }).box_margin-bottom_10px.box_width_266px
+              +checkbox-rich({ name: 'checkbox-rich-2nd', value: false, text: 'Помощник для инвалидов', subtext: 'На 1 этаже вас встретит специалист\nи проводит до номера.' }).box_width_266px
+          .form-elements__7th-block
            +pagination({ amount: 10 })
             +comment({ img: 'image.jpg', date: '5 дней назад', nickname: 'Мурад Сарафанов', value: '11', message: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.' })
-          .form-elements__block_6
             +input-date({ name: 'input-text-masked-001', placeholder: 'DD/MM/YYYY' })
             +dropdown-date({ left: 'ПРИБЫТИЕ', right: 'ВыЕЗД', name: 'dropdown-date-001' })
-          .form-elements__block_8
-            +rate-button({ amount: 5, filled: 2 })
-            +rate-button({ amount: 5, filled: 4 })
+          .form-elements__9th-block
+            +dropdown-guests('dropdown-guests-2nd', 'DROPDOWN')(class = 'js-dropdown-guests-2nd')
           .form-elements__block_9

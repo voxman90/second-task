@@ -13,6 +13,15 @@ class LikeButton extends BEMComponent {
     this.counter = this.root.lastElementChild;
   }
 
+  setValue(value) {
+    this.input.setAttribute('data-value', value);
+    this.counter.textContent = value;
+  }
+
+  getValue() {
+    return parseInt(this.input.getAttribute('data-value'), 10);
+  }
+
   attachEventListeners() {
     this.bindEventListeners([
       {
@@ -27,16 +36,13 @@ class LikeButton extends BEMComponent {
   handleLikeButtonClick(e) {
     const that = e.that;
     const input = that.input;
-    const counter = that.counter;
-    let count = parseInt(input.getAttribute('value'), 10);
+    let count = that.getValue();
     if (input.checked) {
-      count = (count + 1).toString();
-      input.setAttribute('value', count);
-      counter.textContent = count;
+      count += 1;
+      that.setValue(count);
     } else {
-      count = (count - 1).toString();
-      input.setAttribute('value', count);
-      counter.textContent = count;
+      count -= 1;
+      that.setValue(count);
     }
   }
 }

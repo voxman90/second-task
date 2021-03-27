@@ -6,19 +6,15 @@
   display: flex;
   justify-content: flex-start;
   width: fit-content;
+  min-height: 1.25rem;
 }
 
-.checkbox__text {
+.checkbox__container {
   position: relative;
 
   box-sizing: border-box;
+  padding-top: 1.1px;
   margin-left: 15px;
-
-  @include fonts.Montserrat-normal;
-  font-size: 0.875rem;
-  line-height: 1.125rem;
-  white-space: pre-wrap;
-  color: map.get(colors.$map, dark-shade-50);
 
   &::before {
     content: '';
@@ -26,7 +22,7 @@
     position: absolute;
     z-index: 1;
     left: -30px;
-    top: -1px;
+    top: 0;
 
     box-sizing: border-box;
     width: 20px;
@@ -42,7 +38,7 @@
   margin: 2.6px 1.1px;
 }
 
-.checkbox__input:checked + .checkbox__text::before {
+.checkbox__input:checked + .checkbox__container::before {
   border: 1px solid map.get(colors.$map, "purple");
   background: url(./Check.svg);
   background: {

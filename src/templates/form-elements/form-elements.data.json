@@ -1,18 +1,18 @@
 {
   "title": "Form Elements",
   "checkboxList": [
-    { "name": "checkbox-1st", "value": false, "text": "Завтрак" },
-    { "name": "checkbox-2nd", "value": true, "text": "Письменный стол" },
-    { "name": "checkbox-3rd", "value": true, "text": "Стул для кормления" },
-    { "name": "checkbox-4th", "value": true, "text": "Кроватка" },
-    { "name": "checkbox-5th", "value": false, "text": "Телевизор" },
-    { "name": "checkbox-6th", "value": false, "text": "Шампунь" },
-    { "name": "checkbox-7th", "value": false, "text": "Телевизор" },
-    { "name": "checkbox-8th", "value": false, "text": "Шампунь" }
+    { "name": "checkbox-1st", "checked": false, "text": "Завтрак" },
+    { "name": "checkbox-2nd", "checked": true, "text": "Письменный стол" },
+    { "name": "checkbox-3rd", "checked": true, "text": "Стул для кормления" },
+    { "name": "checkbox-4th", "checked": true, "text": "Кроватка" },
+    { "name": "checkbox-5th", "checked": false, "text": "Телевизор" },
+    { "name": "checkbox-6th", "checked": false, "text": "Шампунь" },
+    { "name": "checkbox-7th", "checked": false, "text": "Телевизор" },
+    { "name": "checkbox-8th", "checked": false, "text": "Шампунь" }
   ],
   "checkboxButtons": [
-    { "name": "checkbox-butt-1st", "value": false, "text": "Можно курить" },
-    { "name": "checkbox-butt-2nd", "value": true, "text": "Можно с питомцами" },
-    { "name": "checkbox-butt-3rd", "value": true, "text": "Можно пригласить гостей\n(до 10 человек)" }
+    { "name": "checkbox-butt-1st", "checked": false, "text": "Можно курить" },
+    { "name": "checkbox-butt-2nd", "checked": true, "text": "Можно с питомцами" },
+    { "name": "checkbox-butt-3rd", "checked": true, "text": "Можно пригласить гостей\n(до 10 человек)" }
   ]
 }

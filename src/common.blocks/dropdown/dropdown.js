@@ -170,13 +170,13 @@ class Dropdown extends BEMComponent {
   }
 
   close() {
-    this.barNode.classList.remove('dropdown__bar_hidden');
+    this.barNode.classList.add('dropdown__bar_hidden');
     this.inputNode.classList.remove('dropdown__input-text_expanded');
     return this;
   }
 
   expand() {
-    this.barNode.classList.add('dropdown__bar_hidden');
+    this.barNode.classList.remove('dropdown__bar_hidden');
     this.inputNode.classList.add('dropdown__input-text_expanded');
     return this;
   }

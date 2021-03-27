@@ -84,6 +84,19 @@ class DropdownGuests extends Dropdown {
       }
     };
   }
+
+  drawValues(values) {
+    let summ = 0;
+    this.valueNodesList.forEach(
+      (valueNode, i) => {
+        const value = values[i];
+        summ += value;
+        valueNode.textContent = value;
+        this.toggleMinusButton(valueNode, value);
+      }
+    );
+    this.toggleButtonClearVisibility(summ);
+  }
 }
 
 const initDropdownGuestsComps = BEMComponent.makeInitializer(
@@ -92,3 +105,5 @@ const initDropdownGuestsComps = BEMComponent.makeInitializer(
 );
 
 document.addEventListener('DOMContentLoaded', initDropdownGuestsComps);
+
+export { DropdownGuests };

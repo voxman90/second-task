@@ -5,6 +5,7 @@ import jQuery from 'jquery';
 import { DropdownDate } from '../../common.blocks/dropdown-date/dropdown-date';
 import { DropdownFilterDate } from '../../common.blocks/dropdown-filter-date/dropdown-filter-date';
 import { DropdownFacilities } from '../../common.blocks/dropdown-facilities/dropdown-facilities';
+import { DropdownGuests } from '../../common.blocks/dropdown-guests/dropdown-guests';
 import { ExpandableList } from '../../common.blocks/expandable-list/expandable-list';
 
 (function ($) {
@@ -33,6 +34,14 @@ import { ExpandableList } from '../../common.blocks/expandable-list/expandable-l
     secondComp.setValues([2, 2, 0]).expand().fix();
   }
 
+  function initDropdownGuestsComps() {
+    const firstComp = getComp('.js-dropdown-guests-1st', DropdownGuests);
+    firstComp.setValues([0, 0, 0]).expand();
+
+    const secondComp = getComp('.js-dropdown-guests-2nd', DropdownGuests);
+    secondComp.setValues([2, 1, 0]).expand();
+  }
+
   function initExpandableList() {
     const expandableListNode = $('.js-exp-list-2nd').get(0);
     const expandableListComp = new ExpandableList(expandableListNode);
@@ -44,6 +53,7 @@ import { ExpandableList } from '../../common.blocks/expandable-list/expandable-l
     initDropdownFilterDate();
     initDropdownFacilitiesComps();
     initExpandableList();
+    initDropdownGuestsComps();
   }
 
   $(init());
