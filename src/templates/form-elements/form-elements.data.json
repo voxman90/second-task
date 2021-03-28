@@ -14,5 +14,10 @@
     { "name": "checkbox-butt-1st", "checked": false, "text": "Можно курить" },
     { "name": "checkbox-butt-2nd", "checked": true, "text": "Можно с питомцами" },
     { "name": "checkbox-butt-3rd", "checked": true, "text": "Можно пригласить гостей\n(до 10 человек)" }
+  ],
+  "bulletList": [
+    "Нельзя с питомцами",
+    "Без вечеринок и мероприятий",
+    "Время прибытия — после 13:00,\nа выезд до 12:00"
   ]
 }

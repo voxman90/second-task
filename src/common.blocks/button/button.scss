@@ -59,25 +59,3 @@
     color: map.get(colors.$map, "purple");
   }
 }
-
-.button_size_short {
-  width: 6.1875rem;
-  height: 2.75rem;
-}
-
-.button_size_long {
-  min-width: 20rem;
-  height: 2.75rem;
-}
-
-.button_arrowed {
-  &::after {
-    content: "arrow_forward"; 
-
-    position: absolute;
-    right: 0.4166rem;
-    top: 0.51rem;
-
-    @include fonts.material-icons;
-  }
-}

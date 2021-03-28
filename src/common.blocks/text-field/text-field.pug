@@ -1,6 +1,5 @@
 mixin text-field(args = {}, attr = {})
-  - let { name, placeholder, left, right, size } = args
-  - size = (size === 10) ? 10 : 20
-  div(class=`text-field text-field_width_${size}rem`)
-    +label(left, right)
+  - const { name, placeholder, left, right } = args
+  .text-field&attributes(attributes)
+    +label(left, right).text-field__label
       +input-text({ name, placeholder })&attributes(attr)

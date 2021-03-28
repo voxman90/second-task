@@ -2,11 +2,6 @@
 @use '../../styles/colors.scss' as colors;
 @use '../../styles/text-mixins.scss' as fonts;
 
-.label {
-  width: 100%;
-  padding-bottom: 5px;
-}
-
 .label__clearfix {
   &::after {
     content: '';

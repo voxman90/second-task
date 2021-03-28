@@ -7,6 +7,10 @@
   width: 20rem;
 }
 
+.dropdown-date__label {
+  padding-bottom: 0.3125rem;
+}
+
 .dropdown-date__head {
   &::after {
     content: '';

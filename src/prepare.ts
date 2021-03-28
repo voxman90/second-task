@@ -238,7 +238,7 @@ class TopologicalSort {
 
     function writeImports(args: entry, styles: string[], scripts: string[]): void {
         const {name} = args;
-        let imports = writePresetImports(args);
+        let imports = '';
         
         styles.forEach(
             (style) => imports += `import "./${COMP_ROOT}/${style}/${style}.scss";\n`
@@ -247,6 +247,8 @@ class TopologicalSort {
         scripts.forEach(
             (script) => imports += `import "./${COMP_ROOT}/${script}/${script}.js";\n`
         );
+
+        imports += writePresetImports(args);
 
         const file = path.resolve(__dirname, `./${name}.entry.js`);
         const fd = fs.openSync(file, "w+");

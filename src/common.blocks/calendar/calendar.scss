@@ -216,8 +216,6 @@
 
   cursor: pointer;
 
-  color: map.get(colors.$map, dark-shade-50);
-
   &:hover,
   &:focus,
   &:active {

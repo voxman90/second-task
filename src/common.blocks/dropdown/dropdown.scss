@@ -8,6 +8,10 @@
   width: 100%;
 }
 
+.dropdown__label {
+  padding-bottom: 0.3125rem;
+}
+
 .dropdown__input-text {
   &:hover {
     cursor: pointer;

@@ -1,5 +1,5 @@
-mixin bullet-list(items = '', label = null)
-  .bullet-list
+mixin bullet-list(items, label = null)
+  .bullet-list&attributes(attributes)
     if (label !== null)
       +label(label, '').bullet-list__label
     each item in items

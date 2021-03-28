@@ -1,0 +1,10 @@
+{
+  "name": "button-short",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": [
+    "button"
+  ]
+}

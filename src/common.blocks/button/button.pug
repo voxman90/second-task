@@ -1,2 +1,8 @@
-mixin button(text = '', name = '')
-  button(class='button' name=name)&attributes(attributes)= text
+mixin button(args)
+  - const { name, text, fill, border } = args
+  button(
+    class = 'button',
+    class = (fill === true) ? 'button_style_fill' : undefined,
+    class = (border === true) ? 'button_style_border' : undefined,
+    name = name,
+  )&attributes(attributes)= text

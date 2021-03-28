@@ -1,0 +1,21 @@
+@use "sass:map";
+@use "sass:color";
+@use "../../styles/colors" as colors;
+@use "../../styles/text-mixins" as fonts;
+
+.button-long {
+  min-width: 20rem;
+  height: 2.75rem;
+}
+
+.button-long_arrowed {
+  &::after {
+    content: "arrow_forward"; 
+
+    position: absolute;
+    right: 0.4166rem;
+    top: 0.51rem;
+
+    @include fonts.material-icons;
+  }
+}

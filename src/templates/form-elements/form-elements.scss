@@ -1,3 +1,8 @@
+@use "sass:map";
+@use "sass:color";
+@use "../../styles/colors" as colors;
+@use "../../styles/text-mixins" as fonts;
+
 .form-elements {
   position: relative;
 }
@@ -68,13 +73,39 @@
 }
 
 .form-elements__7th-block {
-  grid-area: 5 / 3 / 6 / last-line;
+  grid-area: 7 / 3 / 8 / last-line;
 }
 
 .form-elements__8th-block {
   grid-area: 1 / 5 / 2 / last-line;
 }
 
+.form-elements__plug {
+  display: inline-block;
+  width: 1.25rem;
+}
+
+.form-elements__button_faded {
+  color: map.get(colors.$map, dark-shade-50);
+}
+
+.form-elements__button-filled_faded {
+  opacity: 0.5;
+  color: #FFFFFF;
+}
+
+.form-elements__button-bordered_faded {
+  $purple-50: color.scale(map.get(colors.$map, "purple"), $alpha: -50%);
+  $malibu-50: color.scale(map.get(colors.$map, "malibu"), $alpha: -50%);
+  background-image: linear-gradient(#FFF, #FFF),
+                    linear-gradient(180deg, $purple-50, $malibu-50);
+  color: map.get(colors.$map, "purple");
+}
+
 .form-elements__9th-block {
   grid-area: 3 / 5 / 4 / last-line;
+}
+
+.form-elements__10th-block {
+  grid-area: 5 / 5 / 6 / last-line;
 }

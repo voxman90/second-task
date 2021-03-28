@@ -2,7 +2,7 @@ mixin dropdown-filter-date(args = {})
   - const { label, name } = args
   .dropdown-filter-date.js-dropdown-filter-date&attributes(attributes)
     .dropdown-filter-date__head
-      +label(label, '')
+      +label(label, '').dropdown-filter-date__label
         .dropdown-filter-date__pseudo-input.js-dropdown-filter-date__pseudo-input
       +icon({ name: 'expand_more' })(class='dropdown-filter-date__icon')
       +input-text({ name: `${name}-arrival` })(class='dropdown-filter-date__input-arrival' disabled=true)

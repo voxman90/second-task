@@ -12,7 +12,7 @@ mixin dropdown(args = {}, attr = {})
   - const { haveButtons, left, right, name, value, options } = args
   - const barModif = (haveButtons) ? 'dropdown__bar_instant-count' : ''
   .dropdown&attributes(attributes)
-    +label(left, right)
+    +label(left, right).dropdown__label
       +input-text({ name: name, value: value })(readonly class=`dropdown__input-text js-dropdown__input-text dropdown__input-text_angled`)
       .dropdown__icon
         +icon({ name: 'expand_more' })
@@ -22,5 +22,5 @@ mixin dropdown(args = {}, attr = {})
           +dropdown__option(value, name)
       if haveButtons
         .dropdown__buttons.js-dropdown__buttons
-          +button('ОЧИСТИТЬ', `${name}-clear`)(class='dropdown__button-clear')
-          +button('ПРИМЕНИТЬ', `${name}-apply`)(class='dropdown__button-apply')
+          +button({ text: 'ОЧИСТИТЬ', name: `${name}-clear` })(class = 'dropdown__button-clear')
+          +button({ text: 'ПРИМЕНИТЬ', name: `${name}-apply` })(class = 'dropdown__button-apply')
