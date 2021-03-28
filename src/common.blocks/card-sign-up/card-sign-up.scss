@@ -1,0 +1,40 @@
+@use "sass:map";
+@use "sass:color";
+@use "../../styles/colors" as colors;
+@use "../../styles/text-mixins" as fonts;
+
+.card-sign-up {
+  box-sizing: border-box;
+  width: 23.75rem;
+  padding: 1.875rem;
+  
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
+}
+
+.card-sign-up__heading {
+  margin: 0.625rem 0 1.25rem;
+
+  @include fonts.widget-text;
+}
+
+.card-sign-up__radio-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-sign-up__plug {
+  width: 1.25rem;
+}
+
+.card-sign-up__sign-in {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-sign-on__text {
+  @include fonts.body-text;
+  color: black;
+}

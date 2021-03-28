@@ -1,0 +1,16 @@
+{
+  "name": "card-sign-up",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": [
+    "input-text",
+    "radio-button",
+    "label",
+    "input-date",
+    "toggle",
+    "button-long",
+    "button-short"
+  ]
+}

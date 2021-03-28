@@ -13,8 +13,9 @@
     content: "arrow_forward"; 
 
     position: absolute;
-    right: 0.4166rem;
-    top: 0.51rem;
+    right: 0.75rem;
+    margin-top: -0.75rem;
+    top: 50%;
 
     @include fonts.material-icons;
   }

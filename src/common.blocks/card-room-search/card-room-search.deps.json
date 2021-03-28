@@ -1,0 +1,12 @@
+{
+  "name": "card-room-search",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": [
+    "dropdown-date",
+    "dropdown-guests",
+    "button-long"
+  ]
+}

@@ -1,7 +1,7 @@
 @use "sass:map";
 @use "sass:color";
-@use "../colors" as colors;
-@use "../text-mixins" as fonts;
+@use "../../styles/colors" as colors;
+@use "../../styles/text-mixins" as fonts;
 
 .card-hotel-room {
     width: 16.875rem;

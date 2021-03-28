@@ -1,0 +1,31 @@
+include ../../common.blocks/icon/icon.pug
+include ../../common.blocks/label/label.pug
+include ../../common.blocks/input-text/input-text.pug
+include ../../common.blocks/input-text-masked/input-text-masked.pug
+include ../../common.blocks/input-date/input-date.pug
+include ../../common.blocks/button/button.pug
+include ../../common.blocks/calendar/calendar.pug
+include ../../common.blocks/dropdown-date/dropdown-date.pug
+include ../../common.blocks/dropdown/dropdown.pug
+include ../../common.blocks/dropdown-guests/dropdown-guests.pug
+include ../../common.blocks/button-long/button-long.pug
+include ../../common.blocks/radio-button/radio-button.pug
+include ../../common.blocks/toggle/toggle.pug
+include ../../common.blocks/button-short/button-short.pug
+- const data = htmlWebpackPlugin.options.data
+- const { title } = data
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title= title
+  body.cards__body
+    .cards__grid
+      .cards__1st
+        include ../../common.blocks/card-room-search/card-room-search.pug
+      .cards__2nd
+        include ../../common.blocks/card-sign-up/card-sign-up.pug
+      .cards__3rd
+      .cards__4th
+      .cards__5th

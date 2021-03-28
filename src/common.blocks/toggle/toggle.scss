@@ -12,6 +12,17 @@
   padding-left: 0.5rem;
 }
 
+.toggle__input {
+  &:focus {
+    outline: none;
+  }
+
+  &:focus + .toggle__text::before {
+    box-shadow: 0 0 0 1px #FFFFFF,
+                0 0 2px 1.5px map.get(colors.$map, dark-shade-15);
+  }
+}
+
 .toggle__text {
   position: relative;
   height: 1.5rem;

@@ -1,0 +1,19 @@
+@use "sass:map";
+@use "sass:color";
+@use "../../styles/colors" as colors;
+@use "../../styles/text-mixins" as fonts;
+
+.card-room-search {
+  box-sizing: border-box;
+  width: 23.75rem;
+  padding: 1.875rem;
+
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+  background-color: #FFFFFF;
+  border-radius: 4px;
+}
+.card-room-search__heading {
+  margin: 0.625rem 0 1.25rem;
+
+  @include fonts.widget-text;
+}

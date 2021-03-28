@@ -23,6 +23,18 @@
         "./templates/colors-and-type/colors-and-type.scss"
       ],
       "scripts": []
+    },
+
+    {
+      "name": "cards",
+      "template": "Cards",
+      "data": "cards",
+      "styles": [
+        "./styles/style.scss",
+        "./styles/boxes.scss",
+        "./templates/cards/cards.scss"
+      ],
+      "scripts": null
     }
   ]
 }

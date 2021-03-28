@@ -22,5 +22,11 @@ mixin dropdown(args = {}, attr = {})
           +dropdown__option(value, name)
       if haveButtons
         .dropdown__buttons.js-dropdown__buttons
-          +button({ text: 'ОЧИСТИТЬ', name: `${name}-clear` })(class = 'dropdown__button-clear')
-          +button({ text: 'ПРИМЕНИТЬ', name: `${name}-apply` })(class = 'dropdown__button-apply')
+          +button({ text: 'ОЧИСТИТЬ', name: `${name}-clear` })(
+            class = 'dropdown__button-clear',
+            type = 'button',
+          )
+          +button({ text: 'ПРИМЕНИТЬ', name: `${name}-apply` })(
+            class = 'dropdown__button-apply',
+            type = 'button',
+          )

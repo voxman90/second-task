@@ -15,6 +15,15 @@
   height: 1.5rem;
   margin-left: 0.23rem;
   margin-right: 0.83rem;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.radio-button__input:focus + .radio-button__text::before {
+  box-shadow: 0 0 0 1px #FFFFFF,
+              0 0 2px 2px map.get(colors.$map, dark-shade-15);
 }
 
 .radio-button__text {
