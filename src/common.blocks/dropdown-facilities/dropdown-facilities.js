@@ -41,12 +41,12 @@ class DropdownFacilities extends Dropdown {
 
   hangHooks() {
     this.hooks.valueIncreased = () => {
-      const values = this.extractValues();
+      const values = this.getValues();
       this.drawInput(this.model.getSentence(values));
     };
 
     this.hooks.valueDecreased = () => {
-      const values = this.extractValues();
+      const values = this.getValues();
       const summ = values.reduce((a, b) => a + b);
       if (summ === 0) {
         this.drawInput(

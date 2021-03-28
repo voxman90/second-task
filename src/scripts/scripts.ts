@@ -65,6 +65,32 @@ class BEMComponent {
     $(elem).off(`${event}.${this.name}${this.id}`);
   }
 
+  isEnterOrSpaceKey = this.makeKeyQualifier(['Enter', ' '], [32, 13]);
+
+  isSpaceKey = this.makeKeyQualifier([' '], [13]);
+
+  isEnterKey = this.makeKeyQualifier(['Enter'], [32]);
+
+  isTabKey = this.makeKeyQualifier(['Tab'], [9]);
+
+  makeKeyQualifier(keys: string[], codes: number[]): Function {
+    return (event) => {
+      if (event.key !== undefined) {
+        return (
+          keys.some((val) => val === event.key)
+        );
+      }
+
+      if (event.which !== undefined) {
+        return (
+          codes.some((val) => val === event.which)
+        );
+      }
+
+      return false;
+    }
+  }
+
 
   static makeInitializer(Constructor: any, selector: string) {
     return () => {

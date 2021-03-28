@@ -78,7 +78,7 @@ class DropdownGuests extends Dropdown {
 
     this.hooks.valueDecreased = (val) => {
       if (val === 0) {
-        const values = this.extractValues();
+        const values = this.getValues();
         const summ = values.reduce((a, b) => a + b);
         this.toggleButtonClearVisibility(summ);
       }

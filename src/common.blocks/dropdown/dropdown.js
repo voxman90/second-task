@@ -1,3 +1,5 @@
+"use strict";
+
 import { BEMComponent } from '../../scripts/scripts.ts';
 
 class DropdownModel {
@@ -90,18 +92,24 @@ class Dropdown extends BEMComponent {
         elem: this.inputNode,
         event: 'click',
         callback: this.handleInputTextClick,
-        data: {
-          that: this
-        },
+      },
+
+      {
+        elem: this.inputNode,
+        event: 'keydown',
+        callback: this.handleInputTextKeydown,
       },
 
       {
         elem: this.optionsNode,
         event: 'click',
         callback: this.handleOptionsClick,
-        data: {
-          that: this
-        },
+      },
+
+      {
+        elem: this.optionsNode,
+        event: 'keydown',
+        callback: this.handleOptionsKeydown,
       },
     );
   }
@@ -110,7 +118,7 @@ class Dropdown extends BEMComponent {
     this.clearButtonNode = this.buttonsNode.firstElementChild;
     this.applyButtonNode = this.buttonsNode.lastElementChild;
 
-    const values = this.extractValues();
+    const values = this.getValues();
     const summ = values.reduce((acc, cur) => acc + cur);
     this.toggleButtonClearVisibility(summ);
 
@@ -119,54 +127,88 @@ class Dropdown extends BEMComponent {
         elem: this.clearButtonNode,
         event: 'click',
         callback: this.handleButtonClearClick,
-        data: {
-          that: this
-        },
+      },
+
+      {
+        elem: this.clearButtonNode,
+        event: 'keydown',
+        callback: this.handleButtonClearKeydown,
       },
 
       {
         elem: this.applyButtonNode,
         event: 'click',
         callback: this.handleButtonApplyClick,
-        data: {
-          that: this
-        },
+      },
+
+      {
+        elem: this.applyButtonNode,
+        event: 'keydown',
+        callback: this.handleButtonApplyKeydown,
       },
     );
   }
 
-  handleInputTextClick(e) {
-    const that = e.that;
-    that.barNode.classList.toggle('dropdown__bar_hidden');
-    that.inputNode.classList.toggle('dropdown__input-text_expanded');
+  handleInputTextClick = () => {
+    this.toggle();
   }
 
-  handleOptionsClick(e) {
-    const et = e.target;
-    if (et.classList.contains('dropdown__option-button')) {
-      const that = e.that;
-      if (et.classList.contains('js-dropdown__option-button-plus')) {
-        that.increaseValue(et);
-      } else {
-        that.decreaseValue(et);
-      }
+  handleInputTextKeydown = (event) => {
+    if (this.isEnterOrSpaceKey(event)) {
+      event.preventDefault();
+      this.toggle();
     }
   }
 
-  handleButtonClearClick(e) {
-    const that = e.that;
-    that.cleanValues();
-    that.toggleButtonClearVisibility(0);
-
-    that.drawInput(that.model.getDefault());
+  handleOptionsClick = (event) => {
+    const et = event.target;
+    if (et.classList.contains('dropdown__option-button')) {
+      this.changeOptionValue(et);
+    }
   }
 
-  handleButtonApplyClick(e) {
-    const that = e.that;
-    const values = that.extractValues();
-    const sentence = that.model.getSentence(values);
+  handleOptionsKeydown = (event) => {
+    const et = event.target;
+    if (
+      et.classList.contains('dropdown__option-button')
+      && this.isEnterKey(event)
+    ) {
+      this.changeOptionValue(et);
+    }
+  }
 
-    that.drawInput(sentence);
+  handleButtonClearClick = () => {
+    this.cleanValues();
+    this.toggleButtonClearVisibility(0);
+    this.drawInput(this.model.getDefault());
+  }
+
+  handleButtonClearKeydown = (event) => {
+    if (this.isEnterKey(event)) {
+      this.handleButtonClearClick();
+    }
+  }
+
+  handleButtonApplyClick = () => {
+    const values = this.getValues();
+    const sentence = this.model.getSentence(values);
+    this.drawInput(sentence).close();
+  }
+
+  handleButtonApplyKeydown = (event) => {
+    if (this.isEnterKey(event)) {
+      this.handleButtonApplyClick();
+    }
+
+    if (this.isTabKey(event)) {
+      this.close();
+    }
+  }
+
+  toggle() {
+    this.barNode.classList.toggle('dropdown__bar_hidden');
+    this.inputNode.classList.toggle('dropdown__input-text_expanded');
+    return this;
   }
 
   close() {
@@ -182,8 +224,14 @@ class Dropdown extends BEMComponent {
   }
 
   fix() {
-    this.barNode.classList.toggle('dropdown__bar_fixed');
-    this.inputNode.classList.toggle('dropdown__input-text_fixed');
+    this.barNode.classList.add('dropdown__bar_fixed');
+    this.inputNode.classList.add('dropdown__input-text_fixed');
+    return this;
+  }
+
+  unfix() {
+    this.barNode.classList.remove('dropdown__bar_fixed');
+    this.inputNode.classList.remove('dropdown__input-text_fixed');
     return this;
   }
 
@@ -194,12 +242,20 @@ class Dropdown extends BEMComponent {
     return this;
   }
 
-  increaseValue(et) {
-    const valueNode = et.nextElementSibling;
+  changeOptionValue(et) {
+    if (et.classList.contains('js-dropdown__option-button-plus')) {
+      this.increaseOptionValue(et);
+    } else {
+      this.decreaseOptionValue(et);
+    }
+  }
+
+  increaseOptionValue(et) {
+    const valueNode = et.previousElementSibling;
     const value = parseInt(valueNode.textContent) + 1;
     valueNode.textContent = value;
     if (value === 1) {
-      valueNode.nextElementSibling.classList.remove('dropdown__option-button_blacked');
+      valueNode.previousElementSibling.classList.remove('dropdown__option-button_blacked');
     }
 
     if (this.hooks['valueIncreased']) {
@@ -207,10 +263,10 @@ class Dropdown extends BEMComponent {
     }
   }
 
-  decreaseValue(et) {
+  decreaseOptionValue(et) {
     const isBlacked = et.classList.contains('dropdown__option-button_blacked');
     if (!isBlacked) {
-      const valueNode = et.previousElementSibling;
+      const valueNode = et.nextElementSibling;
       const value = parseInt(valueNode.textContent) - 1;
       valueNode.textContent = value;
       if (value === 0) {
@@ -223,7 +279,7 @@ class Dropdown extends BEMComponent {
     }
   }
 
-  extractValues() {
+  getValues() {
     const values = [];
     this.valueNodesList.forEach(
       (valueNode) => { 
@@ -242,10 +298,12 @@ class Dropdown extends BEMComponent {
         this.toggleMinusButton(valueNode, value);
       }
     );
+
+    return this;
   }
 
   toggleMinusButton(valueNode, value) {
-    const minusButtonNode = valueNode.nextElementSibling;
+    const minusButtonNode = valueNode.previousElementSibling;
     if (value === 0) {
       minusButtonNode.classList.add('dropdown__option-button_blacked');
     } else {
@@ -255,6 +313,7 @@ class Dropdown extends BEMComponent {
 
   drawInput(sentence) {
     this.inputNode.value = sentence;
+    return this;
   }
 
   cleanValues() {

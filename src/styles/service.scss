@@ -1,0 +1,14 @@
+@mixin non-selectable() {
+      -ms-user-select: none;
+     -moz-user-select: none;
+  -webkit-user-select: none;
+          user-select: none;
+
+  &::-moz-selection {
+    background: transparent;
+  }
+
+  &::selection {
+    background: transparent;
+  }
+}
