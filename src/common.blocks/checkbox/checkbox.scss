@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:color';
 @use '../../styles/colors' as colors;
 @use '../../styles/text-mixins' as fonts;
 
@@ -36,15 +37,31 @@
 
 .checkbox__input {
   margin: 2.6px 1.1px;
-}
 
-.checkbox__input:checked + .checkbox__container::before {
-  border: 1px solid map.get(colors.$map, "purple");
-  background: url(./Check.svg);
-  background: {
-    color:#FFFFFF;
-    repeat: no-repeat;
-    position: 4.05px 3.05px;
-    size: auto auto;
+  &:focus,
+  &:hover {
+    outline: none;
+  }
+
+  &:focus + .checkbox__container::before,
+  &:hover + .checkbox__container::before {
+    border-color: map.get(colors.$map, dark-shade-50);
+  }
+
+  &:checked + .checkbox__container::before {
+    border: 1px solid map.get(colors.$map, 'purple');
+    background: url(./Check.svg);
+    background: {
+      color:#FFFFFF;
+      repeat: no-repeat;
+      position: 4.05px 3.05px;
+      size: auto auto;
+    }
+  }
+
+  &:checked:focus + .checkbox__container::before,
+  &:checked:hover + .checkbox__container::before {
+    $purple-darken: color.adjust(map.get(colors.$map, 'purple'), $lightness: -10%);
+    border-color: $purple-darken;
   }
 }

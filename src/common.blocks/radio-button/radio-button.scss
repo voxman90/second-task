@@ -11,21 +11,6 @@
   height: 1.5rem;
 }
 
-.radio-button__input {
-  height: 1.5rem;
-  margin-left: 0.23rem;
-  margin-right: 0.83rem;
-
-  &:focus {
-    outline: none;
-  }
-}
-
-.radio-button__input:focus + .radio-button__text::before {
-  box-shadow: 0 0 0 1px #FFFFFF,
-              0 0 2px 2px map.get(colors.$map, dark-shade-15);
-}
-
 .radio-button__text {
   position: relative;
 
@@ -67,15 +52,36 @@
   }
 }
 
-.radio-button__input:checked + .radio-button__text {
-  color: map.get(colors.$map, dark-shade-75);
+.radio-button__input {
+  height: 1.5rem;
+  margin-left: 0.23rem;
+  margin-right: 0.83rem;
 
-  &::before {
-    border: 1px solid map.get(colors.$map, 'purple');
+  &:focus,
+  &:hover {
+    outline: none;
   }
 
-  &::after {
-    width: 12px;
-    height: 12px;
+  &:focus + .radio-button__text::before,
+  &:hover + .radio-button__text::before {
+    border-color: map.get(colors.$map, dark-shade-50);
+  }
+
+  &:checked + .radio-button__text {
+    color: map.get(colors.$map, dark-shade-75);
+
+    &::before {
+      border: 1px solid map.get(colors.$map, 'purple');
+    }
+
+    &::after {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  &:checked:focus + .radio-button__text::before,
+  &:checked:hover + .radio-button__text::before {
+    border-color: map.get(colors.$map, 'purple-darken');
   }
 }

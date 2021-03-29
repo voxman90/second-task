@@ -150,13 +150,13 @@ class Dropdown extends BEMComponent {
   }
 
   handleInputTextClick = () => {
-    this.toggle();
+    this.toggleBar();
   }
 
   handleInputTextKeydown = (event) => {
     if (this.isEnterOrSpaceKey(event)) {
       event.preventDefault();
-      this.toggle();
+      this.toggleBar();
     }
   }
 
@@ -192,7 +192,7 @@ class Dropdown extends BEMComponent {
   handleButtonApplyClick = () => {
     const values = this.getValues();
     const sentence = this.model.getSentence(values);
-    this.drawInput(sentence).close();
+    this.drawInput(sentence).closeBar();
   }
 
   handleButtonApplyKeydown = (event) => {
@@ -201,35 +201,35 @@ class Dropdown extends BEMComponent {
     }
 
     if (this.isTabKey(event)) {
-      this.close();
+      this.closeBar();
     }
   }
 
-  toggle() {
+  toggleBar() {
     this.barNode.classList.toggle('dropdown__bar_hidden');
     this.inputNode.classList.toggle('dropdown__input-text_expanded');
     return this;
   }
 
-  close() {
+  closeBar() {
     this.barNode.classList.add('dropdown__bar_hidden');
     this.inputNode.classList.remove('dropdown__input-text_expanded');
     return this;
   }
 
-  expand() {
+  expandBar() {
     this.barNode.classList.remove('dropdown__bar_hidden');
     this.inputNode.classList.add('dropdown__input-text_expanded');
     return this;
   }
 
-  fix() {
+  fixBar() {
     this.barNode.classList.add('dropdown__bar_fixed');
     this.inputNode.classList.add('dropdown__input-text_fixed');
     return this;
   }
 
-  unfix() {
+  unfixBar() {
     this.barNode.classList.remove('dropdown__bar_fixed');
     this.inputNode.classList.remove('dropdown__input-text_fixed');
     return this;

@@ -8,7 +8,7 @@
 }
 
 .dropdown__label {
-  padding-bottom: 0.3125rem;
+  padding-bottom: 5px;
 }
 
 .dropdown__input-text {
@@ -120,10 +120,10 @@
 
   @include service.non-selectable;
 
-  &:focus {
+  &:focus,
+  &:hover {
     outline: none;
-    box-shadow: 0 0 0 1px #FFFFFF,
-                0 0 2px 2px map.get(colors.$map, dark-shade-15);
+    border-color: map.get(colors.$map, 'dark-shade-50');
   }
 }
 
@@ -140,9 +140,15 @@
 }
 
 .dropdown__option-button_blacked {
-  border-color: rgba(map.get(colors.$map, dark-shade-100),  calc(0.25 * 0.38));
+  border-color: rgba(map.get(colors.$map, dark-shade-100), calc(0.25 * 0.38));
 
   color: rgba(map.get(colors.$map, dark-shade-100), calc(0.50 * 0.38));
+
+  &:focus,
+  &:hover {
+    outline: none;
+    border-color: rgba(map.get(colors.$map, dark-shade-100), calc(0.50 * 0.38));
+  }
 }
 
 .dropdown__buttons {

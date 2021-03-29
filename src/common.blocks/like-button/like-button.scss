@@ -1,7 +1,7 @@
 @use 'sass:map';
-@use 'sass:color';
 @use '../../styles/colors' as colors;
 @use '../../styles/text-mixins' as fonts;
+@use '../../styles/service' as service;
 
 .like-button {
   position: relative;
@@ -9,7 +9,6 @@
   box-sizing: border-box;
   height: 1.25rem;
   width: 2.5rem;
-  padding-left: 0.5rem;
 }
 
 .like-button__counter {
@@ -20,61 +19,83 @@
   box-sizing: border-box;
   width: 2.5rem;
   height: 1.25rem;
-  padding-left: 1.25rem;
+  padding-left: 1.125rem;
+  padding-right: 0.5rem;
 
-  background-color: #FFFFFF;
-  border-radius: 0.625rem;
   border: 1px solid map.get(colors.$map, dark-shade-25);
+  border-radius: 0.625rem;
+  background-color: #FFFFFF;
 
   @include fonts.Montserrat-normal;
-  color: map.get(colors.$map, dark-shade-25);
   font-size: 0.625rem;
-  line-height: 1.125rem;
+  line-height: 1.7;
+  text-align: center;
+  color: map.get(colors.$map, dark-shade-25);
 
-  -webkit-touch-callout: none;
-    -webkit-user-select: none;
-     -khtml-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;  
+  @include service.non-selectable;
 
   &::after {
     content: 'favorite_border';
 
     position: absolute;
-    top: 0.5px;
-    left: 0.5px;
+    top: 0;
+    left: 0;
 
     box-sizing: border-box;
-    width: 1.0625rem;
-    height: 1.0625rem;
+    width: 1.125rem;
+    height: 1.125rem;
 
-    background-color: #FFFFFF;
-    border-radius: 0.53rem;
+    background-color: transparent;
 
     @include fonts.material-icons;
-    color: map.get(colors.$map, dark-shade-25);
     font-size: 0.625rem;
-    line-height: 1.125rem;
+    line-height: 1.85;
     text-align: center;
+    color: map.get(colors.$map, dark-shade-25);
   }
 }
 
-.like-button__input:checked + .like-button__counter {
-  border: 1px solid transparent;
-  background-image: linear-gradient(#FFFFFF, #FFFFFF),
-                    linear-gradient(180deg, map.get(colors.$map, 'purple'), map.get(colors.$map, 'malibu'));
-  background-clip: padding-box,
-                    border-box;
-  background-origin: border-box;
-}
+.like-button__input {
+  margin-left: 0.5rem;
 
-.like-button__input:checked + .like-button__counter::after {
-  content: 'favorite';
+  &:focus,
+  &:hover {
+    outline: none;
+  }
 
-  color: map.get(colors.$map, 'purple');
-}
+  &:focus + .like-button__counter,
+  &:hover + .like-button__counter {
+    border-color: map.get(colors.$map, dark-shade-50);
 
-.like-button__input:checked + .like-button__counter {
-  color: map.get(colors.$map, 'purple');
+    color: map.get(colors.$map, dark-shade-50);
+
+    &::after {
+      color: map.get(colors.$map, dark-shade-50);
+    }
+  }
+
+  &:checked + .like-button__counter {
+    border: 1px solid transparent;
+    background-image: linear-gradient(#FFFFFF, #FFFFFF),
+                      linear-gradient(180deg, map.get(colors.$map, 'purple'), map.get(colors.$map, 'malibu'));
+    background-clip: padding-box,
+                      border-box;
+    background-origin: border-box;
+
+    &::after {
+      content: 'favorite';
+
+      color: map.get(colors.$map, 'purple');
+    }  
+  }
+
+  &:checked:focus + .like-button__counter,
+  &:checked:hover + .like-button__counter {
+    background-image: linear-gradient(#FFFFFF, #FFFFFF),
+                      linear-gradient(180deg, map.get(colors.$map, 'purple-darken'), map.get(colors.$map, 'malibu-darken'));
+
+    &::after {
+      color: map.get(colors.$map, 'purple-darken');
+    }
+  }
 }

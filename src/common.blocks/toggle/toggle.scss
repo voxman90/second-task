@@ -9,18 +9,6 @@
   box-sizing: border-box;
   min-width: min-content;
   height: 1.5rem;
-  padding-left: 0.5rem;
-}
-
-.toggle__input {
-  &:focus {
-    outline: none;
-  }
-
-  &:focus + .toggle__text::before {
-    box-shadow: 0 0 0 1px #FFFFFF,
-                0 0 2px 1.5px map.get(colors.$map, dark-shade-15);
-  }
 }
 
 .toggle__text {
@@ -32,57 +20,78 @@
   font-size: 0.875rem;
   line-height: 1.32;
   color: map.get(colors.$map, dark-shade-75);
-}
 
-.toggle__text::before {
-  content: '';
-
-  position: absolute;
-  z-index: 1;
-  left: -3.125rem;
-
-  width: 2.375rem;
-  height: 1.125rem;
-
-  background-color: #FFFFFF;
-  border: 1px solid map.get(colors.$map, dark-shade-25);
-  border-radius: 10px;
-
-  -webkit-transition: border-color 0.3s linear;
-     -moz-transition: border-color 0.3s linear;
-      -ms-transition: border-color 0.3s linear;
-          transition: border-color 0.3s linear;
-}
-
-.toggle__text::after {
-  content: '';
-
-  position: absolute;
-  z-index: 2;
-  left: -2.875rem;
-  top: 4px;
-
-  width: 0.75rem;
-  height: 0.75rem;
-
-  border-radius: 10px;
-  background: map.get(colors.$map, dark-shade-25);
-
-  -webkit-transition: transform 0.3s linear;
-     -moz-transition: transform 0.3s linear;
-      -ms-transition: transform 0.3s linear;
-          transition: transform 0.3s linear;
-}
-
-.toggle__input:checked + .toggle__text {
   &::before {
-    border: 1px solid map.get(colors.$map, 'purple');
+    content: '';
+
+    position: absolute;
+    z-index: 1;
+    left: -3.125rem;
+
+    width: 2.375rem;
+    height: 1.125rem;
+
+    border: 1px solid map.get(colors.$map, dark-shade-25);
+    border-radius: 10px;
+    background-color: #FFFFFF;
+
+    -webkit-transition: border-color 0.3s linear;
+      -moz-transition: border-color 0.3s linear;
+        -ms-transition: border-color 0.3s linear;
+            transition: border-color 0.3s linear;
   }
 
   &::after {
-    background: linear-gradient(180deg, map.get(colors.$map, 'purple'), map.get(colors.$map, 'malibu'));
-    -webkit-transform: translateX(1.25rem);
-        -ms-transform: translateX(1.25rem);
-            transform: translateX(1.25rem);
+    content: '';
+
+    position: absolute;
+    z-index: 2;
+    left: -2.875rem;
+    top: 4px;
+
+    width: 0.75rem;
+    height: 0.75rem;
+
+    border-radius: 10px;
+    background: map.get(colors.$map, dark-shade-25);
+
+    -webkit-transition: transform 0.3s linear;
+      -moz-transition: transform 0.3s linear;
+        -ms-transition: transform 0.3s linear;
+            transition: transform 0.3s linear;
+  }
+}
+
+.toggle__input {
+  margin-left: 0.5rem;
+
+  &:focus,
+  &:hover {
+    outline: none;
+  }
+
+  &:focus + .toggle__text,
+  &:hover + .toggle__text {
+    &:before {
+      border-color: map.get(colors.$map, dark-shade-50);
+    }
+  }
+
+  &:checked + .toggle__text {
+    &::before {
+      border: 1px solid map.get(colors.$map, 'purple');
+    }
+
+    &::after {
+      background: linear-gradient(180deg, map.get(colors.$map, 'purple'), map.get(colors.$map, 'malibu'));
+      -webkit-transform: translateX(1.25rem);
+          -ms-transform: translateX(1.25rem);
+              transform: translateX(1.25rem);
+    }
+  }
+
+  &:focus:checked + .toggle__text::before,
+  &:hover:checked + .toggle__text::before {
+    border: 1px solid map.get(colors.$map, 'purple-darken');
   }
 }

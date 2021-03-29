@@ -91,7 +91,6 @@ class BEMComponent {
     }
   }
 
-
   static makeInitializer(Constructor: any, selector: string) {
     return () => {
       const components = document.querySelectorAll(selector);
