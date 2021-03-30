@@ -2,7 +2,8 @@
   "name": "input-text-masked",
   "techs": [
     "js",
-    "pug"
+    "pug",
+    "scss"
   ],
   "deps": [
     "input-text"

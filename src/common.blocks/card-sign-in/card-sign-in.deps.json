@@ -1,11 +1,12 @@
 {
- "name": "card-sign-in",
- "techs": [
-  "scss",
-  "pug"
- ],
- "deps": [
-  "text-field",
-  "button-custom"
- ]
+  "name": "card-sign-in",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": [
+    "input-text",
+    "button-long",
+    "button-short"
+  ]
 }

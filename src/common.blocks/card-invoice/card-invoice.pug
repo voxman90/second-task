@@ -1,0 +1,34 @@
+section.card-invoice
+  form(action = '#').js-card-invoice__form
+    .card-invoice__heading.box_margin-bottom_20px
+      .card-invoice__heading-left #[span.card-invoice__heading-numero №] #[strong.card-invoice__heading-number.js-card-invoice__heading-number 888]
+      .card-invoice__heading-right #[strong.card-invoice__heading-price.js-card-invoice__heading-price 9999] в сутки
+    .box_margin-bottom_20px
+      +dropdown-date({ name: 'dropdown-date-1st', left: 'ПРИБЫТИЕ', right: 'ВЫЕЗД' })(
+        class = 'card-invoice__dropdown-date js-card-invoice__dropdown-date',
+      )
+    .box_margin-bottom_20px
+      +dropdown-guests('dropdown-guests-1st', 'ГОСТИ')(
+        class = 'card-invoice__dropdown-guests js-card-invoice__dropdown-guests',
+      )
+    .card-invoice__table-container
+      table.card-invoice__table
+        tbody
+          tr
+            td.js-card-invoice__product 9 999 x 4
+            td
+            td.card-invoice__td-last-child.js-card-invoice__product-result 9 999
+          tr
+            td.card-invoice__service-charge Сбор за услуги #[span.card-invoice__discount.js-card-invoice__discount]
+            td.card-invoice__service-info
+            td.card-invoice__td-last-child.js-card-invoice__service-charge-price 9 999
+          tr
+            td.card-invoice__addititonal-charge Сбор за дополнительные услуги
+            td.card-invoice__additionar-service-info
+            td.card-invoice__td-last-child.js-card-invoice__addititonal-charge-price 9 999
+    .card-invoice__total
+      .card-invoice__text Итого
+      .card-invoice__total-price
+    +button-long({ name: 'button-long-1st', text: 'ЗАБРОНИРОВАТЬ', fill: true, arrowed: true })(
+      type = 'submit',
+    )

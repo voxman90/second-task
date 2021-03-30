@@ -8,11 +8,12 @@
 }
 
 .dropdown__label {
-  padding-bottom: 5px;
+  padding-bottom: 0.3125rem;
 }
 
 .dropdown__input-text {
   @include service.non-selectable;
+  padding-bottom: 0.1rem;
 
   &:hover {
     cursor: pointer;
@@ -44,7 +45,7 @@
   align-items: center;
   justify-content: center;
   width: 2.625rem;
-  height: 2.625rem;
+  height: 2.75rem;
 
   color: map.get(colors.$map, 'dark-shade-50');
 

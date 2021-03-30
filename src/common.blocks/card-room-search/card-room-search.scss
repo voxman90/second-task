@@ -6,14 +6,24 @@
 .card-room-search {
   box-sizing: border-box;
   width: 23.75rem;
-  padding: 1.875rem;
+  padding: 1.8125rem;
 
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
-  background-color: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
 }
 .card-room-search__heading {
-  margin: 0.625rem 0 1.25rem;
+  margin: 0.625rem 0 1.375rem;
 
   @include fonts.widget-text;
+  line-height: 1.8125rem;
+}
+
+.card-room-search__dropdown-date {
+
+}
+
+.card-room-search__dropdown-guests {
+
 }

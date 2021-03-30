@@ -1,7 +1,3 @@
-include ../../common.blocks/button-short/button-short.pug
-include ../../common.blocks/button-long/button-long.pug
-include ../../common.blocks/range-slider/range-slider.pug
-include ../../common.blocks/bullet-list/bullet-list.pug
 include ../../common.blocks/logo/logo.pug
 include ../../common.blocks/label/label.pug
 include ../../common.blocks/input-text/input-text.pug
@@ -26,8 +22,12 @@ include ../../common.blocks/toggle/toggle.pug
 include ../../common.blocks/like-button/like-button.pug
 include ../../common.blocks/rate-button/rate-button.pug
 include ../../common.blocks/checkbox-rich/checkbox-rich.pug
-include ../../common.blocks/pagination/pagination.pug
 include ../../common.blocks/comment/comment.pug
+include ../../common.blocks/range-slider/range-slider.pug
+include ../../common.blocks/button-short/button-short.pug
+include ../../common.blocks/button-long/button-long.pug
+include ../../common.blocks/pagination/pagination.pug
+include ../../common.blocks/bullet-list/bullet-list.pug
 - const data = htmlWebpackPlugin.options.data
 - const { title, checkboxList, checkboxButtons, bulletList } = data
 - const lastCheckboxArgs = checkboxList.pop();
@@ -59,7 +59,7 @@ html
               +dropdown-date({ name: 'dropdown-date-1st', left: 'DATE DROPDOWN', right: 'DATE DROPDOWN' })(class='js-dropdown-date-1st')
             .box_margin-bottom_40px
               +dropdown-filter-date({ name: 'dropdown-filter-date-1st', label: 'FILTER DATE DROPDOWN' })(class='js-dropdown-filter-date-1st')
-            .box_margin-bottom_40px.box_width_266px
+            .box_margin-bottom_40px(style = 'width: 267px;')
               +label('SUBSCRIPTION TEXT FIELD').box_margin-bottom_5px
                 +subscription-field({ name: 'subscr-field-1st', placeholder: 'Email' })
           div(class='form-elements__2nd-block box_width_16\.625rem')

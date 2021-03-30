@@ -4,35 +4,28 @@
 @use "../../styles/text-mixins" as fonts;
 
 .card-sign-in {
-    box-sizing: border-box;
-    width: 23.75rem;
-    padding: 1.875rem;
-    
-    background-color: #FFFFFF;
-    border-radius: 4px;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  width: 23.75rem;
+  padding: 1.875rem;
+  
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
 }
 
-.card-sign-in__indent {
-    margin: 0.625rem 0 1.25rem;
+.card-sign-in__heading {
+  margin: 0.625rem 0 1.25rem;
+
+  @include fonts.widget-text;
 }
 
-.card-sign-in__widget-h1 {
-    margin: 0.625rem 0 1.25rem;
-
-    @include fonts.widget-text;
-}
-
-.card-sign-in__sign-out {
-    display: flex;
-    align-items: center;
-    padding-top: 1.875rem;
+.card-sign-in__sign-up {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .card-sign-in__text {
-    flex-grow: 1;
-    margin: 0;
-
-    @include fonts.body-text;
-    color: black;
+  @include fonts.body-text;
+  color: black;
 }

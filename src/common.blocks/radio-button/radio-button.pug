@@ -1,11 +1,11 @@
 mixin radio-button(args = {})
   - const { name, value, text, checked } = args
-  label(class='radio-button')&attributes(attributes)
+  label(class = 'radio-button')&attributes(attributes)
     input(
-      class='radio-button__input',
-      type='radio',
-      name=name,
-      value=value,
-      checked=(checked === true) ? "checked" : undefined,
+      class = 'radio-button__input',
+      type = 'radio',
+      name = name,
+      value = value,
+      checked = (checked === true) ? "checked" : undefined,
     )
     .radio-button__text= text

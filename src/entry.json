@@ -31,7 +31,6 @@
       "data": "cards",
       "styles": [
         "./styles/style.scss",
-        "./styles/boxes.scss",
         "./templates/cards/cards.scss"
       ],
       "scripts": null

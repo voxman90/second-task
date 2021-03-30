@@ -1,0 +1,12 @@
+{
+  "name": "card-invoice",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": [
+    "dropdown-date",
+    "dropdown-guests",
+    "button-long"
+  ]
+}
