@@ -1,12 +1,14 @@
 section.card-room-search
   form(action = '')
     h1.card-room-search__heading Найдём номера под ваши пожелания
-    +dropdown-date({ name: 'dropdown-date-1st', left: 'ПРИБЫТИЕ', right: 'ВЫЕЗД' })(
-      class='card-room-search__dropdown-date js-auto-init',
-    )
-    +dropdown-guests('dropdown-guests-1st', 'ГОСТИ')(
-      class='card-room-search__dropdown-guests js-auto-init',
-    )
+    .card-room-search__mid-indent
+      +dropdown-date({ name: 'dropdown-date-1st', left: 'ПРИБЫТИЕ', right: 'ВЫЕЗД' })(
+        class='card-room-search__dropdown-date',
+      )
+    .card-room-search__big-intent
+      +dropdown-guests('dropdown-guests-1st', 'ГОСТИ')(
+        class='card-room-search__dropdown-guests',
+      )
     +button-long({ name: 'button-long-1st', text: 'ПОДОБРАТЬ НОМЕР', fill: true, arrowed: true })(
       type = 'submit',
     )

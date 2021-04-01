@@ -1,0 +1,49 @@
+@use "sass:map";
+@use "sass:color";
+@use "../../styles/colors" as colors;
+@use "../../styles/text-mixins" as fonts;
+
+.hotel-room-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.hotel-room-heading__left {
+  @include fonts.Montserrat-bold;
+  color: map.get(colors.$map, dark-shade-100);
+}
+
+.hotel-room-heading__numero {
+  font-size: 0.875em;
+}
+
+.hotel-room-heading__number {
+  position: relative;
+
+  font-size: 1.5em;
+}
+
+.hotel-room-heading__number_lux {
+  &::after {
+    content: 'люкс';
+    right: -2.5625em;
+    bottom: 0.4375em;
+
+    font-size: 0.875em;
+    text-transform: uppercase;
+    color: map.get(colors.$map, 'purple');
+  }
+}
+
+.hotel-room-heading__right {
+  @include fonts.Montserrat-normal;
+  color: map.get(colors.$map, dark-shade-50);
+  font-size: 0.75em;
+  line-height: 1.5em;
+}
+
+.hotel-room-heading__price {
+  @include fonts.Montserrat-bold;
+  font-size: 1.17em;
+}

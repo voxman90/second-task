@@ -6,7 +6,7 @@
 .card-invoice {
   box-sizing: border-box;
   width: 23.75rem;
-  padding: 1.875rem;
+  padding: 1.8125rem;
 
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
@@ -14,50 +14,20 @@
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
 }
 
-.card-invoice__heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+.card-invoice__hotel-room-heading {
   height: 1.875rem;
+  padding-top: 0.5625rem;
+  padding-bottom: 1.2813rem;
+
+  font-size: 1rem;
 }
 
-.card-invoice__heading-left {
-  @include fonts.Montserrat-bold;
-  color: map.get(colors.$map, dark-shade-100);
+.card-invoice__mid-indent {
+  margin-bottom: 1.25rem;
 }
 
-.card-invoice__heading-numero {
-  font-size: 0.875rem;
-}
-
-.card-invoice__heading-number {
-  position: relative;
-
-  font-size: 1.5rem;
-}
-
-.card-invoice__label-number_lux {
-  &::after {
-    content: 'люкс';
-    right: -2.5625rem;
-    bottom: 0.4375rem;
-
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    color: map.get(colors.$map, 'purple');
-  }
-}
-
-.card-invoice__heading-right {
-  @include fonts.Montserrat-normal;
-  color: map.get(colors.$map, dark-shade-50);
-  font-size: 0.75rem;
-  line-height: 1.125rem;
-}
-
-.card-invoice__heading-price {
-  @include fonts.Montserrat-bold;
-  font-size: 0.875rem;
+.card-invoice__big-indent {
+  margin-bottom: 1.875rem;
 }
 
 .card-invoice__table-container {
@@ -80,7 +50,11 @@
   }
 }
 
-.card-invoice__service-info {
+.card-invoice__td-last-child {
+  text-align: end;
+}
+
+.card-invoice__service-charge-info {
   position: relative;
   width: 1.25rem;
 
@@ -106,7 +80,7 @@
   }
 }
 
-.card-invoice__additionar-service-info {
+.card-invoice__addit-charge-info {
   position: relative;
   width: 1.25rem;
 
@@ -131,16 +105,39 @@
   }
 }
 
-.card-invoice__td-last-child {
-  text-align: end;
+.card-invoice__addit-charge {
+  width: 13.375rem;
+
+  line-height: 1.125rem;
 }
 
 .card-invoice__service-charge {
   width: 13.375rem;
 }
 
-.card-invoice__addititonal-charge {
-  width: 13.375rem;
+.card-invoice__total {
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+  height: 1.5rem;
 
-  line-height: 1.125rem;
+  @include fonts.Montserrat-bold;
+  font-size: 1.1875rem;
+  color: map.get(colors.$map, dark-shade-100);
+}
+
+.card-invoice__total-text {
+  flex: 0 1 auto;
+}
+
+.card-invoice__total-dashed-border {
+  flex: 1 0 auto;
+  margin: 0 4px;
+  border-bottom: 1px dashed map.get(colors.$map, dark-shade-25);
+}
+
+.card-invoice__total-price {
+  flex: 0 1 auto;
+
+  white-space: nowrap;
 }

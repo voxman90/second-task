@@ -33,7 +33,7 @@
     height: 20px;
 
     border: 1px solid map.get(colors.$map, dark-shade-25);
-    border-radius: 10px;
+    border-radius: 50%;
     background-color: #FFFFFF;
   }
 
@@ -45,7 +45,7 @@
     top: 4px;
     left: -26px;
 
-    border-radius: 6px;
+    border-radius: 50%;
     background: linear-gradient(
       180deg, map.get(colors.$map, 'purple'), map.get(colors.$map, 'malibu')
     );

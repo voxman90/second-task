@@ -1,13 +1,14 @@
 {
- "name": "card-hotel-room",
- "techs": [
-  "js",
-  "scss",
-  "pug"
- ],
- "deps": [
-  "icon",
-  "carousel",
-  "rate-button"
- ]
+  "name": "card-hotel-room",
+  "techs": [
+    "js",
+    "scss",
+    "pug"
+  ],
+  "deps": [
+    "icon",
+    "carousel",
+    "rate-button",
+    "hotel-room-heading"
+  ]
 }

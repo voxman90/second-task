@@ -6,7 +6,7 @@
 .card-sign-up {
   box-sizing: border-box;
   width: 23.75rem;
-  padding: 1.875rem;
+  padding: 1.8125rem;
 
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
@@ -27,6 +27,22 @@
 
 .card-sign-up__plug {
   width: 1.25rem;
+}
+
+.card-sign-up__small_indent {
+  margin-bottom: 0.625rem;
+}
+
+.card-sign-up__mid_indent {
+  margin-bottom: 1.25rem;
+}
+
+.card-sign-up__big_indent {
+  margin-bottom: 1.875rem;
+}
+
+.card-sign-up__label {
+  padding-bottom: 0.3125rem;
 }
 
 .card-sign-up__sign-in {

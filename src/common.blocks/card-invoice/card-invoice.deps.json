@@ -1,10 +1,12 @@
 {
   "name": "card-invoice",
   "techs": [
+    "js",
     "scss",
     "pug"
   ],
   "deps": [
+    "hotel-room-heading",
     "dropdown-date",
     "dropdown-guests",
     "button-long"

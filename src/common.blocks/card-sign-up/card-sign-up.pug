@@ -1,23 +1,23 @@
 section.card-sign-up
   form(action = '')
     h1.card-sign-up__heading Регистрация аккаунта
-    +input-text({ name: 'first-name', placeholder: 'Имя' })(class = 'box_margin-bottom_10px')
-    +input-text({ name: 'last-name', placeholder: 'Фамилия' })(class = 'box_margin-bottom_10px')
-    .card-sign-up__radio-buttons.box_margin-bottom_20px
+    +input-text({ name: 'first-name', placeholder: 'Имя' }).card-sign-up__small_indent
+    +input-text({ name: 'last-name', placeholder: 'Фамилия' }).card-sign-up__small_indent
+    .card-sign-up__radio-buttons.card-sign-up__mid_indent
       +radio-button({ name: 'gender', value: 'male', checked: true, text: 'Мужчина' })
       .card-sign-up__plug
       +radio-button({ name: 'gender', value: 'female', text: 'Женщина' })
-    .box_margin-bottom_10px
-      +label('Дата рождения')(class = 'box_margin-bottom_5px')
+    .card-sign-up__mid_indent
+      +label('Дата рождения').card-sign-up__label
         +input-date({ name: 'birth-date' })
-    .box_margin-bottom_10px
-      +label('Данные для входа в сервис')(class = 'box_margin-bottom_5px')
-        +input-text({ name: 'user-email', placeholder: 'Email' })(class = 'box_margin-bottom_10px')
+    .card-sign-up__small_indent
+      +label('Данные для входа в сервис').card-sign-up__label
+        +input-text({ name: 'user-email', placeholder: 'Email' }).card-sign-up__small_indent
         +input-text({ name: 'user-password', placeholder: 'Пароль' })
-    .box_margin-bottom_20px
+    .card-sign-up__mid_indent
       +toggle({ name: 'spec', value: 'first', checked: false, text: 'Получать спецпредложения' })
-    .box_margin-bottom_30px
+    .card-sign-up__big_indent
       +button-long({ name: 'button-sing-up', text: 'ЗАРЕГИСТРИРОВАТЬСЯ', fill: true, arrowed: true })
-    .card-sign-up__sign-in.box_width_20rem
+    .card-sign-up__sign-in
       p.card-sign-up__text= 'Уже есть аккаунт на Toxin?'
       +button-short({ name: 'button-sing-in', text: 'ВОЙТИ', border: true })

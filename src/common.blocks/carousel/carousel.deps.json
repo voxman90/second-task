@@ -1,0 +1,11 @@
+{
+  "name": "carousel",
+  "techs": [
+    "pug",
+    "scss",
+    "js"
+  ],
+  "deps": [
+    "icon"
+  ]
+}

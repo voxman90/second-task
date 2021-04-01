@@ -9,6 +9,8 @@
 }
 
 .button-long_arrowed {
+  padding-right: 0.25rem;
+
   &::after {
     content: "arrow_forward"; 
 

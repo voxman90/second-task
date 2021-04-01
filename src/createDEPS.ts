@@ -1,10 +1,10 @@
 (function() {
-    const fs = require("fs");
-    const path = require("path");
+  const fs = require("fs");
+  const path = require("path");
 
-    const getDir = (source) => fs.readdirSync(source, {withFileTypes: true})
-    .filter(ent => ent.isDirectory())
-    .map(dir => dir.name);
+  const getDir = (source) => fs.readdirSync(source, {withFileTypes: true})
+  .filter((ent) => ent.isDirectory())
+  .map((dir) => dir.name);
 
     const dirs = getDir(path.resolve(__dirname, "./common.blocks/"));
     dirs.forEach(createDepsJSON);

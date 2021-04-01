@@ -65,6 +65,21 @@ class BEMComponent {
     $(elem).off(`${event}.${this.name}${this.id}`);
   }
 
+  getTransitionEndEventName() {
+    const transitionEventNames = {
+      "transition" : "transitionend",
+      "OTransition" : "oTransitionEnd",
+      "MozTransition" : "transitionend",
+      "WebkitTransition" : "webkitTransitionEnd"
+    };
+    const bodyStyle = document.body.style;
+    for (let transitionName in transitionEventNames) {
+      if(bodyStyle[transitionName] !== undefined) {
+        return transitionEventNames[transitionName];
+      }
+    }
+  }
+
   isEnterOrSpaceKey = this.makeKeyQualifier(['Enter', ' '], [32, 13]);
 
   isSpaceKey = this.makeKeyQualifier([' '], [13]);

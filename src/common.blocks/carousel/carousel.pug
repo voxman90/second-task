@@ -1,0 +1,34 @@
+mixin carousel(args = { itemAmount: 4 })
+  - let { itemAmount } = args
+  - itemAmount = parseInt(itemAmount, 10)
+  .carousel.js-carousel&attributes(attributes)
+    .carousel__container
+      - let n = 0
+      while n < itemAmount
+        div(
+          class = 'carousel__item js-carousel-item',
+          data-item = n,
+        )
+          img(
+            class = 'carousel__image',
+            src = '',
+            alt = 'No available',
+          )
+        - n += 1
+    .carousel__control.js-carousel-control
+      +icon({ name: 'expand_more' })(
+        class = 'carousel__prev-button js-carousel__prev-button',
+      )
+      +icon({ name: 'expand_more' })(
+        class = 'carousel__next-button js-carousel__next-button',
+      )
+      .carousel__nav-panel.js-carousel__nav-panel
+        - let i = 0
+        while i < itemAmount
+          div(
+            class = 'carousel__nav-panel-item',
+            data-item = i,
+          )
+          - i += 1
+    .carousel__shadow-left.js-carousel__shadow-left
+    .carousel__shadow-right.js-carousel__shadow-right

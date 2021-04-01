@@ -1,0 +1,8 @@
+{
+  "name": "hotel-room-heading",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": null
+}

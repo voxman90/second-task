@@ -1,30 +1,10 @@
-mixin carousel(imgArray)
-    .carousel
-        .carousel__shadow-left
-        .carousel__shadow-right
-        each val in imgArray
-            img.carousel__image.carousel__image_hidden(src=val alt='no available')
-        +icon('expand_more')(class='carousel__backward') 
-        +icon('expand_more')(class='carousel__forward') 
-        .carousel__menu
-            - let n= 0
-            each val in imgArray
-                .carousel__dot= n
-                - n = n + 1
-
-
-mixin card-hotel-room(imgArray=[], roomNumber=864, roomCoast=1260, reviewNumber=84, isLux=true)
-    .card-hotel-room
-        +carousel(imgArray)
-        .card-hotel-room__info-box
-        .card-hotel-room__first-line
-            .card-hotel-room__number № #[strong #{roomNumber}]
-            if isLux
-                span.card-hotel-room__lux &#32;ЛЮКС
-            .card-hotel-room__coast #[b #{roomCoast}₽] в сутки
-        .card-hotel-room__hr
-        .card-hotel-room__second-line
-            +rate-button
-            .card-hotel-room__reviews #[b #{reviewNumber}] Отзывов
-
-      
+mixin card-hotel-room(args = {})
+  section.card-hotel-room
+    .card-hotel-room__head
+      +carousel(args).card-hotel-room__carousel.js-auto-init
+    .card-hotel-room__body
+      +hotel-room-heading().card-hotel-room__hotel-room-heading
+      .card-hotel-room__hr
+      .card-hotel-room__rating-panel
+        +rate-button({ amount: 5, filled: 5 }).card-hotel-room__rate-button
+        .card-hotel-room__reviews #[b.card-hotel-room__rebiew-amount.js-card-hotel-room__rebiew-amount 69] Отзывов

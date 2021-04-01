@@ -1,10 +1,10 @@
 section.card-sign-in
   form(action = '')
     h1.card-sign-in__heading Войти
-    +input-text({ name: 'user-email', placeholder: 'Email' })(class = 'box_margin-bottom_10px')
-    +input-text({ name: 'user-password', placeholder: 'Пароль' })(class = 'box_margin-bottom_20px')
-    .box_margin-bottom_30px
+    +input-text({ name: 'user-email', placeholder: 'Email' }).card-sign-in__small_indent
+    +input-text({ name: 'user-password', placeholder: 'Пароль' }).card-sign-in__mid_indent
+    .card-sign-in__big_indent
       +button-long({ name: 'button-sing-up', text: 'ВОЙТИ', fill: true, arrowed: true })
-    .card-sign-in__sign-up.box_width_20rem
+    .card-sign-in__sign-up
       p.card-sign-in__text= 'Нет аккаунта на Toxin?'
       +button-short({ name: 'button-sing-in', text: 'СОЗДАТЬ', border: true })
