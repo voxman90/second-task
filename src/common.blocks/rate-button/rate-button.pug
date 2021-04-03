@@ -1,10 +1,16 @@
 mixin rate-button(args = {})
-  - let { amount, filled } = args
-  - filled = (amount >= filled) ? filled : amount
+  - const { amount, filled, name } = args
   div(
-    data-value = filled,
     class = 'rate-button js-rate-button',
+    data-amount = amount,
   )&attributes(attributes)
+    input(
+      class = 'rate-button__input js-rate-batton__input',
+      type = 'number',
+      name = name,
+      min = 0,
+      max = amount,
+    )
     - let i = 0
     while i < filled
       +icon({ name: 'star' })(
@@ -12,9 +18,9 @@ mixin rate-button(args = {})
         class = 'rate-button__icon js-rate-button__icon',
       )
       - i += 1
-    while filled < amount
+    while i < amount
       +icon({ name: 'star_border' })(
-        data-index = filled,
+        data-index = i,
         class = 'rate-button__icon js-rate-button__icon',
       )
-      - filled += 1
+      - i += 1

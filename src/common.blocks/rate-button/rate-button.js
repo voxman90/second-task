@@ -1,81 +1,127 @@
-import { BEMComponent } from '../../scripts/scripts.ts';
+import { BEMComponent } from '../../scripts/BEMComponent';
 
-class RateButton extends BEMComponent {
-  constructor(elem) {
-    super('rate-buton');
-
-    this.connectBasis(elem);
-
-    this.bindEventListeners(this.listeners);
-  }
-
-  #ICON_STATES = {
-    fill: 'star', 
-    empty: 'star_border',
+const RateButton = ((document) => {
+  const ICON_STATE = {
+    filled  : 'star',
+    empty   : 'star_border',
   };
 
-  connectBasis(elem) {
-    this.root = elem;
-    this.icons = this.getIcons();
-    this.value = this.getValue();
+  const Attribute = {
+    AMOUNT : 'data-amount',
+    INDEX  : 'data-index',
+  };
 
-    // TODO: Перенести объявление массива слушателей в BEMComnonent
-    this.listeners = [];
-    this.listeners.push(
-      {
-        elem: this.root,
-        event: 'click',
-        callback: this.handleRateButtonClick,
-        data: {
-          that: this
+  const ClassName = {
+    ROOT : 'js-rate-button',
+    ICON : 'js-rate-button__icon',
+  };
+
+  const Selector = {
+    INPUT : '.js-rate-batton__input',
+    ICON  : '.js-rate-button__icon',
+  };
+
+  class RateButton extends BEMComponent {
+    constructor(element) {
+      super(element, 'rate-button');
+
+      this.input = this.root.querySelector(Selector.INPUT);
+      this.icons = this.root.querySelectorAll(Selector.ICON);
+
+      this.amount = this.extractAttr(this.root, Attribute.AMOUNT);
+      this.filled = this.extractFilled();
+
+      this.setInputValue(this.filled);
+
+      this.attachEventListeners();
+    }
+
+    attachEventListeners() {
+      this.bindEventListeners([
+        {
+          elem: this.root,
+          event: 'click',
+          callback: this.handleRateButtonClick.bind(this),
         },
-      },
-    );
-  }
-
-  getValue() {
-    return this.root.getAttribute('data-value');
-  }
-
-  setValue(value) {
-    this.value = value;
-    this.root.setAttribute('data-value', value);
-  }
-
-  getIcons() {
-    return this.root.querySelectorAll('.js-rate-button__icon');
-  }
-
-  drawValue(value) {
-    const current = this.value;
-    let from = Math.min(current, value);
-    const to = Math.max(current, value);
-    const state = (value <= current) ? 'empty' : 'fill';
-    if (from === to) {
-      from = from - 1;
-      value = value - 1;
+      ]);
     }
 
-    for (let i = from; i < to; i++) {
-      this.icons[i].textContent = this.#ICON_STATES[state];
+    extractAttr(elem, attrName) {
+      const attrValue = elem.getAttribute(attrName);
+      return parseInt(attrValue, 10);
     }
 
-    this.setValue(value);
-  }
+    setInputValue(value) {
+      this.input.value = value;
+      return this;
+    }
 
-  handleRateButtonClick(event) {
-    const that = event.that;
-    const et = event.target;
-    if (et.classList.contains('js-rate-button__icon')) {
-      const value = parseInt(et.getAttribute('data-index')) + 1;
-      that.drawValue(value);
+    setFilled(value) {
+      this.filled = value;
+      return this;
+    }
+
+    extractFilled() {
+      const icons = Array.from(this.icons);
+      const firstEmptyIconIndex = icons.findIndex((icon) => {
+        console.log('icon.textContent', icon.textContent);
+        return icon.textContent === ICON_STATE['empty']
+      });
+
+      console.log('firstEmptyIconIndex', firstEmptyIconIndex);
+
+      if (firstEmptyIconIndex === -1) {
+        return this.amount;
+      }
+
+      return firstEmptyIconIndex;
+    }
+
+    fillRatingBar(index) {
+      const filled = this.calcFilled(index);
+
+      this.icons.forEach((icon, i) => {
+        icon.textContent = (i < filled) ? ICON_STATE['filled'] : ICON_STATE['empty'];
+      });
+
+      this.setFilled(filled).setInputValue(filled);
+    }
+
+    calcFilled(index) {
+      const filled = this.filled - 1;
+
+      if (index !== filled) {
+        return index + 1;
+      }
+
+      if (
+        index === filled
+        && filled !== 0
+      ) {
+        return index;
+      }
+
+      return 0;
+    }
+
+    handleRateButtonClick(event) {
+      const et = event.target;
+
+      if (et.classList.contains(ClassName.ICON)) {
+        const index = this.extractAttr(et, Attribute.INDEX);
+        this.fillRatingBar(index);
+      }
     }
   }
-}
 
-const initRateButtonComps = BEMComponent.makeInitializer(
-  RateButton,
-  '.js-rate-button.js-auto-init'
-);
+  const initRateButtonComps = BEMComponent.makeAutoInitializer(
+    RateButton,
+    ClassName.ROOT,
+  );
 
-document.addEventListener('DOMContentLoaded', initRateButtonComps);
+  document.addEventListener('DOMContentLoaded', initRateButtonComps);
+
+  return RateButton;
+})(document);
+
+export { RateButton }

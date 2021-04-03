@@ -56,28 +56,37 @@
 }
 
 .carousel__item {
+  position: relative;
   display: none;
   align-items: center;
   width: 100%;
-  backface-visibility: hidden;
-  perspective: 1000px;
-  transition: transform .6s ease;
+
+  transition: transform 1s ease;
+}
+
+.carousel__item.carousel__item_active,
+.carousel__item_prev,
+.carousel__item_next {
+  display: block;
 }
 
 .carousel__item_prev,
 .carousel__item_next {
   position: absolute;
   top: 0;
-
-  display: block;
 }
 
-.carousel__item_active {
-  display: block;
+.carousel__item_prev.carousel__item_right,
+.carousel__item_next.carousel__item_left {
+  transform: translateX(0);
+
+  @supports (transform-style: preserve-3d) {
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 .carousel__item_next,
-.active.carousel__item_right {
+.carousel__item_active.carousel__item_right {
   transform: translateX(100%);
 
   @supports (transform-style: preserve-3d) {
@@ -86,20 +95,11 @@
 }
 
 .carousel__item_prev,
-.active.carousel__item_left {
+.carousel__item_active.carousel__item_left {
   transform: translateX(-100%);
 
   @supports (transform-style: preserve-3d) {
     transform: translate3d(-100%, 0, 0);
-  }
-}
-
-.carousel__item_next.carousel__item_left,
-.carousel__item_prev.carousel__item_right {
-  transform: translateX(0);
-
-  @supports (transform-style: preserve-3d) {
-    transform: translate3d(0, 0, 0);
   }
 }
 

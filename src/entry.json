@@ -1,39 +1,17 @@
 {
   "entries": [
     {
-      "name": "form-elements",
-      "template": "Form Elements",
-      "data": "form-elements",
+      "name": "test",
+      "template": "Test",
+      "data": null,
       "styles": [
         "./styles/style.scss",
         "./styles/boxes.scss",
-        "./templates/form-elements/form-elements.scss"
+        "./templates/test/test.scss"
       ],
       "scripts": [
-        "./templates/form-elements/form-elements.js"
+        "./templates/test/test.js"
       ]
-    },
-
-    {
-      "name": "colors-and-type",
-      "template": "Colors and Type",
-      "data": "colors-and-type",
-      "styles": [
-        "./styles/style.scss",
-        "./templates/colors-and-type/colors-and-type.scss"
-      ],
-      "scripts": []
-    },
-
-    {
-      "name": "cards",
-      "template": "Cards",
-      "data": "cards",
-      "styles": [
-        "./styles/style.scss",
-        "./templates/cards/cards.scss"
-      ],
-      "scripts": null
     }
   ]
 }

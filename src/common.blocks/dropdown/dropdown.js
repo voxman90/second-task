@@ -1,6 +1,6 @@
 "use strict";
 
-import { BEMComponent } from '../../scripts/scripts.ts';
+import { BEMComponent } from '../../scripts/BEMComponent.ts';
 
 class DropdownModel {
   constructor(dft, glossary) {

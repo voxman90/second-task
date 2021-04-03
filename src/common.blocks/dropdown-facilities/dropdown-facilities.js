@@ -1,4 +1,4 @@
-import { BEMComponent } from '../../scripts/scripts.ts';
+import { BEMComponent } from '../../scripts/BEMComponent.ts';
 import { Dropdown, DropdownModel } from '../dropdown/dropdown';
 
 class DropdownFacilitiesModel extends DropdownModel {

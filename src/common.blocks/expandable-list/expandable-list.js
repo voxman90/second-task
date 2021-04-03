@@ -1,4 +1,4 @@
-import { BEMComponent } from '../../scripts/scripts.ts';
+import { BEMComponent } from '../../scripts/BEMComponent.ts';
 
 class ExpandableList extends BEMComponent {
   constructor(elem) {

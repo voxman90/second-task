@@ -1,55 +1,64 @@
-import { BEMComponent } from '../../scripts/scripts';
+import { BEMComponent } from '../../scripts/BEMComponent';
 
-class LikeButton extends BEMComponent {
-  constructor(elem) {
-    super('like-button');
-    this.connectBasis(elem);
-    this.attachEventListeners();
-  }
+const LikeButton = ((document) => {
+  const Attributes = {
+    VALUE: 'data-value',
+  };
 
-  connectBasis(elem) {
-    this.root = elem;
-    this.input = this.root.firstElementChild;
-    this.counter = this.root.lastElementChild;
-  }
+  const ClassName = {
+    ROOT: 'js-like-button',
+  };
 
-  setValue(value) {
-    this.input.setAttribute('data-value', value);
-    this.counter.textContent = value;
-  }
+  class LikeButton extends BEMComponent {
+    constructor(element) {
+      super(element, 'like-button');
 
-  getValue() {
-    return parseInt(this.input.getAttribute('data-value'), 10);
-  }
+      this.input = this.root.firstElementChild;
+      this.counter = this.root.lastElementChild;
 
-  attachEventListeners() {
-    this.bindEventListeners([
-      {
-        elem: this.root,
-        event: 'change',
-        callback: this.handleLikeButtonClick,
-        data: { that: this },
-      },
-    ]);
-  }
+      this.attachEventListeners();
+    }
 
-  handleLikeButtonClick(e) {
-    const that = e.that;
-    const input = that.input;
-    let count = that.getValue();
-    if (input.checked) {
-      count += 1;
-      that.setValue(count);
-    } else {
-      count -= 1;
-      that.setValue(count);
+    setValue(value) {
+      this.input.setAttribute(Attributes.VALUE, value);
+      this.counter.textContent = value;
+    }
+
+    getValue() {
+      return parseInt(this.input.getAttribute(Attributes.VALUE, 10));
+    }
+
+    attachEventListeners() {
+      this.bindEventListeners([
+        {
+          elem: this.root,
+          event: 'change',
+          callback: this.handleLikeButtonClick.bind(this),
+        },
+      ]);
+    }
+
+    handleLikeButtonClick() {
+      let count = this.getValue();
+
+      if (this.input.checked) {
+        count += 1;
+        this.setValue(count);
+      } else {
+        count -= 1;
+        this.setValue(count);
+      }
     }
   }
-}
 
-const initLikeButtonComps = BEMComponent.makeInitializer(
-  LikeButton,
-  '.js-like-button.js-auto-init'
-);
+  const initLikeButtonComps = BEMComponent.makeAutoInitializer(
+    LikeButton,
+    ClassName.ROOT,
+  );
 
-document.addEventListener('DOMContentLoaded', initLikeButtonComps);
+  document.addEventListener('DOMContentLoaded', initLikeButtonComps);
+
+  return LikeButton;
+})(document);
+
+export { LikeButton }

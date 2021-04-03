@@ -103,8 +103,8 @@ html
             div(class='box_width_17\.5rem')
               +label('RATE BUTTON').box_margin-bottom_1rem
               .form-elements__rate-buttons
-                +rate-button({ amount: 5, filled: 4 })(class='js-auto-init')
-                +rate-button({ amount: 5, filled: 5 })(class='js-auto-init')
+                +rate-button({ amount: 5, name: 'rate-button-1st' })(class='js-auto-init')
+                +rate-button({ amount: 5, name: 'rate-button-2nd' })(class='js-auto-init')
           .form-elements__5th-block
             +dropdown-guests('dropdown-guests-1st', 'DROPDOWN')(class = 'js-dropdown-guests-1st')
           .form-elements__6th-block
