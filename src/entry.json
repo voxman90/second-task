@@ -12,6 +12,42 @@
       "scripts": [
         "./templates/test/test.js"
       ]
+    },
+
+    {
+      "name": "form-elements",
+      "template": "Form Elements",
+      "data": "form-elements",
+      "styles": [
+        "./styles/style.scss",
+        "./styles/boxes.scss",
+        "./templates/form-elements/form-elements.scss"
+      ],
+      "scripts": [
+        "./templates/form-elements/form-elements.js"
+      ]
+    },
+
+    {
+      "name": "colors-and-type",
+      "template": "Colors and Type",
+      "data": "colors-and-type",
+      "styles": [
+        "./styles/style.scss",
+        "./templates/colors-and-type/colors-and-type.scss"
+      ],
+      "scripts": []
+    },
+
+    {
+      "name": "cards",
+      "template": "Cards",
+      "data": "cards",
+      "styles": [
+        "./styles/style.scss",
+        "./templates/cards/cards.scss"
+      ],
+      "scripts": null
     }
   ]
 }

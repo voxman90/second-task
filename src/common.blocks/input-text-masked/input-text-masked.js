@@ -1,4 +1,4 @@
-import jQuery from 'jquery';
+import $ from 'jquery';
 import 'jquery.inputmask';
 
 (function($) {
@@ -7,4 +7,4 @@ import 'jquery.inputmask';
   }
 
   $(init());
-})(jQuery);
+})($);

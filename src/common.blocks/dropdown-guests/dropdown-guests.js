@@ -1,109 +1,122 @@
-import { BEMComponent } from '../../scripts/BEMComponent.ts';
-import { Dropdown, DropdownModel } from '../dropdown/dropdown';
+import { BEMComponent } from '../../scripts/BEMComponent';
+import { Dropdown as dm } from '../dropdown/dropdown';
 
-class DropdownGuestsModel extends DropdownModel {
-  constructor() {
-    const glossary = [
-      {
-        nominative: 'взрослый',
-        nominativePlural: 'взрослые',
-        genitive: 'взрослых',
-        genitivePlural: 'взсролых',
-      },
+const DropdownGuests = ((document) => {
+  const Dropdown = dm.Dropdown;
+  const DropdownModel = dm.DropdownModel;
 
-      {
-        nominative: 'ребёнок',
-        nominativePlural: 'дети',
-        genitive: 'ребёнка',
-        genitivePlural: 'детей',
-      },
+  const Glossary = [
+    {
+      nominative       : 'взрослый',
+      nominativePlural : 'взрослые',
+      genitive         : 'взрослых',
+      genitivePlural   : 'взсролых',
+    },
 
-      {
-        nominative: 'младенец',
-        nominativePlural: 'младенцы', 
-        genitive: 'младенца',
-        genitivePlural: 'младенцев',
-      },
+    {
+      nominative       : 'ребёнок',
+      nominativePlural : 'дети',
+      genitive         : 'ребёнка',
+      genitivePlural   : 'детей',
+    },
 
-      {
-        nominative: 'гость',
-        nominativePlural: 'гости',
-        genitive: 'гостя',
-        genitivePlural: 'гостей',
-      },
-    ];
-    const dfl = 'Сколько гостей';
-    super(dfl, glossary);
-  }
+    {
+      nominative       : 'младенец',
+      nominativePlural : 'младенцы', 
+      genitive         : 'младенца',
+      genitivePlural   : 'младенцев',
+    },
 
-  getSentence(values) {
-    const guestsCount = values[0] + values[1];
-    const babiesCount = values[2];
-    const sentence = [];
+    {
+      nominative       : 'гость',
+      nominativePlural : 'гости',
+      genitive         : 'гостя',
+      genitivePlural   : 'гостей',
+    },
+  ];
 
-    if (guestsCount > 0) {
-      const words = this.convertToCorrectForm(guestsCount, this.glossary[3]);
-      sentence.push(`${guestsCount} ${words}`);
+  const Default = 'Сколько гостей';
+
+  class DropdownGuestsModel extends DropdownModel {
+    constructor() {
+      super(Default, Glossary);
     }
 
-    if (babiesCount > 0) {
-      const words = this.convertToCorrectForm(babiesCount, this.glossary[2]);
-      sentence.push(`${babiesCount} ${words}`);
+    getSentence(values) {
+      const guestsCount = values[0] + values[1];
+      const babiesCount = values[2];
+      const sentence = [];
+
+      if (guestsCount > 0) {
+        const words = this.convertToCorrectForm(guestsCount, this.glossary[3]);
+        sentence.push(`${guestsCount} ${words}`);
+      }
+
+      if (babiesCount > 0) {
+        const words = this.convertToCorrectForm(babiesCount, this.glossary[2]);
+        sentence.push(`${babiesCount} ${words}`);
+      }
+
+      if (sentence.length === 0) {
+        sentence.push(this.default);
+      }
+
+      return sentence.join(', ');
+    }
+  }
+
+  const ClassName = {
+    ROOT : 'js-dropdown-guests',
+  }
+
+  class DropdownGuests extends Dropdown {
+    constructor(element) {
+      const model = new DropdownGuestsModel();
+      super(element, 'dropdown-guests', model);
+
+      this.hangHooks();
     }
 
-    if (sentence.length === 0) {
-      sentence.push(this.default);
+    hangHooks() {
+      this.hooks.optionValueIncreased = function (value) {
+        if (value === 1) {
+          this.toggleButtonClearVisibility(value);
+        }
+      };
+
+      this.hooks.optionValueDecreased = function (value) {
+        if (value === 0) {
+          const values = this.getOptionValues();
+          const summ = values.reduce((a, b) => a + b);
+          this.toggleButtonClearVisibility(summ);
+        }
+      };
     }
 
-    return sentence.join(', ');
-  }
-}
+    drawOptionValues(values) {
+      let summ = 0;
 
-class DropdownGuests extends Dropdown {
-  constructor(elem) {
-    const model = new DropdownGuestsModel();
-    super(elem, model);
+      this.optionValueNodes.forEach((optionValueNode, i) => {
+        summ += values[i];
+        optionValueNode.textContent = values[i];
+        this.toggleMinusButton(optionValueNode, values[i]);
+      });
 
-    this.name = 'dropdown-guests';
-    this.inputNode.classList.remove('dropdown__input-text_angled');
-    this.hangHooks();
-  }
-
-  hangHooks() {
-    this.hooks.valueIncreased = (val) => {
-      if (val === 1) {
-        this.toggleButtonClearVisibility(val);
-      }
-    };
-
-    this.hooks.valueDecreased = (val) => {
-      if (val === 0) {
-        const values = this.getValues();
-        const summ = values.reduce((a, b) => a + b);
-        this.toggleButtonClearVisibility(summ);
-      }
-    };
+      this.toggleButtonClearVisibility(summ);
+    }
   }
 
-  drawValues(values) {
-    let summ = 0;
-    this.valueNodesList.forEach(
-      (valueNode, i) => {
-        const value = values[i];
-        summ += value;
-        valueNode.textContent = value;
-        this.toggleMinusButton(valueNode, value);
-      }
-    );
-    this.toggleButtonClearVisibility(summ);
-  }
-}
+  const initDropdownGuestsComps = BEMComponent.makeAutoInitializer(
+    DropdownGuests,
+    ClassName.ROOT,
+  );
 
-const initDropdownGuestsComps = BEMComponent.makeInitializer(
-  DropdownGuests,
-  '.js-dropdown-guests.js-auto-init'
-);
+  document.addEventListener('DOMContentLoaded', initDropdownGuestsComps);
 
-document.addEventListener('DOMContentLoaded', initDropdownGuestsComps);
+  return {
+    DropdownGuests,
+    DropdownGuestsModel,
+  };
+})(document);
 
-export { DropdownGuests };
+export { DropdownGuests }

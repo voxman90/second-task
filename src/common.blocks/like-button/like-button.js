@@ -29,13 +29,15 @@ const LikeButton = ((document) => {
     }
 
     attachEventListeners() {
-      this.bindEventListeners([
+      this.listeners = [
         {
           elem: this.root,
           event: 'change',
           callback: this.handleLikeButtonClick.bind(this),
         },
-      ]);
+      ];
+
+      this.bindEventListeners(this.listeners);
     }
 
     handleLikeButtonClick() {

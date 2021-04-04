@@ -1,68 +1,71 @@
-import { BEMComponent } from '../../scripts/BEMComponent.ts';
+import { BEMComponent } from '../../scripts/BEMComponent';
 
-class ExpandableList extends BEMComponent {
-  constructor(elem) {
-    super('expandable-list');
+const ExpandableList = ((document) => {
+  const ClassName = {
+    ROOT                 : 'js-expandable-list',
+    BODY_HIDDEN_MODIFIER : 'expandable-list__body_hidden',
+    ICON_TURN_MODIFIER   : 'expandable-list__icon_turn_180deg',
+  };
 
-    this.connectBasis(elem);
+  class ExpandableList extends BEMComponent {
+    constructor(element) {
+      super(element, 'expandable-list');
 
-    this.bindEventListeners(this.listeners);
-  }
+      this.head = this.root.firstElementChild;
+      this.body = this.root.lastElementChild;
+      this.icon = this.head.lastElementChild;
 
-  connectBasis(elem) {
-    this.root = elem;
-    this.head = elem.firstElementChild;
-    this.icon = this.head.lastElementChild;
-    this.body = elem.lastElementChild;
+      this.attachEventListeners();
+    }
 
-    this.listeners = [];
-    this.listeners.push(
-      {
-        elem: this.head,
-        event: 'click',
-        callback: this.handleHeadClick,
-        options: null,
-        data: {
-          that: this
+    attachEventListeners() {
+      this.listeners = [
+        {
+          elem: this.root,
+          event: 'click',
+          callback: this.handleHeadClick.bind(this),
         },
-      },
-    );
+      ];
+
+      this.bindEventListeners(this.listeners);
+    }
+
+    handleHeadClick() {
+      this.icon.classList.toggle(ClassName.ICON_TURN_MODIFIER);
+      this.body.classList.toggle(ClassName.BODY_HIDDEN_MODIFIER);
+    }
+
+    expand() {
+      this.icon.classList.add(ClassName.ICON_TURN_MODIFIER);
+      this.body.classList.remove(ClassName.BODY_HIDDEN_MODIFIER);
+      return this;
+    }
+
+    close() {
+      this.icon.classList.remove(ClassName.ICON_TURN_MODIFIER);
+      this.body.classList.add(ClassName.BODY_HIDDEN_MODIFIER);
+      return this;
+    }
+
+    off() {
+      this.removeEventListeners(this.listeners);
+      return this;
+    }
+
+    on() {
+      this.bindEventListeners(this.listeners);
+      return this;
+    }
   }
 
-  handleHeadClick(e) {
-    const that = e.that;
-    that.icon.classList.toggle('expandable-list__icon_turn_180deg');
-    that.body.classList.toggle('expandable-list__body_hidden');
-  }
+  const initExpandableListComps = BEMComponent.makeAutoInitializer(
+    ExpandableList,
+    ClassName.ROOT,
+  );
 
-  expand() {
-    this.icon.classList.add('expandable-list__icon_turn_180deg');
-    this.body.classList.remove('expandable-list__body_hidden');
-    return this;
-  }
+  document.addEventListener('DOMContentLoaded', initExpandableListComps);
 
-  close() {
-    this.icon.classList.remove('expandable-list__icon_turn_180deg');
-    this.body.classList.add('expandable-list__body_hidden');
-    return this;
-  }
+  return ExpandableList;
+})(document);
 
-  off() {
-    this.removeEventListeners(this.listeners);
-    return this;
-  }
-
-  on() {
-    this.bindEventListeners(this.listeners);
-    return this;
-  }
-}
-
-const initExpandableListComps = BEMComponent.makeInitializer(
-  ExpandableList,
-  '.js-expandable-list.js-auto-init'
-);
-
-document.addEventListener('DOMContentLoaded', initExpandableListComps);
-
-export { ExpandableList };
+export { ExpandableList }

@@ -11,7 +11,7 @@
   padding-bottom: 0.3125rem;
 }
 
-.dropdown__input-text {
+.dropdown__input {
   @include service.non-selectable;
   padding-bottom: 0.1rem;
 
@@ -20,7 +20,7 @@
   }
 }
 
-.dropdown__input-text_angled {
+.dropdown__input_angled {
   padding-right: 2.75rem;
 
   border-radius: 4px 4px 0 0;
@@ -30,8 +30,8 @@
   text-overflow: ellipsis;
 }
 
-.dropdown__input-text_expanded,
-.dropdown__input-text_fixed {
+.dropdown__input_expanded,
+.dropdown__input_fixed {
   border-radius: 4px 4px 0 0;
   border-color: map.get(colors.$map, 'dark-shade-50');
 }
@@ -89,7 +89,7 @@
   padding-bottom: 7px;
 }
 
-.dropdown__option-item {
+.dropdown__option-name {
   box-sizing: border-box;
   height: 1.875rem;
   padding-top: 0.375rem;
@@ -140,7 +140,7 @@
   text-align: center;
 }
 
-.dropdown__option-button_blacked {
+.dropdown__option-button_faded {
   border-color: rgba(map.get(colors.$map, dark-shade-100), calc(0.25 * 0.38));
 
   color: rgba(map.get(colors.$map, dark-shade-100), calc(0.50 * 0.38));

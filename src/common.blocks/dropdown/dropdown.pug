@@ -1,9 +1,9 @@
 mixin dropdown__option(name, value)
-  .dropdown__option
-    .dropdown__option-item= name
+  .dropdown__option.js-dropdown__option
+    .dropdown__option-name= name
     div(
       class = 'dropdown__option-button dropdown__option-button-minus js-dropdown__option-button-minus',
-      class = (parseInt(value) === 0) ? 'dropdown__option-button_blacked' : undefined,
+      class = (parseInt(value) === 0) ? 'dropdown__option-button_faded' : undefined,
       tabindex = '0',
     )= '-'
     .dropdown__option-value.js-dropdown__option-value= value
@@ -18,13 +18,13 @@ mixin dropdown(args = {}, attr = {})
   .dropdown&attributes(attributes)
     +label(left, right).dropdown__label
       +input-text({ name: name, value: value })(
-        class = `dropdown__input-text js-dropdown__input-text dropdown__input-text_angled`,
+        class = `dropdown__input js-dropdown__input`,
         readonly,
       )
-      .dropdown__icon
+      .dropdown__icon.js-dropdown__icon
         +icon({ name: 'expand_more' })
-    div(class=`dropdown__bar dropdown__bar_hidden dropdown__bar_shadow ${barModif}`)
-      .dropdown__options
+    div(class=`dropdown__bar js-dropdown__bar dropdown__bar_hidden dropdown__bar_shadow ${barModif}`)
+      .dropdown__options.js-dropdown__options
         each value, name in options
           +dropdown__option(name, value)
       if haveButtons

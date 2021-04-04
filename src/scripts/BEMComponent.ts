@@ -15,15 +15,15 @@ const BEMComponent = (($, document) => {
 
   class BEMComponent {
     root: HTMLElement;
-    #name: string;
-    #id: string;
-    #namespace: string;
+    protected name: string;
+    protected id: string;
+    protected namespace: string;
 
     constructor(element: HTMLElement, name: string) {
       this.root = element;
-      this.#name = name;
-      this.#id = this.createId();
-      this.#namespace = `${this.#name}_${this.#id}`;
+      this.name = name;
+      this.id = this.createId();
+      this.namespace = `${this.name}_${this.id}`;
     }
 
     protected createId(): string {
@@ -57,7 +57,7 @@ const BEMComponent = (($, document) => {
         data = {};
       }
 
-      const eventName = `${event}.${this.#namespace}`;
+      const eventName = `${event}.${this.namespace}`;
 
       $(elem).on(eventName, null, data, (e) => {
         callback(e);
@@ -72,7 +72,7 @@ const BEMComponent = (($, document) => {
 
     protected removeEventListener(el: EventListenerParameters): void {
       const { elem, event } = el;
-      const eventName = `${event}.${this.#namespace}`;
+      const eventName = `${event}.${this.namespace}`;
 
       $(elem).off(eventName);
     }

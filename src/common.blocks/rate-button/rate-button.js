@@ -37,13 +37,15 @@ const RateButton = ((document) => {
     }
 
     attachEventListeners() {
-      this.bindEventListeners([
+      this.listeners = [
         {
           elem: this.root,
           event: 'click',
           callback: this.handleRateButtonClick.bind(this),
         },
-      ]);
+      ];
+
+      this.bindEventListeners(this.listeners);
     }
 
     extractAttr(elem, attrName) {
@@ -64,11 +66,8 @@ const RateButton = ((document) => {
     extractFilled() {
       const icons = Array.from(this.icons);
       const firstEmptyIconIndex = icons.findIndex((icon) => {
-        console.log('icon.textContent', icon.textContent);
         return icon.textContent === ICON_STATE['empty']
       });
-
-      console.log('firstEmptyIconIndex', firstEmptyIconIndex);
 
       if (firstEmptyIconIndex === -1) {
         return this.amount;

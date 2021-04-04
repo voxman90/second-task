@@ -49,13 +49,11 @@ const Utility = (($) => {
     }
   }
 
-  const Utility = {
-    getTransitionEndEventName : getTransitionEndEventName,
-    makeKeyQualifier          : makeKeyQualifier,
-    keyQualifiers             : keyQualifiers,
+  return {
+    getTransitionEndEventName,
+    makeKeyQualifier,
+    keyQualifiers,
   };
-
-  return Utility;
 })($);
 
-export default Utility;
+export { Utility };
