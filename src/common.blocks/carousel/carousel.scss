@@ -65,19 +65,19 @@
 }
 
 .carousel__item.carousel__item_active,
-.carousel__item_prev,
-.carousel__item_next {
+.carousel__item_order_prev,
+.carousel__item_order_next {
   display: block;
 }
 
-.carousel__item_prev,
-.carousel__item_next {
+.carousel__item_order_prev,
+.carousel__item_order_next {
   position: absolute;
   top: 0;
 }
 
-.carousel__item_prev.carousel__item_right,
-.carousel__item_next.carousel__item_left {
+.carousel__item_order_prev.carousel__item_direction_right,
+.carousel__item_order_next.carousel__item_direction_left {
   transform: translateX(0);
 
   @supports (transform-style: preserve-3d) {
@@ -85,8 +85,8 @@
   }
 }
 
-.carousel__item_next,
-.carousel__item_active.carousel__item_right {
+.carousel__item_order_next,
+.carousel__item_active.carousel__item_direction_right {
   transform: translateX(100%);
 
   @supports (transform-style: preserve-3d) {
@@ -94,8 +94,8 @@
   }
 }
 
-.carousel__item_prev,
-.carousel__item_active.carousel__item_left {
+.carousel__item_order_prev,
+.carousel__item_active.carousel__item_direction_left {
   transform: translateX(-100%);
 
   @supports (transform-style: preserve-3d) {
@@ -204,7 +204,7 @@
   font-size: 0;
 }
 
-.carousel__nav-panel-item_check {
+.carousel__nav-panel-item_checked {
   background-color: white;
 
   filter: none;

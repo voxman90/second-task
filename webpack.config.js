@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const fs = require('fs');
 const path = require('path');
@@ -47,102 +47,119 @@ function getEntries() {
 const { entry, plugins } = getEntries();
 
 module.exports = {
-    context: _path('./src/'),
-    entry: {
-      ...entry
+  context: _path('./src/'),
+
+  entry: {
+    ...entry
+  },
+
+  output: {
+    filename: '[name].js',
+    path: _path('./dist/')
+  },
+
+  resolve: {
+    extensions: ['.ts', '.js'],
+    alias: {
+      'jquery': _path('node_modules/jquery/dist/jquery'),
+      'inputmask' : _path('node_modules/jquery.inputmask/dist/inputmask/inputmask'),
+      'jquery.inputmask': _path('node_modules/inputmask/dist/jquery.inputmask'),
     },
-    output: {
-      filename: '[name].js',
-      path: _path('./dist/')
-    },
-    resolve: {
-        extensions: ['.ts', '.js'],
-        alias: {
-          'jquery': _path('node_modules/jquery/dist/jquery'),
-          'inputmask' : _path('node_modules/jquery.inputmask/dist/inputmask/inputmask'),
-          'jquery.inputmask': _path('node_modules/inputmask/dist/jquery.inputmask'),
-        },
-    },
-    plugins: [
-      new CleanWebpackPlugin(),
-      new MiniCssExtractPlugin({ filename: '[name].css' }),
-      ...plugins
-    ],
-    module: {
-        rules: [
-            {
-                test: /\.css$/,
-                use: [  
-                    MiniCssExtractPlugin.loader,
-                    'css-loader'
-                ]
-            },
-            { 
-                test: /\.pug$/i,
-                use: ['pug-loader']
-            },
-            {
-                test: /\.(png|jpg|gif)$/i,
-                loader: 'file-loader',
-                options: {
-                  name: '[name].[hash].[ext]',
-                  outputPath: 'assets/images/'
-                }
-            },
-            {
-                test: /\.(ttf|eot|otf|woff|woff2|svg)$/i,
-                loader: 'file-loader',
-                options: {
-                    name: '[name].[ext]',
-                    outputPath: 'assets/fonts/'
-                }
-            },
-            {
-                test: /\.s[ac]ss$/i,
-                use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {}
-                    },
-                    'css-loader',
-                    'sass-loader'
-                ],
-            },
-            {   
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: [
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: [
-                                '@babel/preset-env'
-                            ],
-                            plugins: [
-                              '@babel/plugin-proposal-class-properties'
-                            ]
-                        },
-                    }
-                ]
-            },
-            {   
-                test: /\.ts$/,
-                exclude: /node_modules/,
-                use: [
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: [
-                                '@babel/preset-env',
-                                '@babel/preset-typescript'
-                            ],
-                            plugins: [
-                              '@babel/plugin-proposal-class-properties'
-                            ]
-                        },
-                    }
-                ]
-            },
+  },
+
+  plugins: [
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({ filename: '[name].css' }),
+    ...plugins
+  ],
+
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
         ]
-    }
+      },
+
+      {
+        test: /\.pug$/i,
+        use: ['pug-loader']
+      },
+
+      {
+        test: /\.(png|jpg|gif)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[hash].[ext]',
+          outputPath: 'assets/images/',
+        }
+      },
+
+      {
+        test: /\.(ttf|eot|otf|woff|woff2|svg)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'assets/fonts/',
+        }
+      },
+
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {}
+          },
+          'css-loader',
+          'sass-loader',
+        ],
+      },
+
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                '@babel/preset-env',
+              ],
+              plugins: [
+                '@babel/plugin-proposal-class-properties',
+                [
+                  '@babel/plugin-transform-runtime',
+                ],
+              ]
+            }
+          }
+        ]
+      },
+
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                '@babel/preset-env',
+                '@babel/preset-typescript',
+              ],
+              plugins: [
+                '@babel/plugin-proposal-class-properties',
+                [
+                  '@babel/plugin-transform-runtime',
+                ],
+              ]
+            }
+          }
+        ]
+      },
+    ]
+  }
 }
