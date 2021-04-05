@@ -56,7 +56,7 @@
   transform: rotate(180deg);
 }
 
-.pagination__button_fade {
+.pagination__button_faded {
   $faded-green: color.scale(map.get(colors.$map, "green"), $alpha: -50%);
   $faded-turquoise-blue: color.scale(map.get(colors.$map, "turquoise-blue"), $alpha: -50%);
   background: linear-gradient(180deg, $faded-green, $faded-turquoise-blue);

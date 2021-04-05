@@ -4,6 +4,7 @@
 
 .rate-button {
   display: flex;
+  flex-direction: row-reverse;
   width: min-content;
   height: 1.5rem;
 }
@@ -19,5 +20,14 @@
   -webkit-background-clip: text;
           background-clip: text;
   -webkit-text-fill-color: transparent;
+
   cursor: pointer;
+
+  &:hover,
+  &:hover ~ & {
+    background: linear-gradient(180deg, map.get(colors.$map, 'purple-darken') 0%, map.get(colors.$map, 'malibu-darken') 100%);
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }

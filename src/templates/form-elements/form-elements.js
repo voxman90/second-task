@@ -1,5 +1,3 @@
-"use strict";
-
 import jQuery from 'jquery';
 
 import { DropdownDate } from '../../common.blocks/dropdown-date/dropdown-date';
@@ -28,18 +26,18 @@ import { ExpandableList } from '../../common.blocks/expandable-list/expandable-l
 
   function initDropdownFacilitiesComps() {
     const firstComp = getComp('.js-dropdown-facilities-1st', DropdownFacilities);
-    firstComp.setValues([2, 2, 0]);
+    firstComp.setOptionValues([2, 2, 0]);
 
     const secondComp = getComp('.js-dropdown-facilities-2nd', DropdownFacilities);
-    secondComp.setValues([2, 2, 0]).expandBar().fixBar();
+    secondComp.setOptionValues([2, 2, 0]).expandBar().fixBar();
   }
 
   function initDropdownGuestsComps() {
-    const firstComp = getComp('.js-dropdown-guests-1st', DropdownGuests);
-    firstComp.setValues([0, 0, 0]).expandBar();
+    const firstComp = getComp('.js-dropdown-guests-1st', DropdownGuests.DropdownGuests);
+    firstComp.setOptionValues([0, 0, 0]).expandBar();
 
-    const secondComp = getComp('.js-dropdown-guests-2nd', DropdownGuests);
-    secondComp.setValues([2, 1, 0]).expandBar();
+    const secondComp = getComp('.js-dropdown-guests-2nd', DropdownGuests.DropdownGuests);
+    secondComp.setOptionValues([2, 1, 0]).expandBar();
   }
 
   function initExpandableList() {

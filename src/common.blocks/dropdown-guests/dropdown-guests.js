@@ -1,9 +1,7 @@
 import { BEMComponent } from '../../scripts/BEMComponent';
-import { Dropdown as dm } from '../dropdown/dropdown';
+import { Dropdown, DropdownModel } from '../dropdown/dropdown';
 
 const DropdownGuests = ((document) => {
-  const Dropdown = dm.Dropdown;
-  const DropdownModel = dm.DropdownModel;
 
   const Glossary = [
     {
@@ -90,7 +88,7 @@ const DropdownGuests = ((document) => {
           const summ = values.reduce((a, b) => a + b);
           this.toggleButtonClearVisibility(summ);
         }
-      };
+      }
     }
 
     drawOptionValues(values) {

@@ -1,48 +1,48 @@
 import $ from 'jquery';
 
 import { BEMComponent } from '../../scripts/BEMComponent';
+import { Utility } from '../../scripts/Utility';
 
 const Carousel = (($) => {
 
   class Carousel extends BEMComponent {
-    constructor(elem) {
-      super('carousel');
+    constructor(element) {
+      super(element, 'carousel');
 
-      this.connectBasis(elem);
+      this.connectBasis();
 
       this.attachListeners();
     }
 
-    connectBasis(elem) {
-      this.rootNode = elem;
-      this.$items = $('.js-carousel__item', this.rootNode);
-      this.prevButtonNode = $('.js-carousel__prev-button').get(0);
-      this.nextButtonNode = $('.js-carousel__next-button').get(0);
-      this.navPanelNode = $('.js-carousel__nav-panel').get(0);
-      this.$navItems = $(this.navPanelNode).children();
+    connectBasis() {
+      this.$items = $('.js-carousel__item', this.root);
+      this.prevButton = $('.js-carousel__prev-button').get(0);
+      this.nextButton = $('.js-carousel__next-button').get(0);
+      this.navPanel = $('.js-carousel__nav-panel').get(0);
+      this.$navItems = $(this.navPanel).children();
 
       this.amount = this.$items.length;
       this.setActive(0).checkNavItem(0);
-      this.transitionEndEventName = this.getTransitionEndEventName();
+      this.transitionEndEventName = Utility.getTransitionEndEventName();
       this.isSliding = false;
     };
 
     attachListeners() {
       this.bindEventListeners([
         {
-          elem: this.prevButtonNode,
+          elem: this.prevButton,
           event: 'click',
           callback: this.handlePrevButtonClick,
         },
 
         {
-          elem: this.nextButtonNode,
+          elem: this.nextButton,
           event: 'click',
           callback: this.handleNextButtonClick,
         },
 
         {
-          elem: this.navPanelNode,
+          elem: this.navPanel,
           event: 'click',
           callback: this.handleNavPanelClick,
         },
@@ -109,16 +109,16 @@ const Carousel = (($) => {
     }
 
     slideToLeft(curr, next) {
-      const currSlideNode = $(this.$items).eq(curr);
-      const nextSlideNode = $(this.$items).eq(next);
-      $(nextSlideNode).addClass('carousel__item_next');
+      const currSlide = $(this.$items).eq(curr);
+      const nextSlide = $(this.$items).eq(next);
+      $(nextSlide).addClass('carousel__item_next');
 
-      this.attachTransitionEndEventListener(currSlideNode, function(event) {
+      this.attachTransitionEndEventListener(currSlide, function(event) {
         $(event.target)
           .removeClass('carousel__item_active carousel__item_left');
       });
 
-      this.attachTransitionEndEventListener(nextSlideNode, function(event) {
+      this.attachTransitionEndEventListener(nextSlide, function(event) {
         $(event.target)
           .removeClass('carousel__item_next carousel__item_left')
           .addClass('carousel__item_active');
@@ -128,22 +128,22 @@ const Carousel = (($) => {
       });
 
       setTimeout(() => {
-        $(currSlideNode).addClass('carousel__item_left');
-        $(nextSlideNode).addClass('carousel__item_left');
+        $(currSlide).addClass('carousel__item_left');
+        $(nextSlide).addClass('carousel__item_left');
       }, 0);
     }
 
     slideToRight(curr, next) {
-      const currSlideNode = $(this.$items).eq(curr);
-      const nextSlideNode = $(this.$items).eq(next);
-      $(nextSlideNode).addClass('carousel__item_prev');
+      const currSlide = $(this.$items).eq(curr);
+      const nextSlide = $(this.$items).eq(next);
+      $(nextSlide).addClass('carousel__item_prev');
 
-      this.attachTransitionEndEventListener(currSlideNode, (event) => {
+      this.attachTransitionEndEventListener(currSlide, (event) => {
         $(event.target)
           .removeClass('carousel__item_active carousel__item_right');
       });
 
-      this.attachTransitionEndEventListener(nextSlideNode, (event) => {
+      this.attachTransitionEndEventListener(nextSlide, (event) => {
         $(event.target)
           .removeClass('carousel__item_prev carousel__item_right')
           .addClass('carousel__item_active');
@@ -153,8 +153,8 @@ const Carousel = (($) => {
       });
 
       setTimeout(() => {
-        $(currSlideNode).addClass('carousel__item_right');
-        $(nextSlideNode).addClass('carousel__item_right');
+        $(currSlide).addClass('carousel__item_right');
+        $(nextSlide).addClass('carousel__item_right');
       }, 0);
     }
 
@@ -187,9 +187,9 @@ const Carousel = (($) => {
     }
   }
 
-  const initCarouselComps = BEMComponent.makeInitializer(
+  const initCarouselComps = BEMComponent.makeAutoInitializer(
     Carousel,
-    '.js-carousel.js-auto-init'
+    'js-carousel',
   );
 
   document.addEventListener('DOMContentLoaded', initCarouselComps);

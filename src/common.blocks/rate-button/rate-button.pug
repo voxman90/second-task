@@ -11,16 +11,16 @@ mixin rate-button(args = {})
       min = 0,
       max = amount,
     )
-    - let i = 0
-    while i < filled
+    - let i = amount - 1
+    while i > filled - 1
       +icon({ name: 'star' })(
         data-index = i,
         class = 'rate-button__icon js-rate-button__icon',
       )
-      - i += 1
-    while i < amount
+      - i -= 1
+    while i >= 0
       +icon({ name: 'star_border' })(
         data-index = i,
         class = 'rate-button__icon js-rate-button__icon',
       )
-      - i += 1
+      - i -= 1

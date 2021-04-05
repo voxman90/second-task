@@ -1,103 +1,124 @@
-import { BEMComponent } from '../../scripts/scripts';
-import { Calendar } from '../../common.blocks/calendar/calendar';
+import { BEMComponent } from '../../scripts/BEMComponent';
+import { Calendar } from '../calendar/calendar';
 
-class DropdownFilterDate extends BEMComponent {
-  constructor(elem) {
-    super('dropdown-filter-date');
-
-    this.connectBasis(elem);
-    this.connectCalendar(elem);
-
-    this.attachListeners();
+const DropdownFilterDate = ((document) => {
+  const ClassName = {
+    ROOT : 'js-dropdown-filter-date',
   }
 
-  setTimeInterval(arrival, departure) {
-    this.inputArrivalNode.value = arrival;
-    this.inputDepartureNode.value = departure;
-    this.drawPseudoInput(arrival, departure);
-
-    this.calendar.model.arrival = arrival;
-    this.calendar.model.departure = departure;
-    this.calendar.model.current = this.calendar.getClosestDate();
-    this.calendar.drawCalendar();
+  const Modifier = {
+    BAR_HIDDEN : 'dropdown-filter-date__bar_hidden',
   }
 
-  connectBasis(elem) {
-    this.rootNode = elem;
-    this.pseudoInputNode = this.rootNode.querySelector('.js-dropdown-filter-date__pseudo-input');
-    this.iconNode = this.rootNode.firstElementChild.firstElementChild.nextElementSibling;
-    this.inputArrivalNode = this.iconNode.nextElementSibling;
-    this.inputDepartureNode = this.inputArrivalNode.nextElementSibling;
+  const Selector = {
+    PSEUDO_INPUT    : '.js-dropdown-filter-date__pseudo-input',
+    ICON            : '.js-dropdown-filter-date__icon',
+    INPUT_ARRIVAL   : '.js-dropdown-filter-date__input-arrival',
+    INPUT_DEPARTURE : '.js-dropdown-filter-date__input-departure',
+    BAR             : '.js-dropdown-filter-date__bar',
+    CALENDAR        : '.js-dropdown-filter-date__calendar',
   }
 
-  connectCalendar(elem) {
-    const calendar = elem.querySelector('.js-dropdown-filter-date__calendar');
-    this.bodyNode = calendar.parentElement;
-    this.calendar = new Calendar(calendar);
 
-    this.calendar.hooks['buttonClearClick'] = this.handleButtonClearClick;
-    this.calendar.hooks['buttonApplyClick'] = this.handleButtonApplyClick;
-  }
+  class DropdownFilterDate extends BEMComponent {
+    constructor(element) {
+      super(element, 'dropdown-filter-date');
 
-  attachListeners() {
-    this.bindEventListeners([
-      {
-        elem: this.iconNode,
-        event: "click",
-        callback: this.handleIconClick,
-        data: { that: this },
-      },
-    ]);
-  }
+      this.connectBasis();
+      this.connectCalendar();
 
-  handleButtonClearClick = () => {
-    this.pseudoInputNode.textContent = '';
-  }
-
-  handleButtonApplyClick = (arrival, departure) => {
-    this.inputArrivalNode.value = arrival;
-    this.inputDepartureNode.value = departure;
-
-    this.drawPseudoInput(arrival, departure);
-
-    this.bodyNode.classList.add('dropdown-filter-date__body_hidden');
-  }
-
-  drawPseudoInput(arrival, departure) {
-    let dates = '';
-    if (
-      arrival !== null
-      && departure !== null
-    ) {
-      dates = this.calendar.model.convertDatesToDDMDDM(arrival, departure).toLowerCase();
+      this.attachEventListeners();
     }
 
-    this.pseudoInputNode.textContent = dates;
-  }
+    connectBasis() {
+      this.pseudoInput = this.root.querySelector(Selector.PSEUDO_INPUT);
+      this.icon = this.root.querySelector(Selector.ICON);
+      this.inputArrival = this.root.querySelector(Selector.INPUT_ARRIVAL);
+      this.inputDeparture = this.root.querySelector(Selector.INPUT_DEPARTURE);
+      this.bar = this.root.querySelector(Selector.BAR);
+    }
 
-  handleIconClick(e) {
-    const that = e.that;
-    if (that.bodyNode.classList.contains('dropdown-filter-date__body_hidden')) {
-      that.openCalendar();
-    } else {
-      that.hideCalendar();
+    connectCalendar() {
+      const calendar = this.root.querySelector(Selector.CALENDAR);
+      this.calendar = new Calendar(calendar);
+
+      this.calendar.hooks.buttonClearClick = this.handleButtonClearClick.bind(this);
+      this.calendar.hooks.buttonApplyClick = this.handleButtonApplyClick.bind(this);
+    }
+
+    setTimeInterval(arrival, departure) {
+      this.inputArrival.value = arrival;
+      this.inputDeparture.value = departure;
+
+      this.drawPseudoInput(arrival, departure);
+
+      this.calendar.model.arrival = arrival;
+      this.calendar.model.departure = departure;
+      this.calendar.model.setCurrent(this.calendar.getClosestDate());
+      this.calendar.drawCalendar();
+    }
+
+    attachEventListeners() {
+      this.bindEventListeners([
+        {
+          elem: this.icon,
+          event: 'click',
+          callback: this.handleIconClick.bind(this),
+        },
+      ]);
+    }
+
+    drawPseudoInput(arrival, departure) {
+      let dates = '';
+
+      if (
+        arrival !== null
+        && departure !== null
+      ) {
+        dates = this.calendar.model.convertDatesToDDMDDM(arrival, departure).toLowerCase();
+      }
+
+      this.pseudoInput.textContent = dates;
+    }
+
+    closeBar() {
+      this.bar.classList.add(Modifier.BAR_HIDDEN);
+    }
+
+    openBar() {
+      this.bar.classList.remove(Modifier.BAR_HIDDEN);
+    }
+
+    handleIconClick() {
+      if (this.bar.classList.contains(Modifier.BAR_HIDDEN)) {
+        this.openBar();
+      } else {
+        this.closeBar();
+      }
+    }
+
+    handleButtonClearClick() {
+      this.pseudoInput.textContent = '';
+    }
+
+    handleButtonApplyClick (arrival, departure) {
+      this.inputArrival.value = arrival;
+      this.inputDeparture.value = departure;
+
+      this.drawPseudoInput(arrival, departure);
+
+      this.bar.classList.add(Modifier.BAR_HIDDEN);
     }
   }
 
-  hideCalendar() {
-    this.bodyNode.classList.add('dropdown-filter-date__body_hidden');
-  }
+  const initDropdownFilterDateComps = BEMComponent.makeAutoInitializer(
+    DropdownFilterDate,
+    ClassName.ROOT,
+  );
 
-  openCalendar() {
-    this.bodyNode.classList.remove('dropdown-filter-date__body_hidden');
-  }
-}
+  document.addEventListener('DOMContentLoaded', initDropdownFilterDateComps);
 
-const initDropdownFilterDateComps = BEMComponent.makeInitializer(
-  DropdownFilterDate,
-  '.js-dropdown-filter-date.js-auto-init'
-);
+  return DropdownFilterDate;
+})(document);
 
-document.addEventListener('DOMContentLoaded', initDropdownFilterDateComps);
-
-export { DropdownFilterDate };
+export { DropdownFilterDate }

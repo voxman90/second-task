@@ -1,9 +1,3 @@
-import "./common.blocks/label/label.scss";
-import "./common.blocks/input-text/input-text.scss";
-import "./common.blocks/icon/icon.scss";
-import "./common.blocks/button/button.scss";
-import "./common.blocks/dropdown/dropdown.scss";
-import "./common.blocks/dropdown/dropdown.js";
 import "./styles/style.scss";
 import "./styles/boxes.scss";
 import "./templates/test/test.scss";

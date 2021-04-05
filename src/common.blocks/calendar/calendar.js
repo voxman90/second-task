@@ -425,11 +425,9 @@ const Calendar = ((document) => {
     }
 
     drawToday() {
-      const today = this.model.today;
-      const current = this.model.current;
+      const day = this.model.findCellIndex(this.model.today);
 
-      if (this.model.isSameYearAndMonth(today, current)) {
-        const day = today.getDate() - 1;
+      if (this.isCorrectIndex(day)) {
         this.tableCells[day].classList.add(Modifier.TABLE_CELL_TODAY);
       }
 
@@ -446,7 +444,7 @@ const Calendar = ((document) => {
         this.table6thRow.classList.add(Modifier.TABLE_ROW_HIDDEN);
       }
 
-      this.tabletableCells.forEach((cell, i) => {
+      this.tableCells.forEach((cell, i) => {
         if (from <= i && i < to) {
           cell.classList.add(Modifier.TABLE_CELL_RECENT_MONTH);
         }

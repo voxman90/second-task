@@ -120,13 +120,13 @@ const Dropdown = (() => {
         {
           elem: this.input,
           event: 'click',
-          callback: this.handleInputTextClick.bind(this),
+          callback: this.handleInputClick.bind(this),
         },
 
         {
           elem: this.input,
           event: 'keydown',
-          callback: this.handleInputTextKeydown.bind(this),
+          callback: this.handleInputKeydown.bind(this),
         },
 
         {
@@ -232,7 +232,7 @@ const Dropdown = (() => {
         optionValueNode.previousElementSibling.classList.remove(Modifier.OPTION_BUTTON_FADED);
       }
 
-      this.hooks.optionValueIncreased(value);
+      this.hooks.optionValueIncreased.call(this, value);
     }
 
     decreaseOptionValue(optionButtonMinusNode) {
@@ -246,7 +246,7 @@ const Dropdown = (() => {
           optionButtonMinusNode.classList.add(Modifier.OPTION_BUTTON_FADED);
         }
 
-        this.hooks.optionValueDecreased(value);
+        this.hooks.optionValueDecreased.call(this, value);
       }
     }
 

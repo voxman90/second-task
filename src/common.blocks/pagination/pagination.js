@@ -1,305 +1,359 @@
-import { BEMComponent } from '../../scripts/scripts';
+import { BEMComponent } from '../../scripts/BEMComponent';
 
-class Pagination extends BEMComponent {
-  constructor(elem) {
-    super('pagination');
-    this.setDefaultState();
-    this.appendTableRow(elem);
-    this.connectBasis(elem);
-    this.drawPaginatorState(this.state.current);
-    this.attachListeners();
+const Pagination = ((document) => {
+  const Default = {
+    current: 1,
+    pages: 25,
+    positions: 5,
+    descriptor: () => {},
+    callback: () => {},
   }
 
-  setDefaultState() {
-    this.state = {
-      current: 1,
-      pages: 25,
-      positions: 5,
-      descriptor: () => {},
-      callback: () => {},
-    }
+  const ClassName = {
+    ROOT          : 'js-pagination',
+    TABLE_DATA    : 'pagination__td',
+    TABLE_DATA_JS : 'js-pagination__td',
+    BUTTON        : 'pagination__button',
   }
 
-  setState(args) {
-    this.state = args;
+  const Modifier = {
+    ICON_ROTATE         : 'pagination__icon_rotate_180deg',
+    TABLE_DATA_HIDE     : 'pagination__td_hide',
+    TABLE_DATA_CURRENT  : 'pagination__td_current',
+    TABLE_DATA_CLICABLE : 'js-pagination__td_clickable',
+    BUTTON_FADED        : 'pagination__button_faded',
+    BUTTON_HIDE         : 'pagination__button_hide',
   }
 
-  appendTableRow(elem) {
-    this.trNode = elem.querySelector('.js-pagination-tr');
-    const tbody = this.trNode.parentNode;
-    const tr = tbody.removeChild(this.trNode);
-
-    let i = 0;
-    while (i < this.state.positions + 2) {
-      this.appendTableData(tr, i);
-      i += 1;
-    }
-
-    this.appendButtons(tr);
-
-    tbody.appendChild(tr);
+  const Selector = {
+    TABLE_ROW     : '.js-pagination__tr',
+    TABLE_DATA    : '.js-pagination__td',
+    TABLE_CAPTION : '.js-pagination__caption',
   }
 
-  appendTableData(tr, i) {
-    const td = document.createElement('td');
-    td.classList.add('pagination__td', 'js-pagination__td');
-    td.setAttribute('data-index', i);
-    tr.appendChild(td);
-  }
+  class Pagination extends BEMComponent {
+    constructor(element) {
+      super(element, 'pagination');
 
-  appendButtons(tr) {
-    const buttonBackward = document.createElement('td');
-    buttonBackward.classList.add('pagination__td', 'pagination__button');
-    const iconBackward = document.createElement('p');
-    iconBackward.classList.add('pagination__icon_rotate_180deg');
-    iconBackward.textContent = 'arrow_forward';
-    buttonBackward.appendChild(iconBackward);
-    tr.prepend(buttonBackward);
+      this.setState(Default);
 
-    const buttonForward = document.createElement('td');
-    buttonForward.classList.add('pagination__td', 'pagination__button');
-    const iconForward = document.createElement('p');
-    iconForward.textContent = 'arrow_forward';
-    buttonForward.appendChild(iconForward);
-    tr.appendChild(buttonForward);
-  }
+      this.connectBasis();
 
-  connectBasis(elem) {
-    this.rootNode = elem;
-    this.captionNode = elem.querySelector('.js-pagination__caption');
-    this.tdNodes = this.trNode.querySelectorAll('.js-pagination__td:not(.js-pagination__button)');
-    this.buttonBackNode = this.trNode.firstElementChild;
-    this.buttonForwNode = this.trNode.lastElementChild;
-  }
-
-  drawPaginatorState() {
-    const { blank, currentIndex } = this.getState();
-    this.drawButtons();
-    this.clearPositions();
-    this.drawPositions(blank);
-    this.highlightCurrent(currentIndex);
-    this.drawCaption();
-    const { current, callback } = this.state;
-    callback(current);
-  }
-
-  clearPositions() {
-    this.tdNodes.forEach((td) => {
-      td.classList.remove(
-        'js-pagination__td_clickable',
-        'pagination__td_current',
-        'pagination__td_hide'
-      );
-    });
-  }
-
-  drawButtons() {
-    const { current, pages } = this.state;
-    if (current === 1) {
-      this.buttonBackNode.classList.add('pagination__button_hide');
-    } else {
-      this.buttonBackNode.classList.remove('pagination__button_hide');
+      this.updatePaginator(this.state.current);
+      this.attachEventListeners();
     }
 
-    if (current === pages) {
-      this.buttonForwNode.classList.add('pagination__button_hide');
-    } else {
-      this.buttonForwNode.classList.remove('pagination__button_hide');
-    }
-  }
+    connectBasis() {
+      this.tr = this.root.querySelector(Selector.TABLE_ROW);
+      this.caption = this.root.querySelector(Selector.TABLE_CAPTION);
 
-  drawPositions(state) {
-    this.tdNodes.forEach((td, i) => {
-      if (state[i] === 0) {
-        td.textContent = '\u2026';
-      } else if (state[i] !== null) {
-        td.classList.add('js-pagination__td_clickable');
-        td.textContent = state[i];
+      this.renderTableRow();
+
+      this.tdNodes = this.tr.querySelectorAll(Selector.TABLE_DATA);
+      this.buttonBackward = this.tr.firstElementChild;
+      this.buttonForward = this.tr.lastElementChild;
+    }
+
+    setState(args) {
+      this.state = { ...args };
+    }
+
+    renderTableRow() {
+      const tbody = this.tr.parentNode;
+      const tr = tbody.removeChild(this.tr);
+
+      let i = 0;
+      while (i < this.state.positions + 2) {
+        this.appendTableData(tr, i);
+        i += 1;
+      }
+
+      this.appendButtons(tr);
+
+      tbody.appendChild(tr);
+    }
+
+    appendTableData(tr, i) {
+      const td = document.createElement('td');
+      td.classList.add(ClassName.TABLE_DATA, ClassName.TABLE_DATA_JS);
+      td.setAttribute('data-index', i);
+
+      tr.appendChild(td);
+    }
+
+    appendButtons(tr) {
+      const buttonBackward = document.createElement('td');
+      buttonBackward.classList.add(ClassName.TABLE_DATA, ClassName.BUTTON);
+
+      const iconBackward = document.createElement('p');
+      iconBackward.classList.add(Modifier.ICON_ROTATE);
+      iconBackward.textContent = 'arrow_forward';
+
+      buttonBackward.appendChild(iconBackward);
+      tr.prepend(buttonBackward);
+
+      const buttonForward = document.createElement('td');
+      buttonForward.classList.add(ClassName.TABLE_DATA, ClassName.BUTTON);
+
+      const iconForward = document.createElement('p');
+      iconForward.textContent = 'arrow_forward';
+
+      buttonForward.appendChild(iconForward);
+      tr.appendChild(buttonForward);
+    }
+
+    updatePaginator() {
+      const { blank, currentIndex } = this.getState();
+      this.updateButtonsState()
+        .clearPositions()
+        .fillPositions(blank)
+        .highlightCurrent(currentIndex)
+        .updateCaption();
+
+      const { current, callback } = this.state;
+      callback(current);
+    }
+
+    clearPositions() {
+      this.tdNodes.forEach((td) => {
+        td.classList.remove(
+          Modifier.TABLE_DATA_CLICABLE,
+          Modifier.TABLE_DATA_CURRENT,
+          Modifier.TABLE_DATA_HIDE,
+        );
+      });
+
+      return this;
+    }
+
+    updateButtonsState() {
+      const { current, pages } = this.state;
+
+      if (current === 1) {
+        this.buttonBackward.classList.add(Modifier.BUTTON_HIDE);
       } else {
-        td.classList.add('pagination__td_hide');
+        this.buttonBackward.classList.remove(Modifier.BUTTON_HIDE);
       }
-    });
-  }
 
-  highlightCurrent(currentIndex) {
-    const currentCell = this.tdNodes[currentIndex];
-    currentCell.classList.add('pagination__td_current');
-  }
-
-  drawCaption() {
-    const { current, descriptor } = this.state;
-    descriptor(this.captionNode, current);
-  }
-
-  getState() {
-    if (!this.isEnoughPages()) {
-      return this.placeCurrent();
-    }
-
-    const currentPos = this.findCurrentPosition();
-    if (currentPos === 'center') {
-      return this.placeCurrentInTheCenter();
-    }
-
-    if (currentPos === 'start') {
-      return this.placeCurrentOnTheStart();
-    }
-
-    return this.placeCurrentOnTheEnd();
-  }
-
-  placeCurrent() {
-    const { current, positions, pages } = this.state;
-    const blank = new Array(positions + 2);
-    blank.fill(null).forEach((val, i, arr) => {
-      if (i <= pages) {
-        arr[i] = i;
+      if (current === pages) {
+        this.buttonForward.classList.add(Modifier.BUTTON_HIDE);
+      } else {
+        this.buttonForward.classList.remove(Modifier.BUTTON_HIDE);
       }
-    });
 
-    return {
-      blank,
-      currentIndex: current - 1
-    };
-  }
-
-  placeCurrentInTheCenter() {
-    const { current, positions, pages } = this.state;
-    const centerLength = positions - 2;
-    const centerIndent = (centerLength % 2 === 1) ? (
-      (centerLength - 1) / 2
-    ) : (
-      (centerLength / 2) - 1
-    );
-    const firstCenterPage = current - centerIndent;
-    const blank = new Array(centerLength);
-    blank.fill(null).forEach((val, i, arr) => {
-      arr[i] = firstCenterPage + i;
-    });
-
-    return {
-      blank: [1, 0, ...blank, 0, pages],
-      currentIndex: centerIndent + 2
+      return this;
     }
-  }
 
-  placeCurrentOnTheStart() {
-    const { current, positions, pages } = this.state;
-    const startLength = (current < positions - 2) ? (
-      positions - 2
-    ) : (
-      positions - 1
-    );
-    const blank = new Array(startLength);
-    blank.fill(null).forEach((val, i, arr) => {
-      arr[i] = i + 1;
-    });
+    fillPositions(state) {
+      this.tdNodes.forEach((td, i) => {
+        switch (state[i]) {
+          case 0: {
+            td.textContent = '\u2026';
+            break;
+          }
+          case null: {
+            td.classList.add(Modifier.TABLE_DATA_HIDE);
+            break;
+          }
+          default: {
+            td.classList.add(Modifier.TABLE_DATA_CLICABLE);
+            td.textContent = state[i];
+            break;
+          }
+        }
+      });
 
-    return {
-      blank: [...blank, 0, pages, null, null],
-      currentIndex: current - 1
+      return this;
     }
-  }
 
-  placeCurrentOnTheEnd() {
-    const { current, positions, pages } = this.state;
-    const endLength = (pages - current + 1 < positions - 2) ? (
-      positions - 2
-    ) : (
-      positions - 1
-    );
-    const blank = new Array(positions);
-    blank.fill(null).forEach((val, i, arr) => {
-      if (i < endLength) {
-        arr[i] = (pages - endLength + 1) + i;
+    highlightCurrent(index) {
+      this.tdNodes[index].classList.add(Modifier.TABLE_DATA_CURRENT);
+
+      return this;
+    }
+
+    updateCaption() {
+      const { current, descriptor } = this.state;
+      this.caption.textContent = descriptor(current);
+
+      return this;
+    }
+
+    getState() {
+      if (!this.isEnoughPages()) {
+        return this.placeCurrent();
       }
-    });
 
-    return {
-      blank: [1, 0, ...blank],
-      currentIndex: 1 + endLength + (current - pages)
+      const currentPos = this.findCurrentPosition();
+      if (currentPos === 'center') {
+        return this.placeCurrentInTheCenter();
+      }
+
+      if (currentPos === 'start') {
+        return this.placeCurrentOnTheStart();
+      }
+
+      return this.placeCurrentOnTheEnd();
+    }
+
+    placeCurrent() {
+      const { current, positions, pages } = this.state;
+      const blank = new Array(positions + 2);
+
+      blank.fill(null).forEach((val, i, arr) => {
+        if (i <= pages) {
+          arr[i] = i;
+        }
+      });
+
+      return {
+        blank,
+        currentIndex: current - 1,
+      };
+    }
+
+    placeCurrentInTheCenter() {
+      const { current, positions, pages } = this.state;
+
+      const centerLength = positions - 2;
+      const centerIndent = (centerLength % 2 === 1) ? (
+        (centerLength - 1) / 2
+      ) : (
+        (centerLength / 2) - 1
+      );
+      const firstCenterPage = current - centerIndent;
+
+      const blank = new Array(centerLength);
+      blank.fill(null).forEach((val, i, arr) => {
+        arr[i] = firstCenterPage + i;
+      });
+
+      return {
+        blank: [1, 0, ...blank, 0, pages],
+        currentIndex: centerIndent + 2,
+      }
+    }
+
+    placeCurrentOnTheStart() {
+      const { current, positions, pages } = this.state;
+
+      const startLength = (current < positions - 2) ? (
+        positions - 2
+      ) : (
+        positions - 1
+      );
+
+      const blank = new Array(startLength);
+      blank.fill(null).forEach((val, i, arr) => {
+        arr[i] = i + 1;
+      });
+
+      return {
+        blank: [...blank, 0, pages, null, null],
+        currentIndex: current - 1,
+      }
+    }
+
+    placeCurrentOnTheEnd() {
+      const { current, positions, pages } = this.state;
+
+      const endLength = (pages - current + 1 < positions - 2) ? (
+        positions - 2
+      ) : (
+        positions - 1
+      );
+
+      const blank = new Array(positions);
+      blank.fill(null).forEach((val, i, arr) => {
+        if (i < endLength) {
+          arr[i] = (pages - endLength + 1) + i;
+        }
+      });
+
+      return {
+        blank: [1, 0, ...blank],
+        currentIndex: 1 + endLength + (current - pages),
+      }
+    }
+
+    findCurrentPosition() {
+      const { current, positions, pages } = this.state;
+      if (current < positions - 1) {
+        return 'start';
+      }
+
+      if (pages - current + 1 < positions - 1) {
+        return 'end';
+      }
+
+      return 'center';
+    }
+
+    attachEventListeners() {
+      this.bindEventListeners([
+        {
+          elem: this.buttonBackward,
+          event: 'click',
+          callback: this.handlebuttonBackwardClick.bind(this),
+        },
+
+        {
+          elem: this.buttonForward,
+          event: 'click',
+          callback: this.handlebuttonForwardClick.bind(this),
+        },
+
+        {
+          elem: this.tr,
+          event: 'click',
+          callback: this.handleTableRowClick.bind(this),
+        },
+      ]);
+    }
+
+    handlebuttonBackwardClick() {
+      this.state.current -= 1;
+      this.updatePaginator();
+    }
+
+    handlebuttonForwardClick() {
+      this.state.current += 1;
+      this.updatePaginator();
+    }
+
+    handleTableRowClick(event) {
+      const et = event.target;
+      if (this.isClickableAndNotCurrent(et)) {
+        this.state.current = parseInt(et.textContent, 10);
+        this.updatePaginator();
+      }
+    }
+
+    isEnoughPages() {
+      const { positions, pages } = this.state;
+      if (pages <= positions) {
+        return false;
+      }
+
+      return true;
+    }
+
+    isClickableAndNotCurrent(elem) {
+      return (
+        elem.classList.contains(Modifier.TABLE_DATA_CLICABLE)
+        && !elem.classList.contains(Modifier.TABLE_DATA_CURRENT)
+      );
     }
   }
 
-  findCurrentPosition() {
-    const { current, positions, pages } = this.state;
-    if (current < positions - 1) {
-      return 'start';
-    }
+  const initPaginationComps = BEMComponent.makeAutoInitializer(
+    Pagination,
+    ClassName.ROOT,
+  );
 
-    if (pages - current + 1 < positions - 1) {
-      return 'end';
-    }
+  document.addEventListener('DOMContentLoaded', initPaginationComps);
 
-    return 'center';
-  }
+  return Pagination
+})(document);
 
-  isEnoughPages() {
-    const { positions, pages } = this.state;
-    if (  pages <= positions ) {
-      return false;
-    }
-
-    return true;
-  }
-
-  attachListeners() {
-    this.bindEventListeners([
-      {
-        elem: this.buttonBackNode,
-        event: "click",
-        callback: this.handleButtonBackwardClick,
-        data: { that: this },
-      },
-
-      {
-        elem: this.buttonForwNode,
-        event: "click",
-        callback: this.handleButtonForwardClick,
-        data: { that: this },
-      },
-
-      {
-        elem: this.trNode,
-        event: "click",
-        callback: this.handleTableRowClick,
-        data: { that: this },
-      },
-    ]);
-  }
-
-  handleButtonBackwardClick(e) {
-    const that = e.that;
-    that.state.current -= 1;
-    that.drawPaginatorState();
-  }
-
-  handleButtonForwardClick(e) {
-    const that = e.that;
-    that.state.current += 1;
-    that.drawPaginatorState();
-  }
-
-  handleTableRowClick(e) {
-    const that = e.that;
-    const tg = e.target;
-    if (that.isClickableAndNotCurrent(tg)) {
-      that.state.current = parseInt(tg.textContent, 10);
-      that.drawPaginatorState();
-    }
-  }
-
-  isClickableAndNotCurrent(target) {
-    return (
-      target.classList.contains('js-pagination__td_clickable')
-      && !target.classList.contains('js-pagination__td_current')
-    );
-  }
-}
-
-const initPaginationComps = BEMComponent.makeInitializer(
-  Pagination,
-  '.js-pagination.js-auto-init'
-);
-
-document.addEventListener('DOMContentLoaded', initPaginationComps);
+export { Pagination }

@@ -31,17 +31,13 @@ const Utility = (($) => {
     return (event: KeyboardEvent) => {
       if (event.key !== undefined) {
         return (
-          keys.some((val) => {
-            val === event.key
-          })
+          keys.some((val) => val === event.key)
         );
       }
 
       if (event.which !== undefined) {
         return (
-          codes.some((val) => {
-            val === event.which
-          })
+          codes.some((val) => val === event.which)
         );
       }
 

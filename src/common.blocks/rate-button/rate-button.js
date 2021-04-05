@@ -26,8 +26,9 @@ const RateButton = ((document) => {
       super(element, 'rate-button');
 
       this.input = this.root.querySelector(Selector.INPUT);
-      this.icons = this.root.querySelectorAll(Selector.ICON);
 
+      const icons = this.root.querySelectorAll(Selector.ICON);
+      this.icons = Array.from(icons).reverse();
       this.amount = this.extractAttr(this.root, Attribute.AMOUNT);
       this.filled = this.extractFilled();
 
@@ -64,8 +65,7 @@ const RateButton = ((document) => {
     }
 
     extractFilled() {
-      const icons = Array.from(this.icons);
-      const firstEmptyIconIndex = icons.findIndex((icon) => {
+      const firstEmptyIconIndex = this.icons.findIndex((icon) => {
         return icon.textContent === ICON_STATE['empty']
       });
 
