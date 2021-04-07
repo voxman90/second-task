@@ -27,7 +27,13 @@ const DropdownFilterDate = ((document) => {
       this.connectBasis();
       this.connectCalendar();
 
-      this.attachEventListeners();
+      this.attachMultipleEventListeners([
+        {
+          element: this.icon,
+          event: 'click',
+          handler: this.handleIconClick.bind(this),
+        },
+      ]);
     }
 
     connectBasis() {
@@ -56,16 +62,6 @@ const DropdownFilterDate = ((document) => {
       this.calendar.model.departure = departure;
       this.calendar.model.setCurrent(this.calendar.getClosestDate());
       this.calendar.drawCalendar();
-    }
-
-    attachEventListeners() {
-      this.bindEventListeners([
-        {
-          elem: this.icon,
-          event: 'click',
-          callback: this.handleIconClick.bind(this),
-        },
-      ]);
     }
 
     drawPseudoInput(arrival, departure) {

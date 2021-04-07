@@ -1,11 +1,6 @@
 import { BEMComponent } from '../../scripts/BEMComponent';
 
 const RateButton = ((document) => {
-  const ICON_STATE = {
-    filled  : 'star',
-    empty   : 'star_border',
-  };
-
   const Attribute = {
     AMOUNT : 'data-amount',
     INDEX  : 'data-index',
@@ -21,95 +16,89 @@ const RateButton = ((document) => {
     ICON  : '.js-rate-button__icon',
   };
 
+  const ICON_STATE = {
+    filled: 'star',
+    empty: 'star_border',
+  };
+
   class RateButton extends BEMComponent {
     constructor(element) {
       super(element, 'rate-button');
 
       this.input = this.root.querySelector(Selector.INPUT);
+      this.icons = this.getIconsReverseArray();
 
-      const icons = this.root.querySelectorAll(Selector.ICON);
-      this.icons = Array.from(icons).reverse();
-      this.amount = this.extractAttr(this.root, Attribute.AMOUNT);
-      this.filled = this.extractFilled();
+      this.positions = this.getAttributeNumericalValue(this.root, Attribute.AMOUNT);
+      this.filled = this.getFilledPositionsNumber();
 
       this.setInputValue(this.filled);
 
-      this.attachEventListeners();
-    }
-
-    attachEventListeners() {
-      this.listeners = [
-        {
-          elem: this.root,
-          event: 'click',
-          callback: this.handleRateButtonClick.bind(this),
-        },
-      ];
-
-      this.bindEventListeners(this.listeners);
-    }
-
-    extractAttr(elem, attrName) {
-      const attrValue = elem.getAttribute(attrName);
-      return parseInt(attrValue, 10);
-    }
-
-    setInputValue(value) {
-      this.input.value = value;
-      return this;
+      this.listeners = this.defineEventListeners();
+      this.attachMultipleEventListeners(this.listeners);
     }
 
     setFilled(value) {
       this.filled = value;
-      return this;
     }
 
-    extractFilled() {
-      const firstEmptyIconIndex = this.icons.findIndex((icon) => {
-        return icon.textContent === ICON_STATE['empty']
+    setInputValue(value) {
+      this.input.value = value;
+    }
+
+    getIconsReverseArray() {
+      const icons = this.root.querySelectorAll(Selector.ICON);
+      return Array.from(icons).reverse();
+    }
+
+    getFilledPositionsNumber() {
+      const firstEmptyPosition = this.icons.findIndex((icon) => {
+        return icon.textContent === ICON_STATE['empty'];
       });
 
-      if (firstEmptyIconIndex === -1) {
-        return this.amount;
+      if (firstEmptyPosition === -1) {
+        return this.positions;
       }
 
-      return firstEmptyIconIndex;
+      return firstEmptyPosition;
     }
 
-    fillRatingBar(index) {
-      const filled = this.calcFilled(index);
-
-      this.icons.forEach((icon, i) => {
-        icon.textContent = (i < filled) ? ICON_STATE['filled'] : ICON_STATE['empty'];
-      });
-
-      this.setFilled(filled).setInputValue(filled);
-    }
-
-    calcFilled(index) {
-      const filled = this.filled - 1;
-
-      if (index !== filled) {
-        return index + 1;
-      }
-
-      if (
-        index === filled
-        && filled !== 0
-      ) {
-        return index;
-      }
-
-      return 0;
+    defineEventListeners() {
+      return [
+        {
+          element: this.root,
+          event: 'click',
+          handler: this.handleRateButtonClick.bind(this),
+        },
+      ];
     }
 
     handleRateButtonClick(event) {
       const et = event.target;
 
       if (et.classList.contains(ClassName.ICON)) {
-        const index = this.extractAttr(et, Attribute.INDEX);
-        this.fillRatingBar(index);
+        const selectedPosition = 1 + this.getAttributeNumericalValue(et, Attribute.INDEX);
+        const filledPositions = this.findFilledPositionsNumber(selectedPosition);
+        this.setFilled(filledPositions);
+        this.setInputValue(filledPositions);
+        this.drawRatingBar(filledPositions);
       }
+    }
+
+    drawRatingBar(filled) {
+      this.icons.forEach((icon, i) => {
+        icon.textContent = (i < filled) ? ICON_STATE['filled'] : ICON_STATE['empty'];
+      });
+    }
+
+    findFilledPositionsNumber(selectedPosition) {
+      const lastFilledPosition = this.filled;
+      const isLastFilledPosition = selectedPosition === lastFilledPosition;
+
+      if (!isLastFilledPosition) {
+        return selectedPosition;
+      }
+
+      return lastFilledPosition - 1;
     }
   }
 

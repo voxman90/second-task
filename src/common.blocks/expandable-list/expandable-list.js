@@ -15,19 +15,19 @@ const ExpandableList = ((document) => {
       this.body = this.root.lastElementChild;
       this.icon = this.head.lastElementChild;
 
-      this.attachEventListeners();
+      this.bind();
     }
 
-    attachEventListeners() {
+    bind() {
       this.listeners = [
         {
-          elem: this.root,
+          element: this.root,
           event: 'click',
-          callback: this.handleHeadClick.bind(this),
+          handler: this.handleHeadClick.bind(this),
         },
       ];
 
-      this.bindEventListeners(this.listeners);
+      this.attachMultipleEventListeners(this.listeners);
     }
 
     handleHeadClick() {
@@ -48,12 +48,12 @@ const ExpandableList = ((document) => {
     }
 
     off() {
-      this.removeEventListeners(this.listeners);
+      this.removeMultipleEventListeners(this.listeners);
       return this;
     }
 
     on() {
-      this.bindEventListeners(this.listeners);
+      this.attachMultipleEventListeners(this.listeners);
       return this;
     }
   }

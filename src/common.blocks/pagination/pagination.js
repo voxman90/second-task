@@ -6,7 +6,7 @@ const Pagination = ((document) => {
     pages: 25,
     positions: 5,
     descriptor: () => {},
-    callback: () => {},
+    handler: () => {},
   }
 
   const ClassName = {
@@ -40,7 +40,7 @@ const Pagination = ((document) => {
       this.connectBasis();
 
       this.updatePaginator(this.state.current);
-      this.attachEventListeners();
+      this.bind();
     }
 
     connectBasis() {
@@ -110,8 +110,8 @@ const Pagination = ((document) => {
         .highlightCurrent(currentIndex)
         .updateCaption();
 
-      const { current, callback } = this.state;
-      callback(current);
+      const { current, handler } = this.state;
+      handler(current);
     }
 
     clearPositions() {
@@ -289,24 +289,24 @@ const Pagination = ((document) => {
       return 'center';
     }
 
-    attachEventListeners() {
-      this.bindEventListeners([
+    bind() {
+      this.attachMultipleEventListeners([
         {
-          elem: this.buttonBackward,
+          element: this.buttonBackward,
           event: 'click',
-          callback: this.handlebuttonBackwardClick.bind(this),
+          handler: this.handlebuttonBackwardClick.bind(this),
         },
 
         {
-          elem: this.buttonForward,
+          element: this.buttonForward,
           event: 'click',
-          callback: this.handlebuttonForwardClick.bind(this),
+          handler: this.handlebuttonForwardClick.bind(this),
         },
 
         {
-          elem: this.tr,
+          element: this.tr,
           event: 'click',
-          callback: this.handleTableRowClick.bind(this),
+          handler: this.handleTableRowClick.bind(this),
         },
       ]);
     }
@@ -338,10 +338,10 @@ const Pagination = ((document) => {
       return true;
     }
 
-    isClickableAndNotCurrent(elem) {
+    isClickableAndNotCurrent(element) {
       return (
-        elem.classList.contains(Modifier.TABLE_DATA_CLICABLE)
-        && !elem.classList.contains(Modifier.TABLE_DATA_CURRENT)
+        element.classList.contains(Modifier.TABLE_DATA_CLICABLE)
+        && !element.classList.contains(Modifier.TABLE_DATA_CURRENT)
       );
     }
   }

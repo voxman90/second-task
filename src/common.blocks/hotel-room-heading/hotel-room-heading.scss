@@ -30,7 +30,7 @@
     right: -2.5625em;
     bottom: 0.4375em;
 
-    font-size: 0.875em;
+    font-size: 0.75rem;
     text-transform: uppercase;
     color: map.get(colors.$map, 'purple');
   }
@@ -39,11 +39,11 @@
 .hotel-room-heading__right {
   @include fonts.Montserrat-normal;
   color: map.get(colors.$map, dark-shade-50);
-  font-size: 0.75em;
-  line-height: 1.5em;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
 }
 
 .hotel-room-heading__price {
   @include fonts.Montserrat-bold;
-  font-size: 1.17em;
+  font-size: 0.875rem;
 }

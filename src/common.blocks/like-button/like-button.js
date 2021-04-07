@@ -16,7 +16,7 @@ const LikeButton = ((document) => {
       this.input = this.root.firstElementChild;
       this.counter = this.root.lastElementChild;
 
-      this.attachEventListeners();
+      this.bind();
     }
 
     setValue(value) {
@@ -28,16 +28,16 @@ const LikeButton = ((document) => {
       return parseInt(this.input.getAttribute(Attributes.VALUE, 10));
     }
 
-    attachEventListeners() {
+    bind() {
       this.listeners = [
         {
-          elem: this.root,
+          element: this.root,
           event: 'change',
-          callback: this.handleLikeButtonClick.bind(this),
+          handler: this.handleLikeButtonClick.bind(this),
         },
       ];
 
-      this.bindEventListeners(this.listeners);
+      this.attachMultipleEventListeners(this.listeners);
     }
 
     handleLikeButtonClick() {

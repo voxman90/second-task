@@ -25,18 +25,14 @@ const Carousel = (($, document) => {
     NAV_ITEM_CHECKED     : 'carousel__nav-panel-item_checked',
   }
 
-  const transitionEndEventName = Utility.getTransitionEndEventName();
+  const Event = {
+    transitionEndEventName : Utility.getTransitionEndEventName(),
+  }
 
   class Carousel extends BEMComponent {
     constructor(element) {
       super(element, 'carousel');
 
-      this.connectBasis();
-
-      this.attachEventListeners();
-    }
-
-    connectBasis() {
       this.$items = $(Selector.ITEM, this.root);
       this.prevButton = $(Selector.BUTTON_PREV, this.root).get(0);
       this.nextButton = $(Selector.BUTTON_NEXT, this.root).get(0);
@@ -44,33 +40,54 @@ const Carousel = (($, document) => {
       this.$navItems = $(this.navPanel).children();
 
       this.amount = this.$items.length;
-      this.setActive(0).checkNavItem(0);
+      this.setActive(0);
+      this.checkNavItem(0);
 
       this.isSliding = false;
-    };
 
-    attachEventListeners() {
-      this.listeners = [
+      this.listeners = this.defineEventListeners();
+      this.attachMultipleEventListeners(this.listeners);
+    }
+
+    setItems(itemProps) {
+      $(this.$items).each((i, item) => {
+        $(item).children().eq(i).attr(itemProps[i]);
+      });
+    }
+
+    setActive(index) {
+      this.active = index;
+      $(this.$items).eq(index).addClass(Modifier.ITEM_ACTIVE);
+    }
+
+    getNextSlideIndex(from) {
+      return this.mod(from + 1, this.amount);
+    }
+
+    getPrevSlideIndex(from) {
+      return this.mod(from - 1, this.amount);
+    }
+
+    defineEventListeners() {
+      return [
         {
-          elem: this.prevButton,
+          element: this.prevButton,
           event: 'click',
-          callback: this.handlePrevButtonClick.bind(this),
+          handler: this.handlePrevButtonClick.bind(this),
         },
 
         {
-          elem: this.nextButton,
+          element: this.nextButton,
           event: 'click',
-          callback: this.handleNextButtonClick.bind(this),
+          handler: this.handleNextButtonClick.bind(this),
         },
 
         {
-          elem: this.navPanel,
+          element: this.navPanel,
           event: 'click',
-          callback: this.handleNavPanelClick.bind(this),
+          handler: this.handleNavPanelClick.bind(this),
         },
       ];
-
-      this.bindEventListeners(this.listeners);
     }
 
     slideTo(from, to) {
@@ -103,56 +120,37 @@ const Carousel = (($, document) => {
 
     async slide(args) {
       const { from, to, order, direction, active } = args;
-      const curr = $(this.$items).eq(from);
-      const next = $(this.$items).eq(to);
 
-      async function a(event) {
-        $(event.target).removeClass(`${active} ${direction}`);
-        return null;
-      }
+      const currSlide = $(this.$items).eq(from);
+      const nextSlide = $(this.$items).eq(to);
 
-      async function b(event) {
-        $(event.target).removeClass(`${order} ${direction}`).addClass(active);
-        return null;
-      }
+      $(nextSlide).addClass(order);
 
-      $(curr).one(transitionEndEventName, a);
+      this.reflow(nextSlide);
 
-      $(next).one(transitionEndEventName, b);
-
-      $(next).addClass(order);
-
-      setTimeout(() => {
-        $(curr).addClass(direction);
-        $(next).addClass(direction);
-      }, 0);
-
-      const iss = this.isSliding;
-      console.log('до завершения, должно быть true', iss);
-      await a;
-      await b;
-      this.isSliding = false;
-      console.log('присвоили false', this.isSliding);
-    }
-
-    setItems(itemProps) {
-      $(this.$items).each((i, item) => {
-        $(item).children().eq(i).attr(itemProps[i]);
+      const currSlideTransitionEndEventPromise = new Promise((resolve, reject) => {
+        $(currSlide).one(Event.transitionEndEventName, (event) => {
+          $(event.currentTarget).removeClass(`${active} ${direction}`);
+          return resolve();
+        })
       });
-      return this;
-    }
 
-    setActive(index) {
-      this.active = index;
-      $(this.$items).eq(index).addClass(Modifier.ITEM_ACTIVE);
+      const nextSlideTransitionEndEventPromise = new Promise((resolve, reject) => {
+        $(nextSlide).one(Event.transitionEndEventName, (event) => {
+          $(event.currentTarget).removeClass(`${order} ${direction}`).addClass(active);
+          return resolve();
+        })
+      });
 
-      return this;
+      $(currSlide).addClass(direction);
+      $(nextSlide).addClass(direction);
+
+      await currSlideTransitionEndEventPromise;
+      await nextSlideTransitionEndEventPromise;
     }
 
     deactivateItem(index) {
       $(this.$items).eq(index).removeClass(Modifier.ITEM_ACTIVE);
-
-      return this;
     }
 
     checkNavItem(index) {
@@ -162,44 +160,75 @@ const Carousel = (($, document) => {
         })
         .eq(index)
         .addClass(Modifier.NAV_ITEM_CHECKED);
-
-      return this;
-    }
-
-    handlePrevButtonClick() {
-      if (this.isSliding === false) {
-        this.isSliding = true;
-        const from = this.active;
-        const to = this.mod(from - 1, this.amount);
-        this.active = to;
-        this.checkNavItem(to).slideToRight(from, to);
-      }
     }
 
     handleNextButtonClick() {
-      if (this.isSliding === false) {
+      if (!this.isSliding) {
         this.isSliding = true;
+
         const from = this.active;
-        const to = this.mod(from + 1, this.amount);
+        const to = this.getNextSlideIndex(from);
+
+        this.slideToLeft(from, to)
+          .then(() => {
+            this.isSliding = false
+          })
+          .catch((error) => {
+            console.log(`%c ${this.namespace}, slideToLeft -> ${error}`, 'color: darkgreen');
+          });
+
         this.active = to;
-        this.checkNavItem(to).slideToLeft(from, to);
+        this.checkNavItem(to);
+      }
+    }
+
+    handlePrevButtonClick() {
+      if (!this.isSliding) {
+        this.isSliding = true;
+
+        const from = this.active;
+        const to = this.getPrevSlideIndex(from);
+
+        this.slideToRight(from, to)
+          .then(() => {
+            this.isSliding = false
+          })
+          .catch((error) => {
+            console.log(`%c ${this.namespace}, slideToRight -> ${error}`, 'color: darkgreen');
+          });
+
+        this.active = to;
+        this.checkNavItem(to);
       }
     }
 
     handleNavPanelClick(event) {
-      if (this.isSliding === false) {
+      const isThisNavItem = $(event.target).hasClass(ClassName.NAV_ITEM);
+      const isThisChekedNavItem = $(event.target).hasClass(Modifier.NAV_ITEM_CHECKED);
+      if (
+        !this.isSliding
+        && isThisNavItem
+        && !isThisChekedNavItem
+      ) {
         this.isSliding = true;
-        console.log(this.isSliding);
-        const et = event.target;
-        if ($(et).hasClass(ClassName.NAV_ITEM)) {
-          const from = this.active;
-          const to = parseInt($(et).attr('data-item'), 10);
-          if (from !== to) {
-            this.active = to;
-            this.checkNavItem(to).slideTo(from, to);
-          }
-        }
+
+        const from = this.active;
+        const to = this.getAttributeNumericalValue(event.target, 'data-item')
+
+        this.slideTo(from, to)
+          .then(() => {
+            this.isSliding = false;
+          }).catch((error) => {
+            console.log(`%c ${this.namespace}, slideTo -> ${error}`, 'color: darkgreen');
+          });
+
+        this.active = to;
+        this.checkNavItem(to);
       }
+    }
+
+    reflow(element) {
+      $(element).outerHeight();
     }
 
     mod(a, b) {
@@ -207,8 +236,8 @@ const Carousel = (($, document) => {
     }
 
     isCloserToLeft(from, to) {
-      const length = this.amount;
-      return this.mod(from - to, length) > this.mod(to - from, length);
+      const slidesAmount = this.amount;
+      return this.mod(from - to, slidesAmount) > this.mod(to - from, slidesAmount);
     }
   }
 

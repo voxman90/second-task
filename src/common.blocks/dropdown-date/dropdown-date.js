@@ -31,7 +31,19 @@ const DropdownDate = (($, document) => {
 
       this.attachInputMask();
 
-      this.attachEventListeners();
+      this.attachMultipleEventListeners([
+        {
+          element: this.iconArrival,
+          event: 'click',
+          handler: this.handleIconClick.bind(this),
+        },
+
+        {
+          element: this.iconDeparture,
+          event: 'click',
+          handler: this.handleIconClick.bind(this),
+        },
+      ]);
     }
 
     connectBasis() {
@@ -70,22 +82,6 @@ const DropdownDate = (($, document) => {
       $(this.inputDeparture).inputmask({
         oncomplete: this.handleInputDepartureComplete.bind(this),
       });
-    }
-
-    attachEventListeners() {
-      this.bindEventListeners([
-        {
-          elem: this.iconArrival,
-          event: 'click',
-          callback: this.handleIconClick.bind(this),
-        },
-
-        {
-          elem: this.iconDeparture,
-          event: 'click',
-          callback: this.handleIconClick.bind(this),
-        },
-      ]);
     }
 
     closeBar() {

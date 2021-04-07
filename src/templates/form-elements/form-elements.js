@@ -20,8 +20,8 @@ import { ExpandableList } from '../../common.blocks/expandable-list/expandable-l
   }
 
   function getComp(selector, Class) {
-    const elem = $(selector).get(0);
-    return new Class(elem);
+    const element= $(selector).get(0);
+    return new Class(element);
   }
 
   function initDropdownFacilitiesComps() {

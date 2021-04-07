@@ -335,7 +335,37 @@ const Calendar = ((document) => {
 
       this.drawCalendar();
 
-      this.attachEventListeners();
+      this.attachMultipleEventListeners([
+        { 
+          element: this.buttonBackward,
+          event: 'click',
+          handler: this.handleButtonBackwardClick.bind(this),
+        },
+
+        {
+          element: this.buttonForward,
+          event: 'click',
+          handler: this.handleButtonForwardClick.bind(this),
+        },
+
+        { 
+          element: this.buttonClear,
+          event: 'click',
+          handler: this.handleButtonClearClick.bind(this),
+        },
+
+        { 
+          element: this.buttonApply,
+          event: 'click',
+          handler: this.handleButtonApplyClick.bind(this),
+        },
+
+        { 
+          element: this.tableBody,
+          event: 'click',
+          handler: this.handleTableBodyClick.bind(this),
+        },
+      ]);
     }
 
     connectBasis() {
@@ -517,39 +547,6 @@ const Calendar = ((document) => {
       );
     }
 
-    attachEventListeners() {
-      this.bindEventListeners([
-        { 
-          elem: this.buttonBackward,
-          event: 'click',
-          callback: this.handleButtonBackwardClick.bind(this),
-        },
-
-        {
-          elem: this.buttonForward,
-          event: 'click',
-          callback: this.handleButtonForwardClick.bind(this),
-        },
-
-        { 
-          elem: this.buttonClear,
-          event: 'click',
-          callback: this.handleButtonClearClick.bind(this),
-        },
-
-        { 
-          elem: this.buttonApply,
-          event: 'click',
-          callback: this.handleButtonApplyClick.bind(this),
-        },
-
-        { 
-          elem: this.tableBody,
-          event: 'click',
-          callback: this.handleTableBodyClick.bind(this),
-        },
-      ]);
-    }
 
     handleTableBodyClick(event) {
       const et = event.target;

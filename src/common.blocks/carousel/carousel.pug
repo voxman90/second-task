@@ -9,14 +9,11 @@ mixin carousel(args = { itemAmount: 4 })
           class = 'carousel__item js-carousel__item',
           data-item = n,
         )
-          div(
-            style = `background: #${n}${n}${n}555; height: 150px;`
+          img(
+            class = 'carousel__image',
+            src = '#',
+            alt = 'No available',
           )
-          //- img(
-          //-   class = 'carousel__image',
-          //-   src = '',
-          //-   alt = 'No available',
-          //- )
         - n += 1
     .carousel__control.js-carousel-control
       +icon({ name: 'expand_more' })(

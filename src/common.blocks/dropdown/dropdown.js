@@ -101,7 +101,7 @@ const Dropdown = (() => {
         this.connectButtons();
       }
 
-      this.bindEventListeners(this.listeners);
+      this.attachMultipleEventListeners(this.listeners);
     }
 
     connectBasis() {
@@ -118,27 +118,27 @@ const Dropdown = (() => {
 
       this.listeners.push(
         {
-          elem: this.input,
+          element: this.input,
           event: 'click',
-          callback: this.handleInputClick.bind(this),
+          handler: this.handleInputClick.bind(this),
         },
 
         {
-          elem: this.input,
+          element: this.input,
           event: 'keydown',
-          callback: this.handleInputKeydown.bind(this),
+          handler: this.handleInputKeydown.bind(this),
         },
 
         {
-          elem: this.optionsNode,
+          element: this.optionsNode,
           event: 'click',
-          callback: this.handleOptionsClick.bind(this),
+          handler: this.handleOptionsClick.bind(this),
         },
 
         {
-          elem: this.optionsNode,
+          element: this.optionsNode,
           event: 'keydown',
-          callback: this.handleOptionsKeydown.bind(this),
+          handler: this.handleOptionsKeydown.bind(this),
         },
       );
     }
@@ -153,27 +153,27 @@ const Dropdown = (() => {
 
       this.listeners.push(
         {
-          elem: this.buttonClear,
+          element: this.buttonClear,
           event: 'click',
-          callback: this.handleButtonClearClick.bind(this),
+          handler: this.handleButtonClearClick.bind(this),
         },
 
         {
-          elem: this.buttonClear,
+          element: this.buttonClear,
           event: 'keydown',
-          callback: this.handleButtonClearKeydown.bind(this),
+          handler: this.handleButtonClearKeydown.bind(this),
         },
 
         {
-          elem: this.buttonApply,
+          element: this.buttonApply,
           event: 'click',
-          callback: this.handleButtonApplyClick.bind(this),
+          handler: this.handleButtonApplyClick.bind(this),
         },
 
         {
-          elem: this.buttonApply,
+          element: this.buttonApply,
           event: 'keydown',
-          callback: this.handleButtonApplyKeydown.bind(this),
+          handler: this.handleButtonApplyKeydown.bind(this),
         },
       );
     }
