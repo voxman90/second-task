@@ -1,11 +1,8 @@
 {
- "name": "range-slider",
- "techs": [
-  "js",
-  "scss",
-  "pug"
- ],
- "deps": [
-  "label"
- ]
+  "name": "nav-bar",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": null
 }

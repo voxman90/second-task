@@ -48,6 +48,19 @@
         "./templates/cards/cards.scss"
       ],
       "scripts": null
+    },
+
+    {
+      "name": "headers-and-footers",
+      "template": "Headers and Footers",
+      "data": "headers-and-footers",
+      "styles": [
+        "./styles/style.scss",
+        "./templates/headers-and-footers/headers-and-footers.scss"
+      ],
+      "scripts": [
+        "./templates/headers-and-footers/headers-and-footers.js"
+      ]
     }
   ]
 }

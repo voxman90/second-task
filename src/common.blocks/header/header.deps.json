@@ -1,11 +1,12 @@
 {
- "name": "header",
- "techs": [
-  "scss",
-  "pug"
- ],
- "deps": [
-  "logo",
-  "button-custom"
- ]
+  "name": "header",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": [
+    "logo",
+    "button-short",
+    "button-long"
+  ]
 }

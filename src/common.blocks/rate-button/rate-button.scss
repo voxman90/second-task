@@ -5,6 +5,8 @@
 .rate-button {
   display: flex;
   flex-direction: row-reverse;
+  width: -webkit-min-content;
+  width: -moz-min-content;
   width: min-content;
   height: 1.5rem;
 }

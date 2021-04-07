@@ -1,10 +1,11 @@
 {
- "name": "header-nav",
+ "name": "range-slider",
  "techs": [
+  "js",
   "scss",
   "pug"
  ],
  "deps": [
-  "logo"
+  "label"
  ]
 }

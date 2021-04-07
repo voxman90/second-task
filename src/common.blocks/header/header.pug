@@ -1,43 +1,43 @@
 header.header
-    .header__logo
-        +logo("small", true, true)
-    nav.header__nav
+  .header__logo
+    +logo('small', true, true)(class = 'js-auto-init')
+  nav.header__nav-bar
+    ul
+      li.header__nav-item
+        a(href='#about')='О нас'
+      li.header__nav-item.header__nav-exp
+        a(href='#services')='Услуги'
         ul
-        li.header__nav-item
-            a(href="#about")='О нас'
-        li.header__nav-item.header__nav-exp
-            a(href="#services")='Услуги'
-            ul
-            li.header__nav-item
-                a='Услуги_001'
-            li.header__nav-item
-                a='Услуги_002'
-        li.header__nav-item
-            a(href="#vacancies")='Вакансии'
-        li.header__nav-item
-            a(href="#news")='Новости'
-        li.header__nav-item.header__nav-exp
-            a(href="#agreements")='Соглашения'
-            ul
-            li.header__nav-item
-                a='Соглашения_001'
-            li.header__nav-item
-                a='Соглашения_002'
-        li.header__nav-hamburger='menu'
-            ul
-            li
-                a(href="#about")='О нас'
-            li
-                a(href="#services")='Услуги'
-            li
-                a(href="#vacancies")='Вакансии'
-            li
-                a(href="#news")='Новости'
-            li
-                a(href="#agreements")='Соглашения'
-            li 
-                a(href="#sign-in")='Войти'
-            li
-                a(href="#sign-on")='Зарегистрироваться'
-        +button("border", "войти", "button-sign-in")(class="header__button-sign-in")
-        +button("fill", "зарегистрироваться", "button-sign-up")(class="header__button-sign-up")
+          li.header__nav-item
+            a='Услуги_001'
+          li.header__nav-item
+            a='Услуги_002'
+      li.header__nav-item
+        a(href='#vacancies')='Вакансии'
+      li.header__nav-item
+        a(href='#news')='Новости'
+      li.header__nav-item.header__nav-exp
+        a(href='#agreements')='Соглашения'
+        ul
+          li.header__nav-item
+            a='Соглашения_001'
+          li.header__nav-item
+            a='Соглашения_002'
+      li.header__nav-hamburger='menu'
+        ul
+          li
+            a(href='#about')='О нас'
+          li
+            a(href='#services')='Услуги'
+          li
+            a(href='#vacancies')='Вакансии'
+          li
+            a(href='#news')='Новости'
+          li
+            a(href='#agreements')='Соглашения'
+          li
+            a(href='#sign-in')='Войти'
+          li
+            a(href='#sign-on')='Зарегистрироваться'
+    +button-short({ name: 'button-sign-in', text: 'ВОЙТИ', isBordered: true })(class='header__button-sign-in')
+    +button-long({ name: 'button-sign-up', text: 'ЗАРЕГИСТРИРОВАТЬСЯ', isFilled: true, isArrowed: false })(class='header__button-sign-up')

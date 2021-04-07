@@ -117,19 +117,19 @@ html
             +range-slider()
             +label('BUTTONS').box_margin-bottom_1rem
             .box_margin-bottom_30px
-              +button-short({ name: 'button-short-1st', text: 'CLICK ME', fill: true })
+              +button-short({ name: 'button-short-1st', text: 'CLICK ME', isFilled: true })
               .form-elements__plug
-              +button-short({ name: 'button-short-2nd', text: 'CLICK ME', fill: true })(class = 'form-elements__button-filled_faded')
+              +button-short({ name: 'button-short-2nd', text: 'CLICK ME', isFilled: true })(class = 'form-elements__button-filled_faded')
             .box_margin-bottom_30px
-              +button-short({ name: 'button-short-3rd', text: 'CLICK ME', border: true })
+              +button-short({ name: 'button-short-3rd', text: 'CLICK ME', isBordered: true })
               .form-elements__plug
-              +button-short({ name: 'button-short-4th', text: 'CLICK ME', border: true })(class = 'form-elements__button-bordered_faded')
+              +button-short({ name: 'button-short-4th', text: 'CLICK ME', isBordered: true })(class = 'form-elements__button-bordered_faded')
             .box_margin-bottom_30px
               +button({ name: 'button-1st', text: 'CLICK ME' })
               .form-elements__plug
               +button({ name: 'button-2nd', text: 'CLICK ME' })(class = 'form-elements__button_faded')
             .box_margin-bottom_40px
-              +button-long({ name: 'button-long-1st', text: 'ПЕРЕЙТИ К ОПЛАТЕ', fill: true, arrowed: true })
+              +button-long({ name: 'button-long-1st', text: 'ПЕРЕЙТИ К ОПЛАТЕ', isFilled: true, isArrowed: true })
             +pagination({ amount: 10 })(class = 'js-auto-init')
           .form-elements__9th-block
             +dropdown-guests('dropdown-guests-2nd', 'DROPDOWN')(class = 'js-dropdown-guests-2nd')

@@ -1,0 +1,27 @@
+mixin nav-bar__item(args = {})
+  - const { ref, text, title = null } = args
+  li.nav-bar__item
+    a(
+      class = 'nav-bar__ref',
+      href = ref,
+      title,
+    )= text
+    if block
+      block
+
+mixin nav-bar__list(args = {})
+  - const { ref, text, title = null, nav-items } = args
+  +nav-bar__item
+    ul.nav-bar__list
+      each nav-item in nav-items
+        +nav-bar__item(args)
+
+mixin nav-bar(nav-items = {})
+  nav.nav-bar
+    ul
+      each nav-item in nav-items
+        - const { nav-items } = nav-item
+        if nav-items !== undefined
+          +nav-bar__list(args)
+        else
+          +nav-bar__item(args)

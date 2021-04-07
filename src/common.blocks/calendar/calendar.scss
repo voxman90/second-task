@@ -46,6 +46,10 @@
 
   color: map.get(colors.$map, "purple");
 
+  &::-moz-selection {
+    background: transparent;
+  }
+
   &::selection {
     background: transparent;
   }
@@ -64,6 +68,10 @@
   color: map.get(colors.$map, "purple");
 
   transform: rotate(180deg);
+
+  &::-moz-selection {
+    background: transparent;
+  }
 
   &::selection {
     background: transparent;
@@ -198,6 +206,8 @@
 .calendar__buttons {
   box-sizing: border-box;
   width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   margin-top: 20px;
 
@@ -222,6 +232,10 @@
     color: map.get(colors.$map, dark-shade-75);
   }
 
+  &::-moz-selection {
+    background: transparent;
+  }
+
   &::selection {
     background: transparent;
   }
@@ -239,6 +253,10 @@
   float: right;
 
   cursor: pointer;
+
+  &::-moz-selection {
+    background: transparent;
+  }
 
   &::selection {
     background: transparent;

@@ -1,0 +1,108 @@
+@use "sass:map";
+@use "sass:color";
+@use "../../styles/colors" as colors;
+@use "../../styles/text-mixins" as fonts;
+
+.header__nav-bar {
+  float: right;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  height: 4.375rem;
+
+  & > ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+  }
+}
+
+.header__nav-item {
+  display: inline-block;
+  
+  & > a {
+      display: block;
+      padding: 0.625rem;
+
+      background-color: #FFFFFF;
+
+      text-align: center;
+      white-space: nowrap;
+
+      text-decoration: none;
+      color: map.get(colors.$map,  dark-shade-50);
+      @include fonts.Montserrat-normal;
+      font-size: 0.875rem;
+
+      &:hover {
+      @include fonts.Montserrat-bold;
+      color: map.get(colors.$map,  dark-shade-75);
+      }
+  }
+}
+
+.header__nav-exp {
+  position: relative;
+
+  & > ul {
+      list-style: none;
+
+      position: absolute;
+      z-index: 10;
+      top: 2.5rem;
+      visibility: hidden;
+
+      width: 9rem;
+      margin: 0;
+      padding: 0;
+
+      background-color: white;
+
+      box-shadow: 0 0 1.25rem map.get(colors.$map, dark-shade-05);
+
+      transition: visibility 300ms;
+
+      & > li {
+      width: 100%;
+
+      & > a { 
+          padding: 0.625rem 0 0.625rem 0.625rem;
+
+          border-bottom: 1px solid map.get(colors.$map, dark-shade-05);
+
+          text-align: left;
+      }
+      }
+
+      & > li:last-child > a {
+      border-bottom: 0;
+      } 
+
+      &:hover {
+      visibility: visible;
+      }
+  }
+
+  & > a {
+      padding-right: 2.125rem;
+      
+      &::after {
+      position: absolute;
+      right: 0.625rem;
+
+      content: "expand_more";
+      @include fonts.material-icons;
+      line-height: 1.25rem;
+      }
+      
+      &:hover ~ ul {
+      visibility: visible;
+      }
+
+      &:hover::after {
+      color: map.get(colors.$map,  dark-shade-75);
+      }
+  }
+}
