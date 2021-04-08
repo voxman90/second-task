@@ -7,12 +7,12 @@ include ../../common.blocks/label/label.pug
 include ../../common.blocks/navbar/navbar.pug
 include ../../common.blocks/header/header.pug
 - const data = htmlWebpackPlugin.options.data
-- const { title, navbarItems } = data
+- const { pageTitle, navbarItems } = data
 doctype html
 html
   head
     meta(charset='UTF-8')
-    title= title
+    title= pageTitle
   body
     .headers-and-footers
       +header({ navbarItems })

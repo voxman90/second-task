@@ -3,17 +3,108 @@
 @use "../../styles/colors" as colors;
 @use "../../styles/text-mixins" as fonts;
 
+$dark-shade-50: map.get(colors.$map, 'dark-shade-50');
+$dark-shade-75: map.get(colors.$map, 'dark-shade-75');
+
 .navbar {
+  height: 100%;
+}
+
+.navbar__menu {
   height: 100%;
   display: flex;
   align-items: center;
+
+  list-style-type: none;
 }
 
 .navbar__item {
   display: inline-block;
-  padding: 1.375rem 0.625rem;
+  padding: 0.75rem 0;
+}
 
+.navbar__link {
+  position: relative;
+
+  display: inline-block;
+  padding: 0.625rem;
+
+  @include fonts.Montserrat-normal;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  color: $dark-shade-50;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active,
+  &:hover,
+  &:focus {
+    color: transparent;
+
+    &::after {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &:link,
+  &:visited {
+    text-decoration: none;
+  }
+
+  &::after {
+    content: attr(data-text);
+  
+    visibility: hidden;
+    opacity: 0;
+  
+    position: absolute;
+    top: 0.625rem;
+    left: 0.6rem;
+  
+    @include fonts.Montserrat-bold;
+    color: $dark-shade-75;
+  }
+}
+
+.navbar__dropdown {
+  padding: 0.75rem 0;
+}
+
+.navbar__dropdown-head {
   cursor: pointer;
+
+  &:hover > .navbar__icon {
+    color: $dark-shade-75;
+  }
+}
+
+.navbar__dropdown-link {
+  vertical-align: middle;
+  padding-right: 0;
+
+  &:focus + .navbar__icon {
+    color: $dark-shade-75;
+  }
+}
+
+.navbar__icon {
+  height: 1.375rem;
+  padding: 0.625rem 0.625rem 0.625rem 0;
+
+  vertical-align: middle;
+  color: $dark-shade-50;
+}
+
+.navbar__dropdown-list {
+  padding: 1.8125rem;
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
 }
 
 .navbar__button {
@@ -25,6 +116,10 @@
   height: 2.125rem;
 
   border-radius: 1.075rem;
+
+  &:focus {
+    opacity: 0.5;
+  }
 }
 
 .navbar__button-sign-up {
@@ -32,41 +127,14 @@
   height: 2.125rem;
 
   border-radius: 1.075rem;
-}
 
-.navbar__link {
-  display: inline-block;
-
-  @include fonts.Montserrat-normal;
-  font-size: 0.875rem;
-  line-height: 1.5rem;
-  vertical-align: middle;
-
-  &:link,
-  &:visited {
-    color: map.get(colors.$map, 'dark-shade-50');
-    text-decoration: none;
+  &:focus {
+    opacity: 0.5;
   }
-}
-
-.navbar__icon {
-  height: 1.375rem;
-
-  vertical-align: middle;
-  color: map.get(colors.$map, 'dark-shade-50');
-}
-
-.navbar__dropdown {
-
 }
 
 .navbar__dropdown-list {
   display: none;
-}
 
-.navbar__list-item {
-
-}
-
-.navbar__dropdown {
+  list-style-type: none;
 }
