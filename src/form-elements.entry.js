@@ -1,3 +1,4 @@
+import "./styles/style.scss";
 import "./common.blocks/logo/logo.scss";
 import "./common.blocks/label/label.scss";
 import "./common.blocks/input-text/input-text.scss";
@@ -39,9 +40,7 @@ import "./common.blocks/dropdown-facilities/dropdown-facilities.js";
 import "./common.blocks/expandable-list/expandable-list.js";
 import "./common.blocks/like-button/like-button.js";
 import "./common.blocks/rate-button/rate-button.js";
-import "./common.blocks/range-slider/range-slider.js";
 import "./common.blocks/pagination/pagination.js";
-import "./styles/style.scss";
 import "./styles/boxes.scss";
 import "./templates/form-elements/form-elements.scss";
 import "./templates/form-elements/form-elements.js";

@@ -1,5 +1,13 @@
+include ../../common.blocks/button/button.pug
+include ../../common.blocks/button-short/button-short.pug
+include ../../common.blocks/button-long/button-long.pug
+include ../../common.blocks/icon/icon.pug
+include ../../common.blocks/logo/logo.pug
+include ../../common.blocks/label/label.pug
+include ../../common.blocks/navbar/navbar.pug
+include ../../common.blocks/header/header.pug
 - const data = htmlWebpackPlugin.options.data
-- const { title } = data
+- const { title, navbarItems } = data
 doctype html
 html
   head
@@ -7,4 +15,4 @@ html
     title= title
   body
     .headers-and-footers
-      include ../../common.blocks/header/header.pug
+      +header({ navbarItems })

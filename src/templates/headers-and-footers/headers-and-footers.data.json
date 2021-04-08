@@ -1,3 +1,21 @@
 {
-  "title": "Headers and Footers"
+  "title": "Headers and Footers",
+  "navbarItems": [
+    { "text": "О нас", "href": "#about" },
+    { "text": "Услуги", "href": "#services", "isExpandable": true,
+      "items": [
+        { "text": "Услуги", "href": "#services" },
+        { "text": "Услуги", "href": "#services" },
+        { "text": "Услуги", "href": "#services" }
+      ]
+    },
+    { "text": "Вакансии", "href": "#vacancies" },
+    { "text": "Новости", "href": "#news" },
+    { "text": "Соглашения", "href": "#agreements", "isExpandable": true,
+      "items": [
+        { "text": "Соглашения", "href": "#agreements" },
+        { "text": "Соглашения", "href": "#agreements" }
+      ]
+    }
+  ]
 }

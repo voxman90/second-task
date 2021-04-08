@@ -1,0 +1,13 @@
+{
+  "name": "navbar",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": [
+    "label",
+    "icon",
+    "button-short",
+    "button-long"
+  ]
+}

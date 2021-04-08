@@ -35,8 +35,6 @@
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 1px #FFFFFF,
-                0 0 2px 2px map.get(colors.$map, dark-shade-15);
   }
 }
 

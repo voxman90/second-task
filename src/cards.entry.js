@@ -1,3 +1,4 @@
+import "./styles/style.scss";
 import "./common.blocks/icon/icon.scss";
 import "./common.blocks/label/label.scss";
 import "./common.blocks/input-text/input-text.scss";
@@ -29,5 +30,4 @@ import "./common.blocks/carousel/carousel.js";
 import "./common.blocks/rate-button/rate-button.js";
 import "./common.blocks/card-hotel-room/card-hotel-room.js";
 import "./common.blocks/card-invoice/card-invoice.js";
-import "./styles/style.scss";
 import "./templates/cards/cards.scss";

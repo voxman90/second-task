@@ -171,6 +171,11 @@
 
 .dropdown__button-clear {
   float: left;
+
+  &:focus {
+    box-shadow: 0 0 0 1px #FFFFFF,
+                0 0 2px 2px map.get(colors.$map, dark-shade-15);
+  }
 }
 
 .dropdown__button-clear_hidden {
@@ -179,4 +184,9 @@
 
 .dropdown__button-apply {
   float: right;
+
+  &:focus {
+    box-shadow: 0 0 0 1px #FFFFFF,
+                0 0 2px 2px map.get(colors.$map, dark-shade-15);
+  }
 }

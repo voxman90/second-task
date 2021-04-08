@@ -1,0 +1,34 @@
+mixin navbar__item(args)
+  - const { href, text, title = null } = args
+  .navbar__item&attributes(attributes)
+    a(class = 'navbar__link', href = href, title = title)= text
+    if block
+      block
+
+mixin navbar__dropdown(args)
+  - const { items = [] } = args
+  .navbar__dropdown
+    .navbar__dropdown-head
+      +navbar__item(args)
+        +icon({ name: 'expand_more' })(class = 'navbar__icon')
+    .navbar__dropdown-list
+      each item in items
+        +navbar__item(item)(class = 'navbar__list-item')
+
+mixin navbar(args)
+  - const { isLoggedIn, navbarItems } = args
+  - const { isExpandable } = navbarItems
+  nav(class = 'navbar')&attributes(attributes)
+    each item in navbarItems
+      - const { isExpandable = false } = item
+      if isExpandable
+        +navbar__dropdown(item)
+      else
+        +navbar__item(item)
+    if isloggedIn
+      p= 'plug'
+    else
+      .navbar__button
+        +button-short({ name: 'button-sign-in', text: 'ВОЙТИ', isBordered: true })(class = 'navbar__button-sign-in')
+      .navbar__button
+        +button-long({ name: 'button-sign-up', text: 'ЗАРЕГИСТРИРОВАТЬСЯ', isFilled: true, isArrowed: false })(class = 'navbar__button-sign-up')

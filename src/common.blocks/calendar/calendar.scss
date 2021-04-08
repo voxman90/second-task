@@ -226,10 +226,9 @@
 
   cursor: pointer;
 
-  &:hover,
-  &:focus,
-  &:active {
-    color: map.get(colors.$map, dark-shade-75);
+  &:focus {
+    box-shadow: 0 0 0 1px #FFFFFF,
+                0 0 2px 2px map.get(colors.$map, dark-shade-15);
   }
 
   &::-moz-selection {
@@ -253,6 +252,11 @@
   float: right;
 
   cursor: pointer;
+
+  &:focus {
+    box-shadow: 0 0 0 1px #FFFFFF,
+                0 0 2px 2px map.get(colors.$map, dark-shade-15);
+  }
 
   &::-moz-selection {
     background: transparent;

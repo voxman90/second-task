@@ -1,0 +1,72 @@
+@use "sass:map";
+@use "sass:color";
+@use "../../styles/colors" as colors;
+@use "../../styles/text-mixins" as fonts;
+
+.navbar {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.navbar__item {
+  display: inline-block;
+  padding: 1.375rem 0.625rem;
+
+  cursor: pointer;
+}
+
+.navbar__button {
+  padding: 0 0.625rem;
+}
+
+.navbar__button-sign-in {
+  width: 5.4375rem;
+  height: 2.125rem;
+
+  border-radius: 1.075rem;
+}
+
+.navbar__button-sign-up {
+  width: 12.25rem;
+  height: 2.125rem;
+
+  border-radius: 1.075rem;
+}
+
+.navbar__link {
+  display: inline-block;
+
+  @include fonts.Montserrat-normal;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  vertical-align: middle;
+
+  &:link,
+  &:visited {
+    color: map.get(colors.$map, 'dark-shade-50');
+    text-decoration: none;
+  }
+}
+
+.navbar__icon {
+  height: 1.375rem;
+
+  vertical-align: middle;
+  color: map.get(colors.$map, 'dark-shade-50');
+}
+
+.navbar__dropdown {
+
+}
+
+.navbar__dropdown-list {
+  display: none;
+}
+
+.navbar__list-item {
+
+}
+
+.navbar__dropdown {
+}

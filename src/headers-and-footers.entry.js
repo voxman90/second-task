@@ -1,9 +1,12 @@
-import "./common.blocks/logo/logo.scss";
+import "./styles/style.scss";
 import "./common.blocks/button/button.scss";
 import "./common.blocks/button-short/button-short.scss";
 import "./common.blocks/button-long/button-long.scss";
+import "./common.blocks/icon/icon.scss";
+import "./common.blocks/logo/logo.scss";
+import "./common.blocks/label/label.scss";
+import "./common.blocks/navbar/navbar.scss";
 import "./common.blocks/header/header.scss";
 import "./common.blocks/logo/logo.js";
-import "./styles/style.scss";
 import "./templates/headers-and-footers/headers-and-footers.scss";
 import "./templates/headers-and-footers/headers-and-footers.js";

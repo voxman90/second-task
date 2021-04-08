@@ -5,7 +5,6 @@
       "template": "Test",
       "data": null,
       "styles": [
-        "./styles/style.scss",
         "./styles/boxes.scss",
         "./templates/test/test.scss"
       ],
@@ -19,7 +18,6 @@
       "template": "Form Elements",
       "data": "form-elements",
       "styles": [
-        "./styles/style.scss",
         "./styles/boxes.scss",
         "./templates/form-elements/form-elements.scss"
       ],
@@ -33,7 +31,6 @@
       "template": "Colors and Type",
       "data": "colors-and-type",
       "styles": [
-        "./styles/style.scss",
         "./templates/colors-and-type/colors-and-type.scss"
       ],
       "scripts": []
@@ -44,7 +41,6 @@
       "template": "Cards",
       "data": "cards",
       "styles": [
-        "./styles/style.scss",
         "./templates/cards/cards.scss"
       ],
       "scripts": null
@@ -55,7 +51,6 @@
       "template": "Headers and Footers",
       "data": "headers-and-footers",
       "styles": [
-        "./styles/style.scss",
         "./templates/headers-and-footers/headers-and-footers.scss"
       ],
       "scripts": [

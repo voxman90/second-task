@@ -239,7 +239,7 @@ class TopologicalSort {
 
   function writeImports(args: entry, styles: string[], scripts: string[]): void {
     const { name } = args;
-    let imports = '';
+    let imports = writePresetImports();
     
     styles.forEach(
       (style) => imports += `import "./${COMP_ROOT}/${style}/${style}.scss";\n`
@@ -249,7 +249,7 @@ class TopologicalSort {
       (script) => imports += `import "./${COMP_ROOT}/${script}/${script}.js";\n`
     );
 
-    imports += writePresetImports(args);
+    imports += writeEntryImports(args);
 
     const file = path.resolve(__dirname, `./${name}.entry.js`);
     const fd = fs.openSync(file, "w+");
@@ -257,7 +257,13 @@ class TopologicalSort {
     fs.closeSync(fd);
   }
 
-  function writePresetImports(args: entry): string {
+  function writePresetImports() {
+    let imports = 'import "./styles/style.scss";\n';
+
+    return imports;
+  }
+
+  function writeEntryImports(args: entry): string {
     const { styles, scripts } = args;
     let imports = '';
     if (styles) {
