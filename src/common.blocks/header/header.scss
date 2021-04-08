@@ -18,52 +18,17 @@
 .header__wrapper {
   display: flex;
   justify-content: space-between;
+  height: 100%;
 }
 
 .header__logo {
-  float: left;
-  
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: nowrap;
-  width: max-content;
-  padding: 0 0.625rem;
+  box-sizing: border-box;
+  padding: 0.9375rem 0.625rem;
   height: 4.375rem;
 
   &:focus {
     outline: 1px solid map.get(colors.$map, dark-shade-15);
   }
-}
-
-.header__wrapper {
-  height: 100%;
-}
-
-.header__nav-bar {
-  float: left;
-}
-
-.header__nav > ul > li:last-child {
-    display: none;
-}
-
-.header__button-sign-in {
-    min-width: 5.438rem;
-    width: 5.438rem;
-    height: 2.125rem;
-    margin-left: 0.625rem;
-
-    border-radius: 1.0625rem;
-}
-
-.header__button-sign-up {
-    width: 12.25rem;
-    height: 2.125rem;
-    margin-left: 1.25rem;
-    padding: 0 1.25rem;
-
-    border-radius: 1.0625rem;
 }
 
 @media only screen and (max-width: 1140px) {

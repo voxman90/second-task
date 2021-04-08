@@ -1,35 +1,8 @@
-.box_width_20rem {
-  width: 20rem;
-}
+@mixin form-container {
+  padding: 1.8125rem;
 
-.box_width_222px {
-  width: 222px;
-}
-
-.box_width_266px {
-  width: 266px;
-}
-
-.box_margin-bottom_5px {
-  margin-bottom: 5px;
-}
-
-.box_margin-bottom_10px {
-  margin-bottom: 10px;
-}
-
-.box_margin-bottom_1rem {
-  margin-bottom: 1rem;
-}
-
-.box_margin-bottom_20px {
-  margin-bottom: 20px;
-}
-
-.box_margin-bottom_30px {
-  margin-bottom: 30px;
-}
-
-.box_margin-bottom_40px {
-  margin-bottom: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
 }

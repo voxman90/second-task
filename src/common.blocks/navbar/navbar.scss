@@ -1,7 +1,8 @@
-@use "sass:map";
-@use "sass:color";
-@use "../../styles/colors" as colors;
-@use "../../styles/text-mixins" as fonts;
+@use 'sass:map';
+@use 'sass:color';
+@use '../../styles/colors' as colors;
+@use '../../styles/text-mixins' as fonts;
+@use '../../styles/boxes.scss' as box;
 
 $dark-shade-50: map.get(colors.$map, 'dark-shade-50');
 $dark-shade-75: map.get(colors.$map, 'dark-shade-75');
@@ -11,9 +12,11 @@ $dark-shade-75: map.get(colors.$map, 'dark-shade-75');
 }
 
 .navbar__menu {
-  height: 100%;
   display: flex;
   align-items: center;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 
   list-style-type: none;
 }
@@ -62,7 +65,7 @@ $dark-shade-75: map.get(colors.$map, 'dark-shade-75');
   
     position: absolute;
     top: 0.625rem;
-    left: 0.6rem;
+    left: 0.5875rem;
   
     @include fonts.Montserrat-bold;
     color: $dark-shade-75;
@@ -70,14 +73,17 @@ $dark-shade-75: map.get(colors.$map, 'dark-shade-75');
 }
 
 .navbar__dropdown {
+  position: relative;
+
   padding: 0.75rem 0;
-}
 
-.navbar__dropdown-head {
-  cursor: pointer;
-
-  &:hover > .navbar__icon {
+  &:hover .navbar__icon {
     color: $dark-shade-75;
+  }
+
+  &:hover .navbar__dropdown-list {
+    visibility: visible;
+    opacity: 1;
   }
 }
 
@@ -99,12 +105,41 @@ $dark-shade-75: map.get(colors.$map, 'dark-shade-75');
 }
 
 .navbar__dropdown-list {
-  padding: 1.8125rem;
+  position: absolute;
+  z-index: 0;
+  visibility: hidden;
+  opacity: 0;
 
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  margin-top: 0.85rem;
+  padding: 0.875rem 1.0625rem;
+
+  list-style-type: none;
+
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   background-color: #FFFFFF;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 10px 20px rgba(31, 32, 65, 0.05);
+
+  transition: all 300ms linear;
+
+  &:active,
+  &:hover {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.navbar__dropdown-list-item {
+  padding: 0;
+}
+
+.navbar__dropdown-list-link {
+  padding: 0.125rem 0.3125rem;
+
+  &::after {
+    top: 0.125rem;
+    left: 0.275rem;
+  }
 }
 
 .navbar__button {
@@ -131,10 +166,4 @@ $dark-shade-75: map.get(colors.$map, 'dark-shade-75');
   &:focus {
     opacity: 0.5;
   }
-}
-
-.navbar__dropdown-list {
-  display: none;
-
-  list-style-type: none;
 }
