@@ -1,0 +1,54 @@
+@use 'sass:map';
+@use 'sass:color';
+@use '../../styles/colors' as colors;
+@use '../../styles/text-mixins' as fonts;
+
+.link {
+  position: relative;
+
+  display: inline-block;
+
+  @include fonts.Montserrat-normal;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  white-space: nowrap;
+  color: map.get(colors.$map, dark-shade-50);
+
+  transition: opacity 300ms ease;
+
+  &::after {
+    content: attr(data-text);
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    visibility: hidden;
+    opacity: 0;
+
+    @include fonts.Montserrat-bold;
+    color: map.get(colors.$map, dark-shade-75);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active,
+  &:hover,
+  &:focus {
+    color: transparent;
+
+    &::after {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &:link,
+  &:visited {
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,52 @@
+mixin hamburger(args)
+  - const { isLoggedIn, navbarItems } = args
+  nav(class = 'hamburger js-expandable js-auto-init', role = 'navigation')&attributes(attributes)
+    +hamburger__trigger()
+    .js-expandable__container
+      ul(class = 'hamburger__menu')
+        each item in navbarItems
+          - const { isExpandable = false } = item
+          if isExpandable
+            +hamburger__expandable-list(item)
+          else
+            +hamburger__item(item)
+        +hamburger__footer(isLoggedIn)
+
+mixin hamburger__trigger()
+  div(
+    class = 'hamburger__trigger js-expandable__trigger',
+    role = 'button',
+  )
+    +icon({ name: 'menu' })(class = 'hamburger__icon')
+
+mixin hamburger__expandable-list(args)
+  - const { href, text, title = null, items = [] } = args
+  li(class = 'hamburger__expandable-list js-expandable js-auto-init')
+    .hamburger__expandable-list-header
+      +link(args)(class = 'hamburger__expandable-list-link')
+      .js-expandable__trigger.hamburger__expandable-list-trigger
+        +icon({ name: 'expand_more' })(class = 'hamburger__expandable-list-icon')
+    ul(class = 'hamburger__expandable-list-container js-expandable__container')
+      each item in items
+        +hamburger__item(item)
+
+mixin hamburger__item(args)
+  li
+    +link(args)(class = 'hamburger__link')
+
+mixin hamburger__footer(isloggedIn)
+  if isloggedIn
+    p= 'placeholder'
+  else
+    +hamburger__buttons()
+
+mixin hamburger__buttons()
+  .hamburger__buttons
+    +button-short({ name: 'button-sign-in', text: 'ВОЙТИ', isBordered: true })(
+      class = 'hamburger__button-sign-in',
+      onClick = 'javascript: window.open("http://www.google.com", "_blank");',
+    )
+    +button-long({ name: 'button-sign-up', text: 'ЗАРЕГИСТРИРОВАТЬСЯ', isFilled: true, isArrowed: false })(
+      class = 'hamburger__button-sign-up',
+      onClick = 'javascript: window.open("http://www.google.com", "_blank");',
+    )

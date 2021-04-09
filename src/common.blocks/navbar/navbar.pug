@@ -1,6 +1,5 @@
 mixin navbar(args)
   - const { isLoggedIn, navbarItems } = args
-  - const { isExpandable } = navbarItems
   nav(class = 'navbar')&attributes(attributes)
     ul.navbar__menu
       each item in navbarItems
@@ -9,19 +8,7 @@ mixin navbar(args)
           +navbar__dropdown(item)
         else
           +navbar__item(item)
-      if isloggedIn
-        p= 'plug'
-      else
-        .navbar__button
-          +button-short({ name: 'button-sign-in', text: 'ВОЙТИ', isBordered: true })(
-            class = 'navbar__button-sign-in',
-            onClick = 'javascript: window.open("http://www.google.com", "_blank");',
-          )
-        .navbar__button
-          +button-long({ name: 'button-sign-up', text: 'ЗАРЕГИСТРИРОВАТЬСЯ', isFilled: true, isArrowed: false })(
-            class = 'navbar__button-sign-up',
-            onClick = 'javascript: window.open("http://www.google.com", "_blank");',
-          )
+      +navbar__buttons(isLoggedIn)
 
 mixin navbar__item(args)
   - const { href, text, title = null } = args
@@ -61,3 +48,18 @@ mixin navbar__dropdown-list-item(args)
       title = title,
       data-text = text,
     )= text
+
+mixin navbar__buttons(isloggedIn)
+  if isloggedIn
+    p= 'plug'
+  else
+    .navbar__button
+      +button-short({ name: 'button-sign-in', text: 'ВОЙТИ', isBordered: true })(
+        class = 'navbar__button-sign-in',
+        onClick = 'javascript: window.open("http://www.google.com", "_blank");',
+      )
+    .navbar__button
+      +button-long({ name: 'button-sign-up', text: 'ЗАРЕГИСТРИРОВАТЬСЯ', isFilled: true, isArrowed: false })(
+        class = 'navbar__button-sign-up',
+        onClick = 'javascript: window.open("http://www.google.com", "_blank");',
+      )

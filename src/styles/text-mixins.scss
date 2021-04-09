@@ -35,7 +35,7 @@
 }
 
 //- This one is the sub-section or widget title
-@mixin widget-text($size: 1.5rem, $height: auto) {
+@mixin widget-text($size: 1.5rem, $height: normal) {
   @include Montserrat-bold;
   font-size: $size;
   line-height: $height;
@@ -43,7 +43,7 @@
 }
 
 //- Next one is the item title inside widgets 
-@mixin title-text($size: 1.1875rem, $height: auto) {
+@mixin title-text($size: 1.1875rem, $height: normal) {
   @include Montserrat-bold;
   font-size: $size;
   line-height: $height;
@@ -51,7 +51,7 @@
 }
 
 //- This is a label or CTA text
-@mixin label-text($size: 0.75rem, $height: auto) {
+@mixin label-text($size: 0.75rem, $height: normal) {
   @include Montserrat-bold;
   font-size: $size;
   line-height: $height;
@@ -59,7 +59,7 @@
   color: map.get(colors.$map, dark-shade-100);
 }
 
-@mixin regular-label-text($size: 0.75rem, $height: auto) {
+@mixin regular-label-text($size: 0.75rem, $height: normal) {
   @include Montserrat-normal;
   font-size: $size;
   line-height: $height;

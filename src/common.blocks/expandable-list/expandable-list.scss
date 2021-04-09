@@ -3,45 +3,43 @@
 @use '../../styles/text-mixins' as fonts;
 
 .expandable-list {
+  position: relative;
+
   width: 100%;
 }
 
-.expandable-list__head {
-  position: relative;
+.expandable-list__header {
+  height: 2.75rem;
 
   cursor: pointer;
 }
 
 .expandable-list__heading {
-  height: 2.75rem;
+  float: left;
 
-  @include fonts.label-text(0.75rem, 2.75rem);
+  margin: 0;
+
+  @include fonts.label-text(0.75rem);
+  line-height: 2.75rem;
 }
 
 .expandable-list__icon {
-  position: absolute;
-  top: 0.625rem;
-  right: 0;
+  float: right;
 
   width: 2.75rem;
-  height: 1.5rem;
+  height: 2.75rem;
 
+  line-height: 2.75rem;
   text-align: center;
   color: map.get(colors.$map, 'dark-shade-50');
-}
 
-.expandable-list__icon_turn_180deg {
-  transform: rotate(180deg);
+  transition: transform 300ms ease;
+
+  .js-expandable__trigger_active & {
+    transform: rotate(180deg);
+  }
 }
 
 .expandable-list__body {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: fit-content;
   padding-top: 0.2rem;
-}
-
-.expandable-list__body_hidden {
-  display: none;
 }

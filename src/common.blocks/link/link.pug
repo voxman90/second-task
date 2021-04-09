@@ -1,0 +1,9 @@
+mixin link(args)
+  - const { href, text, target = null, title = null } = args
+    a(
+      class = 'link',
+      href = href,
+      target = targer,
+      title = title,
+      data-text = text,
+    )&attributes(attributes)= text

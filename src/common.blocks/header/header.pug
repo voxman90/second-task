@@ -4,4 +4,5 @@ mixin header(args = {})
     .header__wrapper
       a(class = 'header__logo', target = '_self', href = '/')
         +logo('small', true, true)(class='js-auto-init')
-      +navbar({ isLoggedIn: false, navbarItems })(class = 'header__navbar')
+      +hamburger({ isLoggedIn: false, navbarItems })(class = 'header__hamburger')
+      //- +navbar({ isLoggedIn: false, navbarItems })(class = 'header__navbar')

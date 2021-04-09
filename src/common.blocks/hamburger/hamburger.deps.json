@@ -1,0 +1,14 @@
+{
+  "name": "hamburger",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": [
+    "link",
+    "expandable",
+    "icon",
+    "button-short",
+    "button-long"
+  ]
+}
