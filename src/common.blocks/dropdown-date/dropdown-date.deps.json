@@ -6,9 +6,9 @@
     "pug"
   ],
   "deps": [
-    "icon",
     "label",
     "input-date",
+    "icon",
     "calendar"
   ]
 }

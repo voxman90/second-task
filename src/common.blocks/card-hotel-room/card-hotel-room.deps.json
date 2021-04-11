@@ -6,9 +6,8 @@
     "pug"
   ],
   "deps": [
-    "icon",
     "carousel",
-    "rate-button",
-    "hotel-room-heading"
+    "hotel-room-heading",
+    "rate-button"
   ]
 }

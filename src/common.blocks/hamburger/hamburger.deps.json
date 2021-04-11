@@ -5,9 +5,8 @@
     "pug"
   ],
   "deps": [
-    "link",
-    "expandable",
     "icon",
+    "link",
     "button-short",
     "button-long"
   ]

@@ -323,9 +323,11 @@ class TopologicalSort {
 
   function removeDifference(arr: string[], toRemove: string[]): string[] {
     let acc = [...arr];
+
     acc = acc.filter(
       (val) => !toRemove.includes(val)
     );
+
     return acc;
   }
 }());

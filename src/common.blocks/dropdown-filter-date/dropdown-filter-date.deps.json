@@ -7,8 +7,8 @@
   ],
   "deps": [
     "label",
-    "input-text",
     "icon",
+    "input-text",
     "calendar"
   ]
 }

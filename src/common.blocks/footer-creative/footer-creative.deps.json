@@ -1,8 +1,8 @@
 {
   "name": "footer-creative",
   "techs": [
-    "pug",
-    "scss"
+    "scss",
+    "pug"
   ],
   "deps": [
     "logo",

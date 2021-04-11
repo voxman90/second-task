@@ -1,8 +1,8 @@
 {
   "name": "link",
   "techs": [
-    "pug",
-    "scss"
+    "scss",
+    "pug"
   ],
   "deps": null
 }

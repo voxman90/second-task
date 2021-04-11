@@ -1,9 +1,9 @@
 {
   "name": "dropdown-guests",
   "techs": [
-    "pug",
+    "js",
     "scss",
-    "js"
+    "pug"
   ],
   "deps": [
     "dropdown"

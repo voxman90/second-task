@@ -1,8 +1,8 @@
 {
   "name": "social-follow",
   "techs": [
-    "pug",
-    "scss"
+    "scss",
+    "pug"
   ],
   "deps": [
     "icon"

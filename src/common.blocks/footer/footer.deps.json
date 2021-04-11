@@ -5,11 +5,10 @@
     "pug"
   ],
   "deps": [
-    "link",
-    "logo",
-    "subscription-field",
-    "icon",
     "copyright-bar",
-    "footer-creative"
+    "footer-creative",
+    "logo",
+    "link",
+    "subscription-field"
   ]
 }

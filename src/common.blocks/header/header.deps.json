@@ -1,8 +1,8 @@
 {
   "name": "header",
   "techs": [
-    "pug",
-    "scss"
+    "scss",
+    "pug"
   ],
   "deps": [
     "logo",

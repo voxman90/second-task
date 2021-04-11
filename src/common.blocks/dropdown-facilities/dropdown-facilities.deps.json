@@ -1,9 +1,9 @@
 {
   "name": "dropdown-facilities",
   "techs": [
+    "js",
     "scss",
-    "pug",
-    "js"
+    "pug"
   ],
   "deps": [
     "dropdown"
