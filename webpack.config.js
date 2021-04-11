@@ -73,6 +73,18 @@ module.exports = {
     ...plugins
   ],
 
+  stats: {
+    all: false,
+    assets: true,
+    cachedAssets: true,
+    errors: true,
+    errorDetails: true,
+    hash: true,
+    performance: true,
+    publicPath: true,
+    timings: true,
+  },
+
   module: {
     rules: [
       {
