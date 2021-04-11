@@ -114,7 +114,28 @@ module.exports = {
             options: {}
           },
           'css-loader',
-          'sass-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              additionalData: (content, loaderContext) => {
+                const { resourcePath, rootContext } = loaderContext;
+                const relativePath = path.relative(rootContext, resourcePath);
+                const pathParts = relativePath.split(path.sep);
+                const isCommonBlockStyle = pathParts.includes('common.blocks');
+                const isTemplateStyle = pathParts.includes('templates');
+                
+                if (isCommonBlockStyle) {
+                  return `@use '../../styles/shared' as *;\n${content}`;
+                }
+
+                if (isTemplateStyle) {
+                  return `@use '../../styles/shared' as *;\n${content}`;
+                }
+                
+                return content;
+              }
+            }
+          }
         ],
       },
 

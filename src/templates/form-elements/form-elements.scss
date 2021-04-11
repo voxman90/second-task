@@ -1,7 +1,7 @@
 @use "sass:map";
 @use "sass:color";
-@use "../../styles/colors" as colors;
-@use "../../styles/text-mixins" as fonts;
+@use "../../styles/colors";
+@use "../../styles/text";
 
 .form-elements {
   position: relative;
@@ -87,7 +87,7 @@
 }
 
 .form-elements__button_faded {
-  color: map.get(colors.$map, dark-shade-50);
+  color: $dark-shade-50;
 }
 
 .form-elements__button-filled_faded {
@@ -96,11 +96,11 @@
 }
 
 .form-elements__button-bordered_faded {
-  $purple-50: color.scale(map.get(colors.$map, "purple"), $alpha: -50%);
-  $malibu-50: color.scale(map.get(colors.$map, "malibu"), $alpha: -50%);
+  $purple-50: color.scale($purple, $alpha: -50%);
+  $malibu-50: color.scale($malibu, $alpha: -50%);
   background-image: linear-gradient(#FFF, #FFF),
                     linear-gradient(180deg, $purple-50, $malibu-50);
-  color: map.get(colors.$map, "purple");
+  color: $purple;
 }
 
 .form-elements__9th-block {

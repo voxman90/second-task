@@ -1,8 +1,3 @@
-@use 'sass:map';
-@use 'sass:color';
-@use '../../styles/colors' as colors;
-@use '../../styles/text-mixins' as fonts;
-
 .comment {
   width: 44.375rem;
 }
@@ -20,7 +15,7 @@
 
   border: 2px solid #FFFFFF;
   border-radius: 1.5rem;
-  box-shadow: 0 0.625rem 1.25rem color.scale(map.get(colors.$map, dark-shade-100), $alpha: -90%);
+  box-shadow: 0 0.625rem 1.25rem dark-shade(0.1);
 }
 
 .comment__info {
@@ -28,14 +23,14 @@
 }
 
 .comment__nickname {
-  @include fonts.Montserrat-bold;
+  @include Montserrat-bold;
   font-size: 0.875rem;
   line-height: 1.5rem;
-  color: map.get(colors.$map, dark-shade-75);
+  color: $dark-shade-75;
 }
 
 .comment__date {
-  @include fonts.body-text(0.875rem, 1.5rem);
+  @include body-text(0.875rem, 1.5rem);
 }
 
 .comment__body {
@@ -55,8 +50,8 @@
   width: auto;
   margin-left: 0.652rem;
 
-  @include fonts.Montserrat-normal;
+  @include Montserrat-normal;
   font-size: 0.875rem;
   line-height: 1.5rem;
-  color: map.get(colors.$map, dark-shade-75);
+  color: $dark-shade-75;
 }

@@ -1,0 +1,30 @@
+.copyright-bar {
+  min-width: 320px;
+  width: 100%;
+  max-width: 1920px;
+  height: 4.375rem;
+  padding: 0 9.722%;
+  background-color: #FFFFFF;
+  box-shadow: 0 0.625rem 1.25rem $dark-shade-05;
+}
+
+.copyright-bar__wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.copyright-bar__copyright {
+
+}
+
+.copyright-bar__social-follow {
+
+}
+
+.copyright-bar__copyright {
+  float: left;
+  height: 4.375rem;
+
+  @include body-text();
+  line-height: 4.375rem;
+}

@@ -1,8 +1,3 @@
-@use "sass:map";
-@use "sass:color";
-@use "../../styles/colors" as colors;
-@use "../../styles/text-mixins" as fonts;
-
 .hotel-room-heading {
   display: flex;
   justify-content: space-between;
@@ -10,8 +5,8 @@
 }
 
 .hotel-room-heading__left {
-  @include fonts.Montserrat-bold;
-  color: map.get(colors.$map, dark-shade-100);
+  @include Montserrat-bold;
+  color: $dark-shade-100;
 }
 
 .hotel-room-heading__numero {
@@ -32,18 +27,18 @@
 
     font-size: 0.75rem;
     text-transform: uppercase;
-    color: map.get(colors.$map, 'purple');
+    color: $purple;
   }
 }
 
 .hotel-room-heading__right {
-  @include fonts.Montserrat-normal;
-  color: map.get(colors.$map, dark-shade-50);
+  @include Montserrat-normal;
+  color: $dark-shade-50;
   font-size: 0.75rem;
   line-height: 1.125rem;
 }
 
 .hotel-room-heading__price {
-  @include fonts.Montserrat-bold;
+  @include Montserrat-bold;
   font-size: 0.875rem;
 }

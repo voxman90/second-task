@@ -1,8 +1,3 @@
-@use 'sass:map';
-@use 'sass:color';
-@use '../../styles/colors' as colors;
-@use '../../styles/text-mixins' as fonts;
-
 .icon-item {
   display: flex;
   justify-content: flex-start;
@@ -11,7 +6,7 @@
   width: 17.5rem;
   padding: 1.25rem 0;
 
-  border-bottom: 1px solid color.scale(map.get(colors.$map, dark-shade-100), $alpha: -90%);
+  border-bottom: 1px solid dark-shade(0.10);
 }
 
 .icon-item__icon {
@@ -21,7 +16,7 @@
   width: 3rem;
   height: 3rem;
 
-  background: linear-gradient(180deg, map.get(colors.$map, "purple") 0%, map.get(colors.$map, "malibu") 100%);
+  background: linear-gradient(180deg, $purple 0%, $malibu 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
@@ -34,12 +29,12 @@
 }
 
 .icon-item__headline {
-  @include fonts.Montserrat-bold;
+  @include Montserrat-bold;
   font-size: 0.875rem;
   line-height: 1.5rem;
-  color: map.get(colors.$map, dark-shade-75);
+  color: $dark-shade-75;
 }
 
 .icon-item__description {
-  @include fonts.body-text(0.875rem, 1.5rem);
+  @include body-text(0.875rem, 1.5rem);
 }

@@ -1,8 +1,3 @@
-@use 'sass:map';
-@use 'sass:color';
-@use '../../styles/colors' as colors;
-@use '../../styles/text-mixins' as fonts;
-
 .pagination {
   width: max-content;
 }
@@ -21,10 +16,10 @@
   width: 2.5rem;
   height: 2.5rem;
 
-  @include fonts.Montserrat-normal;
+  @include Montserrat-normal;
   font-size: 0.750rem;
   line-height: 0.9375rem;
-  color: map.get(colors.$map, dark-shade-50);
+  color: $dark-shade-50;
   user-select: none;
 
   cursor: pointer;
@@ -35,17 +30,17 @@
   height: 1.5rem;
   padding-top: 0.625rem;
 
-  @include fonts.Montserrat-normal;
+  @include Montserrat-normal;
   font-size: 0.875rem;
   line-height: 1.5rem;
-  color: map.get(colors.$map, dark-shade-75);
+  color: $dark-shade-75;
 }
 
 .pagination__button {
-  background: linear-gradient(180deg, map.get(colors.$map, "green"), map.get(colors.$map, "turquoise-blue"));
+  background: linear-gradient(180deg, $green, $turquoise-blue);
   border-radius: 1.25rem;
 
-  @include fonts.material-icons;
+  @include material-icons;
   display: table-cell;
   color: white;
 
@@ -57,9 +52,7 @@
 }
 
 .pagination__button_faded {
-  $faded-green: color.scale(map.get(colors.$map, "green"), $alpha: -50%);
-  $faded-turquoise-blue: color.scale(map.get(colors.$map, "turquoise-blue"), $alpha: -50%);
-  background: linear-gradient(180deg, $faded-green, $faded-turquoise-blue);
+  background: linear-gradient(180deg, $green-50, $green-50);
 }
 
 .pagination__td_hide {
@@ -71,7 +64,7 @@
 }
 
 .pagination__td_current {
-  background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
+  background: linear-gradient(180deg, $purple, $malibu);
   border-radius: 1.25rem;
 
   font-weight: bold;

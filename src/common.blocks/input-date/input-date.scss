@@ -1,23 +1,18 @@
-@use 'sass:map';
-@use '../../styles/colors' as colors;
-@use '../../styles/text-mixins' as fonts;
-
-
 .input-date {
   box-sizing: border-box;
   height: 2.75rem;
   width: 100%;
   
   padding-left: 0.875rem;
-  border: 1px solid map.get(colors.$map, dark-shade-25);
+  border: 1px solid $dark-shade-25;
   border-radius: 4px;
-  @include fonts.body-text(0.875rem, 1.125rem);
+  @include body-text(0.875rem, 1.125rem);
   text-transform: uppercase;
 
   &:hover,
   &:focus,
   &:active {
     outline: none;
-    border-color: map.get(colors.$map, dark-shade-50);
+    border-color: $dark-shade-50;
   }
 }

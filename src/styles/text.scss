@@ -1,6 +1,5 @@
 @use 'sass:math';
-@use 'sass:map';
-@use './colors' as colors;
+@use './colors';
 
 @mixin Quicksand-normal {
   font: {
@@ -39,7 +38,7 @@
   @include Montserrat-bold;
   font-size: $size;
   line-height: $height;
-  color: map.get(colors.$map, dark-shade-100);
+  color: colors.$dark-shade-100;
 }
 
 //- Next one is the item title inside widgets 
@@ -47,7 +46,7 @@
   @include Montserrat-bold;
   font-size: $size;
   line-height: $height;
-  color: map.get(colors.$map, dark-shade-100);
+  color: colors.$dark-shade-100;
 }
 
 //- This is a label or CTA text
@@ -56,7 +55,7 @@
   font-size: $size;
   line-height: $height;
   text-transform: uppercase;
-  color: map.get(colors.$map, dark-shade-100);
+  color: colors.$dark-shade-100;
 }
 
 @mixin regular-label-text($size: 0.75rem, $height: normal) {
@@ -64,7 +63,7 @@
   font-size: $size;
   line-height: $height;
   text-transform: uppercase;
-  color: map.get(colors.$map, dark-shade-50);
+  color: colors.$dark-shade-50;
 }
 
 //- This is the body text which is used for most of the design, like paragraphs, lists, etc.
@@ -72,7 +71,7 @@
   @include Montserrat-normal;
   font-size: $size;
   line-height: $height;
-  color: map.get(colors.$map, dark-shade-75);
+  color: colors.$dark-shade-75;
 }
 
 @mixin material-icons {

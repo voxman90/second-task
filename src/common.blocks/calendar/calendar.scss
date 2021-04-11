@@ -1,7 +1,4 @@
-@use "sass:map";
-@use "sass:color";
-@use "../../styles/colors" as colors;
-@use "../../styles/text-mixins" as fonts;
+@use 'sass:color';
 
 .calendar {
   position: absolute;
@@ -12,10 +9,10 @@
   margin-top: 5px;
   padding: 19px;
 
-  border: 1px solid map.get(colors.$map, dark-shade-25);
+  border: 1px solid $dark-shade-25;
   border-radius: 4px;
   background-color: #FFFFFF;
-  box-shadow: 0px 10px 20px map.get(colors.$map, dark-shade-05);
+  box-shadow: 0px 10px 20px $dark-shade-05;
 }
 
 .calendar_hidden {
@@ -35,7 +32,7 @@
   font-size: 19px;
   line-height: 24px;
   text-align: center;
-  color: map.get(colors.$map, dark-shade-100);
+  color: $dark-shade-100;
 }
 
 .calendar__button-backward {
@@ -44,7 +41,7 @@
 
   cursor: pointer;
 
-  color: map.get(colors.$map, "purple");
+  color: $purple;
 
   &::-moz-selection {
     background: transparent;
@@ -65,7 +62,7 @@
 
   cursor: pointer;
 
-  color: map.get(colors.$map, "purple");
+  color: $purple;
 
   transform: rotate(180deg);
 
@@ -97,9 +94,9 @@
 
   cursor: default;
 
-  @include fonts.label-text(0.75rem, 1.25rem);
+  @include label-text(0.75rem, 1.25rem);
   text-transform: none;
-  color: map.get(colors.$map, "purple");
+  color: $purple;
 }
 
 .calendar__table-row {
@@ -115,22 +112,22 @@
   width: 40px;
   padding: 0;
 
-  @include fonts.Montserrat-normal;
+  @include Montserrat-normal;
   font-size: 0.75rem;
   line-height: 1.25em;
-  color: map.get(colors.$map, dark-shade-25);
+  color: $dark-shade-25;
 }
 
 .calendar__table-cell_recent {
   cursor: pointer;
 
-  color: map.get(colors.$map, dark-shade-50);
+  color: $dark-shade-50;
 }
 
 .calendar__table-cell_today {
   position: relative;
 
-  @include fonts.Montserrat-bold;
+  @include Montserrat-bold;
   color: white;
 
   &::after {
@@ -145,7 +142,7 @@
     height: 40px;
 
     border-radius: 22px;
-    background: linear-gradient(180deg, map.get(colors.$map, "green"), map.get(colors.$map, "turquoise-blue"));
+    background: linear-gradient(180deg, $green, $turquoise-blue);
   }
 }
 
@@ -155,7 +152,7 @@
   border-radius: 22px 0 0 22px;
   background: transparent;
 
-  @include fonts.Montserrat-bold;
+  @include Montserrat-bold;
   color: white;
 
   &::after {
@@ -170,7 +167,7 @@
     height: 40px;
 
     border-radius: 22px;
-    background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
+    background: linear-gradient(180deg, $purple, $malibu);
   }
 }
 
@@ -180,7 +177,7 @@
   border-radius: 0 22px 22px 0;
   background: transparent;
 
-  @include fonts.Montserrat-bold;
+  @include Montserrat-bold;
   color: white;
 
   &::after {
@@ -195,12 +192,12 @@
     height: 40px;
 
     border-radius: 22px;
-    background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
+    background: linear-gradient(180deg, $purple, $malibu);
   }
 }
 
 .calendar__table-cell_filled {
-  background: linear-gradient(180deg, color.change(map.get(colors.$map, "purple"), $alpha: 0.25), color.change(map.get(colors.$map, "malibu"), $alpha: 0.25))
+  background: linear-gradient(180deg, color.change($purple, $alpha: 0.25), color.change($malibu, $alpha: 0.25));
 }
 
 .calendar__buttons {
@@ -228,7 +225,7 @@
 
   &:focus {
     box-shadow: 0 0 0 1px #FFFFFF,
-                0 0 2px 2px map.get(colors.$map, dark-shade-15);
+                0 0 2px 2px dark-shade(0.15);
   }
 
   &::-moz-selection {
@@ -255,7 +252,7 @@
 
   &:focus {
     box-shadow: 0 0 0 1px #FFFFFF,
-                0 0 2px 2px map.get(colors.$map, dark-shade-15);
+                0 0 2px 2px dark-shade(0.15);
   }
 
   &::-moz-selection {

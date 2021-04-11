@@ -1,12 +1,4 @@
-@use 'sass:map';
-@use 'sass:color';
-@use '../../styles/colors' as colors;
-@use '../../styles/text-mixins' as fonts;
 @use '../../styles/boxes.scss' as box;
-
-$dark-shade-10: map.get(colors.$map, 'dark-shade-10');
-$dark-shade-50: map.get(colors.$map, 'dark-shade-50');
-$dark-shade-75: map.get(colors.$map, 'dark-shade-75');
 
 .hamburger {
   position: relative;
@@ -38,7 +30,7 @@ $dark-shade-75: map.get(colors.$map, 'dark-shade-75');
     width: 0.5px;
     height: 60%;
 
-    background-color: $dark-shade-10;
+    background-color: dark-shade(0.10);
 
     content: '';
   }

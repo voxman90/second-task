@@ -1,20 +1,16 @@
-@use "sass:map";
-@use "../../styles/colors" as colors;
-@use "../../styles/text-mixins" as fonts;
-
 .checkbox-rich__text {
-  @include fonts.Montserrat-bold;
+  @include Montserrat-bold;
   font-size: 0.875rem;
   line-height: 1.125rem;
-  color: map.get(colors.$map, 'dark-shade-75');
+  color: $dark-shade-75;
 }
 
 .checkbox-rich__subtext {
   padding-top: 0.37rem;
 
-  @include fonts.Montserrat-normal;
+  @include Montserrat-normal;
   font-size: 0.75rem; 
   line-height: 0.875rem;
   white-space: pre-wrap;
-  color: map.get(colors.$map, 'dark-shade-50');
+  color: $dark-shade-50;
 }

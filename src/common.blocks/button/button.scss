@@ -1,8 +1,4 @@
-@use "sass:map";
-@use "sass:color";
-@use "../../styles/colors" as colors;
-@use "../../styles/text-mixins" as fonts;
-@use '../../styles/service' as service;
+@use '../../styles/service';
 
 .button {
   position: relative;
@@ -18,19 +14,19 @@
   background-color: transparent;
   border: none;
 
-  @include fonts.Montserrat-bold;
+  @include Montserrat-bold;
   font-size: 0.75rem;
   line-height: 1.25rem;
   text-align: center;
   text-transform: uppercase;
-  color: map.get(colors.$map, "purple");
+  color: $purple;
 
   cursor: pointer;
 
   @include service.non-selectable;
 
   &:hover {
-    color: map.get(colors.$map, dark-shade-50); 
+    color: $dark-shade-50; 
   }
 
   &:focus {
@@ -39,7 +35,7 @@
 }
 
 .button_style_fill {
-  background: linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
+  background: linear-gradient(180deg, $purple, $malibu);
   border-radius: 1.375rem;
 
   color: #FFFFFF;
@@ -52,7 +48,7 @@
 
 .button_style_border {
   background-image: linear-gradient(#FFF, #FFF),
-                    linear-gradient(180deg, map.get(colors.$map, "purple"), map.get(colors.$map, "malibu"));
+                    linear-gradient(180deg, $purple, $malibu);
   background-clip: content-box,
                    border-box;
   background-origin: border-box;
@@ -60,13 +56,11 @@
   border: solid transparent;
   border-width: 0.128rem;
 
-  color: map.get(colors.$map, "purple");
+  color: $purple;
 
   &:hover {
-    $purple-50: color.scale(map.get(colors.$map, "purple"), $alpha: -50%);
-    $malibu-50: color.scale(map.get(colors.$map, "malibu"), $alpha: -50%);
     background-image: linear-gradient(#FFF, #FFF),
                       linear-gradient(180deg, $purple-50, $malibu-50);
-    color: map.get(colors.$map, "purple");
+    color: $purple;
   }
 }

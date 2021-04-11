@@ -1,0 +1,10 @@
+{
+  "name": "social-follow",
+  "techs": [
+    "pug",
+    "scss"
+  ],
+  "deps": [
+    "icon"
+  ]
+}

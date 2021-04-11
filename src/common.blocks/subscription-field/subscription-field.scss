@@ -1,7 +1,3 @@
-@use 'sass:map';
-@use '../../styles/colors' as colors;
-@use '../../styles/text-mixins' as fonts;
-
 .subscription-field {
   position: relative;
 
@@ -17,7 +13,7 @@
   &:focus + .subscription-field__submit-button,
   &:active + .subscription-field__submit-button {
     outline: none;
-    border-color: map.get(colors.$map, dark-shade-50);
+    border-color: $dark-shade-50;
   }
 }
 
@@ -33,7 +29,7 @@
   height: 2.75rem;
 
   border-radius: 0 4px 4px 0;
-  background: linear-gradient(180deg, map.get(colors.$map, 'purple') 0%, map.get(colors.$map, 'malibu') 100%);
+  background: linear-gradient(180deg, $purple 0%, $malibu 100%);
   -webkit-background-clip: text;
           background-clip: text;
   -webkit-text-fill-color: transparent;

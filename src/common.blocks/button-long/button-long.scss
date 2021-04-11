@@ -1,7 +1,5 @@
 @use "sass:map";
 @use "sass:color";
-@use "../../styles/colors" as colors;
-@use "../../styles/text-mixins" as fonts;
 
 .button-long {
   width: 20rem;
@@ -19,6 +17,6 @@
     top: 50%;
     margin-top: -0.75rem;
 
-    @include fonts.material-icons;
+    @include material-icons;
   }
 }

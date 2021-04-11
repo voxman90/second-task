@@ -1,0 +1,15 @@
+- const socialFollowList = [
+-   { name: '&#xf099;', font: 'awesome', tag: 'div' },
+-   { name: '&#xf082;', font: 'awesome', tag: 'div' },
+-   { name: '&#xf16d;', font: 'awesome', tag: 'div' },
+- ]
+
+mixin social-follow(icons = socialFollowList)
+  .social-follow&attributes(attributes)
+    .social-follow__icons
+      each icon in icons
+        a(
+          class = 'social-follow__link',
+          target = '_blank',
+        )
+          +icon(icon)(class = 'social-follow__icon')

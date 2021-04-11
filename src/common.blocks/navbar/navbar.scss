@@ -1,11 +1,4 @@
-@use 'sass:map';
-@use 'sass:color';
-@use '../../styles/colors' as colors;
-@use '../../styles/text-mixins' as fonts;
 @use '../../styles/boxes.scss' as box;
-
-$dark-shade-50: map.get(colors.$map, 'dark-shade-50');
-$dark-shade-75: map.get(colors.$map, 'dark-shade-75');
 
 .navbar {
   height: 100%;
@@ -32,7 +25,7 @@ $dark-shade-75: map.get(colors.$map, 'dark-shade-75');
   display: inline-block;
   padding: 0.625rem;
 
-  @include fonts.Montserrat-normal;
+  @include Montserrat-normal;
   font-size: 0.875rem;
   line-height: 1.5rem;
   white-space: nowrap;
@@ -68,7 +61,7 @@ $dark-shade-75: map.get(colors.$map, 'dark-shade-75');
     top: 0.625rem;
     left: 0.5875rem;
   
-    @include fonts.Montserrat-bold;
+    @include Montserrat-bold;
     color: $dark-shade-75;
   }
 }

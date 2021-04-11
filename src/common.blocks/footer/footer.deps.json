@@ -1,12 +1,14 @@
 {
- "name": "footer",
- "techs": [
-  "scss",
-  "pug"
- ],
- "deps": [
-  "logo",
-  "subscription-text-field",
-  "icon"
- ]
+  "name": "footer",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": [
+    "link",
+    "logo",
+    "subscription-field",
+    "icon",
+    "copyright-bar"
+  ]
 }

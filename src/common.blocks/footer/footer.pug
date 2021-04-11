@@ -1,44 +1,27 @@
-footer.footer
-    .footer__logo
-        div
-        +logo("small", true, true)
+mixin footer__link-list(args = {})
+  - const { heading, items } = args
+  section.footer__link-list
+    h3(class = 'footer__heading')= heading
+    ul.footer__list
+      each item in items
+        li.footer__list-item
+          +link(item)(class = 'footer__link')
+
+mixin footer__subscription-form()
+  section.footer__subscription-form
+    form
+      h3.footer__subscription-form-heading Подписка
+      p Получайте специальные предложения и новости сервиса
+      +subscription-field({ name: 'subscr-field-1st', placeholder: 'Email' })
+
+mixin footer(args = {})
+  - const { footerItems } = args
+  footer.footer
+    .footer__top
+      .footer__logo
+        +logo('small', true, true)
         span Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»
-    dl.footer__list
-        dt Навигация
-        dd
-        a(href="#about") О нас
-        dd
-        a(href="#news") Новости
-        dd
-        a(href="#support") Служба поддержки
-        dd
-        a(href="#services") Услуги
-    dl.footer__list
-        dt О нас
-        dd
-        a(href="#about-service")  О сервисе
-        dd 
-        a(href="#team")  Наша команда
-        dd 
-        a(href="#vacancies") Вакансии
-        dd
-        a(href="#investors") Инвесторы
-    dl.footer__list
-        dt Служба поддержки
-        dd
-        a(href="#agreements") Соглашения
-        dd
-        a(href="#messages") Сообщения
-        dd
-        a(href="#feedback") Связь с нами
-    .footer__subscribe
-        dl
-        dt Подписка
-        dd Получайте специальные предложения и новости сервиса
-        +subscription-text-field()
-    .copyright-bar
-    span.copyright-bar__copyright Copyright © 2018 Toxin отель. Все права защищены.
-    .copyright-bar__widgets
-        +icon("&#xf099;", "awesome", "a")
-        +icon("&#xf082;", "awesome", "a")
-        +icon("&#xf16d;", "awesome", "a")
+      each item in footerItems
+        +footer__link-list(item)
+      +footer__subscription-form()
+    +copyright-bar()(class = 'footer__copyright-bar')

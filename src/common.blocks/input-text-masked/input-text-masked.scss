@@ -1,12 +1,7 @@
-@use 'sass:map';
-@use 'sass:color';
-@use '../../styles/colors' as colors;
-@use '../../styles/text-mixins' as fonts;
-
 .input-text-masked {
   padding-bottom: 0.1563rem;
 
   &::placeholder {
-    color: map.get(colors.$map, 'dark-shade-25');
+    color: $dark-shade-25;
   }
 }

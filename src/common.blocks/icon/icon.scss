@@ -1,6 +1,3 @@
-@use 'sass:map';
-@use '../../styles/text-mixins' as fonts;
-
 .icon {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -8,9 +5,9 @@
 }
 
 .icon_font_material {
-  @include fonts.material-icons;
-} 
+  @include material-icons;
+}
 
 .icon_font_awesome {
-  @include fonts.font-awesome-icons;
+  @include font-awesome-icons;
 }

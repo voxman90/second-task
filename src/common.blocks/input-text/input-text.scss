@@ -1,39 +1,35 @@
-@use 'sass:map';
-@use '../../styles/colors' as colors;
-@use '../../styles/text-mixins' as fonts;
-
 .input-text {
   box-sizing: border-box;
   height: 2.75rem;
   width: 100%;
   padding-left: 0.875rem;
 
-  border: 1px solid map.get(colors.$map, dark-shade-25);
+  border: 1px solid $dark-shade-25;
   border-radius: 4px;
 
-  @include fonts.body-text;
+  @include body-text;
 
   &:hover,
   &:focus,
   &:active { 
     outline: none;
-    border-color: map.get(colors.$map, dark-shade-50);
+    border-color: $dark-shade-50;
   }
 
   &:-ms-input-placeholder {
-    color: map.get(colors.$map, dark-shade-25);
+    color: $dark-shade-25;
   }
   
   &::-webkit-input-placeholder {
-    color: map.get(colors.$map, dark-shade-25);
+    color: $dark-shade-25;
   }
 
   &::-moz-placeholder {
-    color: map.get(colors.$map, dark-shade-25);
+    color: $dark-shade-25;
   }
 
   &::placeholder {
-    color: map.get(colors.$map, dark-shade-25);
+    color: $dark-shade-25;
   }
 
   &::-moz-placeholder {
@@ -43,5 +39,5 @@
 
 .input-text_hover {
   outline: none;
-  border-color: map.get(colors.$map, dark-shade-50);
+  border-color: $dark-shade-50;
 }

@@ -1,8 +1,3 @@
-@use 'sass:map';
-@use 'sass:color';
-@use '../../styles/colors' as colors;
-@use '../../styles/text-mixins' as fonts;
-
 .dropdown-filter-date {
   width: 16.625rem;
 }
@@ -24,11 +19,11 @@
   padding-left: 0.875rem;
   padding-bottom: 0.125rem;
 
-  border: 1px solid map.get(colors.$map, dark-shade-25);
+  border: 1px solid $dark-shade-25;
   border-radius: 4px;
   background-color: white;
 
-  @include fonts.body-text;
+  @include body-text;
 }
 
 .dropdown-filter-date__input-arrival {
@@ -49,7 +44,7 @@
   justify-content: center;
   width: 2.625rem;
   height: 2.625rem;
-  color: map.get(colors.$map, 'dark-shade-50');
+  color: $dark-shade-50;
 
   &:hover {
     cursor: pointer;
@@ -57,7 +52,7 @@
 }
 
 .dropdown-filter-date__icon_shaded {
-  color: map.get(colors.$map, 'dark-shade-75');
+  color: $dark-shade-75;
 }
 
 .dropdown-filter-date__bar_hidden {

@@ -1,18 +1,13 @@
-@use 'sass:map';
-@use 'sass:color';
-@use '../../styles/colors' as colors;
-@use '../../styles/text-mixins' as fonts;
-
 .link {
   position: relative;
 
   display: inline-block;
 
-  @include fonts.Montserrat-normal;
+  @include Montserrat-normal;
   font-size: 0.875rem;
   line-height: 1.5rem;
   white-space: nowrap;
-  color: map.get(colors.$map, dark-shade-50);
+  color: $dark-shade-50;
 
   transition: opacity 300ms ease;
 
@@ -28,8 +23,8 @@
     visibility: hidden;
     opacity: 0;
 
-    @include fonts.Montserrat-bold;
-    color: map.get(colors.$map, dark-shade-75);
+    @include Montserrat-bold;
+    color: $dark-shade-75;
   }
 
   &:focus {

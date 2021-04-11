@@ -1,0 +1,10 @@
+{
+  "name": "copyright-bar",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": [
+    "social-follow"
+  ]
+}
