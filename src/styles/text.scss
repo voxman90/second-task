@@ -50,14 +50,6 @@
 }
 
 //- This is a label or CTA text
-@mixin label-text($size: 0.75rem, $height: normal) {
-  @include Montserrat-bold;
-  font-size: $size;
-  line-height: $height;
-  text-transform: uppercase;
-  color: colors.$dark-shade-100;
-}
-
 @mixin regular-label-text($size: 0.75rem, $height: normal) {
   @include Montserrat-normal;
   font-size: $size;
@@ -66,8 +58,23 @@
   color: colors.$dark-shade-50;
 }
 
+@mixin h3-text($size: 0.75rem, $height: normal) {
+  @include Montserrat-bold;
+  font-size: $size;
+  line-height: $height;
+  text-transform: uppercase;
+  color: colors.$dark-shade-100;
+}
+
 //- This is the body text which is used for most of the design, like paragraphs, lists, etc.
 @mixin body-text($size: 0.875rem, $height: 1.5rem) {
+  @include Montserrat-normal;
+  font-size: $size;
+  line-height: $height;
+  color: colors.$dark-shade-75;
+}
+
+@mixin p-text($size: 0.875rem, $height: 1.5rem) {
   @include Montserrat-normal;
   font-size: $size;
   line-height: $height;

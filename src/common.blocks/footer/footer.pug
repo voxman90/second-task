@@ -1,27 +1,31 @@
+mixin footer(args = {})
+  - const { footerItems } = args
+  footer(class = 'footer')&attributes(attributes)
+    .footer__top
+      .footer__top-wrapper
+        +footer__info
+        each item in footerItems
+          +footer__link-list(item)
+        +footer__subscription()
+    +copyright-bar()(class = 'footer__copyright-bar')
+
+mixin footer__info
+  section.footer__info
+    +logo({ size: 'small', isColored: true, isSigned: true })(class = 'js-auto-init footer__logo')
+    p.footer__p Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»
+
 mixin footer__link-list(args = {})
   - const { heading, items } = args
   section.footer__link-list
     h3(class = 'footer__heading')= heading
-    ul.footer__list
+    ul
       each item in items
         li.footer__list-item
-          +link(item)(class = 'footer__link')
+          +link(item)
 
-mixin footer__subscription-form()
-  section.footer__subscription-form
+mixin footer__subscription()
+  section.footer__subscription
     form
-      h3.footer__subscription-form-heading Подписка
-      p Получайте специальные предложения и новости сервиса
-      +subscription-field({ name: 'subscr-field-1st', placeholder: 'Email' })
-
-mixin footer(args = {})
-  - const { footerItems } = args
-  footer.footer
-    .footer__top
-      .footer__logo
-        +logo('small', true, true)
-        span Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»
-      each item in footerItems
-        +footer__link-list(item)
-      +footer__subscription-form()
-    +copyright-bar()(class = 'footer__copyright-bar')
+      h3.footer__heading Подписка
+      p.footer__p.footer__subscription-p Получайте специальные предложения и новости сервиса
+      +subscription-field({ name: 'sf-footer', placeholder: 'Email' })

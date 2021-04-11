@@ -2,34 +2,29 @@
   width: fit-content;
 }
 
-.social-follow__icons {
-  width: fit-content;
-}
-
-.social-follow__link {
-  width: fit-content;
+.social-follow__icon-list {
+  display: flex;
 }
 
 .social-follow__icon {
-  // width: 1.5rem;
-  // height: 1.5rem;
+  width: 1.5rem;
 
   text-align: center;
 
   background: linear-gradient(180deg, $purple 0%, $malibu 100%);
   -webkit-background-clip: text;
-  background-clip: text;
+          background-clip: text;
   -webkit-text-fill-color: transparent;
   cursor: pointer;
 }
 
-.copyright-bar__widgets {
-  float: right;
+.social-follow__link {
+  &:link,
+  &:visited {
+    text-decoration: none;
+  }
+}
 
-  display: flex;
-  align-items: center;
-  width: -webkit-min-content;
-  width: -moz-min-content;
-  width: min-content;
-  height: 4.375rem;
+.social-follow__gap {
+  padding-right: 1.25rem;
 }

@@ -53,12 +53,12 @@ mixin navbar__buttons(isloggedIn)
   if isloggedIn
     p= 'plug'
   else
-    .navbar__button
+    li.navbar__button
       +button-short({ name: 'button-sign-in', text: 'ВОЙТИ', isBordered: true })(
         class = 'navbar__button-sign-in',
         onClick = 'javascript: window.open("http://www.google.com", "_blank");',
       )
-    .navbar__button
+    li.navbar__button
       +button-long({ name: 'button-sign-up', text: 'ЗАРЕГИСТРИРОВАТЬСЯ', isFilled: true, isArrowed: false })(
         class = 'navbar__button-sign-up',
         onClick = 'javascript: window.open("http://www.google.com", "_blank");',

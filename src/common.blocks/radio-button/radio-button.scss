@@ -2,7 +2,7 @@
   display: flex;
   justify-content: flex-start;
   flex-wrap: nowrap;
-  box-sizing: border-box;
+  
   min-width: min-content;
   height: 1.5rem;
 }
@@ -24,7 +24,7 @@
     top: 0px;
     left: -30px;
 
-    box-sizing: border-box;
+    
     width: 20px;
     height: 20px;
 

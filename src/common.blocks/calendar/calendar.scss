@@ -4,7 +4,6 @@
   position: absolute;
   z-index: 15;
 
-  box-sizing: border-box;
   width: 20rem;
   margin-top: 5px;
   padding: 19px;
@@ -94,7 +93,7 @@
 
   cursor: default;
 
-  @include label-text(0.75rem, 1.25rem);
+  @include h3-text(0.75rem, 1.25rem);
   text-transform: none;
   color: $purple;
 }
@@ -201,7 +200,6 @@
 }
 
 .calendar__buttons {
-  box-sizing: border-box;
   width: 100%;
   height: -webkit-fit-content;
   height: -moz-fit-content;

@@ -4,6 +4,7 @@
   max-width: 1920px;
   height: 4.375rem;
   padding: 0 9.722%;
+
   background-color: #FFFFFF;
   box-shadow: 0 0.625rem 1.25rem $dark-shade-05;
 }
@@ -11,20 +12,17 @@
 .copyright-bar__wrapper {
   display: flex;
   justify-content: space-between;
-}
-
-.copyright-bar__copyright {
-
-}
-
-.copyright-bar__social-follow {
-
+  align-items: center;
 }
 
 .copyright-bar__copyright {
   float: left;
   height: 4.375rem;
 
-  @include body-text();
+  @include p-text();
   line-height: 4.375rem;
+}
+
+.copyright-bar__social-follow {
+
 }

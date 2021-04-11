@@ -11,7 +11,7 @@ html
   body
     .colors-and-type
       .colors-and-type__logo
-        +logo("big", true, true)
+        +logo({ size: 'big', isColored: false, isSigned: false })
       .colors-and-type__samples
         .colors-and-type__color-samples
           each color in colors

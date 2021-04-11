@@ -107,7 +107,7 @@ $color-map: (
 
 .font-sample-text_type_label-text {
   grid-area: 5 / 3 / 6 / 4;
-  @include label-text;
+  @includeh3-text;
 }
 
 .font-sample-label_type_body-text {

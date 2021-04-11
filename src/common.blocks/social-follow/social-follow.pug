@@ -6,10 +6,15 @@
 
 mixin social-follow(icons = socialFollowList)
   .social-follow&attributes(attributes)
-    .social-follow__icons
-      each icon in icons
-        a(
-          class = 'social-follow__link',
-          target = '_blank',
+    ul.social-follow__icon-list
+      - const length = icons.length
+      each icon, i in icons
+        li(
+          class = (i < length - 1) ? 'social-follow__gap' : null,
         )
-          +icon(icon)(class = 'social-follow__icon')
+          a(
+            class = 'social-follow__link'
+            href = '#',
+            target = '_blank',
+          )
+            +icon(icon)(class = 'social-follow__icon')
