@@ -1,0 +1,12 @@
+{
+  "name": "footer-creative",
+  "techs": [
+    "pug",
+    "scss"
+  ],
+  "deps": [
+    "logo",
+    "copyright",
+    "social-follow"
+  ]
+}

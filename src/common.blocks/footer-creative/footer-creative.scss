@@ -1,0 +1,21 @@
+.footer-creative {
+  height: 22.9375rem;
+
+  box-shadow: 0 1px 0 dark-shade(0.10);
+}
+
+.footer-creative__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.footer-creative__copyright {
+  padding-top: 1.25rem;
+}
+
+.footer-creative__social-follow {
+  padding-top: 1.5625rem;
+}

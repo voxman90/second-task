@@ -1,0 +1,8 @@
+{
+  "name": "copyright",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": null
+}

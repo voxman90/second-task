@@ -1,10 +1,12 @@
 import "./styles/style.scss";
-import "./common.blocks/input-text/input-text.scss";
-import "./common.blocks/icon/icon.scss";
-import "./common.blocks/subscription-field/subscription-field.scss";
-import "./common.blocks/social-follow/social-follow.scss";
-import "./common.blocks/copyright-bar/copyright-bar.scss";
 import "./common.blocks/logo/logo.scss";
+import "./common.blocks/copyright/copyright.scss";
+import "./common.blocks/icon/icon.scss";
+import "./common.blocks/social-follow/social-follow.scss";
+import "./common.blocks/footer-creative/footer-creative.scss";
+import "./common.blocks/input-text/input-text.scss";
+import "./common.blocks/subscription-field/subscription-field.scss";
+import "./common.blocks/copyright-bar/copyright-bar.scss";
 import "./common.blocks/label/label.scss";
 import "./common.blocks/button/button.scss";
 import "./common.blocks/button-short/button-short.scss";

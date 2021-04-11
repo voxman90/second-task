@@ -15,3 +15,10 @@ ul {
   margin: 0;
   padding: 0;
 }
+
+a {
+  &:link,
+  &:visited {
+    text-decoration: none;
+  }
+}

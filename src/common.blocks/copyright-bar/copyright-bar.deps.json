@@ -5,6 +5,7 @@
     "pug"
   ],
   "deps": [
-    "social-follow"
+    "social-follow",
+    "copyright"
   ]
 }

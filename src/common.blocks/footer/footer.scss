@@ -54,6 +54,36 @@
   padding: 1.25rem 0;
 }
 
-.footer__copyright-bar {
-  
+.footer-creative {
+  display: none;
+}
+
+@media only screen and (max-width: 1152px) {
+  .footer__top {
+    padding: 6.25rem 2.5%;
+  }
+
+  .footer__copyright-bar {
+    padding: 0 2.5%;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .footer__info {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .footer__top {
+    display: none;
+  }
+
+  .footer__copyright-bar {
+    display: none;
+  }
+
+  .footer-creative {
+    display: block;
+  }
 }
