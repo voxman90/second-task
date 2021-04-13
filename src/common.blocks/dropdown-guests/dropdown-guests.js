@@ -1,3 +1,5 @@
+'use strict';
+
 import { BEMComponent } from '../../scripts/BEMComponent';
 import { Dropdown, DropdownModel } from '../dropdown/dropdown';
 

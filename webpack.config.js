@@ -32,7 +32,7 @@ function defineEntry(conf, entry, plugins) {
 }
 
 function getEntries() {
-  const data = fs.readFileSync(_path('./src/entry.json'));
+  const data = fs.readFileSync(_path('./src/entries.json'));
   const { entries } = JSON.parse(data);
   const entry = {};
   const plugins = [];

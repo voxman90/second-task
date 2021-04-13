@@ -1,6 +1,16 @@
 {
   "entries": [
     {
+      "name": "colors-and-type",
+      "template": "Colors and Type",
+      "data": "colors-and-type",
+      "styles": [
+        "./templates/colors-and-type/colors-and-type.scss"
+      ],
+      "scripts": []
+    },
+
+    {
       "name": "test",
       "template": "Test",
       "data": null,
@@ -26,17 +36,7 @@
       ]
     },
 
-    {
-      "name": "colors-and-type",
-      "template": "Colors and Type",
-      "data": "colors-and-type",
-      "styles": [
-        "./templates/colors-and-type/colors-and-type.scss"
-      ],
-      "scripts": []
-    },
-
-    {
+{
       "name": "cards",
       "template": "Cards",
       "data": "cards",

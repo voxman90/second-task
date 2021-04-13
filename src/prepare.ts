@@ -10,8 +10,8 @@ class Vertex {
     this.links = [];
   }
 
-  linkVertex(vert: Vertex) {
-    this.links.push(vert);
+  linkVertex(vertex: Vertex) {
+    this.links.push(vertex);
   }
 
   setValue(value: number | string) {
@@ -20,79 +20,76 @@ class Vertex {
 }
 
 class Graph {
-  verts: Vertex[];
+  vertices: Vertex[];
 
   constructor() {
-    this.verts = [];
+    this.vertices = [];
   }
 
-  addVertex(vert: Vertex): void {
-    this.verts.push(vert);
+  addVertex(vertex: Vertex): void {
+    this.vertices.push(vertex);
   }
 }
 
 class ComponentsGraph extends Graph {
-  getTechs(): {templs: string[], styles: string[], scripts: string[]} {
-    const templs = [];
+  getTechs(): { templates: string[], styles: string[], scripts: string[] } {
+    const templates = [];
     const styles = [];
     const scripts = [];
 
-    for (let vert of this.verts) {
-      if (vert.techs.includes("pug")) {
-        templs.unshift(vert.value);
+    this.vertices.forEach((vertex) => {
+      if (vertex.techs.includes('pug')) {
+        templates.unshift(vertex.value);
       }
 
-      if (vert.techs.includes("scss")) {
-        styles.unshift(vert.value);
+      if (vertex.techs.includes('scss')) {
+        styles.unshift(vertex.value);
       }
 
-      if (vert.techs.includes("js")) {
-        scripts.unshift(vert.value);
+      if (vertex.techs.includes('js')) {
+        scripts.unshift(vertex.value);
       }
-    }
+    });
 
-    return {
-      templs,
-      styles,
-      scripts
-    };
+    return { templates, styles, scripts };
   }
 }
 
+// A wrapper class for topological sorting
 class TopologicalSort {
-  graph: Graph;
   list: Vertex[];
   stack: Vertex[];
 
   constructor(graph: Graph) {
-    this.graph = graph;
     this.list = [];
     this.stack = [];
 
-    if (this.graph.verts.length > 0) {
-      this.sort();
+    const isMoreThenOneVertex = graph.vertices.length > 0;
+    if (isMoreThenOneVertex) {
+      this.sort(graph);
       this.removeServiceProperties();
     }
-    graph.verts = [].concat(this.stack);
+
+    graph.vertices = [...this.stack];
   }
 
-  sort() {
-    this.graph.verts.forEach(
-      (vert) => vert.color = "white"
+  sort(graph: Graph) {
+    graph.vertices.forEach(
+      (vertex) => vertex.color = 'white'
     );
 
-    this.list.push(this.graph.verts[0]);
+    this.list.push(graph.vertices[0]);
 
     let done = false;
     while (!done) {
-      const length = this.list.length;
-      this.bypass(this.list[length - 1]);
+      const lastAddedVertex = this.list[this.list.length - 1];
+      this.bypass(lastAddedVertex);
       done = true;
 
-      this.graph.verts.some(
-        (vert) => {
-          if (vert.color === "white") {
-            this.list.push(vert);
+      graph.vertices.some(
+        (vertex) => {
+          if (vertex.color === 'white') {
+            this.list.push(vertex);
             done = false;
             return true;
           }
@@ -102,232 +99,332 @@ class TopologicalSort {
   }
 
   bypass(root: Vertex) {
-    root.color = "grey";
+    root.color = 'grey';
 
-    for (let vert of root.links) {
-      if (vert.color === "white") {
-        this.list.push(vert);
-        this.bypass(vert);
-      } else if (vert.color === "grey") {
-        console.log(`(TopologicalSort -> sort -> bypass) Loop found, sorting is not possible [vertex = ${vert}]`);
+    root.links.forEach((vertex) => {
+      if (vertex.color === 'white') {
+        this.list.push(vertex);
+        this.bypass(vertex);
+      } else if (vertex.color === 'grey') {
+        console.log(`(TopologicalSort -> sort -> bypass) Loop found, sorting is not possible [vertex = ${vertex}]`);
       }
-    }
+    });
 
-    root.color = "black";
+    root.color = 'black';
     this.stack.unshift(root);
   }
 
   removeServiceProperties() {
-    for (let vert of this.stack) {
-      delete vert.color;
-    }
+    this.stack.forEach((vertex) => {
+      delete vertex.color;
+    });
   }
 }
 
 (function() {
-  const fs = require("fs");
-  const path = require("path");
+  type entry = { name: string, template: string, styles?: string[], scripts?: string[] };
 
-  const COMP_ROOT = "common.blocks";
+  const fs = require('fs');
+  const path = require('path');
 
-  const rawData = fs.readFileSync(path.resolve(__dirname, "./entry.json"));
-  const {entries} = JSON.parse(rawData);
+  const ENTRIES_JSON_PATH = './entries.json';
+  const COMPONENTS_DIR = './common.blocks';
+  const TEMPLATES_DIR = './templates';
 
-  for (let entry of entries) {
-    createEntry(entry);
+  const PREPEND_STYLES = [
+    './styles/style.scss',
+  ];
+
+  prepareEntries();
+
+  function prepareEntries() {
+    const pathToEntriesJSON = path.resolve(__dirname, ENTRIES_JSON_PATH);
+    const fd = fs.readFileSync(pathToEntriesJSON);
+    const { entries } = JSON.parse(fd);
+
+    entries.forEach((entry) => {
+      prepareEntry(entry);
+    });
   }
 
-  type entry = { name: string, template: string, styles: string[], scripts: string[] };
+  function prepareEntry(args: entry): void {
+    const { name: entryName, template: templateName } = args;
+    const templatePath = getTemplatePath(entryName, templateName);
+    let templateData = fs.readFileSync(templatePath, 'utf8');
 
-  function createEntry(args: entry): void {
-    const { name, template } = args;
+    templateData = removePrependingIncludes(templateData);
 
-    const data = fs.readFileSync(path.resolve(__dirname, `./templates/${name}/${template}.pug`), 'utf8');
-    let { inc, mix, comps } = extractComponentsFromTemplate(data);
+    let { includes, mixins, components } = extractComponents(templateData);
 
-    const compGraph = createComponentsGraph(comps);
-    new TopologicalSort(compGraph);
+    const graph = createComponentGraph(components);
+    new TopologicalSort(graph);
+    const { templates, styles, scripts } = graph.getTechs();
+    const missingComponentIncludes = removeDifference(templates, includes);
 
-    const { templs, styles, scripts } = compGraph.getTechs();
-    writeIncludes(name, template, removeDifference(templs, inc));
-    writeImports(args, styles, scripts);
+    writeIncludesToTemplate(missingComponentIncludes, templatePath, templateData);
+    writeImportsToEntryJS(args, styles, scripts);
   }
 
-  function createComponentsGraph(comps: string[]): ComponentsGraph {
-    let compGraph = new ComponentsGraph();
+  function createComponentGraph(components: string[]): ComponentsGraph {
+    const graph = new ComponentsGraph();
 
-    compGraph.verts = createComponentsVertexList(comps);
+    graph.vertices = createComponentsVertexList(components);
 
-    return compGraph;
+    return graph;
   }
 
-  function createComponentsVertexList(comps: string[]): Vertex[] {
-    let compList = [...comps];
-    let vertexList = [];
+  function createComponentsVertexList(componentsFromTemplate: string[]): Vertex[] {
+    const components = [...componentsFromTemplate];
+    const vertices = [];
 
+    /* Add vertices for components with the specified dependencies (in file with ".deps.json" extension).
+     * And also add vertices for the unique components available through dependencies.
+     */
     let i = 0;
-    while (compList.length !== i) {
-      const root = `./${COMP_ROOT}/${compList[i]}/${compList[i]}`;
-      const file = `${root}.deps.json`;
+    while (components.length !== i) {
+      const componentName = components[i]
+      const pathToDepsJSON = getComponentPath(componentName, '.deps.json');
 
-      if (!fs.existsSync(path.resolve(__dirname, file))) {
-        console.log(`(getComponents) File doesn't exist! [file = ${file}]`);
-        compList.splice(i, 1);
+      if (!fs.existsSync(pathToDepsJSON)) {
+        console.log(`(createComponentsVertexList) File doesn't exist! [file = ${pathToDepsJSON}]`);
+        components.splice(i, 1);
       } else {
-        vertexList.push(createComponentVertex(file, compList));
+        const componentVertex = createComponentVertex(pathToDepsJSON);
+        updateComponentList(components, componentVertex);
+        vertices.push(componentVertex);
         i += 1;
       }
     }
 
-    vertexList.forEach(
-      (vert, i, vertList) => setVertexLinks(vert, vertList, compList)
+    /* In accordance with the dependencies, links are added to the vertices of the corresponding components.
+     * If there is no component for the dependency, then the dependency is removed.
+     */
+    vertices.forEach(
+      (vertex) => setVertexLinks(vertex, vertices, components)
     );
 
-    return vertexList;
+    return vertices;
   }
 
-  function createComponentVertex(file: string, comps: string[]): Vertex {
-    const fd = fs.readFileSync(path.resolve(__dirname, file));
-    const obj = JSON.parse(fd);
-    let { name, deps, techs } = obj;
-    if (deps === null) {
-      deps = [];
-    }
+  function createComponentVertex(depsPath: string): Vertex {
+    const fd = fs.readFileSync(depsPath);
+    const depsObj = JSON.parse(fd);
+    let { name, deps, techs } = depsObj;
 
-    const vert = new Vertex(name);
-    vert.deps = deps;
-    vert.techs = techs;
+    const vertex = new Vertex(name);
+    vertex.deps = deps || [];
+    vertex.techs = techs || [];
 
-    for (let dep of deps) {
-      if (!comps.includes(dep)) {
-        comps.push(dep);
+    return vertex;
+  }
+
+  function updateComponentList(components: string[], componentVertex: Vertex): void {
+    const dependencies = componentVertex.deps;
+
+    // Dependencies are specified as an array of names of the components that this component depends on.
+    dependencies.forEach((dependency) => {
+      if (!components.includes(dependency)) {
+        components.push(dependency);
       }
-    };
-
-    return vert;
+    });
   }
 
-  function setVertexLinks(vert: Vertex, vertList: Vertex[], compList: string[]): void {
-    let { deps } = vert;
+  function setVertexLinks(vertex: Vertex, vertices: Vertex[], components: string[]): void {
+    const dependencies = vertex.deps;
+
     let i = 0;
-    while (i < deps.length) {
-      const dep = deps[i];
-      if (compList.includes(dep)) {
-        const link = vertList[compList.indexOf(dep)];
-        vert.links.push(link);
+    while (i < dependencies.length) {
+      const dependency = dependencies[i];
+
+      /* The vertices were added in the same order as the components.
+       * Therefore, the index of the component is equal to the index of the corresponding vertex.
+       */
+      if (components.includes(dependency)) {
+        const vertexIndex = components.indexOf(dependency);
+        const link = vertices[vertexIndex];
+        vertex.links.push(link);
         i += 1;
       } else {
-        vert.deps.splice(i, 1);
+        vertex.deps.splice(i, 1);
       }
     };
   }
 
-  function writeIncludes(name: string, template: string, comps: string[]): void {
-    const reducer = (acc, comp) => (
-      acc += `include ../../${COMP_ROOT}/${comp}/${comp}.pug\n`
-    );
-    let inc = comps.reduce(reducer, "");
+  function writeIncludesToTemplate(components: string[], templatePath: string, templateData: string): void {
+    const includes = writeIncludesToString(components, templatePath);
+    const data = includes + templateData;
 
-    const file = path.resolve(__dirname, `./templates/${name}/${template}.pug`);
-    const data = fs.readFileSync(file, "utf8");
-    inc += data;
-
-    const fd = fs.openSync(file, "w+");
-    fs.writeSync(fd, inc, 0, "utf8");
+    const fd = fs.openSync(templatePath, 'w+');
+    fs.writeSync(fd, data, 0, 'utf8');
     fs.closeSync(fd);
   }
 
-  function writeImports(args: entry, styles: string[], scripts: string[]): void {
-    const { name } = args;
-    let imports = writePresetImports();
-    
-    styles.forEach(
-      (style) => imports += `import "./${COMP_ROOT}/${style}/${style}.scss";\n`
-    );
+  function writeIncludesToString(components: string[], templatePath: string): string {
+    const reduceComponentToInclude = (str, component) => {
+      const componentTemplatePath = getComponentRelativePath(templatePath, component, '.pug');
+      str += `include ${componentTemplatePath}\n`;
+      return str;
+    };
 
-    scripts.forEach(
-      (script) => imports += `import "./${COMP_ROOT}/${script}/${script}.js";\n`
-    );
+    const includes = components.reduce(reduceComponentToInclude, '');
 
-    imports += writeEntryImports(args);
+    return includes;
+  }
 
-    const file = path.resolve(__dirname, `./${name}.entry.js`);
-    const fd = fs.openSync(file, "w+");
-    fs.writeSync(fd, imports, 0, "utf8");
+  function removePrependingIncludes(templateData: string): string {
+    const templateDataLines = templateData.split('\n');
+    const isStartWithInclude = new RegExp(/^include/);
+
+    while (isStartWithInclude.test(templateDataLines[0])) {
+      templateDataLines.splice(0, 1);
+    }
+
+    return templateDataLines.join('\n');
+  }
+
+  function writeImportsToEntryJS(args: entry, componentStyles: string[], componentScripts: string[]): void {
+    const { name: entryName } = args;
+    const entryPath = path.resolve(__dirname, `${entryName}.entry.js`)
+
+    const imports = writeImportsToString(args, componentStyles, componentScripts, entryPath);
+
+    const fd = fs.openSync(entryPath, 'w+');
+    fs.writeSync(fd, imports, 0, 'utf8');
     fs.closeSync(fd);
   }
 
-  function writePresetImports() {
-    let imports = 'import "./styles/style.scss";\n';
+  function writeImportsToString(args: entry, componentStyles: string[], componentScripts: string[], entryPath: string): string {
+    const prepImports = getPrependImports(entryPath);
+    const componentStyleImports = getComponentStyleImports(componentStyles, entryPath);
+    const componentScriptImports = getComponentScriptImports(componentScripts, entryPath);
+    const entryImports = getEntryImports(args);
+
+    const imports = `${prepImports}${componentStyleImports}${componentScriptImports}${entryImports}`;
 
     return imports;
   }
 
-  function writeEntryImports(args: entry): string {
+  function getPrependImports(entryPath: string): string {
+    const reduceStyleToImport = (str, stylePath) => {
+      const relativeStylePath = getRelativePath(entryPath, stylePath);
+      str += `import '${relativeStylePath}';\n`;
+      return str;
+    };
+    const imports = PREPEND_STYLES.reduce(reduceStyleToImport, '');
+
+    return imports;
+  }
+
+  function getComponentStyleImports(componentStyles: string[], entryPath: string): string {
+    const reduceComponentStyleToImport = makeComponentTechToImportReducer(entryPath, '.scss');
+    const imports = componentStyles.reduce(reduceComponentStyleToImport, '');
+
+    return imports;
+  }
+
+  function getComponentScriptImports(componentScripts: string[], entryPath: string): string {
+    const reduceComponentScriptToImport = makeComponentTechToImportReducer(entryPath, '.js');
+    const imports = componentScripts.reduce(reduceComponentScriptToImport, '');
+
+    return imports;
+  }
+
+  function makeComponentTechToImportReducer(entryPath: string, ext: string) {
+    return (str: string, componentName: string) => {
+      const relativeTechPath = getComponentRelativePath(entryPath, componentName, ext);
+      str += `import '${relativeTechPath}';\n`;
+      return str;
+    }
+  }
+
+  function getEntryImports(args: entry): string {
     const { styles, scripts } = args;
     let imports = '';
-    if (styles) {
-      styles.forEach(
-        (style) => {
-          imports += `import "${style}";\n`;
-        }
-      );
+
+    if (isArrayAndNotEmpty(styles)) {
+      styles.forEach((style) => {
+        imports += `import '${style}';\n`;
+      });
     }
 
-    if (scripts) {
-      scripts.forEach(
-        (script) => {
-          imports += `import "${script}";\n`
-        }
-      );
+    if (isArrayAndNotEmpty(scripts)) {
+      scripts.forEach((script) => {
+        imports += `import '${script}';\n`;
+      });
     }
 
-    return imports;
+    return (imports !== '') ? imports : '\n';
   }
 
-  function extractComponentsFromTemplate(data: string): {inc: string[], mix: string[], comps: string[]} {
-    const includes = new RegExp(/include.*/gm);
-    const mixins = new RegExp(/(?<=\+)[a-z\-]*?(?=\(|$)/gm);
-    let comps = [];
-    let inc: string[];
-    let mix: string[];
+  function extractComponents(templateData: string): { includes: string[], mixins: string[], components: string[] } {
+    const mixins = extractMixins(templateData);
+    const includes = extractIncludes(templateData);
+    const components = removeDuplicates([...mixins, ...includes]);
 
-    inc = data.match(includes) || [];
-    if (inc.length !== 0) {
-      inc.map((val, i, arr) => {
-        arr[i] = val.match(/(?<=\w\/)(.*(?=\/))/)[0];
+    return { mixins, includes, components };
+  }
+
+  function extractMixins(templateData: string): string[] {
+    const isMixin = new RegExp(/(?<=\+)[a-z\-]*?(?=\(|$)/gm);
+    const mixins = templateData.match(isMixin) || [];
+
+    return removeDuplicates(mixins);
+  }
+
+  function extractIncludes(templateData: string): string[] {
+    const isInclude = new RegExp(/include.*/gm);
+    let includes = templateData.match(isInclude) || [];
+
+    const isComponentName = new RegExp(/(?<=\w\/)(.*(?=\/))/);
+    if (isArrayAndNotEmpty(includes)) {
+      includes.map((include, i, arr) => {
+        arr[i] = include.match(isComponentName)[0];
       });
-      inc = removeDuplicates(inc);
     }
 
-    mix = data.match(mixins) || [];
-    if (mix.length !== 0) {
-      mix = removeDuplicates(mix);
-    }
-
-    comps = removeDuplicates([...inc, ...mix]);
-    mix = removeDifference(mix, inc);
-
-    return { inc, mix, comps };
+    return removeDuplicates(includes);
   }
 
   function removeDuplicates(arr: string[]): string[] {
-    if (arr && arr.length !== 0) {
-      return arr.filter(
-        (value, index, array) => array.indexOf(value) === index
-      );
-    }
-
-    return [];
+    return arr.filter(
+      (val, i, arr) => arr.indexOf(val) === i
+    );
   }
 
   function removeDifference(arr: string[], toRemove: string[]): string[] {
-    let acc = [...arr];
-
-    acc = acc.filter(
+    return arr.filter(
       (val) => !toRemove.includes(val)
     );
+  }
 
-    return acc;
+  function getComponentPath(componentName: string, ext: string): string {
+    const root = `${COMPONENTS_DIR}/${componentName}/${componentName}`;
+    return path.resolve(__dirname, `${root}${ext}`);
+  }
+
+  function getTemplatePath(entryName: string, templateName: string): string {
+    const root = `${TEMPLATES_DIR}/${entryName}/${templateName}`;
+    return path.resolve(__dirname, `${root}.pug`);
+  }
+
+  function getComponentRelativePath(fromPath: string, componentName: string, ext: string): string {
+    const techPath = getComponentPath(componentName, ext);
+    return getRelativePath(fromPath, techPath);
+  }
+
+  function getRelativePath(fromPath: string, toPath: string): string {
+    const fromDir = path.dirname(fromPath);
+    const absoluteToPath = path.resolve(__dirname, toPath);
+    const normalizeRelativePath = path.relative(fromDir, absoluteToPath).replace(/\\/g, '/');
+    const relativePath = ((/^\./).test(normalizeRelativePath)) ? normalizeRelativePath : `./${normalizeRelativePath}`;
+    return relativePath;
+  }
+
+  function isArrayAndNotEmpty(value: string[] | null | undefined): boolean {
+    return (
+      value !== undefined
+      && value !== null
+      && value.length !== 0
+    );
   }
 }());

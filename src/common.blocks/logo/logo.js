@@ -1,3 +1,5 @@
+'use strict';
+
 import { BEMComponent } from '../../scripts/BEMComponent';
 
 const Logo = ((document) => {

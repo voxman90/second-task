@@ -4,10 +4,11 @@
   const fs = require("fs");
   const path = require("path");
 
-  const TECH_EXT = ['.js', '.scss', '.pug'];
-  const COMPONENT_DIR = './common.blocks'
+  const COMPONENTS_DIR = './common.blocks';
 
-  const subdirs = getSubdir(path.resolve(__dirname, COMPONENT_DIR));
+  const TECH_EXT = ['.js', '.scss', '.pug'];
+
+  const subdirs = getSubdir(path.resolve(__dirname, COMPONENTS_DIR));
   subdirs.forEach(createDepsJSON);
 
   function getSubdir(source) {
@@ -21,8 +22,8 @@
   }
 
   function createDepsJSON(componentName: string): void {
-    const root = `${COMPONENT_DIR}/${componentName}/${componentName}`;
-    const ext = `.deps.json`
+    const root = `${COMPONENTS_DIR}/${componentName}/${componentName}`;
+    const ext = `.deps.json`;
     const depsPath = getPath(root, ext);
     const isDepsFileAlreadyExists = fs.existsSync(depsPath);
 
@@ -51,9 +52,9 @@
 
     const mixins = extractMixins(templateData);
     const includes = extractIncludes(templateData);
-    const comps = removeDuplicates([...mixins, ...includes]);
+    const components = removeDuplicates([...mixins, ...includes]);
 
-    return (comps.length !== 0) ? comps : null;
+    return (components.length !== 0) ? components : null;
   }
 
   function extractMixins(templateData: string): string[] {
@@ -77,12 +78,6 @@
     return includes;
   }
 
-  function removeDuplicates(arr: string[]): string[] {
-    return arr.filter(
-      (val, index, arr) => arr.indexOf(val) === index
-    );
-  }
-
   function extractTechs(root: string): string[] {
     const techs = [];
 
@@ -95,5 +90,11 @@
     });
 
     return (techs.length !== 0) ? techs : null;
+  }
+
+  function removeDuplicates(arr: string[]): string[] {
+    return arr.filter(
+      (val, i, arr) => arr.indexOf(val) === i
+    );
   }
 }());
