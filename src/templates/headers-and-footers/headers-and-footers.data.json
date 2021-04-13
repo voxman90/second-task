@@ -1,5 +1,5 @@
 {
-  "pageTitle": "Headers and Footers",
+  "pageTitle": "Headers and footers",
   "navbarItems": [
     { "text": "О нас", "href": "#about" },
     { "text": "Услуги", "href": "#services", "isExpandable": true,

@@ -202,7 +202,7 @@ const Pagination = ((document) => {
       const { current, positions, pages } = this.state;
       const blank = new Array(positions + 2);
 
-      blank.fill(null).forEach((val, i, arr) => {
+      blank.fill(null).forEach((_, i, arr) => {
         if (i <= pages) {
           arr[i] = i;
         }
@@ -226,7 +226,7 @@ const Pagination = ((document) => {
       const firstCenterPage = current - centerIndent;
 
       const blank = new Array(centerLength);
-      blank.fill(null).forEach((val, i, arr) => {
+      blank.fill(null).forEach((_, i, arr) => {
         arr[i] = firstCenterPage + i;
       });
 
@@ -246,7 +246,7 @@ const Pagination = ((document) => {
       );
 
       const blank = new Array(startLength);
-      blank.fill(null).forEach((val, i, arr) => {
+      blank.fill(null).forEach((_, i, arr) => {
         arr[i] = i + 1;
       });
 
@@ -266,7 +266,7 @@ const Pagination = ((document) => {
       );
 
       const blank = new Array(positions);
-      blank.fill(null).forEach((val, i, arr) => {
+      blank.fill(null).forEach((_, i, arr) => {
         if (i < endLength) {
           arr[i] = (pages - endLength + 1) + i;
         }

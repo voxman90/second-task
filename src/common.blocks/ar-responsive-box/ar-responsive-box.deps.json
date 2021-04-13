@@ -1,0 +1,8 @@
+{
+  "name": "ar-responsive-box",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": null
+}

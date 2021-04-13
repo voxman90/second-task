@@ -36,7 +36,7 @@
       ]
     },
 
-{
+    {
       "name": "cards",
       "template": "Cards",
       "data": "cards",
@@ -55,6 +55,18 @@
       ],
       "scripts": [
         "./templates/headers-and-footers/headers-and-footers.js"
+      ]
+    },
+
+    {
+      "name": "landing-page",
+      "template": "Landing page",
+      "data": "landing-page",
+      "styles": [
+        "./templates/landing-page/landing-page.scss"
+      ],
+      "scripts": [
+        "./templates/landing-page/landing-page.js"
       ]
     }
   ]

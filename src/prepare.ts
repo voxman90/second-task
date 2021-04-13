@@ -154,14 +154,14 @@ class TopologicalSort {
 
     templateData = removePrependingIncludes(templateData);
 
-    let { includes, mixins, components } = extractComponents(templateData);
+    let { includes, components } = extractComponents(templateData);
 
     const graph = createComponentGraph(components);
     new TopologicalSort(graph);
     const { templates, styles, scripts } = graph.getTechs();
     const missingComponentIncludes = removeDifference(templates, includes);
 
-    writeIncludesToTemplate(missingComponentIncludes, templatePath, templateData);
+    rewriteTemplate(missingComponentIncludes, templateData, templatePath);
     writeImportsToEntryJS(args, styles, scripts);
   }
 
@@ -250,8 +250,9 @@ class TopologicalSort {
     };
   }
 
-  function writeIncludesToTemplate(components: string[], templatePath: string, templateData: string): void {
-    const includes = writeIncludesToString(components, templatePath);
+  function rewriteTemplate(components: string[], templateData: string, templatePath: string): void {
+    const includes = getIncludeStatements(components, templatePath);
+
     const data = includes + templateData;
 
     const fd = fs.openSync(templatePath, 'w+');
@@ -259,14 +260,14 @@ class TopologicalSort {
     fs.closeSync(fd);
   }
 
-  function writeIncludesToString(components: string[], templatePath: string): string {
-    const reduceComponentToInclude = (str, component) => {
+  function getIncludeStatements(components: string[], templatePath: string): string {
+    const reduceToIncludeStatement = (str, component) => {
       const componentTemplatePath = getComponentRelativePath(templatePath, component, '.pug');
       str += `include ${componentTemplatePath}\n`;
       return str;
     };
 
-    const includes = components.reduce(reduceComponentToInclude, '');
+    const includes = components.reduce(reduceToIncludeStatement, '');
 
     return includes;
   }
@@ -286,14 +287,14 @@ class TopologicalSort {
     const { name: entryName } = args;
     const entryPath = path.resolve(__dirname, `${entryName}.entry.js`)
 
-    const imports = writeImportsToString(args, componentStyles, componentScripts, entryPath);
+    const imports = getImportStatements(args, componentStyles, componentScripts, entryPath);
 
     const fd = fs.openSync(entryPath, 'w+');
     fs.writeSync(fd, imports, 0, 'utf8');
     fs.closeSync(fd);
   }
 
-  function writeImportsToString(args: entry, componentStyles: string[], componentScripts: string[], entryPath: string): string {
+  function getImportStatements(args: entry, componentStyles: string[], componentScripts: string[], entryPath: string): string {
     const prepImports = getPrependImports(entryPath);
     const componentStyleImports = getComponentStyleImports(componentStyles, entryPath);
     const componentScriptImports = getComponentScriptImports(componentScripts, entryPath);
@@ -316,20 +317,20 @@ class TopologicalSort {
   }
 
   function getComponentStyleImports(componentStyles: string[], entryPath: string): string {
-    const reduceComponentStyleToImport = makeComponentTechToImportReducer(entryPath, '.scss');
-    const imports = componentStyles.reduce(reduceComponentStyleToImport, '');
+    const reduceStyleToImport = makeImportStatementReducer(entryPath, '.scss');
+    const imports = componentStyles.reduce(reduceStyleToImport, '');
 
     return imports;
   }
 
   function getComponentScriptImports(componentScripts: string[], entryPath: string): string {
-    const reduceComponentScriptToImport = makeComponentTechToImportReducer(entryPath, '.js');
-    const imports = componentScripts.reduce(reduceComponentScriptToImport, '');
+    const reduceScriptToImport = makeImportStatementReducer(entryPath, '.js');
+    const imports = componentScripts.reduce(reduceScriptToImport, '');
 
     return imports;
   }
 
-  function makeComponentTechToImportReducer(entryPath: string, ext: string) {
+  function makeImportStatementReducer(entryPath: string, ext: string) {
     return (str: string, componentName: string) => {
       const relativeTechPath = getComponentRelativePath(entryPath, componentName, ext);
       str += `import '${relativeTechPath}';\n`;
@@ -353,7 +354,7 @@ class TopologicalSort {
       });
     }
 
-    return (imports !== '') ? imports : '\n';
+    return imports;
   }
 
   function extractComponents(templateData: string): { includes: string[], mixins: string[], components: string[] } {

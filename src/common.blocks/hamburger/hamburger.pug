@@ -1,4 +1,4 @@
-mixin hamburger(args)
+mixin hamburger(args = {})
   - const { isLoggedIn, navbarItems } = args
   nav(class = 'hamburger js-expandable js-auto-init', role = 'navigation')&attributes(attributes)
     +hamburger__trigger()
@@ -30,11 +30,11 @@ mixin hamburger__expandable-list(args)
       each item in items
         +hamburger__item(item)
 
-mixin hamburger__item(args)
+mixin hamburger__item(args = {})
   li
     +link(args)(class = 'hamburger__link')
 
-mixin hamburger__footer(isloggedIn)
+mixin hamburger__footer(isloggedIn = false)
   if isloggedIn
     p= 'placeholder'
   else

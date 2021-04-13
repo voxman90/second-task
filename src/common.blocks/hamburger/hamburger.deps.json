@@ -8,6 +8,7 @@
     "icon",
     "link",
     "button-short",
-    "button-long"
+    "button-long",
+    "expandable"
   ]
 }

@@ -1,4 +1,4 @@
-mixin navbar(args)
+mixin navbar(args = {})
   - const { isLoggedIn, navbarItems } = args
   nav(class = 'navbar')&attributes(attributes)
     ul.navbar__menu
@@ -10,7 +10,7 @@ mixin navbar(args)
           +navbar__item(item)
       +navbar__buttons(isLoggedIn)
 
-mixin navbar__item(args)
+mixin navbar__item(args = {})
   - const { href, text, title = null } = args
   li(class = 'navbar__item')&attributes(attributes)
     a(
@@ -20,7 +20,7 @@ mixin navbar__item(args)
       data-text = text,
     )= text
 
-mixin navbar__dropdown(args)
+mixin navbar__dropdown(args = {})
   - const { href, text, title = null, items = [] } = args
   li.navbar__dropdown
     +navbar__dropdown-head(args)
@@ -28,7 +28,7 @@ mixin navbar__dropdown(args)
       each item in items
         +navbar__dropdown-list-item(item)
 
-mixin navbar__dropdown-head(args)
+mixin navbar__dropdown-head(args = {})
   - const { href, text, title = null } = args
   .navbar__dropdown-head
     a(
@@ -39,7 +39,7 @@ mixin navbar__dropdown-head(args)
     )= text
     +icon({ name: 'expand_more' })(class = 'navbar__icon')
 
-mixin navbar__dropdown-list-item(args)
+mixin navbar__dropdown-list-item(args = {})
   - const { href, text, title = null } = args
   li.navbar__dropdown-list-item
     a(
@@ -49,7 +49,7 @@ mixin navbar__dropdown-list-item(args)
       data-text = text,
     )= text
 
-mixin navbar__buttons(isloggedIn)
+mixin navbar__buttons(isloggedIn = false)
   if isloggedIn
     p= 'plug'
   else

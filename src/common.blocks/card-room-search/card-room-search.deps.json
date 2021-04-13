@@ -1,8 +1,7 @@
 {
   "name": "card-room-search",
   "techs": [
-    "scss",
-    "pug"
+    "scss"
   ],
   "deps": [
     "dropdown-date",

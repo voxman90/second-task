@@ -1,0 +1,91 @@
+@use '../../styles/text.scss';
+
+.landing-page__header {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+}
+
+.landing-page__main {
+  position: relative;
+  top: 0;
+
+  height: 100vh;
+  overflow: hidden;
+}
+
+.landing-page__main-image {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  background-repeat: no-repeat;
+}
+
+.landing-page__image-first {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 106.53%;
+  height: 113.56%;
+
+  background-image: url(../../assets/img/landing-page-image-001.png);
+  background-position: center;
+  background-size: cover;
+}
+
+.landing-page__image-second {
+  top: -14.33%;
+  right: 0;
+
+  height: 124.76%;
+
+  background-image: url(../../assets/img/landing-page-image-002.png);
+  background-position: right;
+  background-size: cover;
+}
+
+.landing-page__image-third {
+  top: 4.375rem;
+  right: 0;
+
+  background-image: url(../../assets/img/landing-page-image-003.png);
+  background-position: top right;
+  background-size: cover;
+}
+
+.landing-page__card-room-search {
+  position: absolute;
+  top: 8.75rem;
+  left: 9.722%;
+}
+
+.landing-page__caption {
+  position: absolute;
+  right: 8.375rem;
+  bottom: 1.125rem;
+
+  @include text.p-text;
+  white-space: pre-wrap;
+  text-align: right;
+}
+
+.landing-page__footer {
+  position: relative;
+  top: 0;
+  z-index: 10;
+}
+
+@media only screen and (max-width: 1152px) {
+  .landing-page__card-room-search {
+    left: 5%;
+  }
+}
+
+@media only screen and (max-width: 320px)  {
+  .landing-page__card-room-search {
+    left: 0;
+  }
+}
