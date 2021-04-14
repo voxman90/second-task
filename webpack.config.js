@@ -47,7 +47,7 @@ function getEntries() {
 const { entry, plugins } = getEntries();
 
 module.exports = {
-  context: _path('./src/'),
+  context: _path('src'),
 
   entry: {
     ...entry
@@ -55,16 +55,20 @@ module.exports = {
 
   output: {
     filename: '[name].js',
-    path: _path('./dist/')
+    path: _path('dist')
   },
 
   resolve: {
-    extensions: ['.ts', '.js'],
+    modules: [
+      _path('src'),
+      'node_modules'
+    ],
     alias: {
       'jquery': _path('node_modules/jquery/dist/jquery'),
       'inputmask' : _path('node_modules/jquery.inputmask/dist/inputmask/inputmask'),
       'jquery.inputmask': _path('node_modules/inputmask/dist/jquery.inputmask'),
     },
+    extensions: ['.ts', '.js', '.scss'],
   },
 
   plugins: [
@@ -101,21 +105,56 @@ module.exports = {
       },
 
       {
-        test: /\.(png|jpg|gif)$/i,
+        test: /\.(png|jpg|gif|svg)$/i,
         loader: 'file-loader',
         options: {
           name: '[name].[hash].[ext]',
-          outputPath: 'assets/images/',
+          outputPath: (url, resourcePath, context) => {
+            const relativePath = path.relative(context, resourcePath);
+
+            if (/\\fonts\\/.test(relativePath)) {
+              return `assets/fonts/${url}`;
+            }
+
+            if (/\\favicon\\/.test(relativePath)) {
+              return `assets/favicon/${url}`;
+            }
+
+            return `assets/img/${url}`;
+          }
         }
       },
 
       {
-        test: /\.(ttf|eot|otf|woff|woff2|svg)$/i,
+        test: /\.(ttf|eot|otf|woff|woff2)$/i,
         loader: 'file-loader',
         options: {
           name: '[name].[ext]',
-          outputPath: 'assets/fonts/',
+          outputPath: 'assets/fonts/'
         }
+      },
+
+      {
+        test: /\.ico$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: '',
+        }
+      },
+
+      {
+        test: /\.json$/,
+        type: 'javascript/auto',
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: '',
+            },
+          },
+        ],
       },
 
       {
