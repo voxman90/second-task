@@ -127,12 +127,12 @@ class TopologicalSort {
   const fs = require('fs');
   const path = require('path');
 
-  const ENTRIES_JSON_PATH = './entries.json';
-  const COMPONENTS_DIR = './common.blocks';
-  const TEMPLATES_DIR = './templates';
+  const ENTRIES_JSON_PATH = 'entries.json';
+  const COMPONENTS_DIR = 'common.blocks';
+  const TEMPLATES_DIR = 'templates';
 
   const PREPEND_STYLES = [
-    './styles/style.scss',
+    'styles/style.scss',
   ];
 
   prepareEntries();
@@ -417,8 +417,7 @@ class TopologicalSort {
     const fromDir = path.dirname(fromPath);
     const absoluteToPath = path.resolve(__dirname, toPath);
     const normalizeRelativePath = path.relative(fromDir, absoluteToPath).replace(/\\/g, '/');
-    const relativePath = ((/^\./).test(normalizeRelativePath)) ? normalizeRelativePath : `./${normalizeRelativePath}`;
-    return relativePath;
+    return normalizeRelativePath;
   }
 
   function isArrayAndNotEmpty(value: string[] | null | undefined): boolean {

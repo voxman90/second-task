@@ -15,7 +15,6 @@
       "template": "Test",
       "data": null,
       "styles": [
-        "./styles/boxes.scss",
         "./templates/test/test.scss"
       ],
       "scripts": [
@@ -28,11 +27,10 @@
       "template": "Form Elements",
       "data": "form-elements",
       "styles": [
-        "./styles/boxes.scss",
-        "./templates/form-elements/form-elements.scss"
+        "templates/form-elements/form-elements.scss"
       ],
       "scripts": [
-        "./templates/form-elements/form-elements.js"
+        "templates/form-elements/form-elements.js"
       ]
     },
 
@@ -41,7 +39,7 @@
       "template": "Cards",
       "data": "cards",
       "styles": [
-        "./templates/cards/cards.scss"
+        "templates/cards/cards.scss"
       ],
       "scripts": null
     },
@@ -51,10 +49,10 @@
       "template": "Headers and Footers",
       "data": "headers-and-footers",
       "styles": [
-        "./templates/headers-and-footers/headers-and-footers.scss"
+        "templates/headers-and-footers/headers-and-footers.scss"
       ],
       "scripts": [
-        "./templates/headers-and-footers/headers-and-footers.js"
+        "templates/headers-and-footers/headers-and-footers.js"
       ]
     },
 
@@ -63,10 +61,10 @@
       "template": "Landing page",
       "data": "landing-page",
       "styles": [
-        "./templates/landing-page/landing-page.scss"
+        "templates/landing-page/landing-page.scss"
       ],
       "scripts": [
-        "./templates/landing-page/landing-page.js"
+        "templates/landing-page/landing-page.js"
       ]
     }
   ]

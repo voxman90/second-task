@@ -2,8 +2,8 @@
 
 import $ from 'jquery';
 
-import { BEMComponent } from '../../scripts/BEMComponent';
-import { Utility } from '../../scripts/Utility';
+import { BEMComponent } from 'scripts/BEMComponent';
+import { Utility } from 'scripts/Utility';
 
 const Carousel = (($, document) => {
   const ClassName = {

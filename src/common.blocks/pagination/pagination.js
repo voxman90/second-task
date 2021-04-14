@@ -1,6 +1,6 @@
 'use strict';
 
-import { BEMComponent } from '../../scripts/BEMComponent';
+import { BEMComponent } from 'scripts/BEMComponent';
 
 const Pagination = ((document) => {
   const Default = {

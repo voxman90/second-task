@@ -1,4 +1,3 @@
-import './styles/style.scss';
-import './styles/boxes.scss';
+import 'styles/style.scss';
 import './templates/test/test.scss';
 import './templates/test/test.js';

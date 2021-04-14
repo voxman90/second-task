@@ -3,8 +3,8 @@
 import $ from 'jquery';
 import 'jquery.inputmask';
 
-import { BEMComponent } from '../../scripts/BEMComponent';
-import { Calendar } from '../calendar/calendar';
+import { BEMComponent } from 'scripts/BEMComponent';
+import { Calendar } from 'common.blocks/calendar/calendar';
 
 const DropdownDate = (($, document) => {
   const ClassName = {

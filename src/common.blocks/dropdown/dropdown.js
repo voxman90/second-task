@@ -1,7 +1,7 @@
 'use strict';
 
-import { BEMComponent } from '../../scripts/BEMComponent'
-import { Utility } from '../../scripts/Utility'
+import { BEMComponent } from 'scripts/BEMComponent'
+import { Utility } from 'scripts/Utility'
 
 class DropdownModel {
   constructor(dft, glossary) {

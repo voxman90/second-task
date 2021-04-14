@@ -1,3 +1,4 @@
+include ../../common.blocks/favicon/favicon.pug
 include ../../common.blocks/logo/logo.pug
 include ../../common.blocks/icon/icon.pug
 include ../../common.blocks/button/button.pug
@@ -8,20 +9,21 @@ include ../../common.blocks/link/link.pug
 include ../../common.blocks/hamburger/hamburger.pug
 include ../../common.blocks/header/header.pug
 include ../../common.blocks/ar-responsive-box/ar-responsive-box.pug
-include ../../common.blocks/copyright/copyright.pug
-include ../../common.blocks/social-follow/social-follow.pug
-include ../../common.blocks/copyright-bar/copyright-bar.pug
-include ../../common.blocks/footer-creative/footer-creative.pug
-include ../../common.blocks/input-text/input-text.pug
-include ../../common.blocks/subscription-field/subscription-field.pug
-include ../../common.blocks/footer/footer.pug
 include ../../common.blocks/label/label.pug
+include ../../common.blocks/input-text/input-text.pug
 include ../../common.blocks/input-text-masked/input-text-masked.pug
 include ../../common.blocks/input-date/input-date.pug
 include ../../common.blocks/calendar/calendar.pug
 include ../../common.blocks/dropdown-date/dropdown-date.pug
 include ../../common.blocks/dropdown/dropdown.pug
 include ../../common.blocks/dropdown-guests/dropdown-guests.pug
+include ../../common.blocks/card-room-search/card-room-search.pug
+include ../../common.blocks/copyright/copyright.pug
+include ../../common.blocks/social-follow/social-follow.pug
+include ../../common.blocks/copyright-bar/copyright-bar.pug
+include ../../common.blocks/footer-creative/footer-creative.pug
+include ../../common.blocks/subscription-field/subscription-field.pug
+include ../../common.blocks/footer/footer.pug
 - const data = htmlWebpackPlugin.options.data
 - const { pageTitle, navbarItems, footerItems } = data
 doctype html
@@ -30,6 +32,7 @@ html(lang = "ru")
     meta(charset = "UTF-8")
     meta(http-equiv = "X-UA-Compatible", content = "IE=edge")
     meta(name = "viewport", content = "width=device-width, initial-scale=1.0")
+    +favicon()
     title Document
   body 
     +header({ navbarItems })(class = 'landing-page__header')
@@ -37,6 +40,6 @@ html(lang = "ru")
       +ar-responsive-box()
         .landing-page__main-image
       .landing-page__card-room-search
-        include ../../common.blocks/card-room-search/card-room-search.pug
+        +card-room-search()
       p.landing-page__caption!= "Лучшие номера для вашей работы,\nотдыха и просто вдохновения"
     +footer({ footerItems })(class = "landing-page__footer")

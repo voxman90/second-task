@@ -1,7 +1,7 @@
 'use strict';
 
-import { BEMComponent } from '../../scripts/BEMComponent';
-import { Dropdown, DropdownModel } from '../dropdown/dropdown';
+import { BEMComponent } from 'scripts/BEMComponent';
+import { Dropdown, DropdownModel } from 'common.blocks/dropdown/dropdown';
 
 const DropdownFacilities = ((document) => {
   const Glossary = [
