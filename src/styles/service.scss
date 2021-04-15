@@ -1,3 +1,22 @@
+@mixin clearfix() {
+  &::after {
+    content: '';
+
+    clear: both;
+    display: block;
+    width: 100%;
+  }
+}
+
+@mixin square-ratio() {
+  &::after {
+    content: '';
+
+    display: block;
+    padding-top: 100%;
+  }
+}
+
 @mixin non-selectable() {
       -ms-user-select: none;
      -moz-user-select: none;
@@ -11,4 +30,21 @@
   &::selection {
     background: transparent;
   }
+}
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+/* f(x):[a, b] --> [c, d], b =\= a
+ * f(x) = (d - c)(x - a)/(b - a) + c, f(a) = c, f(b) = d
+ */
+@function segment($a, $b, $c, $d) {
+  $ab-length: strip-unit($b - $a);
+  $dc-length: strip-unit($d - $c);
+  @return calc((#{$dc-length} / #{$ab-length}) * (100% - #{$a}) + #{$c});
 }

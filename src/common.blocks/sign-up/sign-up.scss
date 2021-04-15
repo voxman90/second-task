@@ -1,0 +1,41 @@
+.sign-up__heading {
+  margin: 0.625rem 0 1.25rem;
+
+  @include h1-text;
+}
+
+.sign-up__radio-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.sign-up__plug {
+  width: 1.25rem;
+}
+
+.sign-up__small_indent {
+  margin-bottom: 0.625rem;
+}
+
+.sign-up__mid_indent {
+  margin-bottom: 1.25rem;
+}
+
+.sign-up__big_indent {
+  margin-bottom: 1.875rem;
+}
+
+.sign-up__label {
+  padding-bottom: 0.3125rem;
+}
+
+.sign-up__sign-in {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sign-up__text {
+  @include p-text;
+  color: black;
+}

@@ -1,15 +1,4 @@
-.card-invoice {
-  
-  width: 23.75rem;
-  padding: 1.8125rem;
-
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
-  background-color: #FFFFFF;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
-}
-
-.card-invoice__hotel-room-heading {
+.invoice__hotel-room-heading {
   height: 1.875rem;
   padding-top: 0.5625rem;
   padding-bottom: 1.2813rem;
@@ -17,19 +6,19 @@
   font-size: 1rem;
 }
 
-.card-invoice__mid-indent {
+.invoice__mid-indent {
   margin-bottom: 1.25rem;
 }
 
-.card-invoice__big-indent {
+.invoice__big-indent {
   margin-bottom: 1.875rem;
 }
 
-.card-invoice__table-container {
+.invoice__table-container {
   padding: 0;
 }
 
-.card-invoice__table {
+.invoice__table {
   min-width: calc(100% + 0.625rem);
   margin: -0.625rem -0.3125rem;
   border-collapse: separate;
@@ -45,11 +34,11 @@
   }
 }
 
-.card-invoice__td-last-child {
+.invoice__td-last-child {
   text-align: end;
 }
 
-.card-invoice__service-charge-info {
+.invoice__service-charge-info {
   position: relative;
   width: 1.25rem;
 
@@ -75,7 +64,7 @@
   }
 }
 
-.card-invoice__addit-charge-info {
+.invoice__addit-charge-info {
   position: relative;
   width: 1.25rem;
 
@@ -100,17 +89,17 @@
   }
 }
 
-.card-invoice__addit-charge {
+.invoice__addit-charge {
   width: 13.375rem;
 
   line-height: 1.125rem;
 }
 
-.card-invoice__service-charge {
+.invoice__service-charge {
   width: 13.375rem;
 }
 
-.card-invoice__total {
+.invoice__total {
   display: flex;
   align-items: baseline;
   width: 100%;
@@ -121,17 +110,17 @@
   color: $dark-shade-100;
 }
 
-.card-invoice__total-text {
+.invoice__total-text {
   flex: 0 1 auto;
 }
 
-.card-invoice__total-dashed-border {
+.invoice__total-dashed-border {
   flex: 1 0 auto;
   margin: 0 4px;
   border-bottom: 1px dashed $dark-shade-25;
 }
 
-.card-invoice__total-price {
+.invoice__total-price {
   flex: 0 1 auto;
 
   white-space: nowrap;

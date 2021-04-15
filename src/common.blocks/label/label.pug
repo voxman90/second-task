@@ -1,7 +1,7 @@
 mixin label(left = '', right = '')
   label
-    .label.label__clearfix&attributes(attributes)
-      span.label__left-mark= left
-      span.label__right-mark= right
+    .label&attributes(attributes)
+      span.label__left-mark!= left
+      span.label__right-mark!= right
     if block
       block

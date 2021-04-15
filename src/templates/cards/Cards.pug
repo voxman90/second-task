@@ -1,18 +1,19 @@
-include ../../common.blocks/icon/icon.pug
-include ../../common.blocks/carousel/carousel.pug
-include ../../common.blocks/hotel-room-heading/hotel-room-heading.pug
-include ../../common.blocks/rate-button/rate-button.pug
-include ../../common.blocks/card-hotel-room/card-hotel-room.pug
 include ../../common.blocks/label/label.pug
 include ../../common.blocks/input-text/input-text.pug
 include ../../common.blocks/input-text-masked/input-text-masked.pug
 include ../../common.blocks/input-date/input-date.pug
+include ../../common.blocks/icon/icon.pug
 include ../../common.blocks/button/button.pug
 include ../../common.blocks/calendar/calendar.pug
 include ../../common.blocks/dropdown-date/dropdown-date.pug
 include ../../common.blocks/dropdown/dropdown.pug
 include ../../common.blocks/dropdown-guests/dropdown-guests.pug
 include ../../common.blocks/button-long/button-long.pug
+include ../../common.blocks/room-search/room-search.pug
+include ../../common.blocks/carousel/carousel.pug
+include ../../common.blocks/hotel-room-heading/hotel-room-heading.pug
+include ../../common.blocks/rate-button/rate-button.pug
+include ../../common.blocks/card-hotel-room/card-hotel-room.pug
 include ../../common.blocks/radio-button/radio-button.pug
 include ../../common.blocks/toggle/toggle.pug
 include ../../common.blocks/button-short/button-short.pug
@@ -27,12 +28,12 @@ html
   body.cards__body
     .cards__grid
       .cards__1st
-        include ../../common.blocks/card-room-search/card-room-search.pug
+       +room-search()
       .cards__2nd
-        include ../../common.blocks/card-sign-up/card-sign-up.pug
+        include ../../common.blocks/sign-up/sign-up.pug
       .cards__3rd
-        include ../../common.blocks/card-sign-in/card-sign-in.pug
+        include ../../common.blocks/sign-in/sign-in.pug
       .cards__4th
-        include ../../common.blocks/card-invoice/card-invoice.pug
+        include ../../common.blocks/invoice/invoice.pug
       .cards__5th
         +card-hotel-room({ itemAmount: 4 })

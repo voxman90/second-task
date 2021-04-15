@@ -12,7 +12,8 @@ mixin footer(args = {})
 
 mixin footer__info
   section.footer__info
-    +logo({ size: 'small', isColored: true, isSigned: true })(class = 'js-auto-init footer__logo')
+    a(target='_self', href='/')
+      +logo({ size: 'small', isColored: true, isSigned: true })(class = 'js-auto-init footer__logo')
     p.footer__p Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»
 
 mixin footer__link-list(args = {})

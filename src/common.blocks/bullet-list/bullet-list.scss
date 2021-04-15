@@ -1,12 +1,11 @@
 .bullet-list__label {
-  padding-bottom: 0.8125rem;
+  padding-bottom: 13px;
 }
 
 .bullet-list__item {
   display: flex;
-  justify-content: flex-start;
   align-items: baseline;
-  padding-bottom: 0.625rem;
+  padding-bottom: 10px;
 }
 
 .bullet-list__ellipse {
@@ -21,9 +20,7 @@
   width: 100%;
   margin-left: 0.652rem;
 
-  @include Montserrat-normal;
-  font-size: 0.875rem;
-  line-height: 1.5rem;
+  @include p-text;
   white-space: pre-wrap;
   color: $dark-shade-75;
 }

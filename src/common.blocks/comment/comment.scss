@@ -30,7 +30,7 @@
 }
 
 .comment__date {
-  @include body-text(0.875rem, 1.5rem);
+  @include p-text(0.875rem, 1.5rem);
 }
 
 .comment__body {

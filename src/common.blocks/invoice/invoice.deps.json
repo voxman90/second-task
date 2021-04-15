@@ -1,5 +1,5 @@
 {
-  "name": "card-invoice",
+  "name": "invoice",
   "techs": [
     "js",
     "scss",
@@ -9,6 +9,7 @@
     "hotel-room-heading",
     "dropdown-date",
     "dropdown-guests",
-    "button-long"
+    "button-long",
+    "card"
   ]
 }

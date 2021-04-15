@@ -1,5 +1,5 @@
 {
-  "name": "card-sign-up",
+  "name": "sign-up",
   "techs": [
     "scss",
     "pug"
@@ -11,6 +11,7 @@
     "input-date",
     "toggle",
     "button-long",
-    "button-short"
+    "button-short",
+    "card"
   ]
 }

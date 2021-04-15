@@ -1,24 +1,20 @@
-.label__clearfix {
-  &::after {
-    content: '';
-    clear: both;
-
-    display: table;
-  }
+.label {
+  @include clearfix;
 }
 
 .label__left-mark {
   float: left;
-  height: 0.9375rem;
+  height: 1.25em;
 
-  @include h3-text(0.75rem);
+  @include h3-text(0.75em, 1.25);
   text-align: left;
 }
 
 .label__right-mark {
   float: right;
-  height: 0.9375rem;
+  height: 1.25em;
 
-  @include regular-label-text(0.75rem);
+  @include h3-text(0.75em, 1.25);
   text-align: right;
+  color: $dark-shade-50;
 }

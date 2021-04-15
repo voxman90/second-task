@@ -1,0 +1,34 @@
+.card {
+  width: clamp(300px, 90vw, 380px);
+
+  padding: clamp(14px, segment(300px, 380px, 14px, 29px), 29px);
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+
+  font-size: clamp(0.875rem, 3.79vw, 1rem);
+}
+
+.card__heading {
+  margin: 0.625em 0 1.375em;
+
+  @include h1-text(1.5em, 1.25);
+}
+
+.card__socket {
+  width: 100%;
+}
+
+.card__socket_indent_small {
+  margin-bottom: 0.625em;
+}
+
+.card__socket_indent_mid {
+  margin-bottom: 1.25em;
+}
+
+.card__socket_indent_dig {
+  margin-bottom: 1.875em;
+}

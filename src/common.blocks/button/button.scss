@@ -1,28 +1,22 @@
-@use '../../styles/service';
-
 .button {
   position: relative;
 
-  min-width: -webkit-min-content;
-  min-width: -moz-min-content;
-  min-width: min-content;
-  height: 1.25rem;
+  width: min-content;
+  height: 1.25em;
   margin: 0;
   padding: 0;
 
   background-color: transparent;
   border: none;
 
-  @include Montserrat-bold;
-  font-size: 0.75rem;
-  line-height: 1.25rem;
+  @include h3-text;
   text-align: center;
-  text-transform: uppercase;
+  white-space: nowrap;
   color: $purple;
 
-  cursor: pointer;
+  @include non-selectable;
 
-  @include service.non-selectable;
+  cursor: pointer;
 
   &:hover {
     color: $dark-shade-50; 
@@ -35,7 +29,7 @@
 
 .button_style_fill {
   background: linear-gradient(180deg, $purple, $malibu);
-  border-radius: 1.375rem;
+  border-radius: 3.667em;
 
   color: #FFFFFF;
 
@@ -51,9 +45,9 @@
   background-clip: content-box,
                    border-box;
   background-origin: border-box;
-  border-radius: 1.375rem;
+  border-radius: 3.667em;
   border: solid transparent;
-  border-width: 0.128rem;
+  border-width: 2.048px;
 
   color: $purple;
 

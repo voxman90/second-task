@@ -1,11 +1,5 @@
 .ar-responsive-box {
-  width: 100%;
-
-  &::after {
-    content: "";
-    display: block;
-    padding-top: 100%;
-  }
+  @include square-ratio;
 }
 
 @media screen and (min-aspect-ratio: 4/3) {

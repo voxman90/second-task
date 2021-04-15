@@ -1,4 +1,4 @@
-@use '../../styles/text.scss';
+@use '../../styles/text';
 
 .landing-page__header {
   position: absolute;
@@ -56,7 +56,7 @@
   background-size: cover;
 }
 
-.landing-page__card-room-search {
+.landing-page__room-search {
   position: absolute;
   top: 8.75rem;
   left: 9.722%;
@@ -79,13 +79,17 @@
 }
 
 @media only screen and (max-width: 1152px) {
-  .landing-page__card-room-search {
+  .landing-page__room-search {
     left: 5%;
   }
 }
 
-@media only screen and (max-width: 320px)  {
-  .landing-page__card-room-search {
-    left: 0;
+@media only screen and (max-width: 764px) {
+}
+
+@media only screen and (max-width: 480px) {
+  .landing-page__room-search {
+    left: 50%;
+    transform: translateX(-50%);
   }
 }

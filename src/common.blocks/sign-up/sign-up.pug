@@ -1,0 +1,23 @@
+section.card.sign-up
+  form(action = '')
+    h1.sign-up__heading Регистрация аккаунта
+    +input-text({ name: 'first-name', placeholder: 'Имя' }).sign-up__small_indent
+    +input-text({ name: 'last-name', placeholder: 'Фамилия' }).sign-up__small_indent
+    .sign-up__radio-buttons.sign-up__mid_indent
+      +radio-button({ name: 'gender', value: 'male', checked: true, descr: 'Мужчина' })
+      .sign-up__plug
+      +radio-button({ name: 'gender', value: 'female', descr: 'Женщина' })
+    .sign-up__mid_indent
+      +label('Дата рождения').sign-up__label
+        +input-date({ name: 'birth-date' })
+    .sign-up__small_indent
+      +label('Данные для входа в сервис').sign-up__label
+        +input-text({ name: 'user-email', placeholder: 'Email' }).sign-up__small_indent
+        +input-text({ name: 'user-password', placeholder: 'Пароль' })
+    .sign-up__mid_indent
+      +toggle({ name: 'spec', value: 'first', checked: false, descr: 'Получать спецпредложения' })
+    .sign-up__big_indent
+      +button-long({ name: 'button-sing-up', text: 'ЗАРЕГИСТРИРОВАТЬСЯ', isFilled: true, isArrowed: true })
+    .sign-up__sign-in
+      p.sign-up__text= 'Уже есть аккаунт на Toxin?'
+      +button-short({ name: 'button-sing-in', text: 'ВОЙТИ', isBordered: true })

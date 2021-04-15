@@ -206,14 +206,7 @@
   height: fit-content;
   margin-top: 20px;
 
-  &::after {
-    content: "";
-
-    position: absolute;
-
-    clear: both;
-    width: 100%;
-  }
+  @include clearfix;
 }
 
 .calendar__button-clear {

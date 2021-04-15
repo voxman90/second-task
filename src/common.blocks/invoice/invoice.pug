@@ -1,0 +1,33 @@
+section.card.invoice
+  form(action = '#').js-invoice__form
+    +hotel-room-heading().invoice__hotel-room-heading
+    .invoice__mid-indent
+      +dropdown-date({ name: 'dropdown-date-1st', left: 'ПРИБЫТИЕ', right: 'ВЫЕЗД' })(
+        class = 'invoice__dropdown-date js-invoice__dropdown-date',
+      )
+    .invoice__mid-indent
+      +dropdown-guests('dropdown-guests-1st', 'ГОСТИ')(
+        class = 'invoice__dropdown-guests js-invoice__dropdown-guests',
+      )
+    .invoice__table-container.invoice__big-indent
+      table.invoice__table
+        tbody
+          tr
+            td.js-invoice__product 9 990 x 4
+            td
+            td.invoice__td-last-child.js-invoice__product-result 39 960
+          tr
+            td.invoice__service-charge Сбор за услуги #[span.invoice__discount.js-invoice__discount]
+            td.invoice__service-charge-info
+            td.invoice__td-last-child.js-invoice__service-charge-price 0
+          tr
+            td.invoice__addit-charge Сбор за дополнительные услуги
+            td.invoice__addit-charge-info
+            td.invoice__td-last-child.js-invoice__addit-charge-price 300
+    .invoice__total.invoice__mid-indent
+      .invoice__total-text Итого
+      .invoice__total-dashed-border
+      .invoice__total-price.js-invoice__total-price 38 081
+    +button-long({ name: 'button-long-1st', text: 'ЗАБРОНИРОВАТЬ', isFilled: true, isArrowed: true })(
+      type = 'submit',
+    )

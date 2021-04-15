@@ -89,12 +89,12 @@ html
             .box_width_222px.box_margin-bottom_40px
               +label('RADIO BUTTONS').box_margin-bottom_1rem
               .form-elements__radio-buttons
-                +radio-button({ name: 'sex', value: 'man', checked: true, text: 'Мужчина' })
-                +radio-button({ name: 'sex', value: 'women', text: 'Женщина' })
+                +radio-button({ name: 'sex', value: 'man', checked: true, descr: 'Мужчина' })
+                +radio-button({ name: 'sex', value: 'women', descr: 'Женщина' })
             .box_width_266px.box_margin-bottom_40px
               +label('TOGGLE').box_margin-bottom_1rem
-              +toggle({ name: 'spec', value: 'first', checked: true, text: 'Получать спецпредложения' }).box_margin-bottom_10px
-              +toggle({ name: 'spec', value: 'second', text: 'Получать спецпредложения' })
+              +toggle({ name: 'spec', value: 'first', checked: true, descr: 'Получать спецпредложения' }).box_margin-bottom_10px
+              +toggle({ name: 'spec', value: 'second', descr: 'Получать спецпредложения' })
             .box_margin-bottom_40px
               +label('LIKE BUTTON').box_margin-bottom_1rem
               .form-elements__like-buttons

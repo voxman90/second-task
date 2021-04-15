@@ -1,16 +1,20 @@
-@use '../../styles/service' as service;
-
 .dropdown {
   position: relative;
 }
 
 .dropdown__label {
-  padding-bottom: 0.3125rem;
+  padding-bottom: 5px;
 }
 
 .dropdown__input {
-  @include service.non-selectable;
   padding-bottom: 0.1rem;
+  padding-right: 44px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @include non-selectable;
 
   &:hover {
     cursor: pointer;
@@ -18,13 +22,7 @@
 }
 
 .dropdown__input_angled {
-  padding-right: 2.75rem;
-
   border-radius: 4px 4px 0 0;
-
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .dropdown__input_expanded,
@@ -41,8 +39,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.625rem;
-  height: 2.75rem;
+  width: 44px;
+  height: 44px;
 
   color: $dark-shade-50;
 
@@ -53,9 +51,8 @@
 
 .dropdown__bar {
   position: absolute;
-  z-index: 15;
+  z-index: 1;
 
-  
   width: 100%;
   padding-top: 6px;
 
@@ -80,6 +77,7 @@
 .dropdown__option {
   display: flex;
   justify-content: center;
+  box-sizing: content-box;
   height: 1.875rem;
   padding-left: 0.875rem;
   padding-right: 0.375rem;
@@ -87,11 +85,10 @@
 }
 
 .dropdown__option-name {
-  
   height: 1.875rem;
   padding-top: 0.375rem;
 
-  @include h3-text(0.75rem, 0.9375rem);
+  @include h3-text(0.75rem, 0.9375);
 }
 
 .dropdown__option-button-minus {
@@ -101,7 +98,6 @@
 .dropdown__option-button {
   position: relative;
 
-  
   width: 1.875rem;
   height: 1.875rem;
   padding-top: 0.3125rem;
@@ -116,7 +112,7 @@
   text-align: center;
   color: $dark-shade-50;
 
-  @include service.non-selectable;
+  @include non-selectable;
 
   &:focus,
   &:hover {
@@ -128,7 +124,6 @@
 .dropdown__option-value {
   float: right;
 
-  
   width: 2rem;
   height: 1.875rem;
   padding-top: 0.375rem;
@@ -138,50 +133,41 @@
 }
 
 .dropdown__option-button_faded {
-  border-color: rgba($dark-shade-100, calc(0.25 * 0.38));
+  border-color: dark-shade(0.095);
 
-  color: rgba($dark-shade-100, calc(0.50 * 0.38));
+  color: dark-shade(0.095);
 
   &:focus,
   &:hover {
     outline: none;
-    border-color: rgba($dark-shade-100, calc(0.50 * 0.38));
+    border-color: dark-shade(0.095);
   }
 }
 
 .dropdown__buttons {
-  
   height: 2.5rem;
   padding-top: 0.66rem;
   padding-left: 0.8125rem;
   padding-right: 0.375rem;
 
-  &::after {
-    content: '';
-
-    position: absolute;
-
-    clear: both;
-    width: 100%;
-  }
+  @include clearfix;
 }
 
 .dropdown__button-clear {
   float: left;
+  @extend %dropdown__button_focus;
+}
 
-  &:focus {
-    box-shadow: 0 0 0 1px #FFFFFF,
-                0 0 2px 2px dark-shade(0.15);
-  }
+.dropdown__button-apply {
+  float: right;
+  @extend %dropdown__button_focus;
 }
 
 .dropdown__button-clear_hidden {
   visibility: hidden;
 }
 
-.dropdown__button-apply {
-  float: right;
-
+%dropdown__button_focus {
   &:focus {
     box-shadow: 0 0 0 1px #FFFFFF,
                 0 0 2px 2px dark-shade(0.15);

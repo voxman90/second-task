@@ -1,10 +1,7 @@
 mixin footer-creative()
   footer.footer-creative&attributes(attributes)
     .footer-creative__wrapper
-      a(
-        href = '#',
-        target = '_self',
-      )
-        +logo({ size: 'small', isColored: true, isSigned: true })(class = 'js-auto-init')
+      a(target='_self', href='/')
+        +logo({ size: 'small', isColored: true, isSigned: true })(class='js-auto-init')
       +copyright(2021)(class = 'footer-creative__copyright')
       +social-follow()(class = 'footer-creative__social-follow')

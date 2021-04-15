@@ -1,0 +1,29 @@
+.sign-in__heading {
+  margin: 0.625rem 0 1.25rem;
+
+  @include h1-text;
+}
+
+.sign-in__small_indent {
+  margin-bottom: 0.625rem;
+}
+
+.sign-in__mid_indent {
+  margin-bottom: 1.25rem;
+}
+
+.sign-in__big_indent {
+  margin-bottom: 1.875rem;
+}
+
+.sign-in__sign-up {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 20rem;
+}
+
+.sign-in__text {
+  @include p-text;
+  color: black;
+}

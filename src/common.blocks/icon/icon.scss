@@ -1,7 +1,5 @@
 .icon {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
+  @include non-selectable;
 }
 
 .icon_font_material {

@@ -17,7 +17,7 @@ include ../../common.blocks/calendar/calendar.pug
 include ../../common.blocks/dropdown-date/dropdown-date.pug
 include ../../common.blocks/dropdown/dropdown.pug
 include ../../common.blocks/dropdown-guests/dropdown-guests.pug
-include ../../common.blocks/card-room-search/card-room-search.pug
+include ../../common.blocks/room-search/room-search.pug
 include ../../common.blocks/copyright/copyright.pug
 include ../../common.blocks/social-follow/social-follow.pug
 include ../../common.blocks/copyright-bar/copyright-bar.pug
@@ -39,7 +39,7 @@ html(lang = "ru")
     main.landing-page__main
       +ar-responsive-box()
         .landing-page__main-image
-      .landing-page__card-room-search
-        +card-room-search()
+      .landing-page__room-search
+        +room-search()
       p.landing-page__caption!= "Лучшие номера для вашей работы,\nотдыха и просто вдохновения"
     +footer({ footerItems })(class = "landing-page__footer")

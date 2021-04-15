@@ -8,11 +8,11 @@ import { Calendar } from 'common.blocks/calendar/calendar';
 
 const DropdownDate = (($, document) => {
   const ClassName = {
-    ROOT            : 'js-dropdown-date',
+    ROOT : 'js-dropdown-date',
   }
 
   const Modifier = {
-    BAR_HIDDEN   : 'dropdown-date__bar_hidden',
+    BAR_HIDDEN : 'dropdown-date__bar_hidden',
   }
 
   const Selector = {

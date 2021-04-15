@@ -11,8 +11,8 @@
   ],
   "fonts": [
     { "class": "widget-text", "label": "H1", "text": "This one is the sub-section or<br> widget title" },
-    { "class": "title-text", "label": "H2", "text": "Next one is the item title inside<br> widgets" },
+    { "class": "h2-text", "label": "H2", "text": "Next one is the item title inside<br> widgets" },
     { "class": "label-text", "label": "H3", "text": "This is a label or CTA text" },
-    { "class": "body-text", "label": "Body", "text": "This is the body text which is used for most<br> of the design, like paragraphs, lists, etc." }
+    { "class": "p-text", "label": "Body", "text": "This is the body text which is used for most<br> of the design, like paragraphs, lists, etc." }
   ]
 }

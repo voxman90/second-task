@@ -1,5 +1,5 @@
 {
-  "name": "card-room-search",
+  "name": "room-search",
   "techs": [
     "scss",
     "pug"
@@ -7,6 +7,7 @@
   "deps": [
     "dropdown-date",
     "dropdown-guests",
-    "button-long"
+    "button-long",
+    "card"
   ]
 }

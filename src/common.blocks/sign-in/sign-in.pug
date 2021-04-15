@@ -1,0 +1,10 @@
+section.card.sign-in
+  form(action = '')
+    h1.sign-in__heading Войти
+    +input-text({ name: 'user-email', placeholder: 'Email' }).sign-in__small_indent
+    +input-text({ name: 'user-password', placeholder: 'Пароль' }).sign-in__mid_indent
+    .sign-in__big_indent
+      +button-long({ name: 'button-sing-up', text: 'ВОЙТИ', isFilled: true, isArrowed: true })
+    .sign-in__sign-up
+      p.sign-in__text= 'Нет аккаунта на Toxin?'
+      +button-short({ name: 'button-sing-in', text: 'СОЗДАТЬ', isBordered: true })

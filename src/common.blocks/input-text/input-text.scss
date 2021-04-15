@@ -1,13 +1,12 @@
 .input-text {
-  
   height: 2.75rem;
   width: 100%;
-  padding-left: 0.875rem;
+  padding-left: 14px;
 
   border: 1px solid $dark-shade-25;
   border-radius: 4px;
 
-  @include body-text;
+  @include p-text;
 
   &:hover,
   &:focus,

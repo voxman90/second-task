@@ -1,5 +1,5 @@
 @use 'sass:math';
-@use './colors';
+@use 'colors' as *;
 
 @mixin Quicksand-normal {
   font: {
@@ -34,51 +34,36 @@
 }
 
 //- This one is the sub-section or widget title
-@mixin widget-text($size: 1.5rem, $height: normal) {
+@mixin h1-text($size: 1.5em, $height: normal) {
   @include Montserrat-bold;
   font-size: $size;
   line-height: $height;
-  color: colors.$dark-shade-100;
+  color: $dark-shade-100;
 }
 
 //- Next one is the item title inside widgets 
-@mixin title-text($size: 1.1875rem, $height: normal) {
+@mixin h2-text($size: 1.1875em, $height: normal) {
   @include Montserrat-bold;
   font-size: $size;
   line-height: $height;
-  color: colors.$dark-shade-100;
+  color: $dark-shade-100;
 }
 
 //- This is a label or CTA text
-@mixin regular-label-text($size: 0.75rem, $height: normal) {
-  @include Montserrat-normal;
-  font-size: $size;
-  line-height: $height;
-  text-transform: uppercase;
-  color: colors.$dark-shade-50;
-}
-
-@mixin h3-text($size: 0.75rem, $height: normal) {
+@mixin h3-text($size: 0.75em, $height: 1.25) {
   @include Montserrat-bold;
   font-size: $size;
   line-height: $height;
   text-transform: uppercase;
-  color: colors.$dark-shade-100;
+  color: $dark-shade-100;
 }
 
 //- This is the body text which is used for most of the design, like paragraphs, lists, etc.
-@mixin body-text($size: 0.875rem, $height: 1.5rem) {
+@mixin p-text($size: 0.875em, $height: 1.715) {
   @include Montserrat-normal;
   font-size: $size;
   line-height: $height;
-  color: colors.$dark-shade-75;
-}
-
-@mixin p-text($size: 0.875rem, $height: 1.5rem) {
-  @include Montserrat-normal;
-  font-size: $size;
-  line-height: $height;
-  color: colors.$dark-shade-75;
+  color: $dark-shade-75;
 }
 
 @mixin material-icons {
@@ -87,7 +72,7 @@
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: 1.5rem;
+  font-size: 1.5em;
   line-height: 1;
   text-transform: none;
   letter-spacing: normal;
@@ -113,7 +98,7 @@
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
-  font-size: 1.5rem;
+  font-size: 1.5em;
   line-height: 1;
 
   /* Support for all WebKit browsers. */

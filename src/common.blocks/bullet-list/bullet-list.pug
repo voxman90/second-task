@@ -2,7 +2,8 @@ mixin bullet-list(items, label = null)
   .bullet-list&attributes(attributes)
     if (label !== null)
       +label(label, '').bullet-list__label
-    each item in items
-      .bullet-list__item
-        .bullet-list__ellipse
-        .bullet-list__text!= item
+    ul
+      each item in items
+        li.bullet-list__item
+          .bullet-list__ellipse
+          p.bullet-list__text!= item

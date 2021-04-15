@@ -1,18 +1,13 @@
 .dropdown-date {
-  width: 20rem;
+  width: 320px;
 }
 
 .dropdown-date__label {
-  padding-bottom: 0.3125rem;
+  padding-bottom: 5px;
 }
 
 .dropdown-date__head {
-  &::after {
-    content: '';
-
-    display: table;
-    clear: both;
-  }
+  @include clearfix;
 }
 
 .dropdown-date__arrival {

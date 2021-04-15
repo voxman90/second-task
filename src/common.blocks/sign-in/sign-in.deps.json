@@ -1,5 +1,5 @@
 {
-  "name": "card-sign-in",
+  "name": "sign-in",
   "techs": [
     "scss",
     "pug"
@@ -7,6 +7,7 @@
   "deps": [
     "input-text",
     "button-long",
-    "button-short"
+    "button-short",
+    "card"
   ]
 }
