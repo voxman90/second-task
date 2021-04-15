@@ -27,19 +27,20 @@ include ../../common.blocks/footer/footer.pug
 - const data = htmlWebpackPlugin.options.data
 - const { pageTitle, navbarItems, footerItems } = data
 doctype html
-html(lang = "ru")
+html(lang='ru')
   head
-    meta(charset = "UTF-8")
-    meta(http-equiv = "X-UA-Compatible", content = "IE=edge")
-    meta(name = "viewport", content = "width=device-width, initial-scale=1.0")
-    +favicon()
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    +favicon
     title Document
   body 
-    +header({ navbarItems })(class = 'landing-page__header')
+    +header({ navbarItems })(class='landing-page__header')
     main.landing-page__main
-      +ar-responsive-box()
+      +ar-responsive-box
         .landing-page__main-image
       .landing-page__room-search
-        +room-search()
+        +room-search
       p.landing-page__caption!= "Лучшие номера для вашей работы,\nотдыха и просто вдохновения"
-    +footer({ footerItems })(class = "landing-page__footer")
+    +footer({ footerItems })(class='landing-page__footer')
+    +footer-creative()(class='landing-page__footer-creative')

@@ -2,7 +2,6 @@ import 'styles/style.scss';
 import 'common.blocks/label/label.scss';
 import 'common.blocks/input-text/input-text.scss';
 import 'common.blocks/input-text-masked/input-text-masked.scss';
-import 'common.blocks/input-date/input-date.scss';
 import 'common.blocks/icon/icon.scss';
 import 'common.blocks/button/button.scss';
 import 'common.blocks/calendar/calendar.scss';

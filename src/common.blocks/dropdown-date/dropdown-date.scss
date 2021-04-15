@@ -1,5 +1,5 @@
 .dropdown-date {
-  width: clamp(280px, 100%, 320px);
+  width: clamp(270px, 100%, 320px);
 }
 
 .dropdown-date__label {
@@ -7,21 +7,15 @@
 }
 
 .dropdown-date__head {
-  @include clearfix;
+  display: flex;
+  justify-content: space-between;
 }
 
-.dropdown-date__arrival {
-  position: relative;
-
-  float: left;
-  width: clamp(280px, 100%, 320px);
-}
-
+.dropdown-date__arrival,
 .dropdown-date__departure {
   position: relative;
 
-  float: right;
-  width: clamp(280px, 100%, 320px);
+  width: clamp(130px, segment(270px, 320px, 130px, 150px), 150px);
 }
 
 .dropdown-date__icon {
@@ -32,8 +26,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.625rem;
-  height: 2.625rem;
+  width: 1.75em;
+  height: 1.75em;
   color: $dark-shade-50;
 
   &:hover {

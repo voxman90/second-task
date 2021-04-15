@@ -17,7 +17,7 @@ const DropdownDate = (($, document) => {
 
   const Selector = {
     INPUT_ARRIVAL   : '.js-dropdown-date__input-arrival',
-    ICON_ARRIVAL    : '.js-dropdown-date__icon-arrival',
+    ICON_ARRIVAL  : '.js-dropdown-date__icon-arrival',
     INPUT_DEPARTURE : '.js-dropdown-date__input-departure',
     ICON_DEPARTURE  : '.js-dropdown-date__icon-departure',
     BAR             : '.js-dropdown-date__bar',

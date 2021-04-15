@@ -8,7 +8,6 @@ import 'common.blocks/button/button.scss';
 import 'common.blocks/dropdown/dropdown.scss';
 import 'common.blocks/dropdown-guests/dropdown-guests.scss';
 import 'common.blocks/input-text-masked/input-text-masked.scss';
-import 'common.blocks/input-date/input-date.scss';
 import 'common.blocks/calendar/calendar.scss';
 import 'common.blocks/dropdown-date/dropdown-date.scss';
 import 'common.blocks/dropdown-filter-date/dropdown-filter-date.scss';

@@ -2,11 +2,10 @@
 
 .calendar {
   position: absolute;
-  z-index: 15;
 
-  width: 20rem;
-  margin-top: 5px;
-  padding: 19px;
+  width: clamp(270px, 100%, 320px);
+  margin-top: 5.56px;
+  padding: clamp(9px, segment(270px, 320px, 9px, 19px), 19px);
 
   border: 1px solid $dark-shade-25;
   border-radius: 4px;
@@ -155,7 +154,7 @@
   color: white;
 
   &::after {
-    content: "";
+    content: '';
 
     position: absolute;
     z-index: -1;
@@ -180,7 +179,7 @@
   color: white;
 
   &::after {
-    content: "";
+    content: '';
 
     position: absolute;
     z-index: -1;

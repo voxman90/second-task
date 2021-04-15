@@ -13,7 +13,6 @@ import 'common.blocks/ar-responsive-box/ar-responsive-box.scss';
 import 'common.blocks/label/label.scss';
 import 'common.blocks/input-text/input-text.scss';
 import 'common.blocks/input-text-masked/input-text-masked.scss';
-import 'common.blocks/input-date/input-date.scss';
 import 'common.blocks/calendar/calendar.scss';
 import 'common.blocks/dropdown-date/dropdown-date.scss';
 import 'common.blocks/dropdown/dropdown.scss';

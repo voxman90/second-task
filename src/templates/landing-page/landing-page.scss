@@ -2,13 +2,13 @@
 
 .landing-page__header {
   position: absolute;
-  top: 0;
   z-index: 10;
+  top: 0;
 }
 
 .landing-page__main {
   position: relative;
-  top: 0;
+  z-index: 5;
 
   height: 100vh;
   overflow: hidden;
@@ -58,38 +58,61 @@
 
 .landing-page__room-search {
   position: absolute;
+  z-index: 10;
   top: 8.75rem;
   left: 9.722%;
 }
 
 .landing-page__caption {
   position: absolute;
-  right: 8.375rem;
+  z-index: 8;
+  right: 9.3%;
   bottom: 1.125rem;
 
   @include text.p-text;
-  white-space: pre-wrap;
+  white-space: pre;
   text-align: right;
 }
 
 .landing-page__footer {
   position: relative;
-  top: 0;
-  z-index: 10;
+  z-index: 3;
+}
+
+.landing-page__footer-creative {
+  position: relative;
+  z-index: 3;
+
+  display: none;
 }
 
 @media only screen and (max-width: 1152px) {
   .landing-page__room-search {
-    left: 5%;
+    left: 6%;
   }
 }
 
-@media only screen and (max-width: 764px) {
+@media only screen and (max-width: 768px) {
+  .landing-page__footer-creative {
+    display: block;
+  }
+
+  .landing-page__caption {
+    right: 6%;
+  }
 }
+
 
 @media only screen and (max-width: 480px) {
   .landing-page__room-search {
     left: 50%;
     transform: translateX(-50%);
+  }
+
+  .landing-page__caption {
+    right: 50%;
+    transform: translateX(50%);
+
+    text-align: center;
   }
 }

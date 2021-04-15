@@ -1,6 +1,5 @@
 .card {
   width: clamp(300px, 90vw, 380px);
-
   padding: clamp(14px, segment(300px, 380px, 14px, 29px), 29px);
 
   border: 1px solid rgba(0, 0, 0, 0.12);
