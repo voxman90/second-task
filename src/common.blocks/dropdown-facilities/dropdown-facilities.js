@@ -34,7 +34,7 @@ const DropdownFacilities = ((document) => {
   }
 
   const Modifier = {
-    INPUT_ANGLED : 'dropdown__input-text_angled',
+    INPUT_ANGLED : 'dropdown__input_angled',
   }
 
   class DropdownFacilities extends Dropdown {

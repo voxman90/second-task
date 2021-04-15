@@ -12,9 +12,10 @@
     position: absolute;
     right: 0.417em;
     top: 50%;
-    transform: translateY(-50%);
 
     @include material-icons;
     font-size: 2em;
+
+    transform: translateY(-50%);
   }
 }

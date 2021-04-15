@@ -2,14 +2,16 @@ mixin dropdown__option(name, value)
   .dropdown__option.js-dropdown__option
     .dropdown__option-name= name
     div(
-      class = 'dropdown__option-button dropdown__option-button-minus js-dropdown__option-button-minus',
-      class = (parseInt(value) === 0) ? 'dropdown__option-button_faded' : undefined,
-      tabindex = '0',
+      class='dropdown__option-button dropdown__option-button-minus js-dropdown__option-button-minus',
+      class=(parseInt(value) === 0) ? 'dropdown__option-button_faded' : undefined,
+      role='button',
+      tabindex='0',
     )= '-'
     .dropdown__option-value.js-dropdown__option-value= value
     div(
-      class = 'dropdown__option-button js-dropdown__option-button-plus',
-      tabindex = '0',
+      class='dropdown__option-button js-dropdown__option-button-plus',
+      role='button',
+      tabindex ='0',
     )= '+'
 
 mixin dropdown(args = {}, attr = {})
@@ -26,11 +28,5 @@ mixin dropdown(args = {}, attr = {})
           +dropdown__option(name, value)
       if haveButtons
         .dropdown__buttons.js-dropdown__buttons
-          +button({ text: 'ОЧИСТИТЬ', name: `${name}-clear` })(
-            class = 'dropdown__button-clear',
-            type = 'button',
-          )
-          +button({ text: 'ПРИМЕНИТЬ', name: `${name}-apply` })(
-            class = 'dropdown__button-apply',
-            type = 'button',
-          )
+          +button({ text: 'ОЧИСТИТЬ', name: `${name}-clear` })(class='dropdown__button-clear', type='button')
+          +button({ text: 'ПРИМЕНИТЬ', name: `${name}-apply` })(class='dropdown__button-apply', type='button')

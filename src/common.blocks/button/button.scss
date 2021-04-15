@@ -6,17 +6,17 @@
   margin: 0;
   padding: 0;
 
-  background-color: transparent;
   border: none;
+  background-color: transparent;
 
   @include h3-text;
   text-align: center;
   white-space: nowrap;
   color: $purple;
 
-  @include non-selectable;
-
   cursor: pointer;
+
+  @include non-selectable;
 
   &:hover {
     color: $dark-shade-50; 
@@ -28,32 +28,33 @@
 }
 
 .button_style_fill {
-  background: linear-gradient(180deg, $purple, $malibu);
   border-radius: 3.667em;
+  background: linear-gradient(180deg, $purple, $malibu);
 
   color: #FFFFFF;
 
   &:hover {
     opacity: 0.5;
+
     color: #FFFFFF;
   }
 }
 
 .button_style_border {
+  border: 2.048px solid transparent;
+  border-radius: 3.667em;
   background-image: linear-gradient(#FFF, #FFF),
                     linear-gradient(180deg, $purple, $malibu);
   background-clip: content-box,
                    border-box;
   background-origin: border-box;
-  border-radius: 3.667em;
-  border: solid transparent;
-  border-width: 2.048px;
 
   color: $purple;
 
   &:hover {
     background-image: linear-gradient(#FFF, #FFF),
                       linear-gradient(180deg, $purple-50, $malibu-50);
+
     color: $purple;
   }
 }

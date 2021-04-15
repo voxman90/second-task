@@ -14,7 +14,9 @@
   float: right;
   height: 1.25em;
 
-  @include h3-text(0.75em, 1.25);
+  @include Montserrat-normal;
+  font-size: 0.75em;
+  line-height: 1.25;
   text-align: right;
   color: $dark-shade-50;
 }

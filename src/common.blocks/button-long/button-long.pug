@@ -1,6 +1,6 @@
 mixin button-long(args = {})
   - let { isArrowed } = args
   +button(args)(
-    class = 'button-long',
-    class = (isArrowed) ? 'button-long_arrowed' : undefined,
+    class='button-long',
+    class=(isArrowed) ? 'button-long_arrowed' : undefined,
   )&attributes(attributes)
