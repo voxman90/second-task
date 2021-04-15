@@ -1,7 +1,6 @@
 {
   "name": "input-date",
   "techs": [
-    "scss",
     "pug"
   ],
   "deps": [

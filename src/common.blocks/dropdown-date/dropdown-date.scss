@@ -1,5 +1,5 @@
 .dropdown-date {
-  width: 320px;
+  width: clamp(280px, 100%, 320px);
 }
 
 .dropdown-date__label {
@@ -14,14 +14,14 @@
   position: relative;
 
   float: left;
-  width: 9.375rem;
+  width: clamp(280px, 100%, 320px);
 }
 
 .dropdown-date__departure {
   position: relative;
 
   float: right;
-  width: 9.375rem;
+  width: clamp(280px, 100%, 320px);
 }
 
 .dropdown-date__icon {
