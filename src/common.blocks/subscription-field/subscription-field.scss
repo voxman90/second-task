@@ -2,22 +2,22 @@
   position: relative;
 
   display: flex;
-  height: 2.75rem;
+  height: 2.75em;
 }
 
 .subscription-field__input-text {
-  padding-right: 2.625rem;
-  padding-bottom: 0.125rem;
+  padding-right: calc(3.143em - 1px);
+  padding-bottom: 2px;
 
-  &:hover + .subscription-field__submit-button,
-  &:focus + .subscription-field__submit-button,
+  &:hover  + .subscription-field__submit-button,
+  &:focus  + .subscription-field__submit-button,
   &:active + .subscription-field__submit-button {
     outline: none;
     border-color: $dark-shade-50;
   }
 }
 
-.subscription-field__icon {
+.subscription-field__button {
   position: absolute;
   top: 0;
   right: 0;
@@ -25,25 +25,31 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 2.75em;
+  height: 2.75em;
 
   border-radius: 0 4px 4px 0;
   background: linear-gradient(180deg, $purple 0%, $malibu 100%);
-  -webkit-background-clip: text;
-          background-clip: text;
-  -webkit-text-fill-color: transparent;
 
-  &::-moz-selection {
-    background: transparent;
+  @supports (-webkit-text-fill-color: transparent) {
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
-  &::selection,
-  &::-moz-selection {
-    background: transparent;
+  @supports not (-webkit-text-fill-color: transparent) {
+    background-clip: content-box;
+    padding: calc((2.75em - 1.5em) / 2);
   }
 
   &:hover {
     cursor: pointer;
+  }
+}
+
+.subscription-field__icon {
+  @supports not (-webkit-text-fill-color: transparent) {
+    background-color: #FFFFFF;
+    mix-blend-mode: screen;
   }
 }

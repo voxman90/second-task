@@ -1,7 +1,7 @@
 .input-text {
-  height: 2.75rem;
   width: 100%;
-  padding-left: 14px;
+  height: 3.143em;
+  padding-left: 1em;
 
   border: 1px solid $dark-shade-25;
   border-radius: 4px;
@@ -24,15 +24,12 @@
   }
 
   &::-moz-placeholder {
+    opacity: 1;
     color: $dark-shade-25;
   }
 
   &::placeholder {
     color: $dark-shade-25;
-  }
-
-  &::-moz-placeholder {
-    opacity: 1;
   }
 }
 
