@@ -4,150 +4,61 @@ import { BEMComponent } from 'scripts/BEMComponent';
 import { Utility } from 'scripts/Utility';
 
 const Calendar = ((document) => {
+
+  const monthName = {
+    0: 'Январь',
+    1: 'Февраль',
+    2: 'Март',
+    3: 'Апрель',
+    4: 'Май',
+    5: 'Июнь',
+    6: 'Июль',
+    7: 'Август',
+    8: 'Сентябрь',
+    9: 'Октябрь',
+    10: 'Ноябрь',
+    11: 'Декабрь'
+  }
+
+  const CALENDAR_CACHE_CAPACITY = 12;
+
   class CalendarModel {
     constructor() {
       this.cache = [];
       this.setDefault();
     }
 
-    monthNames = {
-      0: 'Январь',
-      1: 'Февраль',
-      2: 'Март',
-      3: 'Апрель',
-      4: 'Май',
-      5: 'Июнь',
-      6: 'Июль',
-      7: 'Август',
-      8: 'Сентябрь',
-      9: 'Октябрь',
-      10: 'Ноябрь',
-      11: 'Декабрь'
-    }
-
     setDefault() {
       this.today = new Date();
-      this.arrival = null;
-      this.departure = null;
-      this.setCurrent(this.today);
+      this.setCurrentMonth(this.today, 0);
     }
 
-    setCurrent(date) {
-      this.current = this.changeMonth(date, 0);
-      this.currentCalendarSheet = this.getCalendarSheet(this.current);
+    setCurrentMonth(date, shift) {
+      this.currentMonth = this.changeMonth(date, shift);
+      this.currentSheet = this.getSheet(this.currentMonth);
     }
 
-    moveToNextMonth() {
-      this.current = this.changeMonth(this.current, 1);
-      this.currentCalendarSheet = this.getCalendarSheet(this.current);
+    getSheet(date) {
+      let sheet = this.getSheetFromCache(date);
+
+      if (sheet === null) {
+        sheet = this.createSheet(date);
+        this.cacheSheet(date, sheet);
+      }
+
+      return sheet;
     }
 
-    moveToPrevMonth() {
-      this.current = this.changeMonth(this.current, -1);
-      this.currentCalendarSheet = this.getCalendarSheet(this.current);
-    }
-
-    setDate(index) {
-      const date = this.convertIndexToDate(index);
-      const arrival = this.arrival;
-      const departure = this.departure;
-
-      if (arrival && departure) {
-        return this.setDeparture(date);
-      }
-
-      if (!arrival) {
-        return this.setArrival(date);
-      }
-
-      if (!departure) {
-        return this.setDeparture(date);
-      }
-
-      return false;
-    }
-
-    setDeparture(date) {
-      if (this.isAfter(date, this.arrival)) {
-        this.departure = date;
-        return true;
-      }
-
-      return false;
-    }
-
-    setArrival(date) {
-      if (
-        this.isAfter(date, this.today)
-        && this.isAfter(this.departure, date)
-      ) {
-        this.arrival = date;
-        return true;
-      }
-
-      return false;
-    }
-
-    isAfter(date, bottom) {
-      if (
-        bottom === null
-        || date === null
-      ) {
-        return true;
-      }
-
-      const bottomTime = bottom.getTime();
-      const dateTime = date.getTime();
-      const diff = dateTime - bottomTime;
-      if (diff > 0) {
-        return true;
-      }
-
-      if (this.isSameYearAndMonth(date, bottom)) {
-        return (
-          date.getDate() === bottom.getDate()
-        );
-      }
-
-      return false;
-    }
-
-    convertIndexToDate(index) {
-      const day = this.currentCalendarSheet.sheet[index];
-      const date = this.changeMonth(this.current, 0);
-      date.setDate(day);
+    changeMonth(dateArg, months) {
+      const date = new Date(dateArg);
+      date.setMonth(dateArg.getMonth() + months, 1);
       return date;
     }
 
-    changeMonth(dateParam, months) {
-      const date = new Date(dateParam);
-      date.setMonth(dateParam.getMonth() + months, 1);
-      return date;
-    }
-
-    countDays(dateParam) {
-      const date = new Date(dateParam);
+    countDays(dateArg) {
+      const date = new Date(dateArg);
       date.setDate(31);
-      let days = 28;
-      switch (date.getDate()) {
-        case 31: {
-          days = 31;
-          break;
-        }
-        case 1: {
-          days = 30;
-          break;
-        }
-        case 2: {
-          days = 29;
-          break;
-        }
-        default: {
-          break;
-        }
-      }
-
-      return days;
+      return 31 - date.getDate() % 31;
     }
 
     countFirstDayOfMonth(dateParam) {
@@ -158,6 +69,65 @@ const Calendar = ((document) => {
 
     convertToMonths(date) {
       return date.getYear() * 12 + date.getMonth() + 1;
+    }
+
+    getSheetFromCache(date) {
+      const record = this.cache.find(
+        (record) => this.isSameYearAndMonth(record.date, date)
+      );
+      return (record) ? record.sheet : null;
+    }
+    
+    cacheSheet(date, sheet) {
+      if (this.cache.length === CALENDAR_CACHE_CAPACITY) {
+        this.cache.shift();
+      }
+
+      this.cache.push({
+        date,
+        sheet,
+      });
+    }
+
+    convertIndexToDate(index) {
+      const day = this.currentSheet.sheet[index];
+      const date = this.changeMonth(this.current, 0);
+      date.setDate(day);
+      return date;
+    }
+
+    convertDateToIndex(date) {
+      if (!date) {
+        return null;
+      }
+
+      const { sheet, from, to } = this.currentSheet;
+      const curr = this.changeMonth(this.current, 0);
+      if (this.isSameYearAndMonth(date, curr)) {
+        return date.getDate() + from - 1;
+      } 
+
+      const next = this.changeMonth(curr, 1);
+      if (this.isSameYearAndMonth(date, next)) {
+        const index = date.getDate() + from + to - 1;
+        if (sheet[index]) {
+          return index;
+        }
+
+        return 100;
+      }
+
+      const prev = this.changeMonth(curr, -1);
+      if (this.isSameYearAndMonth(date, prev)) {
+        const index = date.getDate() - sheet[0];      
+        if (index >= 0) {
+          return index;
+        }
+
+        return -100;
+      }
+
+      return null;
     }
 
     countCalendarRow(date) {
@@ -172,37 +142,7 @@ const Calendar = ((document) => {
       return (firstDayOfMonth + days > 35) ? 6 : 5;
     }
 
-    getCalendarSheet(date) {
-      let calendarSheet = this.getCalendarSheetFromCache(date);
-      if (calendarSheet === null) {
-        calendarSheet = this.createCalendarSheet(date);
-        this.cacheCalendarSheet(date, calendarSheet);
-      }
-
-      return calendarSheet;
-    }
-
-    getCalendarSheetFromCache(date) {
-      const record = this.cache.find(
-        (record) => this.isSameYearAndMonth(record.date, date)
-      );
-      return (record) ? record.calendarSheet : null;
-    }
-    
-    cacheCalendarSheet(date, calendarSheet) {
-      const cache = this.cache;
-      const length = cache.length;
-      if (length === 12) {
-        cache.shift();
-      }
-
-      cache.push({
-        date,
-        calendarSheet,
-      });
-    }
-
-    createCalendarSheet(date) {
+    createSheet(date) {
       const currMonth = this.changeMonth(date, 0);
       const prevMonth = this.changeMonth(date, -1);
 
@@ -233,43 +173,9 @@ const Calendar = ((document) => {
 
       return { sheet, from, to };
     }
-
-    findCellIndex(date) {
-      if (!date) {
-        return null;
-      }
-
-      const { sheet, from, to } = this.currentCalendarSheet;
-      const curr = this.changeMonth(this.current, 0);
-      if (this.isSameYearAndMonth(date, curr)) {
-        return date.getDate() + from - 1;
-      } 
-
-      const next = this.changeMonth(curr, 1);
-      if (this.isSameYearAndMonth(date, next)) {
-        const index = date.getDate() + from + to - 1;
-        if (sheet[index]) {
-          return index;
-        }
-
-        return 100;
-      }
-
-      const prev = this.changeMonth(curr, -1);
-      if (this.isSameYearAndMonth(date, prev)) {
-        const index = date.getDate() - sheet[0];      
-        if (index >= 0) {
-          return index;
-        }
-
-        return -100;
-      }
-
-      return null;
-    }
     
     converDateToMYYYY(date) {
-      const month = this.monthNames[date.getMonth()];
+      const month = monthName[date.getMonth()];
       const year = date.getFullYear();
       return `${month} ${year}`;
     }
@@ -283,12 +189,12 @@ const Calendar = ((document) => {
     
     convertDatesToDDMDDM(arrival, departure) {
       const arrivalDay = arrival.getDate();
-      const arrivalMonth = this.monthNames[arrival.getMonth()]
+      const arrivalMonth = monthName[arrival.getMonth()]
         .substring(0, 3)
         .toLowerCase();
 
       const departureDay = departure.getDate();
-      const departureMonth = this.monthNames[departure.getMonth()]
+      const departureMonth = monthName[departure.getMonth()]
         .substring(0, 3)
         .toLowerCase();
 
@@ -301,10 +207,34 @@ const Calendar = ((document) => {
         && dateFirst.getYear() === dateSecond.getYear()
       );
     }
+
+    isAfter(date, bottom) {
+      if (
+        bottom === null
+        || date === null
+      ) {
+        return true;
+      }
+
+      const bottomTime = bottom.getTime();
+      const dateTime = date.getTime();
+      const diff = dateTime - bottomTime;
+      if (diff > 0) {
+        return true;
+      }
+
+      if (this.isSameYearAndMonth(date, bottom)) {
+        return (
+          date.getDate() === bottom.getDate()
+        );
+      }
+
+      return false;
+    }
   }
 
   const ClassName = {
-    ROOT : 'js-calendar',
+    ROOT            : 'js-calendar',
   }
 
   const Modifier = {
@@ -327,6 +257,8 @@ const Calendar = ((document) => {
     BUTTON_APPLY    : '.js-calendar__button-apply',
   }
 
+  const kq = Utility.keyQualifiers;
+
   class Calendar extends BEMComponent {
     constructor(element) {
       super(element, 'calendar');
@@ -336,10 +268,32 @@ const Calendar = ((document) => {
       this.connectBasis();
       this.connectButtons();
 
+      this.arrival = null;
+      this.departure = null;
+
       this.drawCalendar();
 
       this.listeners = this.defineEventListeners();
       this.attachMultipleEventListeners(this.listeners);
+    }
+
+    connectBasis() {
+      this.title = this.root.querySelector(Selector.TITLE);
+      this.tableBody = this.root.querySelector(Selector.TABLE_BODY);
+      this.tableCells = this.root.querySelectorAll(Selector.TABLE_CELL);
+      this.table6thRow = this.root.querySelector(Selector.TABLE_6TH_ROW);
+    }
+
+    connectButtons() {
+      this.buttonBackward = this.root.querySelector(Selector.BUTTON_BACKWARD);
+      this.buttonForward = this.root.querySelector(Selector.BUTTON_FORWARD);
+      this.buttonClear = this.root.querySelector(Selector.BUTTON_CLEAR);
+      this.buttonApply = this.root.querySelector(Selector.BUTTON_APPLY);
+
+      this.hooks = {
+        buttonClearClick: () => {},
+        buttonApplyClick: () => {},
+      }
     }
     
     defineEventListeners() {
@@ -355,7 +309,7 @@ const Calendar = ((document) => {
         {
           element: this.buttonForward,
           handlers: {
-            'click': this.handleButtonForwardClick.bind(this),
+            'click': this.handleArrowForwardClick.bind(this),
             'keydown': Utility.makeKeydownHandler(this.handleButtonForwardClick.bind(this)),
           }
         },
@@ -380,38 +334,19 @@ const Calendar = ((document) => {
           element: this.tableBody,
           handlers: {
             'click': this.handleTableBodyClick.bind(this),
-            'keydown': Utility.makeKeydownHandler(this.handleTableBodyClick.bind(this)),
+            'keydown': this.handleTableBodyKeydown.bind(this),
           }
         },
       ];
     }
 
-    connectBasis() {
-      this.title = this.root.querySelector(Selector.TITLE);
-      this.tableBody = this.root.querySelector(Selector.TABLE_BODY);
-      this.tableCells = this.root.querySelectorAll(Selector.TABLE_CELL);
-      this.table6thRow = this.root.querySelector(Selector.TABLE_6TH_ROW);
-    }
-
-    connectButtons() {
-      this.buttonBackward = this.root.querySelector(Selector.BUTTON_BACKWARD);
-      this.buttonForward = this.root.querySelector(Selector.BUTTON_FORWARD);
-      this.buttonClear = this.root.querySelector(Selector.BUTTON_CLEAR);
-      this.buttonApply = this.root.querySelector(Selector.BUTTON_APPLY);
-
-      this.hooks = {
-        buttonClearClick: () => {},
-        buttonApplyClick: () => {},
-      }
-    }
-
     drawCalendar() {
       const date = this.model.current;
 
-      this.clearCalendarSheet();
+      this.clearSheet();
 
       this.drawCalendarTitle(date)
-        .drawCalendarSheet(date)
+        .drawSheet(date)
         .drawToday()
         .drawTrace();
     }
@@ -430,17 +365,59 @@ const Calendar = ((document) => {
 
     getArrivalIndex() {
       const arr = this.model.arrival;
-      const arrIndex = this.model.findCellIndex(arr);
+      const arrIndex = this.model.convertDateToIndex(arr);
       return arrIndex;
     }
 
     getDepartureIndex() {
       const dep = this.model.departure;
-      const depIndex = this.model.findCellIndex(dep);
+      const depIndex = this.model.convertDateToIndex(dep);
       return depIndex;
     }
 
-    clearCalendarSheet() {
+    setDeparture(date) {
+      if (this.isAfter(date, this.arrival)) {
+        this.departure = date;
+        return true;
+      }
+
+      return false;
+    }
+
+    setArrival(date) {
+      if (
+        this.isAfter(date, this.today)
+        && this.isAfter(this.departure, date)
+      ) {
+        this.arrival = date;
+        return true;
+      }
+
+      return false;
+    }
+
+    
+    setDate(index) {
+      const date = this.convertIndexToDate(index);
+      const arrival = this.arrival;
+      const departure = this.departure;
+
+      if (arrival && departure) {
+        return this.setDeparture(date);
+      }
+
+      if (!arrival) {
+        return this.setArrival(date);
+      }
+
+      if (!departure) {
+        return this.setDeparture(date);
+      }
+
+      return false;
+    }
+
+    clearSheet() {
       this.tableCells.forEach((cell) => {
         cell.classList.remove(
           Modifier.TABLE_CELL_ARRIVAL,
@@ -473,7 +450,7 @@ const Calendar = ((document) => {
     }
 
     drawToday() {
-      const day = this.model.findCellIndex(this.model.today);
+      const day = this.model.convertDateToIndex(this.model.today);
 
       if (this.isCorrectIndex(day)) {
         this.tableCells[day].classList.add(Modifier.TABLE_CELL_TODAY);
@@ -482,8 +459,8 @@ const Calendar = ((document) => {
       return this;
     }
 
-    drawCalendarSheet(date) {
-      const { sheet, from, to } = this.model.currentCalendarSheet;
+    drawSheet(date) {
+      const { sheet, from, to } = this.model.currentSheet;
       const weeks = this.model.countCalendarRows(date);
 
       if (weeks === 6) {
@@ -519,14 +496,6 @@ const Calendar = ((document) => {
       return this;
     }
 
-    isCorrectIndex(index) {
-      return (
-        index !== null
-        && 0 <= index
-        && index < 42
-      );
-    }
-
     drawTrace() {
       const arr = this.model.arrival;
       const dep = this.model.departure;
@@ -557,14 +526,31 @@ const Calendar = ((document) => {
       return this;
     }
 
-    isNotNullAndNotEqual(arr, dep, arrIndex, depIndex) {
-      return (
-        arr !== null
-        && dep !== null
-        && arrIndex !== depIndex
-      );
+    handleButtonBackwardClick() {
+      this.flipCalendarSheet(-1);
     }
 
+    handleButtonForwardClick() {
+      this.flipCalendarSheet(1);
+    }
+
+    flipCalendarSheet(shift) {
+      const date = this.model.currentMonth;
+      this.model.setCurrentMonth(date, shift);
+      this.drawCalendar();
+    }
+
+    handleArrowButtonKeydown(event) {
+      const key = event.key;
+
+      if (kq.isArrowDown(key)) {
+        event.preventDefault();
+      }
+
+      if (kq.isArrowDown(key)) {
+        event.preventDefault();
+      }
+    }
 
     handleTableBodyClick(event) {
       const et = event.target;
@@ -590,14 +576,60 @@ const Calendar = ((document) => {
       this.hooks.buttonClearClick();
     }
 
-    handleButtonBackwardClick() {
-      this.model.moveToPrevMonth();
-      this.drawCalendar();
+    handleTableBodyKeydown(event) {
+      const key = event.key;
+
+      if (kq.isArrowKey(key)) {
+        event.preventDefault();
+        return this.handleTableBodyKeyboardMovement(event);
+      }
+
+      if (kq.isEnterOrSpaceKey(key)) {
+        event.preventDefault();
+        return this.handleTableBodyClick(event);
+      }
     }
 
-    handleButtonForwardClick() {
-      this.model.moveToNextMonth();
-      this.drawCalendar();
+    handleTableBodyKeyboardMovement(event) {
+      const { target: et, key } = event;
+      const tableCellIndex = et.getAttribute('data-index');
+      switch (key) {
+        case 'ArrowUp': {
+          this.moveUp(tableCellIndex);
+          break;
+        }
+        case 'ArrowRight': {
+          this.moveRight(tableCellIndex);
+          break;
+        }
+        case 'ArrowDown': {
+          this.moveDown(tableCellIndex);
+          break;
+        }
+        default: {
+          this.moveLeft(tableCellIndex);
+          break;
+        }
+      }
+    }
+
+    // 0 - 7 ArrowDown - button
+    // 0 ArrowBack - move to prev month, focus to last month day.
+
+    isNotNullAndNotEqual(arr, dep, arrIndex, depIndex) {
+      return (
+        arr !== null
+        && dep !== null
+        && arrIndex !== depIndex
+      );
+    }
+
+    isCorrectIndex(index) {
+      return (
+        index !== null
+        && 0 <= index
+        && index < 42
+      );
     }
   }
 

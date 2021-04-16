@@ -1,29 +1,9 @@
 mixin calendar(args = {})
   - const { name } = args
-  .calendar.js-calendar&attributes(attributes)
+  section(class='calendar js-calendar')&attributes(attributes)
     +calendar__head
-    table.calendar__table
-      thead
-        tr.calendar__table-row
-          each dotw in ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
-            th.calendar__table-th= dotw
-      tbody.js-calendar__table-body
-        each i in [0, 7, 14, 21, 28]
-          tr.calendar__table-row
-            each j in [1, 2, 3, 4, 5, 6, 7]
-              td(data-index=`${i + j}` class='calendar__table-cell js-calendar__table-cell')= ''
-        tr.calendar__table-row.js-calendar__table-6th-row
-          each k in [1, 2, 3, 4, 5, 6, 7]
-            td(data-index=`${35 + k}` class='calendar__table-cell js-calendar__table-cell')= ''
-    .calendar__buttons
-      +button({ text: 'ОЧИСТИТЬ', name: `${name}-clear` })(
-        class='calendar__button-clear js-calendar__button-clear',
-        type='button',
-      )
-      +button({ text:'ПРИМЕНИТЬ', name: `${name}-apply` })(
-        class='calendar__button-apply js-calendar__button-apply',
-        type='button',
-      )
+    +calendar__table
+    +calendar__buttons(name)
 
 mixin calendar__head()
   .calendar__head
@@ -37,4 +17,37 @@ mixin calendar__head()
       role='button',
       tabindex='0',
     )
-    .calendar__title.js-calendar__title= 'title'
+    .calendar__title.js-calendar__title= ''
+
+mixin calendar__table()
+  table.calendar__table
+    thead
+      tr.calendar__table-row
+        each dayOfTheWeek in ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
+          th.calendar__table-th= dayOfTheWeek
+    tbody.js-calendar__table-body
+      each i in [0, 7, 14, 21, 28]
+        tr.calendar__table-row
+          each j in [1, 2, 3, 4, 5, 6, 7]
+            +calendar__table-cell(i + j)
+      tr.calendar__table-row.js-calendar__table-6th-row
+        each k in [1, 2, 3, 4, 5, 6, 7]
+          +calendar__table-cell(35 + k)
+
+mixin calendar__table-cell(index)
+  td(
+    class='calendar__table-cell js-calendar__table-cell',
+    data-index=index,
+    tabindex='0',
+  )= ''
+
+mixin calendar__buttons(name)
+  .calendar__buttons
+    +button({ text: 'ОЧИСТИТЬ', name: `${name}-clear` })(
+      class='calendar__button-clear js-calendar__button-clear',
+      type='button',
+    )
+    +button({ text: 'ПРИМЕНИТЬ', name: `${name}-apply` })(
+      class='calendar__button-apply js-calendar__button-apply',
+      type='button',
+    )

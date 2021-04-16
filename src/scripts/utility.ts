@@ -21,10 +21,15 @@ const Utility = (($) => {
   }
 
   const keyQualifiers = {
-    isEnterOrSpaceKey : makeKeyQualifier(['Enter', ' ']),
-    isSpaceKey        : makeKeyQualifier([' ']),
     isEnterKey        : makeKeyQualifier(['Enter']),
+    isSpaceKey        : makeKeyQualifier([' ']),
+    isEnterOrSpaceKey : makeKeyQualifier(['Enter', ' ']),
     isTabKey          : makeKeyQualifier(['Tab']),
+    isArrayRightKey   : makeKeyQualifier(['ArrowRight']),
+    isArrowLeftKey    : makeKeyQualifier(['ArrowLeft']),
+    isArrowUpKey      : makeKeyQualifier(['ArrowUp']),
+    isArrowDownKey    : makeKeyQualifier(['ArrowDown']),
+    isArrowKey        : makeKeyQualifier(['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown']),
   }
 
   function makeKeyQualifier(keys: string[]): Function {
