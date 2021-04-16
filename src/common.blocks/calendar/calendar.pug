@@ -1,10 +1,7 @@
 mixin calendar(args = {})
   - const { name } = args
   .calendar.js-calendar&attributes(attributes)
-    .calendar__head
-      +icon({ name: 'arrow_back' })(class='calendar__button-backward js-calendar__button-backward')
-      +icon({ name: 'arrow_back' })(class='calendar__button-forward js-calendar__button-forward')
-      .calendar__title.js-calendar__title= 'title'
+    +calendar__head
     table.calendar__table
       thead
         tr.calendar__table-row
@@ -20,10 +17,24 @@ mixin calendar(args = {})
             td(data-index=`${35 + k}` class='calendar__table-cell js-calendar__table-cell')= ''
     .calendar__buttons
       +button({ text: 'ОЧИСТИТЬ', name: `${name}-clear` })(
-        class = 'calendar__button-clear js-calendar__button-clear',
-        type = 'button',
+        class='calendar__button-clear js-calendar__button-clear',
+        type='button',
       )
       +button({ text:'ПРИМЕНИТЬ', name: `${name}-apply` })(
-        class = 'calendar__button-apply js-calendar__button-apply',
-        type = 'button',
+        class='calendar__button-apply js-calendar__button-apply',
+        type='button',
       )
+
+mixin calendar__head()
+  .calendar__head
+    +icon({ name: 'arrow_back' })(
+      class='calendar__button-backward js-calendar__button-backward',
+      role='button',
+      tabindex='0',
+    )
+    +icon({ name: 'arrow_forward' })(
+      class='calendar__button-forward js-calendar__button-forward',
+      role='button',
+      tabindex='0',
+    )
+    .calendar__title.js-calendar__title= 'title'

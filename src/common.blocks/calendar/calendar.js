@@ -1,6 +1,7 @@
 'use strict';
 
 import { BEMComponent } from 'scripts/BEMComponent';
+import { Utility } from 'scripts/Utility';
 
 const Calendar = ((document) => {
   class CalendarModel {
@@ -326,6 +327,8 @@ const Calendar = ((document) => {
     BUTTON_APPLY    : '.js-calendar__button-apply',
   }
 
+  const kq = Utility.keyQualifiers;
+
   class Calendar extends BEMComponent {
     constructor(element) {
       super(element, 'calendar');
@@ -337,37 +340,52 @@ const Calendar = ((document) => {
 
       this.drawCalendar();
 
-      this.attachMultipleEventListeners([
-        { 
+      this.listeners = this.defineEventListeners();
+      this.attachMultipleEventListeners(this.listeners);
+    }
+    
+    defineEventListeners() {
+      return [
+        {
           element: this.buttonBackward,
-          event: 'click',
-          handler: this.handleButtonBackwardClick.bind(this),
+          handlers: {
+            'click': this.handleButtonBackwardClick.bind(this),
+            'keydown': this.handleButtonBackwardKeydown.bind(this),
+          }
         },
 
         {
           element: this.buttonForward,
-          event: 'click',
-          handler: this.handleButtonForwardClick.bind(this),
+          handlers: {
+            'click': this.handleButtonForwardClick.bind(this),
+            'keydown': this.handleButtonForwardKeydown.bind(this),
+          }
         },
 
-        { 
+        {
           element: this.buttonClear,
-          event: 'click',
-          handler: this.handleButtonClearClick.bind(this),
+          handlers: {
+            'click': this.handleButtonClearClick.bind(this),
+            'keydown': this.handleButtonClearKeydown.bind(this),
+          }
         },
 
-        { 
+        {
           element: this.buttonApply,
-          event: 'click',
-          handler: this.handleButtonApplyClick.bind(this),
+          handlers: {
+            'click': this.handleButtonApplyClick.bind(this),
+            'keydown': this.handleButtonApplyKeydown.bind(this),
+          }
         },
 
-        { 
+        {
           element: this.tableBody,
-          event: 'click',
-          handler: this.handleTableBodyClick.bind(this),
+          handlers: {
+            'click': this.handleTableBodyClick.bind(this),
+            'keydown': this.handleTableBodyKeydown.bind(this),
+          }
         },
-      ]);
+      ];
     }
 
     connectBasis() {
@@ -582,6 +600,20 @@ const Calendar = ((document) => {
     handleButtonForwardClick() {
       this.model.moveToNextMonth();
       this.drawCalendar();
+    }
+
+    handleButtonForwardKeydown = this.makeKeydownHandler(this.handleButtonForwardClick);
+    handleButtonBackwardKeydown = this.makeKeydownHandler(this.handleButtonBackwardClick);
+    handleButtonClearKeydown = this.makeKeydownHandler(this.handleButtonClearClick);
+    handleButtonApplyKeydown = this.makeKeydownHandler(this.handleButtonApplyClick);
+    handleTableBodyKeydown = this.makeKeydownHandler(this.handleTableBodyClick);
+
+    makeKeydownHandler(handler) {
+      return function (event) {
+        if (kq.isEnterOrSpaceKey(event)) {
+          handler(event);
+        }
+      }
     }
   }
 

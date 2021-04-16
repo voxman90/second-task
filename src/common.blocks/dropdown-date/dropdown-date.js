@@ -4,7 +4,9 @@ import $ from 'jquery';
 import 'jquery.inputmask';
 
 import { BEMComponent } from 'scripts/BEMComponent';
+import { Utility } from 'scripts/Utility';
 import { Calendar } from 'common.blocks/calendar/calendar';
+
 
 const DropdownDate = (($, document) => {
   const ClassName = {
@@ -17,12 +19,13 @@ const DropdownDate = (($, document) => {
 
   const Selector = {
     INPUT_ARRIVAL   : '.js-dropdown-date__input-arrival',
-    ICON_ARRIVAL  : '.js-dropdown-date__icon-arrival',
     INPUT_DEPARTURE : '.js-dropdown-date__input-departure',
-    ICON_DEPARTURE  : '.js-dropdown-date__icon-departure',
+    ICON            : '.js-dropdown-date__icon',
     BAR             : '.js-dropdown-date__bar',
     CALENDAR        : '.js-dropdown-date__calendar',
   }
+
+  const kq = Utility.keyQualifiers;
 
   class DropdownDate extends BEMComponent {
     constructor(element) {
@@ -33,26 +36,24 @@ const DropdownDate = (($, document) => {
 
       this.attachInputMask();
 
-      this.attachMultipleEventListeners([
-        {
-          element: this.iconArrival,
-          event: 'click',
-          handler: this.handleIconClick.bind(this),
-        },
+      this.listeners = this.defineEventListeners();
+      this.attachMultipleEventListeners(this.listeners);
+    }
 
+    defineEventListeners() {
+      return [
         {
-          element: this.iconDeparture,
-          event: 'click',
-          handler: this.handleIconClick.bind(this),
+        element: this.icons,
+        event: 'click',
+        handler: this.handleIconClick.bind(this),
         },
-      ]);
+      ];
     }
 
     connectBasis() {
       this.inputArrival = this.root.querySelector(Selector.INPUT_ARRIVAL);
-      this.iconArrival = this.root.querySelector(Selector.ICON_ARRIVAL);
       this.inputDeparture = this.root.querySelector(Selector.INPUT_DEPARTURE);
-      this.iconDeparture = this.root.querySelector(Selector.ICON_DEPARTURE);
+      this.icons = this.root.querySelectorAll(Selector.ICON);
       this.bar = this.root.querySelector(Selector.BAR);
     }
 

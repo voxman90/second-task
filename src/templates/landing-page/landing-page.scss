@@ -1,20 +1,30 @@
 @use '../../styles/text';
 
-.landing-page__header {
+.landing__header {
   position: absolute;
   z-index: 10;
   top: 0;
 }
 
-.landing-page__main {
+.landing__main {
   position: relative;
   z-index: 5;
 
   height: 100vh;
+}
+
+.landing__bg {
+  width: 100%;
+  height: 100%;
+
   overflow: hidden;
 }
 
-.landing-page__main-image {
+.landing__bg-wrapper {
+  position: relative;
+}
+
+.landing__bg-image {
   position: absolute;
 
   width: 100%;
@@ -23,7 +33,7 @@
   background-repeat: no-repeat;
 }
 
-.landing-page__image-first {
+.landing__image-first {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -36,7 +46,7 @@
   background-size: cover;
 }
 
-.landing-page__image-second {
+.landing__image-second {
   top: -14.33%;
   right: 0;
 
@@ -47,7 +57,7 @@
   background-size: cover;
 }
 
-.landing-page__image-third {
+.landing__image-third {
   top: 4.375rem;
   right: 0;
 
@@ -56,14 +66,14 @@
   background-size: cover;
 }
 
-.landing-page__room-search {
+.landing__room-search {
   position: absolute;
   z-index: 10;
   top: 8.75rem;
   left: 9.722%;
 }
 
-.landing-page__caption {
+.landing__caption {
   position: absolute;
   z-index: 8;
   right: 9.3%;
@@ -74,12 +84,12 @@
   text-align: right;
 }
 
-.landing-page__footer {
+.landing__footer {
   position: relative;
   z-index: 3;
 }
 
-.landing-page__footer-creative {
+.landing__footer-creative {
   position: relative;
   z-index: 3;
 
@@ -87,29 +97,29 @@
 }
 
 @media only screen and (max-width: 1152px) {
-  .landing-page__room-search {
+  .landing__room-search {
     left: 6%;
   }
 }
 
 @media only screen and (max-width: 768px) {
-  .landing-page__footer-creative {
+  .landing__footer-creative {
     display: block;
   }
 
-  .landing-page__caption {
+  .landing__caption {
     right: 6%;
   }
 }
 
 
 @media only screen and (max-width: 480px) {
-  .landing-page__room-search {
+  .landing__room-search {
     left: 50%;
     transform: translateX(-50%);
   }
 
-  .landing-page__caption {
+  .landing__caption {
     right: 50%;
     transform: translateX(50%);
 

@@ -35,12 +35,13 @@ html(lang='ru')
     +favicon
     title Document
   body 
-    +header({ navbarItems })(class='landing-page__header')
-    main.landing-page__main
-      +ar-responsive-box
-        .landing-page__main-image
-      .landing-page__room-search
+    +header({ navbarItems })(class='landing__header')
+    main.landing__main
+      .landing__bg
+        +ar-responsive-box().landing__bg-wrapper
+          .landing__bg-image
+      .landing__room-search
         +room-search
-      p.landing-page__caption!= "Лучшие номера для вашей работы,\nотдыха и просто вдохновения"
-    +footer({ footerItems })(class='landing-page__footer')
-    +footer-creative()(class='landing-page__footer-creative')
+      p.landing__caption!= "Лучшие номера для вашей работы,\nотдыха и просто вдохновения"
+    +footer({ footerItems })(class='landing__footer')
+    +footer-creative()(class='landing__footer-creative')

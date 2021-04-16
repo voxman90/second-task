@@ -18,63 +18,41 @@
 }
 
 .calendar__head {
-  margin-bottom: 30px;
+  margin-bottom: 1.875em;
 }
 
 .calendar__title {
-  height: 24px;
+  height: 1.263em;
 
   font-family: 'Quicksand', 'Open Sans', sans-serif;
   font-weight: bold;
   font-style: normal;
-  font-size: 19px;
-  line-height: 24px;
+  font-size: 1.1875rem;
+  line-height: 1.263;
   text-align: center;
   color: $dark-shade-100;
 }
 
-.calendar__button-backward {
-  float: left;
-  height: 24px;
+%calendar__button-arrow {
+  height: 1;
 
   cursor: pointer;
 
   color: $purple;
 
-  &::-moz-selection {
-    background: transparent;
-  }
+  @include non-selectable;
+}
 
-  &::selection {
-    background: transparent;
-  }
+.calendar__button-backward {
+  float: left;
 
-  &::-moz-selection {
-    background: transparent;
-  }
+  @extend %calendar__button-arrow;
 }
 
 .calendar__button-forward {
   float: right;
-  height: 24px;
 
-  cursor: pointer;
-
-  color: $purple;
-
-  transform: rotate(180deg);
-
-  &::-moz-selection {
-    background: transparent;
-  }
-
-  &::selection {
-    background: transparent;
-  }
-
-  &::-moz-selection {
-    background: transparent;
-  }
+  @extend %calendar__button-arrow;
 }
 
 .calendar__table {
@@ -92,7 +70,7 @@
 
   cursor: default;
 
-  @include h3-text(0.75rem, 1.25rem);
+  @include h3-text;
   text-transform: none;
   color: $purple;
 }
@@ -110,9 +88,7 @@
   width: 40px;
   padding: 0;
 
-  @include Montserrat-normal;
-  font-size: 0.75rem;
-  line-height: 1.25em;
+  @include p-text(0.75rem, 1.25);
   color: $dark-shade-25;
 }
 
@@ -132,7 +108,6 @@
     content: "";
 
     position: absolute;
-    z-index: -1;
     top: 0px;
     left: 0px;
 
@@ -157,7 +132,6 @@
     content: '';
 
     position: absolute;
-    z-index: -1;
     top: 0px;
     left: 0px;
 
@@ -182,7 +156,6 @@
     content: '';
 
     position: absolute;
-    z-index: -1;
     top: 0px;
     left: 0px;
 

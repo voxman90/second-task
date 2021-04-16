@@ -2,13 +2,13 @@
 
 (function (window, document) {
   const imageClass = [
-    'landing-page__image-first',
-    'landing-page__image-second',
-    'landing-page__image-third',
+    'landing__image-first',
+    'landing__image-second',
+    'landing__image-third',
   ];
 
   const Selector = {
-    MAIN : '.landing-page__main-image',
+    MAIN : '.landing__bg-image',
   }
 
   function attachRandomImageToMain() {

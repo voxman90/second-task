@@ -2,11 +2,14 @@ import $ from 'jquery';
 
 const BEMComponent = (($, document) => {
   type eventListenerParameters = {
-    element: HTMLElement,
+    element: HTMLElement | HTMLElement[],
     event: string,
-    selector?: string,
-    data?: Object,
+    selector: string,
+    data: Object,
     handler: Function,
+    handlers: {
+      [events: string]: Function,
+    }
   };
 
   const ID_LENGTH = 16;
@@ -69,28 +72,43 @@ const BEMComponent = (($, document) => {
       return parseInt(attributeValue, 10);
     }
 
-    protected attachMultipleEventListeners(elps: eventListenerParameters[]): void {
+    protected attachMultipleEventListeners(elps: Partial<eventListenerParameters>[]): void {
       elps.forEach(
         (elp) => this.attachEventListener(elp)
       );
     }
 
-    protected attachEventListener(elp: eventListenerParameters): void {
-      const { element, event, handler, selector = null, data = null } = elp;
-      const uniqeEventName = this.createEventNameWithNamespace(event, this.namespace);
+    protected attachEventListener(elp: Partial<eventListenerParameters>): void {
+      const { element, event, handler, handlers, selector = null, data = null } = elp;
+      
+      if (handlers !== undefined) {
+        Object.keys(handlers).forEach((events) => {
+          this.attachEventListener({
+            element: element,
+            event: events,
+            handler: handlers[events],
+          })
+        });
 
-      $(element).on(uniqeEventName, selector, data, (event) => {
+        return void(0);
+      }
+
+      const uniqeEventNames = event.split(' ')
+        .map((event) => this.createEventNameWithNamespace(event, this.namespace))
+        .join(' ');
+
+      $(element).on(uniqeEventNames, selector, data, (event) => {
         handler(event);
       });
     }
 
-    protected removeMultipleEventListeners(elps: eventListenerParameters[]): void {
+    protected removeMultipleEventListeners(elps: Partial<eventListenerParameters>[]): void {
       elps.forEach(
         (elp) => this.removeEventListener(elp)
       );
     }
 
-    protected removeEventListener(elp: eventListenerParameters): void {
+    protected removeEventListener(elp: Partial<eventListenerParameters>): void {
       const { element, event } = elp;
       const uniqeEventName = this.createEventNameWithNamespace(event, this.namespace);
 

@@ -1,10 +1,45 @@
 .ar-responsive-box {
-  @include square-ratio;
+  &::after {
+    content: '';
+
+    display: block;
+    padding-top: 250%;
+  }
+}
+
+@media screen and (min-aspect-ratio: 1/2) {
+  .ar-responsive-box::after {
+    padding-top: 200%;
+  }
+}
+
+@media screen and (min-aspect-ratio: 2/3) {
+  .ar-responsive-box::after {
+    padding-top: 150%;
+  }
+}
+
+@media screen and (min-aspect-ratio: 1/1) {
+  .ar-responsive-box::after {
+    padding-top: 100%;
+  }
+}
+
+@media screen and (min-aspect-ratio: 5/4) {
+  .ar-responsive-box::after {
+    padding-top: 80%;
+  }
 }
 
 @media screen and (min-aspect-ratio: 4/3) {
   .ar-responsive-box::after {
     padding-top: 75%;
+  }
+}
+
+@media screen and (min-aspect-ratio: 3/2) {
+  .ar-responsive-box::after {
+    padding-top: 66.67%;
   }
 }
 
@@ -23,5 +58,11 @@
 @media screen and (min-aspect-ratio: 16/10) {
   .ar-responsive-box::after {
     padding-top: 62.5%;
+  }
+}
+
+@media screen and (min-aspect-ratio: 19.5/9) {
+  .ar-responsive-box::after {
+    padding-top: 46.2%;
   }
 }
