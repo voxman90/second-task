@@ -8,7 +8,6 @@ import { Calendar } from 'common.blocks/calendar/calendar';
 
 import { Utility } from '../../scripts/Utility';
 
-
 const DropdownDate = (($, document) => {
   const ClassName = {
     ROOT : 'js-dropdown-date',
@@ -45,7 +44,7 @@ const DropdownDate = (($, document) => {
           element: this.icons,
           handlers: {
             'click': this.handleIconClick.bind(this),
-            'keypdown': Utility.makeKeydownHandler(this.handleIconClick).bind(this),
+            'keydown': Utility.makeKeydownHandler(this.handleIconClick.bind(this)),
           }
         },
       ];

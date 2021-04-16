@@ -348,7 +348,7 @@ const Calendar = ((document) => {
           element: this.buttonBackward,
           handlers: {
             'click': this.handleButtonBackwardClick.bind(this),
-            'keydown': Utility.makeKeydownHandler(this.handleButtonBackwardClick).bind(this),
+            'keydown': Utility.makeKeydownHandler(this.handleButtonBackwardClick.bind(this)),
           }
         },
 
@@ -356,7 +356,7 @@ const Calendar = ((document) => {
           element: this.buttonForward,
           handlers: {
             'click': this.handleButtonForwardClick.bind(this),
-            'keydown': Utility.makeKeydownHandler(this.handleButtonForwardClick).bind(this),
+            'keydown': Utility.makeKeydownHandler(this.handleButtonForwardClick.bind(this)),
           }
         },
 
@@ -364,7 +364,7 @@ const Calendar = ((document) => {
           element: this.buttonClear,
           handlers: {
             'click': this.handleButtonClearClick.bind(this),
-            'keydown': Utility.makeKeydownHandler(this.handleButtonClearClick).bind(this),
+            'keydown': Utility.makeKeydownHandler(this.handleButtonClearClick.bind(this)),
           }
         },
 
@@ -372,7 +372,7 @@ const Calendar = ((document) => {
           element: this.buttonApply,
           handlers: {
             'click': this.handleButtonApplyClick.bind(this),
-            'keydown': Utility.makeKeydownHandler(this.handleButtonApplyClick).bind(this),
+            'keydown': Utility.makeKeydownHandler(this.handleButtonApplyClick.bind(this)),
           }
         },
 
@@ -380,7 +380,7 @@ const Calendar = ((document) => {
           element: this.tableBody,
           handlers: {
             'click': this.handleTableBodyClick.bind(this),
-            'keydown': Utility.makeKeydownHandler(this.handleTableBodyClick).bind(this),
+            'keydown': Utility.makeKeydownHandler(this.handleTableBodyClick.bind(this)),
           }
         },
       ];

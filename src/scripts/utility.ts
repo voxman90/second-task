@@ -21,33 +21,20 @@ const Utility = (($) => {
   }
 
   const keyQualifiers = {
-    isEnterOrSpaceKey : makeKeyQualifier(['Enter', ' '], [32, 13]),
-    isSpaceKey        : makeKeyQualifier([' '], [13]),
-    isEnterKey        : makeKeyQualifier(['Enter'], [32]),
-    isTabKey          : makeKeyQualifier(['Tab'], [9]),
+    isEnterOrSpaceKey : makeKeyQualifier(['Enter', ' ']),
+    isSpaceKey        : makeKeyQualifier([' ']),
+    isEnterKey        : makeKeyQualifier(['Enter']),
+    isTabKey          : makeKeyQualifier(['Tab']),
   }
 
-  function makeKeyQualifier(keys: string[], codes: number[]): Function {
-    return (event: KeyboardEvent) => {
-      if (event.key !== undefined) {
-        return (
-          keys.some((val) => val === event.key)
-        );
-      }
-
-      if (event.which !== undefined) {
-        return (
-          codes.some((val) => val === event.which)
-        );
-      }
-
-      return null;
-    }
+  function makeKeyQualifier(keys: string[]): Function {
+    return (event: KeyboardEvent) => keys.some((val) => val === event.key)
   }
 
-  function makeKeydownHandler(handler: Function): Function {
+  function makeKeydownHandler(handler: Function, keys: string[] = null): Function {
+    const isMatchingKey = (keys === null) ? keyQualifiers.isEnterOrSpaceKey : makeKeyQualifier(keys);
     return function (event) {
-      if (keyQualifiers.isEnterOrSpaceKey(event)) {
+      if (isMatchingKey(event)) {
         event.preventDefault();
         handler(event);
       }

@@ -5,10 +5,17 @@ mixin dropdown-date(args = {})
       .dropdown-date__arrival
         +label(left, '').dropdown-date__label
           +input-date({ name: `${name}-arrival` }).js-dropdown-date__input-arrival
-        +icon({ name: 'expand_more' })(class='dropdown-date__icon js-dropdown-date__icon')
+        +dropdown-date__icon
       .dropdown-date__departure
         +label(right, '').dropdown-date__label
           +input-date({ name: `${name}-departure` }).js-dropdown-date__input-departure
-        +icon({ name: 'expand_more' })(class='dropdown-date__icon js-dropdown-date__icon')
+        +dropdown-date__icon
     .dropdown-date__bar.js-dropdown-date__bar.dropdown-date__bar_hidden
       +calendar({ name }).js-dropdown-date__calendar
+
+mixin dropdown-date__icon()
+  +icon({ name: 'expand_more' })(
+    class='dropdown-date__icon js-dropdown-date__icon',
+    role='button',
+    tabindex='0',
+  )
