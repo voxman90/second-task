@@ -17,23 +17,19 @@ mixin hamburger__trigger()
     class='hamburger__trigger js-expandable__trigger',
     role='button',
     tabindex='0',
-    aria-pressed='false',
-    aria-expanded='false',
     aria-label='hamburger-main-trigger',
   )
-    +icon({ name: 'menu' })(class = 'hamburger__icon')
+    +icon({ name: 'menu' })(class='hamburger__icon')
 
 mixin hamburger__expandable-list(args)
   - const { href, text, title = null, items = [] } = args
-  li(class = 'hamburger__expandable-list js-expandable js-auto-init')
+  li(class='hamburger__expandable-list js-expandable js-auto-init')
     .hamburger__expandable-list-header
-      +link(args)(class = 'hamburger__expandable-list-link')
+      +link(args)(class='hamburger__expandable-list-link')
       div(
         class='js-expandable__trigger hamburger__expandable-list-trigger',
         role='button',
         tabindex='0',
-        aria-pressed='false',
-        aria-expanded='false',
         aria-label=text,
       )
         +icon({ name: 'expand_more' })(class = 'hamburger__expandable-list-icon')

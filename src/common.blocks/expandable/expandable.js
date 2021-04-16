@@ -24,6 +24,7 @@ const Expandable = ((document) => {
       super(element, name);
 
       this.trigger = this.root.querySelector(Selector.TRIGGER);
+      this.trigger.setAttribute('aria-expanded', false);
       this.container = this.root.querySelector(Selector.CONTAINER);
 
       this.listeners = this.defineEventListeners();
@@ -44,11 +45,18 @@ const Expandable = ((document) => {
 
     handleTriggerClick() {
       this.trigger.classList.toggle(Modifier.TRIGGER_ACTIVE);
+      this.toggleAriaExpanded(this.trigger);
       this.container.classList.toggle(Modifier.CONTAINER_VISIBLE);
+    }
+
+    toggleAriaExpanded(element) {
+      const ariaExpandedValue = ('false' !== element.getAttribute('aria-expanded'));
+      element.setAttribute('aria-expanded', !ariaExpandedValue);
     }
 
     expand() {
       this.trigger.classList.add(Modifier.TRIGGER_ACTIVE);
+      this.trigger.setAttribute('aria-expanded', true);
       this.container.classList.add(Modifier.CONTAINER_VISIBLE);
 
       return this;
@@ -56,6 +64,7 @@ const Expandable = ((document) => {
 
     close() {
       this.trigger.classList.remove(Modifier.TRIGGER_ACTIVE);
+      this.trigger.setAttribute('aria-expanded', false);
       this.container.classList.remove(Modifier.CONTAINER_VISIBLE);
 
       return this;
