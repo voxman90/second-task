@@ -1,6 +1,9 @@
 mixin navbar(args = {})
   - const { isLoggedIn, navbarItems } = args
-  nav(class='navbar')&attributes(attributes)
+  nav(
+    class='navbar',
+    aria-label='main',
+  )&attributes(attributes)
     ul.navbar__menu
       each item in navbarItems
         - const { isExpandable = false } = item
@@ -24,7 +27,7 @@ mixin navbar__dropdown(args = {})
 
 mixin navbar__dropdown-head(args = {})
   .navbar__dropdown-head
-    +link(args)(class='navbar__dropdown-link')
+    +link(args)(class='navbar__link navbar__dropdown-link')
     +icon({ name: 'expand_more' })(class = 'navbar__icon')
 
 mixin navbar__buttons(isloggedIn = false)

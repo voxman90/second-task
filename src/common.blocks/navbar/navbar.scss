@@ -12,17 +12,17 @@
 
 .navbar__item {
   display: inline-block;
-  padding: 0.75rem 0;
+  padding: 12px 0;
 }
 
 .navbar__link {
-  padding: 0.625rem;
+  padding: 10px;
 }
 
 .navbar__dropdown {
   position: relative;
 
-  padding: 0.75rem 0;
+  padding: 12px 0;
 
   &:hover .navbar__icon {
     color: $dark-shade-75;
@@ -42,6 +42,10 @@
   vertical-align: middle;
   padding-right: 0;
 
+  &::after {
+    padding-left: 10px;
+  }
+
   &:focus + .navbar__icon {
     color: $dark-shade-75;
   }
@@ -49,8 +53,8 @@
 
 .navbar__icon {
   box-sizing: content-box;
-  height: 1.375rem;
-  padding: 0.625rem 0.625rem 0.625rem 0;
+  height: 22px;
+  padding: 10px 10px 10px 0;
 
   vertical-align: middle;
   color: $dark-shade-50;
@@ -62,8 +66,8 @@
   visibility: hidden;
   opacity: 0;
 
-  margin-top: 0.85rem;
-  padding: 0.875rem 1.0625rem;
+  margin-top: 13.6px;
+  padding: 14px 17px;
 
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 4px;
@@ -84,14 +88,14 @@
 }
 
 .navbar__button {
-  padding: 0 0.625rem;
+  padding: 0 10px;
 }
 
 .navbar__button-sign-in {
-  width: 5.4375rem;
-  height: 2.125rem;
+  width: 87px;
+  height: 34px;
 
-  border-radius: 1.075rem;
+  border-radius: 17.2px;
 
   &:focus {
     opacity: 0.5;
@@ -99,10 +103,10 @@
 }
 
 .navbar__button-sign-up {
-  width: 12.25rem;
-  height: 2.125rem;
+  width: 196px;
+  height: 34px;
 
-  border-radius: 1.075rem;
+  border-radius: 17.2px;
 
   &:focus {
     opacity: 0.5;

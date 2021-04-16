@@ -8,6 +8,10 @@
 
   @include p-text;
 
+  &:focus {
+    outline: none;
+  }
+
   &:hover,
   &:focus,
   &:active { 
