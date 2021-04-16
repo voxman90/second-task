@@ -16,50 +16,7 @@
 }
 
 .navbar__link {
-  position: relative;
-
-  display: inline-block;
   padding: 0.625rem;
-
-  @include Montserrat-normal;
-  font-size: 0.875rem;
-  line-height: 1.5rem;
-  white-space: nowrap;
-  color: $dark-shade-50;
-
-  &:focus {
-    outline: none;
-  }
-
-  &:active,
-  &:hover,
-  &:focus {
-    color: transparent;
-
-    &::after {
-      visibility: visible;
-      opacity: 1;
-    }
-  }
-
-  &:link,
-  &:visited {
-    text-decoration: none;
-  }
-
-  &::after {
-    content: attr(data-text);
-  
-    visibility: hidden;
-    opacity: 0;
-  
-    position: absolute;
-    top: 0.625rem;
-    left: 0.5875rem;
-  
-    @include Montserrat-bold;
-    color: $dark-shade-75;
-  }
 }
 
 .navbar__dropdown {
@@ -124,15 +81,6 @@
 
 .navbar__dropdown-list-item {
   padding: 0;
-}
-
-.navbar__dropdown-list-link {
-  padding: 0.125rem 0.3125rem;
-
-  &::after {
-    top: 0.125rem;
-    left: 0.275rem;
-  }
 }
 
 .navbar__button {

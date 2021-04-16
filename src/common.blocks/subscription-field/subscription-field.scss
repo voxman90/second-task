@@ -12,7 +12,6 @@
   &:hover  + .subscription-field__submit-button,
   &:focus  + .subscription-field__submit-button,
   &:active + .subscription-field__submit-button {
-    outline: none;
     border-color: $dark-shade-50;
   }
 }

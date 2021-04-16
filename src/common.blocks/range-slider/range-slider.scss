@@ -42,11 +42,6 @@
     outline: none;
     pointer-events: none;
 
-    &:active,
-    &:focus {
-        outline: none;
-    }
-
     &::-webkit-slider-thumb {
         -webkit-appearance: none;
                 appearance: none;

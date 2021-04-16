@@ -2,6 +2,8 @@
 
 import { BEMComponent } from 'scripts/BEMComponent';
 
+import { Utility } from '../../scripts/Utility';
+
 const Expandable = ((document) => {
   const ClassName = {
     ROOT : 'js-expandable',
@@ -32,8 +34,10 @@ const Expandable = ((document) => {
       return [
         {
           element: this.trigger,
-          event: 'click',
-          handler: this.handleTriggerClick.bind(this),
+          handlers: {
+            'click': this.handleTriggerClick.bind(this),
+            'keypdown': Utility.makeKeydownHandler(this.handleTriggerClick).bind(this),
+          },
         },
       ];
     }

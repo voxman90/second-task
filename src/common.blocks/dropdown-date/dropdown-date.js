@@ -4,8 +4,9 @@ import $ from 'jquery';
 import 'jquery.inputmask';
 
 import { BEMComponent } from 'scripts/BEMComponent';
-import { Utility } from 'scripts/Utility';
 import { Calendar } from 'common.blocks/calendar/calendar';
+
+import { Utility } from '../../scripts/Utility';
 
 
 const DropdownDate = (($, document) => {
@@ -25,8 +26,6 @@ const DropdownDate = (($, document) => {
     CALENDAR        : '.js-dropdown-date__calendar',
   }
 
-  const kq = Utility.keyQualifiers;
-
   class DropdownDate extends BEMComponent {
     constructor(element) {
       super(element, 'dropdown-date');
@@ -43,9 +42,11 @@ const DropdownDate = (($, document) => {
     defineEventListeners() {
       return [
         {
-        element: this.icons,
-        event: 'click',
-        handler: this.handleIconClick.bind(this),
+          element: this.icons,
+          handlers: {
+            'click': this.handleIconClick.bind(this),
+            'keypdown': Utility.makeKeydownHandler(this.handleIconClick).bind(this),
+          }
         },
       ];
     }

@@ -45,9 +45,19 @@ const Utility = (($) => {
     }
   }
 
+  function makeKeydownHandler(handler: Function): Function {
+    return function (event) {
+      if (keyQualifiers.isEnterOrSpaceKey(event)) {
+        event.preventDefault();
+        handler(event);
+      }
+    }
+  }
+
   return {
     getTransitionEndEventName,
     makeKeyQualifier,
+    makeKeydownHandler,
     keyQualifiers,
   };
 })($);

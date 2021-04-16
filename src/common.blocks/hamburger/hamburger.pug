@@ -14,8 +14,12 @@ mixin hamburger(args = {})
 
 mixin hamburger__trigger()
   div(
-    class = 'hamburger__trigger js-expandable__trigger',
-    role = 'button',
+    class='hamburger__trigger js-expandable__trigger',
+    role='button',
+    tabindex='0',
+    aria-pressed='false',
+    aria-expanded='false',
+    aria-label='hamburger-main-trigger',
   )
     +icon({ name: 'menu' })(class = 'hamburger__icon')
 
@@ -24,7 +28,14 @@ mixin hamburger__expandable-list(args)
   li(class = 'hamburger__expandable-list js-expandable js-auto-init')
     .hamburger__expandable-list-header
       +link(args)(class = 'hamburger__expandable-list-link')
-      .js-expandable__trigger.hamburger__expandable-list-trigger
+      div(
+        class='js-expandable__trigger hamburger__expandable-list-trigger',
+        role='button',
+        tabindex='0',
+        aria-pressed='false',
+        aria-expanded='false',
+        aria-label=text,
+      )
         +icon({ name: 'expand_more' })(class = 'hamburger__expandable-list-icon')
     ul(class = 'hamburger__expandable-list-container js-expandable__container')
       each item in items

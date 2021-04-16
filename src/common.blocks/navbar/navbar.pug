@@ -1,6 +1,6 @@
 mixin navbar(args = {})
   - const { isLoggedIn, navbarItems } = args
-  nav(class = 'navbar')&attributes(attributes)
+  nav(class='navbar')&attributes(attributes)
     ul.navbar__menu
       each item in navbarItems
         - const { isExpandable = false } = item
@@ -11,14 +11,8 @@ mixin navbar(args = {})
       +navbar__buttons(isLoggedIn)
 
 mixin navbar__item(args = {})
-  - const { href, text, title = null } = args
-  li(class = 'navbar__item')&attributes(attributes)
-    a(
-      class = 'navbar__link',
-      href = href,
-      title = title,
-      data-text = text,
-    )= text
+  li(class='navbar__item')&attributes(attributes)
+    +link(args)(class='navbar__link')
 
 mixin navbar__dropdown(args = {})
   - const { href, text, title = null, items = [] } = args
@@ -26,28 +20,12 @@ mixin navbar__dropdown(args = {})
     +navbar__dropdown-head(args)
     ul.navbar__dropdown-list
       each item in items
-        +navbar__dropdown-list-item(item)
+        +navbar__item(item)(class='navbar__dropdown-list-item')
 
 mixin navbar__dropdown-head(args = {})
-  - const { href, text, title = null } = args
   .navbar__dropdown-head
-    a(
-      class = 'navbar__link navbar__dropdown-link',
-      href = href,
-      title = title,
-      data-text = text,
-    )= text
+    +link(args)(class='navbar__dropdown-link')
     +icon({ name: 'expand_more' })(class = 'navbar__icon')
-
-mixin navbar__dropdown-list-item(args = {})
-  - const { href, text, title = null } = args
-  li.navbar__dropdown-list-item
-    a(
-      class = 'navbar__link navbar__dropdown-list-link',
-      href = href,
-      title = title,
-      data-text = text,
-    )= text
 
 mixin navbar__buttons(isloggedIn = false)
   if isloggedIn

@@ -114,9 +114,7 @@
 
   @include non-selectable;
 
-  &:focus,
   &:hover {
-    outline: none;
     border-color: $dark-shade-50;
   }
 }
@@ -137,9 +135,7 @@
 
   color: dark-shade(0.095);
 
-  &:focus,
   &:hover {
-    outline: none;
     border-color: dark-shade(0.095);
   }
 }

@@ -18,10 +18,6 @@
 .header__logo {
   padding: 0.9375rem 0.625rem;
   height: 4.375rem;
-
-  &:focus {
-    outline: 1px solid dark-shade(0.15);
-  }
 }
 
 .header__hamburger {

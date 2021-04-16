@@ -41,4 +41,9 @@
       opacity: 1;
     }
   }
+
+  &:link,
+  &:visited {
+    text-decoration: none;
+  }
 }
