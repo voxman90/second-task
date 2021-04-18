@@ -85,12 +85,8 @@ const BEMComponent = (($, document) => {
       const { element, event, handler, handlers, selector = null, data = null } = elp;
       
       if (handlers !== undefined) {
-        Object.keys(handlers).forEach((events) => {
-          this.attachEventListener({
-            element: element,
-            event: events,
-            handler: handlers[events],
-          })
+        Object.keys(handlers).forEach((event) => {
+          this.attachEventListener({ element, data, selector, event, handler: handlers[event] })
         });
 
         return void(0);

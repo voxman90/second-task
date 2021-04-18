@@ -335,48 +335,34 @@ const Calendar = ((document) => {
       return [
         {
           element: this.buttonBackward,
-          handlers: {
-            'click': this.handleButtonBackwardClick,
-            'keydown': Utility.makeKeydownHandler(this.handleButtonBackwardClick),
-          }
+          handlers: { 'click': this.handleButtonBackwardClick, 'keydown': Utility.makeKeydownHandler(this.handleButtonBackwardClick) }
         },
 
         {
           element: this.buttonForward,
-          handlers: {
-            'click': this.handleButtonForwardClick,
-            'keydown': Utility.makeKeydownHandler(this.handleButtonForwardClick),
-          }
+          handlers: { 'click': this.handleButtonForwardClick, 'keydown': Utility.makeKeydownHandler(this.handleButtonForwardClick) }
         },
 
         {
           element: this.buttonClear,
-          handlers: {
-            'click': this.handleButtonClearClick,
-            'keydown': Utility.makeKeydownHandler(this.handleButtonClearClick),
-          }
+          handlers: { 'click': this.handleButtonClearClick, 'keydown': Utility.makeKeydownHandler(this.handleButtonClearClick) }
         },
 
         {
           element: this.buttonApply,
-          handlers: {
-            'click': this.handleButtonApplyClick,
-            'keydown': Utility.makeKeydownHandler(this.handleButtonApplyClick),
-          }
+          handlers: { 'click': this.handleButtonApplyClick, 'keydown': Utility.makeKeydownHandler(this.handleButtonApplyClick) }
         },
 
         {
           element: this.sheets[0].tableBody,
-          event: 'click',
           data: { sheet: this.sheets[0] },
-          handler: this.handleTableBodyClick,
+          handlers: { 'click': this.handleTableBodyClick, 'keydown': Utility.makeKeydownHandler(this.handleTableBodyClick) }
         },
 
         {
           element: this.sheets[1].tableBody,
-          event: 'click',
           data: { sheet: this.sheets[1] },
-          handler: this.handleTableBodyClick,
+          handlers: { 'click': this.handleTableBodyClick, 'keydown': Utility.makeKeydownHandler(this.handleTableBodyClick) }
         },
       ];
     }
@@ -390,7 +376,7 @@ const Calendar = ((document) => {
     }
 
     setSheet(index, date, shift) {
-      this.sheets[this.currentIndex].state = this.model.getSheet(date, shift);
+      this.sheets[index].state = this.model.getSheet(date, shift);
     }
 
     setArrival(date) {
@@ -648,23 +634,27 @@ const Calendar = ((document) => {
 
     handleButtonBackwardClick = () => {
       if (!this.isSliding()) {
+        this.slidingStart();
         this.handleArrowButtonClick(-1);
       }
     }
 
     handleButtonForwardClick = () => {
       if (!this.isSliding()) {
+        this.slidingStart();
         this.handleArrowButtonClick(1);
       }
     }
 
-    handleArrowButtonClick(shift) {
+    async handleArrowButtonClick(shift) {
       this.drawNextSheet(this.getCurrentMonth(), shift);
 
-      this.flipCalendarSheet(shift);
-
       this.drawTitle(this.getNextMonth());
-      this.currentIndex = this.getNextIndex();
+      this.flipCalendarSheet(shift)
+        .finally(() => {
+          this.currentIndex = this.getNextIndex();
+          this.slidingEnd();
+        });
     }
 
     drawNextSheet(month, shift) {
@@ -674,17 +664,15 @@ const Calendar = ((document) => {
       this.drawSheet(nextSheet);
     }
 
-    flipCalendarSheet(shift) {
+    async flipCalendarSheet(shift) {
       const from = this.currentIndex;
       const to = this.getNextIndex();
 
       if (shift === 1) {
-        this.slider.slideToLeft(from, to);
+        return this.slider.slideToLeft(from, to);
       }
 
-      if (shift === -1) {
-        this.slider.slideToRight(from, to);
-      }
+      return this.slider.slideToRight(from, to);
     }
 
     handleButtonApplyClick = () => {
@@ -708,42 +696,13 @@ const Calendar = ((document) => {
       this.hooks.buttonClearClick();
     }
 
-    // handleTableBodyKeydown(event) {
-    //   const key = event.key;
+    slidingStart() {
+      this.slider.isSliding = true;
+    }
 
-    //   if (kq.isArrowKey(key)) {
-    //     event.preventDefault();
-    //     return this.handleTableBodyKeyboardMovement(event);
-    //   }
-
-    //   if (kq.isEnterOrSpaceKey(key)) {
-    //     event.preventDefault();
-    //     return this.handleTableBodyClick(event);
-    //   }
-    // }
-
-    // handleTableBodyKeyboardMovement(event) {
-    //   const { target: et, key } = event;
-    //   const tableCellIndex = et.getAttribute('data-index');
-    //   switch (key) {
-    //     case 'ArrowUp': {
-    //       this.moveUp(tableCellIndex);
-    //       break;
-    //     }
-    //     case 'ArrowRight': {
-    //       this.moveRight(tableCellIndex);
-    //       break;
-    //     }
-    //     case 'ArrowDown': {
-    //       this.moveDown(tableCellIndex);
-    //       break;
-    //     }
-    //     default: {
-    //       this.moveLeft(tableCellIndex);
-    //       break;
-    //     }
-    //   }
-    // }
+    slidingEnd() {
+      this.slider.isSliding = false;
+    }
 
     isSliding() {
       return this.slider.isSliding;
