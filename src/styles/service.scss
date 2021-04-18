@@ -1,17 +1,25 @@
 @mixin clearfix() {
   &::after {
     content: '';
-
     clear: both;
     display: block;
     width: 100%;
   }
 }
 
+@mixin ghost-center() {
+  &::after {
+    content: '';
+    display: inline-block;
+    width: 1%;
+    height: 100%;
+    vertical-align: middle;
+  }
+}
+
 @mixin square-ratio() {
   &::after {
     content: '';
-
     display: block;
     padding-top: 100%;
   }

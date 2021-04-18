@@ -11,14 +11,7 @@
 
   text-align: center;
 
-  &::after {
-    content: '';
-
-    display: inline-block;
-    height: 100%;
-
-    vertical-align: middle;
-  }
+  @include ghost-center;
 
   &::before {
     position: absolute;
@@ -91,14 +84,7 @@
 
   cursor: pointer;
 
-  &::before {
-    content: '';
-
-    display: inline-block;
-    height: 100%;
-
-    vertical-align: middle;
-  }
+  @include ghost-center;
 }
 
 .hamburger__expandable-list-icon {

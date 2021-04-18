@@ -1,3 +1,9 @@
 import 'styles/style.scss';
+import 'common.blocks/icon/icon.scss';
+import 'common.blocks/button/button.scss';
+import 'common.blocks/carousel/carousel.scss';
+import 'common.blocks/calendar/calendar.scss';
+import 'common.blocks/carousel/carousel.js';
+import 'common.blocks/calendar/calendar.js';
 import './templates/test/test.scss';
 import './templates/test/test.js';

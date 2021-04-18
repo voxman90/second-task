@@ -2,6 +2,7 @@
 
 import { BEMComponent } from 'scripts/BEMComponent';
 import { Utility } from 'scripts/Utility';
+import { Carousel } from 'common.blocks/carousel/carousel';
 
 const Calendar = ((document) => {
 
@@ -24,34 +25,74 @@ const Calendar = ((document) => {
 
   class CalendarModel {
     constructor() {
-      this.cache = [];
-      this.setDefault();
-    }
-
-    setDefault() {
       this.today = new Date();
-      this.setCurrentMonth(this.today, 0);
+      this.cache = [];
     }
 
-    setCurrentMonth(date, shift) {
-      this.currentMonth = this.changeMonth(date, shift);
-      this.currentSheet = this.getSheet(this.currentMonth);
-    }
-
-    getSheet(date) {
-      let sheet = this.getSheetFromCache(date);
+    getSheet(date, shift) {
+      const month = this.changeMonth(date, shift);
+      let sheet = this.getSheetFromCache(month);
 
       if (sheet === null) {
-        sheet = this.createSheet(date);
-        this.cacheSheet(date, sheet);
+        sheet = this.createSheet(month);
+        this.cacheSheet(sheet);
       }
 
       return sheet;
     }
 
-    changeMonth(dateArg, months) {
+    getSheetFromCache(date) {
+      const sheet = this.cache.find(
+        (sheet) => this.isSameYearAndMonth(sheet.month, date)
+      );
+      return (sheet !== undefined) ? sheet : null;
+    }
+
+    cacheSheet(sheet) {
+      if (this.cache.length === CALENDAR_CACHE_CAPACITY) {
+        this.cache.shift();
+      }
+
+      this.cache.push(sheet);
+    }
+
+    createSheet(date) {
+      const month = this.changeMonth(date, 0);
+      const prevMonth = this.changeMonth(date, -1);
+
+      const days = this.countDays(month);
+      const prevDays = this.countDays(prevMonth);
+
+      const rows = this.countSheetRowsNumber(month);
+      const end = rows * 7;
+
+      const from = this.countFirstDayOfMonth(month);
+      const to = from + days;
+      
+      const dates = [];
+
+      // Days of the previous month.
+      for (let i = 0; i < from; i++) {
+        dates.push(prevDays - from + i + 1);
+      }
+
+      for (let i = from; i < to; i++) {
+        dates.push(i - from + 1);
+      }
+
+      // Days of the next month.
+      let j = 1;
+      for (let i = to; i < end; i++) {
+        dates.push(j);
+        j += 1;
+      } 
+
+      return { dates, from, to, month };
+    }
+
+    changeMonth(dateArg, shift) {
       const date = new Date(dateArg);
-      date.setMonth(dateArg.getMonth() + months, 1);
+      date.setMonth(dateArg.getMonth() + shift, 1);
       return date;
     }
 
@@ -61,117 +102,79 @@ const Calendar = ((document) => {
       return 31 - date.getDate() % 31;
     }
 
-    countFirstDayOfMonth(dateParam) {
-      const date = this.changeMonth(dateParam, 0);
-      const firstDayOfMonth = date.getDay();
-      return (firstDayOfMonth + 6) % 7;
-    }
-
-    convertToMonths(date) {
+    countMonths(date) {
       return date.getYear() * 12 + date.getMonth() + 1;
     }
 
-    getSheetFromCache(date) {
-      const record = this.cache.find(
-        (record) => this.isSameYearAndMonth(record.date, date)
-      );
-      return (record) ? record.sheet : null;
-    }
-    
-    cacheSheet(date, sheet) {
-      if (this.cache.length === CALENDAR_CACHE_CAPACITY) {
-        this.cache.shift();
-      }
+    countFirstDayOfMonth(dateArg) {
+      const date = this.changeMonth(dateArg, 0);
+      const firstDayOfMonth = date.getDay();
 
-      this.cache.push({
-        date,
-        sheet,
-      });
+      // This is so that the days of the week are counted from Monday, not Sunday.
+      return (firstDayOfMonth + 6) % 7;
     }
 
-    convertIndexToDate(index) {
-      const day = this.currentSheet.sheet[index];
-      const date = this.changeMonth(this.current, 0);
-      date.setDate(day);
-      return date;
-    }
-
-    convertDateToIndex(date) {
-      if (!date) {
-        return null;
-      }
-
-      const { sheet, from, to } = this.currentSheet;
-      const curr = this.changeMonth(this.current, 0);
-      if (this.isSameYearAndMonth(date, curr)) {
-        return date.getDate() + from - 1;
-      } 
-
-      const next = this.changeMonth(curr, 1);
-      if (this.isSameYearAndMonth(date, next)) {
-        const index = date.getDate() + from + to - 1;
-        if (sheet[index]) {
-          return index;
-        }
-
-        return 100;
-      }
-
-      const prev = this.changeMonth(curr, -1);
-      if (this.isSameYearAndMonth(date, prev)) {
-        const index = date.getDate() - sheet[0];      
-        if (index >= 0) {
-          return index;
-        }
-
-        return -100;
-      }
-
-      return null;
-    }
-
-    countCalendarRow(date) {
+    countSheetRow(date) {
       const firstDayOfMonth = this.countFirstDayOfMonth(date);
       const day = date.getDate();
       return Math.floor((firstDayOfMonth + day - 0.1) / 7);
     }
     
-    countCalendarRows(date) {
+    countSheetRowsNumber(date) {
       const days = this.countDays(date);
       const firstDayOfMonth = this.countFirstDayOfMonth(date);
       return (firstDayOfMonth + days > 35) ? 6 : 5;
     }
 
-    createSheet(date) {
-      const currMonth = this.changeMonth(date, 0);
-      const prevMonth = this.changeMonth(date, -1);
+    convertIndexToDate(index, sheet) {
+      const { dates, from, to, month } = sheet;
 
-      const currDays = this.countDays(currMonth);
-      const prevDays = this.countDays(prevMonth);
-
-      const rows = this.countCalendarRows(currMonth);
-      const end = rows * 7;
-
-      const from = this.countFirstDayOfMonth(currMonth);
-      const to = from + currDays;
+      let shift = 0;
+      if (index < from) { shift = -1 }
+      if (to <= index) { shift = 1 }
+      const date = this.changeMonth(month, shift);
+  
+      const day = dates[index];
+      date.setDate(day);
       
-      const sheet = [];
+      return date;
+    }
 
-      for (let i = 0; i < from; i++) {
-        sheet.push(prevDays - from + i + 1);
+    convertDateToIndex(date, sheet) {
+      const { dates, from, to, month } = sheet;
+
+      if (date === null) {
+        return null;
       }
 
-      for (let i = from; i < to; i++) {
-        sheet.push(i - from + 1);
-      }
-
-      let j = 1;
-      for (let i = to; i < end; i++) {
-        sheet.push(j);
-        j += 1;
+      if (this.isSameYearAndMonth(date, month)) {
+        // getDate() -> 1 - 31
+        return date.getDate() + from - 1;
       } 
+      
+      const prevMonth = this.changeMonth(month, -1);
+      if (this.isSameYearAndMonth(date, prevMonth)) {
+        const index = date.getDate() - dates[0];
 
-      return { sheet, from, to };
+        if (index >= 0) {
+          return index;
+        }
+
+        return -999;
+      }
+
+      const nextMonth = this.changeMonth(month, 1);
+      if (this.isSameYearAndMonth(date, nextMonth)) {
+        const index = date.getDate() + from + to - 1;
+
+        if (dates[index]) {
+          return index;
+        }
+
+        return 999;
+      }
+
+      return null;
     }
     
     converDateToMYYYY(date) {
@@ -201,31 +204,32 @@ const Calendar = ((document) => {
       return `${arrivalDay} ${arrivalMonth} - ${departureDay} ${departureMonth}`;
     }
 
-    isSameYearAndMonth(dateFirst, dateSecond) {
+    isSameYearAndMonth(dateA, dateB) {
       return (
-        dateFirst.getMonth() === dateSecond.getMonth()
-        && dateFirst.getYear() === dateSecond.getYear()
+        dateA.getMonth() === dateB.getMonth()
+        && dateA.getYear() === dateB.getYear()
       );
     }
 
-    isAfter(date, bottom) {
+    isSameDayOrAfter(date, bottomDate) {
       if (
-        bottom === null
+        bottomDate === null
         || date === null
       ) {
         return true;
       }
 
-      const bottomTime = bottom.getTime();
+      const bottomTime = bottomDate.getTime();
       const dateTime = date.getTime();
       const diff = dateTime - bottomTime;
+
       if (diff > 0) {
         return true;
       }
 
-      if (this.isSameYearAndMonth(date, bottom)) {
+      if (this.isSameYearAndMonth(date, bottomDate)) {
         return (
-          date.getDate() === bottom.getDate()
+          date.getDate() === bottomDate.getDate()
         );
       }
 
@@ -234,44 +238,65 @@ const Calendar = ((document) => {
   }
 
   const ClassName = {
-    ROOT            : 'js-calendar',
+    ROOT         : 'js-calendar',
+    CELL         : 'calendar__td',
+    CELL_CONTENT : 'calendar__td-content',
   }
 
   const Modifier = {
-    TABLE_ROW_HIDDEN        : 'calendar__table-row_hidden',
-    TABLE_CELL_DEPARTURE    : 'calendar__table-cell_departure',
-    TABLE_CELL_ARRIVAL      : 'calendar__table-cell_arrival',
-    TABLE_CELL_FILLED       : 'calendar__table-cell_filled',
-    TABLE_CELL_TODAY        : 'calendar__table-cell_today',
-    TABLE_CELL_RECENT_MONTH : 'calendar__table-cell_recent',
+    ROW_HIDDEN         : 'calendar__tr_hidden',
+    CELL_DEPARTURE     : 'calendar__td_departure',
+    CELL_ARRIVAL       : 'calendar__td_arrival',
+    CELL_FILLED        : 'calendar__td_filled',
+    CELL_TODAY         : 'calendar__td_today',
+    CELL_CURRENT_MONTH : 'calendar__td_current',
   }
 
   const Selector = {
     TITLE           : '.js-calendar__title',
     BUTTON_BACKWARD : '.js-calendar__button-backward',
     BUTTON_FORWARD  : '.js-calendar__button-forward',
-    TABLE_BODY      : '.js-calendar__table-body',
-    TABLE_6TH_ROW   : '.js-calendar__table-6th-row',
-    TABLE_CELL      : '.js-calendar__table-cell',
+    SHEET           : '.js-calendar__sheet',
+    TBODY           : '.js-calendar__tbody',
+    ROW_6TH         : '.js-calendar__tr-6th',
+    CELL            : '.js-calendar__td',
     BUTTON_CLEAR    : '.js-calendar__button-clear',
     BUTTON_APPLY    : '.js-calendar__button-apply',
   }
 
-  const kq = Utility.keyQualifiers;
+  const NUMBER_OF_SHEETS = 2;
+
+  const calendarCarouselConfig = {
+    haveButtons: false,
+    haveNavbar: false,
+  }
+
+  class CalendarSlider extends Carousel {
+    constructor(element) {
+      super(element, 'calendar-slider', calendarCarouselConfig);
+    }
+  }
 
   class Calendar extends BEMComponent {
     constructor(element) {
       super(element, 'calendar');
 
       this.model = new CalendarModel();
+      this.slider = new CalendarSlider(this.root);
+
+      this.arrival = null;
+      this.departure = null;
+      this.currentIndex = 0;
 
       this.connectBasis();
       this.connectButtons();
 
-      this.arrival = null;
-      this.departure = null;
+      this.setCurrentSheet(this.model.today, 0);
 
-      this.drawCalendar();
+      const currentSheet = this.sheets[this.currentIndex]
+      const currentMonth = currentSheet.state.month
+      this.drawTitle(currentMonth);
+      this.drawSheet(currentSheet);
 
       this.listeners = this.defineEventListeners();
       this.attachMultipleEventListeners(this.listeners);
@@ -279,9 +304,19 @@ const Calendar = ((document) => {
 
     connectBasis() {
       this.title = this.root.querySelector(Selector.TITLE);
-      this.tableBody = this.root.querySelector(Selector.TABLE_BODY);
-      this.tableCells = this.root.querySelectorAll(Selector.TABLE_CELL);
-      this.table6thRow = this.root.querySelector(Selector.TABLE_6TH_ROW);
+
+      const sheets = Array.from(this.root.querySelectorAll(Selector.SHEET));
+      this.sheets = sheets.map((sheet) => this.connectSheet(sheet));
+    }
+
+    connectSheet(sheet) {
+      return {
+        self: sheet,
+        tableBody: sheet.querySelector(Selector.TBODY),
+        tableCells: sheet.querySelectorAll(Selector.CELL),
+        table6thRow: sheet.querySelector(Selector.ROW_6TH),
+        state: null,
+      }
     }
 
     connectButtons() {
@@ -301,93 +336,67 @@ const Calendar = ((document) => {
         {
           element: this.buttonBackward,
           handlers: {
-            'click': this.handleButtonBackwardClick.bind(this),
-            'keydown': Utility.makeKeydownHandler(this.handleButtonBackwardClick.bind(this)),
+            'click': this.handleButtonBackwardClick,
+            'keydown': Utility.makeKeydownHandler(this.handleButtonBackwardClick),
           }
         },
 
         {
           element: this.buttonForward,
           handlers: {
-            'click': this.handleArrowForwardClick.bind(this),
-            'keydown': Utility.makeKeydownHandler(this.handleButtonForwardClick.bind(this)),
+            'click': this.handleButtonForwardClick,
+            'keydown': Utility.makeKeydownHandler(this.handleButtonForwardClick),
           }
         },
 
         {
           element: this.buttonClear,
           handlers: {
-            'click': this.handleButtonClearClick.bind(this),
-            'keydown': Utility.makeKeydownHandler(this.handleButtonClearClick.bind(this)),
+            'click': this.handleButtonClearClick,
+            'keydown': Utility.makeKeydownHandler(this.handleButtonClearClick),
           }
         },
 
         {
           element: this.buttonApply,
           handlers: {
-            'click': this.handleButtonApplyClick.bind(this),
-            'keydown': Utility.makeKeydownHandler(this.handleButtonApplyClick.bind(this)),
+            'click': this.handleButtonApplyClick,
+            'keydown': Utility.makeKeydownHandler(this.handleButtonApplyClick),
           }
         },
 
         {
-          element: this.tableBody,
-          handlers: {
-            'click': this.handleTableBodyClick.bind(this),
-            'keydown': this.handleTableBodyKeydown.bind(this),
-          }
+          element: this.sheets[0].tableBody,
+          event: 'click',
+          data: { sheet: this.sheets[0] },
+          handler: this.handleTableBodyClick,
+        },
+
+        {
+          element: this.sheets[1].tableBody,
+          event: 'click',
+          data: { sheet: this.sheets[1] },
+          handler: this.handleTableBodyClick,
         },
       ];
     }
 
-    drawCalendar() {
-      const date = this.model.current;
-
-      this.clearSheet();
-
-      this.drawCalendarTitle(date)
-        .drawSheet(date)
-        .drawToday()
-        .drawTrace();
+    setCurrentSheet(date, shift) {
+      this.setSheet(this.currentIndex, date, shift);
     }
 
-    getClosestDate() {
-      if (this.model.arrival !== null) {
-        return this.model.arrival;
-      }
-
-      if (this.model.departure !== null) {
-        return this.model.departure;
-      }
-
-      return this.model.current;
+    setNextSheet(date, shift) {
+      this.setSheet(this.getNextIndex(), date, shift);
     }
 
-    getArrivalIndex() {
-      const arr = this.model.arrival;
-      const arrIndex = this.model.convertDateToIndex(arr);
-      return arrIndex;
-    }
-
-    getDepartureIndex() {
-      const dep = this.model.departure;
-      const depIndex = this.model.convertDateToIndex(dep);
-      return depIndex;
-    }
-
-    setDeparture(date) {
-      if (this.isAfter(date, this.arrival)) {
-        this.departure = date;
-        return true;
-      }
-
-      return false;
+    setSheet(index, date, shift) {
+      this.sheets[this.currentIndex].state = this.model.getSheet(date, shift);
     }
 
     setArrival(date) {
       if (
-        this.isAfter(date, this.today)
-        && this.isAfter(this.departure, date)
+        this.model.isSameDayOrAfter(date, this.model.today)
+        && this.model.isSameDayOrAfter(this.departure, date)
       ) {
         this.arrival = date;
         return true;
@@ -396,117 +405,190 @@ const Calendar = ((document) => {
       return false;
     }
 
-    
-    setDate(index) {
-      const date = this.convertIndexToDate(index);
-      const arrival = this.arrival;
-      const departure = this.departure;
-
-      if (arrival && departure) {
-        return this.setDeparture(date);
-      }
-
-      if (!arrival) {
-        return this.setArrival(date);
-      }
-
-      if (!departure) {
-        return this.setDeparture(date);
+    setDeparture(date) {
+      if (this.model.isSameDayOrAfter(date, this.arrival)) {
+        this.departure = date;
+        return true;
       }
 
       return false;
     }
 
-    clearSheet() {
-      this.tableCells.forEach((cell) => {
-        cell.classList.remove(
-          Modifier.TABLE_CELL_ARRIVAL,
-          Modifier.TABLE_CELL_DEPARTURE,
-          Modifier.TABLE_CELL_FILLED,
-          Modifier.TABLE_CELL_TODAY,
-          Modifier.TABLE_CELL_RECENT_MONTH,
-        );
-      });
+    setDateFromIndex(index, sheet) {
+      const date = this.model.convertIndexToDate(index, sheet);
+      const isArrivalSet = this.arrival !== null;
+      const isDepartureSet = this.departure !== null;
 
-      return this;
-    }
-
-    clearTrace() {
-      this.tableCells.forEach((cell) => {
-        cell.classList.remove(
-          Modifier.TABLE_CELL_ARRIVAL,
-          Modifier.TABLE_CELL_DEPARTURE,
-          Modifier.TABLE_CELL_FILLED,
-        );
-      });
-
-      return this;
-    }
-
-    drawCalendarTitle(date) {
-      this.title.textContent = this.model.converDateToMYYYY(date);
-
-      return this;
-    }
-
-    drawToday() {
-      const day = this.model.convertDateToIndex(this.model.today);
-
-      if (this.isCorrectIndex(day)) {
-        this.tableCells[day].classList.add(Modifier.TABLE_CELL_TODAY);
+      if (!isArrivalSet && !isDepartureSet) {
+        return this.setArrival(date);
       }
 
-      return this;
-    }
-
-    drawSheet(date) {
-      const { sheet, from, to } = this.model.currentSheet;
-      const weeks = this.model.countCalendarRows(date);
-
-      if (weeks === 6) {
-        this.table6thRow.classList.remove(Modifier.TABLE_ROW_HIDDEN);
-      } else {
-        this.table6thRow.classList.add(Modifier.TABLE_ROW_HIDDEN);
+      if (isArrivalSet) {
+        const isCorrectDepartureDate = this.setDeparture(date);
+        if (isCorrectDepartureDate) {
+          return true;
+        }
       }
 
-      this.tableCells.forEach((cell, i) => {
+      if (isDepartureSet) {
+        const isCorrectArrivalDate = this.setArrival(date);
+        if (isCorrectArrivalDate) {
+          return true;
+        }
+      }
+
+      return this.setDeparture(date);
+    }
+
+    getMonth(sheetIndex) {
+      return this.sheets[sheetIndex].state.month;
+    }
+
+    getNextIndex() {
+      return (this.currentIndex + 1) % NUMBER_OF_SHEETS;
+    }
+
+    getCurrentSheet() {
+      return this.sheets[this.currentIndex];
+    }
+
+    getNextSheet() {
+      return this.sheets[this.getNextIndex()];
+    }
+
+    getNextMonth() {
+      return this.getMonth(this.getNextIndex());
+    }
+
+    getCurrentMonth() {
+      return this.getMonth(this.currentIndex);
+    }
+
+    getCellIndex(cell) {
+      return parseInt(cell.dataset.index, 10) - 1;
+    }
+
+    getArrivalIndex(sheet) {
+      const state = sheet.state;
+      return this.model.convertDateToIndex(this.arrival, state);
+    }
+
+    getDepartureIndex(sheet) {
+      const state = sheet.state;
+      return this.model.convertDateToIndex(this.departure, state);
+    }
+
+    getClosestDate() {
+      if (this.arrival !== null) {
+        return this.arrival;
+      }
+
+      if (this.departure !== null) {
+        return this.departure;
+      }
+
+      return this.sheets[this.currentIndex].month;
+    }
+
+    drawSheet(sheet) {
+      this.clearSheet(sheet);
+
+      this.drawDates(sheet);
+      this.drawToday(sheet);
+      this.drawTrace(sheet);
+    }
+
+    clearSheet(sheet) {
+      const sheetModifiers = [
+        Modifier.CELL_ARRIVAL,
+        Modifier.CELL_DEPARTURE,
+        Modifier.CELL_FILLED,
+        Modifier.CELL_TODAY,
+        Modifier.CELL_CURRENT_MONTH
+      ];
+
+      this.clearCells(sheet, sheetModifiers);
+    }
+
+    clearTrace(sheet) {
+      const traceModifiers = [
+        Modifier.CELL_ARRIVAL,
+        Modifier.CELL_DEPARTURE,
+        Modifier.CELL_FILLED
+      ];
+
+      this.clearCells(sheet, traceModifiers);
+    }
+
+    clearCells(sheet, modifiers) {
+      sheet.tableCells.forEach((cell) => {
+        cell.classList.remove(...modifiers)
+      });
+    }
+
+    drawTitle(month) {
+      this.title.textContent = this.model.converDateToMYYYY(month);
+    }
+
+    drawToday(sheet) {
+      const { state } = sheet;
+      const todayIndex = this.model.convertDateToIndex(this.model.today, state);
+      this.modifyCell(sheet, todayIndex, Modifier.CELL_TODAY);
+    }
+
+    drawArrival(sheet, index) {
+      this.modifyCell(sheet, index, Modifier.CELL_ARRIVAL);
+    }
+
+    drawDeparture(sheet, index) {
+      this.modifyCell(sheet, index, Modifier.CELL_DEPARTURE);
+    }
+
+    modifyCell(sheet, index, modifier) {
+      if (this.isCorrectIndex(index)) {
+        sheet.tableCells[index].classList.add(modifier);
+      }
+    }
+
+    drawDates(sheet) {
+      const { dates, from, to, month } = sheet.state;
+      const rows = this.model.countSheetRowsNumber(month);
+
+      this.expandHiddenRow(sheet, rows);
+
+      sheet.tableCells.forEach((cell, i) => {
         if (from <= i && i < to) {
-          cell.classList.add(Modifier.TABLE_CELL_RECENT_MONTH);
+          cell.classList.add(Modifier.CELL_CURRENT_MONTH);
         }
 
-        cell.textContent = sheet[i];
+        this.drawCellContent(cell, dates[i]);
       });
-
-      return this;
     }
 
-    drawArrivalDate(index) {
-      if (this.isCorrectIndex(index)) {
-        this.tableCells[index].classList.add(Modifier.TABLE_CELL_ARRIVAL);
+    drawCellContent(cell, content) {
+      cell.firstElementChild.textContent = content;
+    }
+
+    expandHiddenRow(sheet, rows) {
+      if (rows === 6) {
+        sheet.table6thRow.classList.remove(Modifier.ROW_HIDDEN);
+      } else {
+        sheet.table6thRow.classList.add(Modifier.ROW_HIDDEN);
       }
-
-      return this;
     }
 
-    drawDepartureDate(index) {
-      if (this.isCorrectIndex(index)) {
-        this.tableCells[index].classList.add(Modifier.TABLE_CELL_DEPARTURE);
-      }
+    drawTrace(sheet) {
+      const arr = this.arrival;
+      const dep = this.departure;
+      const arrIndex = this.getArrivalIndex(sheet);
+      const depIndex = this.getDepartureIndex(sheet);
 
-      return this;
-    }
-
-    drawTrace() {
-      const arr = this.model.arrival;
-      const dep = this.model.departure;
-      const arrIndex = this.getArrivalIndex();
-      const depIndex = this.getDepartureIndex();
-
-      this.drawArrivalDate(arrIndex).drawDepartureDate(depIndex);
+      this.drawArrival(sheet, arrIndex);
+      this.drawDeparture(sheet, depIndex);
 
       if (this.isNotNullAndNotEqual(arr, dep, arrIndex, depIndex)) {
         let start = 0;
-        let end = this.tableCells.length;
+        let end = sheet.tableCells.length;
 
         if (arrIndex !== null) {
           start = arrIndex;
@@ -516,111 +598,162 @@ const Calendar = ((document) => {
           end = depIndex;
         }
 
-        this.tableCells.forEach((cell, i) => {
+        sheet.tableCells.forEach((cell, i) => {
           if (start <= i && i <= end) {
-            cell.classList.add(Modifier.TABLE_CELL_FILLED);
+            cell.classList.add(Modifier.CELL_FILLED);
           }
         });
       }
-
-      return this;
     }
 
-    handleButtonBackwardClick() {
-      this.flipCalendarSheet(-1);
+    handleTableBodyClick = (event) => {
+      const { target: et, target: { classList } } = event;
+      const isCell = classList.contains(ClassName.CELL);
+      const isCellContent = classList.contains(ClassName.CELL_CONTENT);
+
+      if (isCell) {
+        this.handleCellClick(event, et);
+      }
+
+      if (isCellContent) {
+        this.handleCellClick(event, et.parentElement);
+      }
     }
 
-    handleButtonForwardClick() {
-      this.flipCalendarSheet(1);
+    handleCellClick(event, cell) {
+      const { data: { sheet, sheet: { state, state: { from, to } } } } = event;
+      const index = this.getCellIndex(cell);
+      const isPrevMonth = index < from;
+      const isNextMonth = to <= index;
+      const isCurrentMonth = !isPrevMonth && !isNextMonth;
+
+      if (isPrevMonth) {
+        this.handleButtonBackwardClick();
+      }
+
+      if (isNextMonth) {
+        this.handleButtonForwardClick();
+      }
+
+      if (isCurrentMonth) {
+        this.setDateFromIndex(index, state);
+        this.redrawTrace(sheet);
+      }
+    }
+
+    redrawTrace(sheet) {
+      this.clearTrace(sheet);
+      this.drawTrace(sheet);
+    }
+
+    handleButtonBackwardClick = () => {
+      if (!this.isSliding()) {
+        this.handleArrowButtonClick(-1);
+      }
+    }
+
+    handleButtonForwardClick = () => {
+      if (!this.isSliding()) {
+        this.handleArrowButtonClick(1);
+      }
+    }
+
+    handleArrowButtonClick(shift) {
+      this.drawNextSheet(this.getCurrentMonth(), shift);
+
+      this.flipCalendarSheet(shift);
+
+      this.drawTitle(this.getNextMonth());
+      this.currentIndex = this.getNextIndex();
+    }
+
+    drawNextSheet(month, shift) {
+      const nextSheet = this.getNextSheet();
+      nextSheet.state = this.model.getSheet(month, shift);
+
+      this.drawSheet(nextSheet);
     }
 
     flipCalendarSheet(shift) {
-      const date = this.model.currentMonth;
-      this.model.setCurrentMonth(date, shift);
-      this.drawCalendar();
-    }
+      const from = this.currentIndex;
+      const to = this.getNextIndex();
 
-    handleArrowButtonKeydown(event) {
-      const key = event.key;
-
-      if (kq.isArrowDown(key)) {
-        event.preventDefault();
+      if (shift === 1) {
+        this.slider.slideToLeft(from, to);
       }
 
-      if (kq.isArrowDown(key)) {
-        event.preventDefault();
+      if (shift === -1) {
+        this.slider.slideToRight(from, to);
       }
     }
 
-    handleTableBodyClick(event) {
-      const et = event.target;
-      if (et.classList.contains(Modifier.TABLE_CELL_RECENT_MONTH)) {
-        const index = parseInt(et.dataset.index, 10) - 1;
-        if (this.model.setDate(index)) {
-          this.clearTrace().drawTrace();
-        }
-      }
-    }
-
-    handleButtonApplyClick() {
-      const arrival = this.model.arrival;
-      const departure = this.model.departure;
+    handleButtonApplyClick = () => {
+      const arrival = this.arrival;
+      const departure = this.departure;
 
       this.hooks.buttonApplyClick(arrival, departure);
     }
 
-    handleButtonClearClick() {
-      this.model.setDefault();
-      this.drawCalendar();
+    handleButtonClearClick = () => {
+      this.arrival = null;
+      this.departure = null;
+
+      this.setCurrentSheet(this.model.today, 0);
+
+      const currentSheet = this.sheets[this.currentIndex]
+      const currentMonth = currentSheet.state.month
+      this.drawTitle(currentMonth);
+      this.drawSheet(currentSheet);
 
       this.hooks.buttonClearClick();
     }
 
-    handleTableBodyKeydown(event) {
-      const key = event.key;
+    // handleTableBodyKeydown(event) {
+    //   const key = event.key;
 
-      if (kq.isArrowKey(key)) {
-        event.preventDefault();
-        return this.handleTableBodyKeyboardMovement(event);
-      }
+    //   if (kq.isArrowKey(key)) {
+    //     event.preventDefault();
+    //     return this.handleTableBodyKeyboardMovement(event);
+    //   }
 
-      if (kq.isEnterOrSpaceKey(key)) {
-        event.preventDefault();
-        return this.handleTableBodyClick(event);
-      }
+    //   if (kq.isEnterOrSpaceKey(key)) {
+    //     event.preventDefault();
+    //     return this.handleTableBodyClick(event);
+    //   }
+    // }
+
+    // handleTableBodyKeyboardMovement(event) {
+    //   const { target: et, key } = event;
+    //   const tableCellIndex = et.getAttribute('data-index');
+    //   switch (key) {
+    //     case 'ArrowUp': {
+    //       this.moveUp(tableCellIndex);
+    //       break;
+    //     }
+    //     case 'ArrowRight': {
+    //       this.moveRight(tableCellIndex);
+    //       break;
+    //     }
+    //     case 'ArrowDown': {
+    //       this.moveDown(tableCellIndex);
+    //       break;
+    //     }
+    //     default: {
+    //       this.moveLeft(tableCellIndex);
+    //       break;
+    //     }
+    //   }
+    // }
+
+    isSliding() {
+      return this.slider.isSliding;
     }
 
-    handleTableBodyKeyboardMovement(event) {
-      const { target: et, key } = event;
-      const tableCellIndex = et.getAttribute('data-index');
-      switch (key) {
-        case 'ArrowUp': {
-          this.moveUp(tableCellIndex);
-          break;
-        }
-        case 'ArrowRight': {
-          this.moveRight(tableCellIndex);
-          break;
-        }
-        case 'ArrowDown': {
-          this.moveDown(tableCellIndex);
-          break;
-        }
-        default: {
-          this.moveLeft(tableCellIndex);
-          break;
-        }
-      }
-    }
-
-    // 0 - 7 ArrowDown - button
-    // 0 ArrowBack - move to prev month, focus to last month day.
-
-    isNotNullAndNotEqual(arr, dep, arrIndex, depIndex) {
+    isNotNullAndNotEqual(arrivalDate, departureDate, arrivalIndex, departureIndex) {
       return (
-        arr !== null
-        && dep !== null
-        && arrIndex !== depIndex
+        arrivalDate !== null
+        && departureDate !== null
+        && arrivalIndex !== departureIndex
       );
     }
 
@@ -632,13 +765,6 @@ const Calendar = ((document) => {
       );
     }
   }
-
-  const initCalendarComps = BEMComponent.makeAutoInitializer(
-    Calendar,
-    ClassName.ROOT,
-  );
-
-  document.addEventListener('DOMContentLoaded', initCalendarComps);
 
   return Calendar;
 })(document);

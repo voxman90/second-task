@@ -2,7 +2,11 @@ mixin calendar(args = {})
   - const { name } = args
   section(class='calendar js-calendar')&attributes(attributes)
     +calendar__head
-    +calendar__table
+    .calendar__container
+      .js-calendar__sheet.carousel__item.js-carousel__item
+        +calendar__table
+      .js-calendar__sheet.carousel__item.js-carousel__item
+        +calendar__table
     +calendar__buttons(name)
 
 mixin calendar__head()
@@ -22,24 +26,26 @@ mixin calendar__head()
 mixin calendar__table()
   table.calendar__table
     thead
-      tr.calendar__table-row
+      tr.calendar__tr
         each dayOfTheWeek in ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
-          th.calendar__table-th= dayOfTheWeek
-    tbody.js-calendar__table-body
+          th.calendar__th
+            .calendar__th-content= dayOfTheWeek
+    tbody.js-calendar__tbody
       each i in [0, 7, 14, 21, 28]
-        tr.calendar__table-row
+        tr.calendar__tr
           each j in [1, 2, 3, 4, 5, 6, 7]
-            +calendar__table-cell(i + j)
-      tr.calendar__table-row.js-calendar__table-6th-row
+            +calendar__td(i + j)
+      tr.calendar__tr.js-calendar__tr-6th
         each k in [1, 2, 3, 4, 5, 6, 7]
-          +calendar__table-cell(35 + k)
+          +calendar__td(35 + k)
 
-mixin calendar__table-cell(index)
+mixin calendar__td(index)
   td(
-    class='calendar__table-cell js-calendar__table-cell',
+    class='calendar__td js-calendar__td',
     data-index=index,
     tabindex='0',
-  )= ''
+  )
+    .calendar__td-content= ''
 
 mixin calendar__buttons(name)
   .calendar__buttons

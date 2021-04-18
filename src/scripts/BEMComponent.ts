@@ -22,12 +22,15 @@ const BEMComponent = (($, document) => {
     protected name: string;
     protected id: string;
     protected namespace: string;
+    protected listeners: Partial<eventListenerParameters>[];
 
     constructor(element: HTMLElement, name: string) {
       this.root = element;
       this.name = name;
       this.id = this.createId();
       this.namespace = this.createNamespace(this.name, this.id);
+
+      this.listeners = [];
     }
 
     static makeAutoInitializer(Constructor: any, rootClass: string, config: Object = null) {

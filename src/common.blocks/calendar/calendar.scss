@@ -1,12 +1,8 @@
 @use 'sass:color';
 
 .calendar {
-  position: absolute;
-
   width: clamp(270px, 100%, 320px);
-  margin-top: 5.56px;
-  padding: clamp(9px, segment(270px, 320px, 9px, 19px), 19px);
-
+  padding: clamp(12.5px, segment(270px, 320px, 12.5px, 19px), 19px);
   border: 1px solid $dark-shade-25;
   border-radius: 4px;
   background-color: #FFFFFF;
@@ -27,7 +23,7 @@
   font-family: 'Quicksand', 'Open Sans', sans-serif;
   font-weight: bold;
   font-style: normal;
-  font-size: 1.1875rem;
+  font-size: 1.1875em;
   line-height: 1.263;
   text-align: center;
   color: $dark-shade-100;
@@ -35,7 +31,6 @@
 
 %calendar__button-arrow {
   height: 1;
-
   cursor: pointer;
 
   color: $purple;
@@ -44,130 +39,127 @@
 }
 
 .calendar__button-backward {
-  float: left;
-
   @extend %calendar__button-arrow;
+  float: left;
 }
 
 .calendar__button-forward {
-  float: right;
-
   @extend %calendar__button-arrow;
+  float: right;
+}
+
+.calendar__container {
+  position: relative;
+  width: max(245px, 100%);
+  overflow: hidden;
+}
+
+.calendar__sheet {
+  transition: all 500ms ease;
 }
 
 .calendar__table {
-  width: 280px;
-
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
-
-  text-align: center;
-  vertical-align: middle;
+  background-color: transparent;
 }
 
-.calendar__table-th {
-  width: 40px;
+.calendar__tr {
   padding: 0;
+}
 
+.calendar__tr_hidden {
+  display: none;
+}
+
+%calendar__table-cell {
+  position: relative;
+  padding: 0;
   cursor: default;
+
+  text-align: center;
+
+  @include square-ratio();
+}
+
+.calendar__th {
+  @extend %calendar__table-cell;
 
   @include h3-text;
   text-transform: none;
   color: $purple;
 }
 
-.calendar__table-row {
-  height: 40px;
-  padding: 0;
-}
-
-.calendar__table-row_hidden {
-  display: none;
-}
-
-.calendar__table-cell {
-  width: 40px;
-  padding: 0;
+.calendar__td {
+  @extend %calendar__table-cell;
 
   @include p-text(0.75rem, 1.25);
   color: $dark-shade-25;
 }
 
-.calendar__table-cell_recent {
+.calendar__td-content,
+.calendar__th-content {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+}
+
+.calendar__td_current {
   cursor: pointer;
 
   color: $dark-shade-50;
 }
 
-.calendar__table-cell_today {
+%calendar__td_special-date {
   position: relative;
 
   @include Montserrat-bold;
   color: white;
 
-  &::after {
-    content: "";
-
+  &::before {
+    content: '';
     position: absolute;
-    top: 0px;
-    left: 0px;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+}
 
-    width: 40px;
-    height: 40px;
+.calendar__td_today {
+  @extend %calendar__td_special-date;
 
-    border-radius: 22px;
+  &::before {
     background: linear-gradient(180deg, $green, $turquoise-blue);
   }
 }
 
-.calendar__table-cell_arrival {
-  position: relative;
+.calendar__td_arrival {
+  @extend %calendar__td_special-date;
+  border-radius: 50% 0 0 50%;
 
-  border-radius: 22px 0 0 22px;
-  background: transparent;
-
-  @include Montserrat-bold;
-  color: white;
-
-  &::after {
-    content: '';
-
-    position: absolute;
-    top: 0px;
-    left: 0px;
-
-    width: 40px;
-    height: 40px;
-
-    border-radius: 22px;
+  &::before {
     background: linear-gradient(180deg, $purple, $malibu);
   }
 }
 
-.calendar__table-cell_departure {
-  position: relative;
+.calendar__td_departure {
+  @extend %calendar__td_special-date;
+  border-radius: 0 50% 50% 0;
 
-  border-radius: 0 22px 22px 0;
-  background: transparent;
-
-  @include Montserrat-bold;
-  color: white;
-
-  &::after {
-    content: '';
-
-    position: absolute;
-    top: 0px;
-    left: 0px;
-
-    width: 40px;
-    height: 40px;
-
-    border-radius: 22px;
+  &::before {
     background: linear-gradient(180deg, $purple, $malibu);
   }
 }
 
-.calendar__table-cell_filled {
+.calendar__td_filled {
   background: linear-gradient(180deg, color.change($purple, $alpha: 0.25), color.change($malibu, $alpha: 0.25));
 }
 
@@ -181,27 +173,18 @@
   @include clearfix;
 }
 
-.calendar__button-clear {
-  float: left;
-
-  cursor: pointer;
+%calendar__button {
+  @include non-selectable;
 
   &:focus {
-    box-shadow: 0 0 0 1px #FFFFFF,
+    box-shadow: 0 0 0   1px #FFFFFF,
                 0 0 2px 2px dark-shade(0.15);
   }
+}
 
-  &::-moz-selection {
-    background: transparent;
-  }
-
-  &::selection {
-    background: transparent;
-  }
-
-  &::-moz-selection {
-    background: transparent;
-  }
+.calendar__button-clear {
+  @extend %calendar__button;
+  float: left;
 }
 
 .calendar__button-clear_hidden {
@@ -209,24 +192,6 @@
 }
 
 .calendar__button-apply {
+  @extend %calendar__button;
   float: right;
-
-  cursor: pointer;
-
-  &:focus {
-    box-shadow: 0 0 0 1px #FFFFFF,
-                0 0 2px 2px dark-shade(0.15);
-  }
-
-  &::-moz-selection {
-    background: transparent;
-  }
-
-  &::selection {
-    background: transparent;
-  }
-
-  &::-moz-selection {
-    background: transparent;
-  }
 }

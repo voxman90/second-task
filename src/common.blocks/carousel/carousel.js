@@ -31,24 +31,70 @@ const Carousel = (($, document) => {
     transitionEndEventName : Utility.getTransitionEndEventName(),
   }
 
+  const Default = {
+    haveNavbar: true,
+    haveButtons: true,
+  }
+
   class Carousel extends BEMComponent {
-    constructor(element) {
-      super(element, 'carousel');
+    constructor(element, name = 'carousel', config = Default) {
+      super(element, name);
 
-      this.$items = $(Selector.ITEM, this.root);
-      this.prevButton = $(Selector.BUTTON_PREV, this.root).get(0);
-      this.nextButton = $(Selector.BUTTON_NEXT, this.root).get(0);
-      this.navPanel = $(Selector.NAV_PANEL, this.root).get(0);
-      this.$navItems = $(this.navPanel).children();
-
-      this.amount = this.$items.length;
-      this.setActive(0);
-      this.checkNavItem(0);
-
+      this.config = config;
       this.isSliding = false;
 
-      this.listeners = this.defineEventListeners();
+      this.connectBasis();
+
       this.attachMultipleEventListeners(this.listeners);
+    }
+
+    connectBasis() {
+      this.$items = $(Selector.ITEM, this.root);
+      this.amount = this.$items.length;
+      this.setActive(0);
+
+      const { haveNavbar, haveButtons } = this.config;
+
+      if (haveButtons) {
+        this.connectButtons();
+      }
+
+      if (haveNavbar) {
+        this.connectNavbar();
+      }
+    }
+
+    connectNavbar() {
+      this.navPanel = $(Selector.NAV_PANEL, this.root).get(0);
+      this.$navItems = $(this.navPanel).children();
+      this.checkNavItem(0);
+
+      this.listeners.push(
+        {
+          element: this.navPanel,
+          event: 'click',
+          handler: this.handleNavPanelClick.bind(this),
+        },
+      )
+    }
+
+    connectButtons() {
+      this.prevButton = $(Selector.BUTTON_PREV, this.root).get(0);
+      this.nextButton = $(Selector.BUTTON_NEXT, this.root).get(0);
+
+      this.listeners.push(
+        {
+          element: this.prevButton,
+          event: 'click',
+          handler: this.handlePrevButtonClick.bind(this),
+        },
+
+        {
+          element: this.nextButton,
+          event: 'click',
+          handler: this.handleNextButtonClick.bind(this),
+        },
+      )
     }
 
     setItems(itemProps) {
@@ -68,28 +114,6 @@ const Carousel = (($, document) => {
 
     getPrevSlideIndex(from) {
       return this.mod(from - 1, this.amount);
-    }
-
-    defineEventListeners() {
-      return [
-        {
-          element: this.prevButton,
-          event: 'click',
-          handler: this.handlePrevButtonClick.bind(this),
-        },
-
-        {
-          element: this.nextButton,
-          event: 'click',
-          handler: this.handleNextButtonClick.bind(this),
-        },
-
-        {
-          element: this.navPanel,
-          event: 'click',
-          handler: this.handleNavPanelClick.bind(this),
-        },
-      ];
     }
 
     slideTo(from, to) {
@@ -151,6 +175,10 @@ const Carousel = (($, document) => {
       await nextSlideTransitionEndEventPromise;
     }
 
+    modif() {
+      return Modifier.ITEM_ACTIVE;
+    }
+
     deactivateItem(index) {
       $(this.$items).eq(index).removeClass(Modifier.ITEM_ACTIVE);
     }
@@ -180,7 +208,10 @@ const Carousel = (($, document) => {
           });
 
         this.active = to;
-        this.checkNavItem(to);
+
+        if (this.config.haveNavbar) {
+          this.checkNavItem(to);
+        }
       }
     }
 
@@ -200,7 +231,10 @@ const Carousel = (($, document) => {
           });
 
         this.active = to;
-        this.checkNavItem(to);
+
+        if (this.config.haveNavbar) {
+          this.checkNavItem(to);
+        }
       }
     }
 

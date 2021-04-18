@@ -4,9 +4,8 @@ import $ from 'jquery';
 import 'jquery.inputmask';
 
 import { BEMComponent } from 'scripts/BEMComponent';
+import { Utility } from 'scripts/Utility';
 import { Calendar } from 'common.blocks/calendar/calendar';
-
-import { Utility } from '../../scripts/Utility';
 
 const DropdownDate = (($, document) => {
   const ClassName = {
