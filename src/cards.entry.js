@@ -30,4 +30,4 @@ import 'common.blocks/dropdown-guests/dropdown-guests.js';
 import 'common.blocks/rate-button/rate-button.js';
 import 'common.blocks/card-hotel-room/card-hotel-room.js';
 import 'common.blocks/invoice/invoice.js';
-import './templates/cards/cards.scss';
+import 'templates/cards/cards.scss';

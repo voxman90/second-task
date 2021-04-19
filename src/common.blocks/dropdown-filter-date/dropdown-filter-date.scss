@@ -47,6 +47,7 @@
   justify-content: center;
   width: 1.75em;
   height: 1.75em;
+
   color: $dark-shade-50;
 
   &:hover {
@@ -58,10 +59,11 @@
   color: $dark-shade-75;
 }
 
-.dropdown-filter-date__bar {
-  margin-top: 5.6px;
-}
-
 .dropdown-filter-date__bar_hidden {
   display: none;
+}
+
+.dropdown-filter-date__calendar {
+  position: absolute;
+  margin-top: 5.6px;
 }

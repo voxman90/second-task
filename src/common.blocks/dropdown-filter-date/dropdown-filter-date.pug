@@ -17,5 +17,5 @@ mixin dropdown-filter-date(args = {})
         class='dropdown-filter-date__input-departure js-dropdown-filter-date__input-departure',
         disabled=true,
       )
-    .dropdown-filter-date__bar.js-dropdown-filter-date__bar.dropdown-filter-date__bar_hidden
-      +calendar({ name })(class='js-dropdown-filter-date__calendar')
+    .js-dropdown-filter-date__bar.dropdown-filter-date__bar_hidden
+      +calendar({ name })(class='dropdown-filter-date__calendar js-dropdown-filter-date__calendar')

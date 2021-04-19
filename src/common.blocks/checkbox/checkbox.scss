@@ -2,28 +2,23 @@
   display: flex;
   justify-content: flex-start;
   width: fit-content;
-  min-height: 1.25rem;
+  min-height: 1.25em;
 }
 
 .checkbox__container {
   position: relative;
-
-  
   padding-top: 1.1px;
   margin-left: 15px;
 
   &::before {
     content: '';
-
     position: absolute;
     z-index: 1;
     left: -30px;
     top: 0;
-
-    
+    box-sizing: border-box;
     width: 20px;
     height: 20px;
-
     background-color: #FFFFFF;
     border: 1px solid $dark-shade-25;
     border-radius: 4px;

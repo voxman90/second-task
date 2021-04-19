@@ -2,32 +2,27 @@
   display: flex;
   justify-content: flex-start;
   flex-wrap: nowrap;
-  
+
   min-width: min-content;
-  height: 1.5rem;
+  height: 1.5em;
 }
 
 .radio-button__text {
   position: relative;
+  height: 1.714em;
 
-  height: 1.5rem;
-
-  @include p-text;
-  line-height: 1.3;
+  @include p-text(0.875em, 1.3);
   color: $dark-shade-50;
 
   &::before {
     content: '';
-  
     position: absolute;
     z-index: 1;
-    top: 0px;
+    top: 0;
     left: -30px;
-
-    
+    box-sizing: border-box;
     width: 20px;
     height: 20px;
-
     border: 1px solid $dark-shade-25;
     border-radius: 50%;
     background-color: #FFFFFF;
@@ -35,21 +30,19 @@
 
   &::after {
     content: '';
-
     position: absolute;
     z-index: 2;
     top: 4px;
     left: -26px;
-
     border-radius: 50%;
     background: linear-gradient(180deg, $purple, $malibu);
   }
 }
 
 .radio-button__input {
-  height: 1.5rem;
-  margin-left: 0.23rem;
-  margin-right: 0.83rem;
+  height: 1.5em;
+  margin-left: 3.68px;
+  margin-right: 13.28px;
 
   &:focus,
   &:hover {

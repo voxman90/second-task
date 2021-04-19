@@ -13,6 +13,5 @@ import 'common.blocks/calendar/calendar.js';
 import 'common.blocks/input-text-masked/input-text-masked.js';
 import 'common.blocks/dropdown-date/dropdown-date.js';
 import 'common.blocks/dropdown-filter-date/dropdown-filter-date.js';
-import './styles/boxes.scss';
-import './templates/test/test.scss';
-import './templates/test/test.js';
+import 'templates/test/test.scss';
+import 'templates/test/test.js';
