@@ -42,5 +42,6 @@ import 'common.blocks/like-button/like-button.js';
 import 'common.blocks/rate-button/rate-button.js';
 import 'common.blocks/range-slider/range-slider.js';
 import 'common.blocks/pagination/pagination.js';
-import 'templates/form-elements/form-elements.scss';
-import 'templates/form-elements/form-elements.js';
+import './styles/boxes.scss';
+import './templates/form-elements/form-elements.scss';
+import './templates/form-elements/form-elements.js';

@@ -1,14 +1,60 @@
 {
   "entries": [
     {
+      "name": "colors-and-type",
+      "template": "Colors and Type",
+      "data": "colors-and-type",
+      "styles": [
+        "./templates/colors-and-type/colors-and-type.scss"
+      ],
+      "scripts": []
+    },
+
+    {
       "name": "test",
       "template": "Test",
       "data": null,
       "styles": [
+        "./styles/boxes.scss",
         "./templates/test/test.scss"
       ],
       "scripts": [
         "./templates/test/test.js"
+      ]
+    },
+
+    {
+      "name": "form-elements",
+      "template": "Form Elements",
+      "data": "form-elements",
+      "styles": [
+        "./styles/boxes.scss",
+        "./templates/form-elements/form-elements.scss"
+      ],
+      "scripts": [
+        "./templates/form-elements/form-elements.js"
+      ]
+    },
+
+{
+      "name": "cards",
+      "template": "Cards",
+      "data": "cards",
+      "styles": [
+        "./templates/cards/cards.scss"
+      ],
+      "scripts": null
+    },
+
+    {
+      "name": "headers-and-footers",
+      "template": "Headers and Footers",
+      "data": "headers-and-footers",
+      "styles": [
+        "./templates/headers-and-footers/headers-and-footers.scss"
+      ],
+      "scripts": [
+        "./templates/headers-and-footers/headers-and-footers.js"
       ]
     }
   ]

@@ -1,23 +1,26 @@
 .dropdown-filter-date {
-  width: 16.625rem;
+  width: clamp(270px, 100%, 320px);
 }
 
 .dropdown-filter-date__label {
-  padding-bottom: 0.3125rem;
+  padding-bottom: 5px;
 }
 
 .dropdown-filter-date__head {
   position: relative;
+
+  margin-right: calc(100% - 266px);
 }
 
 .dropdown-filter-date__pseudo-input {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  
-  height: 2.75rem;
-  padding-left: 0.875rem;
-  padding-bottom: 0.125rem;
+
+  width: 266px;
+  height: 3.143em;
+  padding-left: 1em;
+  padding-bottom: 2px;
 
   border: 1px solid $dark-shade-25;
   border-radius: 4px;
@@ -42,8 +45,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.625rem;
-  height: 2.625rem;
+  width: 1.75em;
+  height: 1.75em;
   color: $dark-shade-50;
 
   &:hover {
@@ -53,6 +56,10 @@
 
 .dropdown-filter-date__icon_shaded {
   color: $dark-shade-75;
+}
+
+.dropdown-filter-date__bar {
+  margin-top: 5.6px;
 }
 
 .dropdown-filter-date__bar_hidden {

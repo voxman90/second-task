@@ -1,6 +1,7 @@
 'use strict';
 
 import { BEMComponent } from 'scripts/BEMComponent';
+import { Utility } from 'scripts/Utility';
 import { Calendar } from 'common.blocks/calendar/calendar';
 
 const DropdownFilterDate = ((document) => {
@@ -29,13 +30,17 @@ const DropdownFilterDate = ((document) => {
       this.connectBasis();
       this.connectCalendar();
 
-      this.attachMultipleEventListeners([
+      this.listeners = this.defineEventListeners();
+      this.attachMultipleEventListeners(this.listeners);
+    }
+
+    defineEventListeners() {
+      return [
         {
           element: this.icon,
-          event: 'click',
-          handler: this.handleIconClick.bind(this),
+          handlers: { 'click': this.handleIconClick, 'keydown': Utility.makeKeydownHandler(this.handleIconClick) }
         },
-      ]);
+      ];
     }
 
     connectBasis() {
@@ -50,62 +55,71 @@ const DropdownFilterDate = ((document) => {
       const calendar = this.root.querySelector(Selector.CALENDAR);
       this.calendar = new Calendar(calendar);
 
-      this.calendar.hooks.buttonClearClick = this.handleButtonClearClick.bind(this);
-      this.calendar.hooks.buttonApplyClick = this.handleButtonApplyClick.bind(this);
+      this.calendar.hooks = {
+        buttonClearClick: this.handleButtonClearClick,
+        buttonApplyClick: this.handleButtonApplyClick,
+      }
     }
 
-    setTimeInterval(arrival, departure) {
+    setInputValues(arrival, departure) {
       this.inputArrival.value = arrival;
       this.inputDeparture.value = departure;
-
-      this.drawPseudoInput(arrival, departure);
-
-      this.calendar.model.arrival = arrival;
-      this.calendar.model.departure = departure;
-      this.calendar.model.setCurrent(this.calendar.getClosestDate());
-      this.calendar.drawCalendar();
+      return this;
     }
 
-    drawPseudoInput(arrival, departure) {
-      let dates = '';
-
-      if (
-        arrival !== null
-        && departure !== null
-      ) {
-        dates = this.calendar.model.convertDatesToDDMDDM(arrival, departure).toLowerCase();
-      }
-
-      this.pseudoInput.textContent = dates;
+    setDates(arrival, departure) {
+      this.setInputValues(arrival, departure).drawPseudoInput(arrival, departure);
+      this.calendar.updateCurrentSheet(this.calendar.getClosestDate());
     }
 
     closeBar() {
       this.bar.classList.add(Modifier.BAR_HIDDEN);
+      return this;
     }
 
     openBar() {
       this.bar.classList.remove(Modifier.BAR_HIDDEN);
+      return this;
     }
 
-    handleIconClick() {
-      if (this.bar.classList.contains(Modifier.BAR_HIDDEN)) {
+    clearPseudoInput() {
+      this.pseudoInput.textContent = '';
+      return this;
+    }
+
+    drawPseudoInput(arrival, departure) {
+      this.pseudoInput.textContent = this.getDateInterval(arrival, departure);
+      return this;
+    }
+
+    getDateInterval(arrival, departure) {
+      if (
+        arrival !== null
+        && departure !== null
+      ) {
+        return this.calendar.model.convertDatesToDDMDDM(arrival, departure).toLowerCase();
+      }
+
+      return '';
+    }
+
+    handleIconClick = () => {
+      const isBarClosed = this.bar.classList.contains(Modifier.BAR_HIDDEN)
+      if (isBarClosed) {
         this.openBar();
       } else {
         this.closeBar();
       }
     }
 
-    handleButtonClearClick() {
-      this.pseudoInput.textContent = '';
+    handleButtonClearClick = () => {
+      this.clearPseudoInput();
     }
 
-    handleButtonApplyClick (arrival, departure) {
-      this.inputArrival.value = arrival;
-      this.inputDeparture.value = departure;
-
-      this.drawPseudoInput(arrival, departure);
-
-      this.bar.classList.add(Modifier.BAR_HIDDEN);
+    handleButtonApplyClick = (arrival, departure) => {
+      this.setInputValues(arrival, departure)
+        .drawPseudoInput(arrival, departure)
+        .closeBar();
     }
   }
 

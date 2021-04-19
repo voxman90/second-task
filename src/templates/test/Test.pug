@@ -7,6 +7,7 @@ include ../../common.blocks/input-text/input-text.pug
 include ../../common.blocks/input-text-masked/input-text-masked.pug
 include ../../common.blocks/input-date/input-date.pug
 include ../../common.blocks/dropdown-date/dropdown-date.pug
+include ../../common.blocks/dropdown-filter-date/dropdown-filter-date.pug
 doctype html
 html(lang="en")
   head
@@ -18,4 +19,5 @@ html(lang="en")
     .wrapper
       +calendar('calendar-001')
       +dropdown-date({ left: 'date dropdown', right: 'date dropdown', name: 'date-dropdown-001' }).js-auto-init
+      +dropdown-filter-date({ label: 'dropdown filterdate', name: 'dropdown-002' }).js-auto-init
 

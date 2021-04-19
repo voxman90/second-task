@@ -18,5 +18,5 @@ import 'common.blocks/subscription-field/subscription-field.scss';
 import 'common.blocks/footer/footer.scss';
 import 'common.blocks/logo/logo.js';
 import 'common.blocks/expandable/expandable.js';
-import 'templates/headers-and-footers/headers-and-footers.scss';
-import 'templates/headers-and-footers/headers-and-footers.js';
+import './templates/headers-and-footers/headers-and-footers.scss';
+import './templates/headers-and-footers/headers-and-footers.js';
