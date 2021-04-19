@@ -14,20 +14,20 @@
 .dropdown-date__arrival,
 .dropdown-date__departure {
   position: relative;
-
-  width: clamp(130px, segment(270px, 320px, 130px, 150px), 150px);
+  width: segment(270px, 320px, 130px, 150px);
 }
 
 .dropdown-date__icon {
   position: absolute;
   right: 0.8px;
   bottom: 0.5px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1.75em;
+  // icon font-size: 24px;
+  width: calc(100% - 130px + 1em);
   height: 1.75em;
+
   color: $dark-shade-50;
 
   &:hover {
@@ -41,4 +41,8 @@
 
 .dropdown-date__bar_hidden {
   display: none;
+}
+
+.dropdown-date__calendar {
+  margin-top: 5.6px;
 }

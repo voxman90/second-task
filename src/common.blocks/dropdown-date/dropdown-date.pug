@@ -11,7 +11,7 @@ mixin dropdown-date(args = {})
           +input-date({ name: `${name}-departure` }).js-dropdown-date__input-departure
         +dropdown-date__icon
     .dropdown-date__bar.js-dropdown-date__bar.dropdown-date__bar_hidden
-      +calendar({ name }).js-dropdown-date__calendar
+      +calendar({ name }).dropdown-date__calendar.js-dropdown-date__calendar
 
 mixin dropdown-date__icon()
   +icon({ name: 'expand_more' })(

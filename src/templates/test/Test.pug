@@ -2,6 +2,11 @@ include ../../common.blocks/icon/icon.pug
 include ../../common.blocks/button/button.pug
 include ../../common.blocks/carousel/carousel.pug
 include ../../common.blocks/calendar/calendar.pug
+include ../../common.blocks/label/label.pug
+include ../../common.blocks/input-text/input-text.pug
+include ../../common.blocks/input-text-masked/input-text-masked.pug
+include ../../common.blocks/input-date/input-date.pug
+include ../../common.blocks/dropdown-date/dropdown-date.pug
 doctype html
 html(lang="en")
   head
@@ -12,4 +17,5 @@ html(lang="en")
   body
     .wrapper
       +calendar('calendar-001')
+      +dropdown-date({ left: 'date dropdown', right: 'date dropdown', name: 'date-dropdown-001' }).js-auto-init
 

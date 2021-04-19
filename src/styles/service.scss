@@ -18,11 +18,9 @@
 }
 
 @mixin square-ratio() {
-  &::after {
-    content: '';
-    display: block;
-    padding-top: 100%;
-  }
+  content: '';
+  display: block;
+  padding-top: 100%;
 }
 
 @mixin non-selectable() {

@@ -5,7 +5,6 @@ import { Utility } from 'scripts/Utility';
 import { Carousel } from 'common.blocks/carousel/carousel';
 
 const Calendar = ((document) => {
-
   const monthName = {
     0: 'Январь',
     1: 'Февраль',
@@ -46,6 +45,11 @@ const Calendar = ((document) => {
         (sheet) => this.isSameYearAndMonth(sheet.month, date)
       );
       return (sheet !== undefined) ? sheet : null;
+    }
+
+    getToday() {
+      this.today = new Date();
+      return this.today;
     }
 
     cacheSheet(sheet) {
@@ -367,6 +371,12 @@ const Calendar = ((document) => {
       ];
     }
 
+    updateCurrentSheet(date) {
+      this.setCurrentSheet(date, 0);
+      this.drawTitle(date);
+      this.drawCurrentSheet();
+    }
+
     setCurrentSheet(date, shift) {
       this.setSheet(this.currentIndex, date, shift);
     }
@@ -473,7 +483,11 @@ const Calendar = ((document) => {
         return this.departure;
       }
 
-      return this.sheets[this.currentIndex].month;
+      return this.model.getToday();
+    }
+
+    drawCurrentSheet() {
+      this.drawSheet(this.getCurrentSheet());
     }
 
     drawSheet(sheet) {
@@ -614,11 +628,15 @@ const Calendar = ((document) => {
       const isCurrentMonth = !isPrevMonth && !isNextMonth;
 
       if (isPrevMonth) {
-        this.handleButtonBackwardClick();
+        this.handleArrowButtonClick(-1).then(() => {
+          this.transferFocus(index, state);
+        });
       }
 
       if (isNextMonth) {
-        this.handleButtonForwardClick();
+        this.handleArrowButtonClick(1).then(() => {
+          this.transferFocus(index, state);
+        });
       }
 
       if (isCurrentMonth) {
@@ -633,28 +651,28 @@ const Calendar = ((document) => {
     }
 
     handleButtonBackwardClick = () => {
-      if (!this.isSliding()) {
-        this.slidingStart();
-        this.handleArrowButtonClick(-1);
-      }
+      this.handleArrowButtonClick(-1);
     }
 
     handleButtonForwardClick = () => {
-      if (!this.isSliding()) {
-        this.slidingStart();
-        this.handleArrowButtonClick(1);
-      }
+      this.handleArrowButtonClick(1);
     }
 
     async handleArrowButtonClick(shift) {
-      this.drawNextSheet(this.getCurrentMonth(), shift);
+      if (!this.isSliding()) {
+        this.slidingStart();
+        this.prepareNextSheet(shift);
+        await this.flip(shift)
+          .finally(() => {
+            this.currentIndex = this.getNextIndex(shift);
+            this.slidingEnd();
+          });
+      }
+    }
 
+    prepareNextSheet(shift) {
+      this.drawNextSheet(this.getCurrentMonth(), shift);
       this.drawTitle(this.getNextMonth());
-      this.flipCalendarSheet(shift)
-        .finally(() => {
-          this.currentIndex = this.getNextIndex();
-          this.slidingEnd();
-        });
     }
 
     drawNextSheet(month, shift) {
@@ -664,7 +682,7 @@ const Calendar = ((document) => {
       this.drawSheet(nextSheet);
     }
 
-    async flipCalendarSheet(shift) {
+    async flip(shift) {
       const from = this.currentIndex;
       const to = this.getNextIndex();
 
@@ -694,6 +712,17 @@ const Calendar = ((document) => {
       this.drawSheet(currentSheet);
 
       this.hooks.buttonClearClick();
+    }
+
+    transferFocus(prevIndex, prevState) {
+      const date = this.model.convertIndexToDate(prevIndex, prevState);
+      const currentSheet = this.getCurrentSheet();
+      const newIndex = this.model.convertDateToIndex(date, currentSheet.state);
+      this.setFocusOnCell(newIndex, currentSheet);
+    }
+
+    setFocusOnCell(index, sheet) {
+      sheet.tableCells[index].focus();
     }
 
     slidingStart() {
