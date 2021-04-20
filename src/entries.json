@@ -78,6 +78,18 @@
       "scripts": [
         "templates/registration/registration.js"
       ]
+    },
+
+    {
+      "name": "sign-in",
+      "template": "sign-in",
+      "data": "sign-in",
+      "styles": [
+        "templates/registration/registration.scss"
+      ],
+      "scripts": [
+        "templates/registration/registration.js"
+      ]
     }
   ]
 }

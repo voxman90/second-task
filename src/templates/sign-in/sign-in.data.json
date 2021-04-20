@@ -1,0 +1,49 @@
+{
+  "pageTitle": "TOXIN - Sign in",
+  "navbarItems": [
+    { "text": "О нас", "href": "#about" },
+    { "text": "Услуги", "href": "#services", "isExpandable": true,
+      "items": [
+        { "text": "Услуги", "href": "#services" },
+        { "text": "Услуги", "href": "#services" },
+        { "text": "Услуги", "href": "#services" }
+      ]
+    },
+    { "text": "Вакансии", "href": "#vacancies" },
+    { "text": "Новости", "href": "#news" },
+    { "text": "Соглашения", "href": "#agreements", "isExpandable": true,
+      "items": [
+        { "text": "Соглашения", "href": "#agreements" },
+        { "text": "Соглашения", "href": "#agreements" }
+      ]
+    }
+  ],
+  "footerItems": [
+    {
+      "heading": "Навигация",
+      "items": [
+        { "href": "#", "text": "О нас", "target": "_self" },
+        { "href": "#", "text": "Новости", "target": "_self" },
+        { "href": "#", "text": "Служба поддержки", "target": "_self" },
+        { "href": "#", "text": "Услуги", "target": "_self" }
+      ]
+    },
+    {
+      "heading": "О нас",
+      "items": [
+        { "href": "#", "text": "О сервисе", "target": "_self" },
+        { "href": "#", "text": "Наша команда", "target": "_self" },
+        { "href": "#", "text": "Вакансии", "target": "_self" },
+        { "href": "#", "text": "Инвесторы", "target": "_self" }
+      ]
+    },
+    {
+      "heading": "Служба поддержки",
+      "items": [
+        { "href": "#", "text": "Соглашения", "target": "_self" },
+        { "href": "#", "text": "Сообщения", "target": "_self" },
+        { "href": "#", "text": "Связь с нами", "target": "_self" }
+      ]
+    }
+  ]
+}

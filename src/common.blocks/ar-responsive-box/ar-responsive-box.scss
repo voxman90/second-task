@@ -1,7 +1,6 @@
 .ar-responsive-box {
   &::after {
     content: '';
-
     display: block;
     padding-top: 250%;
   }
@@ -43,6 +42,13 @@
   }
 }
 
+@media screen and (min-aspect-ratio: 16/10) {
+  .ar-responsive-box::after {
+    padding-top: 62.5%;
+  }
+}
+
+
 @media screen and (min-aspect-ratio: 5/3) {
   .ar-responsive-box::after {
     padding-top: 60%;
@@ -52,12 +58,6 @@
 @media screen and (min-aspect-ratio: 16/9) {
   .ar-responsive-box::after {
     padding-top: 56.25%;
-  }
-}
-
-@media screen and (min-aspect-ratio: 16/10) {
-  .ar-responsive-box::after {
-    padding-top: 62.5%;
   }
 }
 

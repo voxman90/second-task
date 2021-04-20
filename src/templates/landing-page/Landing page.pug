@@ -28,7 +28,7 @@ include ../../common.blocks/subscription-field/subscription-field.pug
 include ../../common.blocks/footer/footer.pug
 - const data = htmlWebpackPlugin.options.data
 - const { pageTitle, navbarItems, footerItems } = data
-+layout()
++layout
   +layout__block('head')
     title= pageTitle
 
@@ -40,8 +40,7 @@ include ../../common.blocks/footer/footer.pug
       .bg
         +ar-responsive-box().bg__wrapper
           .bg__image
-        p.bg__caption
-        | "Лучшие номера для вашей работы,\nотдыха и просто вдохновения"
+        p.bg__caption!= 'Лучшие номера для вашей работы,\nотдыха и просто вдохновения'
       .form-wrapper
         +room-search
 

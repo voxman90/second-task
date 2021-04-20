@@ -7,7 +7,7 @@
   height: 1.5em;
 }
 
-.radio-button__text {
+.radio-button__descr {
   position: relative;
   height: 1.714em;
 
@@ -49,12 +49,12 @@
     outline: none;
   }
 
-  &:focus + .radio-button__text::before,
-  &:hover + .radio-button__text::before {
+  &:focus + .radio-button__descr::before,
+  &:hover + .radio-button__descr::before {
     border-color: $dark-shade-50;
   }
 
-  &:checked + .radio-button__text {
+  &:checked + .radio-button__descr {
     color: $dark-shade-75;
 
     &::before {
@@ -67,8 +67,8 @@
     }
   }
 
-  &:checked:focus + .radio-button__text::before,
-  &:checked:hover + .radio-button__text::before {
+  &:checked:focus + .radio-button__descr::before,
+  &:checked:hover + .radio-button__descr::before {
     border-color: $purple-darken-10;
   }
 }

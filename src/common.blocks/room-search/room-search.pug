@@ -1,14 +1,14 @@
 mixin room-search()
   section.card.room-search&attributes(attributes)
     form(action='')
-      h1.card__heading.room-search__heading Найдём номера под ваши пожелания
-      .card__socket.card__socket_indent_mid
+      h1.card__heading Найдём номера под ваши пожелания
+      .card__spot.card__spot_indent_mid
         +dropdown-date({ name: 'dropdown-date-1st', left: 'ПРИБЫТИЕ', right: 'ВЫЕЗД' })(
           class='room-search__dropdown-date js-auto-init',
         )
-      .card__socket.card__socket_indent_dig
+      .card__spot.card__spot_indent_big
         +dropdown-guests('dropdown-guests-1st', 'ГОСТИ')(class='room-search__dropdown-guests js-auto-init')
-      .card__socket
+      .card__spot
         +button-long({ name: 'button-long-1st', text: 'ПОДОБРАТЬ НОМЕР', isFilled: true, isArrowed: true })(
-          type = 'submit',
+          type='submit',
         )

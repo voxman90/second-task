@@ -11,23 +11,27 @@
 }
 
 .card__heading {
-  margin: 0.625em 0 1.375em;
+  margin: 0.625em 0 0.875em;
 
   @include h1-text(1.5em, 1.25);
 }
 
-.card__socket {
+.card__spot {
   width: 100%;
 }
 
-.card__socket_indent_small {
+.card__label {
+  padding-bottom: 0.3125em;
+}
+
+.card__spot_indent_small {
   margin-bottom: 0.625em;
 }
 
-.card__socket_indent_mid {
+.card__spot_indent_mid {
   margin-bottom: 1.25em;
 }
 
-.card__socket_indent_dig {
+.card__spot_indent_big {
   margin-bottom: 1.875em;
 }
