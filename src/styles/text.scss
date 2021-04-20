@@ -1,22 +1,6 @@
 @use 'sass:math';
 @use 'colors' as *;
 
-@mixin Quicksand-normal {
-  font: {
-    family: 'Quicksand', 'Open Sans', sans-serif;
-    weight: normal;
-    style: normal;
-  }
-}
-
-@mixin Quicksand-bold {
-  font: { 
-    family: 'Quicksand', 'Open Sans', sans-serif;
-    weight: bold;
-    style: normal;
-  }
-}
-
 @mixin Montserrat-normal {
   font: {
     family: 'Montserrat', sans-serif;
