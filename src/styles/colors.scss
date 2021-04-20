@@ -1,10 +1,10 @@
 @use 'sass:color';
 
 $dark-shade: #1F2041;
-$purple: #BC9CFF;
-$malibu: #8BA4F9;
-$green: #6FCF97;
-$turquoise-blue: #66D2EA;
+$primary: #BC9CFF;
+$primary-gradient: #8BA4F9;
+$secondary: #6FCF97;
+$secondary-gradient: #66D2EA;
 
 @function dark-shade($alpha) {
   @return rgba($dark-shade, $alpha);
@@ -16,12 +16,12 @@ $dark-shade-50: dark-shade(0.50);
 $dark-shade-75: dark-shade(0.75);
 $dark-shade-100: dark-shade(1);
 
-$purple-50: color.adjust($purple, $alpha: -0.5);
-$malibu-50: color.adjust($malibu, $alpha: -0.5);
-$green-50: color.adjust($green, $alpha: -0.5);
-$turquoise-blue-50: color.adjust($turquoise-blue, $alpha: -0.5);
+$primary-50: color.adjust($primary, $alpha: -0.5);
+$primary-gradient-50: color.adjust($primary-gradient, $alpha: -0.5);
+$secondary-50: color.adjust($secondary, $alpha: -0.5);
+$secondary-gradient-50: color.adjust($secondary-gradient, $alpha: -0.5);
 
-$purple-darken-10: color.adjust($purple, $lightness: -10%);
-$malibu-darken-10: color.adjust($malibu, $lightness: -10%);
-$green-darken-10: color.adjust($green, $lightness: -10%);
-$turquoise-blue-darken-10: color.adjust($turquoise-blue, $lightness: -10%);
+$primary-darken-10: color.adjust($primary, $lightness: -10%);
+$primary-gradient-darken-10: color.adjust($primary-gradient, $lightness: -10%);
+$secondary-darken-10: color.adjust($secondary, $lightness: -10%);
+$secondary-gradient-darken-10: color.adjust($secondary-gradient, $lightness: -10%);
