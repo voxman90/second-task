@@ -16,7 +16,7 @@
   width: 3rem;
   height: 3rem;
 
-  background: linear-gradient(180deg, $purple 0%, $malibu 100%);
+  background: linear-gradient(180deg, $primary 0%, $primary-gradient 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
@@ -36,5 +36,5 @@
 }
 
 .icon-item__description {
-  @include p-text(0.875rem, 1.5rem);
+  @include p-text;
 }

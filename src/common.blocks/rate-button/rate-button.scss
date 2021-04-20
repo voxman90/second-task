@@ -14,7 +14,7 @@
 .rate-button__icon {
   width: 1.5rem;
 
-  background: linear-gradient(180deg, $purple 0%, $malibu 100%);
+  background: linear-gradient(180deg, $primary 0%, $primary-gradient 100%);
   -webkit-background-clip: text;
           background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -23,7 +23,7 @@
 
   &:hover,
   &:hover ~ & {
-    background: linear-gradient(180deg, $purple-darken-10 0%, $malibu-darken-10 100%);
+    background: linear-gradient(180deg, $primary-darken-10 0%, $primary-gradient-darken-10 100%);
     -webkit-background-clip: text;
             background-clip: text;
     -webkit-text-fill-color: transparent;

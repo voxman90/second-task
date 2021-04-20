@@ -74,7 +74,7 @@
   &:checked + .like-button__counter {
     border: 1px solid transparent;
     background-image: linear-gradient(#FFFFFF, #FFFFFF),
-                      linear-gradient(180deg, $purple, $malibu);
+                      linear-gradient(180deg, $primary, $primary-gradient);
     background-clip: padding-box,
                       border-box;
     background-origin: border-box;
@@ -82,17 +82,17 @@
     &::after {
       content: 'favorite';
 
-      color: $purple;
+      color: $primary;
     }  
   }
 
   &:checked:focus + .like-button__counter,
   &:checked:hover + .like-button__counter {
     background-image: linear-gradient(#FFFFFF, #FFFFFF),
-                      linear-gradient(180deg, $purple-darken-10, $malibu-darken-10);
+                      linear-gradient(180deg, $primary-darken-10, $primary-gradient-darken-10);
 
     &::after {
-      color: $purple-darken-10;
+      color: $primary-darken-10;
     }
   }
 }

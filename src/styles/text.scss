@@ -18,36 +18,36 @@
 }
 
 //- This one is the sub-section or widget title
-@mixin h1-text($size: 1.5em, $height: normal) {
+@mixin h1-text($size: 1.5em, $height: normal, $color: $dark-shade-100) {
   @include Montserrat-bold;
   font-size: $size;
   line-height: $height;
-  color: $dark-shade-100;
+  color: $color;
 }
 
 //- Next one is the item title inside widgets 
-@mixin h2-text($size: 1.1875em, $height: normal) {
+@mixin widget-text($size: 1.1875em, $height: normal, $color: $dark-shade-100) {
   @include Montserrat-bold;
   font-size: $size;
   line-height: $height;
-  color: $dark-shade-100;
+  color: $color;
 }
 
 //- This is a label or CTA text
-@mixin h3-text($size: 0.75em, $height: 1.25) {
+@mixin label-text($size: 0.75em, $height: 1.25, $color: $dark-shade-75) {
   @include Montserrat-bold;
   font-size: $size;
   line-height: $height;
   text-transform: uppercase;
-  color: $dark-shade-100;
+  color: $color;
 }
 
 //- This is the body text which is used for most of the design, like paragraphs, lists, etc.
-@mixin p-text($size: 0.875em, $height: 1.715) {
+@mixin p-text($size: 0.875em, $height: 1.714, $color: $dark-shade-75) {
   @include Montserrat-normal;
   font-size: $size;
   line-height: $height;
-  color: $dark-shade-75;
+  color: $color;
 }
 
 @mixin material-icons {

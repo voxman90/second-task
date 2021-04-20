@@ -15,8 +15,7 @@
 
   margin: 0;
 
-  @include h3-text(0.75rem);
-  line-height: 2.75rem;
+  @include label-text;
 }
 
 .expandable-list__icon {

@@ -28,7 +28,7 @@
   height: 2.75em;
 
   border-radius: 0 4px 4px 0;
-  background: linear-gradient(180deg, $purple 0%, $malibu 100%);
+  background: linear-gradient(180deg, $primary 0%, $primary-gradient 100%);
 
   @supports (-webkit-text-fill-color: transparent) {
     -webkit-background-clip: text;

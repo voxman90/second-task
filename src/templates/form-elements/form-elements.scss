@@ -96,11 +96,11 @@
 }
 
 .form-elements__button-bordered_faded {
-  $purple-50: color.scale($purple, $alpha: -50%);
-  $malibu-50: color.scale($malibu, $alpha: -50%);
+  $primary-50: color.scale($primary, $alpha: -50%);
+  $primary-gradient-50: color.scale($primary-gradient, $alpha: -50%);
   background-image: linear-gradient(#FFF, #FFF),
-                    linear-gradient(180deg, $purple-50, $malibu-50);
-  color: $purple;
+                    linear-gradient(180deg, $primary-50, $primary-gradient-50);
+  color: $primary;
 }
 
 .form-elements__9th-block {

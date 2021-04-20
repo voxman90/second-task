@@ -37,7 +37,7 @@
 }
 
 .pagination__button {
-  background: linear-gradient(180deg, $green, $turquoise-blue);
+  background: linear-gradient(180deg, $secondary, $secondary-gradient);
   border-radius: 1.25rem;
 
   @include material-icons;
@@ -52,7 +52,7 @@
 }
 
 .pagination__button_faded {
-  background: linear-gradient(180deg, $green-50, $green-50);
+  background: linear-gradient(180deg, $secondary-50, $secondary-50);
 }
 
 .pagination__td_hide {
@@ -64,7 +64,7 @@
 }
 
 .pagination__td_current {
-  background: linear-gradient(180deg, $purple, $malibu);
+  background: linear-gradient(180deg, $primary, $primary-gradient);
   border-radius: 1.25rem;
 
   font-weight: bold;

@@ -4,8 +4,8 @@ $color-map: (
   dark-shade-50: $dark-shade-50,
   dark-shade-75: $dark-shade-75,
   dark-shade-100: $dark-shade-100,
-  'purple': $purple,
-  'green': $green,
+  'purple': $primary,
+  'green': $secondary,
 );
 
 @mixin color-sample__block {
@@ -59,7 +59,7 @@ $color-map: (
 
   line-height: 146.3%;
 
-  @include h2-text;
+  @include widget-text;
 }
 
 .color-sample__code {
@@ -79,7 +79,7 @@ $color-map: (
 
 .font-sample-label_type_widget-text {
   grid-area: 1 / 1 / 2 / 2;
-  @include  h3-text(1.5rem);
+  @include label-text(1.5rem);
   color: $dark-shade-25;
 }
 
@@ -88,31 +88,31 @@ $color-map: (
   @include h1-text;
 }
 
-.font-sample-label_type_h2-text {
+.font-sample-label_type_widget-text {
   grid-area: 3 / 1 / 4 / 2;
-  @include  h3-text(1.1875rem);
+  @include label-text(1.1875rem);
   color: $dark-shade-25;
 }
 
-.font-sample-text_type_h2-text {
+.font-sample-text_type_widget-text {
   grid-area: 3 / 3 / 4 / 4;
-  @include h2-text;
+  @include widget-text;
 }
 
 .font-sample-label_type_label-text {
   grid-area: 5 / 1 / 6 / 2;
-  @include  h3-text(0.75rem);
+  @include label-text(0.75rem);
   color: $dark-shade-25;
 }
 
 .font-sample-text_type_label-text {
   grid-area: 5 / 3 / 6 / 4;
-  @include h3-text;
+  @include label-text;
 }
 
 .font-sample-label_type_p-text {
   grid-area: 7 / 1 / 8 / 2;
-  @include  h3-text(0.875rem, 1.5rem);
+  @include label-text(0.875rem, 1.5rem);
   text-transform: none;
 }
 

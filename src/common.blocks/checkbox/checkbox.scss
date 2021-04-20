@@ -39,7 +39,7 @@
   }
 
   &:checked + .checkbox__container::before {
-    border: 1px solid $purple;
+    border: 1px solid $primary;
     background: url(./Check.svg);
     background: {
       color:#FFFFFF;
@@ -51,6 +51,6 @@
 
   &:checked:focus + .checkbox__container::before,
   &:checked:hover + .checkbox__container::before {
-    border-color: $purple-darken-10;
+    border-color: $primary-darken-10;
   }
 }

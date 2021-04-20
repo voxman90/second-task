@@ -58,7 +58,7 @@
         border-radius: 0.5rem;
         border: 2px solid #FFFFFF;
         
-        background-image: linear-gradient(180deg, $green, $turquoise-blue);
+        background-image: linear-gradient(180deg, $secondary, $secondary-gradient);
 
         cursor: pointer;
         pointer-events: all;
@@ -78,7 +78,7 @@
         border-radius: 7px;
         border: 2px solid #FFFFFF;
         
-        background-image: linear-gradient(180deg, $green, $turquoise-blue);
+        background-image: linear-gradient(180deg, $secondary, $secondary-gradient);
 
         cursor: pointer;
         pointer-events: all;
@@ -97,6 +97,6 @@
     width: 100%;
     height: 6px;
 
-    background-image: linear-gradient(180deg, $green, $turquoise-blue);
+    background-image: linear-gradient(180deg, $secondary, $secondary-gradient);
     border-radius: 3px;
 }

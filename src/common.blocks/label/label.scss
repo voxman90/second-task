@@ -6,7 +6,7 @@
   float: left;
   height: 1.25em;
 
-  @include h3-text(0.75em, 1.25);
+  @include label-text;
   text-align: left;
 }
 

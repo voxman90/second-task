@@ -20,7 +20,6 @@
   width: 100%;
   margin-left: 0.652rem;
 
-  @include p-text;
+  @include p-text($color: $dark-shade-75);
   white-space: pre-wrap;
-  color: $dark-shade-75;
 }

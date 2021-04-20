@@ -40,7 +40,7 @@
   height: 1;
   cursor: pointer;
 
-  color: $purple;
+  color: $primary;
 
   @include non-selectable;
   @include custom-focus;
@@ -106,16 +106,14 @@
 .calendar__th {
   @extend %calendar__table-cell;
 
-  @include h3-text;
+  @include label-text($color: $primary);
   text-transform: none;
-  color: $purple;
 }
 
 .calendar__td {
   @extend %calendar__table-cell;
 
-  @include p-text(0.75rem, 1.25);
-  color: $dark-shade-25;
+  @include p-text(0.75rem, 1.25, $dark-shade-25);
 }
 
 .calendar__td-content,
@@ -155,7 +153,7 @@
   @extend %calendar__td_special-date;
 
   &::before {
-    background: linear-gradient(180deg, $green, $turquoise-blue);
+    background: linear-gradient(180deg, $secondary, $secondary-gradient);
   }
 }
 
@@ -164,7 +162,7 @@
   border-radius: 50% 0 0 50%;
 
   &::before {
-    background: linear-gradient(180deg, $purple, $malibu);
+    background: linear-gradient(180deg, $primary, $primary-gradient);
   }
 }
 
@@ -173,12 +171,12 @@
   border-radius: 0 50% 50% 0;
 
   &::before {
-    background: linear-gradient(180deg, $purple, $malibu);
+    background: linear-gradient(180deg, $primary, $primary-gradient);
   }
 }
 
 .calendar__td_filled {
-  background: linear-gradient(180deg, color.change($purple, $alpha: 0.25), color.change($malibu, $alpha: 0.25));
+  background: linear-gradient(180deg, color.change($primary, $alpha: 0.25), color.change($primary-gradient, $alpha: 0.25));
 }
 
 .calendar__buttons {

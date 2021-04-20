@@ -7,10 +7,9 @@
   border: none;
   background-color: transparent;
 
-  @include h3-text;
+  @include label-text($color: $primary);
   text-align: center;
   white-space: nowrap;
-  color: $purple;
 
   cursor: pointer;
 
@@ -23,7 +22,7 @@
 
 .button_style_fill {
   border-radius: 3.667em;
-  background: linear-gradient(180deg, $purple, $malibu);
+  background: linear-gradient(180deg, $primary, $primary-gradient);
 
   color: #FFFFFF;
 
@@ -38,17 +37,17 @@
   border: 2.048px solid transparent;
   border-radius: 3.667em;
   background-image: linear-gradient(#FFF, #FFF),
-                    linear-gradient(180deg, $purple, $malibu);
+                    linear-gradient(180deg, $primary, $primary-gradient);
   background-clip: content-box,
                    border-box;
   background-origin: border-box;
 
-  color: $purple;
+  color: $primary;
 
   &:hover {
     background-image: linear-gradient(#FFF, #FFF),
-                      linear-gradient(180deg, $purple-50, $malibu-50);
+                      linear-gradient(180deg, $primary-50, $primary-gradient-50);
 
-    color: $purple;
+    color: $primary;
   }
 }

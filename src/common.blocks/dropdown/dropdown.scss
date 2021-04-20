@@ -88,7 +88,7 @@
   height: 1.875em;
   padding-top: 6px;
 
-  @include h3-text(0.75em, 1.25);
+  @include label-text;
 }
 
 .dropdown__option-button-minus {
@@ -126,7 +126,7 @@
   height: 2.5em;
   padding-top: 6px;
 
-  @include h3-text(0.75em, 1.25);
+  @include label-text;
   text-align: center;
 }
 

@@ -54,11 +54,11 @@
 
   &:checked + .toggle__descr {
     &::before {
-      border: 1px solid $purple;
+      border: 1px solid $primary;
     }
 
     &::after {
-      background: linear-gradient(180deg, $purple, $malibu);
+      background: linear-gradient(180deg, $primary, $primary-gradient);
       transform: translateX(1.25rem);
     }
   }
@@ -70,6 +70,6 @@
 
   &:checked:focus + .toggle__descr::before,
   &:checked:hover + .toggle__descr::before {
-    border: 1px solid $purple-darken-10;
+    border: 1px solid $primary-darken-10;
   }
 }
