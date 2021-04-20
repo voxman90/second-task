@@ -22,5 +22,15 @@ html
     meta(charset='UTF-8')
     title= pageTitle
   body
-    +header({ navbarItems })
-    +footer({ footerItems })
+    .hf
+      .hf__logo
+        +logo({ size: 'big', isColored: false, isSigned: false })
+      .hf__wrapper
+        .hf__header
+          +header({ navbarItems })
+        .hf__header-reg
+          +header({ navbarItems })
+        .hf__footer
+          +footer({ footerItems })
+        .hf__footer-creative-wrapper
+          +footer-creative()(class='hf__footer-creative')

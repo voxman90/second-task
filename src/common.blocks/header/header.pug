@@ -1,8 +1,8 @@
 mixin header(args = {})
-  - let { navbarItems } = args
+  - let { navbarItems, isLoggedIn = false } = args
   header.header&attributes(attributes)
     .header__wrapper
-      a(class = 'header__logo', target = '_self', href = '/')
+      a(class='header__logo', target='_self', href='#')
         +logo({ size: 'small', isColored: true, isSigned: true })(class='js-auto-init')
-      +navbar({ isLoggedIn: false, navbarItems })(class = 'header__navbar')
-      +hamburger({ isLoggedIn: false, navbarItems })(class = 'header__hamburger')
+      +navbar({ isLoggedIn, navbarItems })(class='header__navbar')
+      +hamburger({ isLoggedIn, navbarItems })(class='header__hamburger')

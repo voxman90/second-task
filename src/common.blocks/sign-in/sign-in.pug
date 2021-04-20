@@ -11,5 +11,6 @@ mixin sign-in()
     .sign-in__sign-up
       p.sign-in__text
         | Нет аккаунта на Toxin?
-      a(href='#', target='_self')
-        +button-short({ name: 'button-sing-in', text: 'СОЗДАТЬ', isBordered: true })
+      +button-short({ name: 'button-sing-in', text: 'СОЗДАТЬ', isBordered: true })(
+        onclick='javascript: window.open("http://www.google.com", "_blank");',
+      )

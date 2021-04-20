@@ -1,13 +1,4 @@
-include ../../common.blocks/icon/icon.pug
-include ../../common.blocks/button/button.pug
-include ../../common.blocks/carousel/carousel.pug
-include ../../common.blocks/calendar/calendar.pug
-include ../../common.blocks/label/label.pug
-include ../../common.blocks/input-text/input-text.pug
-include ../../common.blocks/input-text-masked/input-text-masked.pug
-include ../../common.blocks/input-date/input-date.pug
-include ../../common.blocks/dropdown-date/dropdown-date.pug
-include ../../common.blocks/dropdown-filter-date/dropdown-filter-date.pug
+include ../../common.blocks/link/link.pug
 doctype html
 html(lang="en")
   head
@@ -16,8 +7,5 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Document
   body
-    .wrapper
-      +calendar('calendar-001')
-      +dropdown-date({ left: 'date dropdown', right: 'date dropdown', name: 'date-dropdown-001' }).js-auto-init
-      +dropdown-filter-date({ label: 'dropdown filterdate', name: 'dropdown-002' }).js-auto-init
-
+    .link-wrapper
+      +link({ href: '#', target: '_self', title: 'Что это?', 'data-text': 'Константин Константинопольский', text: 'Константин Константинопольский' })

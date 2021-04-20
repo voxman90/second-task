@@ -16,6 +16,10 @@
           background-clip: text;
   -webkit-text-fill-color: transparent;
   cursor: pointer;
+
+  &:hover {
+    opacity: 0.5;
+  }
 }
 
 .social-follow__gap {

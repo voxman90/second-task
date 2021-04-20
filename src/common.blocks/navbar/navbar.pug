@@ -1,9 +1,6 @@
 mixin navbar(args = {})
   - const { isLoggedIn, navbarItems } = args
-  nav(
-    class='navbar',
-    aria-label='main',
-  )&attributes(attributes)
+  nav(class='navbar', aria-label='main')&attributes(attributes)
     ul.navbar__menu
       each item in navbarItems
         - const { isExpandable = false } = item
@@ -28,7 +25,7 @@ mixin navbar__dropdown(args = {})
 mixin navbar__dropdown-head(args = {})
   .navbar__dropdown-head
     +link(args)(class='navbar__link navbar__dropdown-link')
-    +icon({ name: 'expand_more' })(class = 'navbar__icon')
+    +icon({ name: 'expand_more' })(class='navbar__icon')
 
 mixin navbar__buttons(isloggedIn = false)
   if isloggedIn
@@ -36,11 +33,11 @@ mixin navbar__buttons(isloggedIn = false)
   else
     li.navbar__button
       +button-short({ name: 'button-sign-in', text: 'ВОЙТИ', isBordered: true })(
-        class = 'navbar__button-sign-in',
-        onClick = 'javascript: window.open("http://www.google.com", "_blank");',
+        class='navbar__button-sign-in',
+        onClick='javascript: window.open("http://www.google.com", "_blank");',
       )
     li.navbar__button
       +button-long({ name: 'button-sign-up', text: 'ЗАРЕГИСТРИРОВАТЬСЯ', isFilled: true, isArrowed: false })(
-        class = 'navbar__button-sign-up',
-        onClick = 'javascript: window.open("http://www.google.com", "_blank");',
+        class='navbar__button-sign-up',
+        onClick='javascript: window.open("http://www.google.com", "_blank");',
       )
