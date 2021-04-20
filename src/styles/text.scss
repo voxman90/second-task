@@ -3,7 +3,7 @@
 
 @mixin Montserrat-normal {
   font: {
-    family: 'Montserrat', sans-serif;
+    family: 'Montserrat', Arial, sans-serif;
     weight: normal;
     style: normal;
   }
@@ -11,7 +11,7 @@
 
 @mixin Montserrat-bold {
   font: {
-    family: 'Montserrat', sans-serif;
+    family: 'Montserrat', Arial, sans-serif;
     weight: bold;
     style: normal;
   }
