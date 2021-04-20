@@ -1,5 +1,7 @@
 .label {
-  @include clearfix;
+  &::after {
+    @include clearfix;
+  }
 }
 
 .label__left-mark {

@@ -2,7 +2,7 @@
 
 import { BEMComponent } from 'scripts/BEMComponent';
 import { Utility } from 'scripts/Utility';
-import { Carousel } from 'common.blocks/carousel/carousel';
+import { Carousel } from 'components/carousel/carousel';
 
 const Calendar = ((document) => {
   const monthName = {

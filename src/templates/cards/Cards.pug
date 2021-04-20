@@ -1,22 +1,22 @@
-include ../../common.blocks/label/label.pug
-include ../../common.blocks/input-text/input-text.pug
-include ../../common.blocks/input-text-masked/input-text-masked.pug
-include ../../common.blocks/input-date/input-date.pug
-include ../../common.blocks/icon/icon.pug
-include ../../common.blocks/button/button.pug
-include ../../common.blocks/carousel/carousel.pug
-include ../../common.blocks/calendar/calendar.pug
-include ../../common.blocks/dropdown-date/dropdown-date.pug
-include ../../common.blocks/dropdown/dropdown.pug
-include ../../common.blocks/dropdown-guests/dropdown-guests.pug
-include ../../common.blocks/button-long/button-long.pug
-include ../../common.blocks/room-search/room-search.pug
-include ../../common.blocks/hotel-room-heading/hotel-room-heading.pug
-include ../../common.blocks/rate-button/rate-button.pug
-include ../../common.blocks/card-hotel-room/card-hotel-room.pug
-include ../../common.blocks/radio-button/radio-button.pug
-include ../../common.blocks/toggle/toggle.pug
-include ../../common.blocks/button-short/button-short.pug
+include ../../components/label/label.pug
+include ../../components/input-text/input-text.pug
+include ../../components/input-text-masked/input-text-masked.pug
+include ../../components/input-date/input-date.pug
+include ../../components/icon/icon.pug
+include ../../components/button/button.pug
+include ../../components/carousel/carousel.pug
+include ../../components/calendar/calendar.pug
+include ../../components/dropdown-date/dropdown-date.pug
+include ../../components/dropdown/dropdown.pug
+include ../../components/dropdown-guests/dropdown-guests.pug
+include ../../components/button-long/button-long.pug
+include ../../components/room-search/room-search.pug
+include ../../components/hotel-room-heading/hotel-room-heading.pug
+include ../../components/rate-button/rate-button.pug
+include ../../components/card-hotel-room/card-hotel-room.pug
+include ../../components/radio-button/radio-button.pug
+include ../../components/toggle/toggle.pug
+include ../../components/button-short/button-short.pug
 - const data = htmlWebpackPlugin.options.data
 - const { title } = data
 doctype html
@@ -30,10 +30,10 @@ html
       .cards__1st
        +room-search()
       .cards__2nd
-        include ../../common.blocks/sign-up/sign-up.pug
+        include ../../components/sign-up/sign-up.pug
       .cards__3rd
-        include ../../common.blocks/sign-in/sign-in.pug
+        include ../../components/sign-in/sign-in.pug
       .cards__4th
-        include ../../common.blocks/invoice/invoice.pug
+        include ../../components/invoice/invoice.pug
       .cards__5th
         +card-hotel-room({ itemAmount: 4 })

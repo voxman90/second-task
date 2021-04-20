@@ -1,3 +1,3 @@
-import { Calendar } from 'common.blocks/calendar/calendar'
+import { Calendar } from 'components/calendar/calendar'
 const root = document.querySelector('.js-calendar');
 new Calendar(root)

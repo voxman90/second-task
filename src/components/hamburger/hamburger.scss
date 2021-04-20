@@ -11,7 +11,9 @@
 
   text-align: center;
 
-  @include ghost-center;
+  &::after {
+    @include vertical-align-centering;
+  }
 
   &::before {
     position: absolute;
@@ -84,7 +86,9 @@
 
   cursor: pointer;
 
-  @include ghost-center;
+  &::after {
+    @include vertical-align-centering;
+  }
 }
 
 .hamburger__expandable-list-icon {

@@ -146,7 +146,9 @@
   padding-left: 0.8125em;
   padding-right: 6px;
 
-  @include clearfix;
+  &::after {
+    @include clearfix;
+  }
 }
 
 .dropdown__button-clear {

@@ -1,10 +1,10 @@
 import jQuery from 'jquery';
 
-import { DropdownDate } from 'common.blocks/dropdown-date/dropdown-date';
-import { DropdownFilterDate } from 'common.blocks/dropdown-filter-date/dropdown-filter-date';
-import { DropdownFacilities } from 'common.blocks/dropdown-facilities/dropdown-facilities';
-import { DropdownGuests } from 'common.blocks/dropdown-guests/dropdown-guests';
-import { Expandable } from 'common.blocks/expandable/expandable';
+import { DropdownDate } from 'components/dropdown-date/dropdown-date';
+import { DropdownFilterDate } from 'components/dropdown-filter-date/dropdown-filter-date';
+import { DropdownFacilities } from 'components/dropdown-facilities/dropdown-facilities';
+import { DropdownGuests } from 'components/dropdown-guests/dropdown-guests';
+import { Expandable } from 'components/expandable/expandable';
 
 (function ($) {
   function initDropdownDate() {

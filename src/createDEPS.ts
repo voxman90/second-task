@@ -4,7 +4,7 @@
   const fs = require("fs");
   const path = require("path");
 
-  const COMPONENTS_DIR = './common.blocks';
+  const COMPONENTS_DIR = './components';
 
   const TECH_EXT = ['.js', '.scss', '.pug'];
 

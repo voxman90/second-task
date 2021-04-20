@@ -1,10 +1,12 @@
+@use '_shared';
+
 .footer {
   background-color: #FFFFFF;
 }
 
 .footer__top {
-  height: 23.25rem;
-  padding: 6.25rem 9.725%;
+  height: 372px;
+  padding: 100px 9.725%;
   margin-bottom: 1px;
   box-shadow: 0 1px 0 dark-shade(0.10);
 }

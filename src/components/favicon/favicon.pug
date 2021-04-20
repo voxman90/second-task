@@ -1,0 +1,8 @@
+mixin favicon()
+  - require('components/favicon/toxin-google-touch-icon.png')
+  - require('components/favicon/toxin-icon.ico')
+  meta(name='theme-color', content='#ffffff')
+  link(rel='icon', type='image/svg+xml', href=require('components/favicon/toxin-icon.svg').default)
+  link(rel='mask-icon', href=require('components/favicon/toxin-mask-icon.svg').default, color='#1F2041')
+  link(rel='apple-touch-icon', href=require('components/favicon/toxin-apple-touch-icon.png').default)
+  link(rel='manifest', href=require('components/favicon/manifest.json').default, crossorigin='use-credentials')

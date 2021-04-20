@@ -128,7 +128,7 @@ class TopologicalSort {
   const path = require('path');
 
   const ENTRIES_JSON_PATH = 'entries.json';
-  const COMPONENTS_DIR = 'common.blocks';
+  const COMPONENTS_DIR = 'components';
   const TEMPLATES_DIR = 'templates';
 
   const PREPEND_STYLES = [

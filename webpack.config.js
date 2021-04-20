@@ -173,7 +173,7 @@ module.exports = {
                 const { resourcePath, rootContext } = loaderContext;
                 const relativePath = path.relative(rootContext, resourcePath);
                 const pathParts = relativePath.split(path.sep);
-                const isCommonBlockStyle = pathParts.includes('common.blocks');
+                const isCommonBlockStyle = pathParts.includes('components');
                 const isTemplateStyle = pathParts.includes('templates');
                 
                 if (isCommonBlockStyle) {
@@ -185,7 +185,11 @@ module.exports = {
                 }
                 
                 return content;
-              }
+              },
+              includePaths: [
+                _path('src/styles'),
+                _path('src/components/*'),
+              ],
             }
           }
         ],

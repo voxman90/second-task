@@ -186,7 +186,9 @@
   height: fit-content;
   margin-top: 20px;
 
-  @include clearfix;
+  &::after {
+    @include clearfix;
+  }
 }
 
 %calendar__button {

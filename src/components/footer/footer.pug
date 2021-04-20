@@ -1,12 +1,11 @@
 mixin footer(args = {})
-  - const { footerItems } = args
-  footer(class = 'footer')&attributes(attributes)
-    .footer__top
-      .footer__top-wrapper
-        +footer__info
-        each item in footerItems
-          +footer__link-list(item)
-        +footer__subscription()
+  - const { items } = args
+  footer.footer
+    .footer__wrapper
+      +footer__info
+      each item in items
+        +footer__link-list(item)
+      +footer__subscription()
     +copyright-bar()(class = 'footer__copyright-bar')
 
 mixin footer__info
