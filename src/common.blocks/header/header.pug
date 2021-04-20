@@ -1,6 +1,6 @@
 mixin header(args = {})
   - let { navbarItems } = args
-  .header&attributes(attributes)
+  header.header&attributes(attributes)
     .header__wrapper
       a(class = 'header__logo', target = '_self', href = '/')
         +logo({ size: 'small', isColored: true, isSigned: true })(class='js-auto-init')

@@ -67,6 +67,7 @@ module.exports = {
       'jquery': _path('node_modules/jquery/dist/jquery'),
       'inputmask' : _path('node_modules/jquery.inputmask/dist/inputmask/inputmask'),
       'jquery.inputmask': _path('node_modules/inputmask/dist/jquery.inputmask'),
+      'aliasImg': _path('assets/img/'),
     },
     extensions: ['.ts', '.js', '.scss'],
   },

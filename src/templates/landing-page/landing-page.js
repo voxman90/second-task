@@ -2,19 +2,19 @@
 
 (function (window, document) {
   const imageClass = [
-    'landing__image-first',
-    'landing__image-second',
-    'landing__image-third',
+    'img-first',
+    'img-second',
+    'img-third',
   ];
 
   const Selector = {
-    MAIN : '.landing__bg-image',
+    BACKGROUND: '.bg__image',
   }
 
-  function attachRandomImageToMain() {
-    const main = document.querySelector(Selector.MAIN);
+  function attachRandomImageToBackground() {
+    const bg = document.querySelector(Selector.BACKGROUND);
     const randomImageClass = getRandomClass(imageClass);
-    main.classList.add(randomImageClass);
+    bg.classList.add(randomImageClass);
   }
 
   function getRandomClass(classList) {
@@ -28,7 +28,5 @@
     return Math.floor(Math.random() * x);
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    attachRandomImageToMain();
-  })
+  document.addEventListener('DOMContentLoaded', () => attachRandomImageToBackground());
 })(window, document);

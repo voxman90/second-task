@@ -35,5 +35,5 @@ import 'common.blocks/calendar/calendar.js';
 import 'common.blocks/dropdown-date/dropdown-date.js';
 import 'common.blocks/dropdown/dropdown.js';
 import 'common.blocks/dropdown-guests/dropdown-guests.js';
-import 'templates/landing-page/landing-page.scss';
-import 'templates/landing-page/landing-page.js';
+import 'templates/registration/registration.scss';
+import 'templates/registration/registration.js';

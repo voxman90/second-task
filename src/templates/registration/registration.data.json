@@ -1,5 +1,5 @@
 {
-  "pageTitle": "TOXIN - Landing page",
+  "pageTitle": "Registration",
   "navbarItems": [
     { "text": "О нас", "href": "#about" },
     { "text": "Услуги", "href": "#services", "isExpandable": true,

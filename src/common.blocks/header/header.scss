@@ -1,12 +1,8 @@
 .header {
-  min-width: 320px;
-  width: 100%;
-  max-width: 1920px;
-  height: 4.375rem;
-  padding: 0 9.722%;
-
+  height: 70px;
+  padding: 0 9.725%;
   background-color: #FFFFFF;
-  box-shadow: 0 0.625rem 1.25rem $dark-shade-05;
+  box-shadow: 0 10px 20px $dark-shade-05;
 }
 
 .header__wrapper {
@@ -16,8 +12,8 @@
 }
 
 .header__logo {
-  padding: 0.9375rem 0.625rem;
-  height: 4.375rem;
+  padding: 15px 10px;
+  height: 70px;
 }
 
 .header__hamburger {

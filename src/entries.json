@@ -66,6 +66,18 @@
       "scripts": [
         "templates/landing-page/landing-page.js"
       ]
+    },
+
+    {
+      "name": "registration",
+      "template": "registration",
+      "data": "registration",
+      "styles": [
+        "templates/registration/registration.scss"
+      ],
+      "scripts": [
+        "templates/registration/registration.js"
+      ]
     }
   ]
 }

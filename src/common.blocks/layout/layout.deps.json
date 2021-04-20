@@ -1,0 +1,10 @@
+{
+  "name": "layout",
+  "techs": [
+    "pug",
+    "scss"
+  ],
+  "deps": [
+    "favicon"
+  ]
+}

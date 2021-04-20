@@ -1,32 +1,23 @@
 @use '../../styles/text';
 
-.landing__header {
-  position: absolute;
-  z-index: 10;
-  top: 0;
-}
-
-.landing__main {
-  position: relative;
-  z-index: 5;
-
+.main {
   height: max(640px, 100vh);
 }
 
-.landing__bg {
+.bg {
   width: 100%;
   height: 100%;
 
   overflow: hidden;
 }
 
-.landing__bg-wrapper {
+.bg__wrapper {
   position: relative;
 
   min-height: 640px;
 }
 
-.landing__bg-image {
+.bg__image {
   position: absolute;
 
   width: 100%;
@@ -35,7 +26,7 @@
   background-repeat: no-repeat;
 }
 
-.landing__image-first {
+.img-first {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -43,39 +34,32 @@
   width: 106.53%;
   height: 113.56%;
 
-  background-image: url(../../assets/img/landing-page-image-001.png);
+  background-image: url(~assets/img/landing-page-image-001.png);
   background-position: center;
   background-size: cover;
 }
 
-.landing__image-second {
+.img-second {
   top: -14.33%;
   right: 0;
 
   height: 124.76%;
 
-  background-image: url(../../assets/img/landing-page-image-002.png);
+  background-image: url(~assets/img/landing-page-image-002.png);
   background-position: right;
   background-size: cover;
 }
 
-.landing__image-third {
+.img-third {
   top: 4.375rem;
   right: 0;
 
-  background-image: url(../../assets/img/landing-page-image-003.png);
+  background-image: url(~assets/img/landing-page-image-003.png);
   background-position: top right;
   background-size: cover;
 }
 
-.landing__room-search {
-  position: absolute;
-  z-index: 10;
-  top: 8.75rem;
-  left: 9.722%;
-}
-
-.landing__caption {
+.bg__caption {
   position: absolute;
   z-index: 8;
   right: 9.3%;
@@ -86,15 +70,14 @@
   text-align: right;
 }
 
-.landing__footer {
-  position: relative;
-  z-index: 3;
+.form-wrapper {
+  position: absolute;
+  z-index: 10;
+  top: 8.75rem;
+  left: 9.722%;
 }
 
-.landing__footer-creative {
-  position: relative;
-  z-index: 3;
-
+.footer-creative {
   display: none;
 }
 
@@ -113,7 +96,6 @@
     right: 6%;
   }
 }
-
 
 @media only screen and (max-width: 480px) {
   .landing__room-search {
