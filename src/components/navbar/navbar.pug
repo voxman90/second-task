@@ -1,43 +1,60 @@
-mixin navbar(args = {})
-  - const { isLoggedIn, navbarItems } = args
-  nav(class='navbar', aria-label='main')&attributes(attributes)
+-
+  const navbarDefault = {
+    isLoggedIn: false,
+    menuItems: [
+      { 'text': 'О нас', 'href': '#about' },
+      { 'text': 'Услуги', 'href': '#services', 'isExpandable': true,
+        'submenuItems': [
+          { 'text': 'Услуги', 'href': '#services' },
+          { 'text': 'Услуги', 'href': '#services' },
+          { 'text': 'Услуги', 'href': '#services' },
+        ]
+      },
+      { 'text': 'Вакансии', 'href': '#vacancies' },
+      { 'text': 'Новости', 'href': '#news' },
+      { 'text': 'Соглашения', 'href': '#agreements', 'isExpandable': true,
+        'submenuItems': [
+          { 'text': 'Соглашения', 'href': '#agreements' },
+          { 'text': 'Соглашения', 'href': '#agreements' },
+        ]
+      }
+    ],
+  }
+
+mixin navbar(args = navbarDefault)
+  - const { isLoggedIn, menuItems } = args
+  nav(class='navbar js-navbar')&attributes(attributes)
     ul.navbar__menu
-      each item in navbarItems
+      each item in menuItems
         - const { isExpandable = false } = item
-        if isExpandable
-          +navbar__dropdown(item)
-        else
+        if !isExpandable
           +navbar__item(item)
+        else
+          +navbar__submenu(item)
       +navbar__buttons(isLoggedIn)
 
-mixin navbar__item(args = {})
-  li(class='navbar__item')&attributes(attributes)
-    +link(args)(class='navbar__link')
+mixin navbar__item(args)
+  li.navbar__item
+    +link({ hasLeftPadding: true, hasRightPadding: true, ...args })
 
-mixin navbar__dropdown(args = {})
-  - const { href, text, title = null, items = [] } = args
-  li.navbar__dropdown
-    +navbar__dropdown-head(args)
-    ul.navbar__dropdown-list
-      each item in items
-        +navbar__item(item)(class='navbar__dropdown-list-item')
-
-mixin navbar__dropdown-head(args = {})
-  .navbar__dropdown-head
-    +link(args)(class='navbar__link navbar__dropdown-link')
-    +icon({ name: 'expand_more' })(class='navbar__icon')
+mixin navbar__submenu(args)
+  - const { submenuItems = [] } = args
+  li.navbar__item.js-navbar__item_expandable
+    .navbar__item-head
+      +link({ hasLeftPadding: true, ...args })
+      div(class='navbar__trigger js-navbar__trigger', role='button', tabindex='0', aria-expanded=false, aria-label='submenu')
+        div.navbar__icon-wrapper
+          +icon({ name: 'expand_more' })
+    ul.navbar__submenu.js-navbar__submenu
+      each item in submenuItems
+        li
+          +link(item)
 
 mixin navbar__buttons(isloggedIn = false)
   if isloggedIn
     p= 'plug'
   else
     li.navbar__button
-      +button-short({ name: 'button-sign-in', text: 'ВОЙТИ', isBordered: true })(
-        class='navbar__button-sign-in',
-        onClick='javascript: window.open("http://www.google.com", "_blank");',
-      )
+      +button-short({ name: 'button-sign-in', text: 'ВОЙТИ', isBordered: true })
     li.navbar__button
-      +button-long({ name: 'button-sign-up', text: 'ЗАРЕГИСТРИРОВАТЬСЯ', isFilled: true, isArrowed: false })(
-        class='navbar__button-sign-up',
-        onClick='javascript: window.open("http://www.google.com", "_blank");',
-      )
+      +button-long({ name: 'button-sign-up', text: 'ЗАРЕГИСТРИРОВАТЬСЯ', isFilled: true, isArrowed: false })

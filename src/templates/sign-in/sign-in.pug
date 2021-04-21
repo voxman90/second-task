@@ -25,7 +25,7 @@ include ../../components/footer/footer.pug
     title= pageTitle
 
   +layout__block('header')
-    +header({ navbarItems })
+    +header
 
   +layout__block('content')
     main.main
@@ -36,5 +36,5 @@ include ../../components/footer/footer.pug
         +sign-in
 
   +layout__block('footer')
-    +footer({ footerItems })
+    //- +footer
     +footer-creative

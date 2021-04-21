@@ -54,42 +54,6 @@
       "scripts": [
         "templates/headers-and-footers/headers-and-footers.js"
       ]
-    },
-
-    {
-      "name": "landing-page",
-      "template": "Landing page",
-      "data": "landing-page",
-      "styles": [
-        "templates/landing-page/landing-page.scss"
-      ],
-      "scripts": [
-        "templates/landing-page/landing-page.js"
-      ]
-    },
-
-    {
-      "name": "registration",
-      "template": "registration",
-      "data": "registration",
-      "styles": [
-        "templates/registration/registration.scss"
-      ],
-      "scripts": [
-        "templates/registration/registration.js"
-      ]
-    },
-
-    {
-      "name": "sign-in",
-      "template": "sign-in",
-      "data": "sign-in",
-      "styles": [
-        "templates/registration/registration.scss"
-      ],
-      "scripts": [
-        "templates/registration/registration.js"
-      ]
     }
   ]
 }

@@ -27,10 +27,10 @@ html
         +logo({ size: 'big', isColored: false, isSigned: false })
       .hf__wrapper
         .hf__header
-          +header({ navbarItems })
+          +header()
         .hf__header-reg
-          +header({ navbarItems })
+          +header
         .hf__footer
-          +footer({ footerItems })
+          +footer({ items: footerItems })
         .hf__footer-creative-wrapper
-          +footer-creative()(class='hf__footer-creative')
+          +footer-creative

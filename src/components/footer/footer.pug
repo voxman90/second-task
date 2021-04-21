@@ -1,4 +1,36 @@
-mixin footer(args = {})
+-
+  const footerDefault = {
+    'items': [
+      {
+        'heading': 'Навигация',
+        'items': [
+          { 'href': '#', 'text': 'О нас', 'target': '_self' },
+          { 'href': '#', 'text': 'Новости', 'target': '_self' },
+          { 'href': '#', 'text': 'Служба поддержки', 'target': '_self' },
+          { 'href': '#', 'text': 'Услуги', 'target': '_self' }
+        ]
+      },
+      {
+        'heading': 'О нас',
+        'items': [
+          { 'href': '#', 'text': 'О сервисе', 'target': '_self' },
+          { 'href': '#', 'text': 'Наша команда', 'target': '_self' },
+          { 'href': '#', 'text': 'Вакансии', 'target': '_self' },
+          { 'href': '#', 'text': 'Инвесторы', 'target': '_self' }
+        ]
+      },
+      {
+        'heading': 'Служба поддержки',
+        'items': [
+          { 'href': '#', 'text': 'Соглашения', 'target': '_self' },
+          { 'href': '#', 'text': 'Сообщения', 'target': '_self' },
+          { 'href': '#', 'text': 'Связь с нами', 'target': '_self' }
+        ]
+      }
+    ]
+  }
+
+mixin footer(args = footerDefault)
   - const { items } = args
   footer.footer
     .footer__wrapper

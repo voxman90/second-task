@@ -2,7 +2,8 @@
   "name": "navbar",
   "techs": [
     "scss",
-    "pug"
+    "pug",
+    "js"
   ],
   "deps": [
     "icon",

@@ -177,19 +177,15 @@ module.exports = {
                 const isTemplateStyle = pathParts.includes('templates');
                 
                 if (isCommonBlockStyle) {
-                  return `@use '../../styles/shared' as *;\n${content}`;
+                  return `@use 'styles/_shared' as *;\n${content}`;
                 }
 
                 if (isTemplateStyle) {
-                  return `@use '../../styles/shared' as *;\n${content}`;
+                  return `@use 'styles/_shared' as *;\n${content}`;
                 }
                 
                 return content;
               },
-              includePaths: [
-                _path('src/styles'),
-                _path('src/components/*'),
-              ],
             }
           }
         ],

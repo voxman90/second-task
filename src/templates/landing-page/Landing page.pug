@@ -33,7 +33,7 @@ include ../../components/footer/footer.pug
     title= pageTitle
 
   +layout__block('header')
-    +header({ navbarItems })
+    +header
 
   +layout__block('content')
     main.main
@@ -45,5 +45,6 @@ include ../../components/footer/footer.pug
         +room-search
 
   +layout__block('footer')
-    +footer({ footerItems })
-    +footer-creative()(class='landing__footer-creative')
+    //- +footer
+    .landing__footer-creative
+      +footer-creative

@@ -1,6 +1,46 @@
 .link {
+  display: inline-block;
+  height: 100%;
+
+  &:active {
+    outline: none;
+  }
+
+  &:hover  > .link__text,
+  &:focus  > .link__text,
+  &:active > .link__text {
+    color: transparent;
+
+    &::after {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &:link,
+  &:visited {
+    text-decoration: none;
+  }
+
+  &::before {
+    @include vertical-align-centering;
+  }
+}
+
+.link_with_left-padding {
+  padding-left: 10px;
+}
+
+.link_with_right-padding {
+  padding-right: 10px;
+}
+
+.link__text {
   position: relative;
   display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  padding-right: 0.5px;
 
   @include p-text($color: $dark-shade-50);
   white-space: nowrap;
@@ -18,25 +58,5 @@
 
     @include Montserrat-bold;
     color: $dark-shade-75;
-  }
-
-  &:focus {
-    outline: none;
-  }
-
-  &:active,
-  &:hover,
-  &:focus {
-    color: transparent;
-
-    &::after {
-      visibility: visible;
-      opacity: 1;
-    }
-  }
-
-  &:link,
-  &:visited {
-    text-decoration: none;
   }
 }

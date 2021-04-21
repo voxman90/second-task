@@ -1,11 +1,34 @@
-mixin hamburger(args = {})
-  - const { isLoggedIn, navbarItems } = args
-  nav(class = 'hamburger js-expandable js-auto-init', role = 'navigation')&attributes(attributes)
+-
+  const hamburgerDefault = {
+    isLoggedIn: false,
+    menuItems: [
+      { 'text': 'О нас', 'href': '#about' },
+      { 'text': 'Услуги', 'href': '#services', 'isExpandable': true,
+        'submenuItems': [
+          { 'text': 'Услуги', 'href': '#services' },
+          { 'text': 'Услуги', 'href': '#services' },
+          { 'text': 'Услуги', 'href': '#services' },
+        ]
+      },
+      { 'text': 'Вакансии', 'href': '#vacancies' },
+      { 'text': 'Новости', 'href': '#news' },
+      { 'text': 'Соглашения', 'href': '#agreements', 'isExpandable': true,
+        'submenuItems': [
+          { 'text': 'Соглашения', 'href': '#agreements' },
+          { 'text': 'Соглашения', 'href': '#agreements' },
+        ]
+      }
+    ],
+  }
+
+mixin hamburger(args = hamburgerDefault)
+  - const { isLoggedIn, menuItems } = args
+  nav(class = 'hamburger', role = 'navigation')&attributes(attributes)
     +hamburger__trigger()
-    .js-expandable__container
       ul(class = 'hamburger__menu')
-        each item in navbarItems
+        each item in menuItems
           - const { isExpandable = false } = item
+            p= 1
           if isExpandable
             +hamburger__expandable-list(item)
           else
@@ -14,7 +37,7 @@ mixin hamburger(args = {})
 
 mixin hamburger__trigger()
   div(
-    class='hamburger__trigger js-expandable__trigger',
+    class='hamburger__trigger',
     role='button',
     tabindex='0',
     aria-label='hamburger-main-trigger',
@@ -22,19 +45,19 @@ mixin hamburger__trigger()
     +icon({ name: 'menu' })(class='hamburger__icon')
 
 mixin hamburger__expandable-list(args)
-  - const { href, text, title = null, items = [] } = args
-  li(class='hamburger__expandable-list js-expandable js-auto-init')
+  - const { href, text, title = null, submenuItems = [] } = args
+  li(class='hamburger__expandable-list')
     .hamburger__expandable-list-header
       +link(args)(class='hamburger__expandable-list-link')
       div(
-        class='js-expandable__trigger hamburger__expandable-list-trigger',
+        class='hamburger__expandable-list-trigger',
         role='button',
         tabindex='0',
         aria-label=text,
       )
         +icon({ name: 'expand_more' })(class = 'hamburger__expandable-list-icon')
-    ul(class = 'hamburger__expandable-list-container js-expandable__container')
-      each item in items
+    ul(class = 'hamburger__expandable-list-container')
+      each item in submenuItems
         +hamburger__item(item)
 
 mixin hamburger__item(args = {})
@@ -49,11 +72,5 @@ mixin hamburger__footer(isloggedIn = false)
 
 mixin hamburger__buttons()
   .hamburger__buttons
-    +button-short({ name: 'button-sign-in', text: 'ВОЙТИ', isBordered: true })(
-      class = 'hamburger__button-sign-in',
-      onClick = 'javascript: window.open("http://www.google.com", "_blank");',
-    )
-    +button-long({ name: 'button-sign-up', text: 'ЗАРЕГИСТРИРОВАТЬСЯ', isFilled: true, isArrowed: false })(
-      class = 'hamburger__button-sign-up',
-      onClick = 'javascript: window.open("http://www.google.com", "_blank");',
-    )
+    +button-short({ name: 'button-sign-in', text: 'ВОЙТИ', isBordered: true })
+    +button-long({ name: 'button-sign-up', text: 'ЗАРЕГИСТРИРОВАТЬСЯ', isFilled: true, isArrowed: false })

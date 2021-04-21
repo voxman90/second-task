@@ -1,4 +1,7 @@
 mixin link(args)
-  - const { href, text, target = null, title = null } = args
-  a(class='link', href=href, target=target, title=title, data-text=text)&attributes(attributes)
-    | #{text}
+  - const { href, text, hasLeftPadding = false, hasRightPadding = false } = args
+  - const classes = ['link']
+  - if (hasLeftPadding) classes.push('link_with_left-padding')
+  - if (hasRightPadding) classes.push('link_with_right-padding')
+  a(class=classes.join(' '), href=href)&attributes(attributes)
+    p(class='link__text', data-text=text)= text

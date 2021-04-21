@@ -50,7 +50,7 @@
   color: $color;
 }
 
-@mixin material-icons {
+@mixin material-icons($size: 1.5em, $height: 1) {
   display: inline-block;
 
   font-family: 'Material Icons';

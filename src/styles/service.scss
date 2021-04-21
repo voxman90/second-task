@@ -5,10 +5,15 @@
   width: 100%;
 }
 
+@mixin cancel-list-style() {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 @mixin vertical-align-centering() {
   content: '';
   display: inline-block;
-  width: 1%;
   height: 100%;
   vertical-align: middle;
 }

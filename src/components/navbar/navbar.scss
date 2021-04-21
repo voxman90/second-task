@@ -4,87 +4,68 @@
 
 .navbar__menu {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   height: 100%;
-  margin: 0;
-  padding: 0;
+  @include cancel-list-style;
 }
 
 .navbar__item {
-  display: inline-block;
-  padding: 12px 0;
-}
-
-.navbar__link {
-  padding: 10px;
-}
-
-.navbar__dropdown {
   position: relative;
+}
 
-  padding: 12px 0;
+.navbar__item-head {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+}
 
-  &:hover .navbar__icon {
+.navbar__trigger {
+  padding-right: 10px;
+
+  color: $dark-shade-50;
+
+  cursor: pointer;
+
+  &:hover,
+  &:focus,
+  &:active {
     color: $dark-shade-75;
   }
-
-  &:hover .navbar__dropdown-list {
-    visibility: visible;
-    opacity: 1;
-  }
-}
-
-.navbar__dropdown-head {
-  white-space: nowrap;
-}
-
-.navbar__dropdown-link {
-  vertical-align: middle;
-  padding-right: 0;
 
   &::after {
-    padding-left: 10px;
-  }
-
-  &:focus + .navbar__icon {
-    color: $dark-shade-75;
+    @include vertical-align-centering;
   }
 }
 
-.navbar__icon {
-  box-sizing: content-box;
-  height: 22px;
-  padding: 10px 10px 10px 0;
+.navbar__trigger_active {
+  color: $dark-shade-75;
+}
 
+.navbar__icon-wrapper {
+  display: inline-block;
   vertical-align: middle;
-  color: $dark-shade-50;
+  height: 1.4em;
 }
 
-.navbar__dropdown-list {
-  position: absolute;
+.navbar__submenu {
+  position: relative;
   z-index: 0;
+  top: 5px;
   visibility: hidden;
   opacity: 0;
-
-  margin-top: 13.6px;
-  padding: 14px 17px;
-
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   background-color: #FFFFFF;
-  box-shadow: 0px 10px 20px $dark-shade-05;
+  box-shadow: 0 10px 20px $dark-shade-05;
+  @include cancel-list-style;
+  padding: 10px;
 
-  transition: all 300ms linear;
-
-  &:active,
-  &:hover {
-    visibility: visible;
-    opacity: 1;
-  }
+  transition: all 250ms ease;
 }
 
-.navbar__dropdown-list-item {
-  padding: 0;
+.navbar__submenu_visible {
+  visibility: visible;
+  opacity: 1;
 }
 
 .navbar__button {
