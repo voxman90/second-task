@@ -1,25 +1,30 @@
-.bullet-list__label {
-  padding-bottom: 13px;
+.bullet-list {
+  @include cancel-list-style;
+
+  & > * + * {
+    margin-top: 10px;
+  }
 }
 
-.bullet-list__item {
-  display: flex;
-  align-items: baseline;
-  padding-bottom: 10px;
-}
-
-.bullet-list__ellipse {
+.bullet-list__marker {
+  display: inline-block;
+  vertical-align: top;
   width: 11.25px;
   height: 10px;
-
   background-color: $dark-shade-25;
   border-radius: 50%;
 }
 
-.bullet-list__text {
-  width: 100%;
-  margin-left: 0.652rem;
+.bullet-list__item-wrapper {
+  display: inline-block;
+  margin-left: 10px;
 
-  @include p-text($color: $dark-shade-75);
+  line-height: 1.5;
+}
+
+.bullet-list__item {
+  vertical-align: top;
+
+  @include p-text(0.875em, 1.357, $dark-shade-75);
   white-space: pre-wrap;
 }

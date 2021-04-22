@@ -1,7 +1,7 @@
 @use "sass:map";
 @use "sass:color";
-@use "../../styles/colors";
-@use "../../styles/text";
+@use "../../styles/_colors";
+@use "../../styles/_text";
 
 .form-elements {
   position: relative;

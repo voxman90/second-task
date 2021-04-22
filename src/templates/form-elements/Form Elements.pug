@@ -40,7 +40,7 @@ html
   body
     .form-elements
       .form-elements__logo
-        +logo({ size: 'chonk', isColored: false, isSigned: false })
+        +logo({ size: 'big', isColored: false, isSigned: false })
       .form-elements__content
         .form-elements__grid
           .form-elements__1st-block.box_width_20rem
@@ -54,14 +54,14 @@ html
             .box_margin-bottom_20px
               +dropdown-guests('dropdown-guests-1st', 'DROPDOWN')(class='js-auto-init')
             .box_margin-bottom_40px
-              +label('MASKED TEXT FIELD').box_margin-bottom_5px
+              +label({ left: 'masked text field' })
                 +input-date({ name: 'input-date-1st' })
             .box_margin-bottom_40px
               +dropdown-date({ name: 'dropdown-date-1st', left: 'DATE DROPDOWN', right: 'DATE DROPDOWN' })(class='js-dropdown-date-1st')
             .box_margin-bottom_40px
               +dropdown-filter-date({ name: 'dropdown-filter-date-1st', label: 'FILTER DATE DROPDOWN' })(class='js-dropdown-filter-date-1st')
             .box_margin-bottom_40px(style = 'width: 267px;')
-              +label('SUBSCRIPTION TEXT FIELD').box_margin-bottom_5px
+              +label({ left: 'SUBSCRIPTION TEXT FIELD' })
                 +subscription-field({ name: 'subscr-field-1st', placeholder: 'Email' })
           div(class='form-elements__2nd-block box_width_16\.625rem')
             .box_margin-bottom_20px
@@ -84,39 +84,39 @@ html
               +icon-item({ name: 'location_city', headline: 'Удобство', descr: 'Окно в каждой из спален' })
           .form-elements__4th-block
             .box_width_222px.box_margin-bottom_40px
-              +label('CHECKBOX BUTTONS').box_margin-bottom_1rem
+              +label({ left: 'checkbox buttons', hasLargePadding: true })
               each args in checkboxButtons
                 +checkbox-simple(args).box_margin-bottom_10px
             .box_width_222px.box_margin-bottom_40px
-              +label('RADIO BUTTONS').box_margin-bottom_1rem
+              +label({ left: 'radio buttons', hasLargePadding: true })
               .form-elements__radio-buttons
                 +radio-button({ name: 'sex', value: 'man', checked: true, descr: 'Мужчина' })
                 +radio-button({ name: 'sex', value: 'women', descr: 'Женщина' })
             .box_width_266px.box_margin-bottom_40px
-              +label('TOGGLE').box_margin-bottom_1rem
+              +label({ left: 'toggle' })
               +toggle({ name: 'spec', value: 'first', checked: true, descr: 'Получать спецпредложения' }).box_margin-bottom_10px
               +toggle({ name: 'spec', value: 'second', descr: 'Получать спецпредложения' })
             .box_margin-bottom_40px
-              +label('LIKE BUTTON').box_margin-bottom_1rem
+              +label({ left: 'like buttons' }).box_margin-bottom_1rem
               .form-elements__like-buttons
                 +like-button({ name: 'like-btn-1st', count: 2 })(class='js-auto-init')
                 +like-button({ name: 'like-btn-2nd', count: 12, checked: true })(class='js-auto-init')
             div(class='box_width_17\.5rem')
-              +label('RATE BUTTON').box_margin-bottom_1rem
+              +label({ left: 'rate buttons' }).box_margin-bottom_1rem
               .form-elements__rate-buttons
                 +rate-button({ amount: 5, filled: 5, name: 'rate-button-1st' })(class='js-auto-init')
                 +rate-button({ amount: 5, filled: 4, name: 'rate-button-2nd' })(class='js-auto-init')
           .form-elements__5th-block
             +dropdown-guests('dropdown-guests-1st', 'DROPDOWN')(class = 'js-dropdown-guests-1st')
           .form-elements__6th-block
-            +label('RICH CHECKBOX BUTTONS').box_margin-bottom_1rem
+            +label({ left: 'rich checkbox buttons', hasLargePadding: true })
               +checkbox-rich({ name: 'checkbox-rich-1st', value: false, text: 'Широкий коридор', subtext: 'Ширина коридоров в номере\nне менее 91 см.' }).box_margin-bottom_10px
               +checkbox-rich({ name: 'checkbox-rich-2nd', value: false, text: 'Помощник для инвалидов', subtext: 'На 1 этаже вас встретит специалист\nи проводит до номера.' })
           .form-elements__7th-block
             +comment({ img: 'image.jpg', date: '5 дней назад', nickname: 'Мурад Сарафанов', value: '11', message: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.' })
           .form-elements__8th-block
             +range-slider()
-            +label('BUTTONS').box_margin-bottom_1rem
+            +label({ left: 'buttons', hasLargePadding: true })
             .box_margin-bottom_30px
               +button-short({ name: 'button-short-1st', text: 'CLICK ME', isFilled: true })
               .form-elements__plug
@@ -135,4 +135,5 @@ html
           .form-elements__9th-block
             +dropdown-guests('dropdown-guests-2nd', 'DROPDOWN')(class = 'js-dropdown-guests-2nd')
           .form-elements__10th-block
-            +bullet-list(bulletList, 'BULLET LIST')
+            +label({ left: 'bullet list', hasLargePadding: true })
+              +bullet-list(bulletList)

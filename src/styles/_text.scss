@@ -1,5 +1,5 @@
 @use 'sass:math';
-@use 'colors' as *;
+@use '_colors' as *;
 
 @mixin Montserrat-normal {
   font: {
@@ -43,7 +43,7 @@
 }
 
 //- This is the body text which is used for most of the design, like paragraphs, lists, etc.
-@mixin p-text($size: 0.875em, $height: 1.714, $color: $dark-shade-75) {
+@mixin p-text($size: 0.875em, $height: 1.715, $color: $dark-shade-75) {
   @include Montserrat-normal;
   font-size: $size;
   line-height: $height;

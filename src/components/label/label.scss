@@ -1,7 +1,13 @@
 .label {
+  padding-bottom: 5px;
+
   &::after {
     @include clearfix;
   }
+}
+
+.label_padding_large {
+  padding-bottom: 1em;
 }
 
 .label__left-mark {
@@ -16,9 +22,6 @@
   float: right;
   height: 1.25em;
 
-  @include Montserrat-normal;
-  font-size: 0.75em;
-  line-height: 1.25;
+  @include label-text($color: $dark-shade-50);
   text-align: right;
-  color: $dark-shade-50;
 }

@@ -1,6 +1,8 @@
-mixin label(left = '', right = '')
+mixin label(args = {})
+  - const { left = '', right = '', hasLargePadding = false } = args
+  - const modifier = (hasLargePadding) ? 'label_padding_large' : '';
   label
-    .label&attributes(attributes)
+    div(class=`label ${modifier}`)
       span.label__left-mark!= left
       span.label__right-mark!= right
     if block

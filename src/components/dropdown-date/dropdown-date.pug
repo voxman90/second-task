@@ -3,11 +3,11 @@ mixin dropdown-date(args = {})
   div(class='dropdown-date js-dropdown-date')&attributes(attributes)
     .dropdown-date__head
       .dropdown-date__arrival
-        +label(left, '').dropdown-date__label
+        +label({ left })
           +input-date({ name: `${name}-arrival` }).js-dropdown-date__input-arrival
         +dropdown-date__icon
       .dropdown-date__departure
-        +label(right, '').dropdown-date__label
+        +label({ left: right })
           +input-date({ name: `${name}-departure` }).js-dropdown-date__input-departure
         +dropdown-date__icon
     .dropdown-date__bar.js-dropdown-date__bar.dropdown-date__bar_hidden

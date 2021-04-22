@@ -1,9 +1,7 @@
-mixin bullet-list(items, label = null)
-  .bullet-list&attributes(attributes)
-    if (label !== null)
-      +label(label, '').bullet-list__label
-    ul
-      each item in items
-        li.bullet-list__item
-          .bullet-list__ellipse
-          p.bullet-list__text!= item
+mixin bullet-list(items)
+  ul.bullet-list
+    each item in items
+      li
+        .bullet-list__marker
+        span.bullet-list__item-wrapper
+          span.bullet-list__item!= item

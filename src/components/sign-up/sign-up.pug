@@ -10,10 +10,10 @@ mixin sign-up()
         +radio-button({ name: 'sex', value: 'male', checked: true, descr: 'Мужчина' })
         .sign-up__plug
         +radio-button({ name: 'sex', value: 'female', descr: 'Женщина' })
-      +label('Дата рождения').card__label
+      +label({ left: 'дата рождения' })
         .card__spot.card__spot_indent_mid
           +input-date({ name: 'birth-date' })
-      +label('Данные для входа в сервис').card__label
+      +label({ left: 'данные для входа в сервис' })
         .card__spot.card__spot_indent_small
           +input-text({ name: 'user-email', placeholder: 'Email' })
         .card__spot.card__spot_indent_small
