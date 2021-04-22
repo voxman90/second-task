@@ -7,7 +7,6 @@
   ],
   "deps": [
     "icon",
-    "button",
-    "carousel"
+    "button"
   ]
 }

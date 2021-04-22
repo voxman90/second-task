@@ -21,10 +21,8 @@ mixin sign-up()
       .card__spot.card__spot_indent_mid
         +toggle({ name: 'spec', value: 'first', checked: false, descr: 'Получать спецпредложения' })
       .card__spot.card__spot_indent_big
-        +button-long({ name: 'button-sing-up', text: 'ЗАРЕГИСТРИРОВАТЬСЯ', isFilled: true, isArrowed: true })
+        +button-long({ name: 'button-sing-up', text: 'зарегистрироваться', isArrowed: true })
     .sign-up__sign-in
       p.sign-up__text
         | Уже есть аккаунт на Toxin?
-      +button-short({ name: 'button-sing-in', text: 'ВОЙТИ', isBordered: true})(
-        onclick='javascript: window.open("http://www.google.com", "_blank");',
-      )
+      +button-short({ name: 'button-sing-in', text: 'войти', isBordered: true })

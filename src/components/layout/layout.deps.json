@@ -1,8 +1,8 @@
 {
   "name": "layout",
   "techs": [
-    "pug",
-    "scss"
+    "scss",
+    "pug"
   ],
   "deps": [
     "favicon"

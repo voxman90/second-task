@@ -17,7 +17,7 @@ import 'components/copyright/copyright.scss';
 import 'components/social-follow/social-follow.scss';
 import 'components/copyright-bar/copyright-bar.scss';
 import 'components/footer-creative/footer-creative.scss';
-import 'components/subscription-field/subscription-field.scss';
+import 'components/subscription-form/subscription-form.scss';
 import 'components/footer/footer.scss';
 import 'components/logo/logo.js';
 import 'templates/registration/registration.scss';

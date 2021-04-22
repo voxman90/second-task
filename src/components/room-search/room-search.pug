@@ -9,6 +9,4 @@ mixin room-search()
       .card__spot.card__spot_indent_big
         +dropdown-guests('dropdown-guests-1st', 'ГОСТИ')(class='room-search__dropdown-guests js-auto-init')
       .card__spot
-        +button-long({ name: 'button-long-1st', text: 'ПОДОБРАТЬ НОМЕР', isFilled: true, isArrowed: true })(
-          type='submit',
-        )
+        +button-long({ name: 'button-long-1st', type: 'submit', text: 'ПОДОБРАТЬ НОМЕР', isArrowed: true })

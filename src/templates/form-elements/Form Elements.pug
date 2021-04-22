@@ -8,11 +8,10 @@ include ../../components/dropdown/dropdown.pug
 include ../../components/dropdown-guests/dropdown-guests.pug
 include ../../components/input-text-masked/input-text-masked.pug
 include ../../components/input-date/input-date.pug
-include ../../components/carousel/carousel.pug
 include ../../components/calendar/calendar.pug
 include ../../components/dropdown-date/dropdown-date.pug
 include ../../components/dropdown-filter-date/dropdown-filter-date.pug
-include ../../components/subscription-field/subscription-field.pug
+include ../../components/subscription-form/subscription-form.pug
 include ../../components/dropdown-facilities/dropdown-facilities.pug
 include ../../components/expandable-list/expandable-list.pug
 include ../../components/checkbox/checkbox.pug
@@ -62,7 +61,7 @@ html
               +dropdown-filter-date({ name: 'dropdown-filter-date-1st', label: 'FILTER DATE DROPDOWN' })(class='js-dropdown-filter-date-1st')
             .box_margin-bottom_40px(style = 'width: 267px;')
               +label({ left: 'SUBSCRIPTION TEXT FIELD' })
-                +subscription-field({ name: 'subscr-field-1st', placeholder: 'Email' })
+                +subscription-form({ name: 'subscr-field-1st', placeholder: 'Email' })
           div(class='form-elements__2nd-block box_width_16\.625rem')
             .box_margin-bottom_20px
               +dropdown-facilities('dropdown-facilities-1st', 'DROPDOWN', 'DEFAULT')(class='js-dropdown-facilities-1st')
@@ -72,12 +71,12 @@ html
             .box_width_266px.box_margin-bottom_20px
               +expandable-list('EXPANDABLE CHECKBOX LIST')(class='js-auto-init')
                 each args in checkboxList
-                  +checkbox-simple(args).box_margin-bottom_10px
+                  +checkbox-simple(args)
                 +checkbox-simple(lastCheckboxArgs)
             .box_width_266px.box_margin-bottom_20px
               +expandable-list('EXPANDABLE CHECKBOX LIST')(class='js-exp-list-2nd')
                 each args in checkboxList
-                  +checkbox-simple(args).box_margin-bottom_10px
+                  +checkbox-simple(args)
                 +checkbox-simple(lastCheckboxArgs)
             div(class='box_width_17\.5rem')
               +icon-item({ name: 'insert_emoticon', headline: 'Комфорт', descr: 'Шумопоглощающие стены' })
@@ -86,7 +85,7 @@ html
             .box_width_222px.box_margin-bottom_40px
               +label({ left: 'checkbox buttons', hasLargePadding: true })
               each args in checkboxButtons
-                +checkbox-simple(args).box_margin-bottom_10px
+                +checkbox-simple(args)
             .box_width_222px.box_margin-bottom_40px
               +label({ left: 'radio buttons', hasLargePadding: true })
               .form-elements__radio-buttons
@@ -94,15 +93,15 @@ html
                 +radio-button({ name: 'sex', value: 'women', descr: 'Женщина' })
             .box_width_266px.box_margin-bottom_40px
               +label({ left: 'toggle' })
-              +toggle({ name: 'spec', value: 'first', checked: true, descr: 'Получать спецпредложения' }).box_margin-bottom_10px
+              +toggle({ name: 'spec', value: 'first', checked: true, descr: 'Получать спецпредложения FFFFFFFFFFFFFFFFFFFFFFFFFFFFF' })
               +toggle({ name: 'spec', value: 'second', descr: 'Получать спецпредложения' })
             .box_margin-bottom_40px
-              +label({ left: 'like buttons' }).box_margin-bottom_1rem
+              +label({ left: 'like buttons' })
               .form-elements__like-buttons
                 +like-button({ name: 'like-btn-1st', count: 2 })(class='js-auto-init')
                 +like-button({ name: 'like-btn-2nd', count: 12, checked: true })(class='js-auto-init')
             div(class='box_width_17\.5rem')
-              +label({ left: 'rate buttons' }).box_margin-bottom_1rem
+              +label({ left: 'rate buttons' })
               .form-elements__rate-buttons
                 +rate-button({ amount: 5, filled: 5, name: 'rate-button-1st' })(class='js-auto-init')
                 +rate-button({ amount: 5, filled: 4, name: 'rate-button-2nd' })(class='js-auto-init')
@@ -118,19 +117,19 @@ html
             +range-slider()
             +label({ left: 'buttons', hasLargePadding: true })
             .box_margin-bottom_30px
-              +button-short({ name: 'button-short-1st', text: 'CLICK ME', isFilled: true })
+              +button-short({ name: 'button-short-1st', text: 'click me', isFilled: true })
               .form-elements__plug
-              +button-short({ name: 'button-short-2nd', text: 'CLICK ME', isFilled: true })(class = 'form-elements__button-filled_faded')
+              +button-short({ name: 'button-short-2nd', text: 'click me', isFilled: true })
             .box_margin-bottom_30px
-              +button-short({ name: 'button-short-3rd', text: 'CLICK ME', isBordered: true })
+              +button-short({ name: 'button-short-3rd', text: 'click me', isBordered: true })
               .form-elements__plug
-              +button-short({ name: 'button-short-4th', text: 'CLICK ME', isBordered: true })(class = 'form-elements__button-bordered_faded')
+              +button-short({ name: 'button-short-4th', text: 'clock me', isBordered: true })
             .box_margin-bottom_30px
-              +button({ name: 'button-1st', text: 'CLICK ME' })
+              +button({ name: 'button-1st', text: 'click me' })
               .form-elements__plug
-              +button({ name: 'button-2nd', text: 'CLICK ME' })(class = 'form-elements__button_faded')
+              +button({ name: 'button-2nd', text: 'click me' })
             .box_margin-bottom_40px
-              +button-long({ name: 'button-long-1st', text: 'ПЕРЕЙТИ К ОПЛАТЕ', isFilled: true, isArrowed: true })
+              +button-long({ name: 'button-long-1st', text: 'перейти к оплате', isArrowed: true })
             +pagination({ amount: 10 })(class = 'js-auto-init')
           .form-elements__9th-block
             +dropdown-guests('dropdown-guests-2nd', 'DROPDOWN')(class = 'js-dropdown-guests-2nd')

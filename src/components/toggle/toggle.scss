@@ -1,30 +1,52 @@
 .toggle {
   position: relative;
-
   display: flex;
   align-items: flex-start;
   flex-wrap: nowrap;
   min-width: min-content;
-  height: 24px;
+  min-height: max-content;
 }
 
-.toggle__descr {
+.toggle__input {
+  margin: 3.6px 13.6px;
+
+  &:checked + .toggle__descr-wrapper {
+    &::before {
+      border: 1px solid $primary;
+    }
+
+    &::after {
+      transform: translateX(1.25rem);
+      background: linear-gradient(180deg, $primary, $primary-gradient);
+    }
+  }
+
+  &:focus + .toggle__descr-wrapper::before,
+  &:hover + .toggle__descr-wrapper::before {
+    border-color: $dark-shade-50;
+  }
+
+  &:checked:focus + .toggle__descr-wrapper::before,
+  &:checked:hover + .toggle__descr-wrapper::before {
+    border: 1px solid $primary-darken-10;
+  }
+}
+
+.toggle__descr-wrapper {
   position: relative;
+  display: inline-block;
   padding-left: 10px;
 
-  @include p-text(0.875em, 1.25);
+  line-height: 1.5;
 
   &::before {
     content: '';
-
     position: absolute;
     z-index: 1;
     left: -40px;
-
     box-sizing: border-box;
     width: 40px;
     height: 20px;
-
     border: 1px solid $dark-shade-25;
     border-radius: 20px;
     background-color: #FFFFFF;
@@ -34,42 +56,22 @@
 
   &::after {
     content: '';
-
     position: absolute;
     z-index: 2;
     left: -36px;
     top: 4px;
-
     width: 12px;
     height: 12px;
-
     border-radius: 50%;
     background: $dark-shade-25;
+
     transition: transform 0.3s linear;
   }
 }
 
-.toggle__input {
-  margin: 3.6px 13.6px;
+.toggle__descr {
+  vertical-align: top;
+  margin: 0;
 
-  &:checked + .toggle__descr {
-    &::before {
-      border: 1px solid $primary;
-    }
-
-    &::after {
-      background: linear-gradient(180deg, $primary, $primary-gradient);
-      transform: translateX(1.25rem);
-    }
-  }
-
-  &:focus + .toggle__descr::before,
-  &:hover + .toggle__descr::before {
-    border-color: $dark-shade-50;
-  }
-
-  &:checked:focus + .toggle__descr::before,
-  &:checked:hover + .toggle__descr::before {
-    border: 1px solid $primary-darken-10;
-  }
+  @include p-text(0.875em, 1.25);
 }

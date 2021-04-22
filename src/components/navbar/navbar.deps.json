@@ -1,14 +1,14 @@
 {
   "name": "navbar",
   "techs": [
+    "js",
     "scss",
-    "pug",
-    "js"
+    "pug"
   ],
   "deps": [
+    "link",
     "icon",
     "button-short",
-    "button-long",
-    "link"
+    "button-long"
   ]
 }

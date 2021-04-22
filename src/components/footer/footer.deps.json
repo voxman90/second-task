@@ -6,9 +6,8 @@
   ],
   "deps": [
     "copyright-bar",
-    "footer-creative",
     "logo",
     "link",
-    "subscription-field"
+    "subscription-form"
   ]
 }

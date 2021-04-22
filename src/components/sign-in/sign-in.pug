@@ -7,10 +7,8 @@ mixin sign-in()
       .card__spot.card__spot_indent_mid
         +input-text({ name: 'user-password', placeholder: 'Пароль' })
       .card__spot.card__spot_indent_big
-        +button-long({ name: 'button-sing-up', text: 'ВОЙТИ', isFilled: true, isArrowed: true })
+        +button-long({ name: 'button-sing-up', text: 'войти', isArrowed: true })
     .sign-in__sign-up
       p.sign-in__text
         | Нет аккаунта на Toxin?
-      +button-short({ name: 'button-sing-in', text: 'СОЗДАТЬ', isBordered: true })(
-        onclick='javascript: window.open("http://www.google.com", "_blank");',
-      )
+      +button-short({ name: 'button-sing-in', text: 'создать', isBordered: true })

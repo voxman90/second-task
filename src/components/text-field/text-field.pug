@@ -1,5 +1,5 @@
-mixin text-field(args = {}, attr = {})
-  - const { name, placeholder, left, right } = args
-  .text-field&attributes(attributes)
+mixin text-field(args)
+  - const { name, placeholder, left, right = '' } = args
+  .text-field
     +label({ left, right })
-      +input-text({ name, placeholder })&attributes(attr)
+      +input-text({ name, placeholder })&attributes(attributes)

@@ -27,9 +27,9 @@
     const depsPath = getPath(root, ext);
     const isDepsFileAlreadyExists = fs.existsSync(depsPath);
 
-    if (isDepsFileAlreadyExists) {
-      return void 0;
-    }
+    // if (isDepsFileAlreadyExists) {
+    //   return void 0;
+    // }
 
     const depsObj = {
       name: componentName,

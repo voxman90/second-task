@@ -1,8 +1,18 @@
 mixin button(args = {})
-  - const { name, text, isFilled, isBordered } = args
+  -
+    const { isFilled = false, isBordered = false, isArrowed = false, isLong = false, isShort = false } = args
+    const { text = '', type = 'button' } = args
+    const modifiers = []
+  -
+    if (isBordered) modifiers.push('button_style_bordered')
+    if (isArrowed) modifiers.push('button_style_arrowed')
+    if (isFilled) modifiers.push('button_style_filled')
+    if (isShort) modifiers.push('button_size_short')
+    if (isLong) modifiers.push('button_size_large')
+  -
+    const classes = ['button', ...modifiers];
+
   button(
-    class='button',
-    class=(isFilled) ? 'button_style_fill' : undefined,
-    class=(isBordered) ? 'button_style_border' : undefined,
-    name=name,
-  )&attributes(attributes)= text
+    class=classes.join(' '),
+    type=type,
+  )&attributes(attibutes)= text

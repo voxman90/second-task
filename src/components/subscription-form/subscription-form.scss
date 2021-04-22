@@ -1,22 +1,22 @@
-.subscription-field {
+.subscription-form {
   position: relative;
 
   display: flex;
   height: 2.75em;
 }
 
-.subscription-field__input-text {
+.subscription-form__input-text {
   padding-right: calc(3.143em - 1px);
   padding-bottom: 2px;
 
-  &:hover  + .subscription-field__submit-button,
-  &:focus  + .subscription-field__submit-button,
-  &:active + .subscription-field__submit-button {
+  &:hover  + .subscription-form__submit-button,
+  &:focus  + .subscription-form__submit-button,
+  &:active + .subscription-form__submit-button {
     border-color: $dark-shade-50;
   }
 }
 
-.subscription-field__button {
+.subscription-form__button {
   position: absolute;
   top: 0;
   right: 0;
@@ -46,7 +46,7 @@
   }
 }
 
-.subscription-field__icon {
+.subscription-form__icon {
   @supports not (-webkit-text-fill-color: transparent) {
     background-color: #FFFFFF;
     mix-blend-mode: screen;

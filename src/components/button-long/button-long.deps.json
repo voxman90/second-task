@@ -1,7 +1,6 @@
 {
   "name": "button-long",
   "techs": [
-    "scss",
     "pug"
   ],
   "deps": [

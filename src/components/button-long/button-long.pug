@@ -1,6 +1,3 @@
-mixin button-long(args = {})
-  - let { isArrowed } = args
-  +button(args)(
-    class='button-long',
-    class=(isArrowed) ? 'button-long_arrowed' : undefined,
-  )&attributes(attributes)
+mixin button-long(args)
+  - const { name, text, type = 'button', isArrowed = true } = args
+  +button({ name, text, type, isArrowed, isFilled: true, isLong: true })&attributes(attributes)

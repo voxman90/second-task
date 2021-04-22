@@ -1,11 +1,12 @@
 mixin toggle(args = {})
-  - const { name, value, checked, descr } = args
-  label(class='toggle')&attributes(attributes)
+  - const { name, value, checked, descr = '' } = args
+  label(class='toggle')
     input(
       class='toggle__input',
       type='checkbox',
       name=name,
       value=value,
       checked=(checked === true) ? 'checked' : undefined,
-    )
-    p.toggle__descr!= descr
+    )&attributes(attributes)
+    span.toggle__descr-wrapper
+      span.toggle__descr!= descr

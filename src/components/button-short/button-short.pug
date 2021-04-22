@@ -1,4 +1,3 @@
-mixin button-short(args = {})
-  +button(args)(
-    class='button-short',
-  )&attributes(attributes)
+mixin button-short(args)
+  - const { name, text, type = 'button', isFilled = true, isBordered = false } = args
+  +button({ name, text, type, isFilled, isBordered, isShort: true })&attributes(attributes)

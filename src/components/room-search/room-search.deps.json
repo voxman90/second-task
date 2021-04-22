@@ -7,7 +7,6 @@
   "deps": [
     "dropdown-date",
     "dropdown-guests",
-    "button-long",
-    "card"
+    "button-long"
   ]
 }

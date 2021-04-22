@@ -20,7 +20,22 @@
   }
 }
 
-.button_style_fill {
+.button_size_short {
+  min-width: min-content;
+  width: 100%;
+  max-width: 99px;
+  height: 3.667em;
+}
+
+
+.button_size_long {
+  min-width: min-content;
+  width: 100%;
+  max-width: 320px;
+  height: 3.667em;
+}
+
+.button_style_filled {
   border-radius: 3.667em;
   background: linear-gradient(180deg, $primary, $primary-gradient);
 
@@ -33,10 +48,10 @@
   }
 }
 
-.button_style_border {
+.button_style_bordered {
   border: 2.048px solid transparent;
   border-radius: 3.667em;
-  background-image: linear-gradient(#FFF, #FFF),
+  background-image: linear-gradient(#FFFFFF, #FFFFFF),
                     linear-gradient(180deg, $primary, $primary-gradient);
   background-clip: content-box,
                    border-box;
@@ -45,9 +60,24 @@
   color: $primary;
 
   &:hover {
-    background-image: linear-gradient(#FFF, #FFF),
+    background-image: linear-gradient(#FFFFFF, #FFFFFF),
                       linear-gradient(180deg, $primary-50, $primary-gradient-50);
 
     color: $primary;
+  }
+}
+
+.button_style_arrowed {
+  padding-right: 4px;
+
+  &::after {
+    content: 'arrow_forward';
+    position: absolute;
+    right: 0.417em;
+    top: 50%;
+    transform: translateY(-50%);
+
+    @include material-icons;
+    font-size: 2em;
   }
 }

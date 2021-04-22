@@ -1,7 +1,6 @@
 {
   "name": "text-field",
   "techs": [
-    "scss",
     "pug"
   ],
   "deps": [
