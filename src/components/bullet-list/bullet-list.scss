@@ -9,22 +9,23 @@
 .bullet-list__marker {
   display: inline-block;
   vertical-align: top;
-  width: 11.25px;
+  width: 10.43px;
   height: 10px;
+  margin-top: 4px;
   background-color: $dark-shade-25;
   border-radius: 50%;
 }
 
-.bullet-list__item-wrapper {
+.bullet-list__text-wrapper {
   display: inline-block;
-  margin-left: 10px;
+  margin-left: 10.5px;
 
   line-height: 1.5;
 }
 
-.bullet-list__item {
+.bullet-list__text {
   vertical-align: top;
 
-  @include p-text(0.875em, 1.357, $dark-shade-75);
+  @include p-text(0.875em, 1.3575, $dark-shade-75);
   white-space: pre-wrap;
 }
