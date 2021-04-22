@@ -1,4 +1,8 @@
-mixin input-date(args = {})
-  - args.placeholder = 'ДД.ММ.ГГГГ';
-  - const mask = { 'data-inputmask': "'placeholder': 'ДД.ММ.ГГГГ', 'alias': 'datetime', 'inputFormat': 'dd.mm.yyyy', 'clearIncomplete': true" }
-  +input-text-masked(args, mask)&attributes(attributes)
+mixin input-date(argsParam = {})
+  -
+    const args = { ...argsParam }
+    args.placeholder = 'ДД.ММ.ГГГГ'
+    args.mask = "'placeholder': 'ДД.ММ.ГГГГ', 'alias': 'datetime', 'inputFormat': 'dd.mm.yyyy', 'clearIncomplete': true"
+    args.isMasked = true
+
+  +input(args)&attributes(attributes)

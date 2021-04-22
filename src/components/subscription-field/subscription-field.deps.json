@@ -1,11 +1,11 @@
 {
-  "name": "input-text-masked",
+  "name": "subscription-field",
   "techs": [
-    "js",
     "scss",
     "pug"
   ],
   "deps": [
-    "input-text"
+    "input",
+    "icon"
   ]
 }

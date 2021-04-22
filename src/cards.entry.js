@@ -1,7 +1,6 @@
 import 'styles/style.scss';
 import 'components/label/label.scss';
-import 'components/input-text/input-text.scss';
-import 'components/input-text-masked/input-text-masked.scss';
+import 'components/input/input.scss';
 import 'components/icon/icon.scss';
 import 'components/button/button.scss';
 import 'components/calendar/calendar.scss';
@@ -18,7 +17,7 @@ import 'components/toggle/toggle.scss';
 import 'components/sign-up/sign-up.scss';
 import 'components/sign-in/sign-in.scss';
 import 'components/invoice/invoice.scss';
-import 'components/input-text-masked/input-text-masked.js';
+import 'components/input/input.js';
 import 'components/calendar/calendar.js';
 import 'components/dropdown-date/dropdown-date.js';
 import 'components/dropdown/dropdown.js';

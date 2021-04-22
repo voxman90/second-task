@@ -7,8 +7,8 @@ mixin button(args = {})
     if (isBordered) modifiers.push('button_style_bordered')
     if (isArrowed) modifiers.push('button_style_arrowed')
     if (isFilled) modifiers.push('button_style_filled')
-    if (isShort) modifiers.push('button_size_short')
-    if (isLong) modifiers.push('button_size_large')
+    if (isShort) modifiers.push('button_length_short')
+    if (isLong) modifiers.push('button_length_long')
   -
     const classes = ['button', ...modifiers];
 

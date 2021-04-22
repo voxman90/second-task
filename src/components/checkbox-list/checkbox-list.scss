@@ -1,0 +1,9 @@
+.checkbox-list {
+  @include cancel-list-style;
+}
+
+.checkbox-list__item {
+  & + & {
+    margin-top: 0.625rem;
+  }
+}

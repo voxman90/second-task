@@ -9,4 +9,4 @@ mixin toggle(args = {})
       checked=(checked === true) ? 'checked' : undefined,
     )&attributes(attributes)
     span.toggle__descr-wrapper
-      span.toggle__descr!= descr
+      span.toggle__descr= descr

@@ -4,6 +4,6 @@
     "pug"
   ],
   "deps": [
-    "input-text-masked"
+    "input"
   ]
 }

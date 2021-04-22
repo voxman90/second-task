@@ -1,7 +1,9 @@
-.input-text {
+.input {
   width: 100%;
+  max-width: 320px;
   height: 3.143em;
   padding-left: 1em;
+  padding-right: 1em;
 
   border: 1px solid $dark-shade-25;
   border-radius: 4px;
@@ -36,7 +38,16 @@
   }
 }
 
-.input-text_hover {
+.input_hovered {
   outline: none;
   border-color: $dark-shade-50;
+}
+
+.input_masked {
+  padding-bottom: 2.5px;
+}
+
+.input_padding_large {
+  padding-right: calc(3.143em - 1px);
+  padding-bottom: 2px;
 }

@@ -1,5 +1,5 @@
 {
-  "title": "Form Elements",
+  "pageTitle": "Form Elements",
   "checkboxList": [
     { "name": "checkbox-1st", "checked": false, "text": "Завтрак" },
     { "name": "checkbox-2nd", "checked": true, "text": "Письменный стол" },
@@ -10,10 +10,14 @@
     { "name": "checkbox-7th", "checked": false, "text": "Телевизор" },
     { "name": "checkbox-8th", "checked": false, "text": "Шампунь" }
   ],
-  "checkboxButtons": [
+  "checkboxItems": [
     { "name": "checkbox-butt-1st", "checked": false, "text": "Можно курить" },
     { "name": "checkbox-butt-2nd", "checked": true, "text": "Можно с питомцами" },
     { "name": "checkbox-butt-3rd", "checked": true, "text": "Можно пригласить гостей\n(до 10 человек)" }
+  ],
+  "checkboxRich": [
+    { "name": "checkbox-rich-1st", "checked": false, "text": "Широкий коридор", "subtext": "Ширина коридоров в номере\nне менее 91 см." },
+    { "name": "checkbox-rich-2nd", "checked": false, "text": "Помощник для инвалидов", "subtext": "На 1 этаже вас встретит специалист\nи проводит до номера." }
   ],
   "bulletList": [
     "Нельзя с питомцами",

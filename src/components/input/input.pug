@@ -1,0 +1,16 @@
+mixin input(args = {})
+  - const { name = '', type = 'text', placeholder = '', value = null, mask = null } = args
+  -
+    const { isSubscriptionField = false, isMasked = false } = args
+    const classes = ['input']
+    if (isSubscriptionField) classes.push('input_padding_large')
+    if (isMasked) classes.push('input_masked', 'js-input-masked')
+
+  input(
+    class=classes.join(' '),
+    type=type,
+    name=name,
+    placeholder=placeholder,
+    value=value,
+    data-inputmask=mask,
+  )&attributes(attributes)

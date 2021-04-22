@@ -3,9 +3,9 @@ mixin sign-up()
     form(action='')
       h1.card__heading Регистрация аккаунта
       .card__spot.card__spot_indent_small
-        +input-text({ name: 'first-name', placeholder: 'Имя' })
+        +input({ name: 'first-name', placeholder: 'Имя' })
       .card__spot.card__spot_indent_small
-        +input-text({ name: 'last-name', placeholder: 'Фамилия' })
+        +input({ name: 'last-name', placeholder: 'Фамилия' })
       .sign-up__radio-buttons.card__spot.card__spot_indent_mid
         +radio-button({ name: 'sex', value: 'male', checked: true, descr: 'Мужчина' })
         .sign-up__plug
@@ -15,9 +15,9 @@ mixin sign-up()
           +input-date({ name: 'birth-date' })
       +label({ left: 'данные для входа в сервис' })
         .card__spot.card__spot_indent_small
-          +input-text({ name: 'user-email', placeholder: 'Email' })
+          +input({ name: 'user-email', placeholder: 'Email' })
         .card__spot.card__spot_indent_small
-          +input-text({ name: 'user-password', placeholder: 'Пароль' })
+          +input({ name: 'user-password', placeholder: 'Пароль' })
       .card__spot.card__spot_indent_mid
         +toggle({ name: 'spec', value: 'first', checked: false, descr: 'Получать спецпредложения' })
       .card__spot.card__spot_indent_big

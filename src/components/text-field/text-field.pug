@@ -2,4 +2,4 @@ mixin text-field(args)
   - const { name, placeholder, left, right = '' } = args
   .text-field
     +label({ left, right })
-      +input-text({ name, placeholder })&attributes(attributes)
+      +input({ name, placeholder })&attributes(attributes)

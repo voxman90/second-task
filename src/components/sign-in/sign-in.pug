@@ -3,9 +3,9 @@ mixin sign-in()
     form(action='')
       h1.card__heading.sign-in__heading Войти
       .card__spot.card__spot_indent_small
-        +input-text({ name: 'user-email', placeholder: 'Email' })
+        +input({ name: 'user-email', placeholder: 'Email' })
       .card__spot.card__spot_indent_mid
-        +input-text({ name: 'user-password', placeholder: 'Пароль' })
+        +input({ name: 'user-password', placeholder: 'Пароль' })
       .card__spot.card__spot_indent_big
         +button-long({ name: 'button-sing-up', text: 'войти', isArrowed: true })
     .sign-in__sign-up

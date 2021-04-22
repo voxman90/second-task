@@ -5,7 +5,7 @@
     "pug"
   ],
   "deps": [
-    "input-text",
+    "input",
     "radio-button",
     "label",
     "input-date",

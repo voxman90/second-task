@@ -1,0 +1,11 @@
+mixin checkbox-list(args = {})
+  - const { items, label, isRich = false } = args
+  ul.checkbox-list
+    if (label !== undefined)
+      +label({ left: label, hasLargePadding: true })
+    each item in items
+      li.checkbox-list__item
+        if (!isRich)
+          +checkbox(item)
+        else
+          +checkbox-rich(item)

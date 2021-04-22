@@ -23,5 +23,6 @@
   height: 1.25em;
 
   @include label-text($color: $dark-shade-50);
+  font-weight: normal;
   text-align: right;
 }

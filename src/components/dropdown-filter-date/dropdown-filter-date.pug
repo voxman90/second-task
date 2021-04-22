@@ -9,11 +9,11 @@ mixin dropdown-filter-date(args = {})
         tabindex=0,
         role='button',
       )
-      +input-text({ name: `${name}-arrival` })(
+      +input({ name: `${name}-arrival` })(
         class='dropdown-filter-date__input-arrival js-dropdown-filter-date__input-arrival',
         disabled=true,
       )
-      +input-text({ name: `${name}-departure` })(
+      +input({ name: `${name}-departure` })(
         class='dropdown-filter-date__input-departure js-dropdown-filter-date__input-departure',
         disabled=true,
       )

@@ -1,32 +1,27 @@
-.subscription-form {
+.subscription-field {
   position: relative;
-
   display: flex;
+  min-width: 260px;
+  max-width: 320px;
   height: 2.75em;
-}
 
-.subscription-form__input-text {
-  padding-right: calc(3.143em - 1px);
-  padding-bottom: 2px;
-
-  &:hover  + .subscription-form__submit-button,
-  &:focus  + .subscription-form__submit-button,
-  &:active + .subscription-form__submit-button {
+  &:hover  + .subscription-field__button,
+  &:focus  + .subscription-field__button,
+  &:active + .subscription-field__button {
     border-color: $dark-shade-50;
   }
 }
 
-.subscription-form__button {
+.subscription-field__button {
   position: absolute;
   top: 0;
   right: 0;
-
   display: flex;
   align-items: center;
   justify-content: center;
   width: 2.75em;
   height: 2.75em;
-
+  border: none;
   border-radius: 0 4px 4px 0;
   background: linear-gradient(180deg, $primary 0%, $primary-gradient 100%);
 
@@ -46,7 +41,7 @@
   }
 }
 
-.subscription-form__icon {
+.subscription-field__icon {
   @supports not (-webkit-text-fill-color: transparent) {
     background-color: #FFFFFF;
     mix-blend-mode: screen;

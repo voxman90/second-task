@@ -1,138 +1,135 @@
+include ../../components/favicon/favicon.pug
+include ../../components/layout/layout.pug
 include ../../components/logo/logo.pug
 include ../../components/label/label.pug
-include ../../components/input-text/input-text.pug
+include ../../components/input/input.pug
 include ../../components/text-field/text-field.pug
 include ../../components/icon/icon.pug
 include ../../components/button/button.pug
 include ../../components/dropdown/dropdown.pug
 include ../../components/dropdown-guests/dropdown-guests.pug
-include ../../components/input-text-masked/input-text-masked.pug
 include ../../components/input-date/input-date.pug
 include ../../components/calendar/calendar.pug
 include ../../components/dropdown-date/dropdown-date.pug
 include ../../components/dropdown-filter-date/dropdown-filter-date.pug
-include ../../components/subscription-form/subscription-form.pug
-include ../../components/dropdown-facilities/dropdown-facilities.pug
-include ../../components/expandable-list/expandable-list.pug
+include ../../components/subscription-field/subscription-field.pug
 include ../../components/checkbox/checkbox.pug
-include ../../components/checkbox-simple/checkbox-simple.pug
-include ../../components/icon-item/icon-item.pug
+include ../../components/checkbox-rich/checkbox-rich.pug
+include ../../components/checkbox-list/checkbox-list.pug
 include ../../components/radio-button/radio-button.pug
 include ../../components/toggle/toggle.pug
 include ../../components/like-button/like-button.pug
 include ../../components/rate-button/rate-button.pug
-include ../../components/checkbox-rich/checkbox-rich.pug
-include ../../components/comment/comment.pug
 include ../../components/range-slider/range-slider.pug
 include ../../components/button-short/button-short.pug
 include ../../components/button-long/button-long.pug
 include ../../components/pagination/pagination.pug
+include ../../components/dropdown-facilities/dropdown-facilities.pug
+include ../../components/expandable-list/expandable-list.pug
 include ../../components/bullet-list/bullet-list.pug
+include ../../components/icon-item/icon-item.pug
+include ../../components/comment/comment.pug
 - const data = htmlWebpackPlugin.options.data
-- const { title, checkboxList, checkboxButtons, bulletList } = data
-- const lastCheckboxArgs = checkboxList.pop();
-doctype html
-html
-  head
-    meta(charset='UTF-8')
-    title= title
-  body
-    .form-elements
-      .form-elements__logo
-        +logo({ size: 'big', isColored: false, isSigned: false })
-      .form-elements__content
-        .form-elements__grid
-          .form-elements__1st-block.box_width_20rem
-            .box_margin-bottom_20px
-              +text-field({ name: 'input-text-1st', placeholder: 'Email', left: 'TEXT FIELD', right: 'DEFAULT' })
-            .box_margin-bottom_20px
-              +text-field(
-                { name: 'input-text-2nd', left: 'TEXT FIELD', right: 'HOVER / FOCUS' },
-                { value: 'This is pretty awesome', class: 'input-text_hover' }
-              )
-            .box_margin-bottom_20px
-              +dropdown-guests('dropdown-guests-1st', 'DROPDOWN')(class='js-auto-init')
-            .box_margin-bottom_40px
+- const { title, checkboxList, checkboxRich, checkboxItems, bulletList } = data
+
++layout()
+  +layout__block('head')
+    title= pageTitle
+
+  +layout__block('header')
+    .fe__logo
+      +logo({ size: 'big', isColored: false, isSigned: false })
+
+  +layout__block('content')
+    .fe__wrapper
+      .fe__content
+        .fe__r-1
+          .fe__r-1__c-1
+            .fe__m-20
+              +text-field({ name: 'input-1st', placeholder: 'Email', left: 'text field', right: 'default' })
+            .fe__m-20
+              +text-field({ name: 'input-2nd', left: 'text field', right: 'hover / focus' })
+            .fe__m-20
+              +dropdown-guests('dropdown-guests-1st', 'dropdown')(class='js-auto-init')
+            .fe__m-40
               +label({ left: 'masked text field' })
                 +input-date({ name: 'input-date-1st' })
-            .box_margin-bottom_40px
-              +dropdown-date({ name: 'dropdown-date-1st', left: 'DATE DROPDOWN', right: 'DATE DROPDOWN' })(class='js-dropdown-date-1st')
-            .box_margin-bottom_40px
-              +dropdown-filter-date({ name: 'dropdown-filter-date-1st', label: 'FILTER DATE DROPDOWN' })(class='js-dropdown-filter-date-1st')
-            .box_margin-bottom_40px(style = 'width: 267px;')
-              +label({ left: 'SUBSCRIPTION TEXT FIELD' })
-                +subscription-form({ name: 'subscr-field-1st', placeholder: 'Email' })
-          div(class='form-elements__2nd-block box_width_16\.625rem')
-            .box_margin-bottom_20px
-              +dropdown-facilities('dropdown-facilities-1st', 'DROPDOWN', 'DEFAULT')(class='js-dropdown-facilities-1st')
-            .box_margin-bottom_20px
-              +dropdown-facilities('dropdown-facilities-2nd', 'DROPDOWN', 'EXPANDED')(class='js-dropdown-facilities-2nd')
-          .form-elements__3rd-block
-            .box_width_266px.box_margin-bottom_20px
-              +expandable-list('EXPANDABLE CHECKBOX LIST')(class='js-auto-init')
-                each args in checkboxList
-                  +checkbox-simple(args)
-                +checkbox-simple(lastCheckboxArgs)
-            .box_width_266px.box_margin-bottom_20px
-              +expandable-list('EXPANDABLE CHECKBOX LIST')(class='js-exp-list-2nd')
-                each args in checkboxList
-                  +checkbox-simple(args)
-                +checkbox-simple(lastCheckboxArgs)
-            div(class='box_width_17\.5rem')
-              +icon-item({ name: 'insert_emoticon', headline: 'Комфорт', descr: 'Шумопоглощающие стены' })
-              +icon-item({ name: 'location_city', headline: 'Удобство', descr: 'Окно в каждой из спален' })
-          .form-elements__4th-block
-            .box_width_222px.box_margin-bottom_40px
-              +label({ left: 'checkbox buttons', hasLargePadding: true })
-              each args in checkboxButtons
-                +checkbox-simple(args)
-            .box_width_222px.box_margin-bottom_40px
+            .fe__m-40
+              +dropdown-date({ name: 'dropdown-date-1st', left: 'date dropdown', right: 'date dropdown' })(class='js-dropdown-date-1st')
+            .fe__m-40
+              +dropdown-filter-date({ name: 'dropdown-filter-date-1st', label: 'filter date dropdown' })(class='js-dropdown-filter-date-1st')
+            .fe__w-266
+              +label({ left: 'subscription text field' })
+                +subscription-field({ name: 'subscr-field-1st', placeholder: 'Email' })
+          .fe__r-1__c-2
+            .fe__m-40.fe__w-222
+              +checkbox-list({ label: 'checkbox buttons', items: checkboxItems })
+            .fe__m-40.fe__w-222
               +label({ left: 'radio buttons', hasLargePadding: true })
-              .form-elements__radio-buttons
+              .fe__radio-buttons
                 +radio-button({ name: 'sex', value: 'man', checked: true, descr: 'Мужчина' })
                 +radio-button({ name: 'sex', value: 'women', descr: 'Женщина' })
-            .box_width_266px.box_margin-bottom_40px
+            .fe__m-40.fe__w-270
               +label({ left: 'toggle' })
-              +toggle({ name: 'spec', value: 'first', checked: true, descr: 'Получать спецпредложения FFFFFFFFFFFFFFFFFFFFFFFFFFFFF' })
+              +toggle({ name: 'spec', value: 'first', checked: true, descr: 'Получать спецпредложения' })
               +toggle({ name: 'spec', value: 'second', descr: 'Получать спецпредложения' })
-            .box_margin-bottom_40px
+            .fe__m-40
               +label({ left: 'like buttons' })
-              .form-elements__like-buttons
+              .fe__like-buttons
                 +like-button({ name: 'like-btn-1st', count: 2 })(class='js-auto-init')
                 +like-button({ name: 'like-btn-2nd', count: 12, checked: true })(class='js-auto-init')
             div(class='box_width_17\.5rem')
               +label({ left: 'rate buttons' })
-              .form-elements__rate-buttons
+              .fe__rate-buttons
                 +rate-button({ amount: 5, filled: 5, name: 'rate-button-1st' })(class='js-auto-init')
                 +rate-button({ amount: 5, filled: 4, name: 'rate-button-2nd' })(class='js-auto-init')
-          .form-elements__5th-block
-            +dropdown-guests('dropdown-guests-1st', 'DROPDOWN')(class = 'js-dropdown-guests-1st')
-          .form-elements__6th-block
-            +label({ left: 'rich checkbox buttons', hasLargePadding: true })
-              +checkbox-rich({ name: 'checkbox-rich-1st', value: false, text: 'Широкий коридор', subtext: 'Ширина коридоров в номере\nне менее 91 см.' }).box_margin-bottom_10px
-              +checkbox-rich({ name: 'checkbox-rich-2nd', value: false, text: 'Помощник для инвалидов', subtext: 'На 1 этаже вас встретит специалист\nи проводит до номера.' })
-          .form-elements__7th-block
-            +comment({ img: 'image.jpg', date: '5 дней назад', nickname: 'Мурад Сарафанов', value: '11', message: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.' })
-          .form-elements__8th-block
-            +range-slider()
-            +label({ left: 'buttons', hasLargePadding: true })
-            .box_margin-bottom_30px
-              +button-short({ name: 'button-short-1st', text: 'click me', isFilled: true })
-              .form-elements__plug
-              +button-short({ name: 'button-short-2nd', text: 'click me', isFilled: true })
-            .box_margin-bottom_30px
-              +button-short({ name: 'button-short-3rd', text: 'click me', isBordered: true })
-              .form-elements__plug
-              +button-short({ name: 'button-short-4th', text: 'clock me', isBordered: true })
-            .box_margin-bottom_30px
-              +button({ name: 'button-1st', text: 'click me' })
-              .form-elements__plug
-              +button({ name: 'button-2nd', text: 'click me' })
-            .box_margin-bottom_40px
+          .fe__r-1__c-3
+            .fe__m-40
+              +range-slider()
+            .fe__m-30
+              +label({ left: 'buttons', hasLargePadding: true })
+              .fe__m-30
+                +button-short({ name: 'button-short-1st', text: 'click me', isFilled: true })
+                .fe__plug
+                +button-short({ name: 'button-short-2nd', text: 'click me', isFilled: true })
+              .fe__m-30
+                +button-short({ name: 'button-short-3rd', text: 'click me', isBordered: true })
+                .fe__plug
+                +button-short({ name: 'button-short-4th', text: 'clock me', isBordered: true })
+              .fe__m-30
+                +button({ name: 'button-1st', text: 'click me' })
+                .fe__plug
+                +button({ name: 'button-2nd', text: 'click me' })
+            .fe__m-40
               +button-long({ name: 'button-long-1st', text: 'перейти к оплате', isArrowed: true })
             +pagination({ amount: 10 })(class = 'js-auto-init')
-          .form-elements__9th-block
+        .fe__r-2
+          .fe__r-2__c-1
+            .fe__m-20
+              +dropdown-facilities('dropdown-facilities-1st', 'DROPDOWN', 'DEFAULT')(class='js-dropdown-facilities-1st')
+            .fe__m-20
+              +dropdown-facilities('dropdown-facilities-2nd', 'DROPDOWN', 'EXPANDED')(class='js-dropdown-facilities-2nd')
+          .fe__r-2__c-2
+            +dropdown-guests('dropdown-guests-1st', 'DROPDOWN')(class = 'js-dropdown-guests-1st')
+          .fe__r-2__c-3
             +dropdown-guests('dropdown-guests-2nd', 'DROPDOWN')(class = 'js-dropdown-guests-2nd')
-          .form-elements__10th-block
+        .fe__r-3
+          .fe__r-3__c-1
+            .fe__m-20.fe__w-266
+              +expandable-list('expandable checkbox list')(class='js-auto-init')
+                +checkbox-list({ items: checkboxList })
+            .fe__m-20.fe__w-266
+              +expandable-list('expandable checkbox list')(class='js-exp-list-2nd')
+                +checkbox-list({ items: checkboxList })
+          .fe__r-3__c-2
+            +checkbox-list({ label: 'rich checkbox buttons', items: checkboxRich, isRich: true })
+          .fe__r-3__c-3
             +label({ left: 'bullet list', hasLargePadding: true })
               +bullet-list(bulletList)
+        .fe__r-4
+          .fe__r-4__c-1
+            +icon-item({ name: 'insert_emoticon', headline: 'Комфорт', descr: 'Шумопоглощающие стены' })
+            +icon-item({ name: 'location_city', headline: 'Удобство', descr: 'Окно в каждой из спален' })
+          .fe__r-4__c-2
+            +comment({ img: 'image.jpg', date: '5 дней назад', nickname: 'Мурад Сарафанов', value: '11', message: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.' })
+
