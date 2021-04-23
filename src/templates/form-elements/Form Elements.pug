@@ -70,22 +70,22 @@ include ../../components/comment/comment.pug
                 +radio-button({ name: 'sex', value: 'man', checked: true, descr: 'Мужчина' })
                 +radio-button({ name: 'sex', value: 'women', descr: 'Женщина' })
             .fe__m-40.fe__w-270
-              +label({ left: 'toggle' })
-              +toggle({ name: 'spec', value: 'first', checked: true, descr: 'Получать спецпредложения' })
-              +toggle({ name: 'spec', value: 'second', descr: 'Получать спецпредложения' })
+              +label({ left: 'toggle', hasLargePadding: true })
+                .fe__m-10
+                  +toggle({ name: 'spec', value: 'first', checked: true, descr: 'Получать спецпредложения' })
+                +toggle({ name: 'spec', value: 'second', descr: 'Получать спецпредложения' })
             .fe__m-40
-              +label({ left: 'like buttons' })
+              +label({ left: 'like buttons', hasLargePadding: true })
               .fe__like-buttons
                 +like-button({ name: 'like-btn-1st', count: 2 })(class='js-auto-init')
                 +like-button({ name: 'like-btn-2nd', count: 12, checked: true })(class='js-auto-init')
-            div(class='box_width_17\.5rem')
-              +label({ left: 'rate buttons' })
-              .fe__rate-buttons
-                +rate-button({ amount: 5, filled: 5, name: 'rate-button-1st' })(class='js-auto-init')
-                +rate-button({ amount: 5, filled: 4, name: 'rate-button-2nd' })(class='js-auto-init')
+            +label({ left: 'rate buttons', hasLargePadding: true })
+            .fe__rate-buttons
+              +rate-button({ amount: 5, filled: 5, name: 'rate-button-1st' })(class='js-auto-init')
+              +rate-button({ amount: 5, filled: 4, name: 'rate-button-2nd' })(class='js-auto-init')
           .fe__r-1__c-3
             .fe__m-40
-              +range-slider()
+              +range-slider({ label: 'range slider '}).js-auto-init
             .fe__m-30
               +label({ left: 'buttons', hasLargePadding: true })
               .fe__m-30

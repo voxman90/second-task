@@ -1,8 +1,8 @@
 {
   "name": "text-field",
   "techs": [
-    "pug",
-    "scss"
+    "scss",
+    "pug"
   ],
   "deps": [
     "label",

@@ -2,19 +2,34 @@
   width: fit-content;
 }
 
-.social-follow__icon-list {
-  display: flex;
+.social-follow__list {
+  @include cancel-list-style;
+}
+
+.social-follow__item {
+  display: inline-block;
+}
+
+.social-follow__item_indented {
+  padding-right: 1.25rem;
+}
+
+.social-follow__link {
+  &:visited,
+  &:link {
+    text-decoration: none;
+  }
 }
 
 .social-follow__icon {
   width: 1.5rem;
-
-  text-align: center;
-
   background: linear-gradient(180deg, $primary 0%, $primary-gradient 100%);
   -webkit-background-clip: text;
           background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  text-align: center;
+
   cursor: pointer;
 
   &:hover {
@@ -22,6 +37,3 @@
   }
 }
 
-.social-follow__gap {
-  padding-right: 1.25rem;
-}

@@ -1,19 +1,23 @@
-- const socialFollowList = [
--   { name: '&#xf099;', font: 'awesome', tag: 'div' },
--   { name: '&#xf082;', font: 'awesome', tag: 'div' },
--   { name: '&#xf16d;', font: 'awesome', tag: 'div' },
-- ]
+-
+  const socialFollowList = [
+    { link: 'google.com', icon: { name: '&#xf099;', font: 'awesome', tag: 'div' } },
+    { link: 'google.com', icon: { name: '&#xf082;', font: 'awesome', tag: 'div' } },
+    { link: 'google.com', icon: { name: '&#xf16d;', font: 'awesome', tag: 'div' } },
+  ]
 
-mixin social-follow(icons = socialFollowList)
-  .social-follow&attributes(attributes)
-    ul.social-follow__icon-list
-      - const length = icons.length
-      each icon, i in icons
-        li(
-          class = (i < length - 1) ? 'social-follow__gap' : null,
-        )
+mixin social-follow(items = socialFollowList)
+  .social-follow
+    ul.social-follow__list
+      - const length = items.length
+      each item, i in items
+        - const { link, icon } = item
+        - const itemMod = (i < length - 1) ? 'social-follow__item_indented' : null
+        li(class=`social-follow__item  ${itemMod}`)
           a(
-            href = '#',
-            target = '_blank',
+            class='social-follow__link',
+            href=link,
+            target='_blank',
+            rel='noopener noreferrer',
           )
-            +icon(icon)(class = 'social-follow__icon')
+            .social-follow__icon
+              +icon(icon)

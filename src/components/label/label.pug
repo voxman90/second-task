@@ -3,7 +3,7 @@ mixin label(args = {})
   - const modifier = (hasLargePadding) ? 'label_padding_large' : '';
   label
     div(class=`label ${modifier}`)
-      span.label__left-mark!= left
-      span.label__right-mark!= right
+      span.label__left-mark= left
+      span.label__right-mark= right
     if block
       block

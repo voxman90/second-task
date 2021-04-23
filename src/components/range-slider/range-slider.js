@@ -1,62 +1,97 @@
-function setLabelValue(labelRight, lowerValue, upperValue) {
-    labelRight.innerText = lowerValue * 1000 + "Р - " + upperValue * 1000 + "Р";
-}
+'use strict';
 
-function setRangeFiller(rangeFiller, lowerValue, upperValue, upperMax) {
-    const Step = 100 / upperMax;
-    rangeFiller.style.marginLeft = lowerValue * Step + 2 + '%';
-    rangeFiller.style.width = (upperValue - lowerValue) * Step - 4 + '%';
-}
+import $ from 'jquery';
+import noUiSlider from 'nouislider';
 
-document.addEventListener("DOMContentLoaded", function () {
-    const rangeSliders = document.querySelectorAll(".range-slider");
+import { BEMComponent } from 'scripts/BEMComponent';
 
-    for (let i = 0; i < rangeSliders.length; i++) {
-        const labelRight = rangeSliders[i].children[0].children[0].children[1];
-        const lowerSlider = rangeSliders[i].children[0].children[1].children[0];
-        const rangeFiller = rangeSliders[i].children[0].children[1].children[1];
-        const upperSlider = rangeSliders[i].children[0].children[1].children[2];
-        const sliderStep = parseFloat(upperSlider.step);
-        const lowerMin = parseFloat(lowerSlider.min);
-        const upperMax = parseFloat(upperSlider.max); 
+const RangeSlider = ((document, $) => {
+  const ClassName = {
+    ROOT : 'js-range-slider',
+  };
 
-        setRangeFiller(rangeFiller, lowerSlider.value, upperSlider.value, upperMax);
-        setLabelValue(labelRight, lowerSlider.value, upperSlider.value);
-        
-        upperSlider.oninput = function() {
-        const lowerVal = parseFloat(lowerSlider.value); 
-        const upperVal = parseFloat(upperSlider.value); 
+  const Selector = {
+    TARGET : '.js-range-slider__target',
+    LABEL  : '.label__right-mark',
+  }
 
-        if (upperVal === lowerVal + sliderStep) {
+  const defaultConfig = {
+    start: [5000, 10000],
+    connect: [false, true, false],
+    step: 100,
+    range: {
+      'min': [0],
+      'max': [16000],
+    },
+  }
 
-            if (lowerVal >= lowerMin + sliderStep * 2) {
-            lowerSlider.value = upperVal - 2 * sliderStep;
-            } else {
-            lowerSlider.value = lowerMin;
-            upperSlider.value = lowerMin + 2 * sliderStep;
-            }
-        }
+  const RUBLE_SIGN = '\u20bd';
 
-        setRangeFiller(rangeFiller, lowerSlider.value, upperSlider.value, upperMax);
-        setLabelValue(labelRight, lowerSlider.value, upperSlider.value);
-        };
+  class RangeSlider extends BEMComponent {
+    constructor(element, config = defaultConfig) {
+      super(element, 'range-slider');
 
-        lowerSlider.oninput = function() {
-        const lowerVal = parseFloat(lowerSlider.value); 
-        const upperVal = parseFloat(upperSlider.value);     
+      this.connectBasis();
 
-        if (lowerVal === upperVal - sliderStep) {
+      this.initNoUISlider(config);
+    }
 
-            if (upperVal <= upperMax - sliderStep * 2) {
-            upperSlider.value = lowerVal + 2 * sliderStep;
-            } else {
-            lowerSlider.value = upperMax - 2 * sliderStep;
-            upperSlider.value = upperMax;
-            }
-        }
+    connectBasis() {
+      this.label = this.root.querySelector(Selector.LABEL);
+      this.slider = this.root.querySelector(Selector.TARGET);
+    }
 
-        setRangeFiller(rangeFiller, lowerSlider.value, upperSlider.value, upperMax);
-        setLabelValue(labelRight, lowerSlider.value, upperSlider.value);
-        };
-    };
-});
+    initNoUISlider(config) {
+      noUiSlider.create(this.slider, config);
+      this.slider.noUiSlider.on('update', this.handleSliderUpdate);
+    }
+
+    getValues() {
+      return this.slider.noUiSlider.get();
+    }
+
+    setValues(values) {
+      this.slider.noUiSlider.set(values);
+    }
+
+    setFrom(value) {
+      this.setValues([value, null]);
+    }
+
+    setTo(value) {
+      this.setValues([null, value]);
+    }
+
+    drawValues() {
+      const values = this.getValues();
+      this.label.textContent = this.prettify(values);
+    }
+
+    prettify(values) {
+      const from = parseInt(values[0], 10);
+      const to = parseInt(values[1], 10);
+
+      /**
+       * For an integer number, Number.toLocaleString will add spaces every three characters
+       */
+      const fromPretty = from.toLocaleString();
+      const toPretty = to.toLocaleString();
+      return `${fromPretty}${RUBLE_SIGN} - ${toPretty}${RUBLE_SIGN}`;
+    }
+
+    handleSliderUpdate = () => {
+      this.drawValues();
+    }
+  }
+
+  const initRateButtonComps = BEMComponent.makeAutoInitializer(
+    RangeSlider,
+    ClassName.ROOT,
+  );
+
+  document.addEventListener('DOMContentLoaded', initRateButtonComps);
+
+  return RangeSlider;
+})(document, $);
+
+export { RangeSlider }

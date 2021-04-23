@@ -1,9 +1,9 @@
 {
   "name": "input",
   "techs": [
+    "js",
     "scss",
-    "pug",
-    "js"
+    "pug"
   ],
   "deps": null
 }
