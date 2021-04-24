@@ -1,11 +1,11 @@
 {
-  "name": "expandable-list",
+  "name": "user-bar",
   "techs": [
-    "js",
     "scss",
     "pug"
   ],
   "deps": [
-    "icon"
+    "button-short",
+    "button-long"
   ]
 }

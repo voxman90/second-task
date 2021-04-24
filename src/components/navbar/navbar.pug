@@ -1,28 +1,25 @@
 -
-  const navbarDefault = {
-    isLoggedIn: false,
-    menuItems: [
-      { 'text': 'О нас', 'href': '#about' },
-      { 'text': 'Услуги', 'href': '#services', 'isExpandable': true,
-        'submenuItems': [
-          { 'text': 'Услуги', 'href': '#services' },
-          { 'text': 'Услуги', 'href': '#services' },
-          { 'text': 'Услуги', 'href': '#services' },
-        ]
-      },
-      { 'text': 'Вакансии', 'href': '#vacancies' },
-      { 'text': 'Новости', 'href': '#news' },
-      { 'text': 'Соглашения', 'href': '#agreements', 'isExpandable': true,
-        'submenuItems': [
-          { 'text': 'Соглашения', 'href': '#agreements' },
-          { 'text': 'Соглашения', 'href': '#agreements' },
-        ]
-      }
-    ],
-  }
+  const defaultMenuItems = [
+    { 'text': 'О нас', 'href': '#about' },
+    { 'text': 'Услуги', 'href': '#services', 'isExpandable': true,
+      'submenuItems': [
+        { 'text': 'Услуги', 'href': '#services' },
+        { 'text': 'Услуги', 'href': '#services' },
+        { 'text': 'Услуги', 'href': '#services' },
+      ]
+    },
+    { 'text': 'Вакансии', 'href': '#vacancies' },
+    { 'text': 'Новости', 'href': '#news' },
+    { 'text': 'Соглашения', 'href': '#agreements', 'isExpandable': true,
+      'submenuItems': [
+        { 'text': 'Соглашения', 'href': '#agreements' },
+        { 'text': 'Соглашения', 'href': '#agreements' },
+      ]
+    }
+  ]
 
-mixin navbar(args = navbarDefault)
-  - const { isLoggedIn, menuItems } = args
+mixin navbar(args = {})
+  - const { menuItems = defaultMenuItems, isUserLogIn = false } = args
   nav(class='navbar js-navbar')&attributes(attributes)
     ul.navbar__menu
       each item in menuItems
@@ -31,7 +28,7 @@ mixin navbar(args = navbarDefault)
           +navbar__item(item)
         else
           +navbar__submenu(item)
-      +navbar__buttons(isLoggedIn)
+    +user-bar({ isUserLogIn })
 
 mixin navbar__item(args)
   li.navbar__item
@@ -49,12 +46,3 @@ mixin navbar__submenu(args)
       each item in submenuItems
         li
           +link(item)
-
-mixin navbar__buttons(isloggedIn = false)
-  if isloggedIn
-    p= 'plug'
-  else
-    li.navbar__button
-      +button-short({ name: 'button-sign-in', text: 'войти', isBordered: true })
-    li.navbar__button
-      +button-long({ name: 'button-sign-up', text: 'зарегистрироваться', isArrowed: false })

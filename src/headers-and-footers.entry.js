@@ -1,8 +1,9 @@
 import 'styles/style.scss';
 import 'components/logo/logo.scss';
+import 'components/button/button.scss';
+import 'components/user-bar/user-bar.scss';
 import 'components/link/link.scss';
 import 'components/icon/icon.scss';
-import 'components/button/button.scss';
 import 'components/navbar/navbar.scss';
 import 'components/hamburger/hamburger.scss';
 import 'components/header/header.scss';

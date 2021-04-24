@@ -34,7 +34,7 @@
 }
 
 //- This is a label or CTA text
-@mixin label-text($size: 0.75em, $height: 1.25, $color: $dark-shade-75) {
+@mixin label-text($size: 0.75em, $height: 1.25, $color: $dark-shade-100) {
   @include Montserrat-bold;
   font-size: $size;
   line-height: $height;

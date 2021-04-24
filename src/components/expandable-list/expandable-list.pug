@@ -1,8 +1,9 @@
 mixin expandable-list(heading)
-  div(class = 'expandable-list')&attributes(attributes)
+  div(class='expandable-list js-expandable-list')&attributes(attributes)
     .expandable-list__header
-      h3.expandable-list__heading= heading
-      +icon({ name: 'expand_more' })(class = 'expandable-list__icon')
-    .expandable-list__body
+      span.expandable-list__heading= heading
+      div(class='expandable-list__trigger js-expandable-list__trigger', role='button')
+        +icon({ name: 'expand_more' })
+    .expandable-list__list.js-expandable-list__list
       if block
         block

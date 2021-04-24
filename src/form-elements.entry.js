@@ -37,5 +37,6 @@ import 'components/rate-button/rate-button.js';
 import 'components/range-slider/range-slider.js';
 import 'components/pagination/pagination.js';
 import 'components/dropdown-facilities/dropdown-facilities.js';
+import 'components/expandable-list/expandable-list.js';
 import 'templates/form-elements/form-elements.scss';
 import 'templates/form-elements/form-elements.js';

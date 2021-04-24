@@ -7,37 +7,39 @@
 .header__wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 100%;
-  padding: 0 9.028%;
-}
-
-.header__logo {
-  padding: 15px 10px;
-  height: 70px;
-}
-
-.header__hamburger {
-  display: none;
+  padding: 0 9.72%;
 }
 
 @media only screen and (max-width: 1152px) {
-  .header {
+  .header__wrapper {
     padding: 0 2.5%;
   }
+}
+
+@media only screen and (max-width: 320px) {
+  .header__wrapper {
+    padding: 0;
+  }
+}
+
+.header__navbar {
+  height: 100%;
 }
 
 @media only screen and (max-width: 960px) {
   .header__navbar {
     display: none;
   }
-
-  .header__hamburger {
-    display: block;
-  }
 }
 
-@media only screen and (max-width: 320px)  {
-  .header {
-    padding: 0;
+.header__hamburger {
+  display: none;
+}
+
+@media only screen and (max-width: 960px) {
+  .header__hamburger {
+    display: block;
   }
 }

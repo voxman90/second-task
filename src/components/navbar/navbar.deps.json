@@ -6,9 +6,8 @@
     "pug"
   ],
   "deps": [
+    "user-bar",
     "link",
-    "icon",
-    "button-short",
-    "button-long"
+    "icon"
   ]
 }

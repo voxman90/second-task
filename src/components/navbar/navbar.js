@@ -1,7 +1,7 @@
 'use strict';
 
 import { BEMComponent } from 'scripts/BEMComponent';
-import { ExpansionTrigger } from 'scripts/ExpansionTrigger';
+import { Trigger } from 'scripts/Trigger';
 
 const Navbar = ((document) => {
   const ClassName = {
@@ -15,24 +15,22 @@ const Navbar = ((document) => {
   };
 
   const Modifier = {
-    TRIGGER_ACTIVE    : 'navbar__trigger_active',
-    CONTAINER_VISIBLE : 'navbar__submenu_visible',
+    TRIGGER_ACTIVED   : 'navbar__trigger_active',
+    CONTAINER_ACTIVED : 'navbar__submenu_visible',
   };
 
   class Navbar extends BEMComponent {
     constructor(element) {
       super(element, 'navbar');
-      
-      this.connectExpansionTriggers();
 
-      const triggerListeners = this.triggers.map((trigger) => trigger.getListeners());
-      this.listeners = [].concat(...triggerListeners);
+      this.listeners = this.defineExpansionTriggerListeners();
+      console.log(this.listeners);
       this.attachMultipleEventListeners(this.listeners);
     }
 
-    connectExpansionTriggers() {
-      const expandableItems = Array.from(this.root.querySelectorAll(Selector.EXPANDABLE_ITEM));
-      this.triggers = expandableItems.map((item) => new ExpansionTrigger(item, Selector, Modifier));
+    defineExpansionTriggerListeners() {
+      const items = this.root.querySelectorAll(Selector.EXPANDABLE_ITEM);
+      return [...items].map((item) => Trigger.define(item, Selector, Modifier));
     }
   }
 

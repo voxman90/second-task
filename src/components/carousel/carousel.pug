@@ -1,5 +1,5 @@
-mixin carousel(args = { itemAmount: 4 })
-  - let { itemAmount } = args
+mixin carousel(args = {})
+  - let { itemAmount = 4 } = args
   - itemAmount = parseInt(itemAmount, 10)
   .carousel.js-carousel&attributes(attributes)
     .carousel__container

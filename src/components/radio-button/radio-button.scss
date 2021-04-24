@@ -1,10 +1,7 @@
 .radio-button {
   display: flex;
-  justify-content: flex-start;
   flex-wrap: nowrap;
-
-  min-width: min-content;
-  height: 1.5em;
+  min-height: 1.5rem;
 }
 
 .radio-button__descr {

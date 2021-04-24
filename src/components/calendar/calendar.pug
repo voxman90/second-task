@@ -11,16 +11,18 @@ mixin calendar(args = {})
 
 mixin calendar__head()
   .calendar__head
-    +icon({ name: 'arrow_back' })(
+    div(
       class='calendar__button-backward js-calendar__button-backward',
       role='button',
       tabindex='0',
     )
-    +icon({ name: 'arrow_forward' })(
+      +icon({ name: 'arrow_back' })
+    div(
       class='calendar__button-forward js-calendar__button-forward',
       role='button',
       tabindex='0',
     )
+      +icon({ name: 'arrow_forward' })
     .calendar__title.js-calendar__title= ''
 
 mixin calendar__table()
@@ -49,11 +51,7 @@ mixin calendar__td(index)
 
 mixin calendar__buttons(name)
   .calendar__buttons
-    +button({ text: 'ОЧИСТИТЬ', name: `${name}-clear` })(
-      class='calendar__button-clear js-calendar__button-clear',
-      type='button',
-    )
-    +button({ text: 'ПРИМЕНИТЬ', name: `${name}-apply` })(
-      class='calendar__button-apply js-calendar__button-apply',
-      type='button',
-    )
+    .calendar__button-clear
+      +button({ text: 'очистить', name: `${name}-clear` })(class='js-calendar__button-clear')
+    .calendar__button-apple
+      +button({ text: 'применить', name: `${name}-apply` })(class='js-calendar__button-apply')

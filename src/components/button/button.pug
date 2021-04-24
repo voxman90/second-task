@@ -1,6 +1,13 @@
 mixin button(args = {})
   -
-    const { isFilled = false, isBordered = false, isArrowed = false, isLong = false, isShort = false } = args
+    const { 
+      isFilled = false,
+      isBordered = false,
+      isArrowed = false,
+      isLong = false,
+      isShort = false,
+      isStretchy = false,
+    } = args
     const { text = '', type = 'button' } = args
     const modifiers = []
   -
@@ -9,6 +16,7 @@ mixin button(args = {})
     if (isFilled) modifiers.push('button_style_filled')
     if (isShort) modifiers.push('button_length_short')
     if (isLong) modifiers.push('button_length_long')
+    if (isStretchy) modifiers.push('button_stretchy')
   -
     const classes = ['button', ...modifiers];
 

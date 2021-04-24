@@ -66,7 +66,7 @@ include ../../components/comment/comment.pug
               +checkbox-list({ label: 'checkbox buttons', items: checkboxItems })
             .fe__m-40.fe__w-222
               +label({ left: 'radio buttons', hasLargePadding: true })
-              .fe__radio-buttons
+              .fe__flex-box
                 +radio-button({ name: 'sex', value: 'man', checked: true, descr: 'Мужчина' })
                 +radio-button({ name: 'sex', value: 'women', descr: 'Женщина' })
             .fe__m-40.fe__w-270
@@ -75,14 +75,14 @@ include ../../components/comment/comment.pug
                   +toggle({ name: 'spec', value: 'first', checked: true, descr: 'Получать спецпредложения' })
                 +toggle({ name: 'spec', value: 'second', descr: 'Получать спецпредложения' })
             .fe__m-40
-              +label({ left: 'like buttons', hasLargePadding: true })
+              +label({ left: 'like button', hasLargePadding: true })
               .fe__like-buttons
                 +like-button({ name: 'like-btn-1st', count: 2 })(class='js-auto-init')
                 +like-button({ name: 'like-btn-2nd', count: 12, checked: true })(class='js-auto-init')
-            +label({ left: 'rate buttons', hasLargePadding: true })
-            .fe__rate-buttons
-              +rate-button({ amount: 5, filled: 5, name: 'rate-button-1st' })(class='js-auto-init')
-              +rate-button({ amount: 5, filled: 4, name: 'rate-button-2nd' })(class='js-auto-init')
+            +label({ left: 'rate button', hasLargePadding: true })
+              .fe__rate-buttons
+                +rate-button({ amount: 5, filled: 5, name: 'rate-button-1st' })(class='js-auto-init')
+                +rate-button({ amount: 5, filled: 4, name: 'rate-button-2nd' })(class='js-auto-init')
           .fe__r-1__c-3
             .fe__m-40
               +range-slider({ label: 'range slider '}).js-auto-init
@@ -95,8 +95,8 @@ include ../../components/comment/comment.pug
               .fe__m-30
                 +button-short({ name: 'button-short-3rd', text: 'click me', isBordered: true })
                 .fe__plug
-                +button-short({ name: 'button-short-4th', text: 'clock me', isBordered: true })
-              .fe__m-30
+                +button-short({ name: 'button-short-4th', text: 'click me', isBordered: true })
+              .fe__m-30.fe__buttons
                 +button({ name: 'button-1st', text: 'click me' })
                 .fe__plug
                 +button({ name: 'button-2nd', text: 'click me' })

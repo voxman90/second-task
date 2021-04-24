@@ -1,15 +1,9 @@
 .toggle {
   display: flex;
   flex-wrap: nowrap;
-
-  @supports (width: fit-content) {
-    width: fit-content;
-  }
-
-  @supports not (width: fit-content) {
-    width: 100%;
-    max-width: 270px;
-  }
+  width: 100%;
+  max-width: 270px;
+  min-height: 1.5rem;
 }
 
 .toggle__input {

@@ -1,0 +1,45 @@
+.user-bar {
+  padding-left: 10px;
+
+  &::after {
+    @include vertical-align-centering;
+  }
+}
+
+.user-bar__left-border {
+  display: inline-block;
+  width: 1px;
+  height: 1.875rem;
+  line-height: 1.875rem;
+  vertical-align: middle;
+  background-color: dark-shade(0.10);
+}
+
+.user-bar__name {
+  display: inline-block;
+  margin-left: 20px;
+  vertical-align: middle;
+
+  @include p-text($color: $dark-shade-50);
+}
+
+%user-bar__buttons {
+  display: inline-block;
+  height: 2.125rem;
+  vertical-align: middle;
+
+  &:focus > button {
+    opacity: 0.5;
+  }
+}
+
+.user-bar__sign-in {
+  @extend %user-bar__buttons;
+  width: 87px;
+}
+
+.user-bar__sign-up {
+  @extend %user-bar__buttons;
+  width: 196px;
+  margin-left: 20px;
+}

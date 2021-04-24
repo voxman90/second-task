@@ -1,4 +1,6 @@
 .navbar {
+  display: flex;
+  justify-content: flex-end;
   height: 100%;
 }
 
@@ -66,30 +68,4 @@
 .navbar__submenu_visible {
   visibility: visible;
   opacity: 1;
-}
-
-.navbar__button {
-  padding: 0 10px;
-}
-
-.navbar__button-sign-in {
-  width: 87px;
-  height: 34px;
-
-  border-radius: 17.2px;
-
-  &:focus {
-    opacity: 0.5;
-  }
-}
-
-.navbar__button-sign-up {
-  width: 196px;
-  height: 34px;
-
-  border-radius: 17.2px;
-
-  &:focus {
-    opacity: 0.5;
-  }
 }

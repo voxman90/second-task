@@ -1,40 +1,43 @@
 .expandable-list {
   position: relative;
-
   width: 100%;
+  max-width: 266px;
+  min-height: 2.75rem;
 }
 
 .expandable-list__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   height: 2.75rem;
 
   cursor: pointer;
 }
 
 .expandable-list__heading {
-  float: left;
-
-  margin: 0;
-
+  height: 1.25em;
   @include label-text;
 }
 
-.expandable-list__icon {
-  float: right;
-
+.expandable-list__trigger {
   width: 2.75rem;
-  height: 2.75rem;
+  height: 1.5em;
 
-  line-height: 2.75rem;
   text-align: center;
   color: $dark-shade-50;
 
-  transition: transform 300ms ease;
-
-  .js-expandable__trigger_active & {
-    transform: rotate(180deg);
-  }
+  transition: transform 150ms ease;
 }
 
-.expandable-list__body {
-  padding-top: 0.2rem;
+.expandable-list__trigger_active {
+  transform: rotate(180deg);
+}
+
+.expandable-list__list {
+  display: none;
+  padding-top: 2px;
+}
+
+.expandable-list__list_expanded {
+  display: block;
 }
