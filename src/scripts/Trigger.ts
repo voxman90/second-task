@@ -10,28 +10,28 @@ const Trigger = (() => {
   }
 
   interface modifier {
-    TRIGGER_ACTIVATED: string,
-    CONTAINER_ACTIVATED: string,
+    TRIGGER_ACTIVE: string,
+    CONTAINER_ACTIVE: string,
     [key: string]: string,
   }
 
   function define(element: HTMLElement, Selector: selector, Modifier: modifier) {
     const trigger = element.querySelector(Selector.TRIGGER);
     const container = element.querySelector(Selector.CONTAINER);
-    const triggerClickHandler = makeTriggerClickHandler(trigger, container, Selector, Modifier);
-    return [{
+    const triggerClickHandler = makeTriggerClickHandler(trigger, container, Modifier);
+    return {
       element: trigger,
       handlers: {
         'click': triggerClickHandler,
         'keydown': Utility.makeKeydownHandler(triggerClickHandler),
       },
-    }];
+    };
   }
 
-  function makeTriggerClickHandler(trigger: Element, container: Element, Selector: selector, Modifier: modifier) {
+  function makeTriggerClickHandler(trigger: Element, container: Element, Modifier: modifier) {
     return function () {
-      trigger.classList.toggle(Modifier.TRIGGER_ACTIVATED);
-      container.classList.toggle(Modifier.CONTAINER_ACTIVATED);
+      trigger.classList.toggle(Modifier.TRIGGER_ACTIVE);
+      container.classList.toggle(Modifier.CONTAINER_ACTIVE);
       toggleAriaExpandle(trigger);
     }
   }

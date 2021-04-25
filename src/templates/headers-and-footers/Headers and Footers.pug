@@ -1,7 +1,5 @@
 include ../../components/logo/logo.pug
 include ../../components/button/button.pug
-include ../../components/button-short/button-short.pug
-include ../../components/button-long/button-long.pug
 include ../../components/user-bar/user-bar.pug
 include ../../components/link/link.pug
 include ../../components/icon/icon.pug
@@ -21,17 +19,19 @@ doctype html
 html
   head
     meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
     title= pageTitle
   body
     .hf
-      .hf__logo
-        +logo({ size: 'big', isColored: false, isSigned: false })
       .hf__wrapper
+        .hf__logo
+          +logo({ size: 'big', isColored: false, isSigned: false })
         .hf__header
           +header
         .hf__header-reg
-          +header({ isUserLogIn: true })
+          +header({ isUserLoggedIn: true })
         .hf__footer
-          +footer({ items: footerItems })
+          +footer
         .hf__footer-creative-wrapper
           +footer-creative

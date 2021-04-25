@@ -19,7 +19,7 @@
   ]
 
 mixin navbar(args = {})
-  - const { menuItems = defaultMenuItems, isUserLogIn = false } = args
+  - const { menuItems = defaultMenuItems, isUserLoggedIn = false } = args
   nav(class='navbar js-navbar')&attributes(attributes)
     ul.navbar__menu
       each item in menuItems
@@ -28,21 +28,22 @@ mixin navbar(args = {})
           +navbar__item(item)
         else
           +navbar__submenu(item)
-    +user-bar({ isUserLogIn })
+    +user-bar({ isUserLoggedIn })
 
 mixin navbar__item(args)
-  li.navbar__item
+  li.navbar__item.navbar__link
     +link({ hasLeftPadding: true, hasRightPadding: true, ...args })
 
 mixin navbar__submenu(args)
   - const { submenuItems = [] } = args
   li.navbar__item.js-navbar__item_expandable
     .navbar__item-head
-      +link({ hasLeftPadding: true, ...args })
+      .navbar__link
+        +link({ hasLeftPadding: true, ...args })
       div(class='navbar__trigger js-navbar__trigger', role='button', tabindex='0', aria-expanded=false, aria-label='submenu')
         div.navbar__icon-wrapper
           +icon({ name: 'expand_more' })
     ul.navbar__submenu.js-navbar__submenu
       each item in submenuItems
-        li
+        li.navbar__link.navbar__link_submenu
           +link(item)

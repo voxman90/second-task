@@ -1,8 +1,8 @@
 .footer-creative {
-  height: 367px;
+  width: 100%;
   max-width: 768px;
   background: #FFFFFF;
-  box-shadow: 0 1px 0 dark-shade(0.10);
+  box-shadow: 0 10px 20px $dark-shade-05;
 }
 
 .footer-creative__wrapper {
@@ -10,11 +10,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  padding: 120px 0;
 }
 
 .footer-creative__copyright {
   padding-top: 20px;
+  padding-left: 3px;
   text-align: center;
 }
 

@@ -5,7 +5,6 @@
     "pug"
   ],
   "deps": [
-    "button-short",
-    "button-long"
+    "button"
   ]
 }

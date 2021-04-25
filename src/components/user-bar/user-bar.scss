@@ -6,6 +6,12 @@
   }
 }
 
+.user-bar_stretchy {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 0;
+}
+
 .user-bar__left-border {
   display: inline-block;
   width: 1px;
@@ -42,4 +48,8 @@
   @extend %user-bar__buttons;
   width: 196px;
   margin-left: 20px;
+}
+
+.user-bar__sign-up_without_margin {
+  margin-left: 0;
 }

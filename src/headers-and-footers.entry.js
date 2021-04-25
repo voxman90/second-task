@@ -16,6 +16,7 @@ import 'components/footer/footer.scss';
 import 'components/footer-creative/footer-creative.scss';
 import 'components/logo/logo.js';
 import 'components/navbar/navbar.js';
+import 'components/hamburger/hamburger.js';
 import 'components/input/input.js';
 import 'templates/headers-and-footers/headers-and-footers.scss';
 import 'templates/headers-and-footers/headers-and-footers.js';

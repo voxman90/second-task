@@ -15,20 +15,19 @@ const Navbar = ((document) => {
   };
 
   const Modifier = {
-    TRIGGER_ACTIVED   : 'navbar__trigger_active',
-    CONTAINER_ACTIVED : 'navbar__submenu_visible',
+    TRIGGER_ACTIVE   : 'navbar__trigger_active',
+    CONTAINER_ACTIVE : 'navbar__submenu_visible',
   };
 
   class Navbar extends BEMComponent {
     constructor(element) {
       super(element, 'navbar');
 
-      this.listeners = this.defineExpansionTriggerListeners();
-      console.log(this.listeners);
+      this.listeners = this.defineTriggerListeners();
       this.attachMultipleEventListeners(this.listeners);
     }
 
-    defineExpansionTriggerListeners() {
+    defineTriggerListeners() {
       const items = this.root.querySelectorAll(Selector.EXPANDABLE_ITEM);
       return [...items].map((item) => Trigger.define(item, Selector, Modifier));
     }

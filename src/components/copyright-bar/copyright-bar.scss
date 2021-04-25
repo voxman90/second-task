@@ -2,22 +2,21 @@
   min-width: 320px;
   width: 100%;
   max-width: 1920px;
-  height: 4.375rem;
-  padding: 0 9.722%;
-
+  height: 69px;
   background-color: #FFFFFF;
-  box-shadow: 0 0.625rem 1.25rem $dark-shade-05;
+  box-shadow: 0 10px 20px $dark-shade-05;
 }
 
 .copyright-bar__wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 100%;
+  padding: 0 9.722%;
 }
 
-.copyright-bar__copyright {
-  height: 4.375rem;
-
-  line-height: 4.375rem;
-  white-space: nowrap;
+@media only screen and (max-width: 1280px) {
+  .copyright-bar__wrapper {
+    padding: 0 5%;
+  }
 }

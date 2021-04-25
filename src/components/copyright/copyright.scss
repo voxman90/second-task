@@ -1,4 +1,9 @@
 .copyright {
-  @include p-text;
+  @include p-text($height: 1.286);
+  white-space: nowrap;
+}
+
+.copyright_centered {
+  text-align: center;
   white-space: pre;
 }

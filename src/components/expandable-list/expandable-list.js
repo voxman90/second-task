@@ -22,7 +22,7 @@ const ExpandableList = ((document) => {
     constructor(element) {
       super(element, 'expandable-list');
       this.listeners = Trigger.define(element, Selector, Modifier);
-      this.attachMultipleEventListeners(this.listeners);
+      this.attachEventListener(this.listeners);
     }
   }
 

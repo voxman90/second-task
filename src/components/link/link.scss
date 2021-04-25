@@ -35,15 +35,19 @@
   padding-right: 10px;
 }
 
+.link_stretchy {
+  width: 100%;
+}
+
 .link__text {
   position: relative;
   display: inline-block;
   vertical-align: middle;
-  margin: 0;
-  padding-right: 0.5px;
+  padding-inline-end: 0.5px;
 
-  @include p-text($color: $dark-shade-50);
+  @include Montserrat-normal;
   white-space: nowrap;
+  color: $dark-shade-50;
 
   transition: opacity 300ms ease;
 

@@ -1,7 +1,10 @@
 mixin link(args)
-  - const { href, text, hasLeftPadding = false, hasRightPadding = false } = args
-  - const classes = ['link']
-  - if (hasLeftPadding) classes.push('link_with_left-padding')
-  - if (hasRightPadding) classes.push('link_with_right-padding')
+  -
+    const { href, text, hasLeftPadding = false, hasRightPadding = false, isStretchy = false } = args
+    const classes = ['link']
+    if (hasLeftPadding) classes.push('link_with_left-padding')
+    if (hasRightPadding) classes.push('link_with_right-padding')
+    if (isStretchy) classes.push('link_stretchy')
+
   a(class=classes.join(' '), href=href)&attributes(attributes)
-    p(class='link__text', data-text=text)= text
+    span(class='link__text', data-text=text)= text

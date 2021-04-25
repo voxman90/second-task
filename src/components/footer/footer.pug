@@ -1,56 +1,57 @@
 -
-  const footerDefault = {
-    'items': [
-      {
-        'heading': 'Навигация',
-        'items': [
-          { 'href': '#', 'text': 'О нас', 'target': '_self' },
-          { 'href': '#', 'text': 'Новости', 'target': '_self' },
-          { 'href': '#', 'text': 'Служба поддержки', 'target': '_self' },
-          { 'href': '#', 'text': 'Услуги', 'target': '_self' }
-        ]
-      },
-      {
-        'heading': 'О нас',
-        'items': [
-          { 'href': '#', 'text': 'О сервисе', 'target': '_self' },
-          { 'href': '#', 'text': 'Наша команда', 'target': '_self' },
-          { 'href': '#', 'text': 'Вакансии', 'target': '_self' },
-          { 'href': '#', 'text': 'Инвесторы', 'target': '_self' }
-        ]
-      },
-      {
-        'heading': 'Служба поддержки',
-        'items': [
-          { 'href': '#', 'text': 'Соглашения', 'target': '_self' },
-          { 'href': '#', 'text': 'Сообщения', 'target': '_self' },
-          { 'href': '#', 'text': 'Связь с нами', 'target': '_self' }
-        ]
-      }
-    ]
-  }
+  const footerDefault = [
+    {
+      'heading': 'Навигация',
+      'items': [
+        { 'href': '#', 'text': 'О нас', 'target': '_self' },
+        { 'href': '#', 'text': 'Новости', 'target': '_self' },
+        { 'href': '#', 'text': 'Служба поддержки', 'target': '_self' },
+        { 'href': '#', 'text': 'Услуги', 'target': '_self' }
+      ]
+    },
+    {
+      'heading': 'О нас',
+      'items': [
+        { 'href': '#', 'text': 'О сервисе', 'target': '_self' },
+        { 'href': '#', 'text': 'Наша команда', 'target': '_self' },
+        { 'href': '#', 'text': 'Вакансии', 'target': '_self' },
+        { 'href': '#', 'text': 'Инвесторы', 'target': '_self' }
+      ]
+    },
+    {
+      'heading': 'Служба поддержки',
+      'items': [
+        { 'href': '#', 'text': 'Соглашения', 'target': '_self' },
+        { 'href': '#', 'text': 'Сообщества', 'target': '_self' },
+        { 'href': '#', 'text': 'Связь с нами', 'target': '_self' }
+      ]
+    }
+  ]
 
-mixin footer(args = footerDefault)
-  - const { items } = args
+mixin footer(args = {})
+  - const { items = footerDefault } = args
   footer.footer
-    .footer__wrapper
-      +footer__info
-      each item in items
-        +footer__link-list(item)
-      +footer__subscription()
-    +copyright-bar()(class = 'footer__copyright-bar')
+    .footer__top
+      .footer__wrapper
+        +footer__info
+        each item in items
+          +footer__link-list(item)
+        +footer__subscription
+    .footer__copyright-bar
+      +copyright-bar
 
 mixin footer__info
   section.footer__info
     a(target='_self', href='/')
       +logo({ size: 'small', isColored: true, isSigned: true })(class = 'js-auto-init footer__logo')
-    p.footer__p Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»
+    div.footer__text-wrapper
+      span.footer__text Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»
 
 mixin footer__link-list(args = {})
   - const { heading, items } = args
   section.footer__link-list
     h3(class = 'footer__heading')= heading
-    ul
+    ul.footer__list
       each item in items
         li.footer__list-item
           +link(item)
@@ -59,5 +60,7 @@ mixin footer__subscription()
   section.footer__subscription
     form
       h3.footer__heading Подписка
-      p.footer__p.footer__subscription-p Получайте специальные предложения и новости сервиса
+      .footer__subscription-text
+        div.footer__text-wrapper
+          span.footer__text Получайте специальные предложения и новости сервиса
       +subscription-field({ name: 'sf-footer', placeholder: 'Email' })

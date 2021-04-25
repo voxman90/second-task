@@ -1,76 +1,100 @@
 .footer {
+  min-width: 320px;
+  width: 100%;
+  max-width: 1920px;
   background-color: #FFFFFF;
 }
 
 .footer__top {
-  height: 372px;
-  padding: 100px 9.725%;
-  margin-bottom: 1px;
   box-shadow: 0 1px 0 dark-shade(0.10);
 }
 
-.footer__top-wrapper {
+.footer__wrapper {
   display: flex;
   justify-content: space-between;
+  padding: 100px 9.722%;
+}
+
+@media only screen and (max-width: 1280px) {
+  .footer__wrapper {
+    padding: 100px 3%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .footer__wrapper {
+    justify-content: space-evenly;
+    padding: 100px 2%;
+  }
 }
 
 .footer__info {
-  flex-basis: 16.25rem;
+  flex-basis: 260px;
+}
+
+@media only screen and (max-width: 768px) {
+  .footer__info {
+    display: none;
+  }
 }
 
 .footer__logo {
   padding-bottom: 20px;
 }
 
-.footer__p {
-  @include p-text;
+.footer__text-wrapper {
+  display: inline-block;
+
+  line-height: 1.5rem;
+}
+
+.footer__text {
+  vertical-align: top;
+
+  @include p-text($height: 1.25);
 }
 
 .footer__link-list {
-  flex-basis: 10rem;
+  flex-basis: 160px;
+  flex-shrink: 1;
 }
 
 .footer__heading {
-  padding-top: 4px;
-  border-bottom: 1px solid transparent;
+  margin: 0;
+  padding-top: 5px;
+  padding-bottom: 20.5px;
 
   @include label-text;
 }
 
+.footer__list {
+  @include cancel-list-style;
+
+  & > * + * {
+    margin-top: 1.25rem;
+  }
+}
+
 .footer__list-item {
-  padding-top: 1.25rem;
+  height: 1.286em;
+
+  @include p-text($height: 1.286);
 }
 
 .footer__subscription {
-  flex-basis: 16.25rem;
+  flex-basis: 260px;
 }
 
-.footer__subscription-p {
-  padding: 1.25rem 0;
-}
-
-@media only screen and (max-width: 1152px) {
-  .footer__top {
-    padding: 6.25rem 2.5%;
-  }
-
-  .footer__copyright-bar {
-    padding: 0 2.5%;
-  }
-}
-
-@media only screen and (max-width: 960px) {
-  .footer__info {
+@media only screen and (max-width: 1024px) {
+  .footer__subscription {
     display: none;
   }
 }
 
-@media only screen and (max-width: 768px) {
-  .footer__top {
-    display: none;
-  }
+.footer__subscription-text {
+  padding-bottom: 20px;
+}
 
-  .footer__copyright-bar {
-    display: none;
-  }
+.footer__copyright-bar {
+  margin-top: 2px;
 }

@@ -1,12 +1,16 @@
 mixin user-bar(args = {})
-  - const { userName = 'Юлий Цезарь', hasLeftBorder = true, isUserLogIn = false } = args
-  section(class=`user-bar ${mod}`)
-    if isUserLogIn
+  -
+    const { userName = 'Юлий Цезарь', hasLeftBorder = true, isUserLoggedIn = false, isStretchy = false } = args
+    const userBarMod = (isStretchy) ? 'user-bar_stretchy': '';
+    const signUpMod = (isStretchy) ? 'user-bar__sign-up_without_margin': '';
+
+  section(class=`user-bar ${userBarMod}`)
+    if isUserLoggedIn
       if hasLeftBorder
       .user-bar__left-border
       span.user-bar__name= userName
     else
       a(class='user-bar__sign-in', target='_self', href='/')
         +button({ name: 'button-sign-in', type: 'button', text: 'войти', isBordered: true, isStretchy: true })
-      a(class='user-bar__sign-up', target='_self', href='/')
+      a(class=`user-bar__sign-up ${signUpMod}`, target='_self', href='/')
         +button({ name: 'button-sign-up', type: 'button', text: 'зарегистрироваться', isFilled: true, isArrowed: false, isStretchy: true })

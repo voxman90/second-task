@@ -11,9 +11,39 @@
   @include cancel-list-style;
 }
 
+@media only screen and (max-width: 1024px) {
+  .navbar__menu {
+    & .navbar__item:nth-child(4) {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (max-width: 924px) {
+  .navbar__menu {
+    & .navbar__item:last-child {
+      display: none;
+    }
+  }
+}
+
 .navbar__item {
   position: relative;
 }
+
+.navbar__link {
+  height: 100%;
+
+  @include p-text($height: 1.286);
+}
+
+
+.navbar__link_submenu {
+  min-width: max-content;
+  padding: 0.5rem 1rem;
+  text-align: center;
+}
+
 
 .navbar__item-head {
   display: flex;
@@ -51,7 +81,7 @@
 
 .navbar__submenu {
   position: relative;
-  z-index: 0;
+  z-index: 1;
   top: 5px;
   visibility: hidden;
   opacity: 0;

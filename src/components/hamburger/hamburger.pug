@@ -1,76 +1,52 @@
 -
-  const hamburgerDefault = {
-    isLoggedIn: false,
-    menuItems: [
-      { 'text': 'О нас', 'href': '#about' },
-      { 'text': 'Услуги', 'href': '#services', 'isExpandable': true,
-        'submenuItems': [
-          { 'text': 'Услуги', 'href': '#services' },
-          { 'text': 'Услуги', 'href': '#services' },
-          { 'text': 'Услуги', 'href': '#services' },
-        ]
-      },
-      { 'text': 'Вакансии', 'href': '#vacancies' },
-      { 'text': 'Новости', 'href': '#news' },
-      { 'text': 'Соглашения', 'href': '#agreements', 'isExpandable': true,
-        'submenuItems': [
-          { 'text': 'Соглашения', 'href': '#agreements' },
-          { 'text': 'Соглашения', 'href': '#agreements' },
-        ]
-      }
-    ],
-  }
+  const hamburgerDefault = [
+    { 'text': 'О нас', 'href': '#about' },
+    { 'text': 'Услуги', 'href': '#services', 'isExpandable': true,
+      'submenuItems': [
+        { 'text': 'Услуги', 'href': '#services' },
+        { 'text': 'Услуги', 'href': '#services' },
+        { 'text': 'Услуги', 'href': '#services' },
+      ]
+    },
+    { 'text': 'Вакансии', 'href': '#vacancies' },
+    { 'text': 'Новости', 'href': '#news' },
+    { 'text': 'Соглашения', 'href': '#agreements', 'isExpandable': true,
+      'submenuItems': [
+        { 'text': 'Соглашения', 'href': '#agreements' },
+        { 'text': 'Соглашения', 'href': '#agreements' },
+      ]
+    }
+  ]
 
-mixin hamburger(args = hamburgerDefault)
-  - const { isLoggedIn, menuItems } = args
-  nav(class = 'hamburger', role = 'navigation')&attributes(attributes)
-    +hamburger__trigger()
-      ul(class = 'hamburger__menu')
-        each item in menuItems
-          - const { isExpandable = false } = item
-            p= 1
+mixin hamburger(args = {})
+  - const { isUserLoggedIn = false, items = hamburgerDefault } = args
+  nav(class='hamburger js-hamburger')&attributes(attributes)
+    div(class='hamburger__main-trigger js-hamburger__main-trigger', role='button', tabindex='0')
+      +icon({ name: 'menu' })
+    div(class='hamburger__container js-hamburger__container')
+      ul.hamburger__menu
+        each item in items
+          - const isExpandable = item.isExpandable || false;
           if isExpandable
-            +hamburger__expandable-list(item)
+            +hamburger__expandable-item(item)
           else
             +hamburger__item(item)
-        +hamburger__footer(isLoggedIn)
+      .hamburger__user-bar-wrapper
+        +user-bar({ isUserLoggedIn, isStretchy: true })
 
-mixin hamburger__trigger()
-  div(
-    class='hamburger__trigger',
-    role='button',
-    tabindex='0',
-    aria-label='hamburger-main-trigger',
-  )
-    +icon({ name: 'menu' })(class='hamburger__icon')
-
-mixin hamburger__expandable-list(args)
+mixin hamburger__expandable-item(args)
   - const { href, text, title = null, submenuItems = [] } = args
-  li(class='hamburger__expandable-list')
-    .hamburger__expandable-list-header
-      +link(args)(class='hamburger__expandable-list-link')
-      div(
-        class='hamburger__expandable-list-trigger',
-        role='button',
-        tabindex='0',
-        aria-label=text,
-      )
-        +icon({ name: 'expand_more' })(class = 'hamburger__expandable-list-icon')
-    ul(class = 'hamburger__expandable-list-container')
+  li.hamburger__item.js-hamburger__item-expandable
+    .hamburger__header
+      .hamburger__link
+        +link({ isStretchy: true, ...args })
+      div(class='hamburger__trigger js-hamburger__trigger', role='button', tabindex='0')
+        +icon({ name: 'expand_more' })
+    ul.hamburger__submenu.js-hamburger__submenu
       each item in submenuItems
         +hamburger__item(item)
 
 mixin hamburger__item(args = {})
-  li
-    +link(args)(class = 'hamburger__link')
-
-mixin hamburger__footer(isloggedIn = false)
-  if isloggedIn
-    p= 'placeholder'
-  else
-    +hamburger__buttons()
-
-mixin hamburger__buttons()
-  .hamburger__buttons
-    +button-short({ name: 'button-signin', text: 'войти', isBordered: true })
-    +button-long({ name: 'button-signup', text: 'зарегистрироваться', isArrowed: false })
+  li.hamburger__item
+    .hamburger__link
+      +link({ isStretchy: true, ...args })

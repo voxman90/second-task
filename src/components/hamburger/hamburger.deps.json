@@ -1,13 +1,13 @@
 {
   "name": "hamburger",
   "techs": [
+    "js",
     "scss",
     "pug"
   ],
   "deps": [
     "icon",
-    "link",
-    "button-short",
-    "button-long"
+    "user-bar",
+    "link"
   ]
 }
