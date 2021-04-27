@@ -1,14 +1,16 @@
 mixin dropdown-facilities(name, left, right) 
-  - const args = {
-  -   left,
-  -   right,
-  -   name,
-  -   haveButtons: false,
-  -   value: 'Сколько удобств',
-  -   options: {
-  -     'спальни': 0,
-  -     'кровати': 0,
-  -     'ванные комнаты': 0,
-  -   },
-  - }
-  +dropdown(args)(class='dropdown-facilities js-dropdown-facilities')&attributes(attributes)
+  -
+    const args = {
+      left,
+      right,
+      name,
+      value: 'Сколько удобств',
+      hasButtons: false,
+      options: [
+        { name: 'bedroom', descr: 'спальни', value: 0 },
+        { name: 'bad', descr: 'кровати', value: 0 },
+        { name: 'bathroom', descr: 'ванные комнаты', value: 0 },
+      ],
+    }
+
+  +dropdown(args)(class='js-dropdown-facilities')&attributes(attributes)

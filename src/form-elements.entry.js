@@ -20,7 +20,6 @@ import 'components/like-button/like-button.scss';
 import 'components/rate-button/rate-button.scss';
 import 'components/range-slider/range-slider.scss';
 import 'components/pagination/pagination.scss';
-import 'components/dropdown-facilities/dropdown-facilities.scss';
 import 'components/expandable-list/expandable-list.scss';
 import 'components/bullet-list/bullet-list.scss';
 import 'components/icon-item/icon-item.scss';

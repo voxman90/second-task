@@ -1,9 +1,12 @@
 mixin input(args = {})
   - const { name = '', type = 'text', placeholder = '', value = null, mask = null } = args
   -
-    const { isSubscriptionField = false, isMasked = false } = args
+    const {
+      isIndented = false,
+      isMasked = false,
+    } = args
     const classes = ['input']
-    if (isSubscriptionField) classes.push('input_padding_large')
+    if (isIndented) classes.push('input_indented')
     if (isMasked) classes.push('input_masked', 'js-input-masked')
 
   input(

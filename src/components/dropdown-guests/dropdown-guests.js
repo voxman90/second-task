@@ -4,64 +4,77 @@ import { BEMComponent } from 'scripts/BEMComponent';
 import { Dropdown, DropdownModel } from 'components/dropdown/dropdown';
 
 const DropdownGuests = ((document) => {
-
-  const Glossary = [
+  const Dictionary = [
     {
-      nominative       : 'взрослый',
-      nominativePlural : 'взрослые',
-      genitive         : 'взрослых',
-      genitivePlural   : 'взсролых',
+      name: 'adult',
+      forms: {
+        nominative       : 'взрослый',
+        nominativePlural : 'взрослые',
+        genitive         : 'взрослых',
+        genitivePlural   : 'взсролых',
+      },
     },
 
     {
-      nominative       : 'ребёнок',
-      nominativePlural : 'дети',
-      genitive         : 'ребёнка',
-      genitivePlural   : 'детей',
+      name: 'child',
+      forms: {
+        nominative       : 'ребёнок',
+        nominativePlural : 'дети',
+        genitive         : 'ребёнка',
+        genitivePlural   : 'детей',
+      },
     },
 
     {
-      nominative       : 'младенец',
-      nominativePlural : 'младенцы', 
-      genitive         : 'младенца',
-      genitivePlural   : 'младенцев',
+      name: 'baby',
+      forms: {
+        nominative       : 'младенец',
+        nominativePlural : 'младенцы',
+        genitive         : 'младенца',
+        genitivePlural   : 'младенцев',
+      }
     },
 
     {
-      nominative       : 'гость',
-      nominativePlural : 'гости',
-      genitive         : 'гостя',
-      genitivePlural   : 'гостей',
-    },
+      name: 'guest',
+      forms: {
+        nominative       : 'гость',
+        nominativePlural : 'гости',
+        genitive         : 'гостя',
+        genitivePlural   : 'гостей',
+      },
+    }
   ];
 
   const Default = 'Сколько гостей';
 
   class DropdownGuestsModel extends DropdownModel {
     constructor() {
-      super(Default, Glossary);
+      super(Default, Dictionary);
     }
 
-    getSentence(values) {
-      const guestsCount = values[0] + values[1];
-      const babiesCount = values[2];
-      const sentence = [];
+    getSentence(options) {
+      const optionsMap = this._convertOptionsToMap(options);
+      const guestsNumber = optionsMap.get('adult') + optionsMap.get('child');
+      const babiesNumber = optionsMap.get('baby');
+      const collocations = [];
 
-      if (guestsCount > 0) {
-        const words = this.convertToCorrectForm(guestsCount, this.glossary[3]);
-        sentence.push(`${guestsCount} ${words}`);
-      }
+      collocations.push(this._getCollocation({ name: 'guest', value: guestsNumber }));
+      collocations.push(this._getCollocation({ name: 'baby', value: babiesNumber }));
 
-      if (babiesCount > 0) {
-        const words = this.convertToCorrectForm(babiesCount, this.glossary[2]);
-        sentence.push(`${babiesCount} ${words}`);
-      }
+      const sentense = collocations.filter((collocation) => collocation !== null).join(', ');
 
-      if (sentence.length === 0) {
-        sentence.push(this.default);
-      }
+      return (sentense === '') ? this.default : sentense;
+    }
 
-      return sentence.join(', ');
+    _convertOptionsToMap(options) {
+      const map = new Map();
+
+      options.forEach((option) => {
+        map.set(option.name, option.value)
+      })
+
+      return map;
     }
   }
 
@@ -74,35 +87,24 @@ const DropdownGuests = ((document) => {
       const model = new DropdownGuestsModel();
       super(element, 'dropdown-guests', model);
 
-      this.hangHooks();
+      this._hangHooks();
     }
 
-    hangHooks() {
-      this.hooks.optionValueIncreased = function (value) {
-        if (value === 1) {
-          this.toggleButtonClearVisibility(value);
-        }
-      };
+    _hangHooks() {
+      this.hooks.optionValueIncreased = this.handleOptionValueIncreased;
+      this.hooks.optionValueDecreased = this.handleOptionValueDecreased;
+    };
 
-      this.hooks.optionValueDecreased = function (value) {
-        if (value === 0) {
-          const values = this.getOptionValues();
-          const summ = values.reduce((a, b) => a + b);
-          this.toggleButtonClearVisibility(summ);
-        }
+    handleOptionValueDecreased = (value) => {
+      if (value === 0) {
+        this._updateButtonClearState();
       }
     }
 
-    drawOptionValues(values) {
-      let summ = 0;
-
-      this.optionValueNodes.forEach((optionValueNode, i) => {
-        summ += values[i];
-        optionValueNode.textContent = values[i];
-        this.toggleMinusButton(optionValueNode, values[i]);
-      });
-
-      this.toggleButtonClearVisibility(summ);
+    handleOptionValueIncreased = (value) => {
+      if (value === 1) {
+        this._toggleButtonClearVisibility(1);
+      }
     }
   }
 

@@ -106,20 +106,20 @@ include ../../components/comment/comment.pug
         .fe__r-2
           .fe__r-2__c-1
             .fe__m-20
-              +dropdown-facilities('dropdown-facilities-1st', 'DROPDOWN', 'DEFAULT')(class='js-dropdown-facilities-1st')
+              +dropdown-facilities('dropdown-facilities-1st', 'dropdown', 'default')(class='js-dropdown-facilities-1st')
             .fe__m-20
-              +dropdown-facilities('dropdown-facilities-2nd', 'DROPDOWN', 'EXPANDED')(class='js-dropdown-facilities-2nd')
+              +dropdown-facilities('dropdown-facilities-2nd', 'dropdown', 'expanded')(class='js-dropdown-facilities-2nd')
           .fe__r-2__c-2
-            +dropdown-guests('dropdown-guests-1st', 'DROPDOWN')(class = 'js-dropdown-guests-1st')
+            +dropdown-guests('dropdown-guests-1st', 'dropdown')(class='js-dropdown-guests-1st')
           .fe__r-2__c-3
-            +dropdown-guests('dropdown-guests-2nd', 'DROPDOWN')(class = 'js-dropdown-guests-2nd')
+            +dropdown-guests('dropdown-guests-2nd', 'dropdown')(class='js-dropdown-guests-2nd')
         .fe__r-3
           .fe__r-3__c-1
             .fe__m-20.fe__w-266
               +expandable-list('expandable checkbox list')(class='js-auto-init')
                 +checkbox-list({ items: checkboxList })
             .fe__m-20.fe__w-266
-              +expandable-list('expandable checkbox list')(class='js-exp-list-2nd')
+              +expandable-list('expandable checkbox list')
                 +checkbox-list({ items: checkboxList })
           .fe__r-3__c-2
             +checkbox-list({ label: 'rich checkbox buttons', items: checkboxRich, isRich: true })

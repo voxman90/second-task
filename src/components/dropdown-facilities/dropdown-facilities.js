@@ -4,26 +4,35 @@ import { BEMComponent } from 'scripts/BEMComponent';
 import { Dropdown, DropdownModel } from 'components/dropdown/dropdown';
 
 const DropdownFacilities = ((document) => {
-  const Glossary = [
+  const Dictionary = [
     {
-      nominative       : 'спальня',
-      nominativePlural : 'спальни',
-      genitive         : 'спальни',
-      genitivePlural   : 'спален',
+      name: 'bedrooms',
+      forms: {
+        nominative       : 'спальня',
+        nominativePlural : 'спальни',
+        genitive         : 'спальни',
+        genitivePlural   : 'спален',
+      },
     },
 
     {
-      nominative       : 'кровать',
-      nominativePlural : 'кровати',
-      genitive         : 'кровати',
-      genitivePlural   : 'кроватей',
+      name: 'beds',
+      forms: {
+        nominative       : 'кровать',
+        nominativePlural : 'кровати',
+        genitive         : 'кровати',
+        genitivePlural   : 'кроватей',
+      },
     },
 
     {
-      nominative       : 'ванная комната',
-      nominativePlural : 'ванные комнаты',
-      genitive         : 'ванных комнаты',
-      genitivePlural   : 'ванных комнат',
+      name: 'bathrooms',
+      forms: {
+        nominative       : 'ванная комната',
+        nominativePlural : 'ванные комнаты',
+        genitive         : 'ванных комнаты',
+        genitivePlural   : 'ванных комнат',
+      },
     },
   ];
 
@@ -34,43 +43,26 @@ const DropdownFacilities = ((document) => {
   }
 
   const Modifier = {
-    INPUT_ANGLED : 'dropdown__input_angled',
+    READOUT_ANGLED : 'dropdown__readout_angled',
   }
 
   class DropdownFacilities extends Dropdown {
     constructor(element) {
-      const model = new DropdownModel(Default, Glossary);
+      const model = new DropdownModel(Default, Dictionary);
       super(element, 'dropdown-facilities', model);
 
-      this.input.classList.add(Modifier.INPUT_ANGLED);
+      this.input.classList.add(Modifier.READOUT_ANGLED);
 
-      this.hangHooks();
+      this._hangHooks();
     }
 
-    hangHooks() {
-      this.hooks.optionValueIncreased = function () {
-        const values = this.getOptionValues();
-        const sentence = this.model.getSentence(values);
-        this.drawInput(sentence);
-      };
-
-      this.hooks.optionValueDecreased = function () {
-        const values = this.getOptionValues();
-        const summ = values.reduce((a, b) => a + b);
-        if (summ === 0) {
-          this.drawInput(this.model.default);
-        } else {
-          const sentence = this.model.getSentence(values);
-          this.drawInput(sentence);
-        }
-      };
+    _hangHooks() {
+      this.hooks.optionValueIncreased = this._updateDropdownState().bind(this);
+      this.hooks.optionValueDecreased = this._updateDropdownState().bind(this);
     }
   }
 
-  const initDropdownFacilitiesComps = BEMComponent.makeAutoInitializer(
-    DropdownFacilities,
-    ClassName.ROOT,
-  );
+  const initDropdownFacilitiesComps = BEMComponent.makeAutoInitializer(DropdownFacilities, ClassName.ROOT);
 
   document.addEventListener('DOMContentLoaded', initDropdownFacilitiesComps);
 

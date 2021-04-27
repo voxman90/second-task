@@ -1,10 +1,5 @@
-mixin subscription-field(argsParam = {})
-  -
-    const args = { ...argsParam }
-    args.isSubscriptionField = true
-    args.type = 'email'
-
+mixin subscription-field(args = {})
   .subscription-field
-    +input(args)&attributes(attributes)
+    +input({ isIndented: true, type: 'email', ...args })&attributes(attributes)
     button(class='subscription-field__button', type='submit', tabindex='0')
       +icon({ name: 'arrow_forward' })

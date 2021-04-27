@@ -18,25 +18,19 @@ import { DropdownGuests } from 'components/dropdown-guests/dropdown-guests';
     dropdownFilterDateComp.setTimeInterval(new Date(2021, 7, 19), new Date(2021, 7, 23));
   }
 
-  function getComp(selector, Class) {
+  function initComp(selector, Class) {
     const element= $(selector).get(0);
     return new Class(element);
   }
 
   function initDropdownFacilitiesComps() {
-    const firstComp = getComp('.js-dropdown-facilities-1st', DropdownFacilities);
-    firstComp.setOptionValues([2, 2, 0]);
-
-    const secondComp = getComp('.js-dropdown-facilities-2nd', DropdownFacilities);
-    secondComp.setOptionValues([2, 2, 0]).expandBar().fixBar();
+    const firstComp = initComp('.js-dropdown-facilities-1st', DropdownFacilities);
+    const secondComp = initComp('.js-dropdown-facilities-2nd', DropdownFacilities);
   }
 
   function initDropdownGuestsComps() {
-    const firstComp = getComp('.js-dropdown-guests-1st', DropdownGuests.DropdownGuests);
-    firstComp.setOptionValues([0, 0, 0]).expandBar();
-
-    const secondComp = getComp('.js-dropdown-guests-2nd', DropdownGuests.DropdownGuests);
-    secondComp.setOptionValues([2, 1, 0]).expandBar();
+    const firstComp = initComp('.js-dropdown-guests-1st', DropdownGuests.DropdownGuests);
+    const secondComp = initComp('.js-dropdown-guests-2nd', DropdownGuests.DropdownGuests);
   }
 
   function init() {

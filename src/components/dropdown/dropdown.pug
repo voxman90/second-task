@@ -1,32 +1,38 @@
-mixin dropdown(args = {}, attr = {})
-  - const { haveButtons, left, right, name, value, options } = args
-  - const barModif = (haveButtons) ? 'dropdown__bar_instant-count' : ''
-  .dropdown&attributes(attributes)
-    +label({ left, right })
-      +input({ name: name, value: value })(class='dropdown__input js-dropdown__input', readonly)
-      .dropdown__icon.js-dropdown__icon
-        +icon({ name: 'expand_more' })
-    div(class=`dropdown__bar js-dropdown__bar dropdown__bar_hidden dropdown__bar_shadow ${barModif}`)
-      .js-dropdown__options
-        each value, name in options
-          +dropdown__option(name, value)
-      if haveButtons
-        .dropdown__buttons.js-dropdown__buttons
-          +button({ text: 'ОЧИСТИТЬ', name: `${name}-clear` })(class='dropdown__button-clear', type='button')
-          +button({ text: 'ПРИМЕНИТЬ', name: `${name}-apply` })(class='dropdown__button-apply', type='button')
+mixin dropdown(args = {})
+  -
+    const { options, hasButtons = false, hasLargeWidth = false } = args
+    const rootMod = (hasLargeWidth) ? ' dropdown_width_large' : ''
+    const rootClass = 'dropdown' + rootMod
 
-mixin dropdown__option(name, value)
+  div(class=rootClass)&attributes(attributes)
+    +label(args)
+      +dropdown__readout(args)
+      .dropdown__trigger.js-dropdown__trigger
+        +icon({ name: 'expand_more' })
+    div(class='dropdown__bar js-dropdown__bar dropdown__bar_hidden')
+      .js-dropdown__options
+        each option in options
+          +dropdown__option(option)
+      if hasButtons
+        +dropdown__buttons(name)
+
+mixin dropdown__readout(args)
+  - const { name = 'guests' } = args
+  div(class='dropdown__readout js-dropdown__readout')
+  input(name=name, class='dropdown__input js-dropdown__input', type='text', multiple=true)
+
+mixin dropdown__option(args)
+  - const { descr, name, value } = args
+  - const buttonMinusMod = (value === 0) ? 'dropdown__option-button_faded' : ''
   .dropdown__option.js-dropdown__option
-    .dropdown__option-name= name
-    div(
-      class='dropdown__option-button dropdown__option-button-minus js-dropdown__option-button-minus',
-      class=(parseInt(value) === 0) ? 'dropdown__option-button_faded' : undefined,
-      role='button',
-      tabindex='0',
-    )= '-'
-    .dropdown__option-value.js-dropdown__option-value= value
-    div(
-      class='dropdown__option-button js-dropdown__option-button-plus',
-      role='button',
-      tabindex ='0',
-    )= '+'
+    .dropdown__option-descr= descr
+    div(class=`dropdown__option-button dropdown__option-button_minus ${buttonMinusMod}`, role='button', tabindex='0')= '-'
+    div(class='dropdown__option-output js-dropdown__option-output', data-name=name)= value
+    div(class='dropdown__option-button', role='button', tabindex='0')= '+'
+
+mixin dropdown__buttons(name)
+  .dropdown__buttons
+    .dropdown__button-clear.js-dropdown__button
+      +button({ text: 'очистить' })
+    .dropdown__button-apply.js-dropdown__button
+      +button({ text: 'применить' })

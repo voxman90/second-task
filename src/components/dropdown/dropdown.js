@@ -4,43 +4,51 @@ import { BEMComponent } from 'scripts/BEMComponent'
 import { Utility } from 'scripts/Utility'
 
 class DropdownModel {
-  constructor(dft, glossary) {
-    this.default = dft;
-    this.glossary = glossary;
+  constructor(defaultSentence, dictionary) {
+    this.default = defaultSentence;
+    this._dictionary = this._convertDictionaryToMap(dictionary);
   }
 
-  getSentence(values) {
-    const sentence = values.map(
-        (value, i) => (value !== 0) ? `${value} ${this.convertToCorrectForm(value, this.glossary[i])}` : null
-      )
-      .filter(a => a !== null)
+  getSentence(options) {
+    console.log('options', options)
+    const sentence = options.map(this._getCollocation)
+      .filter(collocation => collocation !== null)
       .join(', ');
 
-    return sentence;
+    return (sentence === '') ? this.default : sentence;
   }
 
-  convertToMap(glossary) {
+  _getCollocation(option) {
+    console.log('option', option)
+    const { name, value } = option;
+
+    if (value !== 0) {
+      const countable = this._defineCorrectForm(name, value);
+      return `${value} ${countable}`;
+    }
+
+    return null;
+  }
+
+  _convertDictionaryToMap(dictionary) {
     const map = new Map();
 
-    glossary.forEach((wordForms) => {
-      map.set(wordForms.nominativePlural, wordForms)
+    dictionary.forEach((word) => {
+      map.set(word.name, word.forms);
     });
 
     return map;
   }
 
-  convertToCorrectForm(count, forms) {
-    const { nominative, genitive, genitivePlural } = forms;
-    return this.defineCorrectForm(count, nominative, genitive, genitivePlural);
-  }
-
-  defineCorrectForm(count, nominative, genitive, genitivePlural) {
+  _defineCorrectForm(name, number) {
+    console.log(name)
+    console.log(number)
+    console.log(this._dictionary)
+    const { nominative, genitive, genitivePlural } = this._dictionary.get(name);
     let form = genitivePlural;
-    if (
-      count % 100 < 11
-      || count % 100 > 14
-    ) {
-      switch (count % 10) {
+
+    if (number % 100 < 11 || 14 < number % 100) {
+      switch (number % 10) {
         case 1: {
           form = nominative;
           break;
@@ -63,27 +71,26 @@ class DropdownModel {
 
 const Dropdown = (() => {
   const ClassName = {
-    OPTION_BUTTON      : 'dropdown__option-button',
-    OPTION_BUTTON_PLUS : 'js-dropdown__option-button-plus',
+    OPTION_BUTTON : 'dropdown__option-button',
+  }
+
+  const Selector = {
+    READOUT       : '.js-dropdown__readout',
+    INPUT         : '.js-dropdown__input',
+    BAR           : '.js-dropdown__bar',
+    OPTIONS       : '.js-dropdown__options',
+    OPTION_OUTPUT : '.js-dropdown__option-output',
+    BUTTON        : '.js-dropdown__button',
   }
 
   const Modifier = {
-    INPUT_FIXED           : 'dropdown__input_fixed',
-    INPUT_EXPANDED        : 'dropdown__input_expanded',
-    INPUT_ANGLED          : 'dropdown__input_angled',
-    BAR_HIDDEN            : 'dropdown__bar_hidden',
-    BAR_FIXED             : 'dropdown__bar_fixed',
-    OPTION_BUTTON_FADED   : 'dropdown__option-button_faded',
-    BUTTON_CLEAR_HIDDEN   : 'dropdown__button-clear_hidden',
-  };
-
-  const Selector = {
-    INPUT        : '.js-dropdown__input',
-    ICON         : '.js-dropdown__icon',
-    BAR          : '.js-dropdown__bar',
-    OPTIONS      : '.js-dropdown__options',
-    OPTION_VALUE : '.js-dropdown__option-value',
-    BUTTONS      : '.js-dropdown__buttons',
+    READOUT_ANGLED       : 'dropdown__readout_angled',
+    READOUT_EXPANDED     : 'dropdown__readout_expanded',
+    BAR_HIDDEN           : 'dropdown__bar_hidden',
+    BAR_FIXED            : 'dropdown__bar_fixed',
+    OPTION_BUTTON_FADED  : 'dropdown__option-button_faded',
+    OPTION_BUTTON_MINUS  : 'dropdown__option-button_minus',
+    BUTTON_CLEAR_HIDDEN  : 'dropdown__button-clear_hidden',
   }
 
   const kq = Utility.keyQualifiers;
@@ -94,270 +101,270 @@ const Dropdown = (() => {
 
       this.model = model;
       this.hooks = null;
-      this.listeners = [];
 
-      this.connectBasis();
-
-      this.buttons = this.bar.querySelector(Selector.BUTTONS);
-      if (this.buttons !== null) {
-        this.connectButtons();
-      }
-
+      this._connectBasis();
+      this.hasButtons = this._connectButtons();
+      this.listeners = this._defineEventListeners();
+      this._updateDropdownState();
+      console.log(this.listeners)
       this.attachMultipleEventListeners(this.listeners);
     }
 
-    connectBasis() {
-      this.input = this.root.querySelector(Selector.INPUT);
-      this.icon = this.root.querySelector(Selector.ICON);
-      this.bar = this.root.querySelector(Selector.BAR);
-      this.optionsNode = this.root.querySelector(Selector.OPTIONS);
-      this.optionValueNodes = this.optionsNode.querySelectorAll(Selector.OPTION_VALUE);
-
-      this.hooks = {
-        optionValueIncreased: () => {},
-        optionValueDecreased: () => {},
-      }
-
-      this.listeners.push(
-        {
-          element: this.input,
-          event: 'click',
-          handler: this.handleInputClick.bind(this),
-        },
-
-        {
-          element: this.input,
-          event: 'keydown',
-          handler: this.handleInputKeydown.bind(this),
-        },
-
-        {
-          element: this.optionsNode,
-          event: 'click',
-          handler: this.handleOptionsClick.bind(this),
-        },
-
-        {
-          element: this.optionsNode,
-          event: 'keydown',
-          handler: this.handleOptionsKeydown.bind(this),
-        },
-      );
-    }
-
-    connectButtons() {
-      this.buttonClear = this.buttons.firstElementChild;
-      this.buttonApply = this.buttons.lastElementChild;
-
-      const optionValues = this.getOptionValues();
-      const summ = optionValues.reduce((acc, cur) => acc + cur);
-      this.toggleButtonClearVisibility(summ);
-
-      this.listeners.push(
-        {
-          element: this.buttonClear,
-          event: 'click',
-          handler: this.handleButtonClearClick.bind(this),
-        },
-
-        {
-          element: this.buttonClear,
-          event: 'keydown',
-          handler: this.handleButtonClearKeydown.bind(this),
-        },
-
-        {
-          element: this.buttonApply,
-          event: 'click',
-          handler: this.handleButtonApplyClick.bind(this),
-        },
-
-        {
-          element: this.buttonApply,
-          event: 'keydown',
-          handler: this.handleButtonApplyKeydown.bind(this),
-        },
-      );
+    setOptionValues(values) {
+      this._fillOptionOutputs(values);
+      this._updateDropdownState();
     }
 
     toggleBar() {
       this.bar.classList.toggle(Modifier.BAR_HIDDEN);
-      this.input.classList.toggle(Modifier.INPUT_EXPANDED);
-      return this;
+      this.readout.classList.toggle(Modifier.READOUT_EXPANDED);
     }
 
-    closeBar() {
-      this.bar.classList.add(Modifier.BAR_HIDDEN);
-      this.input.classList.remove(Modifier.INPUT_EXPANDED);
-      return this;
+    _connectBasis() {
+      this.readout = this.root.querySelector(Selector.READOUT);
+      this.input = this.root.querySelector(Selector.INPUT);
+      this.bar = this.root.querySelector(Selector.BAR);
+      this._connectOptions();
     }
 
-    expandBar() {
-      this.bar.classList.remove(Modifier.BAR_HIDDEN);
-      this.input.classList.add(Modifier.INPUT_EXPANDED);
-      return this;
-    }
+    _connectOptions() {
+      this.optionsContainer = this.root.querySelector(Selector.OPTIONS);
 
-    fixBar() {
-      this.bar.classList.add(Modifier.BAR_FIXED);
-      this.input.classList.add(Modifier.INPUT_FIXED);
-      return this;
-    }
+      const optionOutputsNodeList = this.root.querySelectorAll(Selector.OPTION_OUTPUT);
+      console.log(optionOutputsNodeList)
+      this.optionOutputs = Array.from(optionOutputsNodeList);
 
-    unfixBar() {
-      this.bar.classList.remove(Modifier.BAR_FIXED);
-      this.input.classList.remove(Modifier.INPUT_FIXED);
-      return this;
-    }
-
-    setOptionValues(values) {
-      this.drawOptionValues(values);
-      const sentence = this.model.getSentence(values);
-      this.drawInput(sentence);
-      return this;
-    }
-
-    changeOptionValue(optionNode) {
-      if (optionNode.classList.contains(ClassName.OPTION_BUTTON_PLUS)) {
-        this.increaseOptionValue(optionNode);
-      } else {
-        this.decreaseOptionValue(optionNode);
+      this.hooks = {
+        optionValueIncreased: () => void(0),
+        optionValueDecreased: () => void(0),
       }
     }
 
-    increaseOptionValue(optionButtonPlusNode) {
-      const optionValueNode = optionButtonPlusNode.previousElementSibling;
-      const value = parseInt(optionValueNode.textContent) + 1;
-      optionValueNode.textContent = value;
+    _connectButtons() {
+      const buttons = this.root.querySelectorAll(Selector.BUTTON);
+      const hasButtons = buttons.length !== 0;
+      if (!hasButtons) return false;
+
+      this.buttonClear = buttons[0];
+      this.buttonApply = buttons[1];
+      console.log(buttons);
+
+      this._updateButtonClearState();
+
+      return true;
+    }
+
+    _updateButtonClearState() {
+      const options = this._getOptions();
+      console.log(options);
+      const sum = this._getSumOfValues(options);
+      this._toggleButtonClearVisibility(sum);
+    }
+
+    _updateDropdownState() {
+      const options = this._getOptions();
+      const sentence = this.model.getSentence(options);
+      this._setInput(options);
+      this._fillReadout(sentence);
+    }
+
+    _setInput(options = {}) {
+      this.input.textContent = JSON.stringify(options);
+    }
+
+    _getOptions() {
+      console.log(this.optionOutputs);
+      return this.optionOutputs.map((output) => {
+        const name = output.dataset.name;
+        const value = parseInt(output.textContent);
+        return { name, value };
+      });
+    }
+
+    _getSumOfValues(options) {
+      return options.reduce((accumulator, option) => accumulator + option.value);
+    }
+
+    _increaseOptionValue(buttonPlus) {
+      const output = buttonPlus.previousElementSibling;
+      const value = parseInt(output.textContent) + 1;
+      output.textContent = value;
 
       if (value === 1) {
-        optionValueNode.previousElementSibling.classList.remove(Modifier.OPTION_BUTTON_FADED);
+        this._toggleButtonMinus(output, 1);
       }
 
-      this.hooks.optionValueIncreased.call(this, value);
+      this.hooks.optionValueIncreased(value);
     }
 
-    decreaseOptionValue(optionButtonMinusNode) {
-      const isFaded = optionButtonMinusNode.classList.contains(Modifier.OPTION_BUTTON_FADED);
-      if (!isFaded) {
-        const optionValueNode = optionButtonMinusNode.nextElementSibling;
-        const value = parseInt(optionValueNode.textContent) - 1;
-        optionValueNode.textContent = value;
+    _decreaseOptionValue(buttonMinus) {
+      const output = buttonMinus.nextElementSibling;
+      const value = parseInt(output.textContent) - 1;
+      output.textContent = value;
 
-        if (value === 0) {
-          optionButtonMinusNode.classList.add(Modifier.OPTION_BUTTON_FADED);
-        }
-
-        this.hooks.optionValueDecreased.call(this, value);
-      }
-    }
-
-    getOptionValues() {
-      const values = [];
-      this.optionValueNodes.forEach(
-        (optionValueNode) => { 
-          values.push(parseInt(optionValueNode.textContent));
-        }
-      );
-
-      return values;
-    }
-
-    drawOptionValues(values) {
-      this.optionValueNodes.forEach(
-        (optionValueNode, i) => {
-          optionValueNode.textContent = values[i];
-          this.toggleMinusButton(optionValueNode, values[i]);
-        }
-      );
-
-      return this;
-    }
-
-    toggleMinusButton(optionValueNode, value) {
-      const minusButtonNode = optionValueNode.previousElementSibling;
       if (value === 0) {
-        minusButtonNode.classList.add(Modifier.OPTION_BUTTON_FADED);
-      } else {
-        minusButtonNode.classList.remove(Modifier.OPTION_BUTTON_FADED);
+        this._disableButtonMinus(buttonMinus);
       }
+
+      this.hooks.optionValueDecreased(value);
     }
 
-    drawInput(sentence) {
-      this.input.value = sentence;
-      return this;
-    }
-
-    cleanOptionValues() {
-      this.optionValueNodes.forEach(
-        (optionValueNode) => { 
-          optionValueNode.textContent = 0;
+    _changeOptionValue(button) {
+      const isButtonMinus = button.classList.contains(Modifier.OPTION_BUTTON_MINUS)
+      if (isButtonMinus) {
+        const isButtonMinusDisable = button.classList.contains(Modifier.OPTION_BUTTON_FADED);
+        if (!isButtonMinusDisable) {
+          this._decreaseOptionValue(button);
         }
-      );
-    }
-
-    toggleButtonClearVisibility(summ) {
-      if (summ === 0) {
-        this.buttonClear.classList.add(Modifier.BUTTON_CLEAR_HIDDEN);
       } else {
-        this.buttonClear.classList.remove(Modifier.BUTTON_CLEAR_HIDDEN);
+        this._increaseOptionValue(button);
       }
     }
 
-    handleInputClick() {
+    _enableButtonMinus(buttonMinus) {
+      buttonMinus.classList.remove(Modifier.OPTION_BUTTON_FADED);
+    }
+
+    _disableButtonMinus(buttonMinus) {
+      buttonMinus.classList.add(Modifier.OPTION_BUTTON_FADED);
+    }
+
+    _toggleButtonMinus(output, value) {
+      const buttonMinus = output.previousElementSibling;
+      if (value === 0) {
+        this._disableButtonMinus(buttonMinus);
+      } else {
+        this._enableButtonMinus(buttonMinus);
+      }
+    }
+
+    _enableButtonClear() {
+      this.buttonClear.classList.add(Modifier.BUTTON_CLEAR_HIDDEN);
+    }
+
+    _disableButtonClear() {
+      this.buttonClear.classList.remove(Modifier.BUTTON_CLEAR_HIDDEN);
+    }
+
+    _toggleButtonClearVisibility(sumOfValues) {
+      if (sumOfValues === 0) {
+        this._enableButtonClear();
+      } else {
+        this._disableButtonClear();
+      }
+    }
+
+    _fillReadout(sentence = this.model.default) {
+      this.readout.textContent = sentence;
+    }
+
+    _fillOptionOutputs(values) {
+      this.optionOutputs.forEach((output, i) => {
+        output.textContent = values[i];
+        this._toggleButtonMinus(output, values[i]);
+      });
+    }
+
+    _clearOptionOutputs() {
+      this.optionOutputs.forEach((output) => { 
+        output.textContent = 0;
+        this._toggleButtonMinus(output, 0);
+      });
+    }
+
+    handleReadoutClick = () => {
       this.toggleBar();
     }
 
-    handleInputKeydown(event) {
+    handleReadoutKeydown = (event) => {
       if (kq.isEnterOrSpaceKey(event)) {
         event.preventDefault();
         this.toggleBar();
       }
     }
 
-    handleOptionsClick(event) {
+    handleOptionsContainerClick = (event) => {
       const et = event.target;
-      if (et.classList.contains(ClassName.OPTION_BUTTON)) {
-        this.changeOptionValue(et);
+      const isButton = et.classList.contains(ClassName.OPTION_BUTTON);
+      if (isButton) {
+        this._changeOptionValue(et);
       }
     }
 
-    handleOptionsKeydown(event) {
+    handleOptionsContainerKeydown = (event) => {
       const et = event.target;
-      if (
-        et.classList.contains(ClassName.OPTION_BUTTON)
-        && kq.isEnterKey(event)
-      ) {
-        this.changeOptionValue(et);
+      const isButton = et.classList.contains(ClassName.OPTION_BUTTON);
+      if (kq.isEnterKey(event) && isButton) {
+        this._changeOptionValue(et);
       }
     }
 
-    handleButtonClearClick() {
-      this.cleanOptionValues();
-      this.toggleButtonClearVisibility(0);
-      this.drawInput(this.model.default);
+    handleButtonClearClick = () => {
+      this._clearOptionOutputs();
+      this._disableButtonClear();
+      this._setInput();
+      this._fillReadout();
     }
 
-    handleButtonClearKeydown(event) {
+    handleButtonClearKeydown = (event) => {
       if (kq.isEnterKey(event)) {
         this.handleButtonClearClick();
       }
     }
 
-    handleButtonApplyClick() {
-      const values = this.getOptionValues();
-      const sentence = this.model.getSentence(values);
-      this.drawInput(sentence).closeBar();
+    handleButtonApplyClick = () => {
+      this._updateDropdownState();
+      this.toggleBar();
     }
 
-    handleButtonApplyKeydown(event) {
+    handleButtonApplyKeydown = (event) => {
       if (kq.isEnterKey(event)) {
         this.handleButtonApplyClick();
       }
 
       if (kq.isTabKey(event)) {
-        this.closeBar();
+        this.toggleBar();
       }
+    }
+
+    _defineEventListeners() {
+      const listeners = [
+        {
+          element: this.readout,
+          handlers: {
+            'click': this.handleReadoutClick,
+            'keydown': this.handleReadoutKeydown,
+          }
+        },
+        {
+          element: this.optionsContainer,
+          handlers: {
+            'click': this.handleOptionsContainerClick,
+            'keydown': this.handleOptionsContainerKeydown,
+          }
+        },
+      ];
+
+      if (this.hasButtons) {
+        listeners.push(
+          {
+            element: this.buttonClear,
+            handlers: {
+              'click': this.handleButtonClearClick,
+              'keydown': this.handleButtonClearKeydown,
+            }
+          },
+          {
+            element: this.buttonApply,
+            handlers: {
+              'click': this.handleButtonApplyClick,
+              'keydown': this.handleButtonApplyKeydown,
+            }
+          }
+        );
+      }
+
+      return listeners;
     }
   }
 
