@@ -1,15 +1,13 @@
 .toggle {
-  display: flex;
-  flex-wrap: nowrap;
   width: 100%;
   max-width: 270px;
-  min-height: 1.5rem;
+  min-height: 1.5em;
 }
 
 .toggle__input {
   margin: 3.6px 13.6px;
 
-  &:checked + .toggle__descr-wrapper {
+  &:checked + .toggle__text-wrapper {
     &::before {
       border: 1px solid $primary;
     }
@@ -20,18 +18,18 @@
     }
   }
 
-  &:focus + .toggle__descr-wrapper::before,
-  &:hover + .toggle__descr-wrapper::before {
+  &:focus + .toggle__text-wrapper::before,
+  &:hover + .toggle__text-wrapper::before {
     border-color: $dark-shade-50;
   }
 
-  &:checked:focus + .toggle__descr-wrapper::before,
-  &:checked:hover + .toggle__descr-wrapper::before {
+  &:checked:focus + .toggle__text-wrapper::before,
+  &:checked:hover + .toggle__text-wrapper::before {
     border: 1px solid $primary-darken-10;
   }
 }
 
-.toggle__descr-wrapper {
+.toggle__text-wrapper {
   position: relative;
   display: inline-block;
   padding-left: 10px;
@@ -68,7 +66,7 @@
   }
 }
 
-.toggle__descr {
+.toggle__text {
   vertical-align: top;
   margin: 0;
 

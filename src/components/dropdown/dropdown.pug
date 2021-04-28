@@ -5,8 +5,9 @@ mixin dropdown(args = {})
     const rootClass = 'dropdown' + rootMod
 
   div(class=rootClass)&attributes(attributes)
-    +label(args)
-      +dropdown__readout(args)
+    .dropdown__head
+      +label(args)
+        +dropdown__readout(args)
       .dropdown__trigger.js-dropdown__trigger
         +icon({ name: 'expand_more' })
     div(class='dropdown__bar js-dropdown__bar dropdown__bar_hidden')

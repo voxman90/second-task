@@ -1,17 +1,23 @@
 mixin input(args = {})
-  - const { name = '', type = 'text', placeholder = '', value = null, mask = null } = args
   -
     const {
+      id,
+      name,
+      value,
+      mask,
+      type = 'text',
+      placeholder = '',
       isIndented = false,
       isMasked = false,
     } = args
-    const classes = ['input']
-    if (isIndented) classes.push('input_indented')
-    if (isMasked) classes.push('input_masked', 'js-input-masked')
+    const inputClass = ['input']
+    if (isIndented) inputClass.push('input_indented')
+    if (isMasked) inputClass.push('input_masked', 'js-input-masked')
 
   input(
-    class=classes.join(' '),
+    class=inputClass,
     type=type,
+    id=id,
     name=name,
     placeholder=placeholder,
     value=value,

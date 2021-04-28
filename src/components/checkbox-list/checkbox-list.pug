@@ -1,8 +1,8 @@
 mixin checkbox-list(args = {})
-  - const { items, label, isRich = false } = args
+  - const { items, text, isRich = false } = args
   ul.checkbox-list
     if (label !== undefined)
-      +label({ left: label, hasLargePadding: true })
+      +label({ text, hasLargePadding: true })
     each item in items
       li.checkbox-list__item
         if (!isRich)

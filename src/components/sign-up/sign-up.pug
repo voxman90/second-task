@@ -7,19 +7,19 @@ mixin sign-up()
       .card__spot.card__spot_indent_small
         +input({ name: 'last-name', placeholder: 'Фамилия' })
       .sign-up__radio-buttons.card__spot.card__spot_indent_mid
-        +radio-button({ name: 'sex', value: 'male', checked: true, descr: 'Мужчина' })
+        +radio-button({ name: 'sex', value: 'male', checked: true, text: 'Мужчина' })
         .sign-up__plug
-        +radio-button({ name: 'sex', value: 'female', descr: 'Женщина' })
-      +label({ left: 'дата рождения' })
+        +radio-button({ name: 'sex', value: 'female', text: 'Женщина' })
+      +label({ text: 'дата рождения' })
         .card__spot.card__spot_indent_mid
           +input-date({ name: 'birth-date' })
-      +label({ left: 'данные для входа в сервис' })
+      +label({ text: 'данные для входа в сервис' })
         .card__spot.card__spot_indent_small
           +input({ name: 'user-email', placeholder: 'Email' })
         .card__spot.card__spot_indent_small
           +input({ name: 'user-password', placeholder: 'Пароль' })
       .card__spot.card__spot_indent_mid
-        +toggle({ name: 'spec', value: 'first', checked: false, descr: 'Получать спецпредложения' })
+        +toggle({ name: 'spec', value: 'first', checked: false, text: 'Получать спецпредложения' })
       .card__spot.card__spot_indent_big
         +button-long({ name: 'button-sing-up', text: 'зарегистрироваться', isArrowed: true })
     .sign-up__sign-in

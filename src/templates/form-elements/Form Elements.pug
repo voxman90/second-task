@@ -46,48 +46,48 @@ include ../../components/comment/comment.pug
         .fe__r-1
           .fe__r-1__c-1
             .fe__m-20
-              +text-field({ name: 'input-1st', placeholder: 'Email', left: 'text field', right: 'default' })
+              +text-field({ name: 'input-1st', placeholder: 'Email', labelText: 'text field', labelAppendix: 'default' })
             .fe__m-20
-              +text-field({ name: 'input-2nd', left: 'text field', right: 'hover / focus' })
+              +text-field({ name: 'input-2nd', labelText: 'text field', labelAppendix: 'hover / focus' })
             .fe__m-20
               +dropdown-guests('dropdown-guests-1st', 'dropdown')(class='js-auto-init')
             .fe__m-40
-              +label({ left: 'masked text field' })
+              +label({ text: 'masked text field' })
                 +input-date({ name: 'input-date-1st' })
             .fe__m-40
-              +dropdown-date({ name: 'dropdown-date-1st', left: 'date dropdown', right: 'date dropdown' })(class='js-dropdown-date-1st')
+              +dropdown-date({ name: 'dropdown-date-1st', labelText: 'date dropdown', labelAppendix: 'date dropdown' })(class='js-dropdown-date-1st')
             .fe__m-40
-              +dropdown-filter-date({ name: 'dropdown-filter-date-1st', label: 'filter date dropdown' })(class='js-dropdown-filter-date-1st')
+              +dropdown-filter-date({ name: 'dropdown-filter-date-1st', labelText: 'filter date dropdown' })(class='js-dropdown-filter-date-1st')
             .fe__w-266
-              +label({ left: 'subscription text field' })
+              +label({ text: 'subscription text field' })
                 +subscription-field({ name: 'subscr-field-1st', placeholder: 'Email' })
           .fe__r-1__c-2
             .fe__m-40.fe__w-222
               +checkbox-list({ label: 'checkbox buttons', items: checkboxItems })
             .fe__m-40.fe__w-222
-              +label({ left: 'radio buttons', hasLargePadding: true })
+              +label({ text: 'radio buttons', hasLargePadding: true })
               .fe__flex-box
-                +radio-button({ name: 'sex', value: 'man', checked: true, descr: 'Мужчина' })
-                +radio-button({ name: 'sex', value: 'women', descr: 'Женщина' })
+                +radio-button({ name: 'sex', value: 'man', checked: true, text: 'Мужчина' })
+                +radio-button({ name: 'sex', value: 'women', text: 'Женщина' })
             .fe__m-40.fe__w-270
-              +label({ left: 'toggle', hasLargePadding: true })
+              +label({ text: 'toggle', hasLargePadding: true })
                 .fe__m-10
-                  +toggle({ name: 'spec', value: 'first', checked: true, descr: 'Получать спецпредложения' })
-                +toggle({ name: 'spec', value: 'second', descr: 'Получать спецпредложения' })
+                  +toggle({ name: 'spec', value: 'first', checked: true, text: 'Получать спецпредложения' })
+                +toggle({ name: 'spec', value: 'second', text: 'Получать спецпредложения' })
             .fe__m-40
-              +label({ left: 'like button', hasLargePadding: true })
+              +label({ text: 'like button', hasLargePadding: true })
               .fe__like-buttons
                 +like-button({ name: 'like-btn-1st', count: 2 })(class='js-auto-init')
                 +like-button({ name: 'like-btn-2nd', count: 12, checked: true })(class='js-auto-init')
-            +label({ left: 'rate button', hasLargePadding: true })
+            +label({ text: 'rate button', hasLargePadding: true })
               .fe__rate-buttons
                 +rate-button({ amount: 5, filled: 5, name: 'rate-button-1st' })(class='js-auto-init')
                 +rate-button({ amount: 5, filled: 4, name: 'rate-button-2nd' })(class='js-auto-init')
           .fe__r-1__c-3
             .fe__m-40
-              +range-slider({ label: 'range slider '}).js-auto-init
+              +range-slider({ labelText: 'range slider'}).js-auto-init
             .fe__m-30
-              +label({ left: 'buttons', hasLargePadding: true })
+              +label({ text: 'buttons', hasLargePadding: true })
               .fe__m-30
                 +button-short({ name: 'button-short-1st', text: 'click me', isFilled: true })
                 .fe__plug
@@ -124,7 +124,7 @@ include ../../components/comment/comment.pug
           .fe__r-3__c-2
             +checkbox-list({ label: 'rich checkbox buttons', items: checkboxRich, isRich: true })
           .fe__r-3__c-3
-            +label({ left: 'bullet list', hasLargePadding: true })
+            +label({ text: 'bullet list', hasLargePadding: true })
               +bullet-list(bulletList)
         .fe__r-4
           .fe__r-4__c-1

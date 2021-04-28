@@ -1,8 +1,11 @@
-mixin label(args = {})
-  - const { left = '', right = '', hasLargePadding = false } = args
-  label
-    span(class=(hasLargePadding) ? 'label label_padding_large' : 'label')
-      span.label__left-mark= left
-      span.label__right-mark= right
-    if block
-      block
+mixin label(args)
+  -
+    const { id, text, appendix = '', hasLargeMargin = false } = args
+    const labelClass = ['label']
+    if (hasLargeMargin) labelClass.push('label_margin_large')
+
+  label(class=labelClass, for=id)
+    | #{text}
+    span.label__appendix #{appendix}
+  if block
+    block

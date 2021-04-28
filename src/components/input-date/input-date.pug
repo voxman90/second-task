@@ -1,10 +1,10 @@
-mixin input-date(args = {})
+mixin input-date(args)
   -
-    const argsParam = {
+    const options = {
       placeholder: 'ДД.ММ.ГГГГ',
-      mask: "'placeholder': 'ДД.ММ.ГГГГ', 'alias': 'datetime', 'inputFormat': 'dd.mm.yyyy', 'clearIncomplete': true",
       isMasked: true,
+      mask: "'placeholder': 'ДД.ММ.ГГГГ', 'alias': 'datetime', 'inputFormat': 'dd.mm.yyyy', 'clearIncomplete': true",
       ...args
     }
 
-  +input(argsParam)&attributes(attributes)
+  +input(options)&attributes(attributes)

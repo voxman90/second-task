@@ -1,6 +1,6 @@
 mixin range-slider(args = {})
   - const { label = '', caption = '' } = args
   div(class='range-slider js-range-slider')&attributes(attributes)
-    +label({ left: label, right: '' })
+    +label({ text: label, appendix: '' })
       div(class='js-range-slider__target')
       .range-slider__caption= caption
