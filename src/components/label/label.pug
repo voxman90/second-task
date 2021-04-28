@@ -1,11 +1,12 @@
 mixin label(args)
   -
     const { id, text, appendix = '', hasLargeMargin = false } = args
-    const labelClass = ['label']
-    if (hasLargeMargin) labelClass.push('label_margin_large')
+    const textClass = ['label__text']
+    if (hasLargeMargin) textClass.push('label__text_margin_large')
 
-  label(class=labelClass, for=id)
-    | #{text}
-    span.label__appendix #{appendix}
-  if block
-    block
+  label(class='label', for=id)
+    span(class=textClass)
+      | #{text}
+      span.label__appendix #{appendix}
+    if block
+      block

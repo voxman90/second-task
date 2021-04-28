@@ -1,37 +1,54 @@
-mixin dropdown(args = {})
+mixin dropdown(args)
   -
-    const { options, hasButtons = false, hasLargeWidth = false } = args
-    const rootMod = (hasLargeWidth) ? ' dropdown_width_large' : ''
-    const rootClass = 'dropdown' + rootMod
+    const {
+      id,
+      name, 
+      options,
+      defaultValue,
+      labelText: text,
+      labelAppendix: appendix = '',
+      hasButtons = false,
+      hasLargeWidth = false
+    } = args
+    const rootClass = ['dropdown']
+    if (hasLargeWidth) rootClass.push('dropdown_width_large')
 
   div(class=rootClass)&attributes(attributes)
-    .dropdown__head
-      +label(args)
-        +dropdown__readout(args)
-      .dropdown__trigger.js-dropdown__trigger
+    .dropdown__head.js-dropdown__head
+      +label({ id, text, appendix })
+      +dropdown__input(id, name, defaultValue)
+      .dropdown__icon
         +icon({ name: 'expand_more' })
-    div(class='dropdown__bar js-dropdown__bar dropdown__bar_hidden')
+    .dropdown__bar.js-dropdown__bar.dropdown__bar_hidden
       .js-dropdown__options
         each option in options
           +dropdown__option(option)
       if hasButtons
-        +dropdown__buttons(name)
+        +dropdown__buttons
 
-mixin dropdown__readout(args)
-  - const { name = 'guests' } = args
-  div(class='dropdown__readout js-dropdown__readout')
-  input(name=name, class='dropdown__input js-dropdown__input', type='text', multiple=true)
+mixin dropdown__input(id, name, defaultValue)
+  input(
+    id=id,
+    class='dropdown__input js-dropdown__input',
+    type='text',
+    name=name,
+    value=defaultValue
+    readonly=true
+  )
 
-mixin dropdown__option(args)
-  - const { descr, name, value } = args
-  - const buttonMinusMod = (value === 0) ? 'dropdown__option-button_faded' : ''
+mixin dropdown__option(option)
+  -
+    const { name, value, description } = option
+    const buttonMinusClass = ['dropdown__option-button', 'dropdown__option-button_minus']
+    if (value === 0) buttonMinusClass.push('dropdown__option-button_faded')
+
   .dropdown__option.js-dropdown__option
-    .dropdown__option-descr= descr
-    div(class=`dropdown__option-button dropdown__option-button_minus ${buttonMinusMod}`, role='button', tabindex='0')= '-'
+    .dropdown__option-description= description
+    div(class=buttonMinusClass, role='button', tabindex='0')= '-'
     div(class='dropdown__option-output js-dropdown__option-output', data-name=name)= value
     div(class='dropdown__option-button', role='button', tabindex='0')= '+'
 
-mixin dropdown__buttons(name)
+mixin dropdown__buttons()
   .dropdown__buttons
     .dropdown__button-clear.js-dropdown__button
       +button({ text: 'очистить' })

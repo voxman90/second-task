@@ -1,6 +1,13 @@
 .label {
   display: inline-block;
   width: 100%;
+
+  line-height: 0;
+}
+
+.label__text {
+  display: inline-block;
+  width: 100%;
   height: 1.25em;
   margin-bottom: 5px;
 
@@ -8,7 +15,7 @@
   text-align: left;
 }
 
-.label_margin_large {
+.label__text_margin_large {
   margin-bottom: 1rem;
 }
 
@@ -17,6 +24,8 @@
   height: 1.25em;
 
   @include Montserrat-normal;
+  font-size: 1em;
+  line-height: 1.25;
   text-align: right;
   color: $dark-shade-50;
 }

@@ -1,16 +1,14 @@
-mixin dropdown-facilities(name, left, right) 
+mixin dropdown-facilities(args) 
   -
-    const args = {
-      left,
-      right,
-      name,
-      value: 'Сколько удобств',
+    const addition = {
       hasButtons: false,
+      defaultValue: 'Сколько удобств',
       options: [
-        { name: 'bedroom', descr: 'спальни', value: 0 },
-        { name: 'bad', descr: 'кровати', value: 0 },
-        { name: 'bathroom', descr: 'ванные комнаты', value: 0 },
+        { name: 'bedroom', description: 'спальни', value: 0 },
+        { name: 'bad', description: 'кровати', value: 0 },
+        { name: 'bathroom', description: 'ванные комнаты', value: 0 },
       ],
-    }
+    } 
+    const argsAugmented = { ...args, ...addition }
 
-  +dropdown(args)(class='js-dropdown-facilities')&attributes(attributes)
+  +dropdown(argsAugmented)(class='js-dropdown-facilities')&attributes(attributes)

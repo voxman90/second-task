@@ -1,5 +1,8 @@
 mixin icon(args)
-  - let { tag, name, font } = args
-  - font = (font === 'awesome') ? 'awesome' : 'material'
-  - tag = (tag) ? tag : 'div'
-  #{tag}(class=`icon icon_font_${font}`)&attributes(attributes)!= name
+  -
+    const { tag = 'span', name, font } = args
+    const iconClass = ['icon']
+    iconMod = (font === 'awesome') ? 'icon_font_awesome' : 'icon_font_material'
+    iconClass.push(iconMod)
+
+  #{tag}(class=iconClass)&attributes(attributes)!= name

@@ -10,7 +10,6 @@ class DropdownModel {
   }
 
   getSentence(options) {
-    console.log('options', options)
     const sentence = options.map(this._getCollocation)
       .filter(collocation => collocation !== null)
       .join(', ');
@@ -19,7 +18,6 @@ class DropdownModel {
   }
 
   _getCollocation(option) {
-    console.log('option', option)
     const { name, value } = option;
 
     if (value !== 0) {
@@ -41,9 +39,6 @@ class DropdownModel {
   }
 
   _defineCorrectForm(name, number) {
-    console.log(name)
-    console.log(number)
-    console.log(this._dictionary)
     const { nominative, genitive, genitivePlural } = this._dictionary.get(name);
     let form = genitivePlural;
 
@@ -72,10 +67,12 @@ class DropdownModel {
 const Dropdown = (() => {
   const ClassName = {
     OPTION_BUTTON : 'dropdown__option-button',
+    ICON          : 'icon',
+    INPUT         : 'dropdown__input',
   }
 
   const Selector = {
-    READOUT       : '.js-dropdown__readout',
+    HEAD          : '.js-dropdown__head',
     INPUT         : '.js-dropdown__input',
     BAR           : '.js-dropdown__bar',
     OPTIONS       : '.js-dropdown__options',
@@ -84,8 +81,8 @@ const Dropdown = (() => {
   }
 
   const Modifier = {
-    READOUT_ANGLED       : 'dropdown__readout_angled',
-    READOUT_EXPANDED     : 'dropdown__readout_expanded',
+    INPUT_ANGLED         : 'dropdown__input_angled',
+    INPUT_EXPANDED       : 'dropdown__input_expanded',
     BAR_HIDDEN           : 'dropdown__bar_hidden',
     BAR_FIXED            : 'dropdown__bar_fixed',
     OPTION_BUTTON_FADED  : 'dropdown__option-button_faded',
@@ -106,7 +103,6 @@ const Dropdown = (() => {
       this.hasButtons = this._connectButtons();
       this.listeners = this._defineEventListeners();
       this._updateDropdownState();
-      console.log(this.listeners)
       this.attachMultipleEventListeners(this.listeners);
     }
 
@@ -117,11 +113,11 @@ const Dropdown = (() => {
 
     toggleBar() {
       this.bar.classList.toggle(Modifier.BAR_HIDDEN);
-      this.readout.classList.toggle(Modifier.READOUT_EXPANDED);
+      this.input.classList.toggle(Modifier.INPUT_EXPANDED);
     }
 
     _connectBasis() {
-      this.readout = this.root.querySelector(Selector.READOUT);
+      this.head = this.root.querySelector(Selector.HEAD);
       this.input = this.root.querySelector(Selector.INPUT);
       this.bar = this.root.querySelector(Selector.BAR);
       this._connectOptions();
@@ -131,7 +127,6 @@ const Dropdown = (() => {
       this.optionsContainer = this.root.querySelector(Selector.OPTIONS);
 
       const optionOutputsNodeList = this.root.querySelectorAll(Selector.OPTION_OUTPUT);
-      console.log(optionOutputsNodeList)
       this.optionOutputs = Array.from(optionOutputsNodeList);
 
       this.hooks = {
@@ -147,7 +142,6 @@ const Dropdown = (() => {
 
       this.buttonClear = buttons[0];
       this.buttonApply = buttons[1];
-      console.log(buttons);
 
       this._updateButtonClearState();
 
@@ -156,7 +150,6 @@ const Dropdown = (() => {
 
     _updateButtonClearState() {
       const options = this._getOptions();
-      console.log(options);
       const sum = this._getSumOfValues(options);
       this._toggleButtonClearVisibility(sum);
     }
@@ -164,16 +157,14 @@ const Dropdown = (() => {
     _updateDropdownState() {
       const options = this._getOptions();
       const sentence = this.model.getSentence(options);
-      this._setInput(options);
-      this._fillReadout(sentence);
+      this._setInput(sentence);
     }
 
-    _setInput(options = {}) {
-      this.input.textContent = JSON.stringify(options);
+    _setInput(sentence) {
+      this.input.value = sentence;
     }
 
     _getOptions() {
-      console.log(this.optionOutputs);
       return this.optionOutputs.map((output) => {
         const name = output.dataset.name;
         const value = parseInt(output.textContent);
@@ -254,10 +245,6 @@ const Dropdown = (() => {
       }
     }
 
-    _fillReadout(sentence = this.model.default) {
-      this.readout.textContent = sentence;
-    }
-
     _fillOptionOutputs(values) {
       this.optionOutputs.forEach((output, i) => {
         output.textContent = values[i];
@@ -272,14 +259,19 @@ const Dropdown = (() => {
       });
     }
 
-    handleReadoutClick = () => {
-      this.toggleBar();
+    handleHeadClick = (event) => {
+      const et = event.target;
+      const isIcon = et.classList.contains(ClassName.ICON);
+      const isInput = et.classList.contains(ClassName.INPUT);
+      if (isIcon || isInput) {
+        this.toggleBar();
+      }
     }
 
-    handleReadoutKeydown = (event) => {
+    handleHeadKeydown = (event) => {
       if (kq.isEnterOrSpaceKey(event)) {
         event.preventDefault();
-        this.toggleBar();
+        this.handleHeadClick(event);
       }
     }
 
@@ -303,7 +295,6 @@ const Dropdown = (() => {
       this._clearOptionOutputs();
       this._disableButtonClear();
       this._setInput();
-      this._fillReadout();
     }
 
     handleButtonClearKeydown = (event) => {
@@ -330,10 +321,10 @@ const Dropdown = (() => {
     _defineEventListeners() {
       const listeners = [
         {
-          element: this.readout,
+          element: this.head,
           handlers: {
-            'click': this.handleReadoutClick,
-            'keydown': this.handleReadoutKeydown,
+            'click': this.handleHeadClick,
+            'keydown': this.handleHeadKeydown,
           }
         },
         {

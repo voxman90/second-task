@@ -2,4 +2,4 @@ mixin text-field(args)
   - const { id, name, placeholder, labelText: text, labelAppendix: appendix = '' } = args
   .text-field
     +label({ id, text, appendix })
-    +input({ id, name, placeholder })&attributes(attributes)
+      +input({ id, name, placeholder })&attributes(attributes)

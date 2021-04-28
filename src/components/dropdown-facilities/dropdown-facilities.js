@@ -43,7 +43,7 @@ const DropdownFacilities = ((document) => {
   }
 
   const Modifier = {
-    READOUT_ANGLED : 'dropdown__readout_angled',
+    INPUT_ANGLED : 'dropdown__input_angled',
   }
 
   class DropdownFacilities extends Dropdown {
@@ -51,7 +51,7 @@ const DropdownFacilities = ((document) => {
       const model = new DropdownModel(Default, Dictionary);
       super(element, 'dropdown-facilities', model);
 
-      this.input.classList.add(Modifier.READOUT_ANGLED);
+      this.input.classList.add(Modifier.INPUT_ANGLED);
 
       this._hangHooks();
     }

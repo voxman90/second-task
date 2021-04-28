@@ -10,56 +10,70 @@
 }
 
 .dropdown__head {
+  position: relative;
+
   line-height: 0;
 }
 
-.dropdown__readout {
-  display: inline-block;
+.dropdown__input {
   width: 100%;
   height: 3.143em;
   padding-left: 1em;
-  padding-right: calc(3.143em - 1px);
+  padding-right: 3.143em;
   padding-bottom: 2px;
   border: 1px solid $dark-shade-25;
   border-radius: 4px;
 
   @include p-text;
-  text-align: start;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 
-  &:hover,
-  &:hover ~ .dropdown__trigger {
+  @include non-selectable;
+
+  cursor: pointer;
+
+  &:focus,
+  &:hover {
+    outline: none;
     border-color: $dark-shade-50;
+
+    & + .dropdown__icon {
+      color: $dark-shade-75;
+    }
   }
 
-  &::after {
-    content: 'expand_more';
-    position: absolute;
-    bottom: 0.5px;
-    right: 1px;
-
-    @include material-icons;
-    color: $dark-shade-50;
-
-    &:hover {
-      cursor: pointer;
-    }
+  &.dropdown__input_expanded + .dropdown__icon {
+    color: $dark-shade-75;
   }
 }
 
-.dropdown__readout_angled {
+.dropdown__input_angled {
   border-radius: 4px 4px 0 0;
 }
 
-.dropdown__readout_expanded {
+.dropdown__input_expanded {
   border-radius: 4px 4px 0 0;
   border-color: $dark-shade-50;
 }
 
-.dropdown__input {
-  display: none;
+.dropdown__icon {
+  position: absolute;
+  bottom: 0px;
+  right: 0.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.75em;
+  height: 2.75em;
+
+  color: $dark-shade-50;
+
+  cursor: pointer;
+
+  &:hover {
+    color: $dark-shade-75;
+  }
 }
 
 .dropdown__bar {
@@ -72,6 +86,8 @@
   border-radius: 0 0 4px 4px;
   background-color: white;
   box-shadow: 0px 10px 20px $dark-shade-05;
+
+  line-height: 0;
 }
 
 .dropdown__bar_hidden {
@@ -92,9 +108,9 @@
   padding-bottom: 7px;
 }
 
-.dropdown__option-descr {
+.dropdown__option-description {
   height: 1.875em;
-  padding-top: 6px;
+  padding-top: 6.5px;
 
   @include label-text;
 }
@@ -132,7 +148,7 @@
 
   width: 32px;
   height: 2.5em;
-  padding-top: 6px;
+  padding-top: 6.5px;
 
   @include label-text;
   text-align: center;
@@ -152,7 +168,7 @@
   display: flex;
   justify-content: space-between;
   height: 2.5em;
-  padding: 11px 6px 0 13px;
+  padding: 14px 7px 0 13px;
 }
 
 .dropdown__button-clear_hidden {

@@ -50,7 +50,7 @@ include ../../components/comment/comment.pug
             .fe__m-20
               +text-field({ name: 'input-2nd', labelText: 'text field', labelAppendix: 'hover / focus' })
             .fe__m-20
-              +dropdown-guests('dropdown-guests-1st', 'dropdown')(class='js-auto-init')
+              +dropdown-guests({ id: 'guests', name: 'guests', labelText: 'dropdown' })(class='js-auto-init')
             .fe__m-40
               +label({ text: 'masked text field' })
                 +input-date({ name: 'input-date-1st' })
@@ -106,13 +106,13 @@ include ../../components/comment/comment.pug
         .fe__r-2
           .fe__r-2__c-1
             .fe__m-20
-              +dropdown-facilities('dropdown-facilities-1st', 'dropdown', 'default')(class='js-dropdown-facilities-1st')
+              //- +dropdown-facilities({ id: 'facilities', name: 'facilities', labelText: 'dropdown', labelAppendix: 'default' })(class='js-dropdown-facilities-1st')
             .fe__m-20
-              +dropdown-facilities('dropdown-facilities-2nd', 'dropdown', 'expanded')(class='js-dropdown-facilities-2nd')
+              //- +dropdown-facilities({ id: 'facilities2', name: 'facilities2', labelText: 'dropdown', labelAppendix: 'expanded' })(class='js-dropdown-facilities-2nd')
           .fe__r-2__c-2
-            +dropdown-guests('dropdown-guests-1st', 'dropdown')(class='js-dropdown-guests-1st')
+            //- +dropdown-guests({ id: 'guests2', name: 'guests2', labelText: 'dropdown' })(class='js-dropdown-guests-1st')
           .fe__r-2__c-3
-            +dropdown-guests('dropdown-guests-2nd', 'dropdown')(class='js-dropdown-guests-2nd')
+            //- +dropdown-guests({ id: 'guests3', name: 'guests3', labelText: 'dropdown' })(class='js-dropdown-guests-2nd')
         .fe__r-3
           .fe__r-3__c-1
             .fe__m-20.fe__w-266

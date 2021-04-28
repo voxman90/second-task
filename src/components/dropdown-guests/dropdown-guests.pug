@@ -1,16 +1,15 @@
-mixin dropdown-guests(name, left, right = '')
+mixin dropdown-guests(args)
   -
-    const args = {
-      name,
-      left,
-      right,
+    const addition = {
       hasButtons: true,
-      value: 'Сколько гостей',
+      hasLargeWidth: true,
+      defaultValue: 'Сколько гостей',
       options: [
-        { name: 'adult', descr: 'взрослые', value: 0 },
-        { name: 'child', descr: 'дети', value: 0 },
-        { name: 'baby', descr: 'младенцы', value: 0 },
+        { name: 'adult', description: 'взрослые', value: 0 },
+        { name: 'child', description: 'дети', value: 0 },
+        { name: 'baby', description: 'младенцы', value: 0 },
       ],
     }
+    const argsAugmented = { ...args, ...addition }
 
-  +dropdown(args)(class='js-dropdown-guests')&attributes(attributes)
+  +dropdown(argsAugmented)(class='js-dropdown-guests')&attributes(attributes)
