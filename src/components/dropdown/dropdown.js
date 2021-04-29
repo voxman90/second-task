@@ -298,7 +298,7 @@ const Dropdown = (() => {
     }
 
     handleButtonClearKeydown = (event) => {
-      if (kq.isEnterKey(event)) {
+      if (kq.isEnterOrSpaceKey(event)) {
         this.handleButtonClearClick();
       }
     }
@@ -309,7 +309,7 @@ const Dropdown = (() => {
     }
 
     handleButtonApplyKeydown = (event) => {
-      if (kq.isEnterKey(event)) {
+      if (kq.isEnterOrSpaceKey(event)) {
         this.handleButtonApplyClick();
       }
 

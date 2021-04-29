@@ -73,7 +73,7 @@ const Carousel = (($, document) => {
         {
           element: this.navPanel,
           event: 'click',
-          handler: this.handleNavPanelClick.bind(this),
+          handler: this.handleNavPanelClick,
         },
       )
     }
@@ -86,13 +86,13 @@ const Carousel = (($, document) => {
         {
           element: this.prevButton,
           event: 'click',
-          handler: this.handlePrevButtonClick.bind(this),
+          handler: this.handlePrevButtonClick,
         },
 
         {
           element: this.nextButton,
           event: 'click',
-          handler: this.handleNextButtonClick.bind(this),
+          handler: this.handleNextButtonClick,
         },
       )
     }
@@ -192,7 +192,7 @@ const Carousel = (($, document) => {
         .addClass(Modifier.NAV_ITEM_CHECKED);
     }
 
-    handleNextButtonClick() {
+    handleNextButtonClick = () => {
       if (!this.isSliding) {
         this.isSliding = true;
 
@@ -215,7 +215,7 @@ const Carousel = (($, document) => {
       }
     }
 
-    handlePrevButtonClick() {
+    handlePrevButtonClick = () => {
       if (!this.isSliding) {
         this.isSliding = true;
 
@@ -238,7 +238,7 @@ const Carousel = (($, document) => {
       }
     }
 
-    handleNavPanelClick(event) {
+    handleNavPanelClick = (event) => {
       const isThisNavItem = $(event.target).hasClass(ClassName.NAV_ITEM);
       const isThisChekedNavItem = $(event.target).hasClass(Modifier.NAV_ITEM_CHECKED);
       if (

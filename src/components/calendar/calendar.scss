@@ -8,8 +8,10 @@
 }
 
 .calendar {
-  width: clamp(270px, 100%, 320px);
-  padding: clamp(12.5px, segment(270px, 320px, 12.5px, 19px), 19px);
+  min-width: 270px;
+  width: 100%;
+  max-width: 320px;
+  padding: segment(270px, 320px, 12.5px, 19px) segment(270px, 320px, 10.5px, 17px);
   border: 1px solid $dark-shade-25;
   border-radius: 4px;
   background-color: #FFFFFF;
@@ -22,14 +24,13 @@
 
 .calendar__head {
   margin-bottom: 1.875em;
+  padding: 0 0.125em;
 }
 
 .calendar__title {
   height: 1.263em;
 
-  font-family: 'Open Sans', sans-serif;
-  font-weight: bold;
-  font-style: normal;
+  @include Montserrat-bold;
   font-size: 1.1875em;
   line-height: 1.263;
   text-align: center;
@@ -37,7 +38,7 @@
 }
 
 %calendar__button-arrow {
-  height: 1;
+  height: 1.5em;
   cursor: pointer;
 
   color: $primary;
@@ -58,12 +59,18 @@
 
 .calendar__container {
   position: relative;
-  width: max(245px, 100%);
+  min-width: 245px;
+  width: 100%;
+  min-height: calc(5 * 2.5em);
   overflow: hidden;
 }
 
 .calendar__sheet {
   transition: all 500ms ease;
+}
+
+.calendar__table-wrapper {
+  padding: 0 0.125em;
 }
 
 .calendar__table {
@@ -162,7 +169,21 @@
   border-radius: 50% 0 0 50%;
 
   &::before {
+    left: 0.1667em;
     background: linear-gradient(180deg, $primary, $primary-gradient);
+  }
+}
+
+.calendar__td_arrival.calendar__td {
+  background-clip: content-box;
+  padding-left: 0.1667em;
+
+  & > .calendar__td-content {
+    padding-right: 0.1667em;
+  }
+
+  &::after {
+    padding-top: calc(100% + 0.1667em);
   }
 }
 
@@ -171,7 +192,21 @@
   border-radius: 0 50% 50% 0;
 
   &::before {
+    left: 0.1667em;
     background: linear-gradient(180deg, $primary, $primary-gradient);
+  }
+}
+
+.calendar__td_departure.calendar__td {
+  background-clip: content-box;
+  padding-right: 0.1667em;
+
+  & > .calendar__td-content {
+    padding-left: 0.1667em;
+  }
+
+  &::after {
+    padding-top: calc(100% + 0.1667em);
   }
 }
 
@@ -181,23 +216,24 @@
 
 .calendar__buttons {
   width: 100%;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
+  height: 0.9375em;
   margin-top: 20px;
+  padding: 0 0.125em;
+
+  line-height: 0;
 
   &::after {
     @include clearfix;
   }
 }
 
-%calendar__button {
+%calendar__button-wrapper {
   @include non-selectable;
   @include custom-focus;
 }
 
-.calendar__button-clear {
-  @extend %calendar__button;
+.calendar__button-clear-wrapper {
+  @extend %calendar__button-wrapper;
   float: left;
 }
 
@@ -205,7 +241,7 @@
   visibility: hidden;
 }
 
-.calendar__button-apply {
-  @extend %calendar__button;
+.calendar__button-apply-wrapper {
+  @extend %calendar__button-wrapper;
   float: right;
 }

@@ -4,24 +4,18 @@ mixin calendar(args = {})
     +calendar__head
     .calendar__container
       .js-calendar__sheet.carousel__item.js-carousel__item
-        +calendar__table
+        .calendar__table-wrapper
+          +calendar__table
       .js-calendar__sheet.carousel__item.js-carousel__item
-        +calendar__table
-    +calendar__buttons(name)
+        .calendar__table-wrapper
+          +calendar__table
+    +calendar__buttons
 
 mixin calendar__head()
   .calendar__head
-    div(
-      class='calendar__button-backward js-calendar__button-backward',
-      role='button',
-      tabindex='0',
-    )
+    div(class='calendar__button-backward js-calendar__button-backward', role='button', tabindex='0')
       +icon({ name: 'arrow_back' })
-    div(
-      class='calendar__button-forward js-calendar__button-forward',
-      role='button',
-      tabindex='0',
-    )
+    div(class='calendar__button-forward js-calendar__button-forward', role='button', tabindex='0')
       +icon({ name: 'arrow_forward' })
     .calendar__title.js-calendar__title= ''
 
@@ -42,16 +36,12 @@ mixin calendar__table()
           +calendar__td(35 + k)
 
 mixin calendar__td(index)
-  td(
-    class='calendar__td js-calendar__td',
-    data-index=index,
-    tabindex='0',
-  )
+  td(class='calendar__td js-calendar__td', data-index=index, tabindex='0')
     .calendar__td-content= ''
 
-mixin calendar__buttons(name)
+mixin calendar__buttons()
   .calendar__buttons
-    .calendar__button-clear
-      +button({ text: 'очистить', name: `${name}-clear` })(class='js-calendar__button-clear')
-    .calendar__button-apple
-      +button({ text: 'применить', name: `${name}-apply` })(class='js-calendar__button-apply')
+    .calendar__button-clear-wrapper
+      +button({ text: 'очистить' })(class='js-calendar__button-clear')
+    .calendar__button-apply-wrapper
+      +button({ text: 'применить' })(class='js-calendar__button-apply')

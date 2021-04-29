@@ -330,8 +330,8 @@ const Calendar = ((document) => {
       this.buttonApply = this.root.querySelector(Selector.BUTTON_APPLY);
 
       this.hooks = {
-        buttonClearClick: () => {},
-        buttonApplyClick: () => {},
+        buttonClearClick: () => void(0),
+        buttonApplyClick: () => void(0),
       }
     }
     

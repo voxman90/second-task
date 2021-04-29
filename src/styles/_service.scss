@@ -51,7 +51,7 @@
  * f(x) = (d - c)(x - a)/(b - a) + c, f(a) = c, f(b) = d
  */
 @function segment($a, $b, $c, $d) {
-  $ab-length: strip-unit($b - $a);
-  $dc-length: strip-unit($d - $c);
-  @return calc((#{$dc-length} / #{$ab-length}) * (100% - #{$a}) + #{$c});
+  $ab: strip-unit($b - $a);
+  $dc: strip-unit($d - $c);
+  @return calc((#{$dc} / #{$ab}) * (100% - #{$a}) + #{$c});
 }

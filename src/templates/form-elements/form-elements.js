@@ -5,7 +5,12 @@ import { DropdownFilterDate } from 'components/dropdown-filter-date/dropdown-fil
 import { DropdownFacilities } from 'components/dropdown-facilities/dropdown-facilities';
 import { DropdownGuests } from 'components/dropdown-guests/dropdown-guests';
 
-(function ($) {
+(function ($, document) {
+  function setTextFieldValue() {
+    const textField = document.querySelector('.js-text-field-focused');
+    textField.value = 'This is pretty awesome';
+  }
+
   function initDropdownDate() {
     const dropdownDateNode = $('.js-dropdown-date-1st').get(0);
     const dropdownDateComp = new DropdownDate(dropdownDateNode);
@@ -34,6 +39,7 @@ import { DropdownGuests } from 'components/dropdown-guests/dropdown-guests';
   }
 
   function init() {
+    setTextFieldValue();
     initDropdownDate();
     initDropdownFilterDate();
     initDropdownFacilitiesComps();
@@ -42,4 +48,4 @@ import { DropdownGuests } from 'components/dropdown-guests/dropdown-guests';
 
   $(init());
 
-})(jQuery);
+})(jQuery, document);

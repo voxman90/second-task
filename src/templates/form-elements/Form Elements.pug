@@ -9,6 +9,7 @@ include ../../components/button/button.pug
 include ../../components/dropdown/dropdown.pug
 include ../../components/dropdown-guests/dropdown-guests.pug
 include ../../components/input-date/input-date.pug
+include ../../components/carousel/carousel.pug
 include ../../components/calendar/calendar.pug
 include ../../components/dropdown-date/dropdown-date.pug
 include ../../components/dropdown-filter-date/dropdown-filter-date.pug
@@ -46,16 +47,16 @@ include ../../components/comment/comment.pug
         .fe__r-1
           .fe__r-1__c-1
             .fe__m-20
-              +text-field({ name: 'input-1st', placeholder: 'Email', labelText: 'text field', labelAppendix: 'default' })
+              +text-field({ name: 'email', placeholder: 'Email', labelText: 'text field', labelAppendix: 'default' })
             .fe__m-20
-              +text-field({ name: 'input-2nd', labelText: 'text field', labelAppendix: 'hover / focus' })
+              +text-field({ name: 'input-2nd', labelText: 'text field', labelAppendix: 'hover / focus' })(autofocus=true, class='js-text-field-focused')
             .fe__m-20
               +dropdown-guests({ id: 'guests', name: 'guests', labelText: 'dropdown' })(class='js-auto-init')
             .fe__m-40
               +label({ text: 'masked text field' })
-                +input-date({ name: 'input-date-1st' })
+                +input-date({ name: 'date' })
             .fe__m-40
-              +dropdown-date({ name: 'dropdown-date-1st', labelText: 'date dropdown', labelAppendix: 'date dropdown' })(class='js-dropdown-date-1st')
+              +dropdown-date({ name: 'dropdown-date-1st', labelArrival: 'date dropdown', labelDeparture: 'date dropdown' })(class='js-dropdown-date-1st')
             .fe__m-40
               +dropdown-filter-date({ name: 'dropdown-filter-date-1st', labelText: 'filter date dropdown' })(class='js-dropdown-filter-date-1st')
             .fe__w-266
@@ -106,13 +107,13 @@ include ../../components/comment/comment.pug
         .fe__r-2
           .fe__r-2__c-1
             .fe__m-20
-              //- +dropdown-facilities({ id: 'facilities', name: 'facilities', labelText: 'dropdown', labelAppendix: 'default' })(class='js-dropdown-facilities-1st')
+              +dropdown-facilities({ id: 'facilities', name: 'facilities', labelText: 'dropdown', labelAppendix: 'default' })(class='js-dropdown-facilities-1st')
             .fe__m-20
-              //- +dropdown-facilities({ id: 'facilities2', name: 'facilities2', labelText: 'dropdown', labelAppendix: 'expanded' })(class='js-dropdown-facilities-2nd')
+              +dropdown-facilities({ id: 'facilities2', name: 'facilities2', labelText: 'dropdown', labelAppendix: 'expanded' })(class='js-dropdown-facilities-2nd')
           .fe__r-2__c-2
-            //- +dropdown-guests({ id: 'guests2', name: 'guests2', labelText: 'dropdown' })(class='js-dropdown-guests-1st')
+            +dropdown-guests({ id: 'guests2', name: 'guests2', labelText: 'dropdown' })(class='js-dropdown-guests-1st')
           .fe__r-2__c-3
-            //- +dropdown-guests({ id: 'guests3', name: 'guests3', labelText: 'dropdown' })(class='js-dropdown-guests-2nd')
+            +dropdown-guests({ id: 'guests3', name: 'guests3', labelText: 'dropdown' })(class='js-dropdown-guests-2nd')
         .fe__r-3
           .fe__r-3__c-1
             .fe__m-20.fe__w-266

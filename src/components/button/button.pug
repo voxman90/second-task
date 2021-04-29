@@ -1,6 +1,8 @@
-mixin button(args = {})
+mixin button(args)
   -
-    const { 
+    const {
+      text = '',
+      type = 'button',
       isFilled = false,
       isBordered = false,
       isArrowed = false,
@@ -8,19 +10,12 @@ mixin button(args = {})
       isShort = false,
       isStretchy = false,
     } = args
-    const { text = '', type = 'button' } = args
-    const modifiers = []
-  -
-    if (isBordered) modifiers.push('button_style_bordered')
-    if (isArrowed) modifiers.push('button_style_arrowed')
-    if (isFilled) modifiers.push('button_style_filled')
-    if (isShort) modifiers.push('button_length_short')
-    if (isLong) modifiers.push('button_length_long')
-    if (isStretchy) modifiers.push('button_stretchy')
-  -
-    const classes = ['button', ...modifiers];
+    const buttonClass = ['button']
+    if (isBordered) buttonClass.push('button_style_bordered')
+    if (isArrowed) buttonClass.push('button_style_arrowed')
+    if (isFilled) buttonClass.push('button_style_filled')
+    if (isShort) buttonClass.push('button_length_short')
+    if (isLong) buttonClass.push('button_length_long')
+    if (isStretchy) buttonClass.push('button_stretchy')
 
-  button(
-    class=classes.join(' '),
-    type=type,
-  )&attributes(attibutes)= text
+  button(class=buttonClass, type=type)&attributes(attributes)= text

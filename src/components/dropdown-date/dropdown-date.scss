@@ -1,5 +1,8 @@
 .dropdown-date {
-  width: clamp(270px, 100%, 320px);
+  position: relative;
+  min-width: 270px;
+  width: 100%;
+  max-width: 320px;
 }
 
 .dropdown-date__head {
@@ -9,25 +12,30 @@
 
 .dropdown-date__arrival,
 .dropdown-date__departure {
+  display: inline-block;
   position: relative;
   width: segment(270px, 320px, 130px, 150px);
 }
 
 .dropdown-date__icon {
   position: absolute;
-  right: 0.8px;
-  bottom: 0.5px;
+  right: 0;
+  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  // icon font-size: 24px;
-  width: calc(100% - 130px + 1em);
-  height: 1.75em;
+
+  /**
+   * width: [130px, 150px] --> [24px, 44px]
+   */
+  width: calc(1.5em + (100% - 130px));
+  height: 2.5625em;
 
   color: $dark-shade-50;
 
   &:hover {
     cursor: pointer;
+    color: $dark-shade-75;
   }
 }
 
@@ -35,11 +43,13 @@
   color: $dark-shade-75;
 }
 
-.dropdown-date__bar_hidden {
-  display: none;
+.dropdown-date__bar {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  margin-top: 5.6px;
 }
 
-.dropdown-date__calendar {
-  position: absolute;
-  margin-top: 5.6px;
+.dropdown-date__bar_hidden {
+  display: none;
 }

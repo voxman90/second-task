@@ -4,9 +4,9 @@ import $ from 'jquery';
 import 'jquery.inputmask';
 
 (function($) {
-  function initMaskedInputs() {
+  function initMask() {
     $('.js-input_masked').inputmask();
   }
 
-  $(initMaskedInputs());
+  $(initMask());
 })($);
