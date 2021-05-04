@@ -10,19 +10,24 @@ const ExpandableList = ((document) => {
 
   const Selector = {
     TRIGGER   : '.js-expandable-list__trigger',
-    CONTAINER : '.js-expandable-list__list',
+    CONTAINER : '.js-expandable-list__body',
   };
 
   const Modifier = {
-    TRIGGER_ACTIVATED   : 'expandable-list__trigger_active',
-    CONTAINER_ACTIVATED : 'expandable-list__list_expanded',
+    TRIGGER_ACTIVE   : 'expandable-list__trigger_active',
+    CONTAINER_ACTIVE : 'expandable-list__body_expanded',
   };
 
   class ExpandableList extends BEMComponent {
     constructor(element) {
       super(element, 'expandable-list');
+
       this.listeners = Trigger.define(element, Selector, Modifier);
       this.attachEventListener(this.listeners);
+    }
+
+    toggle() {
+      this.listeners.handlers.click();
     }
   }
 

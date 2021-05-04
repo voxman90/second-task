@@ -5,6 +5,7 @@ mixin fieldset(args)
     form=id,
     name=name,
   )
-    legend.fieldset__legend= legend
+    if (legend !== undefined)
+      legend.fieldset__legend= legend
     if block
       block

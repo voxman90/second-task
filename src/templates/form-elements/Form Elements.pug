@@ -65,7 +65,8 @@ include ../../components/comment/comment.pug
                 +subscription-field({ name: 'subscr-field-1st', placeholder: 'Email' })
           .fe__r-1__c-2
             .fe__m-40.fe__w-222
-              +checkbox-list({ legend: 'checkbox buttons', name: 'checkbox-buttons', items: checkboxItems })
+              +fieldset({ legend: 'checkbox buttons', name: 'checkbox-buttons' })
+                +checkbox-list({ items: checkboxItems })
             .fe__m-40.fe__w-222
               +label({ text: 'radio buttons', hasLargePadding: true })
               .fe__flex-box
@@ -118,13 +119,14 @@ include ../../components/comment/comment.pug
         .fe__r-3
           .fe__r-3__c-1
             .fe__m-20.fe__w-266
-              +expandable-list('expandable checkbox list')(class='js-auto-init')
+              +expandable-list('expandable checkbox list').js-auto-init
                 +checkbox-list({ items: checkboxList })
             .fe__m-20.fe__w-266
-              +expandable-list('expandable checkbox list')
+              +expandable-list('expandable checkbox list').js-expandable-list-2nd
                 +checkbox-list({ items: checkboxList })
           .fe__r-3__c-2
-            +checkbox-list({ legend: 'rich checkbox buttons', items: checkboxRich, isRich: true })
+            +fieldset({ legend: 'rich checkbox buttons' })
+              +checkbox-list({ items: checkboxRich, isRich: true })
           .fe__r-3__c-3
             +label({ text: 'bullet list', hasLargePadding: true })
               +bullet-list(bulletList)

@@ -1,10 +1,10 @@
 mixin checkbox-list(args)
-  - const { legend, items, isRich = false } = args
-    +fieldset({ legend })
-      ul.checkbox-list
-        each item in items
-          li.checkbox-list__item
-            if (!isRich)
-              +checkbox(item)
-            else
-              +checkbox-rich(item)
+  - const { items, isRich = false } = args
+
+  ul.checkbox-list
+    each item in items
+      li.checkbox-list__item
+        if (!isRich)
+          +checkbox(item)
+        else
+          +checkbox-rich(item)

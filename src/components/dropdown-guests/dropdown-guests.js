@@ -115,10 +115,7 @@ const DropdownGuests = ((document) => {
 
   document.addEventListener('DOMContentLoaded', initDropdownGuestsComps);
 
-  return {
-    DropdownGuests,
-    DropdownGuestsModel,
-  };
+  return DropdownGuests;
 })(document);
 
 export { DropdownGuests }

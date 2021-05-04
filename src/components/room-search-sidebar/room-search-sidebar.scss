@@ -1,0 +1,31 @@
+.room-search-sidebar {
+  width: 266px;
+  background-color: #FFFFFF;
+}
+
+.room-search-sidebar__dropdown-filter-date-wrapper {
+  position: relative;
+  z-index: 3;
+}
+
+.room-search-sidebar__dropdown-guests-wrapper {
+  position: relative;
+  z-index: 2;
+}
+
+.room-search-sidebar__range-slider-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+.room-search-sidebar__indent-small {
+  margin-bottom: 0.9375em;
+}
+
+.room-search-sidebar__indent-middle {
+  margin-bottom: 1.25em;
+}
+
+.room-search-sidebar__indent-big {
+  margin-bottom: 1.875em;
+}

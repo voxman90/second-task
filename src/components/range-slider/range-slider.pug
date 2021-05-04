@@ -1,4 +1,4 @@
-mixin range-slider(args = {})
+mixin range-slider(args)
   - const { label = '', caption = '' } = args
   div(class='range-slider js-range-slider')&attributes(attributes)
     +label({ text: label, appendix: '' })

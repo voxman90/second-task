@@ -5,5 +5,13 @@
     "scss",
     "pug"
   ],
-  "deps": null
+  "deps": [
+    "dropdown-filter-date",
+    "dropdown-guests",
+    "range-slider",
+    "fieldset",
+    "checkbox-list",
+    "dropdown-facilities",
+    "expandable-list"
+  ]
 }

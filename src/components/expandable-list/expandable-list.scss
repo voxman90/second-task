@@ -2,42 +2,49 @@
   position: relative;
   width: 100%;
   max-width: 266px;
-  min-height: 2.75rem;
 }
 
-.expandable-list__header {
+.expandable-list__head {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 2.75rem;
+  height: 2.75em;
 
-  cursor: pointer;
+  cursor: default;
 }
 
 .expandable-list__heading {
+  @include cancel-heading-style;
   height: 1.25em;
+
   @include label-text;
 }
 
 .expandable-list__trigger {
-  width: 2.75rem;
+  width: 2.75em;
   height: 1.5em;
 
   text-align: center;
   color: $dark-shade-50;
 
   transition: transform 150ms ease;
+
+  &:hover {
+    color: $dark-shade-75;
+  }
 }
 
 .expandable-list__trigger_active {
   transform: rotate(180deg);
+
+  color: $dark-shade-75;
 }
 
-.expandable-list__list {
+.expandable-list__body {
   display: none;
   padding-top: 2px;
 }
 
-.expandable-list__list_expanded {
+.expandable-list__body_expanded {
   display: block;
 }

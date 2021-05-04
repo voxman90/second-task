@@ -8,10 +8,24 @@ include ../../components/icon/icon.pug
 include ../../components/navbar/navbar.pug
 include ../../components/hamburger/hamburger.pug
 include ../../components/header/header.pug
+include ../../components/label/label.pug
+include ../../components/input/input.pug
+include ../../components/carousel/carousel.pug
+include ../../components/calendar/calendar.pug
+include ../../components/dropdown-filter-date/dropdown-filter-date.pug
+include ../../components/dropdown/dropdown.pug
+include ../../components/dropdown-guests/dropdown-guests.pug
+include ../../components/range-slider/range-slider.pug
+include ../../components/fieldset/fieldset.pug
+include ../../components/checkbox/checkbox.pug
+include ../../components/checkbox-rich/checkbox-rich.pug
+include ../../components/checkbox-list/checkbox-list.pug
+include ../../components/dropdown-facilities/dropdown-facilities.pug
+include ../../components/expandable-list/expandable-list.pug
+include ../../components/room-search-sidebar/room-search-sidebar.pug
 include ../../components/copyright/copyright.pug
 include ../../components/social-follow/social-follow.pug
 include ../../components/copyright-bar/copyright-bar.pug
-include ../../components/input/input.pug
 include ../../components/subscription-field/subscription-field.pug
 include ../../components/footer/footer.pug
 include ../../components/footer-creative/footer-creative.pug
@@ -26,7 +40,8 @@ include ../../components/footer-creative/footer-creative.pug
 
   +layout__block('content')
     main.search-room__main
-      section.search-room__
+      section.search-room__sidebar
+        +room-search-sidebar
       section.search-room__
 
   +layout__block('footer')

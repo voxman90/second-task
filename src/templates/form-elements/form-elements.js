@@ -1,6 +1,7 @@
 import jQuery from 'jquery';
 
 import { DropdownDate } from 'components/dropdown-date/dropdown-date';
+import { ExpandableList } from 'components/expandable-list/expandable-list';
 import { DropdownFilterDate } from 'components/dropdown-filter-date/dropdown-filter-date';
 import { DropdownFacilities } from 'components/dropdown-facilities/dropdown-facilities';
 import { DropdownGuests } from 'components/dropdown-guests/dropdown-guests';
@@ -24,6 +25,11 @@ import { DropdownGuests } from 'components/dropdown-guests/dropdown-guests';
     filterDateComp.setDates(new Date(2021, 7, 19), new Date(2021, 7, 23));
   }
 
+  function expandExpandableList() {
+    const expandableListComp = initComp('.js-expandable-list-2nd', ExpandableList);
+    expandableListComp.toggle();
+  }
+
   function initComp(selector, Class) {
     const element= $(selector).get(0);
     return new Class(element);
@@ -41,6 +47,7 @@ import { DropdownGuests } from 'components/dropdown-guests/dropdown-guests';
 
   function init() {
     setTextFieldValue();
+    expandExpandableList();
     initDropdownDate();
     initDropdownFilterDate();
     initDropdownFacilitiesComps();

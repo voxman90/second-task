@@ -1,13 +1,13 @@
 mixin room-search-sidebar()
   -
     const checkboxListItems = [
-      { name: '', text: 'Можно курить' },
-      { name: '', text: 'Можно с питомцами' },
-      { name: '', text: 'Можно пригласить гостей\n(до 10 челове)' },
+      { name: 'smoking-allowed', text: 'Можно курить' },
+      { name: 'pets-allowed', text: 'Можно с питомцами' },
+      { name: 'guest-allowed', text: 'Можно пригласить гостей\n(до 10 человек)' },
     ]
     const checkboxRichListItems = [
-      { name: '', text: 'Широкий коридор', subtext: 'Ширина коридоров в номере\nне менее 91 см.' },
-      { name: '', text: 'Помощник для инвалидов', subtext: 'На 1 этаже вас втретит специалист\nи проводит до номера.' },
+      { name: 'wide-hallway', text: 'Широкий коридор', subtext: 'Ширина коридоров в номере\nне менее 91 см.' },
+      { name: 'assistant-for-disabled', text: 'Помощник для инвалидов', subtext: 'На 1 этаже вас втретит специалист\nи проводит до номера.' },
     ]
     const expandableListItems = [
       { name: 'dinner', text: 'Завтрак' },
@@ -18,12 +18,22 @@ mixin room-search-sidebar()
       { name: 'shampoo', text: 'Шампунь' },
     ]
 
-  section.room-search-sidebar
-    form.room-search-sidebar__form
-      +dropdown-filter-date()
-      +dropdown-guests()
-      +range-slider()
-      +checkbox-list()
-      +checkbox-list({ isRich: true })
-      +dropdown-facilities()
-      +expandable-list()
+  section.room-search-sidebar.js-room-search-sidebar.js-auto-init
+    form(class='room-search-sidebar__form', name='room-search-sidebar')
+      .room-search-sidebar__dropdown-filter-date-wrapper.room-search-sidebar__indent-middle
+        +dropdown-filter-date({ id: 'room-search-facilities', name: 'date', labelText: 'даты прибывания в отеле' })
+      .room-search-sidebar__dropdown-guests-wrapper.room-search-sidebar__indent-big
+        +dropdown-guests({ id: 'room-search-guests', name: 'guests', labelText: 'гости' })
+      .room-search-sidebar__range-slider-wrapper.room-search-sidebar__indent-big
+        +range-slider({ labelText: 'диапазон цены', caption: 'Стоимость за сутки пребывания в номере' })
+      .room-search-sidebar__indent-big
+        +fieldset({ legend: 'правила дома', name: 'rules' })
+          +checkbox-list({ items: checkboxListItems })
+      .room-search-sidebar__indent-big
+        +fieldset({ legend: 'доступность', name: 'accessibility' })
+          +checkbox-list({ items: checkboxRichListItems, isRich: true })
+      .room-search-sidebar__indent-small
+        +dropdown-facilities({ id: 'room-search-facilities', name: 'facilities', labelText: 'удобства номера' })
+      +fieldset({ name: 'extra' })
+        +expandable-list('дополнительные удобства')
+          +checkbox-list({ items: expandableListItems })

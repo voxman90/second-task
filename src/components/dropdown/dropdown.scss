@@ -1,6 +1,5 @@
 .dropdown {
   position: relative;
-  z-index: 1;
   width: 100%;
   max-width: 266px;
 }
@@ -59,7 +58,7 @@
 
 .dropdown__icon {
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
   right: 0.5px;
   display: flex;
   justify-content: center;
