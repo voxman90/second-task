@@ -54,6 +54,18 @@
       "scripts": [
         "templates/headers-and-footers/headers-and-footers.js"
       ]
+    },
+
+    {
+      "name": "search-room",
+      "template": "Search room",
+      "data": "search-room",
+      "styles": [
+        "templates/search-room/search-room.scss"
+      ],
+      "scripts": [
+        "templates/search-room/search-room.js"
+      ]
     }
   ]
 }

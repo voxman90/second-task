@@ -1,0 +1,29 @@
+mixin room-search-sidebar()
+  -
+    const checkboxListItems = [
+      { name: '', text: 'Можно курить' },
+      { name: '', text: 'Можно с питомцами' },
+      { name: '', text: 'Можно пригласить гостей\n(до 10 челове)' },
+    ]
+    const checkboxRichListItems = [
+      { name: '', text: 'Широкий коридор', subtext: 'Ширина коридоров в номере\nне менее 91 см.' },
+      { name: '', text: 'Помощник для инвалидов', subtext: 'На 1 этаже вас втретит специалист\nи проводит до номера.' },
+    ]
+    const expandableListItems = [
+      { name: 'dinner', text: 'Завтрак' },
+      { name: 'writing-desk', text: 'Письменный стол' },
+      { name: 'feeding-chair', text: 'Стул для кормления' },
+      { name: 'crib', text: 'Кроватка' },
+      { name: 'tv', text: 'Телевизор' },
+      { name: 'shampoo', text: 'Шампунь' },
+    ]
+
+  section.room-search-sidebar
+    form.room-search-sidebar__form
+      +dropdown-filter-date()
+      +dropdown-guests()
+      +range-slider()
+      +checkbox-list()
+      +checkbox-list({ isRich: true })
+      +dropdown-facilities()
+      +expandable-list()

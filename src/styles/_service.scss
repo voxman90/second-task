@@ -11,6 +11,12 @@
   padding: 0;
 }
 
+@mixin cancel-fieldset-style() {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
 @mixin vertical-align-centering() {
   content: '';
   display: inline-block;

@@ -1,0 +1,35 @@
+include ../../components/favicon/favicon.pug
+include ../../components/layout/layout.pug
+include ../../components/logo/logo.pug
+include ../../components/button/button.pug
+include ../../components/user-bar/user-bar.pug
+include ../../components/link/link.pug
+include ../../components/icon/icon.pug
+include ../../components/navbar/navbar.pug
+include ../../components/hamburger/hamburger.pug
+include ../../components/header/header.pug
+include ../../components/copyright/copyright.pug
+include ../../components/social-follow/social-follow.pug
+include ../../components/copyright-bar/copyright-bar.pug
+include ../../components/input/input.pug
+include ../../components/subscription-field/subscription-field.pug
+include ../../components/footer/footer.pug
+include ../../components/footer-creative/footer-creative.pug
+- const data = htmlWebpackPlugin.options.data
+- const { pageTitle } = data
++layout
+  +layout__block('head')
+    title= pageTitle
+
+  +layout__block('header')
+    +header
+
+  +layout__block('content')
+    main.search-room__main
+      section.search-room__
+      section.search-room__
+
+  +layout__block('footer')
+    +footer
+    .search-room__footer-creative
+      +footer-creative

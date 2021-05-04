@@ -1,0 +1,14 @@
+
+.search-room {
+
+}
+
+.search-room__footer-creative {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .search-room__footer-creative {
+    display: block;
+  }
+}

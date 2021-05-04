@@ -1,0 +1,10 @@
+mixin fieldset(args)
+  - const { legend, name, id } = args
+  fieldset(
+    class='fieldset',
+    form=id,
+    name=name,
+  )
+    legend.fieldset__legend= legend
+    if block
+      block

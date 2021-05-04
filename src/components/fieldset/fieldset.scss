@@ -1,0 +1,15 @@
+.fieldset {
+  @include cancel-fieldset-style;
+}
+
+.fieldset__legend {
+  display: inline-block;
+  width: 100%;
+  height: 1.25em;
+  margin-bottom: 1rem;
+
+  @include label-text;
+  text-align: left;
+
+  cursor: default;
+}

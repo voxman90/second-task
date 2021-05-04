@@ -1,0 +1,9 @@
+{
+  "name": "room-search-sidebar",
+  "techs": [
+    "js",
+    "scss",
+    "pug"
+  ],
+  "deps": null
+}

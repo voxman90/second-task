@@ -13,6 +13,7 @@ import 'components/calendar/calendar.scss';
 import 'components/dropdown-date/dropdown-date.scss';
 import 'components/dropdown-filter-date/dropdown-filter-date.scss';
 import 'components/subscription-field/subscription-field.scss';
+import 'components/fieldset/fieldset.scss';
 import 'components/checkbox/checkbox.scss';
 import 'components/checkbox-list/checkbox-list.scss';
 import 'components/radio-button/radio-button.scss';

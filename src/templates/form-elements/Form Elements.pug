@@ -14,6 +14,7 @@ include ../../components/calendar/calendar.pug
 include ../../components/dropdown-date/dropdown-date.pug
 include ../../components/dropdown-filter-date/dropdown-filter-date.pug
 include ../../components/subscription-field/subscription-field.pug
+include ../../components/fieldset/fieldset.pug
 include ../../components/checkbox/checkbox.pug
 include ../../components/checkbox-rich/checkbox-rich.pug
 include ../../components/checkbox-list/checkbox-list.pug
@@ -64,7 +65,7 @@ include ../../components/comment/comment.pug
                 +subscription-field({ name: 'subscr-field-1st', placeholder: 'Email' })
           .fe__r-1__c-2
             .fe__m-40.fe__w-222
-              +checkbox-list({ label: 'checkbox buttons', items: checkboxItems })
+              +checkbox-list({ legend: 'checkbox buttons', name: 'checkbox-buttons', items: checkboxItems })
             .fe__m-40.fe__w-222
               +label({ text: 'radio buttons', hasLargePadding: true })
               .fe__flex-box
@@ -123,7 +124,7 @@ include ../../components/comment/comment.pug
               +expandable-list('expandable checkbox list')
                 +checkbox-list({ items: checkboxList })
           .fe__r-3__c-2
-            +checkbox-list({ label: 'rich checkbox buttons', items: checkboxRich, isRich: true })
+            +checkbox-list({ legend: 'rich checkbox buttons', items: checkboxRich, isRich: true })
           .fe__r-3__c-3
             +label({ text: 'bullet list', hasLargePadding: true })
               +bullet-list(bulletList)
