@@ -9,18 +9,19 @@ import { DropdownGuests } from 'components/dropdown-guests/dropdown-guests';
   function setTextFieldValue() {
     const textField = document.querySelector('.js-text-field-focused');
     textField.value = 'This is pretty awesome';
+    textField.focus();
   }
 
   function initDropdownDate() {
     const dropdownDateNode = $('.js-dropdown-date-1st').get(0);
     const dropdownDateComp = new DropdownDate(dropdownDateNode);
-    dropdownDateComp.setDeparture(new Date(2019, 7, 19));
+    dropdownDateComp.setDeparture(new Date(2021, 7, 19));
   }
 
   function initDropdownFilterDate() {
-    const dropdownFilterDateNode = $('.js-dropdown-filter-date-1st').get(0);
-    const dropdownFilterDateComp = new DropdownFilterDate(dropdownFilterDateNode);
-    dropdownFilterDateComp.setTimeInterval(new Date(2021, 7, 19), new Date(2021, 7, 23));
+    const elem = $('.js-dropdown-filter-date-1st').get(0);
+    const filterDateComp = new DropdownFilterDate(elem);
+    filterDateComp.setDates(new Date(2021, 7, 19), new Date(2021, 7, 23));
   }
 
   function initComp(selector, Class) {

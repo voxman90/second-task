@@ -49,16 +49,16 @@ include ../../components/comment/comment.pug
             .fe__m-20
               +text-field({ name: 'email', placeholder: 'Email', labelText: 'text field', labelAppendix: 'default' })
             .fe__m-20
-              +text-field({ name: 'input-2nd', labelText: 'text field', labelAppendix: 'hover / focus' })(autofocus=true, class='js-text-field-focused')
+              +text-field({ name: 'text-field', labelText: 'text field', labelAppendix: 'hover / focus' }).js-text-field-focused
             .fe__m-20
-              +dropdown-guests({ id: 'guests', name: 'guests', labelText: 'dropdown' })(class='js-auto-init')
+              +dropdown-guests({ id: 'guests', name: 'guests', labelText: 'dropdown' }).js-auto-init
             .fe__m-40
               +label({ text: 'masked text field' })
                 +input-date({ name: 'date' })
             .fe__m-40
-              +dropdown-date({ name: 'dropdown-date-1st', labelArrival: 'date dropdown', labelDeparture: 'date dropdown' })(class='js-dropdown-date-1st')
+              +dropdown-date({ name: 'dropdown-date-1st', labelArrival: 'date dropdown', labelDeparture: 'date dropdown' }).js-dropdown-date-1st
             .fe__m-40
-              +dropdown-filter-date({ name: 'dropdown-filter-date-1st', labelText: 'filter date dropdown' })(class='js-dropdown-filter-date-1st')
+              +dropdown-filter-date({ name: 'filter-date-1st', labelText: 'filter date dropdown' }).js-dropdown-filter-date-1st
             .fe__w-266
               +label({ text: 'subscription text field' })
                 +subscription-field({ name: 'subscr-field-1st', placeholder: 'Email' })

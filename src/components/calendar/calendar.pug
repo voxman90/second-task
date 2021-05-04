@@ -9,6 +9,7 @@ mixin calendar(args = {})
       .js-calendar__sheet.carousel__item.js-carousel__item
         .calendar__table-wrapper
           +calendar__table
+      .calendar__stud
     +calendar__buttons
 
 mixin calendar__head()
@@ -25,7 +26,7 @@ mixin calendar__table()
       tr.calendar__tr
         each dayOfTheWeek in ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
           th.calendar__th
-            .calendar__th-content= dayOfTheWeek
+            .calendar__content= dayOfTheWeek
     tbody.js-calendar__tbody
       each i in [0, 7, 14, 21, 28]
         tr.calendar__tr
@@ -37,7 +38,8 @@ mixin calendar__table()
 
 mixin calendar__td(index)
   td(class='calendar__td js-calendar__td', data-index=index, tabindex='0')
-    .calendar__td-content= ''
+    .calendar__trace
+      .calendar__content= ''
 
 mixin calendar__buttons()
   .calendar__buttons

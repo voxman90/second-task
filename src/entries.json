@@ -23,6 +23,16 @@
     },
 
     {
+      "name": "cards",
+      "template": "Cards",
+      "data": "cards",
+      "styles": [
+        "./templates/cards/cards.scss"
+      ],
+      "scripts": null
+    },
+
+    {
       "name": "form-elements",
       "template": "Form Elements",
       "data": "form-elements",

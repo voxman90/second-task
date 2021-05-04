@@ -28,31 +28,38 @@ const DropdownDate = (($, document) => {
     constructor(element) {
       super(element, 'dropdown-date');
 
-      this.connectBasis();
-      this.connectCalendar();
-      this.attachInputMask();
+      this._connectBasis();
+      this._connectCalendar();
+      this._attachInputMask();
 
-      this.listeners = this.defineEventListeners();
+      this.listeners = this._defineEventListeners();
       this.attachMultipleEventListeners(this.listeners);
     }
 
-    defineEventListeners() {
-      return [
-        {
-          element: this.icons,
-          handlers: { 'click': this.handleIconClick, 'keydown': Utility.makeKeydownHandler(this.handleIconClick) }
-        },
-      ];
+    setArrival(date) {
+      this._setInputValue(this.inputArrival, date);
     }
 
-    connectBasis() {
+    setDeparture(date) {
+      this._setInputValue(this.inputDeparture, date);
+    }
+
+    closeBar() {
+      this.bar.classList.add(Modifier.BAR_HIDDEN);
+    }
+
+    openBar() {
+      this.bar.classList.remove(Modifier.BAR_HIDDEN);
+    }
+
+    _connectBasis() {
       this.inputArrival = this.root.querySelector(Selector.INPUT_ARRIVAL);
       this.inputDeparture = this.root.querySelector(Selector.INPUT_DEPARTURE);
       this.icons = this.root.querySelectorAll(Selector.ICON);
       this.bar = this.root.querySelector(Selector.BAR);
     }
 
-    connectCalendar() {
+    _connectCalendar() {
       const calendar = this.root.querySelector(Selector.CALENDAR);
       this.calendar = new Calendar(calendar);
 
@@ -62,7 +69,7 @@ const DropdownDate = (($, document) => {
       }
     }
 
-    attachInputMask() {
+    _attachInputMask() {
       $(this.inputArrival).inputmask({
         oncomplete: this.handleInputArrivalComplete,
       });
@@ -72,104 +79,95 @@ const DropdownDate = (($, document) => {
       });
     }
 
-    setArrival(date) {
-      this.setInputValue(this.inputArrival, date);
-      return this;
-    }
-
-    setDeparture(date) {
-      this.setInputValue(this.inputDeparture, date);
-      return this;
-    }
-
-    setInputValue(input, date) {
-      input.value = date;
+    _setInputValue(input, date) {
+      input.value = date // this._formatDateForInput(date);
       const event = new Event('complete');
       input.dispatchEvent(event);
     }
 
-    clearInputs() {
+    _clearInputs() {
       this.inputArrival.value = '';
       this.inputDeparture.value = '';
-      return this;
     }
 
-    closeBar() {
-      this.bar.classList.add(Modifier.BAR_HIDDEN);
-      return this;
+    _formatDateForInput(date) {
+      return this.calendar.model.convertDateToDDMMYYYY(date);
     }
 
-    openBar() {
-      this.bar.classList.remove(Modifier.BAR_HIDDEN);
-      return this;
-    }
-
-    toggleInputsReadonly() {
+    _toggleInputsReadonly() {
       this.inputArrival.toggleAttribute('readonly');
       this.inputDeparture.toggleAttribute('readonly');
-      return this;
     }
 
-    drawCalendar() {
+    _updateCalendar() {
       const closestDate = this.calendar.getClosestDate();
       this.calendar.updateCurrentSheet(closestDate);
-      return this;
     }
 
-    drawInputs(arrival, departure) {
-      this.inputArrival.value = (arrival !== null) ? arrival : '';
-      this.inputDeparture.value = (departure !== null) ? departure : '';
-      return this;
+    _drawInputs(arrival, departure) {
+      this.inputArrival.value = (arrival === null) ? '' : arrival;
+      this.inputDeparture.value = (departure === null) ? '' : departure;
     }
 
-    convertInputValueToDate(inputValue) {
-      if (inputValue === '') { return null };
+    _convertInputValueToDate(inputValue) {
+      if (inputValue === '') return null;
 
-      const DMY = inputValue.split('.').map((str) => parseInt(str, 10));
+      const dmy = inputValue.split('.').map((str) => parseInt(str));
 
       const date = new Date();
-      date.setDate(DMY[0]);
-      date.setMonth(DMY[1] - 1);
-      date.setFullYear(DMY[2]);
+      date.setDate(dmy[0]);
+      date.setMonth(dmy[1] - 1);
+      date.setFullYear(dmy[2]);
 
       return date;
     }
 
     handleIconClick = () => {
-      this.toggleInputsReadonly();
-
-      if (this.bar.classList.contains(Modifier.BAR_HIDDEN)) {
-        this.drawCalendar().openBar();
+      this._toggleInputsReadonly();
+      const isBarHidden = this.bar.classList.contains(Modifier.BAR_HIDDEN)
+      if (isBarHidden) {
+        this._updateCalendar();
+        this.openBar();
       } else {
         this.closeBar();
       }
     }
 
-    // TODO: reduce to a single function with a setter-argument
     handleInputArrivalComplete = (event) => {
       const ct = event.currentTarget;
-      const date = this.convertInputValueToDate(ct.value);
-      if (!this.calendar.setArrival(date)) {
+      const date = this._convertInputValueToDate(ct.value);
+      const isCorrectArrivalDate = this.calendar.setArrival(date)
+      if (!isCorrectArrivalDate) {
         ct.value = '';
       }
     }
 
     handleInputDepartureComplete = (event) => {
       const ct = event.currentTarget;
-      const date = this.convertInputValueToDate(ct.value);
-      if (!this.calendar.setDeparture(date)) {
+      const date = this._convertInputValueToDate(ct.value);
+      const isCorrectDepartureDate = this.calendar.setDeparture(date);
+      if (!isCorrectDepartureDate) {
         ct.value = '';
       }
     }
 
     handleButtonClearClick = () => {
-      this.clearInputs();
+      this._clearInputs();
     }
 
     handleButtonApplyClick = (arrival, departure) => {
-      this.drawInputs(arrival, departure)
-        .toggleInputsReadonly()
-        .closeBar();
+      this._drawInputs(arrival, departure);
+      this._toggleInputsReadonly();
+      this.closeBar();
+    }
+
+    _defineEventListeners() {
+      return [
+        {
+          element: this.icons,
+          handlers: { 'click': this.handleIconClick, 'keydown': Utility.makeKeydownHandler(this.handleIconClick) }
+        },
+      ];
     }
   }
 

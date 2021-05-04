@@ -1,65 +1,94 @@
 .dropdown-filter-date {
-  width: clamp(270px, 100%, 320px);
+  position: relative;
+  min-width: 270px;
+  width: 100%;
+  max-width: 320px;
 }
 
 .dropdown-filter-date__head {
   position: relative;
-
   margin-right: calc(100% - 266px);
+
+  &:hover .dropdown-filter-date__icon {
+    color: $dark-shade-75;
+  }
 }
 
-.dropdown-filter-date__pseudo-input {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-
-  width: 266px;
+.dropdown-filter-date__readout {
+  width: 100%;
   height: 3.143em;
   padding-left: 1em;
-  padding-bottom: 2px;
-
+  padding-bottom: 2.5px;
   border: 1px solid $dark-shade-25;
   border-radius: 4px;
-  background-color: white;
+
+  cursor: pointer;
 
   @include p-text;
-}
 
-.dropdown-filter-date__input-arrival {
-  display: none;
-}
+  &:hover,
+  &:focus,
+  &:active {
+    outline: none;
+    border-color: $dark-shade-50;
+  }
 
-.dropdown-filter-date__input-departure {
-  display: none;
+  &:-ms-input-placeholder {
+    color: $dark-shade-25;
+  }
+  
+  &::-webkit-input-placeholder {
+    color: $dark-shade-25;
+  }
+
+  &::-moz-placeholder {
+    opacity: 1;
+    color: $dark-shade-25;
+  }
+
+  &::placeholder {
+    color: $dark-shade-25;
+  }
 }
 
 .dropdown-filter-date__icon {
   position: absolute;
-  right: 1px;
-  bottom: 0.5px;
-
+  right: 0;
+  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1.75em;
-  height: 1.75em;
+  width: 2.75em;
+  height: calc(2.75em - 1px);
 
   color: $dark-shade-50;
 
-  &:hover {
-    cursor: pointer;
-  }
+  pointer-events: none;
 }
 
 .dropdown-filter-date__icon_shaded {
   color: $dark-shade-75;
 }
 
-.dropdown-filter-date__bar_hidden {
-  display: none;
+.dropdown-fileter-date__inputs {
+  height: 0;
 }
 
-.dropdown-filter-date__calendar {
+.dropdown-filter-date__input {
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.dropdown-filter-date__bar {
   position: absolute;
+  z-index: 10;
+  width: 100%;
   margin-top: 5.6px;
+}
+
+.dropdown-filter-date__bar_hidden {
+  display: none;
 }

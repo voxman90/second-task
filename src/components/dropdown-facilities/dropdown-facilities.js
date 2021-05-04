@@ -57,8 +57,8 @@ const DropdownFacilities = ((document) => {
     }
 
     _hangHooks() {
-      this.hooks.optionValueIncreased = this._updateDropdownState().bind(this);
-      this.hooks.optionValueDecreased = this._updateDropdownState().bind(this);
+      this.hooks.optionValueIncreased = this._updateDropdownState.bind(this);
+      this.hooks.optionValueDecreased = this._updateDropdownState.bind(this);
     }
   }
 

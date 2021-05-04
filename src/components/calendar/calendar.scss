@@ -28,11 +28,11 @@
 }
 
 .calendar__title {
-  height: 1.263em;
+  height: 1.2635em;
 
   @include Montserrat-bold;
   font-size: 1.1875em;
-  line-height: 1.263;
+  line-height: 1.1;
   text-align: center;
   color: $dark-shade-100;
 }
@@ -44,7 +44,6 @@
   color: $primary;
 
   @include non-selectable;
-  @include custom-focus;
 }
 
 .calendar__button-backward {
@@ -59,10 +58,13 @@
 
 .calendar__container {
   position: relative;
-  min-width: 245px;
-  width: 100%;
-  min-height: calc(5 * 2.5em);
+  display: flex;
   overflow: hidden;
+}
+
+.calendar__stud {
+  width: 0;
+  padding-bottom: 85.6%;
 }
 
 .calendar__sheet {
@@ -70,155 +72,128 @@
 }
 
 .calendar__table-wrapper {
-  padding: 0 0.125em;
+  padding: 0 2px;
 }
 
 .calendar__table {
   position: relative;
-  z-index: 0;
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
   background-color: transparent;
 }
 
-.calendar__tr {
-  padding: 0;
-}
-
 .calendar__tr_hidden {
   display: none;
 }
 
-%calendar__table-cell {
+.calendar__th,
+.calendar__td {
   position: relative;
-  padding: 0;
-  cursor: default;
-  outline: none;
+  padding-bottom: calc(100% / 7);
 
   text-align: center;
 
-  &::after {
-    width: 100%;
-    @include square-ratio;
-  }
-
-  &:focus::after {
-    width: 100%;
-    outline: none;
-    box-shadow: inset 0 0 2px 2px dark-shade(0.25);
+  &:hover {
+    cursor: pointer;
   }
 }
 
 .calendar__th {
-  @extend %calendar__table-cell;
-
-  @include label-text($color: $primary);
+  @include label-text(0.75rem, 1.25, $primary);
   text-transform: none;
 }
 
 .calendar__td {
-  @extend %calendar__table-cell;
-
   @include p-text(0.75rem, 1.25, $dark-shade-25);
 }
 
-.calendar__td-content,
-.calendar__th-content {
-  position: absolute;
-  z-index: 2;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
-}
-
 .calendar__td_current {
-  cursor: pointer;
-
   color: $dark-shade-50;
 }
 
-%calendar__td_special-date {
-  position: relative;
+.calendar__trace {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+}
+
+.calendar__trace_today {
+  border-radius: 50%;
+  background: linear-gradient(180deg, $secondary, $secondary-gradient);
 
   @include Montserrat-bold;
   color: white;
+}
 
+.calendar__trace_filled {
   &::before {
     content: '';
     position: absolute;
-    z-index: 1;
+    z-index: -5;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    $primary-25: color.change($primary, $alpha: 0.25);
+    $primary-gradient-25: color.change($primary-gradient, $alpha: 0.25);
+    background: linear-gradient(180deg, $primary-25, $primary-gradient-25);
+  }
+}
+
+.calendar__trace_arrival,
+.calendar__trace_departure {
+  @include Montserrat-bold;
+  color: white;
+
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 1.5px;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
-  }
-}
-
-.calendar__td_today {
-  @extend %calendar__td_special-date;
-
-  &::before {
-    background: linear-gradient(180deg, $secondary, $secondary-gradient);
-  }
-}
-
-.calendar__td_arrival {
-  @extend %calendar__td_special-date;
-  border-radius: 50% 0 0 50%;
-
-  &::before {
-    left: 0.1667em;
     background: linear-gradient(180deg, $primary, $primary-gradient);
   }
 }
 
-.calendar__td_arrival.calendar__td {
-  background-clip: content-box;
-  padding-left: 0.1667em;
-
-  & > .calendar__td-content {
-    padding-right: 0.1667em;
-  }
-
-  &::after {
-    padding-top: calc(100% + 0.1667em);
-  }
-}
-
-.calendar__td_departure {
-  @extend %calendar__td_special-date;
-  border-radius: 0 50% 50% 0;
-
+.calendar__trace_arrival {
   &::before {
-    left: 0.1667em;
-    background: linear-gradient(180deg, $primary, $primary-gradient);
+    border-radius: 50% 0 0 50%;
+    left: 1.5px;
+    width: calc(100% - 1.5px);
   }
 }
 
-.calendar__td_departure.calendar__td {
-  background-clip: content-box;
-  padding-right: 0.1667em;
-
-  & > .calendar__td-content {
-    padding-left: 0.1667em;
-  }
-
-  &::after {
-    padding-top: calc(100% + 0.1667em);
+.calendar__trace_departure {
+  &::before {
+    border-radius: 0 50% 50% 0;
+    right: 1.5px;
+    width: calc(100% - 1.5px);
   }
 }
 
-.calendar__td_filled {
-  background: linear-gradient(180deg, color.change($primary, $alpha: 0.25), color.change($primary-gradient, $alpha: 0.25));
+.calendar__content {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
 }
 
 .calendar__buttons {
   width: 100%;
   height: 0.9375em;
   margin-top: 20px;
-  padding: 0 0.125em;
+  padding: 0 2px;
 
   line-height: 0;
 
