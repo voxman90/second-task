@@ -1,0 +1,10 @@
+{
+  "name": "layout-grid",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": [
+    "favicon"
+  ]
+}

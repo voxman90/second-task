@@ -10,7 +10,7 @@ class DropdownModel {
   }
 
   getSentence(options) {
-    const sentence = options.map(this._getCollocation)
+    const sentence = options.map((option) => this._getCollocation(option))
       .filter(collocation => collocation !== null)
       .join(', ');
 
@@ -39,6 +39,9 @@ class DropdownModel {
   }
 
   _defineCorrectForm(name, number) {
+    console.log(this._dictionary)
+    console.log(name)
+    console.log(this._dictionary.get(name))
     const { nominative, genitive, genitivePlural } = this._dictionary.get(name);
     let form = genitivePlural;
 

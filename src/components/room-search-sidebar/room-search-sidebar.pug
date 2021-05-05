@@ -32,7 +32,7 @@ mixin room-search-sidebar()
       .room-search-sidebar__indent-big
         +fieldset({ legend: 'доступность', name: 'accessibility' })
           +checkbox-list({ items: checkboxRichListItems, isRich: true })
-      .room-search-sidebar__indent-small
+      .room-search-sidebar__dropdown-facilities-wrapper.room-search-sidebar__indent-small
         +dropdown-facilities({ id: 'room-search-facilities', name: 'facilities', labelText: 'удобства номера' })
       +fieldset({ name: 'extra' })
         +expandable-list('дополнительные удобства')

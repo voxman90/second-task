@@ -68,11 +68,7 @@
 
   color: $dark-shade-50;
 
-  cursor: pointer;
-
-  &:hover {
-    color: $dark-shade-75;
-  }
+  pointer-events: none;
 }
 
 .dropdown__bar {

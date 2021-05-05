@@ -6,7 +6,7 @@ import { Dropdown, DropdownModel } from 'components/dropdown/dropdown';
 const DropdownFacilities = ((document) => {
   const Dictionary = [
     {
-      name: 'bedrooms',
+      name: 'bedroom',
       forms: {
         nominative       : 'спальня',
         nominativePlural : 'спальни',
@@ -16,7 +16,7 @@ const DropdownFacilities = ((document) => {
     },
 
     {
-      name: 'beds',
+      name: 'bed',
       forms: {
         nominative       : 'кровать',
         nominativePlural : 'кровати',
@@ -26,7 +26,7 @@ const DropdownFacilities = ((document) => {
     },
 
     {
-      name: 'bathrooms',
+      name: 'bathroom',
       forms: {
         nominative       : 'ванная комната',
         nominativePlural : 'ванные комнаты',
@@ -57,8 +57,12 @@ const DropdownFacilities = ((document) => {
     }
 
     _hangHooks() {
-      this.hooks.optionValueIncreased = this._updateDropdownState.bind(this);
-      this.hooks.optionValueDecreased = this._updateDropdownState.bind(this);
+      this.hooks.optionValueIncreased = this.handleOptionValueChanges;
+      this.hooks.optionValueDecreased = this.handleOptionValueChanges;
+    }
+
+    handleOptionValueChanges = () => {
+      this._updateDropdownState();
     }
   }
 

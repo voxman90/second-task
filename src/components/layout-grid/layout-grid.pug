@@ -1,0 +1,36 @@
+mixin layout-grid()
+  - const blocks = {}
+
+  mixin layout-grid__block(name)
+    - blocks[name] = block
+
+  - block()
+
+  doctype html
+  html(lang='ru')
+    head
+      meta(charset='UTF-8')
+      meta(http-equiv='X-UA-Compatible', content='IE=edge')
+      meta(name='viewport', content='width=device-width, initial-scale=1.0')
+      +favicon
+      if blocks.head
+        - blocks.head()
+    body
+      .layout-grid
+        .layout-grid__wrapper
+          .layout-grid__grid
+            if blocks.header
+              .layout-grid__header
+                - blocks.header()
+            if blocks.sidebar
+              .layout-grid__sidebar
+                - blocks.sidebar()
+            if blocks.content
+              .layout-grid__content
+                - blocks.content()
+            if blocks.footer
+              .layout-grid__footer
+                - blocks.footer()
+            if blocks['footer-creative']
+              .layout-grid__footer-creative
+                - blocks['footer-creative']()

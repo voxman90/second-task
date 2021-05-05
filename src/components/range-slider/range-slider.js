@@ -12,7 +12,7 @@ const RangeSlider = ((document, $) => {
 
   const Selector = {
     TARGET : '.js-range-slider__target',
-    LABEL  : '.label__right-mark',
+    LABEL  : '.label__appendix',
   }
 
   const defaultConfig = {

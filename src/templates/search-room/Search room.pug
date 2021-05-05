@@ -1,5 +1,5 @@
 include ../../components/favicon/favicon.pug
-include ../../components/layout/layout.pug
+include ../../components/layout-grid/layout-grid.pug
 include ../../components/logo/logo.pug
 include ../../components/button/button.pug
 include ../../components/user-bar/user-bar.pug
@@ -31,20 +31,24 @@ include ../../components/footer/footer.pug
 include ../../components/footer-creative/footer-creative.pug
 - const data = htmlWebpackPlugin.options.data
 - const { pageTitle } = data
-+layout
-  +layout__block('head')
++layout-grid
+  +layout-grid__block('head')
     title= pageTitle
 
-  +layout__block('header')
+  +layout-grid__block('header')
     +header
 
-  +layout__block('content')
-    main.search-room__main
-      section.search-room__sidebar
-        +room-search-sidebar
-      section.search-room__
+  +layout-grid__block('sidebar')
+    section.search-room__sidebar
+      +room-search-sidebar
 
-  +layout__block('footer')
+  +layout-grid__block('content')
+    main.search-room__main
+
+  +layout-grid__block('footer')
+    include ../../components/line/line.pug
     +footer
-    .search-room__footer-creative
-      +footer-creative
+
+  +layout-grid__block('footer-creative')
+    include ../../components/line/line.pug
+    +footer-creative
