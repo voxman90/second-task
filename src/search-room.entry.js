@@ -17,6 +17,7 @@ import 'components/dropdown/dropdown.scss';
 import 'components/dropdown-guests/dropdown-guests.scss';
 import 'components/range-slider/range-slider.scss';
 import 'components/fieldset/fieldset.scss';
+import 'components/field/field.scss';
 import 'components/checkbox/checkbox.scss';
 import 'components/checkbox-list/checkbox-list.scss';
 import 'components/expandable-list/expandable-list.scss';

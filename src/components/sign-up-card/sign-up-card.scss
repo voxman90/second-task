@@ -1,0 +1,33 @@
+.sign-up-card {
+  min-width: 300px;
+  width: 100%;
+  max-width: 380px;
+}
+
+// TODO: Create component heading
+.sign-up-card__heading {
+  margin-top: 0.417em;
+  margin-bottom: 0.834em;
+
+  @include h1-text($height: 1.25);
+}
+
+.sign-up__radio-buttons-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 220px;
+}
+
+.sign-up__sign-in {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sign-up__text {
+  margin: 0;
+
+  @include p-text;
+  color: black;
+}

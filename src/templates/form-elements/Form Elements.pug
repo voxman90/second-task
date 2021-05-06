@@ -34,7 +34,7 @@ include ../../components/comment/comment.pug
 - const data = htmlWebpackPlugin.options.data
 - const { title, checkboxList, checkboxRich, checkboxItems, bulletList } = data
 
-+layout()
++layout
   +layout__block('head')
     title= pageTitle
 
@@ -136,4 +136,3 @@ include ../../components/comment/comment.pug
             +icon-item({ name: 'location_city', headline: 'Удобство', descr: 'Окно в каждой из спален' })
           .fe__r-4__c-2
             +comment({ img: 'image.jpg', date: '5 дней назад', nickname: 'Мурад Сарафанов', value: '11', message: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.' })
-

@@ -33,23 +33,9 @@
   background-image: url(~assets/img/landing-page-image-001.png);
 }
 
-.form-wrapper {
+.card-wrapper {
   position: absolute;
-  top: calc(50% + 35px);
+  top: calc(50% + 2.1875rem);
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-.footer-creative {
-  display: none;
-}
-
-@media only screen and (max-width: 768px) {
-  .footer-creative {
-    display: block;
-  }
-}
-
-@media only screen and (max-width: 425px) {
-
 }

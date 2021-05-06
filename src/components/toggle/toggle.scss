@@ -7,6 +7,10 @@
 .toggle__input {
   margin: 3.6px 13.6px;
 
+  &:hover {
+    outline: none;
+  }
+
   &:checked + .toggle__text-wrapper {
     &::before {
       border: 1px solid $primary;

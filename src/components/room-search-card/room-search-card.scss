@@ -1,0 +1,17 @@
+.room-search-card {
+  min-width: 300px;
+  width: 100%;
+  max-width: 380px;
+}
+
+.room-search-card__heading {
+  margin-top: 0.417em;
+  margin-bottom: 0.834em;
+
+  @include h1-text($height: 1.25);
+}
+
+.room-search-card__dropdown-date-wrapper {
+  position: relative;
+  z-index: 5;
+}

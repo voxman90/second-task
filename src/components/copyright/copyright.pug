@@ -1,7 +1,8 @@
 mixin copyright(args = {})
   -
-    const { year = 2018, withСentering = false } = args
-    const mod = (withСentering) ? 'copyright_centered' : '';
-    const copyrightText = (year) => `Copyright © ${year} Toxin отель.\n Все права защищены.`;
+    const { year = 2018, isWrapNormal = false } = args
+    const copyrightClass = ['copyright']
+    if (isWrapNormal) copyrightClass.push('copyright_wrap_normal')
+    const copyrightText = (year) => `Copyright © ${year} Toxin отель. Все права защищены.`
 
-  span(class = `copyright ${mod}`)!= copyrightText(year)
+  span(class=copyrightClass)!= copyrightText(year)

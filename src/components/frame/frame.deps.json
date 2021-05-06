@@ -1,0 +1,8 @@
+{
+  "name": "frame",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": null
+}

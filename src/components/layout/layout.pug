@@ -16,13 +16,17 @@ mixin layout()
       if blocks.head
         - blocks.head()
     body
-      .layout__wrapper
-        if blocks.header
-          .layout__header
-            - blocks.header()
-        if blocks.content
-          .layout__content
-            - blocks.content()
-        if blocks.footer
-          .layout__footer
-            - blocks.footer()
+      .layout
+        .layout__wrapper
+          if blocks.header
+            .layout__header
+              - blocks.header()
+          if blocks.content
+            .layout__content
+              - blocks.content()
+          if blocks.footer
+            .layout__footer
+              - blocks.footer()
+          if blocks['footer-creative']
+            .layout__footer-creative
+              - blocks['footer-creative']()

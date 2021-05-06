@@ -1,33 +1,35 @@
 include ../../components/favicon/favicon.pug
 include ../../components/layout/layout.pug
 include ../../components/logo/logo.pug
-include ../../components/icon/icon.pug
 include ../../components/button/button.pug
-include ../../components/button-short/button-short.pug
-include ../../components/button-long/button-long.pug
+include ../../components/user-bar/user-bar.pug
 include ../../components/link/link.pug
+include ../../components/icon/icon.pug
 include ../../components/navbar/navbar.pug
 include ../../components/hamburger/hamburger.pug
 include ../../components/header/header.pug
 include ../../components/ar-responsive-box/ar-responsive-box.pug
+include ../../components/field/field.pug
+include ../../components/frame/frame.pug
 include ../../components/label/label.pug
 include ../../components/input/input.pug
-include ../../components/input-masked/input-masked.pug
 include ../../components/input-date/input-date.pug
 include ../../components/carousel/carousel.pug
 include ../../components/calendar/calendar.pug
 include ../../components/dropdown-date/dropdown-date.pug
 include ../../components/dropdown/dropdown.pug
 include ../../components/dropdown-guests/dropdown-guests.pug
-include ../../components/room-search/room-search.pug
+include ../../components/button-long/button-long.pug
+include ../../components/room-search-card/room-search-card.pug
 include ../../components/copyright/copyright.pug
 include ../../components/social-follow/social-follow.pug
 include ../../components/copyright-bar/copyright-bar.pug
-include ../../components/footer-creative/footer-creative.pug
 include ../../components/subscription-field/subscription-field.pug
 include ../../components/footer/footer.pug
+include ../../components/footer-creative/footer-creative.pug
 - const data = htmlWebpackPlugin.options.data
 - const { pageTitle, navbarItems, footerItems } = data
+
 +layout
   +layout__block('head')
     title= pageTitle
@@ -38,13 +40,15 @@ include ../../components/footer/footer.pug
   +layout__block('content')
     main.main
       .bg
-        +ar-responsive-box().bg__wrapper
-          .bg__image
+        .bg__wrapper
+          +ar-responsive-box
+            .bg__image
         p.bg__caption!= 'Лучшие номера для вашей работы,\nотдыха и просто вдохновения'
-      .form-wrapper
-        +room-search
+      .card-wrapper
+        +room-search-card
 
   +layout__block('footer')
-    //- +footer
-    .landing__footer-creative
-      +footer-creative
+    +footer
+
+  +layout__block('footer-creative')
+    +footer-creative

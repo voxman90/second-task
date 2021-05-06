@@ -1,0 +1,10 @@
+.frame {
+  width: clamp(300px, 90vw, 380px);
+  padding: segment(300px, 380px, 14px, 29px);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+
+  font-size: clamp(0.875rem, 3.79vw, 1rem);
+}

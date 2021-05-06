@@ -60,41 +60,35 @@
   text-align: right;
 }
 
-.form-wrapper {
-  position: absolute;
-  top: 140px;
-  left: 9.725%;
-}
-
-.footer-creative {
-  display: none;
-}
-
-@media only screen and (max-width: 1152px) {
-  .form-wrapper {
-    left: 6%;
-  }
-}
-
 @media only screen and (max-width: 768px) {
-  .footer-creative {
-    display: block;
-  }
-
   .bg__caption {
     right: 5%;
   }
 }
 
 @media only screen and (max-width: 480px) {
-  .form-wrapper {
-    top: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
   .bg__caption {
     right: 50%;
     transform: translateX(50%);
+  }
+}
+
+.card-wrapper {
+  position: absolute;
+  top: 140px;
+  left: 9.725%;
+}
+
+@media only screen and (max-width: 1152px) {
+  .card-wrapper {
+    left: 6%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .card-wrapper {
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }

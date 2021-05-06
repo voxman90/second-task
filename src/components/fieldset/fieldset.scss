@@ -6,10 +6,14 @@
   display: inline-block;
   width: 100%;
   height: 1.25em;
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 
   @include label-text;
   text-align: left;
 
   cursor: default;
+}
+
+.fieldset__legend_indent_small {
+  margin-bottom: 0.3125em;
 }

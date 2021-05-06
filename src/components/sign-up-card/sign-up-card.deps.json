@@ -1,0 +1,19 @@
+{
+  "name": "sign-up-card",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": [
+    "frame",
+    "field",
+    "fieldset",
+    "input",
+    "radio-button",
+    "label",
+    "input-date",
+    "toggle",
+    "button-long",
+    "button-short"
+  ]
+}

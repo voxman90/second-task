@@ -1,25 +1,29 @@
 include ../../components/favicon/favicon.pug
 include ../../components/layout/layout.pug
 include ../../components/logo/logo.pug
-include ../../components/icon/icon.pug
 include ../../components/button/button.pug
-include ../../components/button-short/button-short.pug
-include ../../components/button-long/button-long.pug
+include ../../components/user-bar/user-bar.pug
 include ../../components/link/link.pug
+include ../../components/icon/icon.pug
 include ../../components/navbar/navbar.pug
 include ../../components/hamburger/hamburger.pug
 include ../../components/header/header.pug
-include ../../components/ar-responsive-box/ar-responsive-box.pug
+include ../../components/frame/frame.pug
+include ../../components/field/field.pug
+include ../../components/fieldset/fieldset.pug
 include ../../components/input/input.pug
-include ../../components/sign-in/sign-in.pug
+include ../../components/button-long/button-long.pug
+include ../../components/button-short/button-short.pug
+include ../../components/sign-in-card/sign-in-card.pug
 include ../../components/copyright/copyright.pug
 include ../../components/social-follow/social-follow.pug
 include ../../components/copyright-bar/copyright-bar.pug
-include ../../components/footer-creative/footer-creative.pug
 include ../../components/subscription-field/subscription-field.pug
 include ../../components/footer/footer.pug
+include ../../components/footer-creative/footer-creative.pug
 - const data = htmlWebpackPlugin.options.data
-- const { pageTitle, navbarItems, footerItems } = data
+- const { pageTitle } = data
+
 +layout
   +layout__block('head')
     title= pageTitle
@@ -30,11 +34,12 @@ include ../../components/footer/footer.pug
   +layout__block('content')
     main.main
       .bg
-        +ar-responsive-box().bg__wrapper
-          .bg__image
-      .form-wrapper
-        +sign-in
+        .bg__image
+      .card-wrapper
+        +sign-in-card
 
   +layout__block('footer')
-    //- +footer
+    +footer
+
+  +layout__block('footer-creative')
     +footer-creative

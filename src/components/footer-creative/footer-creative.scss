@@ -1,4 +1,5 @@
 .footer-creative {
+  min-width: 320px;
   width: 100%;
   max-width: 768px;
   background: #FFFFFF;
@@ -10,15 +11,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 120px 0;
+  padding: 7.5rem 0;
 }
 
 .footer-creative__copyright {
-  padding-top: 20px;
+  margin-top: 1.25rem;
   padding-left: 3px;
+  align-self: stretch;
+
   text-align: center;
 }
 
 .footer-creative__social-follow {
-  padding-top: 25px;
+  margin-top: 1.5625rem;
 }

@@ -1,14 +1,15 @@
 {
-  "name": "invoice",
+  "name": "room-search-card",
   "techs": [
-    "js",
     "scss",
-    "pug"
+    "pug",
+    "js"
   ],
   "deps": [
-    "hotel-room-heading",
+    "field",
+    "frame",
     "dropdown-date",
     "dropdown-guests",
-    "button"
+    "button-long"
   ]
 }

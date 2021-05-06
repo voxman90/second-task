@@ -1,7 +1,3 @@
-.layout-grid {
-  width: 100%;
-}
-
 .layout-grid__wrapper {
   min-width: 320px;
   width: 100%;
@@ -23,15 +19,21 @@
 }
 
 .layout-grid__header {
+  position: relative;
+  z-index: 15;
   grid-area: header;
 }
 
 .layout-grid__sidebar {
+  position: relative;
+  z-index: 10;
   grid-area: sidebar;
   align-self: start;
 }
 
 .layout-grid__content {
+  position: relative;
+  z-index: 5;
   grid-area: content;
   align-self: start;
 }
@@ -56,4 +58,3 @@
     display: block;
   }
 }
-

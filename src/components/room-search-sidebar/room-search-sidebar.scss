@@ -1,5 +1,7 @@
 .room-search-sidebar {
-  width: 266px;
+  min-width: 266px;
+  width: 100%;
+  max-width: 320px;
   background-color: #FFFFFF;
 }
 
@@ -21,16 +23,4 @@
 .room-search-sidebar__dropdown-facilities-wrapper {
   position: relative;
   z-index: 5;
-}
-
-.room-search-sidebar__indent-small {
-  margin-bottom: 0.9375em;
-}
-
-.room-search-sidebar__indent-middle {
-  margin-bottom: 1.25em;
-}
-
-.room-search-sidebar__indent-big {
-  margin-bottom: 1.875em;
 }

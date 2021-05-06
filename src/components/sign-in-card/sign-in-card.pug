@@ -1,0 +1,15 @@
+mixin sign-in-card()
+  section.sign-in-card
+    +frame
+      form(class='sign-in-card__form', name='sign-in')
+        h1.sign-in-card__heading Войти
+        +fieldset({ name: 'login-data' })
+          +field({ width: 'big', indent: 'tiny' })
+            +input({ name: 'email', type: 'email', placeholder: 'Email' })
+          +field({  width: 'big', indent: 'middle' })
+            +input({ name: 'password', type: 'password', placeholder: 'Пароль' })
+        +field({  width: 'big', indent: 'big' })
+          +button-long({ text: 'войти', type: 'submit', isArrowed: true })
+      .sign-in__sign-up
+        p.sign-in__text Нет аккаунта на Toxin?
+        +button-short({ text: 'создать', isBordered: true })

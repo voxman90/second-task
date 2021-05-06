@@ -1,0 +1,8 @@
+{
+  "name": "field",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": null
+}

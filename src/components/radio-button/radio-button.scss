@@ -31,8 +31,8 @@
     }
   }
 
-  &:checked:focus + .radio-button__descr::before,
-  &:checked:hover + .radio-button__descr::before {
+  &:checked:focus + .radio-button__text::before,
+  &:checked:hover + .radio-button__text::before {
     border-color: $primary-darken-10;
   }
 }

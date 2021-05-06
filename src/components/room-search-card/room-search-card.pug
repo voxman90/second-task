@@ -1,0 +1,11 @@
+mixin room-search-card()
+  section.room-search-card.js-room-search-card&attributes(attributes)
+    +frame
+      form(class='room-search-card__form', name='room-search-card')
+        h1.room-search-card__heading Найдём номера под ваши пожелания
+        +field({ width: 'big', indent: 'middle' })
+          .room-search-card__dropdown-date-wrapper
+            +dropdown-date({ name: 'date', labelArrival: 'прибытие', labelDeparture: 'выезд' })
+        +field({ width: 'big', indent: 'big' })
+          +dropdown-guests({ name: 'guest', labelText: 'гости' })
+        +button-long({ type: 'submit', text: 'подобрать номер', isArrowed: true })

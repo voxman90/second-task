@@ -18,22 +18,27 @@ mixin room-search-sidebar()
       { name: 'shampoo', text: 'Шампунь' },
     ]
 
-  section.room-search-sidebar.js-room-search-sidebar.js-auto-init
+  section.room-search-sidebar.js-room-search-sidebar&attributes(attributes)
     form(class='room-search-sidebar__form', name='room-search-sidebar')
-      .room-search-sidebar__dropdown-filter-date-wrapper.room-search-sidebar__indent-middle
-        +dropdown-filter-date({ id: 'room-search-facilities', name: 'date', labelText: 'даты прибывания в отеле' })
-      .room-search-sidebar__dropdown-guests-wrapper.room-search-sidebar__indent-big
-        +dropdown-guests({ id: 'room-search-guests', name: 'guests', labelText: 'гости' })
-      .room-search-sidebar__range-slider-wrapper.room-search-sidebar__indent-big
-        +range-slider({ labelText: 'диапазон цены', caption: 'Стоимость за сутки пребывания в номере' })
-      .room-search-sidebar__indent-big
+      +field({ width: 'big', indent: 'middle' })
+        .room-search-sidebar__dropdown-filter-date-wrapper
+          +dropdown-filter-date({ id: 'room-search-facilities', name: 'date', labelText: 'даты прибывания в отеле' })
+      +field({ indent: 'big' })
+        .room-search-sidebar__dropdown-guests-wrapper
+          +dropdown-guests({ id: 'room-search-guests', name: 'guests', labelText: 'гости' })
+      +field({ indent: 'big' })
+        .room-search-sidebar__range-slider-wrapper
+          +range-slider({ labelText: 'диапазон цены', caption: 'Стоимость за сутки пребывания в номере' })
+      +field({ indent: 'big' })
         +fieldset({ legend: 'правила дома', name: 'rules' })
           +checkbox-list({ items: checkboxListItems })
-      .room-search-sidebar__indent-big
+      +field({ indent: 'big' })
         +fieldset({ legend: 'доступность', name: 'accessibility' })
           +checkbox-list({ items: checkboxRichListItems, isRich: true })
-      .room-search-sidebar__dropdown-facilities-wrapper.room-search-sidebar__indent-small
-        +dropdown-facilities({ id: 'room-search-facilities', name: 'facilities', labelText: 'удобства номера' })
-      +fieldset({ name: 'extra' })
-        +expandable-list('дополнительные удобства')
-          +checkbox-list({ items: expandableListItems })
+      +field({ indent: 'small' })
+        .room-search-sidebar__dropdown-facilities-wrapper
+          +dropdown-facilities({ id: 'room-search-facilities', name: 'facilities', labelText: 'удобства номера' })
+      +field
+        +fieldset({ name: 'extra' })
+          +expandable-list('дополнительные удобства')
+            +checkbox-list({ items: expandableListItems })
