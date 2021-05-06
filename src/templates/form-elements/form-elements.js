@@ -1,3 +1,5 @@
+'use strict';
+
 import jQuery from 'jquery';
 
 import { DropdownDate } from 'components/dropdown-date/dropdown-date';

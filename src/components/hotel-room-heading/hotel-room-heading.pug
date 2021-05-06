@@ -1,4 +1,16 @@
-mixin hotel-room-heading()
-  .hotel-room-heading&attributes(attributes)
-    .hotel-room-heading__left #[span.hotel-room-heading__numero №] #[strong.hotel-room-heading__number.js-hotel-room-heading__number 888]
-    .hotel-room-heading__right #[strong.hotel-room-heading__price.js-hotel-room-heading__price 9999] в сутки
+mixin hotel-room-heading(args = {})
+  -
+    const { number = '', price = '', hasSmallSize = false, isLux = false } = args
+    const numberClass = ['hotel-room-heading__number', 'js-hotel-room-heading__number']
+    if (hasSmallSize) numberClass.push('hotel-room-heading__number_size_small')
+    const luxClass = ['hotel-room-heading__lux']
+    if (!isLux) luxClass.push('hotel-room-heading__lux_hidden')
+
+  .hotel-room-heading
+    .hotel-room-heading__numero
+      | #{'№ '}
+      strong(class=numberClass) #{number}
+      strong(class=luxClass) люкс
+    .hotel-room-heading__price-per-day
+      strong.hotel-room-heading__price.js-hotel-room-heading__price= `${price} `
+      | в сутки

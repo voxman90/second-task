@@ -1,33 +1,31 @@
-section.card.invoice
-  form(action = '#').js-invoice__form
-    +hotel-room-heading().invoice__hotel-room-heading
-    .invoice__mid-indent
-      +dropdown-date({ name: 'dropdown-date-1st', left: 'ПРИБЫТИЕ', right: 'ВЫЕЗД' })(
-        class = 'invoice__dropdown-date js-invoice__dropdown-date',
-      )
-    .invoice__mid-indent
-      +dropdown-guests('dropdown-guests-1st', 'ГОСТИ')(
-        class = 'invoice__dropdown-guests js-invoice__dropdown-guests',
-      )
-    .invoice__table-container.invoice__big-indent
-      table.invoice__table
-        tbody
-          tr
-            td.js-invoice__product 9 990 x 4
-            td
-            td.invoice__td-last-child.js-invoice__product-result 39 960
-          tr
-            td.invoice__service-charge Сбор за услуги #[span.invoice__discount.js-invoice__discount]
-            td.invoice__service-charge-info
-            td.invoice__td-last-child.js-invoice__service-charge-price 0
-          tr
-            td.invoice__addit-charge Сбор за дополнительные услуги
-            td.invoice__addit-charge-info
-            td.invoice__td-last-child.js-invoice__addit-charge-price 300
-    .invoice__total.invoice__mid-indent
+mixin invoice-card(args = {})
+  - const { isLux = true, number = '888', price = '9 990\u20bd' } = args
+
+  section.invoice-card.js-invoice-card&attributes(attributes)
+    +frame
+      form(class='invoice-card__form', name='invoice-card')
+        .invoice-card__heading-wrapper
+          +hotel-room-heading({ isLux, number, price })
+        +field({ width: 'big', indent: 'middle' })
+          +dropdown-date({ name: 'date', labelArrival: 'прибытие', labelDeparture: 'выезд' })
+        +field({ width: 'big', indent: 'middle' })
+          +dropdown-guests({ id: 'invoice-card-guests', name: 'guests', labelText: 'гости' })
+        +field({ width: 'big', indent: 'middle' })
+          +invoice-card__count
+        +field({ width: 'big' })
+          +button-long({ text: 'забронировать', type: 'submit', isFilled: true, isArrowed: true })
+
+mixin invoice-card__count()
+  .invoice-card__account
+    .invoice-card__grid
+      .js-invoice__product 9 990 x 4
+      .invoice__td-last-child.js-invoice__product-result 39 960
+      .invoice__service-charge Сбор за услуги #[span.invoice__discount.js-invoice__discount]
+      .invoice__service-charge-info
+      .invoice__td-last-child.js-invoice__service-charge-price 0
+      .invoice__addit-charge Сбор за дополнительные услуги
+      .invoice__addit-charge-info
+      .invoice__td-last-child.js-invoice__addit-charge-price 300
       .invoice__total-text Итого
       .invoice__total-dashed-border
       .invoice__total-price.js-invoice__total-price 38 081
-    +button({ name: 'button-long-1st', text: 'ЗАБРОНИРОВАТЬ', isFilled: true, isArrowed: true })(
-      type = 'submit',
-    )

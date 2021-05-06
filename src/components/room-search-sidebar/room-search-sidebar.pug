@@ -22,10 +22,10 @@ mixin room-search-sidebar()
     form(class='room-search-sidebar__form', name='room-search-sidebar')
       +field({ width: 'big', indent: 'middle' })
         .room-search-sidebar__dropdown-filter-date-wrapper
-          +dropdown-filter-date({ id: 'room-search-facilities', name: 'date', labelText: 'даты прибывания в отеле' })
+          +dropdown-filter-date({ id: 'room-search-sidebar-facilities', name: 'date', labelText: 'даты прибывания в отеле' })
       +field({ indent: 'big' })
         .room-search-sidebar__dropdown-guests-wrapper
-          +dropdown-guests({ id: 'room-search-guests', name: 'guests', labelText: 'гости' })
+          +dropdown-guests({ id: 'room-search-sidebar-guests', name: 'guests', labelText: 'гости' })
       +field({ indent: 'big' })
         .room-search-sidebar__range-slider-wrapper
           +range-slider({ labelText: 'диапазон цены', caption: 'Стоимость за сутки пребывания в номере' })
@@ -37,7 +37,7 @@ mixin room-search-sidebar()
           +checkbox-list({ items: checkboxRichListItems, isRich: true })
       +field({ indent: 'small' })
         .room-search-sidebar__dropdown-facilities-wrapper
-          +dropdown-facilities({ id: 'room-search-facilities', name: 'facilities', labelText: 'удобства номера' })
+          +dropdown-facilities({ id: 'room-search-sidebar-facilities', name: 'facilities', labelText: 'удобства номера' })
       +field
         +fieldset({ name: 'extra' })
           +expandable-list('дополнительные удобства')

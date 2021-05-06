@@ -1,3 +1,6 @@
+include ../../components/favicon/favicon.pug
+include ../../components/layout/layout.pug
+include ../../components/logo/logo.pug
 include ../../components/field/field.pug
 include ../../components/frame/frame.pug
 include ../../components/label/label.pug
@@ -12,30 +15,37 @@ include ../../components/dropdown/dropdown.pug
 include ../../components/dropdown-guests/dropdown-guests.pug
 include ../../components/button-long/button-long.pug
 include ../../components/room-search-card/room-search-card.pug
-include ../../components/hotel-room-heading/hotel-room-heading.pug
-include ../../components/rate-button/rate-button.pug
-include ../../components/hotel-room-card/hotel-room-card.pug
 include ../../components/fieldset/fieldset.pug
 include ../../components/radio-button/radio-button.pug
 include ../../components/toggle/toggle.pug
 include ../../components/button-short/button-short.pug
+include ../../components/sign-up-card/sign-up-card.pug
+include ../../components/hotel-room-heading/hotel-room-heading.pug
+include ../../components/invoice-card/invoice-card.pug
+include ../../components/sign-in-card/sign-in-card.pug
+include ../../components/rate-button/rate-button.pug
+include ../../components/hotel-room-card/hotel-room-card.pug
 - const data = htmlWebpackPlugin.options.data
-- const { title } = data
-doctype html
-html
-  head
-    meta(charset='UTF-8')
-    meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    title= title
-  body.cards__body
-    .cards__grid
-      .cards__1st
-       //+room-search-card
-      .cards__2nd
-        include ../../components/sign-up-card/sign-up-card.pug
-      .cards__3rd
-        include ../../components/sign-in-card/sign-in-card.pug
-      .cards__4th
-        include ../../components/invoice-card/invoice-card.pug
-      .cards__5th
-        //+hotel-room-card({ itemAmount: 4 })
+- const { pageTitle } = data
+
++layout
+  +layout__block('head')
+    title= pageTitle
+
+  +layout__block('content')
+    .cards
+      .cards__logo
+        +logo({ size: 'big', isColored: false, isSigned: false })
+      .cards__wrapper
+        .card__container
+          .card__column
+            +room-search-card
+            +sign-up-card
+          .card__column
+            +invoice-card
+            +sign-in-card
+          .card__column
+            .card__calendar-wrapper
+              +calendar
+            +hotel-room-card({ itemAmount: 4 })
+            +hotel-room-card({ itemAmount: 4 })

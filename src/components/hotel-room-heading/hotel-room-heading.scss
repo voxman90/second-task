@@ -4,41 +4,49 @@
   align-items: baseline;
 }
 
-.hotel-room-heading__left {
+.hotel-room-heading__numero {
+  display: inline-block;
+
   @include Montserrat-bold;
   color: $dark-shade-100;
-}
-
-.hotel-room-heading__numero {
   font-size: 0.875em;
+  line-height: normal;
 }
 
 .hotel-room-heading__number {
+  display: inline-block;
+  height: 1.25em;
+  vertical-align: baseline;
+
+  font-size: 1.7143em;
+}
+
+.hotel-room-heading__numero_size_small {
+  height: 1.2632em;
+
+  font-size: 1.3572em;
+}
+
+.hotel-room-heading__lux {
   position: relative;
+  top: 1px;
+  transform: translateX(100%);
 
-  font-size: 1.5em;
+  font-size: 0.857em;
+  text-transform: uppercase;
+  color: $primary;
 }
 
-.hotel-room-heading__number_lux {
-  &::after {
-    content: 'люкс';
-    right: -2.5625em;
-    bottom: 0.4375em;
-
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    color: $primary;
-  }
+.hotel-room-heading__lux_hidden {
+  visibility: hidden;
 }
 
-.hotel-room-heading__right {
-  @include Montserrat-normal;
-  color: $dark-shade-50;
-  font-size: 0.75rem;
-  line-height: 1.125rem;
+.hotel-room-heading__price-per-day {
+  @include label-appendix($height: 1.125em);
+  text-transform: none;
 }
 
 .hotel-room-heading__price {
   @include Montserrat-bold;
-  font-size: 0.875rem;
+  font-size: 1.167em;
 }

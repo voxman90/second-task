@@ -6,6 +6,9 @@
     "pug"
   ],
   "deps": [
+    "field",
+    "fieldset",
+    "frame",
     "hotel-room-heading",
     "dropdown-date",
     "dropdown-guests",

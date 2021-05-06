@@ -1,10 +1,11 @@
-mixin card-hotel-room(args = {})
-  section.card-hotel-room
-    .card-hotel-room__head
+mixin hotel-room-card(args = {})
+  section.hotel-room-card.js-hotel-room-card&attributes(attributes)
+    form(class='hotel-room-card__form', name='hotel-room-card')
       +carousel(args).card-hotel-room__carousel.js-auto-init
     .card-hotel-room__body
-      +hotel-room-heading().card-hotel-room__hotel-room-heading
-      .card-hotel-room__hr
-      .card-hotel-room__rating-panel
-        +rate-button({ amount: 5 }).card-hotel-room__rate-button
-        .card-hotel-room__reviews #[b.card-hotel-room__rebiew-amount.js-card-hotel-room__rebiew-amount 69] Отзывов
+      .card-hotel-room__hotel-room-heading
+        +hotel-room-heading
+        .card-hotel-room__hr
+        .card-hotel-room__rating-panel
+          +rate-button({ amount: 5 }).card-hotel-room__rate-button
+          .card-hotel-room__reviews #[b.card-hotel-room__rebiew-amount.js-card-hotel-room__rebiew-amount 69] Отзывов
