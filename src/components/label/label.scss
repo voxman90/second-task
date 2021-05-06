@@ -23,9 +23,6 @@
   float: right;
   height: 1.25em;
 
-  @include Montserrat-normal;
-  font-size: 1em;
-  line-height: 1.25;
+  @include label-appendix(1em);
   text-align: right;
-  color: $dark-shade-50;
 }

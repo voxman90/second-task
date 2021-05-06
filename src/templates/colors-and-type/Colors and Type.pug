@@ -1,24 +1,29 @@
+include ../../components/favicon/favicon.pug
+include ../../components/layout/layout.pug
 include ../../components/logo/logo.pug
 - const data = htmlWebpackPlugin.options.data
-- const title = data.title
-- const colors = data.colors
-- const fonts = data.fonts
-doctype html
-html
-  head
-    meta(charset='UTF-8')
-    title= title
-  body
-    .colors-and-type
-      .colors-and-type__logo
+- const { pageTitle, colors, fonts } = data
+
++layout
+  +layout__block('head')
+    title= pageTitle
+
+  +layout__block('content')
+    .colors-and-types
+      .colors-and-types__logo
         +logo({ size: 'big', isColored: false, isSigned: false })
-      .colors-and-type__samples
-        .colors-and-type__color-samples
-          each color in colors
-            .color-sample
-              div(class=`color-sample_color_${color.name}`)
-              p.color-sample__text #{color.descr}<br><span class="color-sample__code">#{color.code}</span>  
-        .colors-and-type__font-samples
+      .colors-and-types__grid
+        .colors
+          each color, index in colors
+            - const length = colors.length
+            .colors__color
+              div(class=`colors__sample colors__sample_color_${color.name}`)
+              .colors__descr
+                | #{color.descr}
+                br
+                span.colors__code= color.code
+        .types
           each font in fonts
-            div(class=`font-sample-label font-sample-label_type_${font.class}`)!= font.label
-            div(class=`font-sample-text font-sample-text_type_${font.class}`)!= font.text
+            .types__type
+              span(class=`types__label types__label_type_${font.class}`)= font.label
+              span(class=`types__text types__text_type_${font.class}`)= font.text

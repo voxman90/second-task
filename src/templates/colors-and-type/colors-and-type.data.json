@@ -1,5 +1,5 @@
 {
-  "title": "Colors&Type",
+  "pageTitle": "Colors&Type",
   "colors": [
     { "name": "dark-shade-100", "descr": "Dark Shade 100%", "code": "#1F2041" },
     { "name": "dark-shade-75", "descr": "Dark Shade 75%", "code": "#1F2041" },
@@ -10,9 +10,9 @@
     { "name": "green", "descr": "Green", "code": "#6FCF97" }
   ],
   "fonts": [
-    { "class": "widget-text", "label": "H1", "text": "This one is the sub-section or<br> widget title" },
-    { "class": "widget-text", "label": "H2", "text": "Next one is the item title inside<br> widgets" },
-    { "class": "label-text", "label": "H3", "text": "This is a label or CTA text" },
-    { "class": "p-text", "label": "Body", "text": "This is the body text which is used for most<br> of the design, like paragraphs, lists, etc." }
+    { "class": "h1", "label": "H1", "text": "This one is the sub-section or\nwidget title" },
+    { "class": "widget", "label": "H2", "text": "Next one is the item title inside\nwidgets" },
+    { "class": "label", "label": "H3", "text": "This is a label or CTA text" },
+    { "class": "p", "label": "Body", "text": "This is the body text which is used for most\nof the design, like paragraphs, lists, etc." }
   ]
 }
