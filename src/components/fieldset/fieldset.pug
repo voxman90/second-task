@@ -1,5 +1,8 @@
 mixin fieldset(args)
-  - const { legend, name, id, isIndentSmall = false } = args
+  -
+    const { legend, name, id, isIndentSmall = false } = args
+    const legendClass = ['fieldset__legend']
+    if (isIndentSmall) legendClass.push('fieldset__legend_indent_small')
 
   fieldset(
     class='fieldset',
@@ -7,8 +10,6 @@ mixin fieldset(args)
     name=name,
   )
     if (legend !== undefined)
-      legend(
-        class=(isIndentSmall) ? 'fieldset__legend fieldset__legend_indent_small' : 'fieldset__legend',
-      )= legend
+      legend(class=legendClass)= legend
     if block
       block

@@ -73,38 +73,6 @@ const Calendar = ((document) => {
       return date;
     }
 
-    _convertDateToIndex(date, sheet) {
-      if (date === null) throw 'The date is null';
-
-      const { dates, from: firstDayIndex, to: lastDayIndex, month } = sheet;
-      const day = date.getDate();
-
-      if (this._isSameMonthAndYear(date, month)) {
-        return firstDayIndex + day - 1;
-      }
-
-      const doesSheetStartWithCurrentMonth = firstDayIndex === 0;
-      const previousMonth = this._reduceDateToMonth(month, -1);
-      if (
-        !doesSheetStartWithCurrentMonth
-        && this._isSameMonthAndYear(date, previousMonth)
-      ) {
-        const firstDayOfSheet = dates[0];
-        const index = day - firstDayOfSheet;
-        const doesIndexGoBeyondSheet = index < 0;
-        if (!doesIndexGoBeyondSheet) return index;
-      }
-
-      const nextMonth = this._reduceDateToMonth(month, 1);
-      if (this._isSameMonthAndYear(date, nextMonth)) {
-        const index = day + firstDayIndex + lastDayIndex;
-        const doesIndexGoBeyondSheet = dates[index] === undefined;
-        if (!doesIndexGoBeyondSheet) return index;
-      }
-
-      throw 'The date goes beyond the calendar sheet';
-    }
-
     convertDateToMYYYY(date) {
       const month = monthName[date.getMonth()];
       const year = date.getFullYear();
@@ -135,6 +103,38 @@ const Calendar = ((document) => {
     isSameDayOrLater(date, modelDate) {
       const isThisLaterDate = modelDate.getTime() - date.getTime() < 0;
       return this._isSameDay(date, modelDate) || isThisLaterDate;
+    }
+
+    _convertDateToIndex(date, sheet) {
+      if (date === null) throw 'The date is null';
+
+      const { dates, from: firstDayIndex, to: lastDayIndex, month } = sheet;
+      const day = date.getDate();
+
+      if (this._isSameMonthAndYear(date, month)) {
+        return firstDayIndex + day - 1;
+      }
+
+      const doesSheetStartWithCurrentMonth = firstDayIndex === 0;
+      const previousMonth = this._reduceDateToMonth(month, -1);
+      if (
+        !doesSheetStartWithCurrentMonth
+        && this._isSameMonthAndYear(date, previousMonth)
+      ) {
+        const firstDayOfSheet = dates[0];
+        const index = day - firstDayOfSheet;
+        const doesIndexGoBeyondSheet = index < 0;
+        if (!doesIndexGoBeyondSheet) return index;
+      }
+
+      const nextMonth = this._reduceDateToMonth(month, 1);
+      if (this._isSameMonthAndYear(date, nextMonth)) {
+        const index = day + firstDayIndex + lastDayIndex;
+        const doesIndexGoBeyondSheet = dates[index] === undefined;
+        if (!doesIndexGoBeyondSheet) return index;
+      }
+
+      throw 'The date goes beyond the calendar sheet';
     }
 
     _isSameDay(dateA, dateB) {

@@ -111,6 +111,10 @@ const Dropdown = (() => {
       this._updateDropdownState();
     }
 
+    getInputValue() {
+      return this.input.value;
+    }
+
     toggleBar() {
       this.bar.classList.toggle(Modifier.BAR_HIDDEN);
       this.input.classList.toggle(Modifier.INPUT_EXPANDED);
@@ -247,7 +251,7 @@ const Dropdown = (() => {
 
     _fillOptionOutputs(values) {
       this.optionOutputs.forEach((output, i) => {
-        output.textContent = values[i];
+        output.textContent = values[i] || 0;
         this._toggleButtonMinus(output, values[i]);
       });
     }

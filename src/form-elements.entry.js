@@ -1,6 +1,7 @@
 import 'styles/style.scss';
 import 'components/layout/layout.scss';
 import 'components/logo/logo.scss';
+import 'components/field/field.scss';
 import 'components/label/label.scss';
 import 'components/input/input.scss';
 import 'components/text-field/text-field.scss';

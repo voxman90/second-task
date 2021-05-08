@@ -5,8 +5,9 @@
 }
 
 .room-search-card__heading {
-  margin-top: 0.417em;
-  margin-bottom: 0.834em;
+  height: 2.4583333em;
+  margin-top: 0.4166666em;
+  margin-bottom: 0.8333333em;
 
   @include h1-text($height: 1.25);
 }

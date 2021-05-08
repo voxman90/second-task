@@ -27,9 +27,11 @@
       "template": "Cards",
       "data": "cards",
       "styles": [
-        "./templates/cards/cards.scss"
+        "templates/cards/cards.scss"
       ],
-      "scripts": null
+      "scripts": [
+        "templates/cards/cards.js"
+      ]
     },
 
     {

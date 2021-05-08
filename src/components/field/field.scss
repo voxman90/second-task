@@ -2,6 +2,10 @@
   width: 100%;
 }
 
+.field_width_small {
+  max-width: 222px;
+}
+
 .field_width_middle {
   max-width: 266px;
 }
@@ -24,4 +28,8 @@
 
 .field_indent_big {
   margin-bottom: 1.875em;
+}
+
+.field_indent_huge {
+  margin-bottom: 2.5rem;
 }

@@ -16,7 +16,6 @@
 .hotel-room-heading__number {
   display: inline-block;
   height: 1.25em;
-  vertical-align: baseline;
 
   font-size: 1.7143em;
 }
@@ -29,7 +28,8 @@
 
 .hotel-room-heading__lux {
   position: relative;
-  top: 1px;
+  top: 0.5px;
+  right: -0.5px;
   transform: translateX(100%);
 
   font-size: 0.857em;
@@ -42,7 +42,7 @@
 }
 
 .hotel-room-heading__price-per-day {
-  @include label-appendix($height: 1.125em);
+  @include label-appendix($height: 1.5);
   text-transform: none;
 }
 

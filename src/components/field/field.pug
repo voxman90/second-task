@@ -2,12 +2,14 @@ mixin field(args = {})
   - const { width = 'middle', indent } = args
   -
     const fieldClass = ['field']
+    if (width  === 'small') fieldClass.push('field_width_small')
     if (width  === 'middle') fieldClass.push('field_width_middle')
     if (width  === 'big')    fieldClass.push('field_width_big')
     if (indent === 'tiny')   fieldClass.push('field_indent_tiny')
     if (indent === 'small')  fieldClass.push('field_indent_small')
     if (indent === 'middle') fieldClass.push('field_indent_middle')
     if (indent === 'big')    fieldClass.push('field_indent_big')
+    if (indent === 'huge')    fieldClass.push('field_indent_huge')
 
   div(class=fieldClass)
     if block

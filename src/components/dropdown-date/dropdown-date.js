@@ -36,12 +36,25 @@ const DropdownDate = (($, document) => {
       this.attachMultipleEventListeners(this.listeners);
     }
 
+    setArrivalAndDeparture(arrival, departure) {
+      this.setArrival(arrival);
+      this.setDeparture(departure);
+    }
+
     setArrival(date) {
       this._setInputValue(this.inputArrival, date);
     }
 
     setDeparture(date) {
       this._setInputValue(this.inputDeparture, date);
+    }
+
+    getArrival() {
+      return this._convertInputValueToDate(this.inputArrival.value);
+    }
+
+    getDeparture() {
+      return this._convertInputValueToDate(this.inputDeparture.value);
     }
 
     closeBar() {

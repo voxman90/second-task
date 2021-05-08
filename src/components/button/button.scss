@@ -15,7 +15,7 @@
   @include non-selectable;
 
   &:hover {
-    color: $dark-shade-50; 
+    color: $dark-shade-50;
   }
 }
 
@@ -36,6 +36,8 @@
   width: 100%;
   max-width: 320px;
   height: 3.667em;
+
+  @include button-text;
 }
 
 .button_style_filled {

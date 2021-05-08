@@ -3,5 +3,126 @@
   padding-bottom: 1.25em;
 }
 
+.invoice-card__account {
+  padding-top: 1.5px;
+  padding-left: 0.5px;
+}
 
+.invoice-card__grid {
+  display: grid;
+  grid-template-rows: 1.5rem 1.5rem 2.25rem;
+  grid-template-columns: minmax(0, 214px) 20px auto;
+  grid-gap: 10px 5px;
 
+  @include p-text($height: 1.286em);
+}
+
+.invoice-card__gross {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  justify-self: start;
+}
+
+.invoice-card__gross-result {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  justify-self: end;
+
+  white-space: nowrap;
+}
+
+.invoice-card__service {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  justify-self: start;
+}
+
+.invoice-card__discount {
+  white-space: nowrap;
+}
+
+@mixin tooltip() {
+  position: relative;
+
+  &::after {
+    content: 'i';
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    border: 1px solid $dark-shade-25;
+    border-radius: 50%;
+
+    @include Montserrat-bold;
+    font-size: 12px;
+    line-height: 1.5;
+    color: $dark-shade-25;
+    text-align: center;
+  }
+}
+
+.invoice-card__service-tooltip {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+
+  @include tooltip;
+
+  &::after {
+    top: -2px;
+  }
+}
+
+.invoice-card__service-price {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+  justify-self: end;
+
+  white-space: nowrap;
+}
+
+.invoice-card__extra {
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+  justify-self: start;
+
+  line-height: 1.286em;
+}
+
+.invoice-card__extra-tooltip {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+
+  @include tooltip;
+}
+
+.invoice-card__extra-price {
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;
+  justify-self: end;
+
+  white-space: nowrap;
+}
+
+.invoice-card__final {
+  display: flex;
+  width: 102.8%;
+  height: 1.5rem;
+
+  @include widget-text;
+}
+
+.invoice-card__dashed-border {
+  flex-grow: 1;
+  margin: 0 5px;
+  margin-bottom: 5.5px;
+  border-bottom: 1px dotted $dark-shade-25;
+}
+
+.invoice-card__final-price {
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  white-space: nowrap;
+}

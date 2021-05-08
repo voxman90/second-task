@@ -1,31 +1,34 @@
 mixin invoice-card(args = {})
-  - const { isLux = true, number = '888', price = '9 990\u20bd' } = args
+  - const { isLux = true } = args
 
   section.invoice-card.js-invoice-card&attributes(attributes)
     +frame
       form(class='invoice-card__form', name='invoice-card')
         .invoice-card__heading-wrapper
-          +hotel-room-heading({ isLux, number, price })
+          +hotel-room-heading({ isLux })
         +field({ width: 'big', indent: 'middle' })
           +dropdown-date({ name: 'date', labelArrival: 'прибытие', labelDeparture: 'выезд' })
         +field({ width: 'big', indent: 'middle' })
           +dropdown-guests({ id: 'invoice-card-guests', name: 'guests', labelText: 'гости' })
-        +field({ width: 'big', indent: 'middle' })
-          +invoice-card__count
+        +invoice-card__count
         +field({ width: 'big' })
           +button-long({ text: 'забронировать', type: 'submit', isFilled: true, isArrowed: true })
 
 mixin invoice-card__count()
   .invoice-card__account
-    .invoice-card__grid
-      .js-invoice__product 9 990 x 4
-      .invoice__td-last-child.js-invoice__product-result 39 960
-      .invoice__service-charge Сбор за услуги #[span.invoice__discount.js-invoice__discount]
-      .invoice__service-charge-info
-      .invoice__td-last-child.js-invoice__service-charge-price 0
-      .invoice__addit-charge Сбор за дополнительные услуги
-      .invoice__addit-charge-info
-      .invoice__td-last-child.js-invoice__addit-charge-price 300
-      .invoice__total-text Итого
-      .invoice__total-dashed-border
-      .invoice__total-price.js-invoice__total-price 38 081
+    +field({ width: 'big', indent: 'big' })
+      .invoice-card__grid
+        .invoice-card__gross.js-invoice-card__gross= ''
+        .invoice-card__gross-result.js-invoice-card__gross-result= ''
+        .invoice-card__service= 'Сбор за услуги: скидка '
+          span.invoice-card__discount.js-invoice-card__discount= ''
+        .invoice-card__service-tooltip.js-invoice-card__service-tooltip
+        .invoice-card__service-price.js-invoice-card__service-price= ''
+        .invoice-card__extra= 'Сбор за дополнительные\n услуги'
+        .invoice-card__extra-tooltip.js-invoice-card__extra-tooltip
+        .invoice-card__extra-price.js-invoice-card__extra-price= ''
+    +field({ width: 'big', indent: 'middle' })
+      .invoice-card__final
+        | Итого
+        span.invoice-card__dashed-border
+        span.invoice-card__final-price.js-invoice-card__final-price= ''

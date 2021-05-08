@@ -9,6 +9,14 @@
   }
 }
 
+@mixin Montserrat-semi-bold {
+  font: {
+    family: 'Montserrat', Arial, sans-serif;
+    weight: 600;
+    style: normal;
+  }
+}
+
 @mixin Montserrat-bold {
   font: {
     family: 'Montserrat', Arial, sans-serif;
@@ -47,6 +55,15 @@
   font-size: $size;
   line-height: $height;
   text-transform: uppercase;
+  color: $color;
+}
+
+@mixin button-text($size: 0.75em, $height: 1.25, $color: $primary) {
+  @include Montserrat-semi-bold;
+  font-size: $size;
+  line-height: $height;
+  text-transform: uppercase;
+  letter-spacing: 0.1px;
   color: $color;
 }
 
