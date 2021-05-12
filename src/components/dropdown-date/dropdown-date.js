@@ -70,6 +70,10 @@ const DropdownDate = (($, document) => {
       this.inputDeparture = this.root.querySelector(Selector.INPUT_DEPARTURE);
       this.icons = this.root.querySelectorAll(Selector.ICON);
       this.bar = this.root.querySelector(Selector.BAR);
+
+      this.hooks = {
+        inputValueSet: () => void(0),
+      }
     }
 
     _connectCalendar() {
@@ -172,6 +176,8 @@ const DropdownDate = (($, document) => {
       this._drawInputs(arrival, departure);
       this._toggleInputsReadonly();
       this.closeBar();
+
+      this.hooks.inputValueSet(arrival, departure);
     }
 
     _defineEventListeners() {

@@ -8,7 +8,7 @@
 
 .layout-grid__grid {
   display: grid;
-  grid-template-columns: 9.73% [sidebar-start] auto [sidebar-end] 4.17% [content-start] auto [content-end] 9.73%;
+  grid-template-columns: 9.722222% [sidebar-start] min-content [sidebar-end] 4.166666% [content-start] auto [content-end] 9.722222%;
   grid-template-rows: [header-start] 4.375rem [header-end] 1.875rem [main-start] auto [main-end] 2.5rem [footer-start] auto [footer-end];
   grid-template-areas:
     'header header  header header  header'

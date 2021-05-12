@@ -1,3 +1,15 @@
-.search-room {
+.search-room__heading {
+  margin: 0 0 1.25rem 0;
+  padding: 0;
 
+  @include h1-text;
+}
+
+.search-room__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+  justify-content: center;
+  justify-items: center;
+  row-gap: 1.25rem;
+  column-gap: 12px;
 }

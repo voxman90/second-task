@@ -50,8 +50,8 @@ const InvoiceCard = ((document) => {
     number: 888,
     isLux: true,
     pricePerDay: 9990,
-    arrival: new Date('19.08.2021'),
-    departure: new Date('23.08.2021'),
+    arrival: new Date(2021, 8, 21),
+    departure: new Date(2021, 8, 26),
     guests: [2, 1],
     service: '???',
     extra: [
@@ -65,36 +65,37 @@ const InvoiceCard = ((document) => {
     constructor(element, options = Default) {
       super(element, 'invoice-card');
 
+      this.nodes = {};
+      this.components = {};
+
       this._connectBasis();
       this._initComponents();
 
+      this.pricePerDay = options.pricePerDay;
+      this.extraPrice = this._getExtraPrice(options.extra);
+      this.servicePrice = this._getServicePrice();
+
       this._drawHeading(options);
-      this.setState(options)
-      this.updateAccount(options);
+      this._drawServiceAndExtra(options);
+      this.setState(options);
+      this.updateAccount();
     }
 
     setState(options) {
-      const { arrival, departure, guests, service, extra } = options;
-      this._setArrivalAndDeparture(arrival, departure);
+      const { arrival, departure, guests } = options;
       this._setGuestCount(guests);
-      this._drawServiceToolip(service);
-      this._drawExtraToolip(extra);
+      this._setArrivalAndDeparture(arrival, departure);
     }
 
-    updateAccount(options) {
-      const { pricePerDay, extra } = options;
+    updateAccount() {
       const days = this._gatNumberOfDays();
-      const gross = this._getGross(pricePerDay, days);
-      const servicePrice = this._getServicePrice();
+      const gross = this._getGross(this.pricePerDay, days);
       const discount = this._getDiscount();
-      const extraPrice = this._getExtraPrice(extra);
-      const finalPrice = this._getFinalPrice(gross, servicePrice, extraPrice, discount);
+      const finalPrice = this._getFinalPrice(gross, this.servicePrice, this.extraPrice, discount);
       
-      this._drawGrossProduct(pricePerDay, days);
+      this._drawGrossProduct(this.pricePerDay, days);
       this._drawGrossResult(gross);
-      this._drawServicePrice(servicePrice);
       this._drawDiscount(discount);
-      this._drawExtraPrice(extraPrice);
       this._drawFinalPrice(finalPrice);
     }
 
@@ -107,8 +108,6 @@ const InvoiceCard = ((document) => {
     }
 
     _connectFormFields() {
-      this.nodes = {};
-
       this.nodes.number = this.root.querySelector(Selector.HEADING_NUMBER);
       this.nodes.lux = this.root.querySelector(Selector.HEADING_LUX);
       this.nodes.price = this.root.querySelector(Selector.HEADING_PRICE);
@@ -127,9 +126,9 @@ const InvoiceCard = ((document) => {
     }
 
     _initComponents() {
-      this.components = {};
-
       this.components.dropdownDate = new DropdownDate(this.nodes.dropdownDate);
+      this.components.dropdownDate.hooks.inputValueSet = this.handleArrivalAndDepartureSet;
+
       this.components.dropdownGuests = new DropdownGuests(this.nodes.dropdownGuests);
     }
 
@@ -175,7 +174,7 @@ const InvoiceCard = ((document) => {
     }
 
     _getExtraList(extra) {
-      return extra.map((value) => Extra[value]);
+      return extra.map((value) => Extra[value].toLowerCase());
     }
 
     _getFinalPrice(gross, service, extra, discount) {
@@ -191,6 +190,14 @@ const InvoiceCard = ((document) => {
       this._drawNumber(number);
       this._drawLux(isLux);
       this._drawPricePerDay(pricePerDay);
+    }
+
+    _drawServiceAndExtra(options) {
+      const { service, extra } = options;
+      this._drawServiceToolip(service);
+      this._drawServicePrice(this.servicePrice);
+      this._drawExtraToolip(extra);
+      this._drawExtraPrice(this.extraPrice);
     }
 
     _drawNumber(number) {
@@ -228,7 +235,7 @@ const InvoiceCard = ((document) => {
     }
 
     _drawServiceToolip(service) {
-      this.nodes.extraTooltip.setAttribute('alt', service);
+      this.nodes.serviceTooltip.setAttribute('title', service);
     }
 
     _drawExtraPrice(extra) {
@@ -237,7 +244,7 @@ const InvoiceCard = ((document) => {
 
     _drawExtraToolip(extra) {
       const extraList = this._getExtraList(extra);
-      this.nodes.extraTooltip.setAttribute('alt', extraList.join(','));
+      this.nodes.extraTooltip.setAttribute('title', extraList.join(', '));
     }
 
     _drawFinalPrice(final) {
@@ -251,7 +258,7 @@ const InvoiceCard = ((document) => {
     _defineCorrectWordForNumberOfDays(number) {
       let form = 'суток';
 
-      if (1 < number || number <= 4) return form;
+      if (1 < number && number <= 4) return form;
 
       if (number % 100 < 11 || 14 < number % 100) {
         switch (number % 10) {
@@ -279,6 +286,12 @@ const InvoiceCard = ((document) => {
        * For an integer number, Number.toLocaleString will add spaces every three characters
        */
       return `${price.toLocaleString()}\u20bd`;
+    }
+
+    handleArrivalAndDepartureSet = (arrival, departure) => {
+      if (arrival !== null && departure !== null) {
+        this.updateAccount();
+      }
     }
   }
 

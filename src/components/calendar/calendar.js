@@ -278,14 +278,14 @@ const Calendar = ((document) => {
 
   const NUMBER_OF_SHEETS = 2;
 
-  const calendarCarouselConfig = {
+  const carouselConfig = {
     haveButtons: false,
     haveNavbar: false,
   }
 
   class CalendarSlider extends Carousel {
     constructor(element) {
-      super(element, 'calendar-slider', calendarCarouselConfig);
+      super(element, carouselConfig, 'calendar-slider');
     }
   }
 
@@ -602,18 +602,6 @@ const Calendar = ((document) => {
       sheet.tableCells[index].focus();
     }
 
-    _slidingStart() {
-      this.slider.isSliding = true;
-    }
-
-    _slidingEnd() {
-      this.slider.isSliding = false;
-    }
-
-    _isSliding() {
-      return this.slider.isSliding;
-    }
-
     _isCorrectIndex(i) {
       const isNull = i === null;
       const isWithinSheetBoundaries = 0 <= i && i < 42;
@@ -636,12 +624,12 @@ const Calendar = ((document) => {
     }
 
     async _handleArrowButtonClick(shift) {
-      if (!this._isSliding()) {
-        this._slidingStart();
+      if (!this.slider.isSliding()) {
+        this.slider.slidingStart();
         this._prepareNextSheet(shift);
         await this._flip(shift).finally(() => {
           this.currentIndex = this._getNextIndex(shift);
-          this._slidingEnd();
+          this.slider.slidingEnd();
         });
       }
     }

@@ -1,3 +1,6 @@
 {
-  "pageTitle": "Sign In"
+  "pageTitle": "Sign In",
+  "hotelRoomCards": [
+    {}
+  ]
 }

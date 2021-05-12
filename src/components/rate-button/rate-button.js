@@ -28,31 +28,40 @@ const RateButton = ((document) => {
       super(element, 'rate-button');
 
       this.input = this.root.querySelector(Selector.INPUT);
-      this.icons = this.getIconsReverseArray();
+      this.icons = this._getIconsReverseArray();
 
       this.positions = this.getAttributeNumericalValue(this.root, Attribute.AMOUNT);
-      this.filled = this.getFilledPositionsNumber();
+      this.filled = this._getFilledPositionsNumber();
 
-      this.setInputValue(this.filled);
+      this.fill(this.filled);
 
-      this.listeners = this.defineEventListeners();
+      this.listeners = this._defineEventListeners();
       this.attachMultipleEventListeners(this.listeners);
     }
 
-    setFilled(value) {
+    fill(rating) {
+      const isMatchBound = 0 <= rating && rating <= this.positions;
+      if (isMatchBound) {
+        this._setInputValue(rating);
+        this._setFilled(rating);
+        this._drawRatingBar(rating);
+      }
+    }
+
+    _setFilled(value) {
       this.filled = value;
     }
 
-    setInputValue(value) {
+    _setInputValue(value) {
       this.input.value = value;
     }
 
-    getIconsReverseArray() {
+    _getIconsReverseArray() {
       const icons = this.root.querySelectorAll(Selector.ICON);
       return Array.from(icons).reverse();
     }
 
-    getFilledPositionsNumber() {
+    _getFilledPositionsNumber() {
       const firstEmptyPosition = this.icons.findIndex((icon) => {
         return icon.textContent === ICON_STATE['empty'];
       });
@@ -64,35 +73,13 @@ const RateButton = ((document) => {
       return firstEmptyPosition;
     }
 
-    defineEventListeners() {
-      return [
-        {
-          element: this.root,
-          event: 'click',
-          handler: this.handleRateButtonClick.bind(this),
-        },
-      ];
-    }
-
-    handleRateButtonClick(event) {
-      const et = event.target;
-
-      if (et.classList.contains(ClassName.ICON)) {
-        const selectedPosition = 1 + this.getAttributeNumericalValue(et, Attribute.INDEX);
-        const filledPositions = this.findFilledPositionsNumber(selectedPosition);
-        this.setFilled(filledPositions);
-        this.setInputValue(filledPositions);
-        this.drawRatingBar(filledPositions);
-      }
-    }
-
-    drawRatingBar(filled) {
+    _drawRatingBar(filled) {
       this.icons.forEach((icon, i) => {
         icon.textContent = (i < filled) ? ICON_STATE['filled'] : ICON_STATE['empty'];
       });
     }
 
-    findFilledPositionsNumber(selectedPosition) {
+    _findFilledPositionsNumber(selectedPosition) {
       const lastFilledPosition = this.filled;
       const isLastFilledPosition = selectedPosition === lastFilledPosition;
 
@@ -101,6 +88,28 @@ const RateButton = ((document) => {
       }
 
       return lastFilledPosition - 1;
+    }
+
+    handleRateButtonClick = (event) => {
+      const et = event.target;
+
+      if (et.classList.contains(ClassName.ICON)) {
+        const selectedPosition = 1 + this.getAttributeNumericalValue(et, Attribute.INDEX);
+        const filled = this._findFilledPositionsNumber(selectedPosition);
+        this._setFilled(filled);
+        this._setInputValue(filled);
+        this._drawRatingBar(filled);
+      }
+    }
+
+    _defineEventListeners() {
+      return [
+        {
+          element: this.root,
+          event: 'click',
+          handler: this.handleRateButtonClick,
+        },
+      ];
     }
   }
 

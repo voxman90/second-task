@@ -47,5 +47,7 @@ include ../../components/hotel-room-card/hotel-room-card.pug
           .card__column
             .card__calendar-wrapper
               +calendar().js-calendar-card
-            +hotel-room-card({ itemAmount: 4 })
-            +hotel-room-card({ itemAmount: 4 })
+            .card__hotel-room-wrapper
+              +hotel-room-card({ itemAmount: 4 })
+            .card__hotel-room-wrapper
+              +hotel-room-card({ itemAmount: 4 })

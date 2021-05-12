@@ -1,41 +1,36 @@
 .hotel-room-card {
-  width: 16.875rem;
-  height: 16rem;
-  background-color: #FFFFFF;
+  min-width: 265px;
+  width: 100%;
+  max-width: 340px;
   border-radius: 4px;
-
+  background-color: #FFFFFF;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
 }
 
 .hotel-room-card__body {
-  padding: 1.25rem 0 0 1.25rem;
-}
-
-.hotel-room-card__hotel-room-heading {
-  width: 14.625rem;
-
-  font-size: 0.875rem;
+  padding: 1.25rem 17px 1.1875rem 20px;
 }
 
 .hotel-room-card__hr {
-  width: 14.375rem;
+  width: calc(100% - 2px);
   margin: 0.625rem 0 0.5rem 0;
   border-bottom: 1px solid dark-shade(0.10);
 }
 
 .hotel-room-card__rating-panel {
   display: flex;
-  align-items: flex-start;
-  width: 14.625rem;
+  height: 1.5rem;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .hotel-room-card__reviews {
-  flex-grow: 1;
-  padding: 0.125rem;
+  margin-inline-end: 3px;
 
   @include Montserrat-normal;
   font-size: 0.875rem;
-  line-height: 1.6;
+  line-height: 1.8;
   text-align: right;
+  text-transform: capitalize;
   color: $dark-shade-50;
 }

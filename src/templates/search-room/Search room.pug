@@ -24,6 +24,10 @@ include ../../components/checkbox-list/checkbox-list.pug
 include ../../components/dropdown-facilities/dropdown-facilities.pug
 include ../../components/expandable-list/expandable-list.pug
 include ../../components/room-search-sidebar/room-search-sidebar.pug
+include ../../components/hotel-room-heading/hotel-room-heading.pug
+include ../../components/rate-button/rate-button.pug
+include ../../components/hotel-room-card/hotel-room-card.pug
+include ../../components/pagination/pagination.pug
 include ../../components/copyright/copyright.pug
 include ../../components/social-follow/social-follow.pug
 include ../../components/copyright-bar/copyright-bar.pug
@@ -32,6 +36,7 @@ include ../../components/footer/footer.pug
 include ../../components/footer-creative/footer-creative.pug
 - const data = htmlWebpackPlugin.options.data
 - const { pageTitle } = data
+
 +layout-grid
   +layout-grid__block('head')
     title= pageTitle
@@ -45,6 +50,23 @@ include ../../components/footer-creative/footer-creative.pug
 
   +layout-grid__block('content')
     main.search-room__main
+      .search-room__page
+        h1.search-room__heading Номера, которые мы для вас подобрали
+        .search-room__grid
+          +hotel-room-card({ itemAmount: 4 })
+          +hotel-room-card({ itemAmount: 4 })
+          +hotel-room-card({ itemAmount: 4 })
+          +hotel-room-card({ itemAmount: 4 })
+          +hotel-room-card({ itemAmount: 4 })
+          +hotel-room-card({ itemAmount: 4 })
+          +hotel-room-card({ itemAmount: 4 })
+          +hotel-room-card({ itemAmount: 4 })
+          +hotel-room-card({ itemAmount: 4 })
+          +hotel-room-card({ itemAmount: 4 })
+          +hotel-room-card({ itemAmount: 4 })
+          +hotel-room-card({ itemAmount: 4 })
+        .search-room__paginator-wrapper
+          +pagination({ amount: 10 })
 
   +layout-grid__block('footer')
     include ../../components/line/line.pug

@@ -37,87 +37,20 @@ const Carousel = (($, document) => {
   }
 
   class Carousel extends BEMComponent {
-    constructor(element, name = 'carousel', config = Default) {
+    constructor(element, config = Default, name = 'carousel') {
       super(element, name);
 
-      this.config = config;
-      this.isSliding = false;
+      this._config = config;
+      this._isSliding = false;
 
-      this.connectBasis();
+      this._connectBasis();
 
+      this._defineEventListeners();
       this.attachMultipleEventListeners(this.listeners);
     }
 
-    connectBasis() {
-      this.$items = $(Selector.ITEM, this.root);
-      this.amount = this.$items.length;
-      this.setActive(0);
-
-      const { haveNavbar, haveButtons } = this.config;
-
-      if (haveButtons) {
-        this.connectButtons();
-      }
-
-      if (haveNavbar) {
-        this.connectNavbar();
-      }
-    }
-
-    connectNavbar() {
-      this.navPanel = $(Selector.NAV_PANEL, this.root).get(0);
-      this.$navItems = $(this.navPanel).children();
-      this.checkNavItem(0);
-
-      this.listeners.push(
-        {
-          element: this.navPanel,
-          event: 'click',
-          handler: this.handleNavPanelClick,
-        },
-      )
-    }
-
-    connectButtons() {
-      this.prevButton = $(Selector.BUTTON_PREV, this.root).get(0);
-      this.nextButton = $(Selector.BUTTON_NEXT, this.root).get(0);
-
-      this.listeners.push(
-        {
-          element: this.prevButton,
-          event: 'click',
-          handler: this.handlePrevButtonClick,
-        },
-
-        {
-          element: this.nextButton,
-          event: 'click',
-          handler: this.handleNextButtonClick,
-        },
-      )
-    }
-
-    setItems(itemProps) {
-      $(this.$items).each((i, item) => {
-        $(item).children().eq(i).attr(itemProps[i]);
-      });
-    }
-
-    setActive(index) {
-      this.active = index;
-      $(this.$items).eq(index).addClass(Modifier.ITEM_ACTIVE);
-    }
-
-    getNextSlideIndex(from) {
-      return this.mod(from + 1, this.amount);
-    }
-
-    getPrevSlideIndex(from) {
-      return this.mod(from - 1, this.amount);
-    }
-
     slideTo(from, to) {
-      if (this.isCloserToLeft(from, to)) {
+      if (this._isCloserToLeft(from, to)) {
         return this.slideToLeft(from, to);
       }
 
@@ -125,7 +58,7 @@ const Carousel = (($, document) => {
     }
 
     slideToLeft(from, to) {
-      return this.slide({
+      return this._slide({
         from,
         to,
         order: Modifier.ITEM_ORDER_NEXT,
@@ -135,7 +68,7 @@ const Carousel = (($, document) => {
     }
 
     slideToRight(from, to) {
-      return this.slide({
+      return this._slide({
         from,
         to,
         order: Modifier.ITEM_ORDER_PREV,
@@ -144,18 +77,76 @@ const Carousel = (($, document) => {
       });
     }
 
-    async slide(args) {
+    setItems(itemProps) {
+      $(this._$items).each((i, item) => {
+        $(item).children().eq(i).attr(itemProps[i]);
+      });
+    }
+
+    slidingStart() {
+      this._isSliding = true;
+    }
+
+    slidingEnd() {
+      this._isSliding = false;
+    }
+
+    isSliding() {
+      return this._isSliding;
+    }
+
+    _connectBasis() {
+      this._$items = $(Selector.ITEM, this.root);
+      this._amount = this._$items.length;
+      this._setActive(0);
+
+      const { haveNavbar, haveButtons } = this._config;
+
+      if (haveButtons) {
+        this._connectButtons();
+      }
+
+      if (haveNavbar) {
+        this._connectNavbar();
+      }
+    }
+
+    _connectNavbar() {
+      this.navPanel = $(Selector.NAV_PANEL, this.root).get(0);
+      this._$navItems = $(this.navPanel).children();
+      this._checkNavItem(0);
+    }
+
+    _connectButtons() {
+      this.prevButton = $(Selector.BUTTON_PREV, this.root).get(0);
+      this.nextButton = $(Selector.BUTTON_NEXT, this.root).get(0);
+    }
+
+    _setActive(index) {
+      this._active = index;
+      $(this._$items).eq(index).addClass(Modifier.ITEM_ACTIVE);
+    }
+
+    _getNextSlideIndex(from) {
+      return this._mod(from + 1, this._amount);
+    }
+
+    _getPrevSlideIndex(from) {
+      return this._mod(from - 1, this._amount);
+    }
+
+    async _slide(args) {
       const { from, to, order, direction, active } = args;
 
-      const currSlide = $(this.$items).eq(from);
-      const nextSlide = $(this.$items).eq(to);
+      const currentSlide = $(this._$items).eq(from);
+      const nextSlide = $(this._$items).eq(to);
 
       $(nextSlide).addClass(order);
 
-      this.reflow(nextSlide);
+      this._reflow(nextSlide);
 
-      const currSlideTransitionEndEventPromise = new Promise((resolve, reject) => {
-        $(currSlide).one(Event.transitionEndEventName, (event) => {
+      const currentSlideTransitionEndEventPromise = new Promise((resolve, reject) => {
+        $(currentSlide).one(Event.transitionEndEventName, (event) => {
           $(event.currentTarget).removeClass(`${active} ${direction}`);
           return resolve();
         })
@@ -168,72 +159,77 @@ const Carousel = (($, document) => {
         })
       });
 
-      $(currSlide).addClass(direction);
+      $(currentSlide).addClass(direction);
       $(nextSlide).addClass(direction);
 
-      await currSlideTransitionEndEventPromise;
+      await currentSlideTransitionEndEventPromise;
       await nextSlideTransitionEndEventPromise;
     }
 
-    modif() {
-      return Modifier.ITEM_ACTIVE;
-    }
-
-    deactivateItem(index) {
-      $(this.$items).eq(index).removeClass(Modifier.ITEM_ACTIVE);
-    }
-
-    checkNavItem(index) {
-      $(this.$navItems)
-        .each((i, item) => {
+    _checkNavItem(index) {
+      $(this._$navItems)
+        .each((_, _i, item) => {
           $(item).removeClass(Modifier.NAV_ITEM_CHECKED);
         })
         .eq(index)
         .addClass(Modifier.NAV_ITEM_CHECKED);
     }
 
-    handleNextButtonClick = () => {
-      if (!this.isSliding) {
-        this.isSliding = true;
+    _reflow(element) {
+      $(element).outerHeight();
+    }
 
-        const from = this.active;
-        const to = this.getNextSlideIndex(from);
+    _mod(a, b) {
+      return ((a % b) + b) % b;
+    }
+
+    _isCloserToLeft(from, to) {
+      const slidesAmount = this._amount;
+      return this._mod(from - to, slidesAmount) > this._mod(to - from, slidesAmount);
+    }
+
+    handleNextButtonClick = () => {
+      if (!this.isSliding()) {
+        this.slidingStart();
+
+        const from = this._active;
+        const to = this._getNextSlideIndex(from);
 
         this.slideToLeft(from, to)
           .then(() => {
-            this.isSliding = false
+            this.slidingEnd();
           })
           .catch((error) => {
             console.log(`%c ${this.namespace}, slideToLeft -> ${error}`, 'color: darkgreen');
           });
 
-        this.active = to;
+        this._active = to;
 
-        if (this.config.haveNavbar) {
-          this.checkNavItem(to);
+        if (this._config.haveNavbar) {
+          this._checkNavItem(to);
         }
       }
     }
 
     handlePrevButtonClick = () => {
-      if (!this.isSliding) {
-        this.isSliding = true;
+      if (!this.isSliding()) {
+        this.slidingStart();
 
-        const from = this.active;
-        const to = this.getPrevSlideIndex(from);
+        const from = this._active;
+        const to = this._getPrevSlideIndex(from);
 
         this.slideToRight(from, to)
           .then(() => {
-            this.isSliding = false
+            this.slidingEnd();
           })
           .catch((error) => {
             console.log(`%c ${this.namespace}, slideToRight -> ${error}`, 'color: darkgreen');
           });
 
-        this.active = to;
+        this._active = to;
 
-        if (this.config.haveNavbar) {
-          this.checkNavItem(to);
+        if (this._config.haveNavbar) {
+          this._checkNavItem(to);
         }
       }
     }
@@ -242,38 +238,55 @@ const Carousel = (($, document) => {
       const isThisNavItem = $(event.target).hasClass(ClassName.NAV_ITEM);
       const isThisChekedNavItem = $(event.target).hasClass(Modifier.NAV_ITEM_CHECKED);
       if (
-        !this.isSliding
+        !this.isSliding()
         && isThisNavItem
         && !isThisChekedNavItem
       ) {
-        this.isSliding = true;
+        this.slidingStart();
 
-        const from = this.active;
+        const from = this._active;
         const to = this.getAttributeNumericalValue(event.target, 'data-item')
 
         this.slideTo(from, to)
           .then(() => {
-            this.isSliding = false;
+            this.slidingEnd();
           }).catch((error) => {
             console.log(`%c ${this.namespace}, slideTo -> ${error}`, 'color: darkgreen');
           });
 
-        this.active = to;
-        this.checkNavItem(to);
+        this._active = to;
+        this._checkNavItem(to);
       }
     }
 
-    reflow(element) {
-      $(element).outerHeight();
-    }
+    _defineEventListeners() {
+      const { haveButtons, haveNavbar } = this._config;
 
-    mod(a, b) {
-      return ((a % b) + b) % b;
-    }
+      if (haveButtons) {
+        this.listeners.push(
+          {
+            element: this.prevButton,
+            event: 'click',
+            handler: this.handlePrevButtonClick,
+          },
+  
+          {
+            element: this.nextButton,
+            event: 'click',
+            handler: this.handleNextButtonClick,
+          },
+        )
+      }
 
-    isCloserToLeft(from, to) {
-      const slidesAmount = this.amount;
-      return this.mod(from - to, slidesAmount) > this.mod(to - from, slidesAmount);
+      if (haveNavbar) {
+        this.listeners.push(
+          {
+            element: this.navPanel,
+            event: 'click',
+            handler: this.handleNavPanelClick,
+          },
+        )
+      }
     }
   }
 

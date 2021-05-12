@@ -2,26 +2,62 @@
 
 import jQuery from 'jquery';
 
-import { RoomSearchCard } from 'components/room-search-card/room-search-card';
-import { InvoiceCard } from 'components/invoice-card/invoice-card';
 import { Calendar } from 'components/calendar/calendar';
+import { InvoiceCard } from 'components/invoice-card/invoice-card';
+import { HotelRoomCard } from 'components/hotel-room-card/hotel-room-card';
+import { RoomSearchCard } from 'components/room-search-card/room-search-card';
+
 
 (function ($) {
+  const Selector = {
+    HOTEL_ROOM_CARD  : '.js-hotel-room-card',
+    CALENDAR         : '.js-calendar',
+    ROOM_SEARCH_CARD : '.js-room-search-card',
+    INVOICE_CARD     : '.js-invoice-card',
+    CALENDAR_CARD    : '.js-calendar-card',
+  };
+
+  const hotelRoomCardConfig = [
+    {
+      roomNumber: 888,
+      isLux: true,
+      pricePerDay: 9990,
+      reviewNumber: 145,
+      rating: 5,
+    },
+    {
+      roomNumber: 840,
+      isLux: false,
+      pricePerDay: 9900,
+      reviewNumber: 65,
+      rating: 4,
+    },
+  ];
+
   function initRoomSearchCard() {
-    const roomSearchCard = initComp('.js-room-search-card', RoomSearchCard);
+    const roomSearchCard = initComp(Selector.ROOM_SEARCH_CARD, RoomSearchCard);
+    // TODO: Вынести в методы карточки, т.к. нарушает закон Деметры
     roomSearchCard.components.dropdownDate.setArrivalAndDeparture(new Date(2021, 8, 21), new Date(2021, 8, 26));
     roomSearchCard.components.dropdownGuests.setOptionValues([1, 2]);
   }
 
   function initInvoiceCard() {
-    initComp('.js-invoice-card', InvoiceCard);
+    initComp(Selector.INVOICE_CARD, InvoiceCard);
   }
 
   function initCalendar() {
-    const calendar = initComp('.js-calendar-card', Calendar);
+    const calendar = initComp(Selector.CALENDAR_CARD, Calendar);
     calendar.setArrival(new Date(2021, 8, 21));
     calendar.setDeparture(new Date(2021, 8, 26));
     calendar.updateCurrentSheet(calendar.getClosestDate());
+  }
+
+  function initHotelRoomCards() {
+    const hotelRoomCards = document.querySelectorAll(Selector.HOTEL_ROOM_CARD);
+    console.log(hotelRoomCards)
+    hotelRoomCards.forEach((card, i) => {
+      HotelRoomCard.init(card, hotelRoomCardConfig[i]);
+    });
   }
 
   function initComp(selector, Class) {
@@ -32,7 +68,8 @@ import { Calendar } from 'components/calendar/calendar';
   function init() {
     initRoomSearchCard();
     initCalendar();
-    initInvoiceCard()
+    initInvoiceCard();
+    initHotelRoomCards();
   }
 
   $(init());
