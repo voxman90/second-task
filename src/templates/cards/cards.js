@@ -24,6 +24,18 @@ import { RoomSearchCard } from 'components/room-search-card/room-search-card';
       pricePerDay: 9990,
       reviewNumber: 145,
       rating: 5,
+      imgAttributes: [
+        {
+          srcset: `${require('assets/img/room888-541w.jpg').default} 541w,
+                   ${require('assets/img/room888-406w.jpg').default} 406w,
+                   ${require('assets/img/room888-271w.jpg').default} 271w`,
+          sizes: `(max-width: 320px) 271px,
+                  (max-width: 768px) 406px,
+                  541w`,
+          src: require('assets/img/room888-541w.jpg').default,
+          alt: 'photo of the room 888',
+        },
+      ],
     },
     {
       roomNumber: 840,
@@ -31,6 +43,18 @@ import { RoomSearchCard } from 'components/room-search-card/room-search-card';
       pricePerDay: 9900,
       reviewNumber: 65,
       rating: 4,
+      imgAttributes: [
+        {
+          srcset: `${require('assets/img/room840-541w.jpg').default} 541w,
+                   ${require('assets/img/room840-406w.jpg').default} 406w,
+                   ${require('assets/img/room840-271w.jpg').default} 271w`,
+          sizes: `(max-width: 320px) 271px,
+                  (max-width: 768px) 406px,
+                  541px`,
+          src: require('assets/img/room840-541w.jpg').default,
+          alt: 'photo of the room 840',
+        },
+      ],
     },
   ];
 
@@ -54,7 +78,6 @@ import { RoomSearchCard } from 'components/room-search-card/room-search-card';
 
   function initHotelRoomCards() {
     const hotelRoomCards = document.querySelectorAll(Selector.HOTEL_ROOM_CARD);
-    console.log(hotelRoomCards)
     hotelRoomCards.forEach((card, i) => {
       HotelRoomCard.init(card, hotelRoomCardConfig[i]);
     });

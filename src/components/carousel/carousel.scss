@@ -92,7 +92,8 @@
 }
 
 .carousel__image {
-  border-radius: 4px 4px 0 0
+  width: 100%;
+  object-fit: cover;
 }
 
 %carousel__button {

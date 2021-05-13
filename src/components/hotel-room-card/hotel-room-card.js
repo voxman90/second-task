@@ -20,7 +20,13 @@ const HotelRoomCard = (() => {
   function init(element, config) {
     _drawHeading(element, config);
     _drawRatingPanel(element, config);
-    _initCarousel(element);
+    const carousel = _initCarousel(element);
+    _setCarouselItems(carousel, config);
+  }
+
+  function _setCarouselItems(carousel, config) {
+    const imgAttributes = config.imgAttributes;
+    carousel.setImages(imgAttributes);
   }
 
   function _drawHeading(element, config) {

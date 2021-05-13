@@ -77,9 +77,13 @@ const Carousel = (($, document) => {
       });
     }
 
-    setItems(itemProps) {
+    // TODO: Нужно реализовать расширения класса для разного содержимого items.
+    setImages(imgAttributes = []) {
       $(this._$items).each((i, item) => {
-        $(item).children().eq(i).attr(itemProps[i]);
+        const imgElement = $(item).children().eq(i);
+        if (imgAttributes[i] !== undefined) {
+          imgElement.attr(imgAttributes[i]);
+        }
       });
     }
 
@@ -168,7 +172,7 @@ const Carousel = (($, document) => {
 
     _checkNavItem(index) {
       $(this._$navItems)
-        .each((_, _i, item) => {
+        .each((_, item) => {
           $(item).removeClass(Modifier.NAV_ITEM_CHECKED);
         })
         .eq(index)
