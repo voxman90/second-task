@@ -122,7 +122,13 @@ class TopologicalSort {
 }
 
 (function() {
-  type entry = { name: string, template: string, styles?: string[], scripts?: string[] };
+  type entry = {
+    entryName: string,
+    templatePath: string,
+    prepareTemplate: boolean,
+    styles: string[],
+    scripts: string[],
+  };
 
   const fs = require('fs');
   const path = require('path');
@@ -138,18 +144,29 @@ class TopologicalSort {
   prepareEntries();
 
   function prepareEntries() {
-    const pathToEntriesJSON = path.resolve(__dirname, ENTRIES_JSON_PATH);
+    const pathToEntriesJSON = _path(ENTRIES_JSON_PATH);
     const fd = fs.readFileSync(pathToEntriesJSON);
-    const { entries } = JSON.parse(fd);
+    const { entriesSettings } = JSON.parse(fd);
 
-    entries.forEach((entry) => {
-      prepareEntry(entry);
+    entriesSettings.forEach((entrySettings) => {
+      prepareEntry(entrySettings);
     });
   }
 
-  function prepareEntry(args: entry): void {
-    const { name: entryName, template: templateName } = args;
-    const templatePath = getTemplatePath(entryName, templateName);
+  function prepareEntry(entry: Partial<entry>): void {
+    const { styles, scripts } = prepareTemplate(entry);
+    writeImportsToEntryJS(entry, styles, scripts);
+  }
+
+  function prepareTemplate(entry: Partial<entry>): { styles: string[], scripts: string[] } {
+    const isTemplateRequiresPreparation = entry.prepareTemplate || false;
+  
+    if (!isTemplateRequiresPreparation) {
+      return { styles: [], scripts: [] }
+    }
+
+    const templateRelativePath = entry.templatePath;
+    const templatePath = getTemplatePath(templateRelativePath);
     let templateData = fs.readFileSync(templatePath, 'utf8');
 
     templateData = removePrependingIncludes(templateData);
@@ -162,7 +179,8 @@ class TopologicalSort {
     const missingComponentIncludes = removeDifference(templates, includes);
 
     rewriteTemplate(missingComponentIncludes, templateData, templatePath);
-    writeImportsToEntryJS(args, styles, scripts);
+
+    return { styles, scripts };
   }
 
   function createComponentGraph(components: string[]): ComponentsGraph {
@@ -283,24 +301,24 @@ class TopologicalSort {
     return templateDataLines.join('\n');
   }
 
-  function writeImportsToEntryJS(args: entry, componentStyles: string[], componentScripts: string[]): void {
-    const { name: entryName } = args;
-    const entryPath = path.resolve(__dirname, `${entryName}.entry.js`)
+  function writeImportsToEntryJS(entry: Partial<entry>, componentStyles: string[], componentScripts: string[]): void {
+    const entryName = entry.entryName;
+    const entryPath = _path(`${entryName}.entry.js`);
 
-    const imports = getImportStatements(args, componentStyles, componentScripts, entryPath);
+    const imports = getImportStatements(entry, componentStyles, componentScripts, entryPath);
 
     const fd = fs.openSync(entryPath, 'w+');
     fs.writeSync(fd, imports, 0, 'utf8');
     fs.closeSync(fd);
   }
 
-  function getImportStatements(args: entry, componentStyles: string[], componentScripts: string[], entryPath: string): string {
-    const prepImports = getPrependImports(entryPath);
+  function getImportStatements(entry: Partial<entry>, componentStyles: string[], componentScripts: string[], entryPath: string): string {
+    // const prependImports = getPrependImports(entryPath);
     const componentStyleImports = getComponentStyleImports(componentStyles, entryPath);
     const componentScriptImports = getComponentScriptImports(componentScripts, entryPath);
-    const entryImports = getEntryImports(args);
+    const entryImports = getEntryImports(entry);
 
-    const imports = `${prepImports}${componentStyleImports}${componentScriptImports}${entryImports}`;
+    const imports = `${componentStyleImports}${componentScriptImports}${entryImports}`;
 
     return imports;
   }
@@ -338,8 +356,8 @@ class TopologicalSort {
     }
   }
 
-  function getEntryImports(args: entry): string {
-    const { styles, scripts } = args;
+  function getEntryImports(entry: Partial<entry>): string {
+    const { styles, scripts } = entry;
     let imports = '';
 
     if (isArrayAndNotEmpty(styles)) {
@@ -399,13 +417,11 @@ class TopologicalSort {
   }
 
   function getComponentPath(componentName: string, ext: string): string {
-    const root = `${COMPONENTS_DIR}/${componentName}/${componentName}`;
-    return path.resolve(__dirname, `${root}${ext}`);
+    return _path(`${COMPONENTS_DIR}/${componentName}/${componentName}${ext}`);
   }
 
-  function getTemplatePath(entryName: string, templateName: string): string {
-    const root = `${TEMPLATES_DIR}/${entryName}/${templateName}`;
-    return path.resolve(__dirname, `${root}.pug`);
+  function getTemplatePath(templateRelativePath: string): string {
+    return _path(`${TEMPLATES_DIR}/${templateRelativePath}.pug`);
   }
 
   function getComponentRelativePath(fromPath: string, componentName: string, ext: string): string {
@@ -426,5 +442,9 @@ class TopologicalSort {
       && value !== null
       && value.length !== 0
     );
+  }
+
+  function _path(p) {
+    return path.resolve(__dirname, p);
   }
 }());

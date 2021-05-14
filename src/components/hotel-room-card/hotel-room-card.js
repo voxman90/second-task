@@ -10,7 +10,7 @@ const HotelRoomCard = (() => {
     LUX          : '.js-hotel-room-heading__lux',
     HOTEL_PRICE  : '.js-hotel-room-heading__price',
     RATE_BUTTON  : '.js-rate-button',
-    REVIEW       : '.js-hotel-room-card__review'
+    REVIEW       : '.js-hotel-room-card__review',
   };
 
   const Modifier = {
@@ -34,7 +34,7 @@ const HotelRoomCard = (() => {
     const hotelNumberNode = element.querySelector(Selector.HOTEL_NUMBER);
     const hotelPriceNode = element.querySelector(Selector.HOTEL_PRICE);
     hotelNumberNode.textContent = roomNumber;
-    hotelPriceNode.textContent = `${prettify(pricePerDay)} `;
+    hotelPriceNode.textContent = `${_prettify(pricePerDay)} `;
     if (isLux) {
       _displayLuxMark(element);
     }
@@ -49,7 +49,6 @@ const HotelRoomCard = (() => {
     const { reviewNumber, rating } = config;
     _drawReviewNumber(element, reviewNumber);
     _initRateButton(element, rating);
-    
   }
 
   function _drawReviewNumber(element, reviewNumber) {
@@ -95,7 +94,7 @@ const HotelRoomCard = (() => {
     return form;
   }
 
-  function prettify(price) {
+  function _prettify(price) {
     return `${price.toLocaleString()}\u20bd`;
   }
 

@@ -2,60 +2,44 @@
 
 const fs = require('fs');
 const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-function _path(p) {
-  return path.join(__dirname, p);
-}
-
-function defineEntry(conf, entry, plugins) {
-  entry[conf.name] = `./${conf.name}.entry.js`;
-
-  let data = {};
-  if (conf.data) {
-    const root = _path(`./src/templates/${conf.name}/${conf.data}.data.json`);
-    const rawData = fs.readFileSync(path.resolve(__dirname, root));
-    data = JSON.parse(rawData);
-  }
-
-  const template = `./templates/${conf.name}/${conf.template}.pug`;
-  plugins.push(
-    new HtmlWebpackPlugin({
-      chunks: [conf.name],
-      template: template,
-      data: data,
-      filename: `${conf.template}.html`
-    })
-  )
-}
-
-function getEntries() {
-  const data = fs.readFileSync(_path('./src/entries.json'));
-  const { entries } = JSON.parse(data);
-  const entry = {};
-  const plugins = [];
-
-  entries.forEach(
-    (conf) => defineEntry(conf, entry, plugins)
-  );
-
-  return { entry, plugins };
-}
-
-const { entry, plugins } = getEntries();
+const { entries, plugins } = _getEntriesAndPlugins();
 
 module.exports = {
   context: _path('src'),
 
   entry: {
-    ...entry
+    ...entries
   },
 
   output: {
     filename: '[name].js',
     path: _path('dist')
+  },
+
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 20000,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          reuseExistingChunk: true,
+        },
+        common: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
+    },
   },
 
   resolve: {
@@ -74,7 +58,7 @@ module.exports = {
 
   plugins: [
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({ filename: '[name].css' }),
+    new MiniCssExtractPlugin(),
     ...plugins
   ],
 
@@ -92,14 +76,6 @@ module.exports = {
 
   module: {
     rules: [
-      {
-        test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-        ]
-      },
-
       {
         test: /\.pug$/i,
         use: ['pug-loader']
@@ -159,33 +135,14 @@ module.exports = {
       },
 
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.(s[ac]ss|css)$/i,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {}
-          },
+          MiniCssExtractPlugin.loader,
           'css-loader',
           {
             loader: 'sass-loader',
             options: {
-              additionalData: (content, loaderContext) => {
-                const { resourcePath, rootContext } = loaderContext;
-                const relativePath = path.relative(rootContext, resourcePath);
-                const pathParts = relativePath.split(path.sep);
-                const isCommonBlockStyle = pathParts.includes('components');
-                const isTemplateStyle = pathParts.includes('templates');
-                
-                if (isCommonBlockStyle) {
-                  return `@use 'styles/_shared' as *;\n${content}`;
-                }
-
-                if (isTemplateStyle) {
-                  return `@use 'styles/_shared' as *;\n${content}`;
-                }
-                
-                return content;
-              },
+              additionalData: _defineAdditionData,
             }
           }
         ],
@@ -232,4 +189,74 @@ module.exports = {
       },
     ]
   }
+}
+
+function _getEntriesAndPlugins() {
+  const data = fs.readFileSync(_path('src/entries.json'));
+  const { entriesSettings } = JSON.parse(data);
+
+  const entries = {};
+  const plugins = [];
+
+  entriesSettings.forEach((entrySettings) => {
+    _defineEntryAndPlugin(entrySettings, entries, plugins)
+  });
+
+  return { entries, plugins };
+}
+
+function _defineEntryAndPlugin(entrySettings, entries, plugins) {
+  _defineEntry(entrySettings, entries)
+
+  const templatePath = entrySettings.templatePath;
+  if (templatePath !== undefined) {
+    _definePlugin(entrySettings, plugins);
+  }
+}
+
+function _defineEntry(entrySettings, entries) {
+  const name = entrySettings.entryName;
+  entries[name] = `./${name}.entry.js`;
+}
+
+function _definePlugin(entrySettings, plugins) {
+  const { chunks, outputName, dataPath, templatePath } = entrySettings;
+  const data = _extractData(dataPath);
+  const template = path.join('./templates', `${templatePath}.pug`);
+
+  plugins.push(
+    new HtmlWebpackPlugin({
+      data,
+      chunks,
+      template: template,
+      filename: `${outputName}.html`,
+    })
+  )
+}
+
+function _extractData(dataPath) {
+  if (dataPath === undefined) {
+    return {};
+  }
+
+  const rawData = fs.readFileSync(_path(`src/${dataPath}.data.json`));
+  return JSON.parse(rawData);
+}
+
+function _defineAdditionData(content, loaderContext) {
+  const { resourcePath, rootContext } = loaderContext;
+  const relativePath = path.relative(rootContext, resourcePath);
+  const pathParts = relativePath.split(path.sep);
+
+  const isCommonBlockStyle = pathParts.includes('components');
+  const isTemplateStyle = pathParts.includes('templates');
+  if (isCommonBlockStyle || isTemplateStyle) {
+    return `@use 'styles/_shared' as *;\n${content}`;
+  }
+
+  return content;
+}
+
+function _path(p) {
+  return path.join(__dirname, p);
 }

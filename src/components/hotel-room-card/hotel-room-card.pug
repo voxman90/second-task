@@ -1,7 +1,8 @@
 mixin hotel-room-card(args = {})
   section.hotel-room-card.js-hotel-room-card&attributes(attributes)
-    .hotel-room-card__carousel
-      +carousel(args)
+    .hotel-room-card__carousel-wrapper
+      .hotel-room-card__carousel
+        +carousel(args)
     .hotel-room-card__body
       .hotel-room-card__hotel-room-heading
         +hotel-room-heading({ hasSmallSize: true })

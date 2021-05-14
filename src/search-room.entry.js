@@ -1,4 +1,3 @@
-import 'styles/style.scss';
 import 'components/layout-grid/layout-grid.scss';
 import 'components/logo/logo.scss';
 import 'components/button/button.scss';
@@ -50,4 +49,4 @@ import 'components/rate-button/rate-button.js';
 import 'components/hotel-room-card/hotel-room-card.js';
 import 'components/pagination/pagination.js';
 import 'templates/search-room/search-room.scss';
-import 'templates/search-room/search-room.js';
+import 'templates/search-room/search-room--basic.js';

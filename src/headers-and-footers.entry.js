@@ -1,4 +1,3 @@
-import 'styles/style.scss';
 import 'components/logo/logo.scss';
 import 'components/button/button.scss';
 import 'components/user-bar/user-bar.scss';

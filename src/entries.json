@@ -1,31 +1,37 @@
 {
-  "entries": [
+  "entriesSettings": [
     {
-      "name": "colors-and-type",
-      "template": "Colors and Type",
-      "data": "colors-and-type",
+      "entryName": "styles",
       "styles": [
-        "templates/colors-and-type/colors-and-type.scss"
-      ],
-      "scripts": []
-    },
-
-    {
-      "name": "test",
-      "template": "Test",
-      "data": null,
-      "styles": [
-        "templates/test/test.scss"
-      ],
-      "scripts": [
-        "templates/test/test.js"
+        "styles/style.scss"
       ]
     },
 
     {
-      "name": "cards",
-      "template": "Cards",
-      "data": "cards",
+      "entryName": "colors-and-type",
+      "chunks": [
+        "styles",
+        "colors-and-type"
+      ],
+      "outputName": "Colors and Type",
+      "prepareTemplate": true,
+      "templatePath": "colors-and-type/colors-and-type",
+      "dataPath": "templates/colors-and-type/colors-and-type",
+      "styles": [
+        "templates/colors-and-type/colors-and-type.scss"
+      ]
+    },
+
+    {
+      "entryName": "cards",
+      "chunks": [
+        "styles",
+        "cards"
+      ],
+      "outputName": "Cards",
+      "prepareTemplate": true,
+      "templatePath": "cards/cards",
+      "dataPath": "templates/cards/cards",
       "styles": [
         "templates/cards/cards.scss"
       ],
@@ -35,9 +41,15 @@
     },
 
     {
-      "name": "form-elements",
-      "template": "Form Elements",
-      "data": "form-elements",
+      "entryName": "form-elements",
+      "chunks": [
+        "styles",
+        "form-elements"
+      ],
+      "outputName": "Form Elements",
+      "prepareTemplate": true,
+      "templatePath": "form-elements/form-elements",
+      "dataPath": "templates/form-elements/form-elements",
       "styles": [
         "templates/form-elements/form-elements.scss"
       ],
@@ -47,9 +59,15 @@
     },
 
     {
-      "name": "headers-and-footers",
-      "template": "Headers and Footers",
-      "data": "headers-and-footers",
+      "entryName": "headers-and-footers",
+      "chunks": [
+        "styles",
+        "headers-and-footers"
+      ],
+      "outputName": "Headers And Footers",
+      "prepareTemplate": true,
+      "templatePath": "headers-and-footers/headers-and-footers",
+      "dataPath": "templates/headers-and-footers/headers-and-footers",
       "styles": [
         "templates/headers-and-footers/headers-and-footers.scss"
       ],
@@ -59,21 +77,63 @@
     },
 
     {
-      "name": "search-room",
-      "template": "Search room",
-      "data": "search-room",
+      "entryName": "search-room",
+      "chunks": [
+        "styles",
+        "search-room"
+      ],
+      "outputName": "Search Room",
+      "prepareTemplate": true,
+      "templatePath": "search-room/search-room",
+      "dataPath": "templates/search-room/search-room",
       "styles": [
         "templates/search-room/search-room.scss"
       ],
       "scripts": [
-        "templates/search-room/search-room.js"
+        "templates/search-room/search-room--basic.js"
       ]
     },
 
     {
-      "name": "landing-page",
-      "template": "Landing page",
-      "data": "landing-page",
+      "entryName": "search-room--expandable-list",
+      "chunks": [
+        "styles",
+        "search-room",
+        "search-room--expandable-list"
+      ],
+      "outputName": "Search Room II",
+      "templatePath": "search-room/search-room",
+      "dataPath": "templates/search-room/search-room",
+      "scripts": [
+        "templates/search-room/search-room--expandable-list.js"
+      ]
+    },
+
+    {
+      "entryName": "search-room--dropdown",
+      "chunks": [
+        "styles",
+        "search-room",
+        "search-room--dropdown"
+      ],
+      "outputName": "Search Room III",
+      "templatePath": "search-room/search-room",
+      "dataPath": "templates/search-room/search-room",
+      "scripts": [
+        "templates/search-room/search-room--dropdown.js"
+      ]
+    },
+
+    {
+      "entryName": "landing-page",
+      "chunks": [
+        "styles",
+        "landing-page"
+      ],
+      "outputName": "Landing Page",
+      "prepareTemplate": true,
+      "templatePath": "landing-page/landing-page",
+      "dataPath": "templates/landing-page/landing-page",
       "styles": [
         "templates/landing-page/landing-page.scss"
       ],
@@ -83,9 +143,15 @@
     },
 
     {
-      "name": "sign-in",
-      "template": "sign-in",
-      "data": "sign-in",
+      "entryName": "sign-in",
+      "chunks": [
+        "styles",
+        "sign-in"
+      ],
+      "outputName": "Sign In",
+      "prepareTemplate": true,
+      "templatePath": "sign-in/sign-in",
+      "dataPath": "templates/sign-in/sign-in",
       "styles": [
         "templates/registration/registration.scss"
       ],
@@ -95,9 +161,15 @@
     },
 
     {
-      "name": "registration",
-      "template": "registration",
-      "data": "registration",
+      "entryName": "sign-up",
+      "chunks": [
+        "styles",
+        "sign-in"
+      ],
+      "outputName": "Sign Up",
+      "prepareTemplate": true,
+      "templatePath": "registration/registration",
+      "dataPath": "templates/registration/registration",
       "styles": [
         "templates/registration/registration.scss"
       ],

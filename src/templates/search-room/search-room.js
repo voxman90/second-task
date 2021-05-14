@@ -1,112 +1,36 @@
 'use strict';
 
-import $ from 'jquery';
-
 import { HotelRoomCard } from 'components/hotel-room-card/hotel-room-card';
+import { RoomSearchSidebar } from 'components/room-search-sidebar/room-search-sidebar';
 
-(function ($, document) {
+const SearchRoom = (function (document) {
   const Selector = {
-    HOTEL_ROOM_CARD : '.js-hotel-room-card',
+    HOTEL_ROOM_CARD     : '.js-hotel-room-card',
+    ROOM_SEARCH_SIDEBAR : '.js-room-search-sidebar',
   }
 
-  // TODO: Вынести в отдельный файл? (В базу данных на сервере.)
-  const hotelRoomCardConfig = [
-    {
-      roomNumber: 888,
-      isLux: true,
-      pricePerDay: 9990,
-      reviewNumber: 145,
-      rating: 5,
-    },
-    {
-      roomNumber: 840,
-      isLux: false,
-      pricePerDay: 9900,
-      reviewNumber: 65,
-      rating: 4,
-    },
-    {
-      roomNumber: 980,
-      isLux: true,
-      pricePerDay: 8500,
-      reviewNumber: 35,
-      rating: 3,
-    },
-    {
-      roomNumber: 856,
-      isLux: false,
-      pricePerDay: 7300,
-      reviewNumber: 19,
-      rating: 5,
-    },
-    {
-      roomNumber: 740,
-      isLux: false,
-      pricePerDay: 6000,
-      reviewNumber: 44,
-      rating: 4,
-    },
-    {
-      roomNumber: 982,
-      isLux: false,
-      pricePerDay: 5800,
-      reviewNumber: 56,
-      rating: 3,
-    },
-    {
-      roomNumber: 678,
-      isLux: false,
-      pricePerDay: 5500,
-      reviewNumber: 45,
-      rating: 5,
-    },
-    {
-      roomNumber: 450,
-      isLux: false,
-      pricePerDay: 5300,
-      reviewNumber: 39,
-      rating: 4,
-    },
-    {
-      roomNumber: 350,
-      isLux: false,
-      pricePerDay: 5000,
-      reviewNumber: 77,
-      rating: 3,
-    },
-    {
-      roomNumber: 666,
-      isLux: false,
-      pricePerDay: 5000,
-      reviewNumber: 25,
-      rating: 5,
-    },
-    {
-      roomNumber: 444,
-      isLux: false,
-      pricePerDay: 5000,
-      reviewNumber: 15,
-      rating: 3,
-    },
-    {
-      roomNumber: 352,
-      isLux: false,
-      pricePerDay: 5000,
-      reviewNumber: 55,
-      rating: 3,
-    },
-  ]
+  function initRoomSearchSidebar() {
+    const sidebar = document.querySelector(Selector.ROOM_SEARCH_SIDEBAR);
+    const sidebarComp = new RoomSearchSidebar(sidebar);
+    return sidebarComp;
+  }
 
-  function initHotelRoomCards(config) {
-    const hotelRoomCardNodes = document.querySelectorAll(Selector.HOTEL_ROOM_CARD);
-    hotelRoomCardNodes.forEach((node, i) => {
-      HotelRoomCard.init(node, config[i]);
+  function initHotelRoomCards(data) {
+    const cards = document.querySelectorAll(Selector.HOTEL_ROOM_CARD);
+    cards.forEach((card, i) => {
+      HotelRoomCard.init(card, data[i]);
     })
   }
 
-  function init() {
-    initHotelRoomCards(hotelRoomCardConfig);
+  function configureRoomSearchSidebar(sidebar) {
+    sidebar.setDates(new Date(2021, 8, 21), new Date(2021, 8, 26));
+    sidebar.setGuests([1, 2, 1]);
+    sidebar.setFacilities([2, 2]);
+    sidebar.setRules(['pets-allowed', 'guest-allowed']);
+    sidebar.setExtra(['writing-desk', 'feeding-chair', 'crib']);
   }
 
-  $(init());
-})($, document);
+  return { initRoomSearchSidebar, initHotelRoomCards, configureRoomSearchSidebar };
+})(document);
+
+export { SearchRoom };

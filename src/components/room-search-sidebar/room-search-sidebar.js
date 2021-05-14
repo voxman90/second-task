@@ -35,6 +35,38 @@ const RoomSearchSidebar = ((document) => {
       this._initComponents();
     }
 
+    setDates(arrival, departure) {
+      this.components.dropdownFilterDate.setDates(arrival, departure);
+    }
+
+    setGuests(guests) {
+      this.components.dropdownGuests.setOptionValues(guests);
+    }
+
+    setFacilities(facilities) {
+      this.components.dropdownFacilities.setOptionValues(facilities);
+    }
+
+    setRules(names) {
+      this._check(names, this.nodes.fieldsetRules, true);
+    }
+
+    setAccessibility(names) {
+      this._check(names, this.nodes.fieldsetAccessibility, true);
+    }
+
+    setExtra(names) {
+      this._check(names, this.nodes.fieldsetExtra, true);
+    }
+
+    toggleExpandableList() {
+      this.components.expandableList.toggle();
+    }
+
+    toggleDropdownFacilitiesBar() {
+      this.components.dropdownFacilities.toggleBar();
+    }
+
     _connectBasis() {
       this.nodes.form = document.forms[Name.FORM];
       this.nodes.fieldsetRules = this.nodes.form.elements['rules'];
@@ -53,6 +85,23 @@ const RoomSearchSidebar = ((document) => {
       this.components.dropdownFacilities = new DropdownFacilities(this.nodes.dropdownFacilities);
       this.components.expandableList = new ExpandableList(this.nodes.expandableList);
       this.components.rangeSlider = new RangeSlider(this.nodes.rangeSlider);
+    }
+
+    _check(names, fieldset, state) {
+      if (this._isArrayAndNotEmpty(names)) {
+        names.forEach((name) => {
+          const checkbox = fieldset.querySelector(`[name="${name}"]`);
+          if (checkbox !== undefined) {
+            checkbox.checked = state;
+          }
+        })
+      }
+    }
+
+    _isArrayAndNotEmpty(arg) {
+      const isArray = Array.isArray(arg);
+      const isEmpty = arg.length === 0;
+      return isArray && !isEmpty;
     }
   }
 
