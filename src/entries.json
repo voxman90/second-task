@@ -1,16 +1,8 @@
 {
   "entriesSettings": [
     {
-      "entryName": "styles",
-      "styles": [
-        "styles/style.scss"
-      ]
-    },
-
-    {
       "entryName": "colors-and-type",
       "chunks": [
-        "styles",
         "colors-and-type"
       ],
       "outputName": "Colors and Type",
@@ -25,7 +17,6 @@
     {
       "entryName": "cards",
       "chunks": [
-        "styles",
         "cards"
       ],
       "outputName": "Cards",
@@ -43,7 +34,6 @@
     {
       "entryName": "form-elements",
       "chunks": [
-        "styles",
         "form-elements"
       ],
       "outputName": "Form Elements",
@@ -61,7 +51,6 @@
     {
       "entryName": "headers-and-footers",
       "chunks": [
-        "styles",
         "headers-and-footers"
       ],
       "outputName": "Headers And Footers",
@@ -77,10 +66,18 @@
     },
 
     {
+      "entryName": "search-room--basic",
+      "prependImports": false,
+      "scripts": [
+        "templates/search-room/search-room--basic.js"
+      ]
+    },
+
+    {
       "entryName": "search-room",
       "chunks": [
-        "styles",
-        "search-room"
+        "search-room",
+        "search-room--basic"
       ],
       "outputName": "Search Room",
       "prepareTemplate": true,
@@ -88,20 +85,18 @@
       "dataPath": "templates/search-room/search-room",
       "styles": [
         "templates/search-room/search-room.scss"
-      ],
-      "scripts": [
-        "templates/search-room/search-room--basic.js"
       ]
     },
 
     {
       "entryName": "search-room--expandable-list",
       "chunks": [
-        "styles",
         "search-room",
         "search-room--expandable-list"
       ],
       "outputName": "Search Room II",
+      "prependImports": false,
+      "prepareTemplate": false,
       "templatePath": "search-room/search-room",
       "dataPath": "templates/search-room/search-room",
       "scripts": [
@@ -112,11 +107,12 @@
     {
       "entryName": "search-room--dropdown",
       "chunks": [
-        "styles",
         "search-room",
         "search-room--dropdown"
       ],
       "outputName": "Search Room III",
+      "prependImports": false,
+      "prepareTemplate": false,
       "templatePath": "search-room/search-room",
       "dataPath": "templates/search-room/search-room",
       "scripts": [
@@ -127,7 +123,6 @@
     {
       "entryName": "landing-page",
       "chunks": [
-        "styles",
         "landing-page"
       ],
       "outputName": "Landing Page",
@@ -145,16 +140,12 @@
     {
       "entryName": "sign-in",
       "chunks": [
-        "styles",
         "sign-in"
       ],
       "outputName": "Sign In",
       "prepareTemplate": true,
       "templatePath": "sign-in/sign-in",
       "dataPath": "templates/sign-in/sign-in",
-      "styles": [
-        "templates/registration/registration.scss"
-      ],
       "scripts": [
         "templates/registration/registration.js"
       ]
@@ -163,16 +154,12 @@
     {
       "entryName": "sign-up",
       "chunks": [
-        "styles",
         "sign-in"
       ],
       "outputName": "Sign Up",
       "prepareTemplate": true,
       "templatePath": "registration/registration",
       "dataPath": "templates/registration/registration",
-      "styles": [
-        "templates/registration/registration.scss"
-      ],
       "scripts": [
         "templates/registration/registration.js"
       ]

@@ -25,5 +25,4 @@ import 'components/logo/logo.js';
 import 'components/navbar/navbar.js';
 import 'components/hamburger/hamburger.js';
 import 'components/input/input.js';
-import 'templates/registration/registration.scss';
 import 'templates/registration/registration.js';

@@ -126,6 +126,7 @@ class TopologicalSort {
     entryName: string,
     templatePath: string,
     prepareTemplate: boolean,
+    prependImports: boolean,
     styles: string[],
     scripts: string[],
   };
@@ -313,17 +314,23 @@ class TopologicalSort {
   }
 
   function getImportStatements(entry: Partial<entry>, componentStyles: string[], componentScripts: string[], entryPath: string): string {
-    // const prependImports = getPrependImports(entryPath);
+    const prependImports = getPrependImports(entry, entryPath);
     const componentStyleImports = getComponentStyleImports(componentStyles, entryPath);
     const componentScriptImports = getComponentScriptImports(componentScripts, entryPath);
     const entryImports = getEntryImports(entry);
 
-    const imports = `${componentStyleImports}${componentScriptImports}${entryImports}`;
+    const imports = `${prependImports}${componentStyleImports}${componentScriptImports}${entryImports}`;
 
     return imports;
   }
 
-  function getPrependImports(entryPath: string): string {
+  function getPrependImports(entry: Partial<entry>, entryPath: string): string {
+    const isContainsPrependImports = entry.prependImports !== undefined || entry.prependImports;
+
+    if (!isContainsPrependImports) {
+      return '';
+    }
+  
     const reduceStyleToImport = (str, stylePath) => {
       const relativeStylePath = getRelativePath(entryPath, stylePath);
       str += `import '${relativeStylePath}';\n`;

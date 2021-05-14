@@ -49,4 +49,3 @@ import 'components/rate-button/rate-button.js';
 import 'components/hotel-room-card/hotel-room-card.js';
 import 'components/pagination/pagination.js';
 import 'templates/search-room/search-room.scss';
-import 'templates/search-room/search-room--basic.js';
