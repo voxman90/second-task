@@ -8,8 +8,33 @@ const Pagination = ((document) => {
     currentPage: 1,
     pages: 15,
     segmentLength: 3,
-    descriptor: () => '',
+    descriptor: _carriedDefaultDescriptor(12),
     pageSelectionHandler: () => void(0),
+  }
+
+  function _carriedDefaultDescriptor(itemPerPage) {
+    return function(currentPage, pagesNumber) {
+      const variantsOnPage = _getVariantsOnPage(currentPage, itemPerPage);
+      const variantsNumber = _getVariantsNumber(pagesNumber, itemPerPage);
+      return `${variantsOnPage} из ${variantsNumber} вариантов аренды`;
+    }
+  }
+
+  function _getVariantsOnPage(currentPage, itemPerPage) {
+    const from = (currentPage - 1) * itemPerPage + 1;
+    const to = from + itemPerPage - 1;
+    return `${from} – ${to}`;
+  }
+
+  function _getVariantsNumber(pagesNumber, itemPerPage) {
+    const rawVariantsNumber = pagesNumber * itemPerPage;
+    const variantsNumber = Math.floor(rawVariantsNumber / 100);
+
+    if (variantsNumber > 0) {
+      return `${variantsNumber * 100}+`;
+    }
+
+    return rawVariantsNumber;
   }
 
   const ClassName = {
@@ -78,6 +103,7 @@ const Pagination = ((document) => {
       this._fillPositions(state);
       this._markCurrentPosition(state);
       this._updateCaption();
+
       this._config.pageSelectionHandler(this._state.currentPage);
     }
 
@@ -299,7 +325,7 @@ const Pagination = ((document) => {
     }
 
     _updateCaption() {
-      this._caption.textContent = this._config.descriptor(this._currentPage);
+      this._caption.textContent = this._config.descriptor(this._state.currentPage, this._state.pages);
     }
 
     _areThereEnoughPages() {
