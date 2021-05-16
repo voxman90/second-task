@@ -184,7 +184,10 @@ const DropdownDate = (($, document) => {
       return [
         {
           element: this.icons,
-          handlers: { 'click': this.handleIconClick, 'keydown': Utility.makeKeydownHandler(this.handleIconClick) }
+          handlers: {
+            'click': this.handleIconClick,
+            'keydown': Utility.makeKeydownHandler(this.handleIconClick)
+          }
         },
       ];
     }

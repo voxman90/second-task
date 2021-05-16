@@ -325,7 +325,7 @@ class TopologicalSort {
   }
 
   function getPrependImports(entry: Partial<entry>, entryPath: string): string {
-    const isContainsPrependImports = entry.prependImports !== undefined || entry.prependImports;
+    const isContainsPrependImports = entry.prependImports === undefined || entry.prependImports;
 
     if (!isContainsPrependImports) {
       return '';

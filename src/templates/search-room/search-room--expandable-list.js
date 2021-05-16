@@ -7,6 +7,7 @@ import { hotelRoomCardData } from './hotel-room-card.data';
 
 (function($){
   function init() {
+    SearchRoom.initPagination();
     SearchRoom.initHotelRoomCards(hotelRoomCardData);
     const sidebar = SearchRoom.initRoomSearchSidebar();
     sidebar.toggleExpandableList();

@@ -1,72 +1,83 @@
 .pagination {
-  width: max-content;
+  display: grid;
+  grid-template-columns: 2.5rem min-content 2.5rem;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    'backward positions forward'
+    '........ caption   caption';
 }
 
-.pagination__table {
+.pagination__position-list {
+  display: flex;
+  grid-area: positions;
+
+  @include cancel-list-style;
+}
+
+.pagination__position {
   position: relative;
-
-  caption-side: bottom;
-  border-collapse: collapse;
-
-  text-align: center;
-}
-
-.pagination__td {
-  
   width: 2.5rem;
   height: 2.5rem;
 
-  @include Montserrat-normal;
-  font-size: 0.750rem;
-  line-height: 0.9375rem;
-  color: $dark-shade-50;
-  user-select: none;
-
   cursor: pointer;
+
+  @include p-text(0.75rem, 2.5rem, $dark-shade-50);
+  text-align: center;
+
+  @include non-selectable;
 }
 
-.pagination__caption {
-  
-  height: 1.5rem;
-  padding-top: 0.625rem;
+.pagination__position_current {
+  padding-inline-end: 2px;
+  background: linear-gradient(180deg, $primary, $primary-gradient);
+  border-radius: 50%;
 
-  @include Montserrat-normal;
-  font-size: 0.875rem;
-  line-height: 1.5rem;
-  color: $dark-shade-75;
+  font-weight: bold;
+  color: white;
 }
 
-.pagination__button {
+.pagination__position_hidden {
+  display: none;
+}
+
+%pagination__button {
   background: linear-gradient(180deg, $secondary, $secondary-gradient);
-  border-radius: 1.25rem;
+  border-radius: 50%;
 
   @include material-icons;
-  display: table-cell;
+  text-align: center;
+  line-height: 2.5rem;
   color: white;
 
   cursor: pointer;
 }
 
-.pagination__icon_rotate_180deg {
-  transform: rotate(180deg);
+.pagination__button-backward {
+  @extend %pagination__button;
+
+  grid-area: backward;
+}
+
+.pagination__button-forward {
+  @extend %pagination__button;
+
+  grid-area: forward;
 }
 
 .pagination__button_faded {
   background: linear-gradient(180deg, $secondary-50, $secondary-50);
 }
 
-.pagination__td_hide {
-  display: none;
-}
-
-.pagination__button_hide {
+.pagination__button_hidden {
   visibility: hidden;
 }
 
-.pagination__td_current {
-  background: linear-gradient(180deg, $primary, $primary-gradient);
-  border-radius: 1.25rem;
+.pagination__caption-wrapper {
+  grid-area: caption;
+  height: 1.5rem;
+  margin-top: 0.625rem;
+}
 
-  font-weight: bold;
-  color: white;
+.pagination__caption {
+  @include p-text(0.875rem, 1, $dark-shade-75);
 }

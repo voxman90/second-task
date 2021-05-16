@@ -1,12 +1,19 @@
 'use strict';
 
 import { HotelRoomCard } from 'components/hotel-room-card/hotel-room-card';
+import { Pagination } from 'components/pagination/pagination';
 import { RoomSearchSidebar } from 'components/room-search-sidebar/room-search-sidebar';
 
 const SearchRoom = (function (document) {
   const Selector = {
+    PAGINATION          : '.js-pagination',
     HOTEL_ROOM_CARD     : '.js-hotel-room-card',
     ROOM_SEARCH_SIDEBAR : '.js-room-search-sidebar',
+  }
+
+  function initPagination() {
+    const pagination = document.querySelector(Selector.PAGINATION);
+    new Pagination(pagination);
   }
 
   function initRoomSearchSidebar() {
@@ -30,7 +37,12 @@ const SearchRoom = (function (document) {
     sidebar.setExtra(['writing-desk', 'feeding-chair', 'crib']);
   }
 
-  return { initRoomSearchSidebar, initHotelRoomCards, configureRoomSearchSidebar };
+  return {
+    initRoomSearchSidebar,
+    initHotelRoomCards,
+    initPagination,
+    configureRoomSearchSidebar
+  };
 })(document);
 
 export { SearchRoom };

@@ -1,3 +1,4 @@
+import 'styles/style.scss';
 import 'components/layout-grid/layout-grid.scss';
 import 'components/logo/logo.scss';
 import 'components/button/button.scss';

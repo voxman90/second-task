@@ -43,8 +43,8 @@ import { DropdownGuests } from 'components/dropdown-guests/dropdown-guests';
   }
 
   function initDropdownGuestsComps() {
-    const firstComp = initComp('.js-dropdown-guests-1st', DropdownGuests.DropdownGuests);
-    const secondComp = initComp('.js-dropdown-guests-2nd', DropdownGuests.DropdownGuests);
+    const firstComp = initComp('.js-dropdown-guests-1st', DropdownGuests);
+    const secondComp = initComp('.js-dropdown-guests-2nd', DropdownGuests);
   }
 
   function init() {
