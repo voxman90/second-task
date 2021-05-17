@@ -24,6 +24,30 @@ const HotelRoomCard = (() => {
     _setCarouselItems(carousel, config);
   }
 
+  function defineCorrectWordForNumberOfReviews(number) {
+    let form = 'отзывов';
+
+    if (number % 100 < 11 || 14 < number % 100) {
+      switch (number % 10) {
+        case 1: {
+          form = 'отзыв';
+          break;
+        }
+        case 2:
+        case 3:
+        case 4: {
+          form = 'отзыва';
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+    }
+
+    return form;
+  }
+
   function _setCarouselItems(carousel, config) {
     const imgAttributes = config.imgAttributes;
     carousel.setImages(imgAttributes);
@@ -56,7 +80,7 @@ const HotelRoomCard = (() => {
     const reviewNumberNode = reviewNode.childNodes[0];
     const reviewTextNode = reviewNode.childNodes[1];
     reviewNumberNode.textContent = reviewNumber;
-    reviewTextNode.textContent = ` ${_defineCorrectWordForNumberOfReviews(reviewNumber)}`;
+    reviewTextNode.textContent = ` ${defineCorrectWordForNumberOfReviews(reviewNumber)}`;
   }
 
   function _initRateButton(element, rating) {
@@ -70,35 +94,11 @@ const HotelRoomCard = (() => {
     return new Carousel(carouselNode);
   }
 
-  function _defineCorrectWordForNumberOfReviews(number) {
-    let form = 'отзывов';
-
-    if (number % 100 < 11 || 14 < number % 100) {
-      switch (number % 10) {
-        case 1: {
-          form = 'отзыв';
-          break;
-        }
-        case 2:
-        case 3:
-        case 4: {
-          form = 'отзыва';
-          break;
-        }
-        default: {
-          break;
-        }
-      }
-    }
-
-    return form;
-  }
-
   function _prettify(price) {
     return `${price.toLocaleString()}\u20bd`;
   }
 
-  return { init };
+  return { init, defineCorrectWordForNumberOfReviews };
 })();
 
 export { HotelRoomCard };

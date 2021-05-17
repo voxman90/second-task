@@ -9,6 +9,11 @@ include ../../components/icon/icon.pug
 include ../../components/navbar/navbar.pug
 include ../../components/hamburger/hamburger.pug
 include ../../components/header/header.pug
+include ../../components/heading/heading.pug
+include ../../components/diagram/diagram.pug
+include ../../components/like-button/like-button.pug
+include ../../components/comment/comment.pug
+include ../../components/reviews/reviews.pug
 include ../../components/field/field.pug
 include ../../components/fieldset/fieldset.pug
 include ../../components/frame/frame.pug
@@ -30,7 +35,7 @@ include ../../components/subscription-field/subscription-field.pug
 include ../../components/footer/footer.pug
 include ../../components/footer-creative/footer-creative.pug
 - const data = htmlWebpackPlugin.options.data
-- const { pageTitle, navbarItems, footerItems } = data
+- const { pageTitle, comments } = data
 
 +layout
   +layout__block('head')
@@ -40,15 +45,22 @@ include ../../components/footer-creative/footer-creative.pug
     +header
 
   +layout__block('content')
-    main
-      .info
+    main.main
       .illustrations
-      .review-section
-      .digram
-      .rules
-      .cancel-terms
-      .card-wrapper
-        +invoice-card
+      section.details
+        article.info
+          +heading({ type: 'widget', text: 'сведения о номере' })
+        article.diagram
+          +heading({ type: 'widget', text: 'впечатления о номере' })
+            +diagram()
+        article.reviews-form
+          +reviews(comments)
+        article.rules
+          +heading({ type: 'widget', text: 'правила' })
+        article.cancel-terms
+          +heading({ type: 'widget', text: 'отмена' })
+    .card-wrapper
+      +invoice-card
 
   +layout__block('footer')
     +footer

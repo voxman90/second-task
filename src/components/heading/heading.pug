@@ -1,0 +1,9 @@
+mixin heading(args = {})
+  -
+    const { text = '', type = 'widget' } = args;
+
+  if type === 'widget'
+    h2(class='heading heading_widget')= text
+
+  if type === 'h1'
+    h1(class='heading heading_h1')= text

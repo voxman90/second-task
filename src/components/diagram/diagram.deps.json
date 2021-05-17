@@ -1,0 +1,9 @@
+{
+  "name": "diagram",
+  "techs": [
+    "js",
+    "scss",
+    "pug"
+  ],
+  "deps": null
+}

@@ -192,16 +192,13 @@
 
     {
       "entryName": "room-details",
-      "chunks": [
-        "room-details"
-      ],
+      "chunks": ["room-details"],
       "outputName": "Room Details",
       "prepareTemplate": true,
       "templatePath": "room-details/room-details",
       "dataPath": "templates/room-details/room-details",
-      "scripts": [
-        "templates/room-details/room-details.js"
-      ]
+      "styles": ["templates/room-details/room-details.scss"],
+      "scripts": ["templates/room-details/room-details.js"]
     }
   ]
 }

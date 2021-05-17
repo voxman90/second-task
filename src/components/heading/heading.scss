@@ -1,0 +1,15 @@
+.heading {
+  margin: 0 0 20px 0;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+
+.heading_widget {
+  @include widget-text;
+}
+
+.heading_h1 {
+  @include h1-text;
+}

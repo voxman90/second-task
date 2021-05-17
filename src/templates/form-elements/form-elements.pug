@@ -33,7 +33,7 @@ include ../../components/bullet-list/bullet-list.pug
 include ../../components/icon-item/icon-item.pug
 include ../../components/comment/comment.pug
 - const data = htmlWebpackPlugin.options.data
-- const { title, checkboxList, checkboxRich, checkboxItems, bulletList } = data
+- const { title, checkboxList, checkboxRich, checkboxItems, bulletList, comment } = data
 
 +layout
   +layout__block('head')
@@ -136,4 +136,4 @@ include ../../components/comment/comment.pug
             +icon-item({ name: 'insert_emoticon', headline: 'Комфорт', descr: 'Шумопоглощающие стены' })
             +icon-item({ name: 'location_city', headline: 'Удобство', descr: 'Окно в каждой из спален' })
           .fe__r-4__c-2
-            +comment({ img: 'user-001-w128.jpg', date: '5 дней назад', nickname: 'Мурад Сарафанов', value: '11', message: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.' })
+            +comment(comment)

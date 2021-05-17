@@ -1,0 +1,12 @@
+{
+  "name": "reviews",
+  "techs": [
+    "js",
+    "scss",
+    "pug"
+  ],
+  "deps": [
+    "heading",
+    "comment"
+  ]
+}

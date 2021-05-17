@@ -1,0 +1,8 @@
+{
+  "name": "heading",
+  "techs": [
+    "scss",
+    "pug"
+  ],
+  "deps": null
+}

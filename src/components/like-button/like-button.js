@@ -3,55 +3,67 @@
 import { BEMComponent } from 'scripts/BEMComponent';
 
 const LikeButton = ((document) => {
-  const Attributes = {
-    VALUE: 'data-value',
+  const ClassName = {
+    ROOT : 'js-like-button',
   };
 
-  const ClassName = {
-    ROOT: 'js-like-button',
-  };
+  const Selector = {
+    COUNTER : '.js-like-button__counter',
+    INPUT   : '.js-like-button__input',
+  }
 
   class LikeButton extends BEMComponent {
     constructor(element) {
       super(element, 'like-button');
 
-      this.input = this.root.firstElementChild;
-      this.counter = this.root.lastElementChild;
+      this._connectBasis();
 
-      this.bind();
-    }
-
-    setValue(value) {
-      this.input.setAttribute(Attributes.VALUE, value);
-      this.counter.textContent = value;
-    }
-
-    getValue() {
-      return parseInt(this.input.getAttribute(Attributes.VALUE, 10));
-    }
-
-    bind() {
-      this.listeners = [
-        {
-          element: this.root,
-          event: 'change',
-          handler: this.handleLikeButtonClick.bind(this),
-        },
-      ];
-
+      this.listeners = this._defineEventListeners();
       this.attachMultipleEventListeners(this.listeners);
     }
 
-    handleLikeButtonClick() {
-      let count = this.getValue();
+    check() {
+      this._input.checked = true;
+    }
 
-      if (this.input.checked) {
+    uncheck() {
+      this._input.checked = false;
+    }
+
+    setNumberOfLikes(count) {
+      this._input.setAttribute('value', count);
+      this._counter.textContent = count;
+    }
+
+    getNumberOfLikes() {
+      return parseInt(this._input.getAttribute('value'));
+    }
+
+    _connectBasis() {
+      this._input = this.root.querySelector(Selector.INPUT);
+      this._counter = this.root.querySelector(Selector.COUNTER);
+    }
+
+    handleLikeButtonClick = () => {
+      let count = this.getNumberOfLikes();
+
+      if (this._input.checked) {
         count += 1;
-        this.setValue(count);
+        this.setNumberOfLikes(count);
       } else {
         count -= 1;
-        this.setValue(count);
+        this.setNumberOfLikes(count);
       }
+    }
+
+    _defineEventListeners() {
+      return [
+        {
+          element: this.root,
+          event: 'change',
+          handler: this.handleLikeButtonClick,
+        },
+      ];
     }
   }
 

@@ -1,0 +1,22 @@
+.reviews {
+  position: relative;
+  min-width: 300px;
+  width: 100%;
+  max-width: 712px;
+}
+
+.reviews__counter {
+  display: inline-block;
+  position: absolute;
+  top: 5px;
+  right: 0;
+  height: 1em;
+
+  @include p-text($height: 1, $color: $dark-shade-50);
+}
+
+.reviews__list {
+  & > * + * {
+    margin-bottom: 1.25em;
+  }
+}
