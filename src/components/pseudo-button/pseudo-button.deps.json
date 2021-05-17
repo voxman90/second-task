@@ -1,0 +1,9 @@
+{
+  "name": "pseudo-button",
+  "techs": [
+    "pug"
+  ],
+  "deps": [
+    "button"
+  ]
+}

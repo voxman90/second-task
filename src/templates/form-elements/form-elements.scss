@@ -116,14 +116,10 @@
 
 .fe__plug {
   display: inline-block;
-  width: 1.25rem;
+  width: 20px;
 }
 
-.fe__buttons {
-  line-height: 15px;
-}
-
-.fe__button_faded {
+.fe__active-button {
   color: $dark-shade-50;
 }
 

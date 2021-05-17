@@ -88,25 +88,25 @@ include ../../components/comment/comment.pug
                 +rate-button({ amount: 5, filled: 5, name: 'rate-button-1st' })(class='js-auto-init')
                 +rate-button({ amount: 5, filled: 4, name: 'rate-button-2nd' })(class='js-auto-init')
           .fe__r-1__c-3
-            .fe__m-40
+            +field({ indent: 'huge' })
               +range-slider({ labelText: 'range slider'}).js-auto-init
-            .fe__m-30
-              +label({ text: 'buttons', hasLargePadding: true })
-              .fe__m-30
-                +button-short({ name: 'button-short-1st', text: 'click me', isFilled: true })
+            +fieldset({ legend: 'buttons' })
+              +field({ indent: 'big' })
+                +button-short({ text: 'click me', isFilled: true })
                 .fe__plug
-                +button-short({ name: 'button-short-2nd', text: 'click me', isFilled: true })
-              .fe__m-30
-                +button-short({ name: 'button-short-3rd', text: 'click me', isBordered: true })
+                +button-short({ text: 'click me', isFilled: true })
+              +field({ indent: 'big' })
+                +button-short({ text: 'click me', isBordered: true })
                 .fe__plug
-                +button-short({ name: 'button-short-4th', text: 'click me', isBordered: true })
-              .fe__m-30.fe__buttons
-                +button({ name: 'button-1st', text: 'click me' })
+                +button-short({ text: 'click me', isBordered: true })
+              +field({ indent: 'big' })
+                +button({ text: 'click me' })
                 .fe__plug
-                +button({ name: 'button-2nd', text: 'click me' })
-            .fe__m-40
-              +button-long({ name: 'button-long-1st', text: 'перейти к оплате', isArrowed: true })
-            +pagination({ amount: 10 })(class = 'js-auto-init')
+                +button({ text: 'click me' })
+              +field({ width: 'big', indent: 'huge' })
+                +button-long({ text: 'перейти к оплате', isArrowed: true })
+            +fieldset({ legend: 'pagination' })
+              +pagination()(class = 'js-auto-init')
         .fe__r-2
           .fe__r-2__c-1
             .fe__m-20
@@ -136,4 +136,4 @@ include ../../components/comment/comment.pug
             +icon-item({ name: 'insert_emoticon', headline: 'Комфорт', descr: 'Шумопоглощающие стены' })
             +icon-item({ name: 'location_city', headline: 'Удобство', descr: 'Окно в каждой из спален' })
           .fe__r-4__c-2
-            +comment({ img: 'image.jpg', date: '5 дней назад', nickname: 'Мурад Сарафанов', value: '11', message: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.' })
+            +comment({ img: 'user-001-w128.jpg', date: '5 дней назад', nickname: 'Мурад Сарафанов', value: '11', message: 'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.' })

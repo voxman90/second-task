@@ -7,7 +7,6 @@ import { InvoiceCard } from 'components/invoice-card/invoice-card';
 import { HotelRoomCard } from 'components/hotel-room-card/hotel-room-card';
 import { RoomSearchCard } from 'components/room-search-card/room-search-card';
 
-
 (function ($) {
   const Selector = {
     HOTEL_ROOM_CARD  : '.js-hotel-room-card',

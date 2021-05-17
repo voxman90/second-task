@@ -29,6 +29,22 @@ const RoomSearchCard = ((document) => {
       this._initComponents();
     }
 
+    setDates(arrival, departure) {
+      this.components.dropdownDate.setArrivalAndDeparture(arrival, departure);
+    }
+
+    setGuests(guests) {
+      this.components.dropdownGuests.setOptionValues(guests);
+    }
+
+    toggleDropdownGuestsBar() {
+      this.components.dropdownGuests.toggleBar();
+    }
+
+    toggleDropdownDatesBar() {
+      this.components.dropdownDate.toggleBar();
+    }
+
     _connectBasis() {
       this.nodes.form = document.forms[Name.FORM];
       this.nodes.dropdownDate = this.root.querySelector(Selector.DROPDOWN_DATE);

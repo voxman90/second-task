@@ -9,6 +9,7 @@ mixin button(args)
       isLong = false,
       isShort = false,
       isStretchy = false,
+      isPseudo = false,
     } = args
     const buttonClass = ['button']
     if (isBordered) buttonClass.push('button_style_bordered')
@@ -17,5 +18,9 @@ mixin button(args)
     if (isShort) buttonClass.push('button_length_short')
     if (isLong) buttonClass.push('button_length_long')
     if (isStretchy) buttonClass.push('button_stretchy')
+    if (isPseudo) buttonClass.push('button_pseudo')
 
-  button(class=buttonClass, type=type)&attributes(attributes)= text
+  if (!isPseudo)
+    button(class=buttonClass, type=type)&attributes(attributes)= text
+  else
+    span(class=buttonClass)= text

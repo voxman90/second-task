@@ -1,10 +1,11 @@
 .pagination {
   display: grid;
-  grid-template-columns: 2.5rem min-content 2.5rem auto;
+  width: max-content;
+  grid-template-columns: repeat(3, min-content) auto;
   grid-template-rows: auto auto;
   grid-template-areas:
     'backward positions forward .......'
-    '........ caption   caption caption';
+    'caption  caption   caption caption';
 }
 
 .pagination__position-list {
@@ -41,6 +42,8 @@
 }
 
 %pagination__button {
+  width: 2.5rem;
+  height: 2.5rem;
   background: linear-gradient(180deg, $secondary, $secondary-gradient);
   border-radius: 50%;
 
@@ -69,17 +72,17 @@
 }
 
 .pagination__button_hidden {
-  visibility: hidden;
+  display: none;
 }
 
 .pagination__caption-wrapper {
   grid-area: caption;
+  justify-self: center;
   height: 1.5rem;
   margin-top: 0.625rem;
 }
 
 .pagination__caption {
-  padding-inline-start: 5px;
-
-  @include p-text(0.875rem, 1, $dark-shade-75);
+  display: inline-block;
+  @include p-text(0.875em, 1, $dark-shade-75);
 }

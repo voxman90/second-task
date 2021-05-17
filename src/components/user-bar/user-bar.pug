@@ -1,16 +1,18 @@
 mixin user-bar(args = {})
   -
-    const { userName = 'Юлий Цезарь', hasLeftBorder = true, isUserLoggedIn = false, isStretchy = false } = args
-    const userBarMod = (isStretchy) ? 'user-bar_stretchy': '';
-    const signUpMod = (isStretchy) ? 'user-bar__sign-up_without_margin': '';
+    const { userName = 'Юлий Цезарь', hasLeftBorder = true, isUserLoggedIn = false, isStretchy = false } = args;
+    const userBarClass = ['user-bar'];
+    if (isStretchy) userBarClass.push('user-bar_stretchy');
+    const signUpClass = ['user-bar__sign-up'];
+    if (isStretchy) signUpClass.push('user-bar__sign-up_without_margin');
 
-  section(class=`user-bar ${userBarMod}`)
+  section(class=userBarClass)
     if isUserLoggedIn
       if hasLeftBorder
       .user-bar__left-border
       span.user-bar__name= userName
     else
       a(class='user-bar__sign-in', target='_self', href='/')
-        +button({ name: 'button-sign-in', type: 'button', text: 'войти', isBordered: true, isStretchy: true })
-      a(class=`user-bar__sign-up ${signUpMod}`, target='_self', href='/')
-        +button({ name: 'button-sign-up', type: 'button', text: 'зарегистрироваться', isFilled: true, isArrowed: false, isStretchy: true })
+        +pseudo-button({ text: 'войти', isBordered: true, isStretchy: true })
+      a(class=signUpClass, target='_self', href='/')
+        +pseudo-button({ text: 'зарегистрироваться', isFilled: true, isArrowed: false, isStretchy: true })

@@ -6,7 +6,7 @@
   border: none;
   background-color: transparent;
 
-  @include label-text($color: $primary);
+  @include button-text($color: $primary);
   text-align: center;
   white-space: nowrap;
 
@@ -81,4 +81,10 @@
 
   @include material-icons;
   font-size: 2em;
+}
+
+.button_pseudo {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }

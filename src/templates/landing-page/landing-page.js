@@ -1,6 +1,6 @@
 'use strict';
 
-(function (window, document) {
+(function (document) {
   const imageClass = [
     'img-first',
     'img-second',
@@ -29,4 +29,4 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => attachRandomImageToBackground());
-})(window, document);
+})(document);

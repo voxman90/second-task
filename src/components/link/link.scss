@@ -2,6 +2,8 @@
   display: inline-block;
   height: 100%;
 
+  @include cancel-link-style();
+
   &:active {
     outline: none;
   }
@@ -15,11 +17,6 @@
       visibility: visible;
       opacity: 1;
     }
-  }
-
-  &:link,
-  &:visited {
-    text-decoration: none;
   }
 
   &::before {

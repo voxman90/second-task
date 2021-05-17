@@ -5,6 +5,6 @@
     "pug"
   ],
   "deps": [
-    "button"
+    "pseudo-button"
   ]
 }

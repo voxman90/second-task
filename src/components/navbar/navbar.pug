@@ -1,25 +1,25 @@
--
-  const defaultMenuItems = [
-    { 'text': 'О нас', 'href': '#about' },
-    { 'text': 'Услуги', 'href': '#services', 'isExpandable': true,
-      'submenuItems': [
-        { 'text': 'Услуги', 'href': '#services' },
-        { 'text': 'Услуги', 'href': '#services' },
-        { 'text': 'Услуги', 'href': '#services' },
-      ]
-    },
-    { 'text': 'Вакансии', 'href': '#vacancies' },
-    { 'text': 'Новости', 'href': '#news' },
-    { 'text': 'Соглашения', 'href': '#agreements', 'isExpandable': true,
-      'submenuItems': [
-        { 'text': 'Соглашения', 'href': '#agreements' },
-        { 'text': 'Соглашения', 'href': '#agreements' },
-      ]
-    }
-  ]
-
 mixin navbar(args = {})
-  - const { menuItems = defaultMenuItems, isUserLoggedIn = false } = args
+  -
+    const defaultMenuItems = [
+      { 'text': 'О нас', 'href': '#about' },
+      { 'text': 'Услуги', 'href': '#services', 'isExpandable': true,
+        'submenuItems': [
+          { 'text': 'Услуги', 'href': '#services' },
+          { 'text': 'Услуги', 'href': '#services' },
+          { 'text': 'Услуги', 'href': '#services' },
+        ]
+      },
+      { 'text': 'Вакансии', 'href': '#vacancies' },
+      { 'text': 'Новости', 'href': '#news' },
+      { 'text': 'Соглашения', 'href': '#agreements', 'isExpandable': true,
+        'submenuItems': [
+          { 'text': 'Соглашения', 'href': '#agreements' },
+          { 'text': 'Соглашения', 'href': '#agreements' },
+        ]
+      },
+    ]
+    const { menuItems = defaultMenuItems, isUserLoggedIn = false } = args
+
   nav(class='navbar js-navbar')&attributes(attributes)
     ul.navbar__menu
       each item in menuItems
@@ -30,9 +30,11 @@ mixin navbar(args = {})
           +navbar__submenu(item)
     +user-bar({ isUserLoggedIn })
 
+
 mixin navbar__item(args)
   li.navbar__item.navbar__link
     +link({ hasLeftPadding: true, hasRightPadding: true, ...args })
+
 
 mixin navbar__submenu(args)
   - const { submenuItems = [] } = args

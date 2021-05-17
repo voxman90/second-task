@@ -65,6 +65,10 @@ const DropdownDate = (($, document) => {
       this.bar.classList.remove(Modifier.BAR_HIDDEN);
     }
 
+    toggleBar() {
+      this.bar.classList.toggle(Modifier.BAR_HIDDEN);
+    }
+
     _connectBasis() {
       this.inputArrival = this.root.querySelector(Selector.INPUT_ARRIVAL);
       this.inputDeparture = this.root.querySelector(Selector.INPUT_DEPARTURE);

@@ -1,6 +1,55 @@
 {
   "entriesSettings": [
     {
+      "entryName": "landing-page--base",
+      "prependImports": false,
+      "scripts": [
+        "templates/landing-page/landing-page--base.js"
+      ]
+    },
+
+    {
+      "entryName": "landing-page",
+      "chunks": ["landing-page", "landing-page--base"],
+      "outputName": "Landing Page",
+      "prepareTemplate": true,
+      "templatePath": "landing-page/landing-page",
+      "dataPath": "templates/landing-page/landing-page",
+      "styles": [
+        "templates/landing-page/landing-page.scss"
+      ],
+      "scripts": [
+        "templates/landing-page/landing-page.js"
+      ]
+    },
+
+    {
+      "entryName": "landing-page--calendar",
+      "chunks": ["landing-page", "landing-page--calendar"],
+      "outputName": "Landing Page - Calendar",
+      "prepareTemplate": false,
+      "templatePath": "landing-page/landing-page",
+      "dataPath": "templates/landing-page/landing-page",
+      "prependImports": false,
+      "scripts": [
+        "templates/landing-page/landing-page--calendar.js"
+      ]
+    },
+
+    {
+      "entryName": "landing-page--dropdown",
+      "chunks": ["landing-page", "landing-page--dropdown"],
+      "outputName": "Landing Page - Dropdown",
+      "prepareTemplate": false,
+      "templatePath": "landing-page/landing-page",
+      "dataPath": "templates/landing-page/landing-page",
+      "prependImports": false,
+      "scripts": [
+        "templates/landing-page/landing-page--dropdown.js"
+      ]
+    },
+
+    {
       "entryName": "colors-and-type",
       "chunks": [
         "colors-and-type"
@@ -121,23 +170,6 @@
     },
 
     {
-      "entryName": "landing-page",
-      "chunks": [
-        "landing-page"
-      ],
-      "outputName": "Landing Page",
-      "prepareTemplate": true,
-      "templatePath": "landing-page/landing-page",
-      "dataPath": "templates/landing-page/landing-page",
-      "styles": [
-        "templates/landing-page/landing-page.scss"
-      ],
-      "scripts": [
-        "templates/landing-page/landing-page.js"
-      ]
-    },
-
-    {
       "entryName": "sign-in",
       "chunks": [
         "sign-in"
@@ -162,6 +194,20 @@
       "dataPath": "templates/registration/registration",
       "scripts": [
         "templates/registration/registration.js"
+      ]
+    },
+
+    {
+      "entryName": "room-details",
+      "chunks": [
+        "room-details"
+      ],
+      "outputName": "Room Details",
+      "prepareTemplate": true,
+      "templatePath": "room-details/room-details",
+      "dataPath": "templates/room-details/room-details",
+      "scripts": [
+        "templates/room-details/room-details.js"
       ]
     }
   ]

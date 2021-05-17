@@ -29,23 +29,21 @@
   @include p-text($color: $dark-shade-50);
 }
 
-%user-bar__buttons {
+%user-bar__link {
   display: inline-block;
   height: 2.125rem;
   vertical-align: middle;
 
-  &:focus > button {
-    opacity: 0.5;
-  }
+  @include cancel-link-style;
 }
 
 .user-bar__sign-in {
-  @extend %user-bar__buttons;
+  @extend %user-bar__link;
   width: 87px;
 }
 
 .user-bar__sign-up {
-  @extend %user-bar__buttons;
+  @extend %user-bar__link;
   width: 196px;
   margin-left: 20px;
 }

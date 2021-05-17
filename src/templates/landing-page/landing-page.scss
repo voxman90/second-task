@@ -1,4 +1,4 @@
-@use '../../styles/text';
+@use '../../styles/_text';
 
 .main {
   height: max(640px, 100vh);
@@ -28,26 +28,29 @@
   transform: translate(-50%, -50%);
   width: 106.53%;
   height: 113.56%;
-  background-image: url(~assets/img/landing-page-image-001.png);
+  background-image: url(~assets/img/bg-landing001-w1920.jpg);
   background-position: center;
   background-size: cover;
 }
 
 .img-second {
-  top: -14.33%;
+  top: 70px;
   right: 0;
-  height: 124.76%;
-  background-image: url(~assets/img/landing-page-image-002.png);
-  background-position: right;
+  background-image: url(~assets/img/bg-landing002-w1600.jpg);
+  background-position: top right;
   background-size: cover;
+  
+  @include flip-horizontally;
 }
 
 .img-third {
-  top: 70px;
+  top: -14.33%;
   right: 0;
-  background-image: url(~assets/img/landing-page-image-003.png);
-  background-position: top right;
+  height: 124.76%;
+  background-image: url(~assets/img/bg-landing003-w1920.jpg);
+  background-position: right;
   background-size: cover;
+  filter: FlipH;
 }
 
 .bg__caption {

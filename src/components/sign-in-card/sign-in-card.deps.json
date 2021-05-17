@@ -10,6 +10,6 @@
     "fieldset",
     "input",
     "button-long",
-    "button-short"
+    "pseudo-button"
   ]
 }

@@ -80,9 +80,9 @@
 }
 
 .navbar__submenu {
-  position: relative;
+  position: absolute;
   z-index: 1;
-  top: 5px;
+  top: calc(100% + 5px);
   visibility: hidden;
   opacity: 0;
   border: 1px solid rgba(0, 0, 0, 0.12);
