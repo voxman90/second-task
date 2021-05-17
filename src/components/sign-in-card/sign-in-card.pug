@@ -1,5 +1,5 @@
 mixin sign-in-card()
-  section.sign-in-card
+  section.sign-in-card.js-sign-in-card
     +frame
       form(class='sign-in-card__form', name='sign-in')
         h1.sign-in-card__heading Войти
@@ -10,6 +10,7 @@ mixin sign-in-card()
             +input({ name: 'password', type: 'password', placeholder: 'Пароль' })
         +field({  width: 'big', indent: 'big' })
           +button-long({ text: 'войти', type: 'submit', isArrowed: true })
-      .sign-in__sign-up
-        p.sign-in__text Нет аккаунта на Toxin?
-        +pseudo-button({ text: 'создать', isBordered: true, isShort: true })
+      .sign-in-card__sign-up
+        p.sign-in-card__text Нет аккаунта на Toxin?
+        a(class='sign-in-card__link', target='_self', href='/')
+          +pseudo-button({ text: 'создать', isBordered: true, isShort: true })

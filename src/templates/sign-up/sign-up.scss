@@ -1,0 +1,40 @@
+.main {
+  height: max(83.8vh, 753px);
+}
+
+.bg {
+  height: 100%;
+  overflow: hidden;
+}
+
+.bg__image {
+  position: relative;
+  min-height: 753px;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.img-first {
+  background-image: url(~assets/img/bg004-w1440.jpg);
+}
+
+.img-second {
+  top: -57px;
+  height: calc(100% + 57px);
+  background-image: url(~assets/img/bg001-w1920.jpg);
+}
+
+@media screen and (max-aspect-ratio: 1/1) {
+  .img-second {
+    background-image: url(~assets/img/bg001-ar9x16.jpg);
+  }
+}
+
+.card-wrapper {
+  position: absolute;
+  top: calc(50% + 35px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

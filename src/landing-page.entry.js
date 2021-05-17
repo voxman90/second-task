@@ -8,7 +8,6 @@ import 'components/icon/icon.scss';
 import 'components/navbar/navbar.scss';
 import 'components/hamburger/hamburger.scss';
 import 'components/header/header.scss';
-import 'components/ar-responsive-box/ar-responsive-box.scss';
 import 'components/field/field.scss';
 import 'components/frame/frame.scss';
 import 'components/label/label.scss';

@@ -12,22 +12,27 @@
   @include h1-text($height: 1.22);
 }
 
-.sign-up__radio-buttons-wrapper {
+.sign-up-card__radio-buttons-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 220px;
 }
 
-.sign-up__sign-in {
+.sign-up-card__sign-in {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.sign-up__text {
+.sign-up-card__text {
   margin: 0;
 
-  @include p-text;
-  color: black;
+  @include p-text($color: #000000);
+}
+
+.sign-up-card__link {
+  width: 99px;
+
+  @include cancel-link-style;
 }

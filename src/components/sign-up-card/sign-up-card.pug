@@ -1,5 +1,5 @@
 mixin sign-up-card()
-  section.sign-up-card
+  section.sign-up-card.js-sign-up-card
     +frame
       form(class='sign-up-card__form', name='sign-up')
         h1.sign-up-card__heading Регистрация аккаунта
@@ -9,7 +9,7 @@ mixin sign-up-card()
           +field({ width: 'big', indent: 'tiny' })
             +input({ name: 'last-name', placeholder: 'Фамилия' })
         +field({ width: 'big', indent: 'middle' })
-          .sign-up__radio-buttons-wrapper
+          .sign-up-card__radio-buttons-wrapper
             +radio-button({ name: 'sex', value: 'male', checked: true, text: 'Мужчина' })
             +radio-button({ name: 'sex', value: 'female', text: 'Женщина' })
         +field({ width: 'big', indent: 'middle' })
@@ -23,7 +23,8 @@ mixin sign-up-card()
         +field({ width: 'big', indent: 'middle' })
           +toggle({ name: 'spec', value: 'first', checked: false, text: 'Получать спецпредложения' })
         +field({ width: 'big', indent: 'big' })
-          +button-long({ name: 'button-sing-up', text: 'зарегистрироваться', type: 'submit', isArrowed: true })
-      .sign-up__sign-in
-        p.sign-up__text Уже есть аккаунт на Toxin?
-        +pseudo-button({ text: 'войти', isBordered: true, isShort: true })
+          +button-long({ text: 'зарегистрироваться', type: 'submit', isArrowed: true })
+      .sign-up-card__sign-in
+        p.sign-up-card__text Уже есть аккаунт на Toxin?
+        a(class='sign-up-card__link', target='_self', href='/')
+          +pseudo-button({ text: 'войти', isBordered: true, isShort: true })

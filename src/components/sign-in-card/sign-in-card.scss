@@ -11,15 +11,20 @@
   @include h1-text($height: 1.22);
 }
 
-.sign-in__sign-up {
+.sign-in-card__sign-up {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.sign-in__text {
+.sign-in-card__text {
   margin: 0;
 
-  @include p-text;
-  color: black;
+  @include p-text($color: #000000);
+}
+
+.sign-in-card__link {
+  width: 99px;
+
+  @include cancel-link-style;
 }

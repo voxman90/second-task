@@ -19,6 +19,7 @@ include ../../components/input-date/input-date.pug
 include ../../components/toggle/toggle.pug
 include ../../components/button-long/button-long.pug
 include ../../components/sign-up-card/sign-up-card.pug
+include ../../components/sign-in-card/sign-in-card.pug
 include ../../components/copyright/copyright.pug
 include ../../components/social-follow/social-follow.pug
 include ../../components/copyright-bar/copyright-bar.pug
@@ -26,7 +27,7 @@ include ../../components/subscription-field/subscription-field.pug
 include ../../components/footer/footer.pug
 include ../../components/footer-creative/footer-creative.pug
 - const data = htmlWebpackPlugin.options.data
-- const { pageTitle } = data
+- const { pageTitle, isUserRegistering } = data
 
 +layout
   +layout__block('head')
@@ -40,7 +41,10 @@ include ../../components/footer-creative/footer-creative.pug
       .bg
         .bg__image
       .card-wrapper
-        +sign-up-card
+        if (isUserRegistering)
+          +sign-up-card
+        else
+          +sign-in-card
 
   +layout__block('footer')
     +footer

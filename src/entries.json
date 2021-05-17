@@ -170,31 +170,24 @@
     },
 
     {
-      "entryName": "sign-in",
-      "chunks": [
-        "sign-in"
-      ],
-      "outputName": "Sign In",
+      "entryName": "sign-up",
+      "chunks": ["sign-up"],
+      "outputName": "Sign Up",
       "prepareTemplate": true,
-      "templatePath": "sign-in/sign-in",
-      "dataPath": "templates/sign-in/sign-in",
-      "scripts": [
-        "templates/registration/registration.js"
-      ]
+      "templatePath": "sign-up/sign-up",
+      "dataPath": "templates/sign-up/sign-up",
+      "styles": ["templates/sign-up/sign-up.scss"],
+      "scripts": ["templates/sign-up/sign-up.js"]
     },
 
     {
-      "entryName": "sign-up",
-      "chunks": [
-        "sign-in"
-      ],
-      "outputName": "Sign Up",
-      "prepareTemplate": true,
-      "templatePath": "registration/registration",
-      "dataPath": "templates/registration/registration",
-      "scripts": [
-        "templates/registration/registration.js"
-      ]
+      "entryName": "sign-in",
+      "chunks": ["sign-up", "sign-in"],
+      "outputName": "Sign In",
+      "prepareTemplate": false,
+      "templatePath": "sign-up/sign-up",
+      "prependImports": false,
+      "dataPath": "templates/sign-up/sign-in"
     },
 
     {
