@@ -24,8 +24,8 @@
 
 @media only screen and (max-width: 1080px) {
   .footer__wrapper {
-    flex-wrap: wrap;
     padding: 100px 9.722222%;
+    flex-wrap: wrap;
   }
 }
 
@@ -36,7 +36,8 @@
 
 @media only screen and (max-width: 1080px) {
   .footer__info {
-    flex-basis: 45%;
+    flex-basis: calc(100% - 320px);
+    padding-right: 60px;
   }
 }
 
@@ -98,7 +99,6 @@
 @media only screen and (max-width: 1080px) {
   .footer__subscription {
     order: 1;
-    flex-basis: min(45%, 320px);
   }
 }
 

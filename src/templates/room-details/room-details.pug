@@ -49,10 +49,11 @@ include ../../components/footer-creative/footer-creative.pug
 
   +layout__block('content')
     main.main
-      section.illustrations
-        img
-        img
-        img
+      .illustrations
+        .illustrations__grid
+          .illustrations__main 
+          .illustrations__second
+          .illustrations__third
       .details
         section.details__info
           +heading({ type: 'widget', text: 'сведения о номере' })
@@ -66,7 +67,7 @@ include ../../components/footer-creative/footer-creative.pug
           .details__heading-wrapper
             +heading({ type: 'widget', text: 'правила' })
           +bullet-list(bulletListItems)
-        section.details-cancel-terms
+        section.details__cancel-terms
           +heading({ type: 'widget', text: 'отмена' })
           p.details__text-wrapper
             span.details__text= cancelTerms

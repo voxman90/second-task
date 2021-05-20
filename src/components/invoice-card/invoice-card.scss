@@ -72,13 +72,15 @@
 .invoice-card__final {
   display: flex;
   height: 1.5rem;
+  margin-top: 2.157895em;
+  margin-inline-start: -0.5px;
 
   @include widget-text;
 }
 
 .invoice-card__dashed-border {
   flex-grow: 1;
-  margin: 0 5px;
+  margin: 0 9px;
   margin-bottom: 5.5px;
   border-bottom: 1px dotted $dark-shade-25;
 }
