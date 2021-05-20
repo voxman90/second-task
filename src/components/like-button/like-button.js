@@ -24,19 +24,22 @@ const LikeButton = ((document) => {
 
     check() {
       this._input.checked = true;
+      const count = this._getNumberOfLikes();
+      this.setNumberOfLikes(count + 1);
     }
 
     uncheck() {
       this._input.checked = false;
+      const count = this._getNumberOfLikes();
+      this.setNumberOfLikes(count - 1);
     }
 
     setNumberOfLikes(count) {
-      this._input.setAttribute('value', count);
       this._counter.textContent = count;
     }
 
-    getNumberOfLikes() {
-      return parseInt(this._input.getAttribute('value'));
+    _getNumberOfLikes() {
+      return parseInt(this._counter.textContent);
     }
 
     _connectBasis() {
@@ -44,15 +47,12 @@ const LikeButton = ((document) => {
       this._counter = this.root.querySelector(Selector.COUNTER);
     }
 
-    handleLikeButtonClick = () => {
-      let count = this.getNumberOfLikes();
-
+    handleLikeButtonChange = () => {
+      const numberOfLikes = this._getNumberOfLikes();
       if (this._input.checked) {
-        count += 1;
-        this.setNumberOfLikes(count);
+        this.setNumberOfLikes(numberOfLikes + 1);
       } else {
-        count -= 1;
-        this.setNumberOfLikes(count);
+        this.setNumberOfLikes(numberOfLikes - 1);
       }
     }
 
@@ -61,7 +61,7 @@ const LikeButton = ((document) => {
         {
           element: this.root,
           event: 'change',
-          handler: this.handleLikeButtonClick,
+          handler: this.handleLikeButtonChange,
         },
       ];
     }

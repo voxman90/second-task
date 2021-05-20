@@ -10,10 +10,13 @@ include ../../components/navbar/navbar.pug
 include ../../components/hamburger/hamburger.pug
 include ../../components/header/header.pug
 include ../../components/heading/heading.pug
+include ../../components/icon-item/icon-item.pug
+include ../../components/icon-item-list/icon-item-list.pug
 include ../../components/diagram/diagram.pug
 include ../../components/like-button/like-button.pug
 include ../../components/comment/comment.pug
 include ../../components/reviews/reviews.pug
+include ../../components/bullet-list/bullet-list.pug
 include ../../components/field/field.pug
 include ../../components/fieldset/fieldset.pug
 include ../../components/frame/frame.pug
@@ -35,7 +38,7 @@ include ../../components/subscription-field/subscription-field.pug
 include ../../components/footer/footer.pug
 include ../../components/footer-creative/footer-creative.pug
 - const data = htmlWebpackPlugin.options.data
-- const { pageTitle, comments } = data
+- const { pageTitle, comments, iconItems, bulletListItems, cancelTerms } = data
 
 +layout
   +layout__block('head')
@@ -46,24 +49,34 @@ include ../../components/footer-creative/footer-creative.pug
 
   +layout__block('content')
     main.main
-      .illustrations
-      section.details
-        article.info
+      section.illustrations
+        img
+        img
+        img
+      .details
+        section.details__info
           +heading({ type: 'widget', text: 'сведения о номере' })
-        article.diagram
-          +heading({ type: 'widget', text: 'впечатления о номере' })
-            +diagram()
-        article.reviews-form
+          +icon-item-list(iconItems)
+        section.details__diagram
+          +heading({ type: 'widget', text: 'впечатления от номера' })
+            //+diagram()
+        section.details__reviews
           +reviews(comments)
-        article.rules
-          +heading({ type: 'widget', text: 'правила' })
-        article.cancel-terms
+        section.details__rules
+          .details__heading-wrapper
+            +heading({ type: 'widget', text: 'правила' })
+          +bullet-list(bulletListItems)
+        section.details-cancel-terms
           +heading({ type: 'widget', text: 'отмена' })
-    .card-wrapper
-      +invoice-card
+          p.details__text-wrapper
+            span.details__text= cancelTerms
+        .details__invoce
+          +invoice-card
 
   +layout__block('footer')
+    include ../../components/line/line.pug
     +footer
 
   +layout__block('footer-creative')
+    include ../../components/line/line.pug
     +footer-creative

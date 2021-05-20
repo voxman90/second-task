@@ -1,7 +1,8 @@
 mixin icon-item(args = {})
   - const { name, headline, descr } = args
   .icon-item
-    +icon({ name })(class='icon-item__icon')
+    .icon-item__icon
+      +icon({ name })
     .icon-item__info
-      .icon-item__headline= headline
-      .icon-item__description= descr
+      +heading({ type: 'h4', text: headline })
+      p.icon-item__description= descr

@@ -8,15 +8,28 @@
 .reviews__counter {
   display: inline-block;
   position: absolute;
-  top: 5px;
+  top: 6px;
   right: 0;
   height: 1em;
 
   @include p-text($height: 1, $color: $dark-shade-50);
 }
 
+@media screen and (max-width: 425px) {
+  .reviews__counter {
+    right: 10px;
+    top: 30px;
+  }
+}
+
 .reviews__list {
   & > * + * {
-    margin-bottom: 1.25em;
+    margin-top: 1.25em;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .reviews__list {
+    padding-top: 25px;
   }
 }

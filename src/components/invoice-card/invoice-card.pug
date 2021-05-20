@@ -10,25 +10,31 @@ mixin invoice-card(args = {})
           +dropdown-date({ name: 'date', labelArrival: 'прибытие', labelDeparture: 'выезд' })
         +field({ width: 'big', indent: 'middle' })
           +dropdown-guests({ id: 'invoice-card-guests', name: 'guests', labelText: 'гости' })
-        +invoice-card__count
+        +invoice-card__account
         +field({ width: 'big' })
           +button-long({ text: 'забронировать', type: 'submit', isFilled: true, isArrowed: true })
 
-mixin invoice-card__count()
+mixin invoice-card__account()
   .invoice-card__account
-    +field({ width: 'big', indent: 'big' })
-      .invoice-card__grid
-        .invoice-card__gross.js-invoice-card__gross= ''
-        .invoice-card__gross-result.js-invoice-card__gross-result= ''
-        .invoice-card__service= 'Сбор за услуги: скидка '
-          span.invoice-card__discount.js-invoice-card__discount= ''
-        .invoice-card__service-tooltip.js-invoice-card__service-tooltip
-        .invoice-card__service-price.js-invoice-card__service-price= ''
-        .invoice-card__extra= 'Сбор за дополнительные\n услуги'
-        .invoice-card__extra-tooltip.js-invoice-card__extra-tooltip
-        .invoice-card__extra-price.js-invoice-card__extra-price= ''
+    +field({ width: 'big', indent: 'tiny' })
+      .invoice-card__account-line
+        .js-invoice-card__gross-product
+        .invoice-card__gross.js-invoice-card__gross= '9 999 999'
+    +field({ width: 'big', indent: 'tiny' })
+      .invoice-card__account-line
+        .invoice-card__service
+          | #{'Сбор за услуги: скидка '}
+          span.invoice-card__discount.js-invoice-card__discount= '9 999 999'
+          span.invoice-card__service-tooltip.js-invoice-card__service-tooltip
+        .invoice-card__service-price.js-invoice-card__service-price= '9 999 999'
+    +field({ width: 'big', indent: 'middle' })
+      .invoice-card__account-line
+        .invoice-card__extra
+          | Сбор за доп. услуги
+          span.invoice-card__extra-tooltip.js-invoice-card__extra-tooltip
+        .invoice-card__extra-price.js-invoice-card__extra-price= '9 999 999'
     +field({ width: 'big', indent: 'middle' })
       .invoice-card__final
         | Итого
         span.invoice-card__dashed-border
-        span.invoice-card__final-price.js-invoice-card__final-price= ''
+        span.invoice-card__final-price.js-invoice-card__final-price= '9 999 999'

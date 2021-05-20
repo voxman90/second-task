@@ -1,7 +1,7 @@
 mixin comment(args = {})
   - const { imgSrc, nickname, date, message, value } = args
 
-  .comment
+  div(class='comment js-comment')
     .comment__header
       img(
         class='comment__avatar',

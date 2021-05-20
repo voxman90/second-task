@@ -1,6 +1,6 @@
 mixin reviews(reviewsList = [])
   .reviews.js-reviews
-    form(class='reviews__form js-reviews__form', name='reviews')
+    form(name='reviews')
       +heading({ type: 'widget', text: 'отзывы посетителей номера' })
       span.reviews__counter.js-reviews__counter= 'placeholder'
       .reviews__list

@@ -1,4 +1,111 @@
 .main {
-  position: relative;
-  top: 70px;
+  padding-top: 70px;
+}
+
+.illustrations {
+
+}
+
+.details {
+  display: grid;
+  width: 80.555555%;
+  margin: 0 auto;
+  padding: 70px 0;
+  grid-template-columns: minmax(270px, 291px) auto minmax(300px, 380px);
+  grid-template-rows: repeat(3, auto);
+  column-gap: 70px;
+  row-gap: 30px;
+  grid-template-areas:
+    'info    diagram  invoice'
+    'reviews reviews  invoice'
+    'rules   cancel   invoice';
+}
+
+@media screen and (min-width: 1600px) {
+  .details {
+    grid-template-columns: repeat(3, 1fr) auto;
+    grid-template-rows: repeat(2, auto);
+    grid-template-areas:
+      'diagram reviews reviews  invoice'
+      'info    rules   cancel   invoice';
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .details {
+    width: 90%;
+    column-gap: 35px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .details {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(4, auto);
+    grid-template-areas:
+      'info     invoice'
+      'diagram  invoice'
+      'reviews  reviews'
+      'rules    cancel ';
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .details {
+    padding: 35px 0;
+    grid-template-columns: auto;
+    grid-template-rows: repeat(6, auto);
+    grid-template-areas:
+      'invoice'
+      'info   '
+      'diagram'
+      'reviews'
+      'rules  '
+      'cancel ';
+  }
+}
+
+.details__info {
+  grid-area: info;
+}
+
+.details__text-wrapper {
+  margin: 0;
+  line-height: 1.5em;
+}
+
+.details__text {
+  vertical-align: top;
+
+  @include p-text($height: 1.5);
+}
+
+.details__diagram {
+  grid-area: diagram;
+}
+
+.details__reviews {
+  grid-area: reviews;
+}
+
+.details__rules {
+  grid-area: rules;
+}
+
+.details__heading-wrapper {
+  margin-left: 21px;
+}
+
+.details__cancel-terms {
+  grid-area: cancel;
+}
+
+.details__invoce {
+  grid-area: invoice;
+}
+
+@media screen and (max-width: 1024px) {
+  .details__invoce {
+    justify-self: center;
+  }
 }

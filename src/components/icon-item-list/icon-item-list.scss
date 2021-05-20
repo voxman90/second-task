@@ -1,0 +1,10 @@
+.icon-item-list {
+  @include cancel-list-style;
+  max-width: 280px;
+  padding-bottom: 3px;
+}
+
+.icon-item-list__hr {
+  margin: 1.25rem 0;
+  border-bottom: 1px solid dark-shade(0.10);
+}

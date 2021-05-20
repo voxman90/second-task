@@ -1,0 +1,9 @@
+mixin icon-item-list(items)
+  - const length = items.length
+
+  ul.icon-item-list
+    each item, i in items
+      li.icon-item-list__item
+        +icon-item(item, false)
+      if i + 1 < length
+        div.icon-item-list__hr

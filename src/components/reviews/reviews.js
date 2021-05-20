@@ -2,8 +2,9 @@
 
 import { BEMComponent } from 'scripts/BEMComponent';
 import { HotelRoomCard } from 'components/hotel-room-card/hotel-room-card';
+import { LikeButton } from 'components/like-button/like-button';
 
-const Reviews = (function (document){
+const Reviews = (function (document) {
   const ClassName = {
     ROOT : 'js-reviews',
   }
@@ -14,8 +15,10 @@ const Reviews = (function (document){
     LIKE_BUTTON : '.js-like-button',
   }
 
-  class Reviews {
-    constructor() {
+  class Reviews extends BEMComponent {
+    constructor(element) {
+      super(element, 'reviews');
+
       this._nodes = {}
       this._components = {}
 
@@ -32,7 +35,14 @@ const Reviews = (function (document){
     _connectBasis() {
       this._nodes.counter = this.root.querySelector(Selector.COUNTER);
       this._nodes.comments = this.root.querySelectorAll(Selector.COMMENT);
-      this._components.likeButtons = this._nodes.reviews.querySelector(Selector.LIKE_BUTTON);
+      const likeButtons = this.root.querySelectorAll(Selector.LIKE_BUTTON);
+      this._components.likeButtons = this._initLikeButtons(likeButtons);
+    }
+
+    _initLikeButtons(likeButtons) {
+      const likeButtonArray = Array.from(likeButtons);
+      const likeButtonComps = likeButtonArray.map((root) => new LikeButton(root));
+      return likeButtonComps;
     }
   }
 

@@ -25,6 +25,7 @@ import 'components/range-slider/range-slider.scss';
 import 'components/pagination/pagination.scss';
 import 'components/expandable-list/expandable-list.scss';
 import 'components/bullet-list/bullet-list.scss';
+import 'components/heading/heading.scss';
 import 'components/icon-item/icon-item.scss';
 import 'components/comment/comment.scss';
 import 'components/logo/logo.js';

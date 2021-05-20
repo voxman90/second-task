@@ -1,7 +1,7 @@
 mixin bullet-list(items)
   ul.bullet-list
     each item in items
-      li
+      li.bullet-list__item
         .bullet-list__marker
         span.bullet-list__text-wrapper
           span.bullet-list__text!= item

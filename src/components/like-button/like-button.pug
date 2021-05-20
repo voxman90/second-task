@@ -1,14 +1,13 @@
 mixin like-button(args = {})
   -
-    const { user, name, value, checked } = args
-    const count =  parseInt(value) + (ckecked) ? 1 : 0;
+    const { name, count, checked = false } = args
+    const numberOfLikes = count + (checked ? 1 : 0);
 
-  label.like-button.js-like-button
+  label.like-button.js-like-button&attributes(attributes)
     input(
       class='like-button__input js-like-button__input',
       type='checkbox',
       name=name,
-      value=count,
-      checked=(checked === true) ? 'checked': undefined,
-    )&attributes(attributes)
-    .like-button__counter.js-like-button__counter= count
+      checked=(checked ? true : false),
+    )
+    .like-button__counter.js-like-button__counter= numberOfLikes

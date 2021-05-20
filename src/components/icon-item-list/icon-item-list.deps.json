@@ -1,11 +1,10 @@
 {
-  "name": "icon-item",
+  "name": "icon-item-list",
   "techs": [
     "scss",
     "pug"
   ],
   "deps": [
-    "icon",
-    "heading"
+    "icon-item"
   ]
 }

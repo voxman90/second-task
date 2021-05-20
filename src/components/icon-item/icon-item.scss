@@ -2,11 +2,6 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  
-  width: 17.5rem;
-  padding: 1.25rem 0;
-
-  border-bottom: 1px solid dark-shade(0.10);
 }
 
 .icon-item__icon {
@@ -15,26 +10,19 @@
   text-align: center;
   width: 3rem;
   height: 3rem;
-
   background: linear-gradient(180deg, $primary 0%, $primary-gradient 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  font-size: 3rem;
-  line-height: 2.5625rem;
+  font-size: 2rem;
 }
 
 .icon-item__info {
-  margin-left: 0.652rem;
-}
-
-.icon-item__headline {
-  @include Montserrat-bold;
-  font-size: 0.875rem;
-  line-height: 1.5rem;
-  color: $dark-shade-75;
+  margin-left: 10px;
 }
 
 .icon-item__description {
+  margin: 0;
+
   @include p-text;
 }
