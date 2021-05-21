@@ -41,7 +41,7 @@ const HotelRoomCard = (() => {
     const hotelNumberNode = element.querySelector(Selector.HOTEL_NUMBER);
     const hotelPriceNode = element.querySelector(Selector.HOTEL_PRICE);
     hotelNumberNode.textContent = roomNumber;
-    hotelPriceNode.textContent = `${_prettify(pricePerDay)} `;
+    hotelPriceNode.textContent = `${Utility.presentAsRublesPrice(pricePerDay)} `;
     if (isLux) {
       _displayLuxMark(element);
     }
@@ -75,10 +75,6 @@ const HotelRoomCard = (() => {
   function _initCarousel(element) {
     const carouselNode = element.querySelector(Selector.CAROUSEL);
     return new Carousel(carouselNode);
-  }
-
-  function _prettify(price) {
-    return `${price.toLocaleString()}\u20bd`;
   }
 
   return { init };

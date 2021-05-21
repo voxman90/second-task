@@ -4,6 +4,7 @@ import $ from 'jquery';
 import noUiSlider from 'nouislider';
 
 import { BEMComponent } from 'scripts/BEMComponent';
+import { Utility } from 'scripts/Utility';
 
 const RangeSlider = ((document, $) => {
   const ClassName = {
@@ -68,15 +69,11 @@ const RangeSlider = ((document, $) => {
     }
 
     prettify(values) {
-      const from = parseInt(values[0], 10);
-      const to = parseInt(values[1], 10);
-
-      /**
-       * For an integer number, Number.toLocaleString will add spaces every three characters
-       */
-      const fromPretty = from.toLocaleString();
-      const toPretty = to.toLocaleString();
-      return `${fromPretty}${RUBLE_SIGN} - ${toPretty}${RUBLE_SIGN}`;
+      const from = parseInt(values[0]);
+      const to = parseInt(values[1]);
+      const fromPrice = Utility.presentAsRublesPrice(from);
+      const toPrice = Utility.presentAsRublesPrice(to);
+      return `${fromPrice} - ${toPrice}`;
     }
 
     handleSliderUpdate = () => {

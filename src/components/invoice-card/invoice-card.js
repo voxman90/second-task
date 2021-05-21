@@ -1,6 +1,7 @@
 'use strict';
 
 import { BEMComponent } from 'scripts/BEMComponent';
+import { Utility } from 'scripts/Utility';
 import { DropdownDate } from 'components/dropdown-date/dropdown-date';
 import { DropdownGuests } from 'components/dropdown-guests/dropdown-guests';
 
@@ -213,11 +214,11 @@ const InvoiceCard = ((document) => {
     }
 
     _drawPricePerDay(price) {
-      this.nodes.price.textContent = `${this._prettify(price)} `;
+      this.nodes.price.textContent = `${Utility.presentAsRublesPrice(price)} `;
     }
 
     _drawGrossProduct(pricePerDay, days) {
-      const pricePerDayPretty = this._prettify(pricePerDay);
+      const pricePerDayPretty = Utility.presentAsRublesPrice(pricePerDay);
       const wordForNumberOfDays = this._getCorrectWordForNumberOfDays(days);
       this.nodes.grossProduct.textContent = `${pricePerDayPretty} x ${days} ${wordForNumberOfDays}`;
     }
@@ -252,7 +253,7 @@ const InvoiceCard = ((document) => {
     }
 
     _drawPrice(price, node) {
-      node.textContent = this._prettify(price)
+      node.textContent = Utility.presentAsRublesPrice(price);
     }
 
     _getCorrectWordForNumberOfDays(numberOf) {
@@ -275,13 +276,6 @@ const InvoiceCard = ((document) => {
       }
   
       return 'суток';
-    }
-
-    _prettify(price) {
-      /**
-       * For an integer number, Number.toLocaleString will add spaces every three characters
-       */
-      return `${price.toLocaleString()}\u20bd`;
     }
 
     handleArrivalAndDepartureSet = (arrival, departure) => {

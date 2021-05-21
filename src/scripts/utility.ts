@@ -1,13 +1,6 @@
 import $ from 'jquery';
 
 const Utility = (($) => {
-  type formOfWord = {
-    nominative: string,
-    nominativePlural: string,
-    genitive: string,
-    genitivePlural: string,
-  }
-
   const transitionEndEventNames = {
     'transition'       : 'transitionend',
     'OTransition'      : 'oTransitionEnd',
@@ -53,6 +46,13 @@ const Utility = (($) => {
     }
   }
 
+  type formOfWord = {
+    nominative: string,
+    nominativePlural: string,
+    genitive: string,
+    genitivePlural: string,
+  }
+
   function getCorrectFormOfWord(numberOf: number, formOfWord: Partial<formOfWord>): formOfWord[keyof formOfWord] {
     const { nominative, genitive, genitivePlural } = formOfWord;
 
@@ -75,12 +75,23 @@ const Utility = (($) => {
     return genitivePlural;
   }
 
+  const RUBLE_SIGN = '\u20bd';
+
+  function presentAsRublesPrice(price: number): string {
+    return presentAsLocalPrice(price, '', RUBLE_SIGN);
+  }
+
+  function presentAsLocalPrice(price: number, localeSettings: string | string[], currencySign: string): string {
+    return `${price.toLocaleString(localeSettings)}${currencySign}`
+  }
+
   return {
     getCorrectFormOfWord,
     getTransitionEndEventName,
+    keyQualifiers,
     makeKeyQualifier,
     makeKeydownHandler,
-    keyQualifiers,
+    presentAsRublesPrice,
   };
 })($);
 
