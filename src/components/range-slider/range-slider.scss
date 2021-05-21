@@ -6,7 +6,8 @@
 }
 
 .noUi-target {
-  margin-top: 17px;
+  margin-top: 17.5px;
+  margin-left: 0.5px;
   background: #FFFFFF;
   border-radius: 3px;
   border: 1px solid $dark-shade-25;
@@ -40,12 +41,14 @@
 }
 
 .noUi-horizontal .noUi-handle {
-  width: 12px;
-  height: 12px;
-  right: -7.5px;
-  top: -5.5px;
+  width: 11px;
+  height: 11px;
+  right: -6.5px;
+  top: -4.5px;
 }
 
 .range-slider__caption {
+  margin-top: 1em;
+
   @include p-text(0.75em, 0.857, $dark-shade-50);
 }

@@ -3,16 +3,21 @@
 import jQuery from 'jquery';
 
 import { DropdownDate } from 'components/dropdown-date/dropdown-date';
-import { ExpandableList } from 'components/expandable-list/expandable-list';
 import { DropdownFilterDate } from 'components/dropdown-filter-date/dropdown-filter-date';
 import { DropdownFacilities } from 'components/dropdown-facilities/dropdown-facilities';
 import { DropdownGuests } from 'components/dropdown-guests/dropdown-guests';
+import { ExpandableList } from 'components/expandable-list/expandable-list';
+import { RangeSlider } from 'components/range-slider/range-slider';
 
 (function ($, document) {
   function setTextFieldValue() {
     const textField = document.querySelector('.js-text-field-focused');
     textField.value = 'This is pretty awesome';
     textField.focus();
+  }
+
+  function configureRangeSlider() {
+    const rangeSlider = initComp('.js-range-slider', RangeSlider);
   }
 
   function initDropdownDate() {
@@ -54,6 +59,7 @@ import { DropdownGuests } from 'components/dropdown-guests/dropdown-guests';
     initDropdownFilterDate();
     initDropdownFacilitiesComps();
     initDropdownGuestsComps();
+    configureRangeSlider()
   }
 
   $(init());

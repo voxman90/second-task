@@ -13,7 +13,7 @@ const RangeSlider = ((document, $) => {
 
   const Selector = {
     TARGET : '.js-range-slider__target',
-    LABEL  : '.label__appendix',
+    LABEL  : '.js-label__appendix',
   }
 
   const defaultConfig = {
@@ -26,33 +26,30 @@ const RangeSlider = ((document, $) => {
     },
   }
 
-  const RUBLE_SIGN = '\u20bd';
-
   class RangeSlider extends BEMComponent {
     constructor(element, config = defaultConfig) {
       super(element, 'range-slider');
 
-      this.connectBasis();
-
-      this.initNoUISlider(config);
+      this._connectBasis();
+      this._initNoUISlider(config);
     }
 
-    connectBasis() {
-      this.label = this.root.querySelector(Selector.LABEL);
-      this.slider = this.root.querySelector(Selector.TARGET);
+    _connectBasis() {
+      this._label = this.root.querySelector(Selector.LABEL);
+      this._slider = this.root.querySelector(Selector.TARGET);
     }
 
-    initNoUISlider(config) {
-      noUiSlider.create(this.slider, config);
-      this.slider.noUiSlider.on('update', this.handleSliderUpdate);
+    _initNoUISlider(config) {
+      noUiSlider.create(this._slider, config);
+      this._slider.noUiSlider.on('update', this.handleSliderUpdate);
     }
 
     getValues() {
-      return this.slider.noUiSlider.get();
+      return this._slider.noUiSlider.get();
     }
 
     setValues(values) {
-      this.slider.noUiSlider.set(values);
+      this._slider.noUiSlider.set(values);
     }
 
     setFrom(value) {
@@ -63,12 +60,12 @@ const RangeSlider = ((document, $) => {
       this.setValues([null, value]);
     }
 
-    drawValues() {
+    _drawValues() {
       const values = this.getValues();
-      this.label.textContent = this.prettify(values);
+      this._label.textContent = this._prettify(values);
     }
 
-    prettify(values) {
+    _prettify(values) {
       const from = parseInt(values[0]);
       const to = parseInt(values[1]);
       const fromPrice = Utility.presentAsRublesPrice(from);
@@ -77,7 +74,7 @@ const RangeSlider = ((document, $) => {
     }
 
     handleSliderUpdate = () => {
-      this.drawValues();
+      this._drawValues();
     }
   }
 

@@ -76,9 +76,10 @@ const Utility = (($) => {
   }
 
   const RUBLE_SIGN = '\u20bd';
+  const RU_LOCALE = 'ru-RU';
 
   function presentAsRublesPrice(price: number): string {
-    return presentAsLocalPrice(price, '', RUBLE_SIGN);
+    return presentAsLocalPrice(price, RU_LOCALE, RUBLE_SIGN);
   }
 
   function presentAsLocalPrice(price: number, localeSettings: string | string[], currencySign: string): string {

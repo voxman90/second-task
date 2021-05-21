@@ -7,6 +7,6 @@ mixin label(args)
   label(class='label', for=id)
     span(class=textClass)
       | #{text}
-      span.label__appendix #{appendix}
+      span.label__appendix.js-label__appendix #{appendix}
     if block
       block

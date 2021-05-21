@@ -90,7 +90,7 @@ include ../../components/comment/comment.pug
                 +rate-button({ amount: 5, filled: 4, name: 'rate-button-2nd' })(class='js-auto-init')
           .fe__r-1__c-3
             +field({ indent: 'huge' })
-              +range-slider({ labelText: 'range slider'}).js-auto-init
+              +range-slider({ labelText: 'range slider', caption: 'Стоимость за сутки пребывания в номере' })
             +fieldset({ legend: 'buttons' })
               +field({ indent: 'big' })
                 +button-short({ text: 'click me', isFilled: true })
