@@ -1,6 +1,13 @@
 import $ from 'jquery';
 
 const Utility = (($) => {
+  type formOfWord = {
+    nominative: string,
+    nominativePlural: string,
+    genitive: string,
+    genitivePlural: string,
+  }
+
   const transitionEndEventNames = {
     'transition'       : 'transitionend',
     'OTransition'      : 'oTransitionEnd',
@@ -46,7 +53,30 @@ const Utility = (($) => {
     }
   }
 
+  function getCorrectFormOfWord(numberOf: number, formOfWord: Partial<formOfWord>): formOfWord[keyof formOfWord] {
+    const { nominative, genitive, genitivePlural } = formOfWord;
+
+    if (numberOf % 100 < 11 || 14 < numberOf % 100) {
+      switch (numberOf % 10) {
+        case 1: {
+          return nominative;
+        }
+        case 2:
+        case 3:
+        case 4: {
+          return genitive;
+        }
+        default: {
+          break;
+        }
+      }
+    }
+
+    return genitivePlural;
+  }
+
   return {
+    getCorrectFormOfWord,
     getTransitionEndEventName,
     makeKeyQualifier,
     makeKeydownHandler,

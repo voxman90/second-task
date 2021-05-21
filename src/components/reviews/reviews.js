@@ -1,7 +1,7 @@
 'use strict';
 
 import { BEMComponent } from 'scripts/BEMComponent';
-import { HotelRoomCard } from 'components/hotel-room-card/hotel-room-card';
+import { Utility } from 'scripts/Utility';
 import { LikeButton } from 'components/like-button/like-button';
 
 const Reviews = (function (document) {
@@ -13,6 +13,12 @@ const Reviews = (function (document) {
     COUNTER     : '.js-reviews__counter',
     COMMENT     : '.js-comment',
     LIKE_BUTTON : '.js-like-button',
+  }
+
+  const formOfWordReview = {
+    nominative: 'отзыв',
+    genitive: 'отзыва',
+    genitivePlural: 'отзывов',
   }
 
   class Reviews extends BEMComponent {
@@ -27,9 +33,9 @@ const Reviews = (function (document) {
     }
 
     _setCounter() {
-      const reviewsNumber = this._nodes.comments.length;
-      const wordForNumberOfReviews = HotelRoomCard.defineCorrectWordForNumberOfReviews(reviewsNumber);
-      this._nodes.counter.textContent = `${reviewsNumber} ${wordForNumberOfReviews}`;
+      const numberOfReviews = this._nodes.comments.length;
+      const wordForNumberOfReviews = Utility.getCorrectFormOfWord(numberOfReviews, formOfWordReview);
+      this._nodes.counter.textContent = `${numberOfReviews} ${wordForNumberOfReviews}`;
     }
 
     _connectBasis() {

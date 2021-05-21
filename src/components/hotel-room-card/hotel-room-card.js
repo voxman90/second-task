@@ -1,5 +1,6 @@
 'use strict';
 
+import { Utility } from 'scripts/Utility';
 import { Carousel } from 'components/carousel/carousel';
 import { RateButton } from 'components/rate-button/rate-button';
 
@@ -17,35 +18,17 @@ const HotelRoomCard = (() => {
     LUX_HIDDEN : 'hotel-room-heading__lux_hidden',
   }
 
+  const formOfWordReview = {
+    nominative: 'отзыв',
+    genitive: 'отзыва',
+    genitivePlural: 'отзывов',
+  }
+
   function init(element, config) {
     _drawHeading(element, config);
     _drawRatingPanel(element, config);
     const carousel = _initCarousel(element);
     _setCarouselItems(carousel, config);
-  }
-
-  function defineCorrectWordForNumberOfReviews(number) {
-    let form = 'отзывов';
-
-    if (number % 100 < 11 || 14 < number % 100) {
-      switch (number % 10) {
-        case 1: {
-          form = 'отзыв';
-          break;
-        }
-        case 2:
-        case 3:
-        case 4: {
-          form = 'отзыва';
-          break;
-        }
-        default: {
-          break;
-        }
-      }
-    }
-
-    return form;
   }
 
   function _setCarouselItems(carousel, config) {
@@ -70,17 +53,17 @@ const HotelRoomCard = (() => {
   }
 
   function _drawRatingPanel(element, config) {
-    const { reviewNumber, rating } = config;
-    _drawReviewNumber(element, reviewNumber);
+    const { numberOfReviews, rating } = config;
+    _drawNumberOfReviews(element, numberOfReviews);
     _initRateButton(element, rating);
   }
 
-  function _drawReviewNumber(element, reviewNumber) {
+  function _drawNumberOfReviews(element, numberOfReviews) {
     const reviewNode = element.querySelector(Selector.REVIEW);
-    const reviewNumberNode = reviewNode.childNodes[0];
+    const numberOfReviewsNode = reviewNode.childNodes[0];
     const reviewTextNode = reviewNode.childNodes[1];
-    reviewNumberNode.textContent = reviewNumber;
-    reviewTextNode.textContent = ` ${defineCorrectWordForNumberOfReviews(reviewNumber)}`;
+    numberOfReviewsNode.textContent = numberOfReviews;
+    reviewTextNode.textContent = ` ${Utility.getCorrectFormOfWord(numberOfReviews, formOfWordReview)}`;
   }
 
   function _initRateButton(element, rating) {
@@ -98,7 +81,7 @@ const HotelRoomCard = (() => {
     return `${price.toLocaleString()}\u20bd`;
   }
 
-  return { init, defineCorrectWordForNumberOfReviews };
+  return { init };
 })();
 
 export { HotelRoomCard };

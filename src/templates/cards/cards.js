@@ -21,7 +21,7 @@ import { RoomSearchCard } from 'components/room-search-card/room-search-card';
       roomNumber: 888,
       isLux: true,
       pricePerDay: 9990,
-      reviewNumber: 145,
+      numberOfReviews: 145,
       rating: 5,
       imgAttributes: [
         {
@@ -40,7 +40,7 @@ import { RoomSearchCard } from 'components/room-search-card/room-search-card';
       roomNumber: 840,
       isLux: false,
       pricePerDay: 9900,
-      reviewNumber: 65,
+      numberOfReviews: 65,
       rating: 4,
       imgAttributes: [
         {

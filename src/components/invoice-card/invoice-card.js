@@ -218,7 +218,7 @@ const InvoiceCard = ((document) => {
 
     _drawGrossProduct(pricePerDay, days) {
       const pricePerDayPretty = this._prettify(pricePerDay);
-      const wordForNumberOfDays = this._defineCorrectWordForNumberOfDays(days);
+      const wordForNumberOfDays = this._getCorrectWordForNumberOfDays(days);
       this.nodes.grossProduct.textContent = `${pricePerDayPretty} x ${days} ${wordForNumberOfDays}`;
     }
 
@@ -255,22 +255,18 @@ const InvoiceCard = ((document) => {
       node.textContent = this._prettify(price)
     }
 
-    _defineCorrectWordForNumberOfDays(number) {
-      let form = 'суток';
+    _getCorrectWordForNumberOfDays(numberOf) {
+      if (1 < numberOf && numberOf <= 4) return 'суток';
 
-      if (1 < number && number <= 4) return form;
-
-      if (number % 100 < 11 || 14 < number % 100) {
-        switch (number % 10) {
+      if (numberOf % 100 < 11 || 14 < numberOf % 100) {
+        switch (numberOf % 10) {
           case 1: {
-            form = 'сутки';
-            break;
+            return 'сутки';
           }
           case 2:
           case 3:
           case 4: {
-            form = 'дня';
-            break;
+            return 'дня';
           }
           default: {
             break;
@@ -278,7 +274,7 @@ const InvoiceCard = ((document) => {
         }
       }
   
-      return form;
+      return 'суток';
     }
 
     _prettify(price) {

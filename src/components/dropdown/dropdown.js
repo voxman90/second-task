@@ -1,7 +1,7 @@
 'use strict';
 
-import { BEMComponent } from 'scripts/BEMComponent'
-import { Utility } from 'scripts/Utility'
+import { BEMComponent } from 'scripts/BEMComponent';
+import { Utility } from 'scripts/Utility';
 
 class DropdownModel {
   constructor(defaultSentence, dictionary) {
@@ -18,11 +18,13 @@ class DropdownModel {
   }
 
   _getCollocation(option) {
-    const { name, value } = option;
+    console.log(option)
+    const { name, value: numberOf } = option;
 
-    if (value !== 0) {
-      const countable = this._defineCorrectForm(name, value);
-      return `${value} ${countable}`;
+    if (numberOf !== 0) {
+      const formOfWord = this._dictionary.get(name);
+      const countable = Utility.getCorrectFormOfWord(numberOf, formOfWord);
+      return `${numberOf} ${countable}`;
     }
 
     return null;
@@ -36,31 +38,6 @@ class DropdownModel {
     });
 
     return map;
-  }
-
-  _defineCorrectForm(name, number) {
-    const { nominative, genitive, genitivePlural } = this._dictionary.get(name);
-    let form = genitivePlural;
-
-    if (number % 100 < 11 || 14 < number % 100) {
-      switch (number % 10) {
-        case 1: {
-          form = nominative;
-          break;
-        }
-        case 2:
-        case 3:
-        case 4: {
-          form = genitive;
-          break;
-        }
-        default: {
-          break;
-        }
-      }
-    }
-
-    return form;
   }
 }
 

@@ -5,7 +5,7 @@ const hotelRoomCardData = [
     roomNumber: 888,
     isLux: true,
     pricePerDay: 9990,
-    reviewNumber: 145,
+    numberOfReviews: 145,
     rating: 5,
     imgAttributes: [
       {
@@ -24,7 +24,7 @@ const hotelRoomCardData = [
     roomNumber: 840,
     isLux: false,
     pricePerDay: 9900,
-    reviewNumber: 65,
+    numberOfReviews: 65,
     rating: 4,
     imgAttributes: [
       {
@@ -43,7 +43,7 @@ const hotelRoomCardData = [
     roomNumber: 980,
     isLux: true,
     pricePerDay: 8500,
-    reviewNumber: 35,
+    numberOfReviews: 35,
     rating: 3,
     imgAttributes: [
       {
@@ -62,7 +62,7 @@ const hotelRoomCardData = [
     roomNumber: 856,
     isLux: false,
     pricePerDay: 7300,
-    reviewNumber: 19,
+    numberOfReviews: 19,
     rating: 5,
     imgAttributes: [
       {
@@ -81,7 +81,7 @@ const hotelRoomCardData = [
     roomNumber: 740,
     isLux: false,
     pricePerDay: 6000,
-    reviewNumber: 44,
+    numberOfReviews: 44,
     rating: 4,
     imgAttributes: [
       {
@@ -100,7 +100,7 @@ const hotelRoomCardData = [
     roomNumber: 982,
     isLux: false,
     pricePerDay: 5800,
-    reviewNumber: 56,
+    numberOfReviews: 56,
     rating: 3,
     imgAttributes: [
       {
@@ -119,7 +119,7 @@ const hotelRoomCardData = [
     roomNumber: 678,
     isLux: false,
     pricePerDay: 5500,
-    reviewNumber: 45,
+    numberOfReviews: 45,
     rating: 5,
     imgAttributes: [
       {
@@ -138,7 +138,7 @@ const hotelRoomCardData = [
     roomNumber: 450,
     isLux: false,
     pricePerDay: 5300,
-    reviewNumber: 39,
+    numberOfReviews: 39,
     rating: 4,
     imgAttributes: [
       {
@@ -157,7 +157,7 @@ const hotelRoomCardData = [
     roomNumber: 350,
     isLux: false,
     pricePerDay: 5000,
-    reviewNumber: 77,
+    numberOfReviews: 77,
     rating: 3,
     imgAttributes: [
       {
@@ -176,7 +176,7 @@ const hotelRoomCardData = [
     roomNumber: 666,
     isLux: false,
     pricePerDay: 5000,
-    reviewNumber: 25,
+    numberOfReviews: 25,
     rating: 5,
     imgAttributes: [
       {
@@ -195,7 +195,7 @@ const hotelRoomCardData = [
     roomNumber: 444,
     isLux: false,
     pricePerDay: 5000,
-    reviewNumber: 15,
+    numberOfReviews: 15,
     rating: 3,
     imgAttributes: [
       {
@@ -214,7 +214,7 @@ const hotelRoomCardData = [
     roomNumber: 352,
     isLux: false,
     pricePerDay: 5000,
-    reviewNumber: 55,
+    numberOfReviews: 55,
     rating: 3,
     imgAttributes: [
       {
